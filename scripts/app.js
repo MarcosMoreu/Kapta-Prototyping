@@ -420,7 +420,7 @@ function displayLocation(position) {
     //console.log('{longitude:' + lng + ', latitude:' + lat + '}');
     map.setView([lat, lng], 15);
 }
-//navigator.geolocation.getCurrentPosition(displayLocation); //Note that it requires a secure domain (i.e. HTTPS)
+navigator.geolocation.getCurrentPosition(displayLocation); //Note that it requires a secure domain (i.e. HTTPS)
                                                                                                        //define center map and zooooooms
 
 var scale = L.control.scale({

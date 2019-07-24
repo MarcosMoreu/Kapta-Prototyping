@@ -21,16 +21,6 @@ html,body {
     width: 100%;
 }
 
-/* .add-button {
-  visibility: hidden;
-  position: absolute;
-  top: 1px;
-  left: 1px;
-} */
-/* #export, #delete, #createPolygon,#deleteLastPoint{
-  height:90%;
-  width:50%;
-} */
 .easyButton1 {
   background-image: url('images/forest.png');
   background-color:yellow;
@@ -87,41 +77,6 @@ visibility:hidden;
   transform: translateY(8px);
 }
 
-
-/* .leaflet-control-zoom-in{
-
-  margin-top: 5px;
-}
-.leaflet-control-zoom-out{
-  margin-top: 25px;
-} */
-
-.grid-container {
-display: grid;
-/* Number of columns is defined by the number of autos */
-grid-template-columns: 100px 100px 100px 100px;
-grid-template-rows: 100px 100px ;
-text-align: center;
-vertical-align: center;
-background-color: white;
-/* Set space between rows and cols */
-grid-gap:0px;
-border: 0px solid rgba(0, 0, 0, 0.8);
-/* padding: 10px; */
-
-}
-
-
-.grid-item {
-background-color: rgba(255, 255, 255, 0.8);
-border: 3px solid #6d6c6c;
-padding: 2px;
-font-size: 30px;
-text-align: center;
-
-vertical-align: center;
-}
-
 span.closebtn {
 display: inline-block;
 width: 70px;
@@ -149,29 +104,8 @@ left:-25%;
 margin-right: 5px; */
 margin-top: 150px;
 
-
 }
 
 .attributeButtons{
   border: 8px solid transparent;
 }
-
-
-/* #selectedCellsContainer {
-display: inline-block;
-width: 100px;
-height: 100px;
-padding: 5px;
-border: 1px solid blue;
-background-color: yellow;
-
-}
-
-#selectedCellsContainer2 {
-display: inline-block;
-width: 100px;
-height: 100px;
-padding: 5px;
-border: 1px solid blue;
-background-color: yellow;
-} */
