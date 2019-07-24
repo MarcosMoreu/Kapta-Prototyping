@@ -1000,6 +1000,10 @@ var lt3 = null;
 var lt4 = null;
 var lt5 = null;
 var lt6 = null;
+
+var ds1 = null;
+var ds2 = null;
+var ds3 = null;
       document.getElementById('goToLandTenure').onclick  = function(e){
         document.getElementById('LU1').style.display = 'none';
         document.getElementById('LU2').style.display = 'none';
@@ -1196,6 +1200,43 @@ var lt6 = null;
         }
         console.log(lt6)
         return lt6
+      }
+
+      document.getElementById('community').onclick = function(e){
+        //this.style.borderColor = 'transparent';
+        if(ds1===null){
+          this.style.borderColor = 'black';
+          ds1 = 'shareCommunity';
+        }else{
+          this.style.borderColor = 'transparent';
+          ds1 = null;
+        }
+        console.log(ds1)
+        return ds1
+      }
+      document.getElementById('government').onclick = function(e){
+        //this.style.borderColor = 'transparent';
+        if(ds2===null){
+          this.style.borderColor = 'black';
+          ds2 = 'shareGovernment';
+        }else{
+          this.style.borderColor = 'transparent';
+          ds2 = null;
+        }
+        console.log(ds2)
+        return ds2
+      }
+      document.getElementById('world').onclick = function(e){
+        //this.style.borderColor = 'transparent';
+        if(ds3===null){
+          this.style.borderColor = 'black';
+          ds3 = 'shareWorld';
+        }else{
+          this.style.borderColor = 'transparent';
+          ds3 = null;
+        }
+        console.log(ds3)
+        return ds3
       }
 
 
@@ -1438,7 +1479,7 @@ var dateTimeRandomID;
                //console.log(dateTimeRandomID);
 
                var data = drawnItems.toGeoJSON();
-               var attributes = [lu1,lu2,lu3,lt1,lt2,lt3];
+               var attributes = [lu1,lu2,lu3,lu4,lu5,lu6,lt1,lt2,lt3,lt4,lt5,lt6,ds1,ds2,ds3];
 
                // Stringify the GeoJson
                var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
@@ -1487,15 +1528,10 @@ var dateTimeRandomID;
            document.getElementById('record').style.display = 'none';
            document.getElementById('play').style.display = 'none';
            document.getElementById('goBackToLandTenure').style.display = 'none';
-          //  document.getElementById("expandedImg1").style.opacity = "0";
-          // // document.getElementById("expandedImg2").style.opacity = "0";
-          //  document.getElementById("expandedImg3").style.opacity = "0";
-          //  document.getElementById("expandedImg4").style.opacity = "0";
 
-           // document.getElementById("span1").style.display = "initial";
-           // document.getElementById("span2").style.display = "initial";
-           // document.getElementById("span3").style.display = "initial";
-           // document.getElementById("span4").style.display = "initial";
+           document.getElementById("community").style.display = "none";
+           document.getElementById("government").style.display = "none";
+           document.getElementById("world").style.display = "none";
 
       return dateTimeRandomID;
   }
