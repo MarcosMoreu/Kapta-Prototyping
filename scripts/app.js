@@ -420,7 +420,8 @@ function displayLocation(position) {
     //console.log('{longitude:' + lng + ', latitude:' + lat + '}');
     map.setView([lat, lng], 15);
 }
-navigator.geolocation.getCurrentPosition(displayLocation); //Note that it requires a secure domain (i.e. HTTPS)
+//////////////////////////////////////activate gps///////////////////////////////////////////
+//navigator.geolocation.getCurrentPosition(displayLocation); //Note that it requires a secure domain (i.e. HTTPS)
                                                                                                        //define center map and zooooooms
 
 var scale = L.control.scale({
@@ -1075,6 +1076,10 @@ var ds3 = null;
 
       document.getElementById('community').onclick = function(e){
         //this.style.borderColor = 'transparent';
+        document.getElementById("export").disabled = false;
+        document.getElementById("exportButton").disabled = false;
+        document.getElementById("export").style.opacity = "1";
+        document.getElementById("exportButton").style.display = "1";
         if(ds1===null){
           this.style.borderColor = 'black';
           ds1 = 'shareCommunity';
@@ -1086,6 +1091,10 @@ var ds3 = null;
         return ds1
       }
       document.getElementById('government').onclick = function(e){
+        document.getElementById("export").disabled = false;
+        document.getElementById("exportButton").disabled = false;
+        document.getElementById("export").style.opacity = "1";
+        document.getElementById("exportButton").style.display = "1";
         //this.style.borderColor = 'transparent';
         if(ds2===null){
           this.style.borderColor = 'black';
@@ -1098,6 +1107,10 @@ var ds3 = null;
         return ds2
       }
       document.getElementById('world').onclick = function(e){
+        document.getElementById("export").disabled = false;
+        document.getElementById("exportButton").disabled = false;
+        document.getElementById("export").style.opacity = "1";
+        document.getElementById("exportButton").style.display = "1";
         //this.style.borderColor = 'transparent';
         if(ds3===null){
           this.style.borderColor = 'black';
@@ -1210,6 +1223,11 @@ var ds3 = null;
 
              document.getElementById("export").style.display = "initial";
              document.getElementById("exportButton").style.display = "initial";
+             document.getElementById("export").disabled = true;
+             document.getElementById("exportButton").disabled = true;
+             document.getElementById("export").style.opacity = "0.1";
+             document.getElementById("exportButton").style.display = "0.1";
+
 
              document.getElementById("record").style.display = "none";
              document.getElementById("play").style.display = "none";
@@ -1236,6 +1254,8 @@ var ds3 = null;
              document.getElementById('LandTenure').currentTime = 0;
              document.getElementById("dataSharing").pause();
              document.getElementById('dataSharing').currentTime = 0;
+             document.getElementById('Indentification').pause();
+             document.getElementById('Identification').currentTime = 0;
 
              //map.fitBounds(drawnItems.getBounds(),{maxZoom:20});
 
