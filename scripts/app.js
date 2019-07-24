@@ -724,6 +724,9 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
 
           document.getElementById("goBack1").onclick = function(e){
 
+            document.getElementById("mappingInstructions").pause();
+            document.getElementById("mappingInstructions").currentTime = 0;
+
              document.body.style.backgroundColor = "black";
              document.getElementById("map").style.display = "none";
              document.getElementById("goBack1").style.display = "none";
@@ -738,6 +741,9 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
 
           document.getElementById('startMapping').onclick = function(e) {
               document.body.style.backgroundColor = "white";
+
+              document.getElementById("mappingInstructions").play();
+
               document.getElementById("videoTutorial").style.display = "none";
               document.getElementById("startMapping").style.display = "none";
 
@@ -765,6 +771,7 @@ var clickMapCount = 0;
 var clickDelVertCount = 0;
 document.getElementById("goBack2").onclick = function(e){
       clickMapCount = 0;
+
        document.getElementById("goBack1").style.display = "initial";
        document.getElementById("goBack2").style.display = "none";
        document.getElementById("polygon").style.display = "initial";
@@ -951,6 +958,11 @@ document.getElementById("goBack2").onclick = function(e){
       document.getElementById('changeMapSize').onclick = function(e) {
             clickMapCount = 0;
             clickDelVertCount = 0;
+
+          document.getElementById("mappingInstructions").pause();
+          document.getElementById("mappingInstructions").currentTime = 0;
+
+
 
         //  console.log('zoom',map.getZoom())
           var screenHeight = screen.height;
@@ -1372,6 +1384,9 @@ var ds3 = null;
              drawnItems.remove();
              drawnItems.clearLayers();
              recordedVideo.pause();
+             document.getElementById("mappingInstructions").play();
+
+
              document.getElementById('LandUse').pause();
              document.getElementById('LandUse').currentTime = 0;
              document.getElementById('LandTenure').pause();
