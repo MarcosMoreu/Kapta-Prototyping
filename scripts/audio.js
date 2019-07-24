@@ -12,25 +12,31 @@
 'use strict';
 
 /* globals MediaRecorder */
+document.getElementById('gum').style.visibility = 'hidden';
+document.getElementById('recorded').style.visibility = 'hidden';
 
 const mediaSource = new MediaSource();
 mediaSource.addEventListener('sourceopen', handleSourceOpen, false);
 let mediaRecorder;
 let recordedBlobs;
 let sourceBuffer;
-
+var recording = false;
 const errorMsgElement = document.querySelector('span#errorMsg');
 const recordedVideo = document.querySelector('video#recorded');
 const recordButton = document.querySelector('button#record');
 recordButton.addEventListener('click', () => {
-  if (recordButton.textContent === 'Start Recording') {
+
+  if (recording == false) {
     startRecording();
+    //recording = false;
   } else {
     stopRecording();
-    recordButton.textContent = 'Start Recording';
+    recording  = false;
+    //recordButton.textContent = 'Start Recording';
     playButton.disabled = false;
     downloadButton.disabled = false;
   }
+  return recording;
 });
 
 const playButton = document.querySelector('button#play');
@@ -43,14 +49,19 @@ playButton.addEventListener('click', () => {
   recordedVideo.play();
 });
 
-const downloadButton = document.querySelector('button#download');
+const downloadButton = document.querySelector('button#exportButton');/////////////////////////////////change the download button
 downloadButton.addEventListener('click', () => {
+
+  var randomNumber = Math.random();
+  randomNumber = randomNumber*10000;
+  var randomID = Math.round(randomNumber);
+
   const blob = new Blob(recordedBlobs, {type: 'video/webm'});
   const url = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.style.display = 'none';
   a.href = url;
-  a.download = 'test.webm';
+  a.download = dateTimeRandomID+'.webm';
   document.body.appendChild(a);
   a.click();
   setTimeout(() => {
@@ -72,6 +83,8 @@ function handleDataAvailable(event) {
 }
 
 function startRecording() {
+
+
   recordedBlobs = [];
   let options = {mimeType: 'video/webm;codecs=vp9'};
   if (!MediaRecorder.isTypeSupported(options.mimeType)) {
@@ -99,7 +112,9 @@ function startRecording() {
   }
 
   console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
-  recordButton.textContent = 'Stop Recording';
+recording = true;
+recordedVideo.pause()
+  //recordButton.textContent = 'Stop Recording';
   playButton.disabled = true;
   downloadButton.disabled = true;
   mediaRecorder.onstop = (event) => {
@@ -108,6 +123,8 @@ function startRecording() {
   mediaRecorder.ondataavailable = handleDataAvailable;
   mediaRecorder.start(10); // collect 10ms of data
   console.log('MediaRecorder started', mediaRecorder);
+
+  return recording;
 }
 
 function stopRecording() {
@@ -134,15 +151,11 @@ async function init(constraints) {
   }
 }
 
-document.querySelector('button#start').addEventListener('click', async () => {
+document.querySelector('button#goToIdentification').addEventListener('click', async () => {
   const hasEchoCancellation = document.querySelector('#echoCancellation').checked;
   const constraints = {
-    audio: {
-      echoCancellation: {exact: hasEchoCancellation}
-    },
-    video: {
-      width: 1280, height: 720
-    }
+    audio: true,
+    video: false /////////////////////////////////////////////////////////////////////////////////!!!!!
   };
   console.log('Using media constraints:', constraints);
   await init(constraints);

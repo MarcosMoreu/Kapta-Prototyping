@@ -13,16 +13,22 @@ L.Draw.Polygon = L.Draw.Polyline.extend({
 	options: {
 		showArea: false,
 		showLength: false,
+		// icon: new L.DivIcon({
+		// 						iconSize: new L.Point(2, 2),
+		// 						iconUrl:'images/point.png'}),
+
 		shapeOptions: {
 			stroke: true,
-			color: '#3388ff',
+			color: '#0ff007',
 			weight: 4,
 			opacity: 0.5,
 			fill: true,
 			fillColor: null, //same as color by default
 			fillOpacity: 0.2,
-			clickable: true
+			clickable: true,
+			iconUrl:'images/point.png',
 		},
+
 		// Whether to use the metric measurement system (truthy) or not (falsy).
 		// Also defines the units to use for the metric system as an array of
 		// strings (e.g. `['ha', 'm']`).
@@ -32,6 +38,8 @@ L.Draw.Polygon = L.Draw.Polyline.extend({
 		// Defines the precision for each type of unit (e.g. {km: 2, ft: 0}
 		precision: {}
 	},
+
+
 
 	// @method initialize(): void
 	initialize: function (map, options) {

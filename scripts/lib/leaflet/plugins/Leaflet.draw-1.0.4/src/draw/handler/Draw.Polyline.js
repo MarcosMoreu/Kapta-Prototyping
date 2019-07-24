@@ -17,10 +17,10 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 			color: '#b00b00',
 			timeout: 2500
 		},
-		icon: new L.DivIcon({
-			iconSize: new L.Point(8, 8),
-			className: 'leaflet-div-icon leaflet-editing-icon'
-		}),
+		// icon: new L.DivIcon({
+		// 	iconSize: new L.Point(8, 8),
+		// 	className: 'leaflet-div-icon leaflet-editing-icon'
+		// }),
 		touchIcon: new L.DivIcon({
 			iconSize: new L.Point(20, 20),
 			className: 'leaflet-div-icon leaflet-editing-icon leaflet-touch-icon'

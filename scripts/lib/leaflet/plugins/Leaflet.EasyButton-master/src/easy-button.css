@@ -1,22 +1,29 @@
 .leaflet-bar button,
 .leaflet-bar button:hover {
-  background-color: #fff;
+  background-color: rgba(0,0,0,0);
   border: none;
   border-bottom: 1px solid #ccc;
   width: 26px;
   height: 26px;
-  line-height: 26px;
+  line-height: 60px;
   display: block;
   text-align: center;
   text-decoration: none;
   color: black;
 }
 
+
+
 .leaflet-bar button {
-  background-position: 50% 50%;
+  background-color: black;
+  background-image: 100% 100%;
+  background-position: 100% 100%;
   background-repeat: no-repeat;
   overflow: hidden;
   display: block;
+  padding-top:5px;
+
+
 }
 
 .leaflet-bar button:hover {
@@ -39,6 +46,7 @@
   cursor: default;
   pointer-events: none;
   opacity: .4;
+  border:none;
 }
 
 .easy-button-button .button-state{
@@ -52,5 +60,5 @@
 .leaflet-touch .leaflet-bar button {
   width: 30px;
   height: 30px;
-  line-height: 30px;
+  line-height: 60px;
 }
