@@ -674,16 +674,19 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
            document.getElementById("exportButton").style.display = "none";
            document.getElementById("Confirm").style.display = "none";
 
-           document.getElementById('Green_Farming').style.display = 'none';
-           document.getElementById('Brown_Grazing').style.display = 'none';
-           document.getElementById('Yellow_Other').style.display = 'none';
+           document.getElementById('LU1').style.display = 'none';
+           document.getElementById('LU2').style.display = 'none';
+           document.getElementById('LU3').style.display = 'none';
+           document.getElementById('LU4').style.display = 'none';
+           document.getElementById('LU5').style.display = 'none';
+           document.getElementById('LU6').style.display = 'none';
+           document.getElementById('LT1').style.display = 'none';
+           document.getElementById('LT2').style.display = 'none';
+           document.getElementById('LT3').style.display = 'none';
+           document.getElementById('LT4').style.display = 'none';
+           document.getElementById('LT5').style.display = 'none';
+           document.getElementById('LT6').style.display = 'none';
            document.getElementById('goToLandTenure').style.display = 'none';
-
-
-
-           document.getElementById('Green_A').style.display = 'none';
-           document.getElementById('Brown_B').style.display = 'none';
-           document.getElementById('Yellow_C').style.display = 'none';
            document.getElementById('goToIdentification').style.display = 'none';
            document.getElementById('goBackToLandUse').style.display = 'none';
 
@@ -702,7 +705,9 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
 
            document.getElementById('voice').style.display = 'none';
 
-
+           document.getElementById("community").style.display = "none";
+           document.getElementById("government").style.display = "none";
+           document.getElementById("world").style.display = "none";
 
            // document.getElementById( "gridContainer1").style.display = "none";
            // document.getElementById("selectedCellsContainer").style.display = "none";
@@ -715,7 +720,7 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
            // document.getElementById("Exit").style.display = "none";
            // document.getElementById("Return").style.display = "none";
 
-////////////////////////////////////////////Initial screen//////////////////////////////////////////////////////////////
+////////////////////////////////////////////TUTORIAL//////////////////////////////////////////////////////////////
 
           document.getElementById("goBack1").onclick = function(e){
 
@@ -970,9 +975,12 @@ document.getElementById("goBack2").onclick = function(e){
               document.getElementById("Cancel").style.display = "initial";
               // document.getElementById("microphone").style.display = "initial";
               document.getElementById('LandUse').play();
-              document.getElementById('Green_Farming').style.display = 'initial';
-              document.getElementById('Brown_Grazing').style.display = 'initial';
-              document.getElementById('Yellow_Other').style.display = 'initial';
+              document.getElementById('LU1').style.display = 'initial';
+              document.getElementById('LU2').style.display = 'initial';
+              document.getElementById('LU3').style.display = 'initial';
+              document.getElementById('LU4').style.display = 'initial';
+              document.getElementById('LU5').style.display = 'initial';
+              document.getElementById('LU6').style.display = 'initial';
               document.getElementById('goToLandTenure').style.display = 'initial';
 
 
@@ -982,41 +990,59 @@ document.getElementById("goBack2").onclick = function(e){
 var lu1 = null;
 var lu2 = null;
 var lu3 = null;
+var lu4 = null;
+var lu5 = null;
+var lu6 = null;
 
 var lt1 = null;
 var lt2 = null;
 var lt3 = null;
+var lt4 = null;
+var lt5 = null;
+var lt6 = null;
       document.getElementById('goToLandTenure').onclick  = function(e){
-        document.getElementById('Green_Farming').style.display = 'none';
-        document.getElementById('Brown_Grazing').style.display = 'none';
-        document.getElementById('Yellow_Other').style.display = 'none';
+        document.getElementById('LU1').style.display = 'none';
+        document.getElementById('LU2').style.display = 'none';
+        document.getElementById('LU3').style.display = 'none';
+        document.getElementById('LU4').style.display = 'none';
+        document.getElementById('LU5').style.display = 'none';
+        document.getElementById('LU6').style.display = 'none';
         document.getElementById('goToLandTenure').style.display = 'none';
 
         document.getElementById('LandUse').pause();
         document.getElementById('LandUse').currentTime = 0;
         document.getElementById('LandTenure').play();
 
-        document.getElementById('Green_A').style.display = 'initial';
-        document.getElementById('Brown_B').style.display = 'initial';
-        document.getElementById('Yellow_C').style.display = 'initial';
+        document.getElementById('LT1').style.display = 'initial';
+        document.getElementById('LT2').style.display = 'initial';
+        document.getElementById('LT3').style.display = 'initial';
+        document.getElementById('LT4').style.display = 'initial';
+        document.getElementById('LT5').style.display = 'initial';
+        document.getElementById('LT6').style.display = 'initial';
         document.getElementById('goToIdentification').style.display = 'initial';
         document.getElementById('goBackToLandUse').style.display = 'initial';
 
 
       }
       document.getElementById('goBackToLandUse').onclick  = function(e){
-        document.getElementById('Green_Farming').style.display = 'initial';
-        document.getElementById('Brown_Grazing').style.display = 'initial';
-        document.getElementById('Yellow_Other').style.display = 'initial';
+        document.getElementById('LU1').style.display = 'initial';
+        document.getElementById('LU2').style.display = 'initial';
+        document.getElementById('LU3').style.display = 'initial';
+        document.getElementById('LU4').style.display = 'initial';
+        document.getElementById('LU5').style.display = 'initial';
+        document.getElementById('LU6').style.display = 'initial';
         document.getElementById('goToLandTenure').style.display = 'initial';
 
         document.getElementById('LandTenure').pause();
         document.getElementById('LandTenure').currentTime = 0;
         document.getElementById('LandUse').play();
 
-        document.getElementById('Green_A').style.display = 'none';
-        document.getElementById('Brown_B').style.display = 'none';
-        document.getElementById('Yellow_C').style.display = 'none';
+        document.getElementById('LT1').style.display = 'none';
+        document.getElementById('LT2').style.display = 'none';
+        document.getElementById('LT3').style.display = 'none';
+        document.getElementById('LT4').style.display = 'none';
+        document.getElementById('LT5').style.display = 'none';
+        document.getElementById('LT6').style.display = 'none';
         document.getElementById('goToIdentification').style.display = 'none';
         document.getElementById('goBackToLandUse').style.display = 'none';
 
@@ -1024,7 +1050,7 @@ var lt3 = null;
       }
 
 
-      document.getElementById('Green_Farming').onclick = function(e){
+      document.getElementById('LU1').onclick = function(e){
         //this.style.borderColor = 'transparent';
         if(lu1===null){
           this.style.borderColor = 'black';
@@ -1037,7 +1063,7 @@ var lt3 = null;
         return lu1
       }
 
-      document.getElementById('Brown_Grazing').onclick = function(e){
+      document.getElementById('LU2').onclick = function(e){
         //this.style.borderColor = 'transparent';
         if(lu2===null){
           this.style.borderColor = 'black';
@@ -1049,7 +1075,7 @@ var lt3 = null;
         console.log(lu2)
         return lu2
       }
-      document.getElementById('Yellow_Other').onclick = function(e){
+      document.getElementById('LU3').onclick = function(e){
         //this.style.borderColor = 'transparent';
         if(lu3===null){
           this.style.borderColor = 'black';
@@ -1061,7 +1087,44 @@ var lt3 = null;
         console.log(lu3)
         return lu3
       }
-      document.getElementById('Green_A').onclick = function(e){
+      document.getElementById('LU4').onclick = function(e){
+        //this.style.borderColor = 'transparent';
+        if(lu4===null){
+          this.style.borderColor = 'black';
+          lu4 = 'landUse4';
+        }else{
+          this.style.borderColor = 'transparent';
+          lu4 = null;
+        }
+        console.log(lu4)
+        return lu4
+      }
+
+      document.getElementById('LU5').onclick = function(e){
+        //this.style.borderColor = 'transparent';
+        if(lu5===null){
+          this.style.borderColor = 'black';
+          lu5 = 'landUse5';
+        }else{
+          this.style.borderColor = 'transparent';
+          lu5 = null;
+        }
+        console.log(lu5)
+        return lu5
+      }
+      document.getElementById('LU6').onclick = function(e){
+        //this.style.borderColor = 'transparent';
+        if(lu6===null){
+          this.style.borderColor = 'black';
+          lu6 = 'landUse6';
+        }else{
+          this.style.borderColor = 'transparent';
+          lu6 = null;
+        }
+        console.log(lu6)
+        return lu6
+      }
+      document.getElementById('LT1').onclick = function(e){
         //this.style.borderColor = 'transparent';
         if(lt1===null){
           this.style.borderColor = 'black';
@@ -1073,7 +1136,7 @@ var lt3 = null;
         console.log(lt1)
         return lt1
       }
-      document.getElementById('Brown_B').onclick = function(e){
+      document.getElementById('LT2').onclick = function(e){
         //this.style.borderColor = 'transparent';
         if(lt2===null){
           this.style.borderColor = 'black';
@@ -1085,7 +1148,7 @@ var lt3 = null;
         console.log(lt2)
         return lt2
       }
-      document.getElementById('Yellow_C').onclick = function(e){
+      document.getElementById('LT3').onclick = function(e){
         //this.style.borderColor = 'transparent';
         if(lt3===null){
           this.style.borderColor = 'black';
@@ -1098,11 +1161,51 @@ var lt3 = null;
         return lt3
       }
 
+      document.getElementById('LT4').onclick = function(e){
+        //this.style.borderColor = 'transparent';
+        if(lt4===null){
+          this.style.borderColor = 'black';
+          lt4 = 'landTenure4';
+        }else{
+          this.style.borderColor = 'transparent';
+          lt4 = null;
+        }
+        console.log(lt4)
+        return lt4
+      }
+      document.getElementById('LT5').onclick = function(e){
+        //this.style.borderColor = 'transparent';
+        if(lt5===null){
+          this.style.borderColor = 'black';
+          lt5 = 'landTenure5';
+        }else{
+          this.style.borderColor = 'transparent';
+          lt5 = null;
+        }
+        console.log(lt5)
+        return lt5
+      }
+      document.getElementById('LT6').onclick = function(e){
+        //this.style.borderColor = 'transparent';
+        if(lt6===null){
+          this.style.borderColor = 'black';
+          lt6 = 'landTenure6';
+        }else{
+          this.style.borderColor = 'transparent';
+          lt6 = null;
+        }
+        console.log(lt6)
+        return lt6
+      }
+
 
       document.getElementById('goToIdentification').onclick  = function(e){
-        document.getElementById('Green_A').style.display = 'none';
-        document.getElementById('Brown_B').style.display = 'none';
-        document.getElementById('Yellow_C').style.display = 'none';
+        document.getElementById('LT1').style.display = 'none';
+        document.getElementById('LT2').style.display = 'none';
+        document.getElementById('LT3').style.display = 'none';
+        document.getElementById('LT4').style.display = 'none';
+        document.getElementById('LT5').style.display = 'none';
+        document.getElementById('LT6').style.display = 'none';
         document.getElementById('goToIdentification').style.display = 'none';
         document.getElementById('Confirm').disabled = false;
         document.getElementById('Confirm').style.opacity = '1';
@@ -1128,9 +1231,18 @@ var lt3 = null;
       }
 
       document.getElementById('goBackToLandTenure').onclick  = function(e){
-        document.getElementById('Green_Farming').style.display = 'none';
-        document.getElementById('Brown_Grazing').style.display = 'none';
-        document.getElementById('Yellow_Other').style.display = 'none';
+        document.getElementById('Confirm').disabled = true;
+        document.getElementById('Confirm').style.opacity = '0.1';
+        recordedVideo.pause();
+        recordedVideo.currentTime = 0;
+
+
+        document.getElementById('LU1').style.display = 'none';
+        document.getElementById('LU2').style.display = 'none';
+        document.getElementById('LU3').style.display = 'none';
+        document.getElementById('LU4').style.display = 'none';
+        document.getElementById('LU5').style.display = 'none';
+        document.getElementById('LU6').style.display = 'none';
         document.getElementById('goToLandTenure').style.display = 'none';
         document.getElementById('record').style.display = 'none';
         document.getElementById('play').style.display = 'none';
@@ -1139,11 +1251,16 @@ var lt3 = null;
 
         document.getElementById('LandUse').pause();
         document.getElementById('LandUse').currentTime = 0;
+        document.getElementById('Identification').pause();
+        document.getElementById('Identification').currentTime = 0;
         document.getElementById('LandTenure').play();
 
-        document.getElementById('Green_A').style.display = 'initial';
-        document.getElementById('Brown_B').style.display = 'initial';
-        document.getElementById('Yellow_C').style.display = 'initial';
+        document.getElementById('LT1').style.display = 'initial';
+        document.getElementById('LT2').style.display = 'initial';
+        document.getElementById('LT3').style.display = 'initial';
+        document.getElementById('LT4').style.display = 'initial';
+        document.getElementById('LT5').style.display = 'initial';
+        document.getElementById('LT6').style.display = 'initial';
         document.getElementById('goToIdentification').style.display = 'initial';
         document.getElementById('goBackToLandUse').style.display = 'initial';
         document.getElementById('goBackToLandTenure').style.display = 'none';
@@ -1152,46 +1269,7 @@ var lt3 = null;
       }
 
 
-      // document.getElementById('microphone').onclick = function(e){
-      //      document.getElementById('microphone').style.display = 'none';
-      //      document.getElementById('start').style.display = 'initial';
-      //      document.getElementById('record').style.display = 'initial';
-      //      document.getElementById('play').style.display = 'initial';
-      //      document.getElementById('download').style.display = 'initial';
-      //      document.getElementById('gum').style.display = 'none';
-      //      document.getElementById('recorded').style.display = 'none';
-      //      document.getElementById('echoCancellation').style.display = 'none';
-      //
-      // }
-/////////////////////////actions for the microphone buttons//////////////////////////////////////////////
-      // document.getElementById('start').onclick = function(e){
-      //     // document.getElementById('start').style.opacity = '0.1';
-      //      document.getElementById('record').style.opacity = '1';
-      //
-      //      document.getElementById('gum').style.display = 'none';
-      //      document.getElementById('recorded').style.display = 'none';
-      //      document.getElementById('echoCancellation').style.display = 'none';
-      //
-      // }
-
-      // document.getElementById('record').onclick = function(e){
-      //       if(this.textContent=='Stop Recording'){
-      //         document.getElementById('play').style.opacity = '1';
-      //         document.getElementById('download').style.opacity = '1';
-      //
-      //       }
-      //       if(this.textContent=='Start Recording'){
-      //         document.getElementById('play').style.opacity = '0.1';
-      //         document.getElementById('download').style.opacity = '0.1';
-      //
-      //       }
-      //
-      //      document.getElementById('gum').style.display = 'none';
-      //      document.getElementById('recorded').style.display = 'none';
-      //      document.getElementById('echoCancellation').style.display = 'none';
-      //
-      // }
-      document.getElementById('record').onclick = function(e){
+        document.getElementById('record').onclick = function(e){
             if(recording==true){
               this.style.borderColor = 'transparent';
               document.getElementById('play').style.opacity = '1';
@@ -1229,7 +1307,18 @@ var lt3 = null;
              document.getElementById("export").style.display = "initial";
              document.getElementById("exportButton").style.display = "initial";
 
-           }
+             document.getElementById("record").style.display = "none";
+             document.getElementById("play").style.display = "none";
+             document.getElementById("goBackToLandTenure").style.display = "none";
+
+             document.getElementById('voice').style.display = 'none';
+
+             document.getElementById("community").style.display = "initial";
+             document.getElementById("government").style.display = "initial";
+             document.getElementById("world").style.display = "initial";
+
+
+        }
 
 
 
@@ -1238,6 +1327,11 @@ var lt3 = null;
              drawnItems.remove();
              drawnItems.clearLayers();
              recordedVideo.pause();
+             document.getElementById('LandUse').pause();
+             document.getElementById('LandUse').currentTime = 0;
+             document.getElementById('LandTenure').pause();
+             document.getElementById('LandTenure').currentTime = 0;
+
 
              //map.fitBounds(drawnItems.getBounds(),{maxZoom:20});
 
@@ -1255,18 +1349,30 @@ var lt3 = null;
              document.getElementById("exportButton").style.display = "none";
              document.getElementById("Confirm").style.display = "none";
 
-             document.getElementById('Green_Farming').style.borderColor = 'transparent';
-             document.getElementById('Brown_Grazing').style.borderColor = 'transparent';
-             document.getElementById('Yellow_Other').style.borderColor = 'transparent';
-             document.getElementById('Green_A').style.borderColor = 'transparent';
-             document.getElementById('Brown_B').style.borderColor = 'transparent';
-             document.getElementById('Yellow_C').style.borderColor = 'transparent';
-             document.getElementById('Green_Farming').style.display = 'none';
-             document.getElementById('Brown_Grazing').style.display = 'none';
-             document.getElementById('Yellow_Other').style.display = 'none';
-             document.getElementById('Green_A').style.display = 'none';
-             document.getElementById('Brown_B').style.display = 'none';
-             document.getElementById('Yellow_C').style.display = 'none';
+             document.getElementById('LU1').style.borderColor = 'transparent';
+             document.getElementById('LU2').style.borderColor = 'transparent';
+             document.getElementById('LU3').style.borderColor = 'transparent';
+             document.getElementById('LU4').style.borderColor = 'transparent';
+             document.getElementById('LU5').style.borderColor = 'transparent';
+             document.getElementById('LU6').style.borderColor = 'transparent';
+             document.getElementById('LT1').style.borderColor = 'transparent';
+             document.getElementById('LT2').style.borderColor = 'transparent';
+             document.getElementById('LT3').style.borderColor = 'transparent';
+             document.getElementById('LT4').style.borderColor = 'transparent';
+             document.getElementById('LT5').style.borderColor = 'transparent';
+             document.getElementById('LT6').style.borderColor = 'transparent';
+             document.getElementById('LU1').style.display = 'none';
+             document.getElementById('LU2').style.display = 'none';
+             document.getElementById('LU3').style.display = 'none';
+             document.getElementById('LU4').style.display = 'none';
+             document.getElementById('LU5').style.display = 'none';
+             document.getElementById('LU6').style.display = 'none';
+             document.getElementById('LT1').style.display = 'none';
+             document.getElementById('LT2').style.display = 'none';
+             document.getElementById('LT3').style.display = 'none';
+             document.getElementById('LT4').style.display = 'none';
+             document.getElementById('LT5').style.display = 'none';
+             document.getElementById('LT6').style.display = 'none';
              document.getElementById('record').style.display = 'none';
              document.getElementById('play').style.display = 'none';
              document.getElementById('voice').style.display = 'none';
@@ -1275,6 +1381,10 @@ var lt3 = null;
              document.getElementById('goBackToLandUse').style.display = 'none';
              document.getElementById('goToLandTenure').style.display = 'none';
              document.getElementById('goToIdentification').style.display = 'none';
+
+             document.getElementById("community").style.display = "none";
+             document.getElementById("government").style.display = "none";
+             document.getElementById("world").style.display = "none";
 
            }
 
@@ -1407,12 +1517,18 @@ var dateTimeRandomID;
              document.getElementById("Return").style.display = "none";
              created=false;
 
-             document.getElementById('Green_Farming').style.borderColor = 'transparent';
-             document.getElementById('Brown_Grazing').style.borderColor = 'transparent';
-             document.getElementById('Yellow_Other').style.borderColor = 'transparent';
-             document.getElementById('Green_A').style.borderColor = 'transparent';
-             document.getElementById('Brown_B').style.borderColor = 'transparent';
-             document.getElementById('Yellow_C').style.borderColor = 'transparent';
+             document.getElementById('LU1').style.borderColor = 'transparent';
+             document.getElementById('LU2').style.borderColor = 'transparent';
+             document.getElementById('LU3').style.borderColor = 'transparent';
+             document.getElementById('LU4').style.borderColor = 'transparent';
+             document.getElementById('LU5').style.borderColor = 'transparent';
+             document.getElementById('LU6').style.borderColor = 'transparent';
+             document.getElementById('LT1').style.borderColor = 'transparent';
+             document.getElementById('LT2').style.borderColor = 'transparent';
+             document.getElementById('LT3').style.borderColor = 'transparent';
+             document.getElementById('LT4').style.borderColor = 'transparent';
+             document.getElementById('LT5').style.borderColor = 'transparent';
+             document.getElementById('LT6').style.borderColor = 'transparent';
 
              return created;
         }
