@@ -70,7 +70,6 @@ var tilesDb = {
                 });
             })(i, tileUrl);
         }
-
         return Promise.all(promises);
     },
 
@@ -264,10 +263,6 @@ var offlineControlOSM = L.control.offline(osm, tilesDb, {
 //offlineControlGoogle.addTo(map);
 //offlineControlOSM.addTo(map);
 
-
-
-
-
 var clickButtonCount=0;
 var osm_Button = L.easyButton({
     id: 'osm',
@@ -434,127 +429,6 @@ var scale = L.control.scale({
   imperial:false,
 }).addTo(map);
 
-// ////////////////////////////   Classify functions   ////////////////////////////
-// //var expandImg;
-// var attribute1;
-// var attribute3;
-// var attribute4;
-//
-// function classify1(imgs1) {
-//   var expandImg1 = document.getElementById("expandedImg1");
-//   //var imagecontent = document.getElementById("Crop");
-//
-//   expandImg1.src = imgs1.src;
-//   //expandImg.style.display = "none";
-//
-//   document.getElementById("gridContainer1").style.display = "none";
-//   //document.getElementById("gridContainer2").style.display = "initial";///////////////////////
-//   document.getElementById("gridContainer3").style.display = "initial";
-//   //console.log('classify1 called');
-//
-//   document.getElementById("expandedImg1").style.opacity = "0.5";
-//
-//   var path=expandImg1.src;
-//   attribute1 = path.substring(path.lastIndexOf('/')+1);
-//
-//   return attribute1;
-// }
-//
-// // function classify2(imgs2) {
-// //   var expandImg2 = document.getElementById("expandedImg2");
-// //   expandImg2.src = imgs2.src;
-// //
-// //   //document.getElementById("gridContainer2").style.display = "none";
-// //   document.getElementById("gridContainer3").style.display = "initial";
-// //   document.getElementById("expandedImg2").style.opacity = "0.5";
-// //
-// // }
-//
-//
-//
-// function classify3(imgs3) {
-//   var expandImg3 = document.getElementById("expandedImg3");
-//   expandImg3.src = imgs3.src;
-//
-//
-//   document.getElementById("gridContainer3").style.display = "none";
-//   document.getElementById("gridContainer4").style.display = "initial";
-//   document.getElementById("expandedImg3").style.opacity = "0.5";
-//   var path=expandImg3.src;
-//   attribute3 = path.substring(path.lastIndexOf('/')+1);
-//
-//   return attribute3;
-// }
-//
-// function classify4(imgs4) {
-//   var expandImg4 = document.getElementById("expandedImg4");
-//   expandImg4.src = imgs4.src;
-//
-//   //document.getElementById("gridContainer3").style.display = "none";
-//   document.getElementById("gridContainer4").style.display = "initial";
-//   document.getElementById("expandedImg4").style.opacity = "0.5";
-//
-//
-//   document.getElementById("Confirm").disabled = false;
-//   document.getElementById("Confirm").style.opacity = "1";
-//
-//   //document.getElementById('span1').style.display = "initial";
-//   // document.getElementById('expandImg2').reset();
-//   // document.getElementById('expandImg3').reset();
-//   // document.getElementById('expandImg4').reset();
-//   var path=expandImg4.src;
-//   attribute4 = path.substring(path.lastIndexOf('/')+1);
-//
-//   return attribute4;
-// }
-//
-//
-// ////////////////////////////   Classify BACK functions   ////////////////////////////
-//
-//
-// function classify1Back() {
-//   // var expandImg = document.getElementById("expandedImg4");
-//   // expandImg.src = imgs.src;
-//
-//   //document.getElementById("gridContainer2").style.display = "none";
-//   document.getElementById("gridContainer3").style.display = "none";
-//   document.getElementById("gridContainer4").style.display = "none";
-//   document.getElementById( "gridContainer1").style.display = "initial";
-// //  console.log('classify1Back called')
-// }
-//
-// // function classify2Back() {
-// //   // var expandImg = document.getElementById("expandedImg2");
-// //   // expandImg.src = imgs.src;
-// //
-// //   document.getElementById("gridContainer3").style.display = "none";
-// //   //document.getElementById("gridContainer2").style.display = "initial";
-// //   document.getElementById("gridContainer4").style.display = "none";
-// //   document.getElementById( "gridContainer1").style.display = "none";
-// //
-// // }
-//
-// function classify3Back() {
-//   // var expandImg = document.getElementById("expandedImg3");
-//   // expandImg.src = imgs.src;
-//
-//   document.getElementById("gridContainer4").style.display = "none";
-//   document.getElementById("gridContainer3").style.display = "initial";
-//   //document.getElementById("gridContainer2").style.display = "none";
-//   document.getElementById( "gridContainer1").style.display = "none";
-//
-// }
-//
-// function classify4Back() {
-//   // var expandImg = document.getElementById("expandedImg4");
-//   // expandImg.src = imgs.src;
-//
-//   document.getElementById("gridContainer4").style.display = "initial";
-//   //document.getElementById("gridContainer2").style.display = "none";
-//   document.getElementById("gridContainer3").style.display = "none";
-//   document.getElementById( "gridContainer1").style.display = "none";
-//
-// }
 
 /////////////////////////////////////////////////////////////////////////
 var drawnItems = new L.FeatureGroup();
@@ -645,10 +519,7 @@ var drawPolygon = new L.Draw.Polygon(map, drawControl.options.polygon);
 var drawPolyline = new L.Draw.Polyline(map, drawControl.options.polyline);
 var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
 
-
-
 /////////////////////////////////////////Initial state of buttons //////////////////////////////////////
-
 
            document.getElementById("videoTutorial").style.display = "initial";
            document.getElementById("startMapping").style.visibility = "visible";
@@ -691,9 +562,6 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
            document.getElementById('goBackToLandUse').style.display = 'none';
 
 
-
-
-
           // document.getElementById('start').style.display = 'none';
            document.getElementById('record').style.display = 'none';
            document.getElementById('play').style.display = 'none';
@@ -708,12 +576,6 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
            document.getElementById("community").style.display = "none";
            document.getElementById("government").style.display = "none";
            document.getElementById("world").style.display = "none";
-
-           // document.getElementById( "gridContainer1").style.display = "none";
-           // document.getElementById("selectedCellsContainer").style.display = "none";
-           // //document.getElementById("gridContainer2").style.display = "none";
-           // document.getElementById("gridContainer3").style.display = "none";
-           // document.getElementById("gridContainer4").style.display = "none";
 
            document.getElementById("Exit").style.display = "none";
            document.getElementById("Return").style.display = "none";
@@ -735,7 +597,6 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
              document.getElementById("point").style.display = "none";
              document.getElementById("videoTutorial").style.display = "initial";
              document.getElementById("startMapping").style.display = "initial";
-
 
            }
 
@@ -812,7 +673,6 @@ document.getElementById("goBack2").onclick = function(e){
             document.getElementById("changeMapSize").style.opacity = "0.15";
 
             document.getElementById("deletePolygon").style.display = "none";
-
 
   };
 
@@ -1062,7 +922,6 @@ var ds3 = null;
         document.getElementById('goToIdentification').style.display = 'none';
         document.getElementById('goBackToLandUse').style.display = 'none';
 
-
       }
 
 
@@ -1251,7 +1110,6 @@ var ds3 = null;
         return ds3
       }
 
-
       document.getElementById('goToIdentification').onclick  = function(e){
         document.getElementById('LT1').style.display = 'none';
         document.getElementById('LT2').style.display = 'none';
@@ -1265,8 +1123,6 @@ var ds3 = null;
         document.getElementById('goBackToLandUse').style.display = 'none';
         document.getElementById('voice').style.display = 'initial';
         document.getElementById('voice').style.opacity = '0';
-
-
 
         document.getElementById('LandTenure').pause();
         document.getElementById('LandTenure').currentTime = 0;
@@ -1301,7 +1157,6 @@ var ds3 = null;
         document.getElementById('play').style.display = 'none';
         document.getElementById('voice').style.display = 'none';
 
-
         document.getElementById('LandUse').pause();
         document.getElementById('LandUse').currentTime = 0;
         document.getElementById('Identification').pause();
@@ -1317,10 +1172,7 @@ var ds3 = null;
         document.getElementById('goToIdentification').style.display = 'initial';
         document.getElementById('goBackToLandUse').style.display = 'initial';
         document.getElementById('goBackToLandTenure').style.display = 'none';
-
-
       }
-
 
         document.getElementById('record').onclick = function(e){
             if(recording==true){
@@ -1329,7 +1181,6 @@ var ds3 = null;
               document.getElementById('download').style.opacity = '1';
               document.getElementById('voice').style.opacity = '0';
               document.getElementById('goBackToLandTenure').style.display = 'initial';
-
             }
             if(recording==false){
               this.style.borderColor = 'black';
@@ -1338,19 +1189,15 @@ var ds3 = null;
               document.getElementById('voice').style.opacity = '1';
               document.getElementById('goBackToLandTenure').style.display = 'none';
 
-
             }
             document.getElementById('Identification').pause();
             document.getElementById('LandTenure').currentTime = 0;
-
 
            document.getElementById('gum').style.display = 'none';
            document.getElementById('recorded').style.display = 'none';
            document.getElementById('echoCancellation').style.display = 'none';
 
       }
-
-
 
       document.getElementById('Confirm').onclick = function(e) {
             document.getElementById("Identification").pause();
@@ -1374,10 +1221,7 @@ var ds3 = null;
              document.getElementById("government").style.display = "initial";
              document.getElementById("world").style.display = "initial";
 
-
         }
-
-
 
       document.getElementById('Cancel').onclick = function(e){
              created = false;
@@ -1386,14 +1230,12 @@ var ds3 = null;
              recordedVideo.pause();
              document.getElementById("mappingInstructions").play();
 
-
              document.getElementById('LandUse').pause();
              document.getElementById('LandUse').currentTime = 0;
              document.getElementById('LandTenure').pause();
              document.getElementById('LandTenure').currentTime = 0;
              document.getElementById("dataSharing").pause();
              document.getElementById('dataSharing').currentTime = 0;
-
 
              //map.fitBounds(drawnItems.getBounds(),{maxZoom:20});
 
@@ -1501,14 +1343,6 @@ var dateTimeRandomID;
            document.getElementById("Confirm").style.display = "none";
            document.getElementById("Cancel").style.display = "none";
 
-           //document.getElementById("exportButton").style.display = "none";
-
-          // // document.getElementById("gridContainer2").style.display = "none";
-          //  document.getElementById("gridContainer3").style.display = "none";
-          //  document.getElementById("gridContainer4").style.display = "none";
-          //
-          //  document.getElementById( "gridContainer1").style.display = "none";
-          //  document.getElementById("selectedCellsContainer").style.display = "none";
            document.getElementById("export").style.display = "none";
            document.getElementById("exportButton").style.display = "none";
 
@@ -1535,7 +1369,6 @@ var dateTimeRandomID;
 
       return dateTimeRandomID;
   }
-
 
       document.getElementById('Return').onclick = function(e){
 
