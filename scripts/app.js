@@ -1341,6 +1341,10 @@ var ds3 = null;
 
 
       document.getElementById('Confirm').onclick = function(e) {
+            document.getElementById("Identification").pause();
+            document.getElementById("Identification").currentTime = 0;
+
+            document.getElementById("dataSharing").play();
 
              document.getElementById("Confirm").style.display = "none";
             // document.getElementById("Cancel").style.display = "none";
@@ -1372,6 +1376,8 @@ var ds3 = null;
              document.getElementById('LandUse').currentTime = 0;
              document.getElementById('LandTenure').pause();
              document.getElementById('LandTenure').currentTime = 0;
+             document.getElementById("dataSharing").pause();
+             document.getElementById('dataSharing').currentTime = 0;
 
 
              //map.fitBounds(drawnItems.getBounds(),{maxZoom:20});
@@ -1402,6 +1408,10 @@ var ds3 = null;
              document.getElementById('LT4').style.borderColor = 'transparent';
              document.getElementById('LT5').style.borderColor = 'transparent';
              document.getElementById('LT6').style.borderColor = 'transparent';
+             document.getElementById("community").style.borderColor = 'transparent';
+             document.getElementById("government").style.borderColor = 'transparent';
+             document.getElementById("world").style.borderColor = 'transparent';
+
              document.getElementById('LU1').style.display = 'none';
              document.getElementById('LU2').style.display = 'none';
              document.getElementById('LU3').style.display = 'none';
@@ -1414,6 +1424,7 @@ var ds3 = null;
              document.getElementById('LT4').style.display = 'none';
              document.getElementById('LT5').style.display = 'none';
              document.getElementById('LT6').style.display = 'none';
+
              document.getElementById('record').style.display = 'none';
              document.getElementById('play').style.display = 'none';
              document.getElementById('voice').style.display = 'none';
@@ -1429,36 +1440,7 @@ var ds3 = null;
 
            }
 
-
-
-
-  // var player = document.getElementById('player');
-  // var handleSuccess = function(stream) {
-  //   if (window.URL) {
-  //     player.srcObject = stream;
-  //   } else {
-  //     player.src = stream;
-  //   }
-  //
-  //   var context = new AudioContext();
-  //       var source = context.createMediaStreamSource(stream);
-  //       var processor = context.createScriptProcessor(1024, 1, 1);
-  //
-  //       source.connect(processor);
-  //       processor.connect(context.destination);
-  //
-  //       processor.onaudioprocess = function(e) {
-  //         // Do something with the data, i.e Convert this to WAV
-  //         //console.log(e.inputBuffer);
-  //       };
-  //
-  // };
-  //
-  // navigator.mediaDevices.getUserMedia({ audio: true, video: false })
-  //   .then(handleSuccess);
-
-
-///////////////////////////
+/////////////////////////// Export  ////////////////////////////////////////////////////////
 
 var dateTimeRandomID;
   document.getElementById('export').onclick = function(e) {
@@ -1533,6 +1515,9 @@ var dateTimeRandomID;
            document.getElementById("government").style.display = "none";
            document.getElementById("world").style.display = "none";
 
+           document.getElementById("dataSharing").pause();
+           document.getElementById('dataSharing').currentTime = 0;
+
       return dateTimeRandomID;
   }
 
@@ -1565,6 +1550,9 @@ var dateTimeRandomID;
              document.getElementById('LT4').style.borderColor = 'transparent';
              document.getElementById('LT5').style.borderColor = 'transparent';
              document.getElementById('LT6').style.borderColor = 'transparent';
+             document.getElementById("community").style.borderColor = 'transparent';
+             document.getElementById("government").style.borderColor = 'transparent';
+             document.getElementById("world").style.borderColor = 'transparent';
 
              return created;
         }
