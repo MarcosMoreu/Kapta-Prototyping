@@ -122,9 +122,9 @@ map.addControl(L.control.attribution({
 
 //wwwwwwwwwwwwwwwwwww
 
-var AOI = L.geoJson(AOI_Test_Namibia,{
+var AOI = L.geoJson(AOI_NamibiaExperiments,{
   fillColor: '#000000',
-  color:'black',
+  color:'red',
   opacity: 5,
   fillOpacity: 0,
   weight:2
@@ -141,6 +141,17 @@ var AOI = L.geoJson(AOI_Test_Namibia,{
 //
 // L.geoJSON(AOI_Test_Namibia).addTo(map);
 //OSM tiles attribution and URL
+
+// var planetMosaic = L.tileLayer('https://tiles0.planet.com/basemaps/v1/planet-tiles/global_monthly_2016_05_mosaic/gmap/0/0/0.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+//         minZoom: 3,
+//         maxZoom: 26,
+//       //  maxNativeZoom: 20,
+//         //transparent: false,
+//         //border: 'solid black 5px',
+//         subdomains:['tiles0','tiles1','tiles2','tiles3'],
+//         attribution: 'Google Imagery OCTOBER 2013'
+//     }).addTo(map);
+
 var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb,{
         minZoom: 3,
         maxZoom: 26,
@@ -161,52 +172,113 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
 
         });
 
- var planetS1 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190623_082954_0f2b/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS1 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082927_1024/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
-        //transparent: false,
-        //border: 'solid black 5px',
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
         attribution: 'Planet Imagery JULY 2019'
-      //  attribution: '&copy; <a href="https://www.planet.com/">Planet</a>'
     });
- var planetS2 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190623_082953_0f2b/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS2 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082926_1024/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
-        //transparent: false,
-        //border: 'solid black 5px',
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
-        // attribution: 'Planet Imagery JULY 2019',
-        iconURL: 'images/forest.png'
     });
- var planetS3 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190623_082904_1012/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS3 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082925_1024/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
-        //transparent: false,
-        //border: 'solid black 5px',
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
-      //  attribution: '&copy; <a href="https://www.planet.com/">Planet</a>'
     });
- var planetS4 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190623_082903_1012/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS4 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082924_1024/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
-        //transparent: false,
-        //border: 'solid black 5px',
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
-        //attribution: 'Planet Imagery JUNE 2019',
-        iconURL: 'images/forest.png'
     });
- var planetS5 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190623_082902_1012/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS5 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082923_1024/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
-        //transparent: false,
-        //border: 'solid black 5px',
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
-      //  attribution: '&copy; <a href="https://www.planet.com/">Planet</a>'
     });
-    //console.log(planetS5)
+ var planetS6 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082922_1024/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        maxZoom: 26,
+        maxNativeZoom: 20,
+        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+        attribution: 'Planet Imagery JULY 2019'
+    });
+ var planetS7 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082921_1024/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        maxZoom: 26,
+        maxNativeZoom: 20,
+        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+    });
+ var planetS8 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082808_1025/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        maxZoom: 26,
+        maxNativeZoom: 20,
+        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+    });
+ var planetS9 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082807_1025/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        maxZoom: 26,
+        maxNativeZoom: 20,
+        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+    });
+ var planetS10 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082806_1025/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        maxZoom: 26,
+        maxNativeZoom: 20,
+        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+    });
+ var planetS11 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082805_1025/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        maxZoom: 26,
+        maxNativeZoom: 20,
+        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+        attribution: 'Planet Imagery JULY 2019'
+    });
+ var planetS12 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082804_1025/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        maxZoom: 26,
+        maxNativeZoom: 20,
+        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+    });
+ var planetS13 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082803_1025/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        maxZoom: 26,
+        maxNativeZoom: 20,
+        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+    });
+ var planetS14 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082727_1043/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        maxZoom: 26,
+        maxNativeZoom: 20,
+        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+    });
+ var planetS15 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082726_1043/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        maxZoom: 26,
+        maxNativeZoom: 20,
+        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+    });
+ var planetS16 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082725_1043/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        maxZoom: 26,
+        maxNativeZoom: 20,
+        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+        attribution: 'Planet Imagery JULY 2019'
+    });
+ var planetS17 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082724_1043/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        maxZoom: 26,
+        maxNativeZoom: 20,
+        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+    });
+ var planetS18 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082723_1043/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        maxZoom: 26,
+        maxNativeZoom: 20,
+        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+    });
+ var planetS19 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082722_1043/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        maxZoom: 26,
+        maxNativeZoom: 20,
+        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+    });
+ var planetS20 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082721_1043/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        maxZoom: 26,
+        maxNativeZoom: 20,
+        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+    });
 
-var planet = L.layerGroup([planetS1,planetS2,planetS3,planetS4,planetS5]);
+var planet = L.layerGroup([planetS1,planetS2,planetS3,planetS4,planetS5,planetS6,planetS7,planetS8,planetS9,planetS10,
+                          planetS11,planetS12,planetS13,planetS14,planetS15,planetS16,planetS17,planetS18,planetS19,planetS20]);
 
 var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
     saveButtonHtml: '<img src="images/download.png" width=15px ; height=15px>',
@@ -877,7 +949,12 @@ var lt6 = null;
 var ds1 = null;
 var ds2 = null;
 var ds3 = null;
+
+var goToLT = 0; //variable to know whether the LT instructions have played, so can be paused when cancel click
+var goToId = 0;
+var goToDS = 0;
       document.getElementById('goToLandTenure').onclick  = function(e){
+        goToLT = 1;
         document.getElementById('LU1').style.display = 'none';
         document.getElementById('LU2').style.display = 'none';
         document.getElementById('LU3').style.display = 'none';
@@ -899,7 +976,7 @@ var ds3 = null;
         document.getElementById('goToIdentification').style.display = 'initial';
         document.getElementById('goBackToLandUse').style.display = 'initial';
 
-
+       return goToLT;
       }
       document.getElementById('goBackToLandUse').onclick  = function(e){
         document.getElementById('LU1').style.display = 'initial';
@@ -1124,6 +1201,7 @@ var ds3 = null;
       }
 
       document.getElementById('goToIdentification').onclick  = function(e){
+        goToId = 1;
         document.getElementById('LT1').style.display = 'none';
         document.getElementById('LT2').style.display = 'none';
         document.getElementById('LT3').style.display = 'none';
@@ -1150,6 +1228,7 @@ var ds3 = null;
 
         // document.getElementById('download').style.display = 'initial';
         // document.getElementById('download').style.opacity = '0.1';
+        return goToId;
       }
 
       document.getElementById('goBackToLandTenure').onclick  = function(e){
@@ -1213,6 +1292,7 @@ var ds3 = null;
       }
 
       document.getElementById('Confirm').onclick = function(e) {
+            goToDS = 1;
             document.getElementById("Identification").pause();
             document.getElementById("Identification").currentTime = 0;
 
@@ -1239,6 +1319,7 @@ var ds3 = null;
              document.getElementById("government").style.display = "initial";
              document.getElementById("world").style.display = "initial";
 
+          return goToDS;
         }
 
       document.getElementById('Cancel').onclick = function(e){
@@ -1250,12 +1331,20 @@ var ds3 = null;
 
              document.getElementById('LandUse').pause();
              document.getElementById('LandUse').currentTime = 0;
-             document.getElementById('LandTenure').pause();
-             document.getElementById('LandTenure').currentTime = 0;
-             document.getElementById("dataSharing").pause();
-             document.getElementById('dataSharing').currentTime = 0;
-             document.getElementById('Indentification').pause();
-             document.getElementById('Identification').currentTime = 0;
+             if(goToLT ==1){
+               document.getElementById('LandTenure').pause();
+               document.getElementById('LandTenure').currentTime = 0;
+             }
+             if(goToId ==1){
+               document.getElementById('Identification').pause();
+               document.getElementById('Identification').currentTime = 0;
+             }
+             if(goToDS ==1){
+               document.getElementById("dataSharing").pause();
+               document.getElementById('dataSharing').currentTime = 0;
+             }
+
+
 
              //map.fitBounds(drawnItems.getBounds(),{maxZoom:20});
 
