@@ -335,6 +335,30 @@ var offlineControlOSM = L.control.offline(osm, tilesDb, {
 //offlineControlGoogle.addTo(map);
 //offlineControlOSM.addTo(map);
 
+// add location via browser geolocation
+var currentLocation; // variable created to allow the user recenter the map.
+
+function displayLocation(position) {
+    var lat = position.coords.latitude;
+    var lng = position.coords.longitude;
+    L.marker([lat, lng]).addTo(map);
+    //console.log('{longitude:' + lng + ', latitude:' + lat + '}');
+    map.setView([lat, lng], 15);
+    currentLocation = [lat,lng];
+    //console.log(currentLocation)
+  return currentLocation;
+}
+
+//////////////////////////////////////activate gps///////////////////////////////////////////
+navigator.geolocation.getCurrentPosition(displayLocation); //Note that it requires a secure domain (i.e. HTTPS)
+                                                                                                       //define center map and zooooooms
+
+var scale = L.control.scale({
+  maxWidth: 100,
+  metric:true,
+  imperial:false,
+}).addTo(map);
+
 var clickButtonCount=0;
 var osm_Button = L.easyButton({
     id: 'osm',
@@ -434,6 +458,25 @@ planet_Button.button.style.height = '60px';
 planet_Button.button.style.transitionDuration = '.3s';
 planet_Button.addTo(map);
 
+var home_Button = L.easyButton({
+    id: 'home',
+    class:'easyButton',
+    position: 'topleft',
+    states: [{
+        icon: '<img src="images/marker.png" width=40px ; height=40px>',
+        stateName: 'check-mark',
+        onClick: function(btn,map) {
+          map.setView(currentLocation,15);
+
+        }
+    }]
+});
+
+home_Button.button.style.width = '60px';
+home_Button.button.style.height = '60px';
+home_Button.button.style.transitionDuration = '.3s';
+home_Button.addTo(map);
+
 ///////////////messages for tile download/////////
 googleSat.on('offline:save-start', function (data) {
     console.log('Saving ' + data.nTilesToSave + ' tiles.');
@@ -484,23 +527,7 @@ osm.on('offline:below-min-zoom-error', function () {
 
 
 
-// add location via browser geolocation
-function displayLocation(position) {
-    var lat = position.coords.latitude;
-    var lng = position.coords.longitude;
-    L.marker([lat, lng]).addTo(map);
-    //console.log('{longitude:' + lng + ', latitude:' + lat + '}');
-    map.setView([lat, lng], 15);
-}
-//////////////////////////////////////activate gps///////////////////////////////////////////
-//navigator.geolocation.getCurrentPosition(displayLocation); //Note that it requires a secure domain (i.e. HTTPS)
-                                                                                                       //define center map and zooooooms
 
-var scale = L.control.scale({
-  maxWidth: 100,
-  metric:true,
-  imperial:false,
-}).addTo(map);
 
 
 /////////////////////////////////////////////////////////////////////////
