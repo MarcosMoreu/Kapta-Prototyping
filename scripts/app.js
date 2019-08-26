@@ -88,6 +88,25 @@ var tilesDb = {
     }
 };
 
+// Run function on load, could also run on dom ready
+window.onload = function() {
+    // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
+    if(typeof window.localStorage !== "undefined" && !localStorage.getItem('visited')) {
+         // Set visited flag in local storage
+         localStorage.setItem('visited', true);
+         // Alert the user
+         document.getElementById("startMapping").style.visibility = "hidden";
+         document.getElementById("unmute").style.visibility = "visible";
+
+         alert("Hello my friend. This is your first visit.");
+    }else {
+      document.getElementById("startMapping").style.visibility = "visible";
+      document.getElementById("unmute").style.visibility = "hidden";
+      document.getElementById("audioTutorial").play();
+
+    }
+}
+
 var map = L.map('map',{
         editable:true,
         center: [-19.7391716,20.3707833],
@@ -652,15 +671,14 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
 
 
            document.getElementById("videoTutorial").style.display = "initial";
-           document.getElementById("startMapping").style.visibility = "hidden";
-           document.getElementById("unmute").style.visibility = "visible";
-           document.getElementById("unmute").style.display = "initial";
+
+          // document.getElementById("unmute").style.display = "initial";
 
 
            // window.onload = function (){
            //   document.getElementById("mappingInstructions").play();
            // };
-           document.getElementById("startMapping").style.display = "none";
+           //document.getElementById("startMapping").style.display = "none";
            document.getElementById("goBack1").style.display = "none";
 
            document.getElementById("map").style.display = "none";
@@ -714,9 +732,9 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
             document.getElementById("audioTutorial").play();
 
             document.getElementById("startMapping").style.visibility = "visible";
-            document.getElementById("startMapping").style.display = "initial";
+          //  document.getElementById("startMapping").style.display = "initial";
             document.getElementById("unmute").style.visibility = "hidden";
-            document.getElementById("unmute").style.display = "none";
+          //  document.getElementById("unmute").style.display = "none";
 
           }
 
