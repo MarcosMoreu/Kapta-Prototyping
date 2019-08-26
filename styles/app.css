@@ -22,8 +22,12 @@ html,body {
 }
 
 .easyButton1 {
-  background-image: url('images/forest.png');
   background-color:yellow;
+/* background-size: 720px 46px; */
+}
+
+.easyButton2 {
+  background-color:white;
 /* background-size: 720px 46px; */
 }
 

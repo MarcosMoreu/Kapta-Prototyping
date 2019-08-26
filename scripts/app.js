@@ -90,7 +90,7 @@ var tilesDb = {
 
 var map = L.map('map',{
         editable:true,
-        center: [-19.59,20.52],//coordinates of Iten, Kenya
+        center: [-19.7391716,20.3707833],
         zoom: 11,
         minZoom:10,
         maxZoom:23,
@@ -109,7 +109,14 @@ map.addControl(L.control.attribution({
         prefix: 'Leaflet'
       }));
 
+var scale = L.control.scale({
+  maxWidth: 100,
+  metric:true,
+  imperial:false,
+}).addTo(map);
 
+var rose = L.control.rose('rose', {position:'bottomright', icon:'nautical', iSize:'large', opacity:1});
+rose.addTo(map)
 //wwwwwwwwwwwwwww
 //note that google tile layer must be copied using mt instead of {s}
 // var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb, {
@@ -122,13 +129,26 @@ map.addControl(L.control.attribution({
 
 //wwwwwwwwwwwwwwwwwww
 
-var AOI = L.geoJson(AOI_NamibiaExperiments,{
+var AOI = L.geoJson(AOI_Tsumkwe,{
   fillColor: '#000000',
   color:'red',
   opacity: 5,
   fillOpacity: 0,
   weight:2
 }).addTo(map);
+
+var communityIcon = L.icon({
+    iconUrl: 'images/house.png',
+  //  shadowUrl: 'leaf-shadow.png',
+
+    iconSize:     [40, 40], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    //shadowAnchor: [4, 62],  // the same for the shadow
+    //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
+var community1 = L.marker([-19.7391716,20.3707833], {icon:communityIcon}).addTo(map);
 
 // var AOI_Test_Namibia = {
 // "type": "FeatureCollection",
@@ -172,113 +192,101 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
 
         });
 
- var planetS1 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082927_1024/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS1 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083048_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
-        attribution: 'Planet Imagery JULY 2019'
+        attribution: 'Planet Imagery AUGUST 2019'
     });
- var planetS2 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082926_1024/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-    });
- var planetS3 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082925_1024/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS2 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083047_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
- var planetS4 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082924_1024/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS3 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083046_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
- var planetS5 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082923_1024/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS4 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083045_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
- var planetS6 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082922_1024/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-        attribution: 'Planet Imagery JULY 2019'
-    });
- var planetS7 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082921_1024/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS5 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083044_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
- var planetS8 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082808_1025/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS6 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083043_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        maxZoom: 26,
+        maxNativeZoom: 20,
+        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+
+    });
+ var planetS7 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082746_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
- var planetS9 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082807_1025/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS8 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082745_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
- var planetS10 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082806_1025/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS9 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082744_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
- var planetS11 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082805_1025/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-        attribution: 'Planet Imagery JULY 2019'
-    });
- var planetS12 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082804_1025/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS10 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082743_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
- var planetS13 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082803_1025/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS11 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082742_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        maxZoom: 26,
+        maxNativeZoom: 20,
+        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+          });
+ var planetS12 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082741_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
- var planetS14 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082727_1043/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS13 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082607_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
- var planetS15 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082726_1043/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS14 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082606_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
- var planetS16 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082725_1043/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-        attribution: 'Planet Imagery JULY 2019'
-    });
- var planetS17 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082724_1043/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS15 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082605_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
- var planetS18 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082723_1043/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS16 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082604_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
- var planetS19 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082722_1043/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS17 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082603_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
- var planetS20 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190717_082721_1043/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS18 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082602_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 26,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
 
 var planet = L.layerGroup([planetS1,planetS2,planetS3,planetS4,planetS5,planetS6,planetS7,planetS8,planetS9,planetS10,
-                          planetS11,planetS12,planetS13,planetS14,planetS15,planetS16,planetS17,planetS18,planetS19,planetS20]);
+                          planetS11,planetS12,planetS13,planetS14,planetS15,planetS16,planetS17,planetS18]);
 
 var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
     saveButtonHtml: '<img src="images/download.png" width=15px ; height=15px>',
@@ -293,7 +301,7 @@ var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
             continueRemoveTiles();
         }
     },
-    minZoom: 13,
+    minZoom: 0,
     maxZoom: 19
 });
 var offlineControlOSM = L.control.offline(osm, tilesDb, {
@@ -310,7 +318,7 @@ var offlineControlOSM = L.control.offline(osm, tilesDb, {
             continueRemoveTiles();
         }
     },
-    minZoom: 13,
+    minZoom: 0,
     maxZoom: 19
 });
 
@@ -343,9 +351,10 @@ function displayLocation(position) {
     var lng = position.coords.longitude;
     L.marker([lat, lng]).addTo(map);
     //console.log('{longitude:' + lng + ', latitude:' + lat + '}');
-    map.setView([lat, lng], 15);
+  //  map.setView([lat, lng], 15);
     currentLocation = [lat,lng];
     //console.log(currentLocation)
+    console.log(currentLocation);
   return currentLocation;
 }
 
@@ -353,11 +362,7 @@ function displayLocation(position) {
 navigator.geolocation.getCurrentPosition(displayLocation); //Note that it requires a secure domain (i.e. HTTPS)
                                                                                                        //define center map and zooooooms
 
-var scale = L.control.scale({
-  maxWidth: 100,
-  metric:true,
-  imperial:false,
-}).addTo(map);
+
 
 var clickButtonCount=0;
 var osm_Button = L.easyButton({
@@ -366,7 +371,7 @@ var osm_Button = L.easyButton({
     position: 'topright',
     //background:'images/forest.png',
     states: [{
-      icon: '<img src="images/OSM.png" width=50px ; height=50px>',
+      icon: '<img src="images/osm.png" width=50px ; height=50px> ',
       //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn,map) {
@@ -438,7 +443,7 @@ var planet_Button = L.easyButton({
     class:'easyButton',
     position: 'topright',
     states: [{
-        icon: '<img src="images/planet.gif" width=50px ; height=50px>',
+        icon: '<img src="images/planet.png" width=50px ; height=50px>',
         stateName: 'check-mark',
         onClick: function(btn,map) {
             clickButtonCount=0;
@@ -460,13 +465,15 @@ planet_Button.addTo(map);
 
 var home_Button = L.easyButton({
     id: 'home',
-    class:'easyButton',
     position: 'topleft',
+
     states: [{
-        icon: '<img src="images/marker.png" width=40px ; height=40px>',
+        icon: '<img src="images/house.png" width=40px ; height=40px>',
         stateName: 'check-mark',
         onClick: function(btn,map) {
-          map.setView(currentLocation,15);
+          map.setView([-19.7391716,20.3707833],15);
+          //btn.button.style.backgroundColor = 'black';
+
 
         }
     }]
@@ -475,7 +482,29 @@ var home_Button = L.easyButton({
 home_Button.button.style.width = '60px';
 home_Button.button.style.height = '60px';
 home_Button.button.style.transitionDuration = '.3s';
+home_Button.button.style.backgroundColor = 'white';
 home_Button.addTo(map);
+
+var gps_Button = L.easyButton({
+    id: 'gps',
+    position: 'topleft',
+    states: [{
+        icon: '<img src="images/man.png" width=40px ; height=40px>',
+        stateName: 'check-mark',
+        onClick: function(btn,map) {
+          map.setView(currentLocation,15);
+        //  btn.button.style.backgroundColor = 'black';
+
+
+        }
+    }]
+});
+
+gps_Button.button.style.width = '60px';
+gps_Button.button.style.height = '60px';
+gps_Button.button.style.transitionDuration = '.3s';
+gps_Button.button.style.backgroundColor = 'white';
+gps_Button.addTo(map);
 
 ///////////////messages for tile download/////////
 googleSat.on('offline:save-start', function (data) {
@@ -621,10 +650,17 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
 
 /////////////////////////////////////////Initial state of buttons //////////////////////////////////////
 
-           document.getElementById("videoTutorial").style.display = "initial";
-           document.getElementById("startMapping").style.visibility = "visible";
 
-           document.getElementById("startMapping").style.display = "initial";
+           document.getElementById("videoTutorial").style.display = "initial";
+           document.getElementById("startMapping").style.visibility = "hidden";
+           document.getElementById("unmute").style.visibility = "visible";
+           document.getElementById("unmute").style.display = "initial";
+
+
+           // window.onload = function (){
+           //   document.getElementById("mappingInstructions").play();
+           // };
+           document.getElementById("startMapping").style.display = "none";
            document.getElementById("goBack1").style.display = "none";
 
            document.getElementById("map").style.display = "none";
@@ -640,24 +676,19 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
            document.getElementById("deletePolygon").style.display = " none";
            document.getElementById("changeMapSize").style.display = "none";
 
+
+           document.getElementById('goToIdentification').style.display = 'none';
            document.getElementById("export").style.display = "none";
            document.getElementById("Cancel").style.display = "none";
            document.getElementById("exportButton").style.display = "none";
            document.getElementById("Confirm").style.display = "none";
 
-           document.getElementById('LU1').style.display = 'none';
-           document.getElementById('LU2').style.display = 'none';
-           document.getElementById('LU3').style.display = 'none';
-           document.getElementById('LU4').style.display = 'none';
-           document.getElementById('LU5').style.display = 'none';
-           document.getElementById('LU6').style.display = 'none';
-           document.getElementById('LT1').style.display = 'none';
-           document.getElementById('LT2').style.display = 'none';
-           document.getElementById('LT3').style.display = 'none';
-           document.getElementById('LT4').style.display = 'none';
-           document.getElementById('LT5').style.display = 'none';
-           document.getElementById('LT6').style.display = 'none';
-           document.getElementById('goToLandTenure').style.display = 'none';
+           document.getElementById('lu1').style.display = 'none';
+           document.getElementById('lu2').style.display = 'none';
+           document.getElementById('lu3').style.display = 'none';
+           document.getElementById('lu4').style.display = 'none';
+           document.getElementById('lu5').style.display = 'none';
+
            document.getElementById('goToIdentification').style.display = 'none';
            document.getElementById('goBackToLandUse').style.display = 'none';
 
@@ -669,13 +700,9 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
            document.getElementById('gum').style.display = 'none';
            document.getElementById('recorded').style.display = 'none';
            document.getElementById('echoCancellation').style.display = 'none';
-           document.getElementById('goBackToLandTenure').style.display = 'none';
+           document.getElementById('goBackToLandUse').style.display = 'none';
 
            document.getElementById('voice').style.display = 'none';
-
-           document.getElementById("community").style.display = "none";
-           document.getElementById("government").style.display = "none";
-           document.getElementById("world").style.display = "none";
 
            document.getElementById("Exit").style.display = "none";
            document.getElementById("Return").style.display = "none";
@@ -683,25 +710,21 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
            // document.getElementById("Return").style.display = "none";
 
 ////////////////////////////////////////////TUTORIAL//////////////////////////////////////////////////////////////
+          document.getElementById('unmute').onclick = function(e) {
+            document.getElementById("audioTutorial").play();
 
-          document.getElementById("goBack1").onclick = function(e){
+            document.getElementById("startMapping").style.visibility = "visible";
+            document.getElementById("startMapping").style.display = "initial";
+            document.getElementById("unmute").style.visibility = "hidden";
+            document.getElementById("unmute").style.display = "none";
 
-            document.getElementById("mappingInstructions").pause();
-            document.getElementById("mappingInstructions").currentTime = 0;
-
-             document.body.style.backgroundColor = "black";
-             document.getElementById("map").style.display = "none";
-             document.getElementById("goBack1").style.display = "none";
-             document.getElementById("polygon").style.display = "none";
-             document.getElementById("polyline").style.display = "none";
-             document.getElementById("point").style.display = "none";
-             document.getElementById("videoTutorial").style.display = "initial";
-             document.getElementById("startMapping").style.display = "initial";
-
-           }
+          }
 
           document.getElementById('startMapping').onclick = function(e) {
               document.body.style.backgroundColor = "white";
+              document.getElementById("audioTutorial").pause();
+              document.getElementById("audioTutorial").currentTime = 0;
+
 
               document.getElementById("mappingInstructions").play();
 
@@ -725,6 +748,23 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
               // document.getElementById("deletePolygon").disabled = true;
           }
 
+          document.getElementById("goBack1").onclick = function(e){
+
+            document.getElementById("mappingInstructions").pause();
+            document.getElementById("mappingInstructions").currentTime = 0;
+
+             document.body.style.backgroundColor = "black";
+             document.getElementById("map").style.display = "none";
+             document.getElementById("goBack1").style.display = "none";
+             document.getElementById("polygon").style.display = "none";
+             document.getElementById("polyline").style.display = "none";
+             document.getElementById("point").style.display = "none";
+             document.getElementById("videoTutorial").style.display = "initial";
+             document.getElementById("startMapping").style.display = "initial";
+             document.getElementById("audioTutorial").play();
+
+
+           }
 ///////////////////////////////////////////draw screen////////////////////////////////////////////////
 
 var created = false; //variable to determine whether a polygon has been completed.
@@ -809,6 +849,12 @@ document.getElementById("goBack2").onclick = function(e){
 
      return clickMapCount;
   }
+
+  map.on('draw:drawvertex',
+    function (e) {
+        $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
+        .css({ 'background-color': '#F905EA' });
+    });
       //this function must be inside the polygon onclick function
   map.on('draw:created', function (e) {
        //drawnItems.completeShape();
@@ -922,6 +968,9 @@ document.getElementById("goBack2").onclick = function(e){
           document.getElementById("mappingInstructions").pause();
           document.getElementById("mappingInstructions").currentTime = 0;
 
+          document.getElementById('goToIdentification').style.display = 'initial';
+          document.getElementById('goToIdentification').disabled = true;
+          document.getElementById('goToIdentification').style.opacity = '0.1';
 
 
         //  console.log('zoom',map.getZoom())
@@ -941,19 +990,21 @@ document.getElementById("goBack2").onclick = function(e){
               document.getElementById("changeMapSize").style.display = "none";
               document.getElementById("deletePolygon").style.display = "none";
 
-              document.getElementById("Confirm").style.opacity = "0.155";
-              document.getElementById("Confirm").disabled = true;
-              document.getElementById("Confirm").style.display = "initial";
+            //  document.getElementById("Confirm").style.visibility = "hidden";
+
+
+              // document.getElementById("Confirm").style.opacity = "0.155";
+              // document.getElementById("Confirm").disabled = true;
+              document.getElementById("Confirm").style.display = "none";
               document.getElementById("Cancel").style.display = "initial";
               // document.getElementById("microphone").style.display = "initial";
               document.getElementById('LandUse').play();
-              document.getElementById('LU1').style.display = 'initial';
-              document.getElementById('LU2').style.display = 'initial';
-              document.getElementById('LU3').style.display = 'initial';
-              document.getElementById('LU4').style.display = 'initial';
-              document.getElementById('LU5').style.display = 'initial';
-              document.getElementById('LU6').style.display = 'initial';
-              document.getElementById('goToLandTenure').style.display = 'initial';
+              document.getElementById('lu1').style.display = 'initial';
+              document.getElementById('lu2').style.display = 'initial';
+              document.getElementById('lu3').style.display = 'initial';
+              document.getElementById('lu4').style.display = 'initial';
+              document.getElementById('lu5').style.display = 'initial';
+              document.getElementById('goToIdentification').style.display = 'initial';
 
 
 
@@ -964,77 +1015,21 @@ var lu2 = null;
 var lu3 = null;
 var lu4 = null;
 var lu5 = null;
-var lu6 = null;
 
-var lt1 = null;
-var lt2 = null;
-var lt3 = null;
-var lt4 = null;
-var lt5 = null;
-var lt6 = null;
-
-var ds1 = null;
-var ds2 = null;
-var ds3 = null;
-
-var goToLT = 0; //variable to know whether the LT instructions have played, so can be paused when cancel click
+//var goToLT = 0; //variable to know whether the LT instructions have played, so can be paused when cancel click
 var goToId = 0;
-var goToDS = 0;
-      document.getElementById('goToLandTenure').onclick  = function(e){
-        goToLT = 1;
-        document.getElementById('LU1').style.display = 'none';
-        document.getElementById('LU2').style.display = 'none';
-        document.getElementById('LU3').style.display = 'none';
-        document.getElementById('LU4').style.display = 'none';
-        document.getElementById('LU5').style.display = 'none';
-        document.getElementById('LU6').style.display = 'none';
-        document.getElementById('goToLandTenure').style.display = 'none';
-
-        document.getElementById('LandUse').pause();
-        document.getElementById('LandUse').currentTime = 0;
-        document.getElementById('LandTenure').play();
-
-        document.getElementById('LT1').style.display = 'initial';
-        document.getElementById('LT2').style.display = 'initial';
-        document.getElementById('LT3').style.display = 'initial';
-        document.getElementById('LT4').style.display = 'initial';
-        document.getElementById('LT5').style.display = 'initial';
-        document.getElementById('LT6').style.display = 'initial';
-        document.getElementById('goToIdentification').style.display = 'initial';
-        document.getElementById('goBackToLandUse').style.display = 'initial';
-
-       return goToLT;
-      }
-      document.getElementById('goBackToLandUse').onclick  = function(e){
-        document.getElementById('LU1').style.display = 'initial';
-        document.getElementById('LU2').style.display = 'initial';
-        document.getElementById('LU3').style.display = 'initial';
-        document.getElementById('LU4').style.display = 'initial';
-        document.getElementById('LU5').style.display = 'initial';
-        document.getElementById('LU6').style.display = 'initial';
-        document.getElementById('goToLandTenure').style.display = 'initial';
-
-        document.getElementById('LandTenure').pause();
-        document.getElementById('LandTenure').currentTime = 0;
-        document.getElementById('LandUse').play();
-
-        document.getElementById('LT1').style.display = 'none';
-        document.getElementById('LT2').style.display = 'none';
-        document.getElementById('LT3').style.display = 'none';
-        document.getElementById('LT4').style.display = 'none';
-        document.getElementById('LT5').style.display = 'none';
-        document.getElementById('LT6').style.display = 'none';
-        document.getElementById('goToIdentification').style.display = 'none';
-        document.getElementById('goBackToLandUse').style.display = 'none';
-
-      }
+//var goToDS = 0;
 
 
-      document.getElementById('LU1').onclick = function(e){
+
+
+      document.getElementById('lu1').onclick = function(e){
         //this.style.borderColor = 'transparent';
+        document.getElementById('goToIdentification').disabled = false;
+        document.getElementById('goToIdentification').style.opacity = '1';
         if(lu1===null){
-          this.style.borderColor = 'black';
-          lu1 = 'landUse1';
+          this.style.borderColor = '#13FA04';
+          lu1 = 'animals';
         }else{
           this.style.borderColor = 'transparent';
           lu1 = null;
@@ -1043,11 +1038,13 @@ var goToDS = 0;
         return lu1
       }
 
-      document.getElementById('LU2').onclick = function(e){
+      document.getElementById('lu2').onclick = function(e){
         //this.style.borderColor = 'transparent';
+        document.getElementById('goToIdentification').disabled = false;
+        document.getElementById('goToIdentification').style.opacity = '1';
         if(lu2===null){
-          this.style.borderColor = 'black';
-          lu2 = 'landUse2';
+          this.style.borderColor = '#13FA04';
+          lu2 = 'water';
         }else{
           this.style.borderColor = 'transparent';
           lu2 = null;
@@ -1055,11 +1052,13 @@ var goToDS = 0;
         console.log(lu2)
         return lu2
       }
-      document.getElementById('LU3').onclick = function(e){
+      document.getElementById('lu3').onclick = function(e){
         //this.style.borderColor = 'transparent';
+        document.getElementById('goToIdentification').disabled = false;
+        document.getElementById('goToIdentification').style.opacity = '1';
         if(lu3===null){
-          this.style.borderColor = 'black';
-          lu3 = 'landUse3';
+          this.style.borderColor = '#13FA04';
+          lu3 = 'trees/wood';
         }else{
           this.style.borderColor = 'transparent';
           lu3 = null;
@@ -1067,11 +1066,13 @@ var goToDS = 0;
         console.log(lu3)
         return lu3
       }
-      document.getElementById('LU4').onclick = function(e){
+      document.getElementById('lu4').onclick = function(e){
         //this.style.borderColor = 'transparent';
+        document.getElementById('goToIdentification').disabled = false;
+        document.getElementById('goToIdentification').style.opacity = '1';
         if(lu4===null){
-          this.style.borderColor = 'black';
-          lu4 = 'landUse4';
+          this.style.borderColor = '#13FA04';
+          lu4 = 'gathering';
         }else{
           this.style.borderColor = 'transparent';
           lu4 = null;
@@ -1080,11 +1081,13 @@ var goToDS = 0;
         return lu4
       }
 
-      document.getElementById('LU5').onclick = function(e){
+      document.getElementById('lu5').onclick = function(e){
         //this.style.borderColor = 'transparent';
+        document.getElementById('goToIdentification').disabled = false;
+        document.getElementById('goToIdentification').style.opacity = '1';
         if(lu5===null){
-          this.style.borderColor = 'black';
-          lu5 = 'landUse5';
+          this.style.borderColor = '#13FA04';
+          lu5 = 'poison';
         }else{
           this.style.borderColor = 'transparent';
           lu5 = null;
@@ -1092,158 +1095,27 @@ var goToDS = 0;
         console.log(lu5)
         return lu5
       }
-      document.getElementById('LU6').onclick = function(e){
-        //this.style.borderColor = 'transparent';
-        if(lu6===null){
-          this.style.borderColor = 'black';
-          lu6 = 'landUse6';
-        }else{
-          this.style.borderColor = 'transparent';
-          lu6 = null;
-        }
-        console.log(lu6)
-        return lu6
-      }
-      document.getElementById('LT1').onclick = function(e){
-        //this.style.borderColor = 'transparent';
-        if(lt1===null){
-          this.style.borderColor = 'black';
-          lt1 = 'landTenure1';
-        }else{
-          this.style.borderColor = 'transparent';
-          lt1 = null;
-        }
-        console.log(lt1)
-        return lt1
-      }
-      document.getElementById('LT2').onclick = function(e){
-        //this.style.borderColor = 'transparent';
-        if(lt2===null){
-          this.style.borderColor = 'black';
-          lt2 = 'landTenure2';
-        }else{
-          this.style.borderColor = 'transparent';
-          lt2 = null;
-        }
-        console.log(lt2)
-        return lt2
-      }
-      document.getElementById('LT3').onclick = function(e){
-        //this.style.borderColor = 'transparent';
-        if(lt3===null){
-          this.style.borderColor = 'black';
-          lt3 = 'landTenure3';
-        }else{
-          this.style.borderColor = 'transparent';
-          lt3 = null;
-        }
-        console.log(lt3)
-        return lt3
-      }
 
-      document.getElementById('LT4').onclick = function(e){
-        //this.style.borderColor = 'transparent';
-        if(lt4===null){
-          this.style.borderColor = 'black';
-          lt4 = 'landTenure4';
-        }else{
-          this.style.borderColor = 'transparent';
-          lt4 = null;
-        }
-        console.log(lt4)
-        return lt4
-      }
-      document.getElementById('LT5').onclick = function(e){
-        //this.style.borderColor = 'transparent';
-        if(lt5===null){
-          this.style.borderColor = 'black';
-          lt5 = 'landTenure5';
-        }else{
-          this.style.borderColor = 'transparent';
-          lt5 = null;
-        }
-        console.log(lt5)
-        return lt5
-      }
-      document.getElementById('LT6').onclick = function(e){
-        //this.style.borderColor = 'transparent';
-        if(lt6===null){
-          this.style.borderColor = 'black';
-          lt6 = 'landTenure6';
-        }else{
-          this.style.borderColor = 'transparent';
-          lt6 = null;
-        }
-        console.log(lt6)
-        return lt6
-      }
-
-      document.getElementById('community').onclick = function(e){
-        //this.style.borderColor = 'transparent';
-        document.getElementById("export").disabled = false;
-        document.getElementById("exportButton").disabled = false;
-        document.getElementById("export").style.opacity = "1";
-        document.getElementById("exportButton").style.display = "1";
-        if(ds1===null){
-          this.style.borderColor = 'black';
-          ds1 = 'shareCommunity';
-        }else{
-          this.style.borderColor = 'transparent';
-          ds1 = null;
-        }
-        console.log(ds1)
-        return ds1
-      }
-      document.getElementById('government').onclick = function(e){
-        document.getElementById("export").disabled = false;
-        document.getElementById("exportButton").disabled = false;
-        document.getElementById("export").style.opacity = "1";
-        document.getElementById("exportButton").style.display = "1";
-        //this.style.borderColor = 'transparent';
-        if(ds2===null){
-          this.style.borderColor = 'black';
-          ds2 = 'shareGovernment';
-        }else{
-          this.style.borderColor = 'transparent';
-          ds2 = null;
-        }
-        console.log(ds2)
-        return ds2
-      }
-      document.getElementById('world').onclick = function(e){
-        document.getElementById("export").disabled = false;
-        document.getElementById("exportButton").disabled = false;
-        document.getElementById("export").style.opacity = "1";
-        document.getElementById("exportButton").style.display = "1";
-        //this.style.borderColor = 'transparent';
-        if(ds3===null){
-          this.style.borderColor = 'black';
-          ds3 = 'shareWorld';
-        }else{
-          this.style.borderColor = 'transparent';
-          ds3 = null;
-        }
-        console.log(ds3)
-        return ds3
-      }
 
       document.getElementById('goToIdentification').onclick  = function(e){
         goToId = 1;
-        document.getElementById('LT1').style.display = 'none';
-        document.getElementById('LT2').style.display = 'none';
-        document.getElementById('LT3').style.display = 'none';
-        document.getElementById('LT4').style.display = 'none';
-        document.getElementById('LT5').style.display = 'none';
-        document.getElementById('LT6').style.display = 'none';
+        document.getElementById('lu1').style.display = 'none';
+        document.getElementById('lu2').style.display = 'none';
+        document.getElementById('lu3').style.display = 'none';
+        document.getElementById('lu4').style.display = 'none';
+        document.getElementById('lu5').style.display = 'none';
         document.getElementById('goToIdentification').style.display = 'none';
-        document.getElementById('Confirm').disabled = false;
-        document.getElementById('Confirm').style.opacity = '1';
-        document.getElementById('goBackToLandUse').style.display = 'none';
+
+        document.getElementById('Confirm').style.display = 'initial';
+        document.getElementById('Confirm').disabled = true;
+        document.getElementById('Confirm').style.opacity = '0.1';
+
+        document.getElementById('goBackToLandUse').style.display = 'initial';
         document.getElementById('voice').style.display = 'initial';
         document.getElementById('voice').style.opacity = '0';
 
-        document.getElementById('LandTenure').pause();
-        document.getElementById('LandTenure').currentTime = 0;
+        document.getElementById('LandUse').pause();
+        document.getElementById('LandUse').currentTime = 0;
 
         document.getElementById('Identification').play();
       //  document.getElementById('start').style.display = 'initial';
@@ -1251,66 +1123,65 @@ var goToDS = 0;
         document.getElementById('record').style.opacity = '1';
         document.getElementById('play').style.display = 'initial';
         document.getElementById('play').style.opacity = '0.1';
-        document.getElementById('goBackToLandTenure').style.display = 'initial';
 
         // document.getElementById('download').style.display = 'initial';
         // document.getElementById('download').style.opacity = '0.1';
         return goToId;
       }
 
-      document.getElementById('goBackToLandTenure').onclick  = function(e){
-        document.getElementById('Confirm').disabled = true;
-        document.getElementById('Confirm').style.opacity = '0.1';
+      document.getElementById('goBackToLandUse').onclick  = function(e){
+        document.getElementById('Confirm').style.display = 'none';
+        //
+        // document.getElementById('Confirm').disabled = true;
+        // document.getElementById('Confirm').style.opacity = '0.1';
         recordedVideo.pause();
         recordedVideo.currentTime = 0;
 
 
-        document.getElementById('LU1').style.display = 'none';
-        document.getElementById('LU2').style.display = 'none';
-        document.getElementById('LU3').style.display = 'none';
-        document.getElementById('LU4').style.display = 'none';
-        document.getElementById('LU5').style.display = 'none';
-        document.getElementById('LU6').style.display = 'none';
-        document.getElementById('goToLandTenure').style.display = 'none';
+        document.getElementById('lu1').style.display = 'initial';
+        document.getElementById('lu2').style.display = 'initial';
+        document.getElementById('lu3').style.display = 'initial';
+        document.getElementById('lu4').style.display = 'initial';
+        document.getElementById('lu5').style.display = 'initial';
         document.getElementById('record').style.display = 'none';
         document.getElementById('play').style.display = 'none';
         document.getElementById('voice').style.display = 'none';
 
-        document.getElementById('LandUse').pause();
-        document.getElementById('LandUse').currentTime = 0;
+
         document.getElementById('Identification').pause();
         document.getElementById('Identification').currentTime = 0;
-        document.getElementById('LandTenure').play();
+        document.getElementById('LandUse').play();
 
-        document.getElementById('LT1').style.display = 'initial';
-        document.getElementById('LT2').style.display = 'initial';
-        document.getElementById('LT3').style.display = 'initial';
-        document.getElementById('LT4').style.display = 'initial';
-        document.getElementById('LT5').style.display = 'initial';
-        document.getElementById('LT6').style.display = 'initial';
+
         document.getElementById('goToIdentification').style.display = 'initial';
-        document.getElementById('goBackToLandUse').style.display = 'initial';
-        document.getElementById('goBackToLandTenure').style.display = 'none';
+        document.getElementById('goBackToLandUse').style.display = 'none';
       }
 
         document.getElementById('record').onclick = function(e){
-            if(recording==true){
+
+
+            if(recording==true){  //recording true/false inverse.
               this.style.borderColor = 'transparent';
               document.getElementById('play').style.opacity = '1';
               document.getElementById('download').style.opacity = '1';
               document.getElementById('voice').style.opacity = '0';
-              document.getElementById('goBackToLandTenure').style.display = 'initial';
+              document.getElementById('goBackToLandUse').style.display = 'initial';
+
+              document.getElementById('Confirm').disabled = false;
+              document.getElementById('Confirm').style.opacity = '1';
             }
             if(recording==false){
               this.style.borderColor = 'black';
               document.getElementById('play').style.opacity = '0.1';
               document.getElementById('download').style.opacity = '0.1';
               document.getElementById('voice').style.opacity = '1';
-              document.getElementById('goBackToLandTenure').style.display = 'none';
+              document.getElementById('goBackToLandUse').style.display = 'none';
+
+
 
             }
             document.getElementById('Identification').pause();
-            document.getElementById('LandTenure').currentTime = 0;
+            document.getElementById('Identification').currentTime = 0;
 
            document.getElementById('gum').style.display = 'none';
            document.getElementById('recorded').style.display = 'none';
@@ -1323,28 +1194,19 @@ var goToDS = 0;
             document.getElementById("Identification").pause();
             document.getElementById("Identification").currentTime = 0;
 
-            document.getElementById("dataSharing").play();
-
              document.getElementById("Confirm").style.display = "none";
             // document.getElementById("Cancel").style.display = "none";
 
              document.getElementById("export").style.display = "initial";
              document.getElementById("exportButton").style.display = "initial";
-             document.getElementById("export").disabled = true;
-             document.getElementById("exportButton").disabled = true;
-             document.getElementById("export").style.opacity = "0.1";
-             document.getElementById("exportButton").style.display = "0.1";
+             document.getElementById("export").disabled = false;
+             document.getElementById("exportButton").disabled = false;
+             document.getElementById("export").style.opacity = "1";
+             document.getElementById("exportButton").style.display = "1";
 
 
-             document.getElementById("record").style.display = "none";
-             document.getElementById("play").style.display = "none";
-             document.getElementById("goBackToLandTenure").style.display = "none";
 
-             document.getElementById('voice').style.display = 'none';
 
-             document.getElementById("community").style.display = "initial";
-             document.getElementById("government").style.display = "initial";
-             document.getElementById("world").style.display = "initial";
 
           return goToDS;
         }
@@ -1358,18 +1220,12 @@ var goToDS = 0;
 
              document.getElementById('LandUse').pause();
              document.getElementById('LandUse').currentTime = 0;
-             if(goToLT ==1){
-               document.getElementById('LandTenure').pause();
-               document.getElementById('LandTenure').currentTime = 0;
-             }
+
              if(goToId ==1){
                document.getElementById('Identification').pause();
                document.getElementById('Identification').currentTime = 0;
              }
-             if(goToDS ==1){
-               document.getElementById("dataSharing").pause();
-               document.getElementById('dataSharing').currentTime = 0;
-             }
+
 
 
 
@@ -1389,53 +1245,32 @@ var goToDS = 0;
              document.getElementById("exportButton").style.display = "none";
              document.getElementById("Confirm").style.display = "none";
 
-             document.getElementById('LU1').style.borderColor = 'transparent';
-             document.getElementById('LU2').style.borderColor = 'transparent';
-             document.getElementById('LU3').style.borderColor = 'transparent';
-             document.getElementById('LU4').style.borderColor = 'transparent';
-             document.getElementById('LU5').style.borderColor = 'transparent';
-             document.getElementById('LU6').style.borderColor = 'transparent';
-             document.getElementById('LT1').style.borderColor = 'transparent';
-             document.getElementById('LT2').style.borderColor = 'transparent';
-             document.getElementById('LT3').style.borderColor = 'transparent';
-             document.getElementById('LT4').style.borderColor = 'transparent';
-             document.getElementById('LT5').style.borderColor = 'transparent';
-             document.getElementById('LT6').style.borderColor = 'transparent';
-             document.getElementById("community").style.borderColor = 'transparent';
-             document.getElementById("government").style.borderColor = 'transparent';
-             document.getElementById("world").style.borderColor = 'transparent';
+             document.getElementById('lu1').style.borderColor = 'transparent';
+             document.getElementById('lu2').style.borderColor = 'transparent';
+             document.getElementById('lu3').style.borderColor = 'transparent';
+             document.getElementById('lu4').style.borderColor = 'transparent';
+             document.getElementById('lu5').style.borderColor = 'transparent';
 
-             document.getElementById('LU1').style.display = 'none';
-             document.getElementById('LU2').style.display = 'none';
-             document.getElementById('LU3').style.display = 'none';
-             document.getElementById('LU4').style.display = 'none';
-             document.getElementById('LU5').style.display = 'none';
-             document.getElementById('LU6').style.display = 'none';
-             document.getElementById('LT1').style.display = 'none';
-             document.getElementById('LT2').style.display = 'none';
-             document.getElementById('LT3').style.display = 'none';
-             document.getElementById('LT4').style.display = 'none';
-             document.getElementById('LT5').style.display = 'none';
-             document.getElementById('LT6').style.display = 'none';
+             document.getElementById('lu1').style.display = 'none';
+             document.getElementById('lu2').style.display = 'none';
+             document.getElementById('lu3').style.display = 'none';
+             document.getElementById('lu4').style.display = 'none';
+             document.getElementById('lu5').style.display = 'none';
 
              document.getElementById('record').style.display = 'none';
              document.getElementById('play').style.display = 'none';
              document.getElementById('voice').style.display = 'none';
 
-             document.getElementById('goBackToLandTenure').style.display = 'none';
              document.getElementById('goBackToLandUse').style.display = 'none';
-             document.getElementById('goToLandTenure').style.display = 'none';
              document.getElementById('goToIdentification').style.display = 'none';
 
-             document.getElementById("community").style.display = "none";
-             document.getElementById("government").style.display = "none";
-             document.getElementById("world").style.display = "none";
 
            }
 
 /////////////////////////// Export  ////////////////////////////////////////////////////////
 
 var dateTimeRandomID;
+var layer1;
   document.getElementById('export').onclick = function(e) {
                // Extract GeoJson from featureGroup
                // var data = drawnItems.toGeoJSON();
@@ -1454,11 +1289,13 @@ var dateTimeRandomID;
                //console.log(dateTimeRandomID);
 
                var data = drawnItems.toGeoJSON();
-               var attributes = [lu1,lu2,lu3,lu4,lu5,lu6,lt1,lt2,lt3,lt4,lt5,lt6,ds1,ds2,ds3];
+               var attributes = [lu1,lu2,lu3,lu4,lu5];
 
                // Stringify the GeoJson
                var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
-               var convertedText =   '' + encodeURIComponent(JSON.stringify(attributes));
+               var convertedText =   '' + encodeURIComponent(JSON.stringify(attributes))
+                                        + encodeURIComponent(JSON.stringify(currentLocation))
+                                        + encodeURIComponent(JSON.stringify(dateTime));
 
 
                // Create export
@@ -1466,12 +1303,13 @@ var dateTimeRandomID;
               // document.getElementById('export').setAttribute('href', 'data:' + convertedText );
 
                document.getElementById('export').setAttribute('download',dateTimeRandomID);
-               var layer1=data;
+               layer1=data;
                L.geoJSON(layer1).addTo(map);
 
                drawnItems.clearLayers();
 
-           document.body.style.backgroundColor = "black";
+           document.body.style.backgroundColor = "#13FA04";
+
 
           //window.open(src='finalScreen.html');
           //defining the final screen
@@ -1492,18 +1330,20 @@ var dateTimeRandomID;
            document.getElementById("deleteAllVertexs").disabled = true;
 
           // document.getElementById('start').style.display = 'none';
-           document.getElementById('record').style.display = 'none';
-           document.getElementById('play').style.display = 'none';
-           document.getElementById('goBackToLandTenure').style.display = 'none';
 
-           document.getElementById("community").style.display = "none";
-           document.getElementById("government").style.display = "none";
-           document.getElementById("world").style.display = "none";
 
-           document.getElementById("dataSharing").pause();
-           document.getElementById('dataSharing').currentTime = 0;
+           document.getElementById("record").style.display = "none";
+           document.getElementById("play").style.display = "none";
+           document.getElementById("goBackToLandUse").style.display = "none";
 
-      return dateTimeRandomID;
+           document.getElementById('voice').style.display = 'none';
+
+           recordedVideo.pause();
+           recordedVideo.currentTime = 0;
+           document.getElementById('finalScreen').play();
+
+
+      return layer1;
   }
 
       document.getElementById('Return').onclick = function(e){
@@ -1515,6 +1355,8 @@ var dateTimeRandomID;
              document.getElementById("point").style.display = "initial";
              drawnItems.remove();
              recordedVideo.pause();
+             document.getElementById('finalScreen').pause();
+
             // map.fitBounds(drawnItems.getBounds(),{maxZoom:20});
 
              document.getElementById("map").style.height = "90%";
@@ -1522,26 +1364,22 @@ var dateTimeRandomID;
              document.getElementById("Return").style.display = "none";
              created=false;
 
-             document.getElementById('LU1').style.borderColor = 'transparent';
-             document.getElementById('LU2').style.borderColor = 'transparent';
-             document.getElementById('LU3').style.borderColor = 'transparent';
-             document.getElementById('LU4').style.borderColor = 'transparent';
-             document.getElementById('LU5').style.borderColor = 'transparent';
-             document.getElementById('LU6').style.borderColor = 'transparent';
-             document.getElementById('LT1').style.borderColor = 'transparent';
-             document.getElementById('LT2').style.borderColor = 'transparent';
-             document.getElementById('LT3').style.borderColor = 'transparent';
-             document.getElementById('LT4').style.borderColor = 'transparent';
-             document.getElementById('LT5').style.borderColor = 'transparent';
-             document.getElementById('LT6').style.borderColor = 'transparent';
-             document.getElementById("community").style.borderColor = 'transparent';
-             document.getElementById("government").style.borderColor = 'transparent';
-             document.getElementById("world").style.borderColor = 'transparent';
+             document.getElementById('lu1').style.borderColor = 'transparent';
+             document.getElementById('lu2').style.borderColor = 'transparent';
+             document.getElementById('lu3').style.borderColor = 'transparent';
+             document.getElementById('lu4').style.borderColor = 'transparent';
+             document.getElementById('lu5').style.borderColor = 'transparent';
+
 
              return created;
         }
 
     document.getElementById('Exit').onclick = function(e){
-        window.close(src='index.html');
+        window.close();
         recordedVideo.pause();
+        document.getElementById('finalScreen').pause();
+        document.getElementById("finalScreen").currentTime = 0;
+
+
+
     }

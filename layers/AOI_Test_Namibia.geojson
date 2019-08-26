@@ -1,8 +1,0 @@
-var AOI_Test_Namibia = {
-"type": "FeatureCollection",
-"name": "AOI_Test_Namibia",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-"features": [
-{ "type": "Feature", "properties": { "id": 1 }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 20.427600969682395, -19.516088866014119 ], [ 20.605322403200432, -19.515727070939903 ], [ 20.605322403200432, -19.515727070939903 ], [ 20.607241641143393, -19.671585547789892 ], [ 20.429136360036757, -19.673031322562018 ], [ 20.427600969682395, -19.516088866014119 ] ] ] ] } }
-]
-}

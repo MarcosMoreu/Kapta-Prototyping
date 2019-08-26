@@ -8,16 +8,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- maximumscale and userscalable value disable the zoom/pan option on the mobile screen -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0. maximum-scale=1,user-scalable=0" >
-  <title>Prototype#3</title>
+  <title>Prototype#3 Tsumkwe</title>
   <link rel="stylesheet" type="text/css" href="styles/app.css"  >
 
 <!-- manifest and meta theme color -->
   <link rel="manifest" href="manifest.json">
 
   <link rel="stylesheet" type="text/css" href="scripts/lib/leaflet/leaflet.css" >
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu" >
+  <!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu" > -->
   <link rel="stylesheet" type="text/css" href="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/leaflet.draw.css"  >
-
+  <link rel="stylesheet" href="scripts/lib/leaflet/plugins/L.Control.Rose-master/dist/L.Control.Rose.css" />
   <!-- <link rel="stylesheet" href="lib/leaflet/plugins/Leaflet.Basemaps-master/L.Control.Basemaps.css" /> -->
   <link href="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.css" rel="stylesheet" >
   <link rel="shortcut icon" href="#">
@@ -27,23 +27,36 @@
 
 <body>
   <!-- <button id='addBtn'class="add-button">Add to home screen</button> -->
+  <audio  id='audioTutorial' autoplay>
+    <source src="images/audioTutorial.mp3"  type="audio/mp3">
+    <!-- <div class="center">.</div> -->
+  </audio>
 
   <div align='center'>
-    <video id='videoTutorial'  class='video' muted autoplay loop >
-      <source src="images/tutorial.mp4"  type="video/mp4">
+
+    <video id='videoTutorial'  class='video'  muted autoplay loop>
+      <source src="images/videoTutorial.mp4"  type="video/mp4">
       <!-- <div class="center">.</div> -->
     </video>
   </div>
 
+
+
+
   <div>
+    <button id='unmute' class='buttonsFirstLastScreen' style='top:77% ;  height:120px; border:none; background:none'>
+      <img src="images/unmute.png" style='width:120px ; height:110px'>
+    </button>
     <button id='startMapping' class='buttonsFirstLastScreen' style='top:77% ;  height:125px; border:none; background:none'>
-      <img src="images/Start.png" style='width:80px ; height:80px'>
+      <img src="images/Start.png" style='width:100px ; height:100px'>
     </button>
   </div>
 
-  <div id="map" style='height:90%'></div>
+  <div id="map" style='height:90%'>
+    <div id="rose"> </div>
+  </div>
 
-<audio  id='mappingInstructions' loop>
+<audio  id='mappingInstructions'>
   <source src="images/mappingInstructions.mp3"  type="audio/mp3">
   <!-- <div class="center">.</div> -->
 </audio>
@@ -84,6 +97,9 @@
   <button id='Cancel' class='button'style='width:47%'>
     <img src="images/cancel.png" style='width:60px ; height:60px'>
   </button>
+  <button id='goToIdentification' class='button'style='width:49%'>
+    <img src="images/ThumbsUpGreen.png" style='width:60px ; height:60px;'>
+  </button>
   <button id='Confirm' class='button'style='width:49%'>
     <img src="images/ThumbsUpGreen.png" style='width:60px ; height:60px;'>
   </button>
@@ -100,7 +116,7 @@
     <img src="images/Exit.png" style='width:100px ; height:100px'>
   </button>
   <button id='Return' class='buttonsFirstLastScreen' style='top:60%;height:20%'>
-    <img src="images/FinishReturn.png" style='width:120px ; height:100px'>
+    <img src="images/FinishReturn.png" style='width:120px ; height:120px'>
   </button>
 </div>
 
@@ -108,64 +124,38 @@
 
 
 <audio  id='LandUse' loop>
-  <source src="images/LandUse.mp3"  type="audio/mp3">
+  <source src="images/classification.mp3"  type="audio/mp3">
   <!-- <div class="center">.</div> -->
 </audio>
 <div align='center' class='colors'>
-  <button id="LU1" class='attributeButtons' style='padding:10px;width:80px;height:80px;background-color:yellow'>
-    <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button>
-  <button id="LU2" class='attributeButtons' style='padding:10px;width:80px;height:80px;background-color:yellow'>
-    <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button>
-  <button id="LU3" class='attributeButtons' style='padding:10px;width:80px;height:80px;background-color:yellow'>
-    <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button>
-  <button id="LU4" class='attributeButtons' style='padding:10px;width:80px;height:80px;background-color:yellow'>
-    <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button>
-  <button id="LU5" class='attributeButtons' style='padding:10px;width:80px;height:80px;background-color:yellow'>
-    <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button>
-  <button id="LU6" class='attributeButtons' style='padding:10px;width:80px;height:80px;background-color:yellow'>
-    <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button>
+  <button id="lu1" class='attributeButtons' style='padding:10px; margin-right:5px; margin-bottom:5px; width:80px;height:80px;background-color:black'>
+    <!-- <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button> -->
+  <button id="lu2" class='attributeButtons' style='padding:10px; margin-right:5px;margin-bottom:5px;width:80px;height:80px;background-color:#E0E0E0'>
+    <!-- <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button> -->
+  <button id="lu3" class='attributeButtons' style='padding:10px;margin-right:5px;margin-bottom:5px;width:80px;height:80px;background-color:green'>
+    <!-- <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button> -->
 
 </div>
-<div align='center' class='btn-colors'>
-  <button id="goToLandTenure"  style='margin-top: 55px;width:47%;background-color:grey'>
-    <img src="images/arrowRight.png" style='width:60px ; height:60px'>
-  </button>
+
+<div align='center' class='colors'>
+
+  <button id="lu4" class='attributeButtons' style='padding:10px;margin-right:5px;margin-bottom:5px;width:80px;height:80px;background-color:yellow'>
+    <!-- <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button> -->
+  <button id="lu5" class='attributeButtons' style='padding:10px;margin-right:5px;margin-bottom:5px;width:80px;height:80px;background-color:red'>
+    <!-- <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button> -->
 </div>
 
-
-<audio  id='LandTenure' loop>
-  <source src="images/LandTenure.mp3"  type="audio/mp3">
-  <!-- <div class="center">.</div> -->
-</audio>
-<div align='center' >
-  <button id="LT1" class='attributeButtons' style='padding:10px;width:80px;height:80px;background-color:blue'>
-    <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button>
-  <button id="LT2" class='attributeButtons' style='padding:10px;width:80px;height:80px;background-color:blue'>
-    <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button>
-  <button id="LT3" class='attributeButtons' style='padding:10px;width:80px;height:80px;background-color:blue'>
-    <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button>
-  <button id="LT4" class='attributeButtons' style='padding:10px;width:80px;height:80px;background-color:blue'>
-    <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button>
-  <button id="LT5" class='attributeButtons' style='padding:10px;width:80px;height:80px;background-color:blue'>
-    <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button>
-  <button id="LT6" class='attributeButtons' style='padding:10px;width:80px;height:80px;background-color:blue'>
-    <img src="images/questionMark.png" style='width:60px ; height:60px'>
+<!-- <div align='center'>
+  <button id="goToIdentification"  style='margin-top: 30px;width:47%;height:60px;background-color:grey'>
+    <img src="images/arrowRight.png" style='width:60px ; height:40px'>
   </button>
-</div>
-<div align='center' class='btn-colors'>
-  <button id="goBackToLandUse"  style='margin-top: 55px;width:47%;background-color:grey'>
-    <img src="images/arrowLeft.png" style='width:60px ; height:60px'>
-  </button>
-  <button id="goToIdentification"  style='margin-top: 55px;width:47%;background-color:grey'>
-    <img src="images/arrowRight.png" style='width:60px ; height:60px'>
-  </button>
-</div>
+</div> -->
 
 
 <!-- ///////////////////////Identification////////////////////////////////////////////////////////////////////////////// -->
 
-<audio  id='Identification' loop>
-  <source src="images/Identification.mp3"  type="audio/mp3">
+<audio  id='Identification'>
+  <source src="images/audioRecording.mp3"  type="audio/mp3">
   <!-- <div class="center">.</div> -->
 </audio>
 
@@ -176,23 +166,21 @@
 </div> -->
 
 <div id='voice' align='center'>
-  <img src="images/voice.gif" style='width:98% ; height:70px'>
+  <img src="images/voice.gif" style='width:98% ; height:50px'>
 </div>
 
 <div align='center'>
         <!-- <button id="start" style='margin-top: 55px;width:80px;height:80px;background-color:green'>
             <img src="images/Microphone.png" style='width:60px ; height:60px'>
         </button> -->
-        <button id="record" disabled class='attributeButtons' style='margin-top: 55px;width:47%;height:80px; color:transparent;background-color:blue'>
-          <img src="images/record.png" style='width:60px ; height:60px'>
+        <button id="record" disabled class='attributeButtons' style='margin-top: 15px;width:47%;height:60px; color:transparent;background-color:blue'>
+          <img src="images/record.png" style='width:60px ; height:40px'>
         </button>
-        <button id="play" disabled class='attributeButtons' style='margin-top: 55px;width:47%;height:80px;color:transparent;background-color:red'>
-          <img src="images/play.png" style='width:60px ; height:60px'>
+        <button id="play" disabled class='attributeButtons' style='margin-top: 15px;width:47%;height:60px;color:transparent;background-color:#0AFAE6'>
+          <img src="images/play.png" style='width:40px ; height:40px'>
         </button>
-        <button id="download" disabled style='margin-top: 55px;width:80px;height:80px;background-color:yellow'></button>
-        <button id="goBackToLandTenure"  style='margin-top: 55px;width:47%;background-color:grey'>
-          <img src="images/arrowLeft.png" style='width:60px ; height:60px'>
-        </button>
+        <button id="download" disabled style='margin-top: 15px;width:80px;height:60px;background-color:yellow'></button>
+
 </div>
 
 <div>
@@ -201,19 +189,17 @@
 <video id="gum" playsinline autoplay muted></video>
 <video id="recorded" playsinline loop></video>
 
-<!-- ////////////////////////////////////data sharing//////////////////////////////// -->
-<audio  id='dataSharing' loop>
-  <source src="images/dataSharing.mp3"  type="audio/mp3">
+<div align='center' >
+  <button id="goBackToLandUse"  style='margin-top: 10px;width:47%;height:60px;background-color:grey'>
+    <img src="images/arrowLeft.png" style='width:60px ; height:40px'>
+  </button>
+</div>
+
+<audio  id='finalScreen'>
+  <source src="images/finalScreen.mp3"  type="audio/mp3">
   <!-- <div class="center">.</div> -->
 </audio>
-<div align='center' class='colors'>
-  <button id="community" class='attributeButtons' style='padding:10px;width:80px;height:80px;background-color:green'>
-    <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button>
-  <button id="government" class='attributeButtons' style='padding:10px;width:80px;height:80px;background-color:brown'>
-    <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button>
-  <button id="world" class='attributeButtons' style='padding:10px;width:80px;height:80px;background-color:yellow'>
-    <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button>
-</div>
+<!-- ////////////////////////////////////data sharing//////////////////////////////// -->
 
 <!-- <script src="https://npmcdn.com/leaflet@1.3.4/dist/leaflet.js"></script> -->
 
@@ -228,16 +214,19 @@
 <!-- <script src="scripts/lib/leaflet/plugins/Leaflet.Basemaps-master/L.Control.Basemaps.js"></script> -->
 
 <script src="scripts/lib/leaflet/leaflet.js"></script>
+<script src="scripts/lib/jquery-3.4.1.min.js"></script>
+
 
 <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.draw.js"></script>
 <script src="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.js"></script>
 <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.Draw.Event.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.5.0/localforage.js"></script>
+<script src="scripts/lib/leaflet/plugins/localForage-master/dist/localforage.js"></script>
 <script src="scripts/lib/leaflet/plugins/leaflet-offline-master/dist/leaflet-offline.js"></script>
 
-<script src="layers/AOI_NamibiaExperiments.geojson" type='text/javascript'></script>
+<script src="layers/AOI_Tsumkwe.geojson" type='text/javascript'></script>
 
+   <script src="scripts/lib/leaflet/plugins/L.Control.Rose-master/dist/L.Control.Rose.js"></script>
    <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.Poly.js"></script>
    <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.SimpleShape.js"></script>
    <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.Rectangle.js"></script>
