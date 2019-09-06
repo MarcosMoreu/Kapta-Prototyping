@@ -195,7 +195,7 @@ var community1 = L.marker([-19.7391716,20.3707833], {icon:communityIcon}).addTo(
 
 var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb,{
         minZoom: 3,
-        maxZoom: 26,
+        maxZoom: 18,
       //  maxNativeZoom: 20,
         //transparent: false,
         //border: 'solid black 5px',
@@ -206,7 +206,7 @@ var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={
 
 var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',tilesDb,{
         minZoom: 3,
-        maxZoom: 26,
+        maxZoom: 18,
         maxNativeZoom: 20,
         // subdomains:['mt0','mt1','mt2','mt3'],
         attribution: 'OpenStreetMap Contributors'
@@ -214,94 +214,94 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
         });
 
  var planetS1 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083048_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
+        maxZoom: 20,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
         attribution: 'Planet Imagery AUGUST 2019'
     });
  var planetS2 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083047_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
+        maxZoom: 20,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
  var planetS3 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083046_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
+        maxZoom: 20,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
  var planetS4 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083045_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
+        maxZoom: 20,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
  var planetS5 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083044_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
+        maxZoom: 20,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
  var planetS6 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083043_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
+        maxZoom: 20,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
 
     });
  var planetS7 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082746_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
+        maxZoom: 20,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
  var planetS8 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082745_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
+        maxZoom: 20,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
  var planetS9 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082744_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
+        maxZoom: 20,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
  var planetS10 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082743_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
+        maxZoom: 20,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
  var planetS11 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082742_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
+        maxZoom: 20,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
           });
  var planetS12 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082741_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
+        maxZoom: 20,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
  var planetS13 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082607_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
+        maxZoom: 20,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
  var planetS14 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082606_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
+        maxZoom: 20,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
  var planetS15 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082605_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
+        maxZoom: 20,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
  var planetS16 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082604_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
+        maxZoom: 20,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
  var planetS17 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082603_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
+        maxZoom: 20,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
  var planetS18 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082602_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 26,
+        maxZoom: 20,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
