@@ -2,6 +2,8 @@
 // (function() {
 if('serviceWorker' in navigator) {
 
+
+
   navigator.serviceWorker
     .register('./sw.js',{ scope: './'})
     .then(function(registration){
@@ -395,6 +397,9 @@ var osm_Button = L.easyButton({
         stateName: 'check-mark',
         onClick: function(btn,map) {
           clickButtonCount +=1;
+          osm_Button.removeFrom(map);
+          googleSat_Button.addTo(map);
+
         //  console.log('countbutton clicks', clickButtonCount)
           if(clickButtonCount == 10){
             offlineControlOSM.addTo(map);
@@ -404,9 +409,9 @@ var osm_Button = L.easyButton({
           osm.addTo(map);
           googleSat.removeFrom(map);
           planet.removeFrom(map);
-          btn.button.style.backgroundColor = 'yellow';
-          googleSat_Button.button.style.backgroundColor = 'black';
-          planet_Button.button.style.backgroundColor = 'black'
+          // btn.button.style.backgroundColor = 'yellow';
+          // googleSat_Button.button.style.backgroundColor = 'black';
+          // planet_Button.button.style.backgroundColor = 'black'
           }
           return clickButtonCount;
         }
@@ -432,6 +437,8 @@ var googleSat_Button = L.easyButton({
               //stateName: 'check-mark',
         onClick: function(btn,map) {
           clickButtonCount +=1;
+          googleSat_Button.removeFrom(map);
+          planet_Button.addTo(map);
           //console.log('countbutton clicks', clickButtonCount)
           if(clickButtonCount == 10){
             offlineControlGoogle.addTo(map);
@@ -441,9 +448,9 @@ var googleSat_Button = L.easyButton({
             googleSat.addTo(map);
             planet.removeFrom(map);
             osm.removeFrom(map);
-            btn.button.style.backgroundColor = 'yellow';
-            osm_Button.button.style.backgroundColor = 'black';
-            planet_Button.button.style.backgroundColor = 'black';
+            // btn.button.style.backgroundColor = 'yellow';
+            // osm_Button.button.style.backgroundColor = 'black';
+            // planet_Button.button.style.backgroundColor = 'black';
             //remove the download tiles Control
           }
           return clickButtonCount;
@@ -454,8 +461,8 @@ var googleSat_Button = L.easyButton({
 googleSat_Button.button.style.width = '60px';
 googleSat_Button.button.style.height = '60px';
 googleSat_Button.button.style.transitionDuration = '.3s';
-googleSat_Button.button.style.backgroundColor = 'yellow';
-googleSat_Button.addTo(map);
+googleSat_Button.button.style.backgroundColor = 'black';
+//googleSat_Button.addTo(map);
 
 var planet_Button = L.easyButton({
     id: 'planet',
@@ -466,12 +473,14 @@ var planet_Button = L.easyButton({
         stateName: 'check-mark',
         onClick: function(btn,map) {
             clickButtonCount=0;
+            planet_Button.removeFrom(map);
+            osm_Button.addTo(map);
             planet.addTo(map);
             googleSat.removeFrom(map);
             osm.removeFrom(map);
-            btn.button.style.backgroundColor = 'yellow';
-              googleSat_Button.button.style.backgroundColor = 'black';
-              osm_Button.button.style.backgroundColor = 'black'
+            // btn.button.style.backgroundColor = 'yellow';
+            //   googleSat_Button.button.style.backgroundColor = 'black';
+            //   osm_Button.button.style.backgroundColor = 'black'
 
         }
     }]
@@ -480,7 +489,7 @@ var planet_Button = L.easyButton({
 planet_Button.button.style.width = '60px';
 planet_Button.button.style.height = '60px';
 planet_Button.button.style.transitionDuration = '.3s';
-planet_Button.addTo(map);
+//planet_Button.addTo(map);
 
 var home_Button = L.easyButton({
     id: 'home',
@@ -679,7 +688,7 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
            //   document.getElementById("mappingInstructions").play();
            // };
            //document.getElementById("startMapping").style.display = "none";
-           document.getElementById("goBack1").style.display = "none";
+          // document.getElementById("goBack1").style.display = "none";
 
            document.getElementById("map").style.display = "none";
            document.getElementById("polygon").style.display = "none";
@@ -687,6 +696,9 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
            document.getElementById("point").style.display = "none";
            document.getElementById("polyline").style.opacity = "0.15";
            document.getElementById("point").style.opacity = "0.15";
+
+           // document.getElementById('googleSat').style.visibility='hidden';
+           // document.getElementById('planet').style.visibility='hidden';
 
            document.getElementById("goBack2").style.display = "none";
            document.getElementById("deleteLastVertex").style.display = "none";
@@ -751,7 +763,7 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
 
               document.getElementById("map").style.display = "block";
               //document.getElementById("map").style.height = "90%";
-              document.getElementById("goBack1").style.display = "initial";
+            //  document.getElementById("goBack1").style.display = "initial";
               document.getElementById("polygon").style.display = "initial";
               document.getElementById("polyline").style.display = "initial";
               document.getElementById("point").style.display = "initial";
@@ -766,23 +778,23 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
               // document.getElementById("deletePolygon").disabled = true;
           }
 
-          document.getElementById("goBack1").onclick = function(e){
-
-            document.getElementById("mappingInstructions").pause();
-            document.getElementById("mappingInstructions").currentTime = 0;
-
-             document.body.style.backgroundColor = "black";
-             document.getElementById("map").style.display = "none";
-             document.getElementById("goBack1").style.display = "none";
-             document.getElementById("polygon").style.display = "none";
-             document.getElementById("polyline").style.display = "none";
-             document.getElementById("point").style.display = "none";
-             document.getElementById("videoTutorial").style.display = "initial";
-             document.getElementById("startMapping").style.display = "initial";
-             document.getElementById("audioTutorial").play();
-
-
-           }
+          // document.getElementById("goBack1").onclick = function(e){
+          //
+          //   document.getElementById("mappingInstructions").pause();
+          //   document.getElementById("mappingInstructions").currentTime = 0;
+          //
+          //    document.body.style.backgroundColor = "black";
+          //    document.getElementById("map").style.display = "none";
+          //    document.getElementById("goBack1").style.display = "none";
+          //    document.getElementById("polygon").style.display = "none";
+          //    document.getElementById("polyline").style.display = "none";
+          //    document.getElementById("point").style.display = "none";
+          //    document.getElementById("videoTutorial").style.display = "initial";
+          //    document.getElementById("startMapping").style.display = "initial";
+          //    document.getElementById("audioTutorial").play();
+          //
+          //
+          //  }
 ///////////////////////////////////////////draw screen////////////////////////////////////////////////
 
 var created = false; //variable to determine whether a polygon has been completed.
@@ -791,7 +803,7 @@ var clickDelVertCount = 0;
 document.getElementById("goBack2").onclick = function(e){
       clickMapCount = 0;
 
-       document.getElementById("goBack1").style.display = "initial";
+       //document.getElementById("goBack1").style.display = "initial";
        document.getElementById("goBack2").style.display = "none";
        document.getElementById("polygon").style.display = "initial";
        document.getElementById("polyline").style.display = "initial";
@@ -817,7 +829,7 @@ document.getElementById("goBack2").onclick = function(e){
   document.getElementById('polygon').onclick = function(e){
             clickMapCount = 0;
             drawPolygon.enable();
-            document.getElementById("goBack1").style.display = "none";
+          //  document.getElementById("goBack1").style.display = "none";
             document.getElementById("polygon").style.display = "none";
             document.getElementById("polyline").style.display = "none";
             document.getElementById("point").style.display = "none";
@@ -1252,7 +1264,7 @@ var goToId = 0;
              document.getElementById("map").style.display = "block";
              document.getElementById("map").style.height = "90%";
 
-            document.getElementById("goBack1").style.display = "initial";
+            //document.getElementById("goBack1").style.display = "initial";
              document.getElementById("polygon").style.display = "initial";
              document.getElementById("polyline").style.display = "initial";
              document.getElementById("point").style.display = "initial";
@@ -1367,7 +1379,7 @@ var layer1;
       document.getElementById('Return').onclick = function(e){
 
              document.body.style.backgroundColor = "white";
-             document.getElementById("goBack1").style.display = "initial";
+            // document.getElementById("goBack1").style.display = "initial";
              document.getElementById("polygon").style.display = "initial";
              document.getElementById("polyline").style.display = "initial";
              document.getElementById("point").style.display = "initial";
