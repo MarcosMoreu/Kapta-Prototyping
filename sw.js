@@ -1,7 +1,7 @@
 "use strict";
 
 // Set a name for the current cache
-var version = 'Prototype#3_Tsumkwe_Namibia';
+var version = 'Prototype#3_v2';
 
 // Default files to always cache
 var offlineFundamentals = [
@@ -9,7 +9,7 @@ var offlineFundamentals = [
   "styles/app.css",
   "scripts/app.js",
   "images/Start.png",
-  
+
 ];
 
 

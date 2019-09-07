@@ -2,9 +2,7 @@
 // (function() {
 if('serviceWorker' in navigator) {
 
-
-
-  navigator.serviceWorker
+navigator.serviceWorker
     .register('./sw.js',{ scope: './'})
     .then(function(registration){
       console.log('Service Worker Registered');
@@ -90,7 +88,7 @@ var tilesDb = {
     }
 };
 
-// Run function on load, could also run on dom ready
+// Script to hide audio button after first load. Run function on load, could also run on dom ready
 window.onload = function() {
     // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
     if(typeof window.localStorage !== "undefined" && !localStorage.getItem('visited')) {
@@ -100,7 +98,7 @@ window.onload = function() {
          document.getElementById("startMapping").style.visibility = "hidden";
          document.getElementById("unmute").style.visibility = "visible";
 
-         alert("Hello my friend. This is your first visit.");
+         //alert("Hello my friend. This is your first visit.");
     }else {
       document.getElementById("startMapping").style.visibility = "visible";
       document.getElementById("unmute").style.visibility = "hidden";
@@ -718,6 +716,8 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
            document.getElementById('lu3').style.display = 'none';
            document.getElementById('lu4').style.display = 'none';
            document.getElementById('lu5').style.display = 'none';
+           document.getElementById('luOther').style.display = 'none';
+
 
            document.getElementById('goToIdentification').style.display = 'none';
            document.getElementById('goBackToLandUse').style.display = 'none';
@@ -1034,6 +1034,8 @@ document.getElementById("goBack2").onclick = function(e){
               document.getElementById('lu3').style.display = 'initial';
               document.getElementById('lu4').style.display = 'initial';
               document.getElementById('lu5').style.display = 'initial';
+              document.getElementById('luOther').style.display = 'initial';
+
               document.getElementById('goToIdentification').style.display = 'initial';
 
 
@@ -1045,6 +1047,7 @@ var lu2 = null;
 var lu3 = null;
 var lu4 = null;
 var lu5 = null;
+var luOther =  null;
 
 //var goToLT = 0; //variable to know whether the LT instructions have played, so can be paused when cancel click
 var goToId = 0;
@@ -1126,6 +1129,21 @@ var goToId = 0;
         return lu5
       }
 
+      document.getElementById('luOther').onclick = function(e){
+        //this.style.borderColor = 'transparent';
+        document.getElementById('goToIdentification').disabled = false;
+        document.getElementById('goToIdentification').style.opacity = '1';
+        if(luOther===null){
+          this.style.borderColor = '#13FA04';
+          luOther = 'Other';
+        }else{
+          this.style.borderColor = 'transparent';
+          luOther = null;
+        }
+        console.log(luOther)
+        return luOther
+      }
+
 
       document.getElementById('goToIdentification').onclick  = function(e){
         goToId = 1;
@@ -1134,6 +1152,8 @@ var goToId = 0;
         document.getElementById('lu3').style.display = 'none';
         document.getElementById('lu4').style.display = 'none';
         document.getElementById('lu5').style.display = 'none';
+        document.getElementById('luOther').style.display = 'none';
+
         document.getElementById('goToIdentification').style.display = 'none';
 
         document.getElementById('Confirm').style.display = 'initial';
@@ -1173,6 +1193,8 @@ var goToId = 0;
         document.getElementById('lu3').style.display = 'initial';
         document.getElementById('lu4').style.display = 'initial';
         document.getElementById('lu5').style.display = 'initial';
+        document.getElementById('luOther').style.display = 'initial';
+
         document.getElementById('record').style.display = 'none';
         document.getElementById('play').style.display = 'none';
         document.getElementById('voice').style.display = 'none';
@@ -1206,8 +1228,6 @@ var goToId = 0;
               document.getElementById('download').style.opacity = '0.1';
               document.getElementById('voice').style.opacity = '1';
               document.getElementById('goBackToLandUse').style.display = 'none';
-
-
 
             }
             document.getElementById('Identification').pause();
@@ -1280,12 +1300,16 @@ var goToId = 0;
              document.getElementById('lu3').style.borderColor = 'transparent';
              document.getElementById('lu4').style.borderColor = 'transparent';
              document.getElementById('lu5').style.borderColor = 'transparent';
+             document.getElementById('luOther').style.borderColor = 'transparent';
+
 
              document.getElementById('lu1').style.display = 'none';
              document.getElementById('lu2').style.display = 'none';
              document.getElementById('lu3').style.display = 'none';
              document.getElementById('lu4').style.display = 'none';
              document.getElementById('lu5').style.display = 'none';
+             document.getElementById('luOther').style.display = 'none';
+
 
              document.getElementById('record').style.display = 'none';
              document.getElementById('play').style.display = 'none';
@@ -1319,7 +1343,7 @@ var layer1;
                //console.log(dateTimeRandomID);
 
                var data = drawnItems.toGeoJSON();
-               var attributes = [lu1,lu2,lu3,lu4,lu5];
+               var attributes = [lu1,lu2,lu3,lu4,lu5,luOther];
 
                // Stringify the GeoJson
                var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
@@ -1399,6 +1423,8 @@ var layer1;
              document.getElementById('lu3').style.borderColor = 'transparent';
              document.getElementById('lu4').style.borderColor = 'transparent';
              document.getElementById('lu5').style.borderColor = 'transparent';
+             document.getElementById('luOther').style.borderColor = 'transparent';
+
 
 
              return created;
