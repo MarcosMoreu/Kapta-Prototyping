@@ -112,7 +112,7 @@ var map = L.map('map',{
         center: [-19.7391716,20.3707833],
         zoom: 11,
         minZoom:10,
-        maxZoom:23,
+        maxZoom:18,
         zoomControl:false,
        attributionControl:false
       });
@@ -734,8 +734,9 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
 
            document.getElementById('voice').style.display = 'none';
 
-           document.getElementById("Exit").style.display = "none";
-           document.getElementById("Return").style.display = "none";
+           document.getElementById('Sent').style.display = 'none';
+           // document.getElementById("Exit").style.display = "none";
+           // document.getElementById("Return").style.display = "none";
            // document.getElementById("Exit").style.display = "none";
            // document.getElementById("Return").style.display = "none";
 
@@ -1326,116 +1327,167 @@ var goToId = 0;
 var dateTimeRandomID;
 var layer1;
   document.getElementById('export').onclick = function(e) {
-               // Extract GeoJson from featureGroup
-               // var data = drawnItems.toGeoJSON();
-               //here we generate a random ID so when offline the downloaded file is not duplicated
-               var randomNumber = Math.random();
-               randomNumber = randomNumber*10000;
-               var randomID = Math.round(randomNumber);
-               //here the datetime
-               var today = new Date();
-               var date = today.getFullYear()+'_'+(today.getMonth()+1)+'_'+today.getDate();
-               var time = today.getHours() + "_" + today.getMinutes() + "_" + today.getSeconds();
-               var dateTime = date+'__'+time;
-               //here we combine datetime with randomID
-               dateTimeRandomID ='Date&time: '+ dateTime+' RandomID:'+randomID;
-               dateTimeRandomID.toString();
-               //console.log(dateTimeRandomID);
-
-               var data = drawnItems.toGeoJSON();
-               var attributes = [lu1,lu2,lu3,lu4,lu5,luOther];
-
-               // Stringify the GeoJson
-               var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
-               var convertedText =   '' + encodeURIComponent(JSON.stringify(attributes))
-                                        + encodeURIComponent(JSON.stringify(currentLocation))
-                                        + encodeURIComponent(JSON.stringify(dateTime));
 
 
-               // Create export
-               document.getElementById('export').setAttribute('href', 'data:' + convertedData + convertedText );
-              // document.getElementById('export').setAttribute('href', 'data:' + convertedText );
-
-               document.getElementById('export').setAttribute('download',dateTimeRandomID);
-               layer1=data;
-               L.geoJSON(layer1).addTo(map);
-
-               drawnItems.clearLayers();
-
-           document.body.style.backgroundColor = "#13FA04";
+                // document.body.style.backgroundColor = "#13FA04";
 
 
-          //window.open(src='finalScreen.html');
-          //defining the final screen
-           document.getElementById("map").style.height = "0px";
-           document.getElementById("Confirm").style.display = "none";
-           document.getElementById("Cancel").style.display = "none";
+                //defining the final screen
+                document.getElementById("map").style.height = "0px";
+                document.getElementById("Confirm").style.display = "none";
+                document.getElementById("Cancel").style.display = "none";
 
-           document.getElementById("export").style.display = "none";
-           document.getElementById("exportButton").style.display = "none";
+                document.getElementById("export").style.display = "none";
+                document.getElementById("exportButton").style.display = "none";
 
-           document.getElementById("Exit").style.display = "initial";
-           document.getElementById("Exit").style.visibility = "visible";
-           document.getElementById("Return").style.display = "initial";
-           document.getElementById("Return").style.visibility = "visible";
+                document.getElementById("record").style.display = "none";
+                document.getElementById("play").style.display = "none";
+                document.getElementById("goBackToLandUse").style.display = "none";
 
+                document.getElementById('voice').style.display = 'none';
 
-           document.getElementById("deleteAllVertexs").style.opacity = "0.15";
-           document.getElementById("deleteAllVertexs").disabled = true;
-
-          // document.getElementById('start').style.display = 'none';
+                recordedVideo.pause();
+                recordedVideo.currentTime = 0;
 
 
-           document.getElementById("record").style.display = "none";
-           document.getElementById("play").style.display = "none";
-           document.getElementById("goBackToLandUse").style.display = "none";
+                document.getElementById('Sent').style.display = 'initial';
 
-           document.getElementById('voice').style.display = 'none';
+              setInterval(function(){
 
-           recordedVideo.pause();
-           recordedVideo.currentTime = 0;
-           document.getElementById('finalScreen').play();
+                document.getElementById('Sent').style.display = 'none';
+
+                // Extract GeoJson from featureGroup
+                // var data = drawnItems.toGeoJSON();
+                //here we generate a random ID so when offline the downloaded file is not duplicated
+                var randomNumber = Math.random();
+                randomNumber = randomNumber*10000;
+                var randomID = Math.round(randomNumber);
+                //here the datetime
+                var today = new Date();
+                var date = today.getFullYear()+'_'+(today.getMonth()+1)+'_'+today.getDate();
+                var time = today.getHours() + "_" + today.getMinutes() + "_" + today.getSeconds();
+                var dateTime = date+'__'+time;
+                //here we combine datetime with randomID
+                dateTimeRandomID ='Date&time: '+ dateTime+' RandomID:'+randomID;
+                dateTimeRandomID.toString();
+                //console.log(dateTimeRandomID);
+
+                var data = drawnItems.toGeoJSON();
+                var attributes = [lu1,lu2,lu3,lu4,lu5,luOther];
+
+                // Stringify the GeoJson
+                var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
+                var convertedText =   '' + encodeURIComponent(JSON.stringify(attributes))
+                                         + encodeURIComponent(JSON.stringify(currentLocation))
+                                         + encodeURIComponent(JSON.stringify(dateTime));
+
+
+                // Create export
+                document.getElementById('export').setAttribute('href', 'data:' + convertedData + convertedText );
+                // document.getElementById('export').setAttribute('href', 'data:' + convertedText );
+
+                document.getElementById('export').setAttribute('download',dateTimeRandomID);
+                layer1=data;
+                L.geoJSON(layer1).addTo(map);
+
+                drawnItems.clearLayers();
+
+
+
+                // document.getElementById("Exit").style.display = "initial";
+                // document.getElementById("Exit").style.visibility = "visible";
+                // document.getElementById("Return").style.display = "initial";
+                // document.getElementById("Return").style.visibility = "visible";
+
+
+                document.getElementById("deleteAllVertexs").style.opacity = "0.15";
+                document.getElementById("deleteAllVertexs").disabled = true;
+
+                // document.getElementById('start').style.display = 'none';
+
+
+
+                //document.getElementById('finalScreen').play();
+
+                document.getElementById("polygon").style.display = "initial";
+                document.getElementById("polyline").style.display = "initial";
+                document.getElementById("point").style.display = "initial";
+                drawnItems.remove();
+                recordedVideo.pause();
+
+                document.getElementById("map").style.height = "90%";
+                // document.getElementById("Exit").style.display = "none";
+                // document.getElementById("Return").style.display = "none";
+                created=false;
+              }, 3000);
+
 
 
       return layer1;
   }
 
-      document.getElementById('Return').onclick = function(e){
-
-             document.body.style.backgroundColor = "white";
-            // document.getElementById("goBack1").style.display = "initial";
-             document.getElementById("polygon").style.display = "initial";
-             document.getElementById("polyline").style.display = "initial";
-             document.getElementById("point").style.display = "initial";
-             drawnItems.remove();
-             recordedVideo.pause();
-             document.getElementById('finalScreen').pause();
-
-            // map.fitBounds(drawnItems.getBounds(),{maxZoom:20});
-
-             document.getElementById("map").style.height = "90%";
-             document.getElementById("Exit").style.display = "none";
-             document.getElementById("Return").style.display = "none";
-             created=false;
-
-             document.getElementById('lu1').style.borderColor = 'transparent';
-             document.getElementById('lu2').style.borderColor = 'transparent';
-             document.getElementById('lu3').style.borderColor = 'transparent';
-             document.getElementById('lu4').style.borderColor = 'transparent';
-             document.getElementById('lu5').style.borderColor = 'transparent';
-             document.getElementById('luOther').style.borderColor = 'transparent';
-
-
-
-             return created;
-        }
-
-    document.getElementById('Exit').onclick = function(e){
-        window.close();
-        recordedVideo.pause();
-        document.getElementById('finalScreen').pause();
-        document.getElementById("finalScreen").currentTime = 0;
-
-
-
-    }
+//       document.getElementById('Return').onclick = function(e){
+//
+//              document.body.style.backgroundColor = "white";
+//             // document.getElementById("goBack1").style.display = "initial";
+//              document.getElementById("polygon").style.display = "initial";
+//              document.getElementById("polyline").style.display = "initial";
+//              document.getElementById("point").style.display = "initial";
+//              drawnItems.remove();
+//              recordedVideo.pause();
+//              document.getElementById('finalScreen').pause();
+//
+//             // map.fitBounds(drawnItems.getBounds(),{maxZoom:20});
+//
+//              document.getElementById("map").style.height = "90%";
+//              document.getElementById("Exit").style.display = "none";
+//              document.getElementById("Return").style.display = "none";
+//              created=false;
+//
+//              document.getElementById('lu1').style.borderColor = 'transparent';
+//              document.getElementById('lu2').style.borderColor = 'transparent';
+//              document.getElementById('lu3').style.borderColor = 'transparent';
+//              document.getElementById('lu4').style.borderColor = 'transparent';
+//              document.getElementById('lu5').style.borderColor = 'transparent';
+//              document.getElementById('luOther').style.borderColor = 'transparent';
+//
+//
+//
+//              return created;
+//         }
+//
+//     document.getElementById('Exit').onclick = function(e){
+//       recordedVideo.pause();
+//       document.getElementById('finalScreen').pause();
+//       document.getElementById("finalScreen").currentTime = 0;
+// //////////////////////////////////////////////////////////////////////////////
+//        window.open('about: blank', '_self').close();
+//        window.close();
+//       //////////////////////////////////////////////////////////
+//     //  var win = window.open('', '_self').close();
+//     //  window.close();
+//
+//       //window.opener = null;
+//       //window.open('close.html');
+//     //   window.open('','_parent','');
+//     // window.close();
+//
+//     //chrome.app.window.current().close();
+//
+//   //window.open('', '_self', '');
+//   //  window.close();
+//
+//     //  window.close();
+//       // var win = window.open('', '_self');
+//       //
+//       // win.close();
+//       // return false;
+//
+//         // var win = window.open('','_self');
+//         // win.close();
+//         // //navigator.app.exitApp();
+//
+//
+// //return win;
+//
+//     }
