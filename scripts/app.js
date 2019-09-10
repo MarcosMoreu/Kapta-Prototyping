@@ -1419,7 +1419,7 @@ var layer1;
                 // document.getElementById("Exit").style.display = "none";
                 // document.getElementById("Return").style.display = "none";
                 created=false;
-              }, 3000);
+              }, 3300);
 
 
 
