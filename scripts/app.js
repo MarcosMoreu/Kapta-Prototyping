@@ -1338,8 +1338,8 @@ var layer1;
                 var randomID = Math.round(randomNumber);
                 //here the datetime
                 var today = new Date();
-                var date = today.getFullYear()+'_'+(today.getMonth()+1)+'_'+today.getDate();
-                var time = today.getHours() + "_" + today.getMinutes() + "_" + today.getSeconds();
+                var date = '/'+today.getFullYear()+'_'+(today.getMonth()+1)+'_'+today.getDate();
+                var time = today.getHours() + "_" + today.getMinutes() + "_" + today.getSeconds()+'/';
                 var dateTime = date+'__'+time;
                 //here we combine datetime with randomID
                 dateTimeRandomID ='Date&time: '+ dateTime+' RandomID:'+randomID;
@@ -1347,22 +1347,36 @@ var layer1;
                 //console.log(dateTimeRandomID);
 
                 var data = drawnItems.toGeoJSON();
+                //The coordinate reference system for all GeoJSON coordinates is a  geographic coordinate reference system, using the World Geodetic
+                //System 1984 (WGS 84) [WGS84] datum, with longitude and latitude units of decimal degrees.
                 var attributes = [lu1,lu2,lu3,lu4,lu5,luOther];
 
+
+
+                //attributes added to Geojson file properties
+                var combinedAttributeData = attributes + dateTime + currentLocation;
+                var prop_1 = {
+                  'prop_1':combinedAttributeData
+                };
+              //  data.properties = combinedAttributeData;
+              data.features[0].properties = prop_1;
+              console.log(data)
+
+                //data.innerHTML = JSON.stringify(prop_1);
                 // Stringify the GeoJson
                 var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
-                var convertedText =   '' + encodeURIComponent(JSON.stringify(attributes))
-                                         + encodeURIComponent(JSON.stringify(currentLocation))
-                                         + encodeURIComponent(JSON.stringify(dateTime));
-
-               data.properties = attributes;
+                // var convertedText =   '' + encodeURIComponent(JSON.stringify(attributes))
+                //                          + encodeURIComponent(JSON.stringify(currentLocation))
+                //                          + encodeURIComponent(JSON.stringify(dateTime));
 
 
-                console.log(data)
+
+
                 //console.log(convertedData)
                 // Create export
-                document.getElementById('export').setAttribute('href', 'data:' + convertedData + convertedText );
-                // document.getElementById('export').setAttribute('href', 'data:' + convertedText );
+                document.getElementById('export').setAttribute('href', 'data:' + convertedData);
+                //document.getElementById('export').setAttribute('href', 'data:' + convertedData + convertedText );
+
 
                 document.getElementById('export').setAttribute('download',dateTimeRandomID);
                 layer1=data;
