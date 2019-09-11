@@ -1,7 +1,7 @@
 "use strict";
 
 // Set a name for the current cache
-var version = 'v4.1.5';
+var version = 'v4.1.6';
 
 // Default files to always cache
 var offlineFundamentals = [

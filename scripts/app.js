@@ -1329,7 +1329,8 @@ var goToId = 0;
 var dateTimeRandomID;
 var layer1;
   document.getElementById('export').onclick = function(e) {
-
+                //refresh location
+                console.log(currentLocation)
                 // document.body.style.backgroundColor = "#13FA04";
 
                 // Extract GeoJson from featureGroup
@@ -1399,7 +1400,35 @@ var layer1;
 
                 document.getElementById('export').setAttribute('download',dateTimeRandomID);
                 layer1=data;
-                L.geoJSON(layer1).addTo(map);
+                L.geoJSON(layer1,{
+                  style:function(features) {
+                      // var mag = feature.properties.mag;
+                      if (lu1 != null) {
+                      return {
+                          color: "black"}
+                        }
+                      if (lu2 != null) {
+                      return {
+                          color: "#E0E0E0"}
+                        }
+                      if (lu3 != null) {
+                      return {
+                          color: "green"}
+                        }
+                      if (lu4 != null) {
+                      return {
+                          color: "yellow"}
+                        }
+                      if (lu5 != null) {
+                      return {
+                          color: "red"}
+                        }
+                      if (luOther != null) {
+                      return {
+                          color: "#6E6E6D"}
+                        }
+                   }
+                }).addTo(map);
 
                 drawnItems.clearLayers();
 
