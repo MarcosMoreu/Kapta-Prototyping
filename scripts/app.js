@@ -1350,15 +1350,29 @@ var layer1;
                 //The coordinate reference system for all GeoJSON coordinates is a  geographic coordinate reference system, using the World Geodetic
                 //System 1984 (WGS 84) [WGS84] datum, with longitude and latitude units of decimal degrees.
 
+                //script to remove null values of land use
+                var allLandUses = [lu1,lu2,lu3,lu4,lu5,luOther];
+                var numLandUses = allLandUses.length;
+                // var landUses = [];
+                // for (i=0; i<=numLandUses; i++){
+                //   if(allLandUses[i]!= null){
+                //
+                //     landUses[i] = allLandUses[i];
+                //     console.log(allLandUses[i])
+                //
+                //   }
+                //
+                // }
+                // allLandUses.filter(function(x){
+                //   return x != null;
+                // })
+                var allLandUsesFiltered = allLandUses.filter(noNull => noNull != null);
 
-                var attributes = [lu1,lu2,lu3,lu4,lu5,luOther];
-
-                // if attributes
-
+console.log(allLandUsesFiltered)
                 //attributes added to Geojson file properties
-                var combinedAttributeData = attributes + dateTime + currentLocation;
+                var combinedAttributeData = allLandUsesFiltered + dateTime + currentLocation;
                 var propertiesGeoJSON = {
-                  'attributes':attributes,
+                  'attributes':allLandUsesFiltered,
                   'dateTime':dateTime,
                   'location':currentLocation
                 };
