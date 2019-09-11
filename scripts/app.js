@@ -1349,9 +1349,11 @@ var layer1;
                 var data = drawnItems.toGeoJSON();
                 //The coordinate reference system for all GeoJSON coordinates is a  geographic coordinate reference system, using the World Geodetic
                 //System 1984 (WGS 84) [WGS84] datum, with longitude and latitude units of decimal degrees.
+
+
                 var attributes = [lu1,lu2,lu3,lu4,lu5,luOther];
 
-
+                // if attributes
 
                 //attributes added to Geojson file properties
                 var combinedAttributeData = attributes + dateTime + currentLocation;
@@ -1426,8 +1428,20 @@ var layer1;
                 // document.getElementById("Return").style.display = "none";
 
               }, 3300);
+              //reset all land use boxes
+              document.getElementById('lu1').style.borderColor = 'transparent';
+              document.getElementById('lu2').style.borderColor = 'transparent';
+              document.getElementById('lu3').style.borderColor = 'transparent';
+              document.getElementById('lu4').style.borderColor = 'transparent';
+              document.getElementById('lu5').style.borderColor = 'transparent';
+              document.getElementById('luOther').style.borderColor = 'transparent';
 
-
+              lu1 = null;
+              lu2 = null;
+              lu3 = null;
+              lu4 = null;
+              lu5 = null;
+              luOther =  null;
               created=false;
       return layer1;
   }
