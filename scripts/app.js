@@ -1147,6 +1147,8 @@ var goToId = 0;
 
 
       document.getElementById('goToIdentification').onclick  = function(e){
+        document.getElementById('Sent').currentTime = 0;
+
         goToId = 1;
         document.getElementById('lu1').style.display = 'none';
         document.getElementById('lu2').style.display = 'none';
@@ -1352,35 +1354,25 @@ var layer1;
 
                 //script to remove null values of land use
                 var allLandUses = [lu1,lu2,lu3,lu4,lu5,luOther];
-                //var numLandUses = allLandUses.length;
-                // var landUses = [];
-                // for (i=0; i<=numLandUses; i++){
-                //   if(allLandUses[i]!= null){
-                //
-                //     landUses[i] = allLandUses[i];
-                //     console.log(allLandUses[i])
-                //
-                //   }
-                //
-                // }
-                // allLandUses.filter(function(x){
-                //   return x != null;
-                // })
+
                 //land uses array filtered.
                 var allLandUsesFiltered = allLandUses.filter(noNull => noNull != null);
                 console.log(allLandUsesFiltered)
                 //convert final land uses array into string
 
+                //currentLocation array Stringify
+                var currentLocationString = currentLocation.toString();
+
                 var landUses = allLandUsesFiltered.toString();
                 console.log(landUses);
                 //attributes added to Geojson file properties
-                var combinedAttributeData = landUses + dateTime + currentLocation;
+                //var combinedAttributeData = landUses + dateTime + currentLocation;
                 var propertiesGeoJSON = {
                   'landUses':landUses,
                   'dateTime':dateTime,
-                  'location':currentLocation
+                  'participantLocation':currentLocationString
                 };
-              //  data.properties = combinedAttributeData;
+              //  adding the properties to the geoJSON file:
               data.features[0].properties = propertiesGeoJSON;
               console.log(data)
 
@@ -1408,6 +1400,7 @@ var layer1;
 
 
                 //defining the final screen
+                document.getElementById('Sent').play();
                 document.getElementById("map").style.height = "0px";
                 document.getElementById("Confirm").style.display = "none";
                 document.getElementById("Cancel").style.display = "none";
