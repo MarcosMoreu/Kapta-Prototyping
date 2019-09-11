@@ -1328,33 +1328,7 @@ var dateTimeRandomID;
 var layer1;
   document.getElementById('export').onclick = function(e) {
 
-
                 // document.body.style.backgroundColor = "#13FA04";
-
-
-                //defining the final screen
-                document.getElementById("map").style.height = "0px";
-                document.getElementById("Confirm").style.display = "none";
-                document.getElementById("Cancel").style.display = "none";
-
-                document.getElementById("export").style.display = "none";
-                document.getElementById("exportButton").style.display = "none";
-
-                document.getElementById("record").style.display = "none";
-                document.getElementById("play").style.display = "none";
-                document.getElementById("goBackToLandUse").style.display = "none";
-
-                document.getElementById('voice').style.display = 'none';
-
-                recordedVideo.pause();
-                recordedVideo.currentTime = 0;
-
-
-                document.getElementById('Sent').style.display = 'initial';
-
-              setInterval(function(){
-
-                document.getElementById('Sent').style.display = 'none';
 
                 // Extract GeoJson from featureGroup
                 // var data = drawnItems.toGeoJSON();
@@ -1381,7 +1355,11 @@ var layer1;
                                          + encodeURIComponent(JSON.stringify(currentLocation))
                                          + encodeURIComponent(JSON.stringify(dateTime));
 
+               data.properties = attributes;
 
+
+                console.log(data)
+                //console.log(convertedData)
                 // Create export
                 document.getElementById('export').setAttribute('href', 'data:' + convertedData + convertedText );
                 // document.getElementById('export').setAttribute('href', 'data:' + convertedText );
@@ -1393,21 +1371,33 @@ var layer1;
                 drawnItems.clearLayers();
 
 
+                //defining the final screen
+                document.getElementById("map").style.height = "0px";
+                document.getElementById("Confirm").style.display = "none";
+                document.getElementById("Cancel").style.display = "none";
 
-                // document.getElementById("Exit").style.display = "initial";
-                // document.getElementById("Exit").style.visibility = "visible";
-                // document.getElementById("Return").style.display = "initial";
-                // document.getElementById("Return").style.visibility = "visible";
+                document.getElementById("export").style.display = "none";
+                document.getElementById("exportButton").style.display = "none";
 
+                document.getElementById("record").style.display = "none";
+                document.getElementById("play").style.display = "none";
+                document.getElementById("goBackToLandUse").style.display = "none";
+
+                document.getElementById('voice').style.display = 'none';
+
+                recordedVideo.pause();
+                recordedVideo.currentTime = 0;
+
+
+                document.getElementById('Sent').style.display = 'initial';
+              //  document.getElementById('Sent').src='images/Sent.gif';
+
+              setTimeout(function(){
+
+                document.getElementById('Sent').style.display = 'none';
 
                 document.getElementById("deleteAllVertexs").style.opacity = "0.15";
                 document.getElementById("deleteAllVertexs").disabled = true;
-
-                // document.getElementById('start').style.display = 'none';
-
-
-
-                //document.getElementById('finalScreen').play();
 
                 document.getElementById("polygon").style.display = "initial";
                 document.getElementById("polyline").style.display = "initial";
@@ -1418,11 +1408,11 @@ var layer1;
                 document.getElementById("map").style.height = "90%";
                 // document.getElementById("Exit").style.display = "none";
                 // document.getElementById("Return").style.display = "none";
-                created=false;
+
               }, 3300);
 
 
-
+              created=false;
       return layer1;
   }
 
