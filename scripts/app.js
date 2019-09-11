@@ -373,7 +373,7 @@ function displayLocation(position) {
   //  map.setView([lat, lng], 15);
     currentLocation = [lat,lng];
     //console.log(currentLocation)
-    console.log(currentLocation);
+    //console.log(currentLocation);
   return currentLocation;
 }
 
@@ -1355,11 +1355,13 @@ var layer1;
 
                 //attributes added to Geojson file properties
                 var combinedAttributeData = attributes + dateTime + currentLocation;
-                var prop_1 = {
-                  'prop_1':combinedAttributeData
+                var propertiesGeoJSON = {
+                  'attributes':attributes,
+                  'dateTime':dateTime,
+                  'location':currentLocation
                 };
               //  data.properties = combinedAttributeData;
-              data.features[0].properties = prop_1;
+              data.features[0].properties = propertiesGeoJSON;
               console.log(data)
 
                 //data.innerHTML = JSON.stringify(prop_1);
