@@ -1338,8 +1338,8 @@ var layer1;
                 var randomID = Math.round(randomNumber);
                 //here the datetime
                 var today = new Date();
-                var date = '/'+today.getFullYear()+'_'+(today.getMonth()+1)+'_'+today.getDate();
-                var time = today.getHours() + "_" + today.getMinutes() + "_" + today.getSeconds()+'/';
+                var date = today.getFullYear()+'_'+(today.getMonth()+1)+'_'+today.getDate();
+                var time = today.getHours() + "_" + today.getMinutes() + "_" + today.getSeconds();
                 var dateTime = date+'__'+time;
                 //here we combine datetime with randomID
                 dateTimeRandomID ='Date&time: '+ dateTime+' RandomID:'+randomID;
@@ -1352,7 +1352,7 @@ var layer1;
 
                 //script to remove null values of land use
                 var allLandUses = [lu1,lu2,lu3,lu4,lu5,luOther];
-                var numLandUses = allLandUses.length;
+                //var numLandUses = allLandUses.length;
                 // var landUses = [];
                 // for (i=0; i<=numLandUses; i++){
                 //   if(allLandUses[i]!= null){
@@ -1366,13 +1366,17 @@ var layer1;
                 // allLandUses.filter(function(x){
                 //   return x != null;
                 // })
+                //land uses array filtered.
                 var allLandUsesFiltered = allLandUses.filter(noNull => noNull != null);
+                console.log(allLandUsesFiltered)
+                //convert final land uses array into string
 
-console.log(allLandUsesFiltered)
+                var landUses = allLandUsesFiltered.toString();
+                console.log(landUses);
                 //attributes added to Geojson file properties
-                var combinedAttributeData = allLandUsesFiltered + dateTime + currentLocation;
+                var combinedAttributeData = landUses + dateTime + currentLocation;
                 var propertiesGeoJSON = {
-                  'attributes':allLandUsesFiltered,
+                  'landUses':landUses,
                   'dateTime':dateTime,
                   'location':currentLocation
                 };
