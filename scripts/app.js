@@ -363,7 +363,7 @@ var offlineControlOSM = L.control.offline(osm, tilesDb, {
 //offlineControlOSM.addTo(map);
 
 // add location via browser geolocation
-var currentLocation; // variable created to allow the user recenter the map.
+var currentLocation = []; // variable created to allow the user recenter the map.
 
 function displayLocation(position) {
     var lat = position.coords.latitude;
@@ -1261,6 +1261,7 @@ var goToId = 0;
 
 
 
+
           return goToDS;
         }
 
@@ -1321,7 +1322,6 @@ var goToId = 0;
              document.getElementById('goBackToLandUse').style.display = 'none';
              document.getElementById('goToIdentification').style.display = 'none';
 
-
            }
 
 /////////////////////////// Export  ////////////////////////////////////////////////////////
@@ -1360,9 +1360,14 @@ var layer1;
                 console.log(allLandUsesFiltered)
                 //convert final land uses array into string
 
-                //currentLocation array Stringify
-                var currentLocationString = currentLocation.toString();
+                //currentLocation array Stringify, if location is found/activated
+                if(currentLocation[0] != null){
+                  var currentLocationString = currentLocation.toString();
 
+                }else{
+                  currentLocationString = 'Location not recorded';
+                }
+                console.log(currentLocation[0])
                 var landUses = allLandUsesFiltered.toString();
                 console.log(landUses);
                 //attributes added to Geojson file properties
