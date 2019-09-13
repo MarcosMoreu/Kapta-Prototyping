@@ -167,7 +167,7 @@ var communityIcon = L.icon({
     //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
-var community1 = L.marker([51.524573, -0.134346], {icon:communityIcon}).addTo(map);
+//var community1 = L.marker([51.524573, -0.134346], {icon:communityIcon}).addTo(map);
 
 // var AOI_Test_Namibia = {
 // "type": "FeatureCollection",
@@ -380,8 +380,47 @@ function displayLocation(position) {
 }
 
 //////////////////////////////////////activate gps///////////////////////////////////////////
-navigator.geolocation.getCurrentPosition(displayLocation); //Note that it requires a secure domain (i.e. HTTPS)
+navigator.geolocation.watchPosition(displayLocation); //Note that it requires a secure domain (i.e. HTTPS)
                                                                                                        //define center map and zooooooms
+
+
+//!!!!!!!!script for watchPosition functionality!!!!!!!!!!!!!!
+
+// var id, target, options;
+//
+// function success(pos){
+//
+//   var crd = pos.coords;
+//   if(target.latitude === crd.latitude && target.longitude === crd.longitude){
+//     console.log('congratulation, target reached');
+//     navigator.geolocation.clearWatch(id);
+//
+//     var lat = position.coords.latitude;
+//     var lng = position.coords.longitude;
+//
+//     L.marker([lat, lng]).addTo(map);
+//
+//     currentLocation = [lat,lng];
+//
+//   return currentLocation;
+//
+//   }
+// }
+// target = {
+//   latitude : 0,
+//   longitude : 0
+// };
+//
+// options = {
+//   enableHighAccuracy:false,
+//   timeOut:10000
+// //maximumAge:0
+// }
+//
+// //currentLocation = pos.coords
+// //console.log(currentLocation)
+// navigator.geolocation.watchPosition(success);
+//!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 
@@ -764,6 +803,7 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
               console.log(currentLocation)
                 if(currentLocation[0]==null){
                   home_Button.addTo(map);
+                  L.marker([51.524573, -0.134346], {icon:communityIcon}).addTo(map);
                 }else{
                   gps_Button.addTo(map);
                 }
