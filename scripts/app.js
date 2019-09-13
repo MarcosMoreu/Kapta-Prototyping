@@ -109,7 +109,7 @@ window.onload = function() {
 
 var map = L.map('map',{
         editable:true,
-        center: [-19.7391716,20.3707833],
+        center: [51.524573, -0.134346],
         zoom: 11,
         minZoom:10,
         maxZoom:18,
@@ -167,7 +167,7 @@ var communityIcon = L.icon({
     //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
-var community1 = L.marker([-19.7391716,20.3707833], {icon:communityIcon}).addTo(map);
+var community1 = L.marker([51.524573, -0.134346], {icon:communityIcon}).addTo(map);
 
 // var AOI_Test_Namibia = {
 // "type": "FeatureCollection",
@@ -211,101 +211,103 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
 
         });
 
- var planetS1 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083048_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 20,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-        attribution: 'Planet Imagery AUGUST 2019'
-    });
- var planetS2 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083047_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 20,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-    });
- var planetS3 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083046_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 20,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-    });
- var planetS4 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083045_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 20,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-    });
- var planetS5 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083044_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 20,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-    });
- var planetS6 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083043_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 20,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
 
+ var planetS1 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190902_085841_0f32/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        maxZoom: 20,
+        maxNativeZoom: 20,
+        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+        attribution: 'Planet Imagery SEPTEMBER 2019'
     });
- var planetS7 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082746_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS2 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190902_085840_0f32/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 20,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
- var planetS8 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082745_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ var planetS3 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190902_085839_0f32/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         maxZoom: 20,
         maxNativeZoom: 20,
         subdomains:['tiles0','tiles1','tiles2','tiles3'],
     });
- var planetS9 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082744_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 20,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-    });
- var planetS10 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082743_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 20,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-    });
- var planetS11 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082742_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 20,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-          });
- var planetS12 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082741_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 20,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-    });
- var planetS13 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082607_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 20,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-    });
- var planetS14 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082606_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 20,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-    });
- var planetS15 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082605_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 20,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-    });
- var planetS16 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082604_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 20,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-    });
- var planetS17 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082603_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 20,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-    });
- var planetS18 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082602_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 20,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-    });
+ // var planetS4 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083045_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ //        maxZoom: 20,
+ //        maxNativeZoom: 20,
+ //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+ //    });
+ // var planetS5 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083044_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ //        maxZoom: 20,
+ //        maxNativeZoom: 20,
+ //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+ //    });
+ // var planetS6 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083043_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ //        maxZoom: 20,
+ //        maxNativeZoom: 20,
+ //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+ //
+ //    });
+ // var planetS7 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082746_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ //        maxZoom: 20,
+ //        maxNativeZoom: 20,
+ //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+ //    });
+ // var planetS8 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082745_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ //        maxZoom: 20,
+ //        maxNativeZoom: 20,
+ //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+ //    });
+ // var planetS9 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082744_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ //        maxZoom: 20,
+ //        maxNativeZoom: 20,
+ //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+ //    });
+ // var planetS10 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082743_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ //        maxZoom: 20,
+ //        maxNativeZoom: 20,
+ //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+ //    });
+ // var planetS11 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082742_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ //        maxZoom: 20,
+ //        maxNativeZoom: 20,
+ //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+ //          });
+ // var planetS12 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082741_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ //        maxZoom: 20,
+ //        maxNativeZoom: 20,
+ //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+ //    });
+ // var planetS13 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082607_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ //        maxZoom: 20,
+ //        maxNativeZoom: 20,
+ //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+ //    });
+ // var planetS14 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082606_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ //        maxZoom: 20,
+ //        maxNativeZoom: 20,
+ //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+ //    });
+ // var planetS15 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082605_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ //        maxZoom: 20,
+ //        maxNativeZoom: 20,
+ //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+ //    });
+ // var planetS16 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082604_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ //        maxZoom: 20,
+ //        maxNativeZoom: 20,
+ //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+ //    });
+ // var planetS17 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082603_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ //        maxZoom: 20,
+ //        maxNativeZoom: 20,
+ //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+ //    });
+ // var planetS18 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082602_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+ //        maxZoom: 20,
+ //        maxNativeZoom: 20,
+ //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
+ //    });
 
-var planet = L.layerGroup([planetS1,planetS2,planetS3,planetS4,planetS5,planetS6,planetS7,planetS8,planetS9,planetS10,
-                          planetS11,planetS12,planetS13,planetS14,planetS15,planetS16,planetS17,planetS18]);
+// var planet = L.layerGroup([planetS1,planetS2,planetS3,planetS4,planetS5,planetS6,planetS7,planetS8,planetS9,planetS10,
+//                           planetS11,planetS12,planetS13,planetS14,planetS15,planetS16,planetS17,planetS18]);
+var planet = L.layerGroup([planetS1,planetS2,planetS3]);
 
 var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
     saveButtonHtml: '<img src="images/download.png" width=15px ; height=15px>',
@@ -396,7 +398,7 @@ var osm_Button = L.easyButton({
         onClick: function(btn,map) {
           clickButtonCount +=1;
           osm_Button.removeFrom(map);
-          googleSat_Button.addTo(map);
+          planet_Button.addTo(map);
 
         //  console.log('countbutton clicks', clickButtonCount)
           if(clickButtonCount == 10){
@@ -436,7 +438,7 @@ var googleSat_Button = L.easyButton({
         onClick: function(btn,map) {
           clickButtonCount +=1;
           googleSat_Button.removeFrom(map);
-          planet_Button.addTo(map);
+          osm_Button.addTo(map);
           //console.log('countbutton clicks', clickButtonCount)
           if(clickButtonCount == 10){
             offlineControlGoogle.addTo(map);
@@ -472,7 +474,7 @@ var planet_Button = L.easyButton({
         onClick: function(btn,map) {
             clickButtonCount=0;
             planet_Button.removeFrom(map);
-            osm_Button.addTo(map);
+            googleSat_Button.addTo(map);
             planet.addTo(map);
             googleSat.removeFrom(map);
             osm.removeFrom(map);
@@ -497,7 +499,7 @@ var home_Button = L.easyButton({
         icon: '<img src="images/house.png" width=40px ; height=40px>',
         stateName: 'check-mark',
         onClick: function(btn,map) {
-          map.setView([-19.7391716,20.3707833],15);
+          map.setView([51.524573, -0.134346],15); //UCL London coordinates
           //btn.button.style.backgroundColor = 'black';
 
 
@@ -752,6 +754,9 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
           }
 
           document.getElementById('startMapping').onclick = function(e) {
+            var layerLocalStorage = localStorage.getItem('layerddd1fff');
+            console.log(layerLocalStorage)
+            //L.geoJSON(layerLocalStorage).addTo(map);
               document.body.style.backgroundColor = "white";
               document.getElementById("audioTutorial").pause();
               document.getElementById("audioTutorial").currentTime = 0;
@@ -1376,7 +1381,8 @@ var layer1;
                 var propertiesGeoJSON = {
                   'landUses':landUses,
                   'dateTime':dateTime,
-                  'participantLocation':currentLocationString
+                  'participantLocation':currentLocationString,
+                  'randomID':randomID
                 };
               //  adding the properties to the geoJSON file:
               data.features[0].properties = propertiesGeoJSON;
@@ -1400,7 +1406,7 @@ var layer1;
 
                 document.getElementById('export').setAttribute('download',dateTimeRandomID);
                 layer1=data;
-                L.geoJSON(layer1,{
+                var finalLayer = L.geoJSON(layer1,{
                   style:function(features) {
                       // var mag = feature.properties.mag;
                       if (lu1 != null) {
@@ -1488,71 +1494,9 @@ var layer1;
               lu5 = null;
               luOther =  null;
               created=false;
+
+              var layer1Saved = localStorage.setItem('layerddd1fff',layer1);
+              console.log(layer1Saved)
+              console.log(layer1)
       return layer1;
   }
-
-//       document.getElementById('Return').onclick = function(e){
-//
-//              document.body.style.backgroundColor = "white";
-//             // document.getElementById("goBack1").style.display = "initial";
-//              document.getElementById("polygon").style.display = "initial";
-//              document.getElementById("polyline").style.display = "initial";
-//              document.getElementById("point").style.display = "initial";
-//              drawnItems.remove();
-//              recordedVideo.pause();
-//              document.getElementById('finalScreen').pause();
-//
-//             // map.fitBounds(drawnItems.getBounds(),{maxZoom:20});
-//
-//              document.getElementById("map").style.height = "90%";
-//              document.getElementById("Exit").style.display = "none";
-//              document.getElementById("Return").style.display = "none";
-//              created=false;
-//
-//              document.getElementById('lu1').style.borderColor = 'transparent';
-//              document.getElementById('lu2').style.borderColor = 'transparent';
-//              document.getElementById('lu3').style.borderColor = 'transparent';
-//              document.getElementById('lu4').style.borderColor = 'transparent';
-//              document.getElementById('lu5').style.borderColor = 'transparent';
-//              document.getElementById('luOther').style.borderColor = 'transparent';
-//
-//
-//
-//              return created;
-//         }
-//
-//     document.getElementById('Exit').onclick = function(e){
-//       recordedVideo.pause();
-//       document.getElementById('finalScreen').pause();
-//       document.getElementById("finalScreen").currentTime = 0;
-// //////////////////////////////////////////////////////////////////////////////
-//        window.open('about: blank', '_self').close();
-//        window.close();
-//       //////////////////////////////////////////////////////////
-//     //  var win = window.open('', '_self').close();
-//     //  window.close();
-//
-//       //window.opener = null;
-//       //window.open('close.html');
-//     //   window.open('','_parent','');
-//     // window.close();
-//
-//     //chrome.app.window.current().close();
-//
-//   //window.open('', '_self', '');
-//   //  window.close();
-//
-//     //  window.close();
-//       // var win = window.open('', '_self');
-//       //
-//       // win.close();
-//       // return false;
-//
-//         // var win = window.open('','_self');
-//         // win.close();
-//         // //navigator.app.exitApp();
-//
-//
-// //return win;
-//
-//     }
