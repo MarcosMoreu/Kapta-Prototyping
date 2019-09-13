@@ -511,7 +511,6 @@ home_Button.button.style.width = '60px';
 home_Button.button.style.height = '60px';
 home_Button.button.style.transitionDuration = '.3s';
 home_Button.button.style.backgroundColor = 'white';
-home_Button.addTo(map);
 
 var gps_Button = L.easyButton({
     id: 'gps',
@@ -532,7 +531,7 @@ gps_Button.button.style.width = '60px';
 gps_Button.button.style.height = '60px';
 gps_Button.button.style.transitionDuration = '.3s';
 gps_Button.button.style.backgroundColor = 'white';
-gps_Button.addTo(map);
+//gps_Button.addTo(map);
 
 ///////////////messages for tile download/////////
 googleSat.on('offline:save-start', function (data) {
@@ -754,9 +753,21 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
           }
 
           document.getElementById('startMapping').onclick = function(e) {
+////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
             var layerLocalStorage = localStorage.getItem('layerddd1fff');
             console.log(layerLocalStorage)
             //L.geoJSON(layerLocalStorage).addTo(map);
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+              console.log(currentLocation)
+                if(currentLocation[0]==null){
+                  home_Button.addTo(map);
+                }else{
+                  gps_Button.addTo(map);
+                }
+
               document.body.style.backgroundColor = "white";
               document.getElementById("audioTutorial").pause();
               document.getElementById("audioTutorial").currentTime = 0;
