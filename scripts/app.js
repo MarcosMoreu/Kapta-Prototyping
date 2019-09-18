@@ -154,7 +154,7 @@ var AOI = L.geoJson(AOI_Tsumkwe,{
   opacity: 5,
   fillOpacity: 0,
   weight:2
-}).addTo(map);
+})//.addTo(map);
 
 var communityIcon = L.icon({
     iconUrl: 'images/house.png',
@@ -198,7 +198,7 @@ var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={
         //transparent: false,
         //border: 'solid black 5px',
         subdomains:['mt0','mt1','mt2','mt3'],
-        attribution: 'Google Imagery OCTOBER 2013'
+        attribution: 'Google Imagery'
     }).addTo(map);
 //console.log(googleSat)
 
@@ -380,7 +380,7 @@ function displayLocation(position) {
 }
 
 //////////////////////////////////////activate gps///////////////////////////////////////////
-navigator.geolocation.watchPosition(displayLocation); //Note that it requires a secure domain (i.e. HTTPS)
+navigator.geolocation.getCurrentPosition(displayLocation); //Note that it requires a secure domain (i.e. HTTPS)
                                                                                                        //define center map and zooooooms
 
 
