@@ -105,7 +105,15 @@ var firstLoad = function() {//fucntion to determine if the site is visited for f
     }else {
       document.getElementById("startMapping").style.visibility = "visible";
       document.getElementById("unmute").style.visibility = "hidden";
-      document.getElementById("audioTutorial").play();
+
+
+      function catchAudioError() { //function to avoid uncaught promise when loading audio tutorial
+       try {
+         document.getElementById("audioTutorial").play();
+       } catch (e) {
+      }
+     }
+
       isFirstTime = false;
       console.log(isFirstTime)
 
@@ -160,67 +168,66 @@ rose.addTo(map)
 
 ////////////////layers in localStorage////////////////////////////////////
 
-if(isFirstTime == false){
-
-  for(var i=0, len=localStorage.length; i<len-1; i++) {   //len-1 to avoid a error of geojson object not recognised
-    var key = localStorage.key(i);
-    var value = localStorage[key];
-    var itemFetched = localStorage.getItem(key);
-    console.log(i+ '____' + key + " => " + value +'__'+ '__ccc__'+itemFetched);
-
-    function isJson(str) {
-     try {
-       JSON.parse(str);
-     } catch (e) {
-     return false;
-   }
-   return true;
-   }
-
-
-   console.log(isJson(itemFetched))
-  if (isJson(itemFetched) == true){
-
-    var getItemToJSON = JSON.parse(itemFetched);
-    console.log(getItemToJSON)
-
-    L.geoJSON(getItemToJSON,{
-      style:function(features) {
-         // var mag = feature.properties.mag;
-         if (features.properties.landUses == 'animals') {
-         return {
-             color: features.properties.color="black"}
-           }
-         if (features.properties.landUses == 'water') {
-         return {
-             color: features.properties.color="#E0E0E0"}
-           }
-         if (features.properties.landUses == 'trees/wood') {
-         return {
-             color: features.properties.color="green"}
-           }
-         if (features.properties.landUses == 'gathering') {
-         return {
-             color: features.properties.color="yellow"}
-           }
-         if (features.properties.landUses == 'poison') {
-         return {
-             color: features.properties.color="red"}
-           }
-         if (features.properties.landUses == 'Other') {
-         return {
-             color: features.properties.color="#6E6E6D"}
-           }
-
-           return {color:features.properties.color='red'}
-      }
-    }).addTo(map);
-
-  }
- }
-console.log('local storage accessed!!!!')
-}
-console.log(isFirstTime);
+// if(isFirstTime == false){
+//
+//   for(var i=0, len=localStorage.length; i<len-1; i++) {   //len-1 to avoid a error of geojson object not recognised
+//     var key = localStorage.key(i);
+//     var value = localStorage[key];
+//     var itemFetched = localStorage.getItem(key);
+//     console.log(i+ '____' + key + " => " + value +'__'+ '__ccc__'+itemFetched);
+//
+//     function isJson(str) {
+//      try {
+//        JSON.parse(str);
+//      } catch (e) {
+//      return false;
+//    }
+//    return true;
+//    }
+//
+// isJson(itemFetched);
+//    console.log(isJson(itemFetched))
+//   if (isJson(itemFetched) == true){
+//
+//     var getItemToJSON = JSON.parse(itemFetched);
+//     console.log(getItemToJSON)
+//
+//     L.geoJSON(getItemToJSON,{
+//       style:function(features) {
+//          // var mag = feature.properties.mag;
+//          if (features.properties.landUses == 'animals') {
+//          return {
+//              color: features.properties.color="black"}
+//            }
+//          if (features.properties.landUses == 'water') {
+//          return {
+//              color: features.properties.color="#E0E0E0"}
+//            }
+//          if (features.properties.landUses == 'trees/wood') {
+//          return {
+//              color: features.properties.color="green"}
+//            }
+//          if (features.properties.landUses == 'gathering') {
+//          return {
+//              color: features.properties.color="yellow"}
+//            }
+//          if (features.properties.landUses == 'poison') {
+//          return {
+//              color: features.properties.color="red"}
+//            }
+//          if (features.properties.landUses == 'Other') {
+//          return {
+//              color: features.properties.color="#6E6E6D"}
+//            }
+//
+//       }
+//     }).addTo(map);
+//
+//   }
+//  }
+// console.log('local storage accessed!!!!')
+// }
+// console.log(isFirstTime);
 ///////////////////aoi///////////////////////////
 var AOI = L.geoJson(AOI_Tsumkwe,{
   fillColor: '#000000',
@@ -1710,3 +1717,64 @@ var layer1;
 
       return layer1;
   }
+
+  if(isFirstTime == false){
+
+    for(var i=0, len=localStorage.length; i<len-1; i++) {   //len-1 to avoid a error of geojson object not recognised
+      var key = localStorage.key(i);
+      var value = localStorage[key];
+      var itemFetched = localStorage.getItem(key);
+      console.log(i+ '____' + key + " => " + value +'__'+ '__ccc__'+itemFetched);
+
+      function isJson(str) {
+       try {
+         JSON.parse(str);
+       } catch (e) {
+       return false;
+     }
+     return true;
+     }
+
+  isJson(itemFetched);
+     console.log(isJson(itemFetched))
+    if (isJson(itemFetched) == true){
+
+      var getItemToJSON = JSON.parse(itemFetched);
+      console.log(getItemToJSON)
+
+      L.geoJSON(getItemToJSON,{
+        style:function(features) {
+           // var mag = feature.properties.mag;
+           if (features.properties.landUses == 'animals') {
+           return {
+               color: features.properties.color="black"}
+             }
+           if (features.properties.landUses == 'water') {
+           return {
+               color: features.properties.color="#E0E0E0"}
+             }
+           if (features.properties.landUses == 'trees/wood') {
+           return {
+               color: features.properties.color="green"}
+             }
+           if (features.properties.landUses == 'gathering') {
+           return {
+               color: features.properties.color="yellow"}
+             }
+           if (features.properties.landUses == 'poison') {
+           return {
+               color: features.properties.color="red"}
+             }
+           if (features.properties.landUses == 'Other') {
+           return {
+               color: features.properties.color="#6E6E6D"}
+             }
+
+        }
+      }).addTo(map);
+
+    }
+   }
+  console.log('local storage accessed!!!!')
+  }
+  console.log(isFirstTime);
