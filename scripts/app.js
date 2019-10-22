@@ -89,7 +89,9 @@ var tilesDb = {
 };
 
 // Script to hide audio button after first load. Run function on load, could also run on dom ready
-window.onload = function() {
+var isFirstTime; //var to store if the site is visited for the first time
+
+var firstLoad = function() {//fucntion to determine if the site is visited for first time
     // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
     if(typeof window.localStorage !== "undefined" && !localStorage.getItem('visited')) {
          // Set visited flag in local storage
@@ -97,20 +99,28 @@ window.onload = function() {
          // Alert the user
          document.getElementById("startMapping").style.visibility = "hidden";
          document.getElementById("unmute").style.visibility = "visible";
-
+         isFirstTime = true;
+         console.log(isFirstTime)
          //alert("Hello my friend. This is your first visit.");
     }else {
       document.getElementById("startMapping").style.visibility = "visible";
       document.getElementById("unmute").style.visibility = "hidden";
       document.getElementById("audioTutorial").play();
+      isFirstTime = false;
+      console.log(isFirstTime)
 
     }
+    return isFirstTime;
 }
+window.onload = firstLoad;
+firstLoad();
+console.log(isFirstTime);
 
+/////////////////////////////////////////////////////////adding map elements///////////////////////////////////////////////////
 var map = L.map('map',{
         editable:true,
-        center: [51.524573, -0.134346],
-        zoom: 11,
+        center: [-19.7391716,20.3707833],
+        zoom: 12,
         minZoom:10,
         maxZoom:18,
         zoomControl:false,
@@ -146,15 +156,79 @@ rose.addTo(map)
 //     crossOrigin: true
 // });
 
-//wwwwwwwwwwwwwwwwwww
+///////////////////////////////////////////////////adding map layers///////////////////////////////////////////////////////
 
+////////////////layers in localStorage////////////////////////////////////
+
+if(isFirstTime == false){
+
+  for(var i=0, len=localStorage.length; i<len-1; i++) {   //len-1 to avoid a error of geojson object not recognised
+    var key = localStorage.key(i);
+    var value = localStorage[key];
+    var itemFetched = localStorage.getItem(key);
+    console.log(i+ '____' + key + " => " + value +'__'+ '__ccc__'+itemFetched);
+
+    function isJson(str) {
+     try {
+       JSON.parse(str);
+     } catch (e) {
+     return false;
+   }
+   return true;
+   }
+
+
+   console.log(isJson(itemFetched))
+  if (isJson(itemFetched) == true){
+
+    var getItemToJSON = JSON.parse(itemFetched);
+    console.log(getItemToJSON)
+
+    L.geoJSON(getItemToJSON,{
+      style:function(features) {
+         // var mag = feature.properties.mag;
+         if (features.properties.landUses == 'animals') {
+         return {
+             color: features.properties.color="black"}
+           }
+         if (features.properties.landUses == 'water') {
+         return {
+             color: features.properties.color="#E0E0E0"}
+           }
+         if (features.properties.landUses == 'trees/wood') {
+         return {
+             color: features.properties.color="green"}
+           }
+         if (features.properties.landUses == 'gathering') {
+         return {
+             color: features.properties.color="yellow"}
+           }
+         if (features.properties.landUses == 'poison') {
+         return {
+             color: features.properties.color="red"}
+           }
+         if (features.properties.landUses == 'Other') {
+         return {
+             color: features.properties.color="#6E6E6D"}
+           }
+
+           return {color:features.properties.color='red'}
+      }
+    }).addTo(map);
+
+  }
+ }
+console.log('local storage accessed!!!!')
+}
+console.log(isFirstTime);
+///////////////////aoi///////////////////////////
 var AOI = L.geoJson(AOI_Tsumkwe,{
   fillColor: '#000000',
   color:'red',
   opacity: 5,
   fillOpacity: 0,
   weight:2
-})//.addTo(map);
+}).addTo(map);
 
 var communityIcon = L.icon({
     iconUrl: 'images/house.png',
@@ -162,12 +236,12 @@ var communityIcon = L.icon({
 
     iconSize:     [40, 40], // size of the icon
     //shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    iconAnchor:   [20, 40], // point of the icon which will correspond to marker's location
     //shadowAnchor: [4, 62],  // the same for the shadow
     //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
-//var community1 = L.marker([51.524573, -0.134346], {icon:communityIcon}).addTo(map);
+var community1 = L.marker([-19.7391716,20.3707833], {icon:communityIcon}).addTo(map);
 
 // var AOI_Test_Namibia = {
 // "type": "FeatureCollection",
@@ -191,6 +265,77 @@ var communityIcon = L.icon({
 //         attribution: 'Google Imagery OCTOBER 2013'
 //     }).addTo(map);
 
+/////////////////////////Collected data///////////////////
+
+var denui = L.geoJson(denui,{
+  fillColor: '#FC03F6',
+  color:'#FC03F6',
+  opacity: 5,
+  fillOpacity: 0.2,
+  weight:2
+}).addTo(map);
+
+var giacoma = L.geoJson(giacoma,{
+  fillColor: '#03FAFC',
+  color:'#03FAFC',
+  opacity: 5,
+  fillOpacity: 0.2,
+  weight:2
+}).addTo(map);
+
+////////////////to create a custom icon instead of Marker
+var pointsIcon = L.icon({
+    iconUrl: 'images/whiteDot.png',
+  //  shadowUrl: 'leaf-shadow.png',
+
+    iconSize:     [15, 15], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+    //shadowAnchor: [4, 62],  // the same for the shadow
+    //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
+
+var community11 = L.marker([-19.740486 , 20.3695308], {icon:pointsIcon}).addTo(map);
+var community12 = L.marker( [-19.7404658, 20.3695296], {icon:pointsIcon}).addTo(map);
+var community13 = L.marker( [-19.7435148, 20.3677033 ] , {icon:pointsIcon}).addTo(map);
+var community14 = L.marker( [-19.7407043, 20.3704892] , {icon:pointsIcon}).addTo(map);
+var community15 = L.marker( [ -19.7389414, 20.3659412], {icon:pointsIcon}).addTo(map);
+var community16 = L.marker( [-19.7404787, 20.369528 ], {icon:pointsIcon}).addTo(map);
+var community17 = L.marker( [ -19.7404716, 20.3695185], {icon:pointsIcon}).addTo(map);
+var community18 = L.marker([ -19.7404422, 20.3695892 ], {icon:pointsIcon}).addTo(map);
+var community19 = L.marker( [ -19.740721,20.3704324 ], {icon:pointsIcon}).addTo(map);
+var community110 = L.marker([-19.7407391,  20.3704794], {icon:pointsIcon}).addTo(map);
+var community111 = L.marker( [-19.7405721 , 20.3695689], {icon:pointsIcon}).addTo(map);
+var community112 = L.marker( [ -19.5914482 ,20.5047116], {icon:pointsIcon}).addTo(map);
+var community113 = L.marker( [ -19.5918552,20.5035004 ], {icon:pointsIcon}).addTo(map);
+var community114 = L.marker([ -19.595553, 20.5058281 ], {icon:pointsIcon}).addTo(map);
+var community115 = L.marker( [ -19.5955303, 20.5056082 ] , {icon:pointsIcon}).addTo(map);
+var community116 = L.marker( [ -19.5955182 ,20.505709], {icon:pointsIcon}).addTo(map);
+var community117 = L.marker([ -19.5957291, 20.5057855 ] , {icon:pointsIcon}).addTo(map);
+var community118 = L.marker( [ -19.5955427 , 20.5058277], {icon:pointsIcon}).addTo(map);
+var community119 = L.marker( [ -19.7389991, 20.3706885 ], {icon:pointsIcon}).addTo(map);
+var community120 = L.marker([ -19.7389953, 20.3706428 ], {icon:pointsIcon}).addTo(map);
+
+
+// create an options object that specifies which function will called on each feature
+// let myLayerOptions = {
+//   pointToLayer: createCustomIcon
+// }
+//
+// // create the GeoJSON layer
+// L.geoJSON(pointsCollector, myLayerOptions).addTo(map)
+/////////////////////////////////////
+
+// var pointsCollector = L.geoJson(pointsCollector,{
+//   fillColor: '#03FAFC',
+//   color:'white',
+//   opacity: 5,
+//   fillOpacity: 0.2,
+//   weight:2,
+//   iconUrl: 'images/whiteDot.png'
+// }).addTo(map);
+
 var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb,{
         minZoom: 3,
         maxZoom: 18,
@@ -212,102 +357,101 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
         });
 
 
- var planetS1 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190902_085841_0f32/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 20,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-        attribution: 'Planet Imagery SEPTEMBER 2019'
-    });
- var planetS2 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190902_085840_0f32/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 20,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-    });
- var planetS3 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190902_085839_0f32/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        maxZoom: 20,
-        maxNativeZoom: 20,
-        subdomains:['tiles0','tiles1','tiles2','tiles3'],
-    });
- // var planetS4 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083045_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
- //        maxZoom: 20,
- //        maxNativeZoom: 20,
- //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
- //    });
- // var planetS5 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083044_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
- //        maxZoom: 20,
- //        maxNativeZoom: 20,
- //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
- //    });
- // var planetS6 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083043_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
- //        maxZoom: 20,
- //        maxNativeZoom: 20,
- //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
- //
- //    });
- // var planetS7 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082746_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
- //        maxZoom: 20,
- //        maxNativeZoom: 20,
- //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
- //    });
- // var planetS8 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082745_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
- //        maxZoom: 20,
- //        maxNativeZoom: 20,
- //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
- //    });
- // var planetS9 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082744_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
- //        maxZoom: 20,
- //        maxNativeZoom: 20,
- //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
- //    });
- // var planetS10 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082743_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
- //        maxZoom: 20,
- //        maxNativeZoom: 20,
- //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
- //    });
- // var planetS11 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082742_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
- //        maxZoom: 20,
- //        maxNativeZoom: 20,
- //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
- //          });
- // var planetS12 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082741_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
- //        maxZoom: 20,
- //        maxNativeZoom: 20,
- //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
- //    });
- // var planetS13 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082607_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
- //        maxZoom: 20,
- //        maxNativeZoom: 20,
- //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
- //    });
- // var planetS14 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082606_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
- //        maxZoom: 20,
- //        maxNativeZoom: 20,
- //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
- //    });
- // var planetS15 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082605_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
- //        maxZoom: 20,
- //        maxNativeZoom: 20,
- //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
- //    });
- // var planetS16 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082604_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
- //        maxZoom: 20,
- //        maxNativeZoom: 20,
- //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
- //    });
- // var planetS17 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082603_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
- //        maxZoom: 20,
- //        maxNativeZoom: 20,
- //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
- //    });
- // var planetS18 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082602_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
- //        maxZoom: 20,
- //        maxNativeZoom: 20,
- //        subdomains:['tiles0','tiles1','tiles2','tiles3'],
- //    });
+        var planetS1 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083048_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+                attribution: 'Planet Imagery AUGUST 2019'
+            });
+         var planetS2 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083047_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+            });
+         var planetS3 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083046_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+            });
+         var planetS4 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083045_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+            });
+         var planetS5 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083044_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+            });
+         var planetS6 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083043_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
 
-// var planet = L.layerGroup([planetS1,planetS2,planetS3,planetS4,planetS5,planetS6,planetS7,planetS8,planetS9,planetS10,
-//                           planetS11,planetS12,planetS13,planetS14,planetS15,planetS16,planetS17,planetS18]);
-var planet = L.layerGroup([planetS1,planetS2,planetS3]);
+            });
+         var planetS7 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082746_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+            });
+         var planetS8 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082745_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+            });
+         var planetS9 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082744_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+            });
+         var planetS10 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082743_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+            });
+         var planetS11 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082742_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+                  });
+         var planetS12 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082741_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+            });
+         var planetS13 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082607_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+            });
+         var planetS14 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082606_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+            });
+         var planetS15 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082605_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+            });
+         var planetS16 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082604_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+            });
+         var planetS17 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082603_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+            });
+         var planetS18 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082602_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+            });
+
+        var planet = L.layerGroup([planetS1,planetS2,planetS3,planetS4,planetS5,planetS6,planetS7,planetS8,planetS9,planetS10,
+                                  planetS11,planetS12,planetS13,planetS14,planetS15,planetS16,planetS17,planetS18]);
 
 var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
     saveButtonHtml: '<img src="images/download.png" width=15px ; height=15px>',
@@ -538,8 +682,10 @@ var home_Button = L.easyButton({
         icon: '<img src="images/house.png" width=40px ; height=40px>',
         stateName: 'check-mark',
         onClick: function(btn,map) {
-          map.setView([51.524573, -0.134346],15); //UCL London coordinates
+          map.setView([-19.7391716,20.3707833],15); //UCL London coordinates
           //btn.button.style.backgroundColor = 'black';
+          gps_Button.addTo(map);
+          home_Button.removeFrom(map);
 
 
         }
@@ -560,7 +706,8 @@ var gps_Button = L.easyButton({
         onClick: function(btn,map) {
           map.setView(currentLocation,15);
         //  btn.button.style.backgroundColor = 'black';
-
+          home_Button.addTo(map);
+          gps_Button.removeFrom(map);
 
         }
     }]
@@ -793,17 +940,20 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
 
           document.getElementById('startMapping').onclick = function(e) {
 ////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-            var layerLocalStorage = localStorage.getItem('layerddd1fff');
-            console.log(layerLocalStorage)
-            //L.geoJSON(layerLocalStorage).addTo(map);
+// script to add drawn layers to local storage
+            // var layerFromLocalStorage = localStorage.getItem('storedLayer');
+            // console.log(layerFromLocalStorage)
+          //  var layerFromLocalStorageToGeoJson = JSON.parse(layerFromLocalStorage);
+          //  console.log(layerFromLocalStorageToGeoJson)
+          // L.geoJSON(layerFromLocalStorageToGeoJson).addTo(map);
+          //   //console.log(layerLocalStorageGeoJson)
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
               console.log(currentLocation)
                 if(currentLocation[0]==null){
                   home_Button.addTo(map);
-                  L.marker([51.524573, -0.134346], {icon:communityIcon}).addTo(map);
+                  L.marker([-19.7391716,20.3707833], {icon:communityIcon}).addTo(map);
                 }else{
                   gps_Button.addTo(map);
                 }
@@ -1257,7 +1407,7 @@ var goToId = 0;
         document.getElementById('record').style.display = 'none';
         document.getElementById('play').style.display = 'none';
         document.getElementById('voice').style.display = 'none';
-
+        document.getElementById('exportButton').style.display = 'none';
 
         document.getElementById('Identification').pause();
         document.getElementById('Identification').currentTime = 0;
@@ -1272,7 +1422,9 @@ var goToId = 0;
 
 
             if(recording==true){  //recording true/false inverse.
-              this.style.borderColor = 'transparent';
+              this.style.backgroundColor = 'white';
+              //this.style.borderWidth = '2px';
+              //this.style.borderColor = 'transparent';
               document.getElementById('play').style.opacity = '1';
               document.getElementById('download').style.opacity = '1';
               document.getElementById('voice').style.opacity = '0';
@@ -1282,7 +1434,9 @@ var goToId = 0;
               document.getElementById('Confirm').style.opacity = '1';
             }
             if(recording==false){
-              this.style.borderColor = 'black';
+              this.style.backgroundColor = 'yellow';
+              //this.style.borderWidth = '8px';
+              //this.style.borderColor = 'black';
               document.getElementById('play').style.opacity = '0.1';
               document.getElementById('download').style.opacity = '0.1';
               document.getElementById('voice').style.opacity = '1';
@@ -1342,7 +1496,7 @@ var goToId = 0;
              //map.fitBounds(drawnItems.getBounds(),{maxZoom:20});
 
              document.getElementById("map").style.display = "block";
-             document.getElementById("map").style.height = "90%";
+             document.getElementById("map").style.height = "88%";
 
             //document.getElementById("goBack1").style.display = "initial";
              document.getElementById("polygon").style.display = "initial";
@@ -1442,6 +1596,8 @@ var layer1;
                 //data.innerHTML = JSON.stringify(prop_1);
                 // Stringify the GeoJson
                 var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
+                //var convertedData = JSON.stringify(data);
+
                 // var convertedText =   '' + encodeURIComponent(JSON.stringify(attributes))
                 //                          + encodeURIComponent(JSON.stringify(currentLocation))
                 //                          + encodeURIComponent(JSON.stringify(dateTime));
@@ -1457,6 +1613,7 @@ var layer1;
 
                 document.getElementById('export').setAttribute('download',dateTimeRandomID);
                 layer1=data;
+                console.log(layer1);
                 var finalLayer = L.geoJSON(layer1,{
                   style:function(features) {
                       // var mag = feature.properties.mag;
@@ -1488,7 +1645,6 @@ var layer1;
                 }).addTo(map);
 
                 drawnItems.clearLayers();
-
 
                 //defining the final screen
                 document.getElementById('Sent').play();
@@ -1525,7 +1681,7 @@ var layer1;
                 drawnItems.remove();
                 recordedVideo.pause();
 
-                document.getElementById("map").style.height = "90%";
+                document.getElementById("map").style.height = "88%";
                 // document.getElementById("Exit").style.display = "none";
                 // document.getElementById("Return").style.display = "none";
 
@@ -1546,8 +1702,11 @@ var layer1;
               luOther =  null;
               created=false;
 
-              var layer1Saved = localStorage.setItem('layerddd1fff',layer1);
-              console.log(layer1Saved)
-              console.log(layer1)
+//adding layers to localstorage
+              var dataStringified = JSON.stringify(data);
+              var tempName = randomID // each polygon must have a different name!!!
+              var layerToLocalStorage = localStorage.setItem(tempName, dataStringified);
+              console.log(dataStringified);
+
       return layer1;
   }

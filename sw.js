@@ -1,7 +1,7 @@
 "use strict";
 
 // Set a name for the current cache
-var version = 'v4.1.6';
+var version = 'v5.1';
 
 // Default files to always cache
 var offlineFundamentals = [
@@ -9,6 +9,8 @@ var offlineFundamentals = [
   "styles/app.css",
   "scripts/app.js",
   "images/Start.png",
+  "layers/denui.geojson",
+  "layers/giacoma.geojson"
 
 ];
 

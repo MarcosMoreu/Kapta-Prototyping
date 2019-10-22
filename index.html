@@ -47,12 +47,12 @@
     <button id='unmute' class='buttonsFirstLastScreen' style='top:77% ;  height:120px; border:none; background:none'>
       <img src="images/unmute.png" style='width:120px ; height:110px'>
     </button>
-    <button id='startMapping' class='buttonsFirstLastScreen' style='top:77% ;  height:125px; border:none; background:none'>
-      <img src="images/Start.png" style='width:100px ; height:100px'>
+    <button id='startMapping' class='buttonsFirstLastScreen' style='top:77% ;  height:100px; border:none; background:none'>
+      <img src="images/Start.png" style='width:75px ; height:75px'>
     </button>
   </div>
 
-  <div id="map" style='height:90%'>
+  <div id="map" style='height:88%'>
     <div id="rose"> </div>
   </div>
 
@@ -139,22 +139,22 @@
   <!-- <div class="center">.</div> -->
 </audio>
 <div align='center' class='colors'>
-  <button id="lu1" class='attributeButtons' style='padding:10px; margin-right:5px; margin-bottom:5px; width:80px;height:80px;background-color:black'>
+  <button id="lu1" class='attributeButtons' style='border-radius: 50%; padding:10px; margin-right:5px; margin-bottom:5px; width:80px;height:80px;background-color:black'>
     <!-- <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button> -->
-  <button id="lu2" class='attributeButtons' style='padding:10px; margin-right:5px;margin-bottom:5px;width:80px;height:80px;background-color:#E0E0E0'>
+  <button id="lu2" class='attributeButtons' style='border-radius: 50%; padding:10px; margin-right:5px;margin-bottom:5px;width:80px;height:80px;background-color:#E0E0E0'>
     <!-- <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button> -->
-  <button id="lu3" class='attributeButtons' style='padding:10px;margin-right:5px;margin-bottom:5px;width:80px;height:80px;background-color:green'>
+  <button id="lu3" class='attributeButtons' style='border-radius: 50%; padding:10px;margin-right:5px;margin-bottom:5px;width:80px;height:80px;background-color:green'>
     <!-- <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button> -->
 
 </div>
 
 <div align='center' class='colors'>
 
-  <button id="lu4" class='attributeButtons' style='padding:10px;margin-right:5px;margin-bottom:5px;width:80px;height:80px;background-color:yellow'>
+  <button id="lu4" class='attributeButtons' style='border-radius: 50%; padding:10px;margin-right:5px;margin-bottom:5px;width:80px;height:80px;background-color:yellow'>
     <!-- <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button> -->
-  <button id="lu5" class='attributeButtons' style='padding:10px;margin-right:5px;margin-bottom:5px;width:80px;height:80px;background-color:red'>
+  <button id="lu5" class='attributeButtons' style='border-radius: 50%; padding:10px;margin-right:5px;margin-bottom:5px;width:80px;height:80px;background-color:red'>
     <!-- <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button> -->
-  <button id="luOther" class='attributeButtons' style='padding:10px;margin-right:5px;margin-bottom:5px;width:80px;height:80px;background-image: url(images/PlusSign.png);background-color:white'>
+  <button id="luOther" class='attributeButtons' style='border-radius: 50%; padding:10px;margin-right:5px;margin-bottom:5px;width:80px;height:80px;background-image: url(images/PlusSign.png);background-color:white'>
     <!-- <img src="images/PlusSign.png" style='width:80px ; height:80px'>  </button> -->
 
 </div>
@@ -187,10 +187,10 @@
         <!-- <button id="start" style='margin-top: 55px;width:80px;height:80px;background-color:green'>
             <img src="images/Microphone.png" style='width:60px ; height:60px'>
         </button> -->
-        <button id="record" disabled class='attributeButtons' style='margin-top: 15px;width:47%;height:60px; color:transparent;background-color:blue'>
+        <button id="record" disabled class='audioButtons' style='margin-top: 15px;width:47%;height:60px;border-color: grey; background-color:white'>
           <img src="images/record.png" style='width:60px ; height:40px'>
         </button>
-        <button id="play" disabled class='attributeButtons' style='margin-top: 15px;width:47%;height:60px;color:transparent;background-color:#0AFAE6'>
+        <button id="play" disabled class='audioButtons' style='margin-top: 15px;width:47%;height:60px;border-color: grey;background-color:white'>
           <img src="images/play.png" style='width:40px ; height:40px'>
         </button>
         <button id="download" disabled style='margin-top: 15px;width:80px;height:60px;background-color:yellow'></button>
@@ -239,6 +239,10 @@
 <script src="scripts/lib/leaflet/plugins/leaflet-offline-master/dist/leaflet-offline.js"></script>
 
 <script src="layers/AOI_Tsumkwe.geojson" type='text/javascript'></script>
+<script src="layers/denui.geojson" type='text/javascript'></script>
+<script src="layers/giacoma.geojson" type='text/javascript'></script>
+<script src="layers/pointsCollector.geojson" type='text/javascript'></script>
+
 
    <script src="scripts/lib/leaflet/plugins/L.Control.Rose-master/dist/L.Control.Rose.js"></script>
    <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.Poly.js"></script>
