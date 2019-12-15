@@ -151,7 +151,7 @@ async function init(constraints) {
   }
 }
 
-document.querySelector('button#goToIdentification').addEventListener('click', async () => {
+document.querySelector('button#changeMapSize').addEventListener('click', async () => {
   const hasEchoCancellation = document.querySelector('#echoCancellation').checked;
   const constraints = {
     audio: true,

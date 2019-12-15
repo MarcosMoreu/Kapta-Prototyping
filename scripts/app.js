@@ -109,7 +109,7 @@ var firstLoad = function() {//fucntion to determine if the site is visited for f
 
       function catchAudioError() { //function to avoid uncaught promise when loading audio tutorial
        try {
-         document.getElementById("audioTutorial").play();
+    //////     document.getElementById("audioTutorial").play();
        } catch (e) {
       }
      }
@@ -905,26 +905,19 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
            document.getElementById("exportButton").style.display = "none";
            document.getElementById("Confirm").style.display = "none";
 
-           document.getElementById('lu1').style.display = 'none';
-           document.getElementById('lu2').style.display = 'none';
-           document.getElementById('lu3').style.display = 'none';
-           document.getElementById('lu4').style.display = 'none';
-           document.getElementById('lu5').style.display = 'none';
-           document.getElementById('luOther').style.display = 'none';
-
 
            document.getElementById('goToIdentification').style.display = 'none';
-           document.getElementById('goBackToLandUse').style.display = 'none';
+      //     document.getElementById('goBackToLandUse').style.display = 'none';
 
 
-          // document.getElementById('start').style.display = 'none';
+        //   document.getElementById('start').style.display = 'none';
            document.getElementById('record').style.display = 'none';
            document.getElementById('play').style.display = 'none';
            document.getElementById('download').style.display = 'none';
            document.getElementById('gum').style.display = 'none';
            document.getElementById('recorded').style.display = 'none';
            document.getElementById('echoCancellation').style.display = 'none';
-           document.getElementById('goBackToLandUse').style.display = 'none';
+      //     document.getElementById('goBackToLandUse').style.display = 'none';
 
            document.getElementById('voice').style.display = 'none';
 
@@ -934,9 +927,18 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
            // document.getElementById("Exit").style.display = "none";
            // document.getElementById("Return").style.display = "none";
 
+               document.getElementById('lu1').style.display = 'none';
+               document.getElementById('lu2').style.display = 'none';
+               document.getElementById('lu3').style.display = 'none';
+               document.getElementById('lu4').style.display = 'none';
+               document.getElementById('lu5').style.display = 'none';
+               document.getElementById('luOther').style.display = 'none';
+               document.getElementById('goBackToLandUse').style.display = 'none';
+
+
 ////////////////////////////////////////////TUTORIAL//////////////////////////////////////////////////////////////
           document.getElementById('unmute').onclick = function(e) {
-            document.getElementById("audioTutorial").play();
+    //////        document.getElementById("audioTutorial").play();
 
             document.getElementById("startMapping").style.visibility = "visible";
           //  document.getElementById("startMapping").style.display = "initial";
@@ -970,7 +972,7 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
               document.getElementById("audioTutorial").currentTime = 0;
 
 
-              document.getElementById("mappingInstructions").play();
+        //////      document.getElementById("mappingInstructions").play();
 
               document.getElementById("videoTutorial").style.display = "none";
               document.getElementById("startMapping").style.display = "none";
@@ -1204,6 +1206,8 @@ document.getElementById("goBack2").onclick = function(e){
           return created;
           }
 
+  //var goToLT = 0; //variable to know whether the LT instructions have played, so can be paused when cancel click
+  var goToId = 0;
 
       document.getElementById('changeMapSize').onclick = function(e) {
             clickMapCount = 0;
@@ -1212,9 +1216,9 @@ document.getElementById("goBack2").onclick = function(e){
           document.getElementById("mappingInstructions").pause();
           document.getElementById("mappingInstructions").currentTime = 0;
 
-          document.getElementById('goToIdentification').style.display = 'initial';
-          document.getElementById('goToIdentification').disabled = true;
-          document.getElementById('goToIdentification').style.opacity = '0.1';
+          // document.getElementById('goToIdentification').style.display = 'initial';
+          // document.getElementById('goToIdentification').disabled = true;
+          // document.getElementById('goToIdentification').style.opacity = '0.1';
 
 
         //  console.log('zoom',map.getZoom())
@@ -1241,190 +1245,84 @@ document.getElementById("goBack2").onclick = function(e){
               // document.getElementById("Confirm").disabled = true;
               document.getElementById("Confirm").style.display = "none";
               document.getElementById("Cancel").style.display = "initial";
-              // document.getElementById("microphone").style.display = "initial";
-              document.getElementById('LandUse').play();
-              document.getElementById('lu1').style.display = 'initial';
-              document.getElementById('lu2').style.display = 'initial';
-              document.getElementById('lu3').style.display = 'initial';
-              document.getElementById('lu4').style.display = 'initial';
-              document.getElementById('lu5').style.display = 'initial';
-              document.getElementById('luOther').style.display = 'initial';
+              //document.getElementById("microphone").style.display = "initial";
+      ////        document.getElementById('LandUse').play();
+              // document.getElementById('lu1').style.display = 'initial';
+              // document.getElementById('lu2').style.display = 'initial';
+              // document.getElementById('lu3').style.display = 'initial';
+              // document.getElementById('lu4').style.display = 'initial';
+              // document.getElementById('lu5').style.display = 'initial';
+              // document.getElementById('luOther').style.display = 'initial';
 
-              document.getElementById('goToIdentification').style.display = 'initial';
+              //document.getElementById('goToIdentification').style.display = 'initial';
+///go to identificiation script
+              document.getElementById('Sent').currentTime = 0;
+
+              goToId = 1;
 
 
+              document.getElementById('Confirm').style.display = 'initial';
+              document.getElementById('Confirm').disabled = true;
+              document.getElementById('Confirm').style.opacity = '0.1';
+
+              //document.getElementById('goBackToLandUse').style.display = 'initial';
+              document.getElementById('voice').style.display = 'initial';
+              document.getElementById('voice').style.opacity = '0';
+
+              // document.getElementById('LandUse').pause();
+              // document.getElementById('LandUse').currentTime = 0;
+
+          //    document.getElementById('Identification').play();
+          //    document.getElementById('start').style.display = 'initial';
+              document.getElementById('record').style.display = 'initial';
+              document.getElementById('record').style.opacity = '1';
+              document.getElementById('play').style.display = 'initial';
+              document.getElementById('play').style.opacity = '0.1';
+
+              // document.getElementById('download').style.display = 'initial';
+              // document.getElementById('download').style.opacity = '0.1';
+              return goToId;
 
            }
 ////////////////////////////////////////////////////////classify screen//////////////////////////////////////////////////////////////
-var lu1 = null;
-var lu2 = null;
-var lu3 = null;
-var lu4 = null;
-var lu5 = null;
-var luOther =  null;
 
-//var goToLT = 0; //variable to know whether the LT instructions have played, so can be paused when cancel click
-var goToId = 0;
-//var goToDS = 0;
+    //   document.getElementById('goToIdentification').onclick  = function(e){
+    //     document.getElementById('Sent').currentTime = 0;
+    //
+    //     goToId = 1;
+    //     document.getElementById('lu1').style.display = 'none';
+    //     document.getElementById('lu2').style.display = 'none';
+    //     document.getElementById('lu3').style.display = 'none';
+    //     document.getElementById('lu4').style.display = 'none';
+    //     document.getElementById('lu5').style.display = 'none';
+    //     document.getElementById('luOther').style.display = 'none';
+    //
+    //     document.getElementById('goToIdentification').style.display = 'none';
+    //
+    //     document.getElementById('Confirm').style.display = 'initial';
+    //     document.getElementById('Confirm').disabled = true;
+    //     document.getElementById('Confirm').style.opacity = '0.1';
+    //
+    //     document.getElementById('goBackToLandUse').style.display = 'initial';
+    //     document.getElementById('voice').style.display = 'initial';
+    //     document.getElementById('voice').style.opacity = '0';
+    //
+    //     document.getElementById('LandUse').pause();
+    //     document.getElementById('LandUse').currentTime = 0;
+    //
+    // //    document.getElementById('Identification').play();
+    //   //  document.getElementById('start').style.display = 'initial';
+    //     document.getElementById('record').style.display = 'initial';
+    //     document.getElementById('record').style.opacity = '1';
+    //     document.getElementById('play').style.display = 'initial';
+    //     document.getElementById('play').style.opacity = '0.1';
+    //
+    //     // document.getElementById('download').style.display = 'initial';
+    //     // document.getElementById('download').style.opacity = '0.1';
+    //     return goToId;
+    //   }
 
-
-
-
-      document.getElementById('lu1').onclick = function(e){
-        //this.style.borderColor = 'transparent';
-        document.getElementById('goToIdentification').disabled = false;
-        document.getElementById('goToIdentification').style.opacity = '1';
-        if(lu1===null){
-          this.style.borderColor = '#13FA04';
-          lu1 = 'animals';
-        }else{
-          this.style.borderColor = 'transparent';
-          lu1 = null;
-        }
-        console.log(lu1)
-        return lu1
-      }
-
-      document.getElementById('lu2').onclick = function(e){
-        //this.style.borderColor = 'transparent';
-        document.getElementById('goToIdentification').disabled = false;
-        document.getElementById('goToIdentification').style.opacity = '1';
-        if(lu2===null){
-          this.style.borderColor = '#13FA04';
-          lu2 = 'water';
-        }else{
-          this.style.borderColor = 'transparent';
-          lu2 = null;
-        }
-        console.log(lu2)
-        return lu2
-      }
-      document.getElementById('lu3').onclick = function(e){
-        //this.style.borderColor = 'transparent';
-        document.getElementById('goToIdentification').disabled = false;
-        document.getElementById('goToIdentification').style.opacity = '1';
-        if(lu3===null){
-          this.style.borderColor = '#13FA04';
-          lu3 = 'trees/wood';
-        }else{
-          this.style.borderColor = 'transparent';
-          lu3 = null;
-        }
-        console.log(lu3)
-        return lu3
-      }
-      document.getElementById('lu4').onclick = function(e){
-        //this.style.borderColor = 'transparent';
-        document.getElementById('goToIdentification').disabled = false;
-        document.getElementById('goToIdentification').style.opacity = '1';
-        if(lu4===null){
-          this.style.borderColor = '#13FA04';
-          lu4 = 'gathering';
-        }else{
-          this.style.borderColor = 'transparent';
-          lu4 = null;
-        }
-        console.log(lu4)
-        return lu4
-      }
-
-      document.getElementById('lu5').onclick = function(e){
-        //this.style.borderColor = 'transparent';
-        document.getElementById('goToIdentification').disabled = false;
-        document.getElementById('goToIdentification').style.opacity = '1';
-        if(lu5===null){
-          this.style.borderColor = '#13FA04';
-          lu5 = 'poison';
-        }else{
-          this.style.borderColor = 'transparent';
-          lu5 = null;
-        }
-        console.log(lu5)
-        return lu5
-      }
-
-      document.getElementById('luOther').onclick = function(e){
-        //this.style.borderColor = 'transparent';
-        document.getElementById('goToIdentification').disabled = false;
-        document.getElementById('goToIdentification').style.opacity = '1';
-        if(luOther===null){
-          this.style.borderColor = '#13FA04';
-          luOther = 'Other';
-        }else{
-          this.style.borderColor = 'transparent';
-          luOther = null;
-        }
-        console.log(luOther)
-        return luOther
-      }
-
-
-      document.getElementById('goToIdentification').onclick  = function(e){
-        document.getElementById('Sent').currentTime = 0;
-
-        goToId = 1;
-        document.getElementById('lu1').style.display = 'none';
-        document.getElementById('lu2').style.display = 'none';
-        document.getElementById('lu3').style.display = 'none';
-        document.getElementById('lu4').style.display = 'none';
-        document.getElementById('lu5').style.display = 'none';
-        document.getElementById('luOther').style.display = 'none';
-
-        document.getElementById('goToIdentification').style.display = 'none';
-
-        document.getElementById('Confirm').style.display = 'initial';
-        document.getElementById('Confirm').disabled = true;
-        document.getElementById('Confirm').style.opacity = '0.1';
-
-        document.getElementById('goBackToLandUse').style.display = 'initial';
-        document.getElementById('voice').style.display = 'initial';
-        document.getElementById('voice').style.opacity = '0';
-
-        document.getElementById('LandUse').pause();
-        document.getElementById('LandUse').currentTime = 0;
-
-        document.getElementById('Identification').play();
-      //  document.getElementById('start').style.display = 'initial';
-        document.getElementById('record').style.display = 'initial';
-        document.getElementById('record').style.opacity = '1';
-        document.getElementById('play').style.display = 'initial';
-        document.getElementById('play').style.opacity = '0.1';
-
-        // document.getElementById('download').style.display = 'initial';
-        // document.getElementById('download').style.opacity = '0.1';
-        return goToId;
-      }
-
-      document.getElementById('goBackToLandUse').onclick  = function(e){
-        document.getElementById('Confirm').style.display = 'none';
-        //
-        // document.getElementById('Confirm').disabled = true;
-        // document.getElementById('Confirm').style.opacity = '0.1';
-        recordedVideo.pause();
-        recordedVideo.currentTime = 0;
-
-
-        document.getElementById('lu1').style.display = 'initial';
-        document.getElementById('lu2').style.display = 'initial';
-        document.getElementById('lu3').style.display = 'initial';
-        document.getElementById('lu4').style.display = 'initial';
-        document.getElementById('lu5').style.display = 'initial';
-        document.getElementById('luOther').style.display = 'initial';
-
-        document.getElementById('record').style.display = 'none';
-        document.getElementById('play').style.display = 'none';
-        document.getElementById('voice').style.display = 'none';
-        document.getElementById('exportButton').style.display = 'none';
-
-        document.getElementById('Identification').pause();
-        document.getElementById('Identification').currentTime = 0;
-        document.getElementById('LandUse').play();
-
-
-        document.getElementById('goToIdentification').style.display = 'initial';
-        document.getElementById('goBackToLandUse').style.display = 'none';
-      }
-
+var recording=true;
         document.getElementById('record').onclick = function(e){
 
 
@@ -1435,7 +1333,7 @@ var goToId = 0;
               document.getElementById('play').style.opacity = '1';
               document.getElementById('download').style.opacity = '1';
               document.getElementById('voice').style.opacity = '0';
-              document.getElementById('goBackToLandUse').style.display = 'initial';
+          //    document.getElementById('goBackToLandUse').style.display = 'initial';
 
               document.getElementById('Confirm').disabled = false;
               document.getElementById('Confirm').style.opacity = '1';
@@ -1447,7 +1345,7 @@ var goToId = 0;
               document.getElementById('play').style.opacity = '0.1';
               document.getElementById('download').style.opacity = '0.1';
               document.getElementById('voice').style.opacity = '1';
-              document.getElementById('goBackToLandUse').style.display = 'none';
+      //        document.getElementById('goBackToLandUse').style.display = 'none';
 
             }
             document.getElementById('Identification').pause();
@@ -1487,9 +1385,9 @@ var goToId = 0;
              drawnItems.remove();
              drawnItems.clearLayers();
              recordedVideo.pause();
-             document.getElementById("mappingInstructions").play();
+      /////       document.getElementById("mappingInstructions").play();
 
-             document.getElementById('LandUse').pause();
+        /////     document.getElementById('LandUse').pause();
              document.getElementById('LandUse').currentTime = 0;
 
              if(goToId ==1){
@@ -1516,27 +1414,13 @@ var goToId = 0;
              document.getElementById("exportButton").style.display = "none";
              document.getElementById("Confirm").style.display = "none";
 
-             document.getElementById('lu1').style.borderColor = 'transparent';
-             document.getElementById('lu2').style.borderColor = 'transparent';
-             document.getElementById('lu3').style.borderColor = 'transparent';
-             document.getElementById('lu4').style.borderColor = 'transparent';
-             document.getElementById('lu5').style.borderColor = 'transparent';
-             document.getElementById('luOther').style.borderColor = 'transparent';
-
-
-             document.getElementById('lu1').style.display = 'none';
-             document.getElementById('lu2').style.display = 'none';
-             document.getElementById('lu3').style.display = 'none';
-             document.getElementById('lu4').style.display = 'none';
-             document.getElementById('lu5').style.display = 'none';
-             document.getElementById('luOther').style.display = 'none';
 
 
              document.getElementById('record').style.display = 'none';
              document.getElementById('play').style.display = 'none';
              document.getElementById('voice').style.display = 'none';
 
-             document.getElementById('goBackToLandUse').style.display = 'none';
+          //   document.getElementById('goBackToLandUse').style.display = 'none';
              document.getElementById('goToIdentification').style.display = 'none';
 
            }
@@ -1654,7 +1538,7 @@ var layer1;
                 drawnItems.clearLayers();
 
                 //defining the final screen
-                document.getElementById('Sent').play();
+          //////      document.getElementById('Sent').play();
                 document.getElementById("map").style.height = "0px";
                 document.getElementById("Confirm").style.display = "none";
                 document.getElementById("Cancel").style.display = "none";
@@ -1694,12 +1578,12 @@ var layer1;
 
               }, 3300);
               //reset all land use boxes
-              document.getElementById('lu1').style.borderColor = 'transparent';
-              document.getElementById('lu2').style.borderColor = 'transparent';
-              document.getElementById('lu3').style.borderColor = 'transparent';
-              document.getElementById('lu4').style.borderColor = 'transparent';
-              document.getElementById('lu5').style.borderColor = 'transparent';
-              document.getElementById('luOther').style.borderColor = 'transparent';
+              // document.getElementById('lu1').style.borderColor = 'transparent';
+              // document.getElementById('lu2').style.borderColor = 'transparent';
+              // document.getElementById('lu3').style.borderColor = 'transparent';
+              // document.getElementById('lu4').style.borderColor = 'transparent';
+              // document.getElementById('lu5').style.borderColor = 'transparent';
+              // document.getElementById('luOther').style.borderColor = 'transparent';
 
               lu1 = null;
               lu2 = null;
