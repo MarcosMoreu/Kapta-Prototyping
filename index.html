@@ -26,31 +26,7 @@
 </head>
 
 <body>
-  <!-- <button id='addBtn'class="add-button">Add to home screen</button> -->
-  <audio  id='audioTutorial' autoplay>
-    <source src="images/audioTutorial.mp3"  type="audio/mp3">
-    <!-- <div class="center">.</div> -->
-  </audio>
 
-  <div align='center'>
-
-    <video id='videoTutorial'  class='video'  muted autoplay loop>
-      <source src="images/videoTutorial.mp4"  type="video/mp4">
-      <!-- <div class="center">.</div> -->
-    </video>
-  </div>
-
-
-
-
-  <div>
-    <button id='unmute' class='buttonsFirstLastScreen' style='top:77% ;  height:120px; border:none; background:none'>
-      <img src="images/unmute.png" style='width:120px ; height:110px'>
-    </button>
-    <button id='startMapping' class='buttonsFirstLastScreen' style='top:77% ;  height:100px; border:none; background:none'>
-      <img src="images/Start.png" style='width:75px ; height:75px'>
-    </button>
-  </div>
 
   <div id="map" style='height:88%'>
     <div id="rose"> </div>
@@ -76,35 +52,35 @@
 </div>
 
 <div align='center' >
-  <button id='goBack2' class='button'style='width:15% ; background-color:#9C1F04'>
+  <button id='goBack2' class='button'style='display:none; width:15% ; background-color:#9C1F04'>
     <img src="images/backButton.png" style='width:50px ; height:60px '>
   </button>
-  <button id='deleteLastVertex' class='button'style='width:27%'>
+  <button id='deleteLastVertex' class='button'style='display:none; width:27%'>
     <img src="images/deleteLastvertex.png" style='width:60px ; height:60px'>
   </button>
-  <button id='deleteAllVertexs' class='button'style='width:27%'>
+  <button id='deleteAllVertexs' class='button'style='display:none; width:27%'>
     <img src="images/deleteAllvertex.png" style='width:60px ; height:60px'>
   </button>
-  <button id='deletePolygon' class='button' style='width:27%'>
+  <button id='deletePolygon' class='button' style='display:none; width:27%'>
     <img src="images/deletePolygon.png" style='width:60px ; height:60px'>
   </button>
-  <button id='changeMapSize' class='button' style='width:27%'>
+  <button id='changeMapSize' class='button' style='display:none; width:27%'>
     <img src="images/ThumbsUpGreen.png" style='width:60px ; height:60px'>
   </button>
 </div>
 
 <div align='center' >
-  <button id='Cancel' class='button'style='width:47%'>
+  <button id='Cancel' class='button'style='display:none; width:47%'>
     <img src="images/cancel.png" style='width:60px ; height:60px'>
   </button>
-  <button id='goToIdentification' class='button'style='width:49%'>
+  <button id='goToIdentification' class='button'style='display:none; width:49%'>
     <img src="images/ThumbsUpGreen.png" style='width:60px ; height:60px;'>
   </button>
-  <button id='Confirm' class='button'style='width:49%'>
+  <button id='Confirm' class='button'style='display:none; width:49%'>
     <img src="images/ThumbsUpGreen.png" style='width:60px ; height:60px;'>
   </button>
 
-  <button id='exportButton' class='button' style='width:49%'>
+  <button id='exportButton' class='button' style='display:none; width:49%'>
     <a id='export'>
         <img  src="images/Send.png" style='width:60px ; height:60px'></img>
     </a>
@@ -138,26 +114,7 @@
   <source src="images/classification.mp3"  type="audio/mp3">
   <!-- <div class="center">.</div> -->
 </audio>
-<div align='center' class='colors'>
-  <button id="lu1" class='attributeButtons' style='border-radius: 50%; padding:10px; margin-right:5px; margin-bottom:5px; width:80px;height:80px;background-color:black'>
-    <!-- <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button> -->
-  <button id="lu2" class='attributeButtons' style='border-radius: 50%; padding:10px; margin-right:5px;margin-bottom:5px;width:80px;height:80px;background-color:#E0E0E0'>
-    <!-- <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button> -->
-  <button id="lu3" class='attributeButtons' style='border-radius: 50%; padding:10px;margin-right:5px;margin-bottom:5px;width:80px;height:80px;background-color:green'>
-    <!-- <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button> -->
 
-</div>
-
-<div align='center' class='colors'>
-
-  <button id="lu4" class='attributeButtons' style='border-radius: 50%; padding:10px;margin-right:5px;margin-bottom:5px;width:80px;height:80px;background-color:yellow'>
-    <!-- <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button> -->
-  <button id="lu5" class='attributeButtons' style='border-radius: 50%; padding:10px;margin-right:5px;margin-bottom:5px;width:80px;height:80px;background-color:red'>
-    <!-- <img src="images/questionMark.png" style='width:60px ; height:60px'>  </button> -->
-  <button id="luOther" class='attributeButtons' style='border-radius: 50%; padding:10px;margin-right:5px;margin-bottom:5px;width:80px;height:80px;background-image: url(images/PlusSign.png);background-color:white'>
-    <!-- <img src="images/PlusSign.png" style='width:80px ; height:80px'>  </button> -->
-
-</div>
 
 <!-- <div align='center'>
   <button id="goToIdentification"  style='margin-top: 30px;width:47%;height:60px;background-color:grey'>
@@ -202,6 +159,13 @@
 </div>
 <video id="gum" playsinline autoplay muted></video>
 <video id="recorded" playsinline loop></video>
+
+<div>
+  <button id="emoji"  style='margin-top: 10px;width:47%;height:60px;background-color:grey'>
+    <img src="images/arrowLeft.png" style='width:60px ; height:40px'>
+  </button>
+
+</div>
 
 <div align='center' >
   <button id="goBackToLandUse"  style='margin-top: 10px;width:47%;height:60px;background-color:grey'>
