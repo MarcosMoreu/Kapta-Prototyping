@@ -97,14 +97,14 @@ var firstLoad = function() {//fucntion to determine if the site is visited for f
          // Set visited flag in local storage
          localStorage.setItem('visited', true);
          // Alert the user
-         document.getElementById("startMapping").style.visibility = "hidden";
+        // document.getElementById("startMapping").style.visibility = "hidden";
          document.getElementById("unmute").style.visibility = "visible";
          isFirstTime = true;
          console.log(isFirstTime)
          //alert("Hello my friend. This is your first visit.");
     }else {
-      document.getElementById("startMapping").style.visibility = "visible";
-      document.getElementById("unmute").style.visibility = "hidden";
+  //    document.getElementById("startMapping").style.visibility = "visible";
+    //  document.getElementById("unmute").style.visibility = "hidden";
 
 
       function catchAudioError() { //function to avoid uncaught promise when loading audio tutorial
@@ -229,6 +229,18 @@ rose.addTo(map)
 // }
 // console.log(isFirstTime);
 ///////////////////aoi///////////////////////////
+//chat emoji ui///
+
+
+$(document).ready(function() {
+	$("#emojionearea1").emojioneArea({
+  	pickerPosition: "left",
+    tonesStyle: "bullet"
+  });
+
+});
+
+
 var AOI = L.geoJson(AOI_Tsumkwe,{
   fillColor: '#000000',
   color:'red',
@@ -274,21 +286,21 @@ var community1 = L.marker([-19.7391716,20.3707833], {icon:communityIcon}).addTo(
 
 /////////////////////////Collected data///////////////////
 
-var denui = L.geoJson(denui,{
-  fillColor: '#FC03F6',
-  color:'#FC03F6',
-  opacity: 5,
-  fillOpacity: 0.2,
-  weight:2
-}).addTo(map);
-
-var giacoma = L.geoJson(giacoma,{
-  fillColor: '#03FAFC',
-  color:'#03FAFC',
-  opacity: 5,
-  fillOpacity: 0.2,
-  weight:2
-}).addTo(map);
+// var denui = L.geoJson(denui,{
+//   fillColor: '#FC03F6',
+//   color:'#FC03F6',
+//   opacity: 5,
+//   fillOpacity: 0.2,
+//   weight:2
+// }).addTo(map);
+//
+// var giacoma = L.geoJson(giacoma,{
+//   fillColor: '#03FAFC',
+//   color:'#03FAFC',
+//   opacity: 5,
+//   fillOpacity: 0.2,
+//   weight:2
+// }).addTo(map);
 
 ////////////////to create a custom icon instead of Marker
 var pointsIcon = L.icon({
@@ -303,26 +315,26 @@ var pointsIcon = L.icon({
 });
 
 
-var community11 = L.marker([-19.740486 , 20.3695308], {icon:pointsIcon}).addTo(map);
-var community12 = L.marker( [-19.7404658, 20.3695296], {icon:pointsIcon}).addTo(map);
-var community13 = L.marker( [-19.7435148, 20.3677033 ] , {icon:pointsIcon}).addTo(map);
-var community14 = L.marker( [-19.7407043, 20.3704892] , {icon:pointsIcon}).addTo(map);
-var community15 = L.marker( [ -19.7389414, 20.3659412], {icon:pointsIcon}).addTo(map);
-var community16 = L.marker( [-19.7404787, 20.369528 ], {icon:pointsIcon}).addTo(map);
-var community17 = L.marker( [ -19.7404716, 20.3695185], {icon:pointsIcon}).addTo(map);
-var community18 = L.marker([ -19.7404422, 20.3695892 ], {icon:pointsIcon}).addTo(map);
-var community19 = L.marker( [ -19.740721,20.3704324 ], {icon:pointsIcon}).addTo(map);
-var community110 = L.marker([-19.7407391,  20.3704794], {icon:pointsIcon}).addTo(map);
-var community111 = L.marker( [-19.7405721 , 20.3695689], {icon:pointsIcon}).addTo(map);
-var community112 = L.marker( [ -19.5914482 ,20.5047116], {icon:pointsIcon}).addTo(map);
-var community113 = L.marker( [ -19.5918552,20.5035004 ], {icon:pointsIcon}).addTo(map);
-var community114 = L.marker([ -19.595553, 20.5058281 ], {icon:pointsIcon}).addTo(map);
-var community115 = L.marker( [ -19.5955303, 20.5056082 ] , {icon:pointsIcon}).addTo(map);
-var community116 = L.marker( [ -19.5955182 ,20.505709], {icon:pointsIcon}).addTo(map);
-var community117 = L.marker([ -19.5957291, 20.5057855 ] , {icon:pointsIcon}).addTo(map);
-var community118 = L.marker( [ -19.5955427 , 20.5058277], {icon:pointsIcon}).addTo(map);
-var community119 = L.marker( [ -19.7389991, 20.3706885 ], {icon:pointsIcon}).addTo(map);
-var community120 = L.marker([ -19.7389953, 20.3706428 ], {icon:pointsIcon}).addTo(map);
+// var community11 = L.marker([-19.740486 , 20.3695308], {icon:pointsIcon}).addTo(map);
+// var community12 = L.marker( [-19.7404658, 20.3695296], {icon:pointsIcon}).addTo(map);
+// var community13 = L.marker( [-19.7435148, 20.3677033 ] , {icon:pointsIcon}).addTo(map);
+// var community14 = L.marker( [-19.7407043, 20.3704892] , {icon:pointsIcon}).addTo(map);
+// var community15 = L.marker( [ -19.7389414, 20.3659412], {icon:pointsIcon}).addTo(map);
+// var community16 = L.marker( [-19.7404787, 20.369528 ], {icon:pointsIcon}).addTo(map);
+// var community17 = L.marker( [ -19.7404716, 20.3695185], {icon:pointsIcon}).addTo(map);
+// var community18 = L.marker([ -19.7404422, 20.3695892 ], {icon:pointsIcon}).addTo(map);
+// var community19 = L.marker( [ -19.740721,20.3704324 ], {icon:pointsIcon}).addTo(map);
+// var community110 = L.marker([-19.7407391,  20.3704794], {icon:pointsIcon}).addTo(map);
+// var community111 = L.marker( [-19.7405721 , 20.3695689], {icon:pointsIcon}).addTo(map);
+// var community112 = L.marker( [ -19.5914482 ,20.5047116], {icon:pointsIcon}).addTo(map);
+// var community113 = L.marker( [ -19.5918552,20.5035004 ], {icon:pointsIcon}).addTo(map);
+// var community114 = L.marker([ -19.595553, 20.5058281 ], {icon:pointsIcon}).addTo(map);
+// var community115 = L.marker( [ -19.5955303, 20.5056082 ] , {icon:pointsIcon}).addTo(map);
+// var community116 = L.marker( [ -19.5955182 ,20.505709], {icon:pointsIcon}).addTo(map);
+// var community117 = L.marker([ -19.5957291, 20.5057855 ] , {icon:pointsIcon}).addTo(map);
+// var community118 = L.marker( [ -19.5955427 , 20.5058277], {icon:pointsIcon}).addTo(map);
+// var community119 = L.marker( [ -19.7389991, 20.3706885 ], {icon:pointsIcon}).addTo(map);
+// var community120 = L.marker([ -19.7389953, 20.3706428 ], {icon:pointsIcon}).addTo(map);
 
 
 // create an options object that specifies which function will called on each feature
@@ -535,46 +547,6 @@ navigator.geolocation.getCurrentPosition(displayLocation); //Note that it requir
                                                                                                        //define center map and zooooooms
 
 
-//!!!!!!!!script for watchPosition functionality!!!!!!!!!!!!!!
-
-// var id, target, options;
-//
-// function success(pos){
-//
-//   var crd = pos.coords;
-//   if(target.latitude === crd.latitude && target.longitude === crd.longitude){
-//     console.log('congratulation, target reached');
-//     navigator.geolocation.clearWatch(id);
-//
-//     var lat = position.coords.latitude;
-//     var lng = position.coords.longitude;
-//
-//     L.marker([lat, lng]).addTo(map);
-//
-//     currentLocation = [lat,lng];
-//
-//   return currentLocation;
-//
-//   }
-// }
-// target = {
-//   latitude : 0,
-//   longitude : 0
-// };
-//
-// options = {
-//   enableHighAccuracy:false,
-//   timeOut:10000
-// //maximumAge:0
-// }
-//
-// //currentLocation = pos.coords
-// //console.log(currentLocation)
-// navigator.geolocation.watchPosition(success);
-//!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
 var clickButtonCount=0;
 var osm_Button = L.easyButton({
     id: 'osm',
@@ -680,29 +652,29 @@ planet_Button.button.style.width = '60px';
 planet_Button.button.style.height = '60px';
 planet_Button.button.style.transitionDuration = '.3s';
 //planet_Button.addTo(map);
-
-var home_Button = L.easyButton({
-    id: 'home',
-    position: 'topleft',
-
-    states: [{
-        icon: '<img src="images/house.png" width=40px ; height=40px>',
-        stateName: 'check-mark',
-        onClick: function(btn,map) {
-          map.setView([-19.7391716,20.3707833],15); //UCL London coordinates
-          //btn.button.style.backgroundColor = 'black';
-          gps_Button.addTo(map);
-          home_Button.removeFrom(map);
-
-
-        }
-    }]
-});
-
-home_Button.button.style.width = '60px';
-home_Button.button.style.height = '60px';
-home_Button.button.style.transitionDuration = '.3s';
-home_Button.button.style.backgroundColor = 'white';
+//
+// var home_Button = L.easyButton({
+//     id: 'home',
+//     position: 'topleft',
+//
+//     states: [{
+//         icon: '<img src="images/house.png" width=40px ; height=40px>',
+//         stateName: 'check-mark',
+//         onClick: function(btn,map) {
+//           map.setView([-19.7391716,20.3707833],15); //UCL London coordinates
+//           //btn.button.style.backgroundColor = 'black';
+//           gps_Button.addTo(map);
+//           home_Button.removeFrom(map);
+//
+//
+//         }
+//     }]
+// });
+//
+// home_Button.button.style.width = '60px';
+// home_Button.button.style.height = '60px';
+// home_Button.button.style.transitionDuration = '.3s';
+// home_Button.button.style.backgroundColor = 'white';
 
 var gps_Button = L.easyButton({
     id: 'gps',
@@ -713,8 +685,8 @@ var gps_Button = L.easyButton({
         onClick: function(btn,map) {
           map.setView(currentLocation,15);
         //  btn.button.style.backgroundColor = 'black';
-          home_Button.addTo(map);
-          gps_Button.removeFrom(map);
+        //  home_Button.addTo(map);
+        //  gps_Button.removeFrom(map);
 
         }
     }]
@@ -724,7 +696,9 @@ gps_Button.button.style.width = '60px';
 gps_Button.button.style.height = '60px';
 gps_Button.button.style.transitionDuration = '.3s';
 gps_Button.button.style.backgroundColor = 'white';
-//gps_Button.addTo(map);
+gps_Button.addTo(map);
+
+
 
 ///////////////messages for tile download/////////
 googleSat.on('offline:save-start', function (data) {
@@ -773,11 +747,6 @@ osm.on('offline:below-min-zoom-error', function () {
 
 });
 ///////////////////////////////////
-
-
-
-
-
 
 /////////////////////////////////////////////////////////////////////////
 var drawnItems = new L.FeatureGroup();
@@ -837,14 +806,7 @@ var drawnItems = new L.FeatureGroup();
            }
        };
 
-     //   L.Edit.Poly = L.Edit.Poly.extend({
-     //     options : {
-     //         icon: new L.DivIcon({
-     //              iconSize: new L.Point(20, 20),
-     //              className: 'leaflet-div-icon leaflet-editing-icon my-own-icon'
-     //         })
-     //     }
-     // });
+
    var drawControl = new L.Control.Draw(options);
    // map.addControl(drawControl); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
    map.on(L.Draw.Event.CREATED, function (e) {
@@ -871,7 +833,7 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
 /////////////////////////////////////////Initial state of buttons //////////////////////////////////////
 
 
-           document.getElementById("videoTutorial").style.display = "initial";
+          // document.getElementById("videoTutorial").style.display = "initial";
 
           // document.getElementById("unmute").style.display = "initial";
 
@@ -882,37 +844,39 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
            //document.getElementById("startMapping").style.display = "none";
           // document.getElementById("goBack1").style.display = "none";
 
-           document.getElementById("map").style.display = "none";
-           document.getElementById("polygon").style.display = "none";
-           document.getElementById("polyline").style.display = "none";
-           document.getElementById("point").style.display = "none";
+          document.getElementById("goBack2").style.display = "none";
+          document.getElementById("deleteLastVertex").style.display = "none";
+          document.getElementById("deleteAllVertexs").style.display = "none";
+          document.getElementById("deletePolygon").style.display = " none";
+          document.getElementById("changeMapSize").style.display = "none";
+
+           document.getElementById("map").style.display = "initial";
+           document.getElementById("polygon").style.display = "initial";
+           document.getElementById("polyline").style.display = "initial";
+           document.getElementById("point").style.display = "initial";
            document.getElementById("polyline").style.opacity = "0.15";
            document.getElementById("point").style.opacity = "0.15";
 
            // document.getElementById('googleSat').style.visibility='hidden';
            // document.getElementById('planet').style.visibility='hidden';
 
-           document.getElementById("goBack2").style.display = "none";
-           document.getElementById("deleteLastVertex").style.display = "none";
-           document.getElementById("deleteAllVertexs").style.display = "none";
-           document.getElementById("deletePolygon").style.display = " none";
-           document.getElementById("changeMapSize").style.display = "none";
 
 
-           document.getElementById('goToIdentification').style.display = 'none';
+
+        //   document.getElementById('goToIdentification').style.display = 'none';
            document.getElementById("export").style.display = "none";
            document.getElementById("Cancel").style.display = "none";
            document.getElementById("exportButton").style.display = "none";
            document.getElementById("Confirm").style.display = "none";
 
 
-           document.getElementById('goToIdentification').style.display = 'none';
+        //   document.getElementById('goToIdentification').style.display = 'none';
       //     document.getElementById('goBackToLandUse').style.display = 'none';
 
 
         //   document.getElementById('start').style.display = 'none';
            document.getElementById('record').style.display = 'none';
-           document.getElementById('play').style.display = 'none';
+          document.getElementById('play').style.display = 'none';
            document.getElementById('download').style.display = 'none';
            document.getElementById('gum').style.display = 'none';
            document.getElementById('recorded').style.display = 'none';
@@ -926,28 +890,11 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
            // document.getElementById("Return").style.display = "none";
            // document.getElementById("Exit").style.display = "none";
            // document.getElementById("Return").style.display = "none";
-
-               document.getElementById('lu1').style.display = 'none';
-               document.getElementById('lu2').style.display = 'none';
-               document.getElementById('lu3').style.display = 'none';
-               document.getElementById('lu4').style.display = 'none';
-               document.getElementById('lu5').style.display = 'none';
-               document.getElementById('luOther').style.display = 'none';
-               document.getElementById('goBackToLandUse').style.display = 'none';
+           document.getElementById('emoji').style.display = 'none';
 
 
 ////////////////////////////////////////////TUTORIAL//////////////////////////////////////////////////////////////
-          document.getElementById('unmute').onclick = function(e) {
-    //////        document.getElementById("audioTutorial").play();
 
-            document.getElementById("startMapping").style.visibility = "visible";
-          //  document.getElementById("startMapping").style.display = "initial";
-            document.getElementById("unmute").style.visibility = "hidden";
-          //  document.getElementById("unmute").style.display = "none";
-
-          }
-
-          document.getElementById('startMapping').onclick = function(e) {
 ////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // script to add drawn layers to local storage
             // var layerFromLocalStorage = localStorage.getItem('storedLayer');
@@ -959,23 +906,23 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-              console.log(currentLocation)
+              console.log('location'+ currentLocation)
                 if(currentLocation[0]==null){
-                  home_Button.addTo(map);
+                //  home_Button.addTo(map);
                   L.marker([-19.7391716,20.3707833], {icon:communityIcon}).addTo(map);
                 }else{
                   gps_Button.addTo(map);
                 }
 
               document.body.style.backgroundColor = "white";
-              document.getElementById("audioTutorial").pause();
-              document.getElementById("audioTutorial").currentTime = 0;
+              // document.getElementById("audioTutorial").pause();
+              // document.getElementById("audioTutorial").currentTime = 0;
 
 
         //////      document.getElementById("mappingInstructions").play();
 
-              document.getElementById("videoTutorial").style.display = "none";
-              document.getElementById("startMapping").style.display = "none";
+          //    document.getElementById("videoTutorial").style.display = "none";
+              //document.getElementById("startMapping").style.display = "none";
 
               document.getElementById("map").style.display = "block";
               //document.getElementById("map").style.height = "90%";
@@ -992,7 +939,7 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
 
               // document.getElementById("deletePolygon").style.opacity = "0.15";
               // document.getElementById("deletePolygon").disabled = true;
-          }
+
 
           // document.getElementById("goBack1").onclick = function(e){
           //
@@ -1208,13 +1155,12 @@ document.getElementById("goBack2").onclick = function(e){
 
   //var goToLT = 0; //variable to know whether the LT instructions have played, so can be paused when cancel click
   var goToId = 0;
-
       document.getElementById('changeMapSize').onclick = function(e) {
             clickMapCount = 0;
             clickDelVertCount = 0;
 
-          document.getElementById("mappingInstructions").pause();
-          document.getElementById("mappingInstructions").currentTime = 0;
+          // document.getElementById("mappingInstructions").pause();
+          // document.getElementById("mappingInstructions").currentTime = 0;
 
           // document.getElementById('goToIdentification').style.display = 'initial';
           // document.getElementById('goToIdentification').disabled = true;
@@ -1225,12 +1171,12 @@ document.getElementById("goBack2").onclick = function(e){
           var screenHeight = screen.height;
           var paddingDist = screenHeight*0.4;
         //  console.log('screenHeight', screenHeight)
-          document.getElementById("map").style.height = "40%";
+          document.getElementById("map").style.height = "88%";
 
-            map.fitBounds(drawnItems.getBounds(),{
-              maxZoom:30,
-              paddingBottomRight: [0, paddingDist]
-            })
+            // map.fitBounds(drawnItems.getBounds(),{
+            //   maxZoom:30,
+            //   paddingBottomRight: [0, paddingDist]
+            // })
 
               document.getElementById("goBack2").style.display = "none";
               document.getElementById("deleteLastVertex").style.display = "none";
@@ -1243,8 +1189,17 @@ document.getElementById("goBack2").onclick = function(e){
 
               // document.getElementById("Confirm").style.opacity = "0.155";
               // document.getElementById("Confirm").disabled = true;
-              document.getElementById("Confirm").style.display = "none";
+              document.getElementById("Confirm").style.display = "initial";
               document.getElementById("Cancel").style.display = "initial";
+
+              document.getElementById("classification").style.display = "initial";
+
+              document.getElementById("emoji").style.display = "initial";
+
+            // document.getElementById('emojionearea1').value = 'aaaaa'
+            // console.log(document.getElementById('emojionearea1').value);
+
+
               //document.getElementById("microphone").style.display = "initial";
       ////        document.getElementById('LandUse').play();
               // document.getElementById('lu1').style.display = 'initial';
@@ -1261,9 +1216,9 @@ document.getElementById("goBack2").onclick = function(e){
               goToId = 1;
 
 
-              document.getElementById('Confirm').style.display = 'initial';
-              document.getElementById('Confirm').disabled = true;
-              document.getElementById('Confirm').style.opacity = '0.1';
+              // document.getElementById('Confirm').style.display = 'initial';
+              // document.getElementById('Confirm').disabled = true;
+              // document.getElementById('Confirm').style.opacity = '0.1';
 
               //document.getElementById('goBackToLandUse').style.display = 'initial';
               document.getElementById('voice').style.display = 'initial';
@@ -1276,64 +1231,64 @@ document.getElementById("goBack2").onclick = function(e){
           //    document.getElementById('start').style.display = 'initial';
               document.getElementById('record').style.display = 'initial';
               document.getElementById('record').style.opacity = '1';
-              document.getElementById('play').style.display = 'initial';
-              document.getElementById('play').style.opacity = '0.1';
+              // document.getElementById('play').style.display = 'initial';
+              // document.getElementById('play').style.opacity = '0.1';
+
+              document.getElementById('emoji').style.display = 'initial';
+
 
               // document.getElementById('download').style.display = 'initial';
               // document.getElementById('download').style.opacity = '0.1';
-              return goToId;
+
 
            }
+
+
+
+	$("#emojionearea1").emojioneArea({
+  	pickerPosition: "top",
+  	filtersPosition: "bottom",
+    tones: false,
+    autocomplete: false,
+    inline: true,
+    hidePickerOnBlur: false
+  });
+
+  // var el = $("selector").emojioneArea();
+  // el[0].emojionearea1.on("emojibtn.click", function(btn, event) {
+  //   console.log(btn.html());
+  // });
+
+
+
+	// document.getElementById("#emojionearea1").emojioneArea({
+  // 	pickerPosition: "top",
+  // 	filtersPosition: "bottom",
+  //   tones: false,
+  //   autocomplete: false,
+  //   inline: true,
+  //   hidePickerOnBlur: false
+  // });
+
 ////////////////////////////////////////////////////////classify screen//////////////////////////////////////////////////////////////
 
-    //   document.getElementById('goToIdentification').onclick  = function(e){
-    //     document.getElementById('Sent').currentTime = 0;
-    //
-    //     goToId = 1;
-    //     document.getElementById('lu1').style.display = 'none';
-    //     document.getElementById('lu2').style.display = 'none';
-    //     document.getElementById('lu3').style.display = 'none';
-    //     document.getElementById('lu4').style.display = 'none';
-    //     document.getElementById('lu5').style.display = 'none';
-    //     document.getElementById('luOther').style.display = 'none';
-    //
-    //     document.getElementById('goToIdentification').style.display = 'none';
-    //
-    //     document.getElementById('Confirm').style.display = 'initial';
-    //     document.getElementById('Confirm').disabled = true;
-    //     document.getElementById('Confirm').style.opacity = '0.1';
-    //
-    //     document.getElementById('goBackToLandUse').style.display = 'initial';
-    //     document.getElementById('voice').style.display = 'initial';
-    //     document.getElementById('voice').style.opacity = '0';
-    //
-    //     document.getElementById('LandUse').pause();
-    //     document.getElementById('LandUse').currentTime = 0;
-    //
-    // //    document.getElementById('Identification').play();
-    //   //  document.getElementById('start').style.display = 'initial';
-    //     document.getElementById('record').style.display = 'initial';
-    //     document.getElementById('record').style.opacity = '1';
-    //     document.getElementById('play').style.display = 'initial';
-    //     document.getElementById('play').style.opacity = '0.1';
-    //
-    //     // document.getElementById('download').style.display = 'initial';
-    //     // document.getElementById('download').style.opacity = '0.1';
-    //     return goToId;
-    //   }
 
 var recording=true;
         document.getElementById('record').onclick = function(e){
-
+          // var boxContent = document.getElementById('emojionearea1').value;
+          // console.log(boxContent);
 
             if(recording==true){  //recording true/false inverse.
               this.style.backgroundColor = 'white';
               //this.style.borderWidth = '2px';
               //this.style.borderColor = 'transparent';
-              document.getElementById('play').style.opacity = '1';
+          //    document.getElementById('play').style.opacity = '1';
               document.getElementById('download').style.opacity = '1';
+              document.getElementById('emoji').style.display = 'initial';
+              document.getElementById('voice').style.display = 'none';
               document.getElementById('voice').style.opacity = '0';
-          //    document.getElementById('goBackToLandUse').style.display = 'initial';
+              // document.getElementById('voice').style.width = '45%';
+              // document.getElementById('voice').style.height = '7%';
 
               document.getElementById('Confirm').disabled = false;
               document.getElementById('Confirm').style.opacity = '1';
@@ -1342,9 +1297,18 @@ var recording=true;
               this.style.backgroundColor = 'yellow';
               //this.style.borderWidth = '8px';
               //this.style.borderColor = 'black';
-              document.getElementById('play').style.opacity = '0.1';
+            //  document.getElementById('play').style.opacity = '0.1';
               document.getElementById('download').style.opacity = '0.1';
+              document.getElementById('emoji').style.display = 'none';
+
+              document.getElementById('voice').style.display = 'initial';
               document.getElementById('voice').style.opacity = '1';
+              document.getElementById('voiceGif').style.width = '45%';
+              document.getElementById('voiceGif').style.height = '5%';
+
+
+
+
       //        document.getElementById('goBackToLandUse').style.display = 'none';
 
             }
@@ -1356,6 +1320,7 @@ var recording=true;
            document.getElementById('echoCancellation').style.display = 'none';
 
       }
+var boxContent;
 
       document.getElementById('Confirm').onclick = function(e) {
             goToDS = 1;
@@ -1372,12 +1337,13 @@ var recording=true;
              document.getElementById("export").style.opacity = "1";
              document.getElementById("exportButton").style.display = "1";
 
+             boxContent = document.getElementById('emojionearea1').value;
+             console.log(boxContent);
 
 
 
 
-
-          return goToDS;
+          return boxContent;
         }
 
       document.getElementById('Cancel').onclick = function(e){
@@ -1417,18 +1383,29 @@ var recording=true;
 
 
              document.getElementById('record').style.display = 'none';
-             document.getElementById('play').style.display = 'none';
+          //   document.getElementById('play').style.display = 'none';
              document.getElementById('voice').style.display = 'none';
 
           //   document.getElementById('goBackToLandUse').style.display = 'none';
-             document.getElementById('goToIdentification').style.display = 'none';
+          //   document.getElementById('goToIdentification').style.display = 'none';
+             document.getElementById('emoji').style.display = 'none';
 
            }
+
+
+           // document.getElementById('emojibtn').onclick = function (e){
+           //
+           //   console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+           // }
+
+
+
 
 /////////////////////////// Export  ////////////////////////////////////////////////////////
 
 var dateTimeRandomID;
 var layer1;
+
   document.getElementById('export').onclick = function(e) {
                 //refresh location
                 console.log(currentLocation)
@@ -1455,8 +1432,8 @@ var layer1;
                 //System 1984 (WGS 84) [WGS84] datum, with longitude and latitude units of decimal degrees.
 
                 //script to remove null values of land use
-                var allLandUses = [lu1,lu2,lu3,lu4,lu5,luOther];
-
+              //  var allLandUses = [lu1,lu2,lu3,lu4,lu5,luOther];
+              var allLandUses = [1]
                 //land uses array filtered.
                 var allLandUsesFiltered = allLandUses.filter(noNull => noNull != null);
                 console.log(allLandUsesFiltered)
@@ -1472,10 +1449,11 @@ var layer1;
                 console.log(currentLocation[0])
                 var landUses = allLandUsesFiltered.toString();
                 console.log(landUses);
+                var boxContentToString = boxContent.toString();
                 //attributes added to Geojson file properties
                 //var combinedAttributeData = landUses + dateTime + currentLocation;
                 var propertiesGeoJSON = {
-                  'landUses':landUses,
+                  'landUses':boxContentToString,
                   'dateTime':dateTime,
                   'participantLocation':currentLocationString,
                   'randomID':randomID
@@ -1505,35 +1483,7 @@ var layer1;
                 document.getElementById('export').setAttribute('download',dateTimeRandomID);
                 layer1=data;
                 console.log(layer1);
-                var finalLayer = L.geoJSON(layer1,{
-                  style:function(features) {
-                      // var mag = feature.properties.mag;
-                      if (lu1 != null) {
-                      return {
-                          color: "black"}
-                        }
-                      if (lu2 != null) {
-                      return {
-                          color: "#E0E0E0"}
-                        }
-                      if (lu3 != null) {
-                      return {
-                          color: "green"}
-                        }
-                      if (lu4 != null) {
-                      return {
-                          color: "yellow"}
-                        }
-                      if (lu5 != null) {
-                      return {
-                          color: "red"}
-                        }
-                      if (luOther != null) {
-                      return {
-                          color: "#6E6E6D"}
-                        }
-                   }
-                }).addTo(map);
+                var finalLayer = L.geoJSON(layer1).addTo(map);
 
                 drawnItems.clearLayers();
 
@@ -1548,15 +1498,20 @@ var layer1;
 
                 document.getElementById("record").style.display = "none";
                 document.getElementById("play").style.display = "none";
-                document.getElementById("goBackToLandUse").style.display = "none";
+            //    document.getElementById("goBackToLandUse").style.display = "none";
 
                 document.getElementById('voice').style.display = 'none';
+                document.getElementById('voice').style.opacity = '0';
+
 
                 recordedVideo.pause();
                 recordedVideo.currentTime = 0;
 
+                document.getElementById('emoji').style.display = 'none';
+
 
                 document.getElementById('Sent').style.display = 'initial';
+                document.getElementById('voice').style.visibility = 'hidden';
               //  document.getElementById('Sent').src='images/Sent.gif';
 
               setTimeout(function(){
@@ -1585,12 +1540,6 @@ var layer1;
               // document.getElementById('lu5').style.borderColor = 'transparent';
               // document.getElementById('luOther').style.borderColor = 'transparent';
 
-              lu1 = null;
-              lu2 = null;
-              lu3 = null;
-              lu4 = null;
-              lu5 = null;
-              luOther =  null;
               created=false;
 
 //adding layers to localstorage
@@ -1626,36 +1575,7 @@ var layer1;
       var getItemToJSON = JSON.parse(itemFetched);
       console.log(getItemToJSON)
 
-      L.geoJSON(getItemToJSON,{
-        style:function(features) {
-           // var mag = feature.properties.mag;
-           if (features.properties.landUses == 'animals') {
-           return {
-               color: features.properties.color="black"}
-             }
-           if (features.properties.landUses == 'water') {
-           return {
-               color: features.properties.color="#E0E0E0"}
-             }
-           if (features.properties.landUses == 'trees/wood') {
-           return {
-               color: features.properties.color="green"}
-             }
-           if (features.properties.landUses == 'gathering') {
-           return {
-               color: features.properties.color="yellow"}
-             }
-           if (features.properties.landUses == 'poison') {
-           return {
-               color: features.properties.color="red"}
-             }
-           if (features.properties.landUses == 'Other') {
-           return {
-               color: features.properties.color="#6E6E6D"}
-             }
-
-        }
-      }).addTo(map);
+      //L.geoJSON(getItemToJSON).addTo(map);
 
     }
    }

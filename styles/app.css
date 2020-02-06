@@ -4,7 +4,7 @@
 body {
     padding: 0;
     margin: 0;
-    background-color: black;
+    background-color: white;
     overflow:hidden
 }
 html,body {
@@ -19,6 +19,9 @@ html,body {
     margin-bottom:100;
 
     width: 100%;
+
+    z-index: 2;
+
 }
 
 .easyButton1 {
@@ -32,7 +35,7 @@ html,body {
 }
 
 .button {
-  display:block;
+
   margin-top: 2px;
 
   background-color: white; /* Green */
@@ -41,19 +44,19 @@ html,body {
   padding: 0px 0px; */
   text-align: center;
   text-decoration: none;
-  display: inline;
+  display: inline-block;
   height:10%;
   border: 2px solid grey;
   position:center;
   /* font-size: 16px; */
   /* width:100%; */
+  border-radius: 40px;
+  background-color:#ededf0;
 }
 
 .button:active {
-  /* border:2px solid yellow; */
-  /* background-color: grey; */
-  /* box-shadow: 0 5px white; */
-  /* transform: translateY(4px); */
+
+  /* transform: translateY(4px);
 }
 
 
@@ -64,14 +67,14 @@ visibility:hidden;
   /* border: true; */
   /* color: black; */
   /* padding: 15px 32px; */
-  text-align: center;
+  /* text-align: center;
   text-decoration: none;
   display: inline;
 
   width: 200px;
   position: absolute;
   left: 50%;
-  margin-left: -100px;
+  margin-left: -100px; */
 
 }
 
@@ -105,3 +108,31 @@ margin-top: 100px;
 .audioButtons{
   border: 2px solid transparent;
 }
+
+* {
+  font-family: Arial, Helvetica, san-serif;
+}
+.row:before, .row:before {
+  /* content: " "; */
+display: inline-block;
+  /* clear: both; */
+  z-index: 10;
+
+}
+.span6 {
+  /* float: left; */
+  width: 45%;
+  /* padding: 1%; */
+  z-index: 10;
+
+}
+.emojionearea-editor:not(.inline) {
+  min-height: 2em!important;
+  z-index: 10;
+
+}
+
+/* .container-chat div {
+    display: inline-block;
+
+  } */

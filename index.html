@@ -7,10 +7,11 @@
   <meta charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- maximumscale and userscalable value disable the zoom/pan option on the mobile screen -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0. maximum-scale=1,user-scalable=0" >
-  <title>Prototype#4.0</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1,user-scalable=0" >
+  <title>Prototype#4.1</title>
   <link rel="stylesheet" type="text/css" href="styles/app.css"  >
 
+  <link rel="stylesheet" href="scripts/emojionearea-master/dist/emojionearea.css">
 <!-- manifest and meta theme color -->
   <link rel="manifest" href="manifest.json">
 
@@ -27,21 +28,16 @@
 
 <body>
 
-
   <div id="map" style='height:88%'>
     <div id="rose"> </div>
   </div>
 
-<audio  id='mappingInstructions'>
-  <source src="images/mappingInstructions.mp3"  type="audio/mp3">
-  <!-- <div class="center">.</div> -->
-</audio>
 <div align='center' >
   <!-- <button id='goBack1' class='button'style='width:15% ; background-color:#c1c0c0'>
     <img src="images/backButton.png" style='width:50px ; height:60px '>
   </button> -->
   <button id='polygon' class='button' style='width:32%'>
-    <img src="images/drawPolygon.gif" style='width:60px ; height:60px'>
+    <img src="images/drawPolygon.png" style='width:60px ; height:60px'>
   </button>
   <button id='polyline' class='button' style='width:32%' disabled>
     <img src="images/polyline.png" style='width:60px ; height:60px ; opacity:0.3'>
@@ -69,23 +65,7 @@
   </button>
 </div>
 
-<div align='center' >
-  <button id='Cancel' class='button'style='display:none; width:47%'>
-    <img src="images/cancel.png" style='width:60px ; height:60px'>
-  </button>
-  <button id='goToIdentification' class='button'style='display:none; width:49%'>
-    <img src="images/ThumbsUpGreen.png" style='width:60px ; height:60px;'>
-  </button>
-  <button id='Confirm' class='button'style='display:none; width:49%'>
-    <img src="images/ThumbsUpGreen.png" style='width:60px ; height:60px;'>
-  </button>
 
-  <button id='exportButton' class='button' style='display:none; width:49%'>
-    <a id='export'>
-        <img  src="images/Send.png" style='width:60px ; height:60px'></img>
-    </a>
-  </button>
-</div>
 <!-- final screen buttons -->
 <!-- <div align='center' >
   <button id='Exit' class='buttonsFirstLastScreen' style='top:30% ;height:20%'>
@@ -98,6 +78,63 @@
 
 
 
+<!-- <div id='classification'  style='display:none; vertical-align:top'>
+  <button id='Cancel' class='button'style='width:16%; height:7%'>
+    <img src="images/cancel.png" style='width:20px ; height:20px'>
+  </button>
+
+  <div id='emoji' class="row" >
+    <div class="span6" style='display:inline-block'>
+      <textarea id="emojionearea1">DefaultHGDSALKJFLKSA :smile:</textarea>
+    </div>
+  </div>
+
+  <button id="record" disabled class='button' style='width:16%;height:7%'>
+    <img src="images/record.png" style='width:20px ; height:20px'>
+  </button>
+
+  <button id='Confirm' class='button'style='display:none; width:16%;height:7%'>
+    <img src="images/ThumbsUpGreen.png" style='width:20px ; height:20px;'>
+  </button>
+
+  <button id='exportButton' class='button' style='display:none; width:16%;height:7%'>
+    <a id='export'>
+        <img  src="images/Send.png" style='width:20px ; height:20px'></img>
+    </a>
+  </button>
+</div> -->
+
+<div id='classification'  style='display:none; vertical-align:top'>
+  <button id='Cancel' class='button'style='width:16%; height:7%'>
+    <img src="images/cancel.png" style='width:30px ; height:30px'>
+  </button>
+
+
+
+  <div id='emoji' class="row" >
+    <div class="span6" style='display:inline-block'>
+      <textarea id="emojionearea1">Write here...</textarea>
+    </div>
+  </div>
+
+  <div id='voice' >
+    <img id='voiceGif' src="images/voice.gif" style='width:0% ; height:0%' >
+  </div>
+
+  <button id="record" disabled class='button' style='width:16%;height:7%'>
+    <img src="images/record.png" style='width:30px ; height:30px'>
+  </button>
+
+  <button id='Confirm' class='button'style='display:none; width:16%;height:7%'>
+    <img src="images/ThumbsUpGreen.png" style='width:30px ; height:30px;'>
+  </button>
+
+  <button id='exportButton' class='button' style='display:none; width:16%;height:7%'>
+    <a id='export'>
+        <img  src="images/Send.png" style='width:30px ; height:30px'></img>
+    </a>
+  </button>
+</div>
 <div align='center'>
 
   <video id='Sent'  class='video'  muted autoplay>
@@ -136,7 +173,7 @@
   </button>
 </div> -->
 
-<div id='voice' align='center'>
+<div id='voice' align='center' style='display:none'>
   <img src="images/voice.gif" style='width:98% ; height:60px'>
 </div>
 
@@ -144,9 +181,7 @@
         <!-- <button id="start" style='margin-top: 55px;width:80px;height:80px;background-color:green'>
             <img src="images/Microphone.png" style='width:60px ; height:60px'>
         </button> -->
-        <button id="record" disabled class='audioButtons' style='margin-top: 15px;width:47%;height:60px;border-color: grey; background-color:white'>
-          <img src="images/record.png" style='width:60px ; height:40px'>
-        </button>
+
         <button id="play" disabled class='audioButtons' style='margin-top: 15px;width:47%;height:60px;border-color: grey;background-color:white'>
           <img src="images/play.png" style='width:40px ; height:40px'>
         </button>
@@ -160,18 +195,18 @@
 <video id="gum" playsinline autoplay muted></video>
 <video id="recorded" playsinline loop></video>
 
-<div>
+<!-- <div>
   <button id="emoji"  style='margin-top: 10px;width:47%;height:60px;background-color:grey'>
     <img src="images/arrowLeft.png" style='width:60px ; height:40px'>
   </button>
 
-</div>
+</div> -->
 
-<div align='center' >
+<!-- <div align='center' >
   <button id="goBackToLandUse"  style='margin-top: 10px;width:47%;height:60px;background-color:grey'>
     <img src="images/arrowLeft.png" style='width:60px ; height:40px'>
   </button>
-</div>
+</div> -->
 
 <audio  id='finalScreen'>
   <source src="images/finalScreen.mp3"  type="audio/mp3">
@@ -194,6 +229,7 @@
 <script src="scripts/lib/leaflet/leaflet.js"></script>
 <script src="scripts/lib/jquery-3.4.1.min.js"></script>
 
+<script src="scripts/emojionearea-master/dist/emojionearea.js"></script>
 
 <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.draw.js"></script>
 <script src="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.js"></script>
