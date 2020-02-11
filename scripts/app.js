@@ -778,10 +778,11 @@ var drawnItems = new L.FeatureGroup();
                },
                polygon: {
                    allowIntersection: false, // Restricts shapes to simple polygons
-                   icon: new MyCustomMarker() ,
-                                     // icon: new L.DivIcon({
-                   //             iconSize: new L.Point(2, 2)}),
-                   //             className: 'leaflet-div-icon leaflet-editing-icon my-own-icon',
+                  // icon: new MyCustomMarker() ,
+                                     icon: new L.DivIcon({
+                               iconSize: new L.Point(80, 80),
+                               className: 'leaflet-div-icon leaflet-editing-icon my-own-icon',
+                             }),
 
                    drawError: {
                        color: '#e1e100', // Color the shape will turn when intersects
@@ -791,7 +792,26 @@ var drawnItems = new L.FeatureGroup();
                        color: '#919187'
                    }
 
+
                },
+               // polygon: {
+               //     allowIntersection: false, // Restricts shapes to simple polygons
+               //     icon: new MyCustomMarker() ,
+               //                       // icon: new L.DivIcon({
+               //     //             iconSize: new L.Point(2, 2)}),
+               //     //             className: 'leaflet-div-icon leaflet-editing-icon my-own-icon',
+               //
+               //     drawError: {
+               //         color: '#e1e100', // Color the shape will turn when intersects
+               //         // message: '<strong>Oh snap!<strong> you can\'t draw that!' // Message that will show when intersect
+               //     },
+               //     shapeOptions: {
+               //         color: '#919187'
+               //     }
+               //
+               //
+               // }
+
                circle: false, // Turns off this drawing tool
                rectangle: false,
                marker: true,
@@ -826,9 +846,9 @@ var drawnItems = new L.FeatureGroup();
 	}
 })();
 
-var drawPolygon = new L.Draw.Polygon(map, drawControl.options.polygon);
-var drawPolyline = new L.Draw.Polyline(map, drawControl.options.polyline);
-var drawMarker = new L.Draw.Marker(map, drawControl.options.marker);
+var drawPolygon = new L.Draw.Polygon(map, drawControl.options.draw.polygon);
+var drawPolyline = new L.Draw.Polyline(map, drawControl.options.draw.polyline);
+var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
 
 /////////////////////////////////////////Initial state of buttons //////////////////////////////////////
 
