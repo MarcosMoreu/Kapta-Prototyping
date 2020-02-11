@@ -25,6 +25,9 @@
 	        user-select: none;
 	  -webkit-user-drag: none;
 	}
+	.leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first{
+		background-color: #FF5733;
+	}
 /* Prevents IE11 from highlighting tiles in blue */
 .leaflet-tile::selection {
 	background: transparent;

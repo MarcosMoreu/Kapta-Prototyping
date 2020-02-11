@@ -780,16 +780,19 @@ var drawnItems = new L.FeatureGroup();
                    allowIntersection: false, // Restricts shapes to simple polygons
                   // icon: new MyCustomMarker() ,
                                      icon: new L.DivIcon({
-                               iconSize: new L.Point(80, 80),
-                               className: 'leaflet-div-icon leaflet-editing-icon my-own-icon',
+                               iconSize: new L.Point(15, 15),
+                               className: 'leaflet-div-icon',
+                            //   className: 'leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated',
+
+
                              }),
 
                    drawError: {
-                       color: '#e1e100', // Color the shape will turn when intersects
+                       color: 'red', // Color the shape will turn when intersects
                        // message: '<strong>Oh snap!<strong> you can\'t draw that!' // Message that will show when intersect
                    },
                    shapeOptions: {
-                       color: '#919187'
+                       color: 'pink'
                    }
 
 
@@ -846,7 +849,7 @@ var drawnItems = new L.FeatureGroup();
 	}
 })();
 
-var drawPolygon = new L.Draw.Polygon(map, drawControl.options.draw.polygon);
+var drawPolygon = new L.Draw.Polygon(map, drawControl.polygon);
 var drawPolyline = new L.Draw.Polyline(map, drawControl.options.draw.polyline);
 var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
 
@@ -1063,11 +1066,17 @@ document.getElementById("goBack2").onclick = function(e){
      return clickMapCount;
   }
 
-  map.on('draw:drawvertex',
-    function (e) {
-        $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
-        .css({ 'background-color': '#F905EA' });
-    });
+  // map.on('draw:drawvertex',
+  //   function (e) {
+  //       $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
+  //       .css({ 'background-color': '#F905EA' });
+  //   });
+
+    // map.on('draw:drawvertex',
+    //   function (e) {
+    //       $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
+    //       .css({ 'background-color': '#F905EA' });
+    //   });
       //this function must be inside the polygon onclick function
   map.on('draw:created', function (e) {
        //drawnItems.completeShape();
