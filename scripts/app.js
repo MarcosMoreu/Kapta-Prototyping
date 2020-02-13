@@ -782,6 +782,7 @@ var drawnItems = new L.FeatureGroup();
                                      icon: new L.DivIcon({
                                iconSize: new L.Point(15, 15),
                                className: 'leaflet-div-icon',
+
                             //   className: 'leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated',
 
 
@@ -828,7 +829,13 @@ var drawnItems = new L.FeatureGroup();
                remove: false
            }
        };
+       map.on('draw:drawvertex',
+         function (e) {
+             $(".leaflet-div-icon.leaflet-interactive:first")
+            // $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
 
+             .css({ 'background-color': '#F905EA' });
+         });
 
    var drawControl = new L.Control.Draw(options);
    // map.addControl(drawControl); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -849,7 +856,7 @@ var drawnItems = new L.FeatureGroup();
 	}
 })();
 
-var drawPolygon = new L.Draw.Polygon(map, drawControl.polygon);
+var drawPolygon = new L.Draw.Polygon(map, drawControl.options.draw.polygon);
 var drawPolyline = new L.Draw.Polyline(map, drawControl.options.draw.polyline);
 var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
 
