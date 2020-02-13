@@ -780,8 +780,11 @@ var drawnItems = new L.FeatureGroup();
                    allowIntersection: false, // Restricts shapes to simple polygons
                   // icon: new MyCustomMarker() ,
                                      icon: new L.DivIcon({
-                               iconSize: new L.Point(15, 15),
+                               iconSize: new L.Point(10, 10),
+
                                className: 'leaflet-div-icon',
+                               weight:5
+
 
                             //   className: 'leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated',
 
@@ -793,7 +796,7 @@ var drawnItems = new L.FeatureGroup();
                        // message: '<strong>Oh snap!<strong> you can\'t draw that!' // Message that will show when intersect
                    },
                    shapeOptions: {
-                       color: 'pink'
+                       color: '#00ff00'
                    }
 
 
@@ -829,13 +832,23 @@ var drawnItems = new L.FeatureGroup();
                remove: false
            }
        };
-       map.on('draw:drawvertex',
-         function (e) {
-             $(".leaflet-div-icon.leaflet-interactive:first")
-            // $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
 
-             .css({ 'background-color': '#F905EA' });
-         });
+
+         map.on('draw:drawvertex',
+           function (e) {
+               $(".leaflet-div-icon")
+              // $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
+
+               .css({ 'background-color': 'green','border-radius': '10px', 'height':'10px', 'width':'10px'});
+           });
+           map.on('draw:drawvertex',
+             function (e) {
+                 $(".leaflet-div-icon.leaflet-interactive:first")
+                // $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
+
+                 .css({ 'background-color': '#F905EA','border-radius': '25px', 'height':'15px', 'width':'15px'});
+             });
+
 
    var drawControl = new L.Control.Draw(options);
    // map.addControl(drawControl); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -1257,7 +1270,7 @@ document.getElementById("goBack2").onclick = function(e){
               // document.getElementById('Confirm').style.opacity = '0.1';
 
               //document.getElementById('goBackToLandUse').style.display = 'initial';
-              document.getElementById('voice').style.display = 'initial';
+              document.getElementById('voice').style.display = 'none';
               document.getElementById('voice').style.opacity = '0';
 
               // document.getElementById('LandUse').pause();
@@ -1287,7 +1300,8 @@ document.getElementById("goBack2").onclick = function(e){
     tones: false,
     autocomplete: false,
     inline: true,
-    hidePickerOnBlur: false
+    hidePickerOnBlur: false,
+    search: false
   });
 
   // var el = $("selector").emojioneArea();
