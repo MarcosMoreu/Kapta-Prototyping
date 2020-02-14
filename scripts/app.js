@@ -1301,7 +1301,8 @@ document.getElementById("goBack2").onclick = function(e){
     autocomplete: false,
     inline: true,
     hidePickerOnBlur: false,
-    search: false
+    search: false,
+    placeholder: "Land use..."
   });
 
   // var el = $("selector").emojioneArea();

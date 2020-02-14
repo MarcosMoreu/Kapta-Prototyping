@@ -194,9 +194,9 @@ document = window.document || {};
                 autocorrect       : "off",
                 autocapitalize    : "off",
             },
-            search            : true,
-            placeholder       : null,
-            emojiPlaceholder  : ":smiley:",
+            search            : false,
+            placeholder       : true,
+            emojiPlaceholder  : "earth_africa",
             searchPlaceholder : "SEARCH",
             container         : null,
             hideSource        : true,
@@ -270,7 +270,7 @@ document = window.document || {};
 
                 smileys_people: {
                     icon: "earth_africa",
-                    title: "Land uses",
+                    title: "Land uses ",
                     emoji: "grinning smiley smile grin laughing sweat_smile joy rofl relaxed blush innocent slight_smile upside_down " +
                     "wink relieved crazy_face star_struck heart_eyes kissing_heart kissing kissing_smiling_eyes kissing_closed_eyes yum " +
                     "stuck_out_tongue_winking_eye stuck_out_tongue_closed_eyes stuck_out_tongue money_mouth hugging nerd sunglasses " +
@@ -311,7 +311,7 @@ document = window.document || {};
 
                 animals_nature: {
                     icon: "neutral_face",
-                    title: "Land Rights",
+                    title: "Land uses",
                     emoji: "dog cat mouse hamster rabbit fox bear panda_face koala tiger lion_face cow pig pig_nose frog monkey_face see_no_evil " +
                     "hear_no_evil speak_no_evil monkey chicken penguin bird baby_chick hatching_chick hatched_chick duck eagle owl bat wolf boar " +
                     "horse unicorn bee bug butterfly snail shell beetle ant spider spider_web turtle snake lizard scorpion crab squid octopus shrimp " +
@@ -329,7 +329,7 @@ document = window.document || {};
 
                 food_drink: {
                     icon: "speaking_head",
-                    title: "Land Restrictions",
+                    title: "Land uses",
                     emoji: "green_apple apple pear tangerine lemon banana watermelon grapes strawberry melon cherries peach pineapple kiwi " +
                     "avocado tomato eggplant cucumber carrot corn hot_pepper potato sweet_potato chestnut peanuts honey_pot croissant " +
                     "bread french_bread cheese egg cooking bacon pancakes fried_shrimp poultry_leg meat_on_bone pizza hotdog hamburger " +
@@ -342,7 +342,7 @@ document = window.document || {};
 
                 activity: {
                     icon: "busts_in_silhouette",
-                    title: "Land Responsibilities",
+                    title: "Land uses",
                     emoji: "soccer basketball football baseball tennis volleyball rugby_football 8ball ping_pong badminton goal hockey field_hockey " +
                     "cricket_game golf bow_and_arrow fishing_pole_and_fish boxing_glove martial_arts_uniform ice_skate ski skier snowboarder " +
                     "woman_lifting_weights man_lifting_weights person_fencing women_wrestling men_wrestling woman_cartwheeling " +
