@@ -4,15 +4,13 @@ var pointsSapelli ={
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
 
-{ "type": "Feature", "properties": { "landuse": 1, "DeviceId": "1135562242", "StartTime": "2019\/08\/13 15:10:32" }, "geometry": { "type": "Point", "coordinates": [ 20.5047116, -19.5914482 ] } },
-{ "type": "Feature", "properties": { "landuse": 1, "DeviceId": "1135562242", "StartTime": "2019\/08\/13 15:08:10" }, "geometry": { "type": "Point", "coordinates": [ 20.5035004, -19.5918552 ] } },
-{ "type": "Feature", "properties": { "landuse": 1, "DeviceId": "1135562242", "StartTime": "2019\/08\/13 14:57:27" }, "geometry": { "type": "Point", "coordinates": [ 20.5058281, -19.595553 ] } },
-{ "type": "Feature", "properties": { "landuse": 1, "DeviceId": "1135562242", "StartTime": "2019\/08\/13 14:49:04" }, "geometry": { "type": "Point", "coordinates": [ 20.5056082, -19.5955303 ] } },
-{ "type": "Feature", "properties": { "landuse": 1, "DeviceId": "1135562242", "StartTime": "2019\/08\/13 13:21:26" }, "geometry": { "type": "Point", "coordinates": [ 20.505709, -19.5955182 ] } },
-{ "type": "Feature", "properties": { "landuse": 1, "DeviceId": "1135562242", "StartTime": "2019\/08\/13 10:42:02" }, "geometry": { "type": "Point", "coordinates": [ 20.5057855, -19.5957291 ] } },
-{ "type": "Feature", "properties": { "landuse": 1, "DeviceId": "1135562242", "StartTime": "2019\/08\/13 10:38:46" }, "geometry": { "type": "Point", "coordinates": [ 20.5058277, -19.5955427 ] } },
-{ "type": "Feature", "properties": { "landuse": 1, "DeviceId": "1135562242", "StartTime": "2019\/08\/12 21:39:47" }, "geometry": { "type": "Point", "coordinates": [ 20.3706885, -19.7389991 ] } },
-{ "type": "Feature", "properties": { "landuse": 1, "DeviceId": "4151427058", "StartTime": "2019\/08\/12 21:44:01" }, "geometry": { "type": "Point", "coordinates": [ 20.3706428, -19.7389953 ] } }
+{ "type": "Feature", "properties": { "landuse": 1, "DeviceId": "1135562242", "StartTime": "2019\/08\/13 15:10:32" }, "geometry": { "type": "Point", "coordinates": [ 35.507470, 0.670322 ] } },
+{ "type": "Feature", "properties": { "landuse": 1, "DeviceId": "1135562242", "StartTime": "2019\/08\/13 15:08:10" }, "geometry": { "type": "Point", "coordinates": [ 35.507471, 0.670321 ] } },
+{ "type": "Feature", "properties": { "landuse": 1, "DeviceId": "1135562242", "StartTime": "2019\/08\/13 14:57:27" }, "geometry": { "type": "Point", "coordinates": [ 35.507472, 0.670323 ] } },
+{ "type": "Feature", "properties": { "landuse": 1, "DeviceId": "1135562242", "StartTime": "2019\/08\/13 14:49:04" }, "geometry": { "type": "Point", "coordinates": [ 35.5, 0.67461] } },
+{ "type": "Feature", "properties": { "landuse": 1, "DeviceId": "1135562242", "StartTime": "2019\/08\/13 13:21:26" }, "geometry": { "type": "Point", "coordinates": [ 35.5, 0.674609] } }
+
+
 
 ]
 }

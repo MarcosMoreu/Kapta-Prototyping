@@ -3,7 +3,7 @@ var denui = {
 "name": "denui",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "fid": 1, "landUses": "itIsNotYourBusiness", "dateTime": "itIsNotYourBusiness", "participantLocation": "-19.5901077,20.5008763", "randomID": 5103, "layer": null, "path": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 20.391149, -19.80719 ], [ 20.396897, -19.80598 ], [ 20.401187, -19.801865 ], [ 20.400157, -19.79791 ], [ 20.393637, -19.797668 ], [ 20.389862, -19.800251 ], [ 20.387717, -19.803075 ], [ 20.386774, -19.804285 ], [ 20.391149, -19.80719 ] ] ] } }
+{ "type": "Feature", "properties": { "fid": 1, "landUses": "itIsNotYourBusiness", "dateTime": "itIsNotYourBusiness", "participantLocation": "-19.5901077,20.5008763", "randomID": 5103, "layer": null, "path": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 0.670322, 35.507471 ], [ 0.670322, 35.507472 ], [ 0.670322, 35.507473 ], [ 0.670322, 35.507474 ] ] ] } }
 
 
 ]

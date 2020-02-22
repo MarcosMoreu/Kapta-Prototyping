@@ -90,45 +90,45 @@ var tilesDb = {
 
 // Script to hide audio button after first load. Run function on load, could also run on dom ready
 var isFirstTime; //var to store if the site is visited for the first time
-
-var firstLoad = function() {//fucntion to determine if the site is visited for first time
-    // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
-    if(typeof window.localStorage !== "undefined" && !localStorage.getItem('visited')) {
-         // Set visited flag in local storage
-         localStorage.setItem('visited', true);
-         // Alert the user
-        // document.getElementById("startMapping").style.visibility = "hidden";
-         document.getElementById("unmute").style.visibility = "visible";
-         isFirstTime = true;
-         console.log(isFirstTime)
-         //alert("Hello my friend. This is your first visit.");
-    }else {
-  //    document.getElementById("startMapping").style.visibility = "visible";
-    //  document.getElementById("unmute").style.visibility = "hidden";
-
-
-      function catchAudioError() { //function to avoid uncaught promise when loading audio tutorial
-       try {
-    //////     document.getElementById("audioTutorial").play();
-       } catch (e) {
-      }
-     }
-
-      isFirstTime = false;
-      console.log(isFirstTime)
-
-    }
-    return isFirstTime;
-}
-window.onload = firstLoad;
-firstLoad();
-console.log(isFirstTime);
+////////////////////////////////////////////////////////      first load         /////////////////////////////////////////////////////////////////////////
+// var firstLoad = function() {//fucntion to determine if the site is visited for first time
+//     // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
+//     if(typeof window.localStorage !== "undefined" && !localStorage.getItem('visited')) {
+//          // Set visited flag in local storage
+//          localStorage.setItem('visited', true);
+//          // Alert the user
+//         // document.getElementById("startMapping").style.visibility = "hidden";
+//          document.getElementById("unmute").style.visibility = "visible";
+//          isFirstTime = true;
+//          console.log(isFirstTime)
+//          //alert("Hello my friend. This is your first visit.");
+//     }else {
+//   //    document.getElementById("startMapping").style.visibility = "visible";
+//     //  document.getElementById("unmute").style.visibility = "hidden";
+//
+//
+//       function catchAudioError() { //function to avoid uncaught promise when loading audio tutorial
+//        try {
+//     //////     document.getElementById("audioTutorial").play();
+//        } catch (e) {
+//       }
+//      }
+//
+//       isFirstTime = false;
+//       console.log(isFirstTime)
+//
+//     }
+//     return isFirstTime;
+// }
+// window.onload = firstLoad;
+// firstLoad();
+// console.log(isFirstTime);
 
 /////////////////////////////////////////////////////////adding map elements///////////////////////////////////////////////////
 var map = L.map('map',{
         editable:true,
-        center: [-19.7391716,20.3707833],
-        zoom: 12,
+        center: [0.670322, 35.507470],
+        zoom: 14,
         minZoom:10,
         maxZoom:18,
         zoomControl:false,
@@ -260,7 +260,7 @@ var communityIcon = L.icon({
     //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
-var community1 = L.marker([-19.7391716,20.3707833], {icon:communityIcon}).addTo(map);
+//var community1 = L.marker([0.670322, 35.507470], {icon:communityIcon}).addTo(map);
 
 // var AOI_Test_Namibia = {
 // "type": "FeatureCollection",
@@ -354,6 +354,22 @@ var pointsIcon = L.icon({
 //   weight:2,
 //   iconUrl: 'images/whiteDot.png'
 // }).addTo(map);
+
+var pointsSap = L.geoJson(pointsSapelli,{
+  iconUrl: 'images/whiteDot.png',
+  color:'#03FAFC',
+  opacity: 5,
+  fillOpacity: 0.2,
+  weight:2
+})//.addTo(map);
+
+var markers = L.markerClusterGroup({
+  spiderfyOnMaxZoom: true,
+showCoverageOnHover: true,
+zoomToBoundsOnClick: true
+});
+markers.addLayer(pointsSap);
+map.addLayer(markers);
 
 var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb,{
         minZoom: 3,
@@ -469,8 +485,23 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
             });
 
-        var planet = L.layerGroup([planetS1,planetS2,planetS3,planetS4,planetS5,planetS6,planetS7,planetS8,planetS9,planetS10,
-                                  planetS11,planetS12,planetS13,planetS14,planetS15,planetS16,planetS17,planetS18]);
+            var planetS20 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200218_064237_0f2a/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                   maxZoom: 18,
+                   maxNativeZoom: 20,
+                   subdomains:['tiles0','tiles1','tiles2','tiles3'],
+                     attribution: 'Planet Imagery FEBRUARY 2020'
+               });
+            var planetS21 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200218_064236_0f2a/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                   maxZoom: 18,
+                   maxNativeZoom: 20,
+                   subdomains:['tiles0','tiles1','tiles2','tiles3'],
+               });
+
+
+
+        // var planet = L.layerGroup([planetS1,planetS2,planetS3,planetS4,planetS5,planetS6,planetS7,planetS8,planetS9,planetS10,
+        //                           planetS11,planetS12,planetS13,planetS14,planetS15,planetS16,planetS17,planetS18]);
+        var planet = L.layerGroup([planetS20,planetS21]);
 
 var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
     saveButtonHtml: '<img src="images/download.png" width=15px ; height=15px>',
@@ -527,13 +558,25 @@ var offlineControlOSM = L.control.offline(osm, tilesDb, {
 //offlineControlGoogle.addTo(map);
 //offlineControlOSM.addTo(map);
 
+var gpsIcon = L.icon({
+    iconUrl: 'images/man.png',
+  //  shadowUrl: 'leaf-shadow.png',
+
+    iconSize:     [40, 40], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [20, 40], // point of the icon which will correspond to marker's location
+    //shadowAnchor: [4, 62],  // the same for the shadow
+    //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
+
 // add location via browser geolocation
 var currentLocation = []; // variable created to allow the user recenter the map.
 
 function displayLocation(position) {
     var lat = position.coords.latitude;
     var lng = position.coords.longitude;
-    L.marker([lat, lng]).addTo(map);
+    L.marker([lat, lng],{icon:gpsIcon}).addTo(map);
     //console.log('{longitude:' + lng + ', latitude:' + lat + '}');
   //  map.setView([lat, lng], 15);
     currentLocation = [lat,lng];
@@ -839,7 +882,7 @@ var drawnItems = new L.FeatureGroup();
                $(".leaflet-div-icon")
               // $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
 
-               .css({ 'background-color': 'green','border-radius': '10px', 'height':'10px', 'width':'10px'});
+               .css({ 'background-color': '#DAFDC4','border-radius': '10px', 'height':'10px', 'width':'10px'});
            });
            map.on('draw:drawvertex',
              function (e) {
@@ -952,7 +995,7 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
               console.log('location'+ currentLocation)
                 if(currentLocation[0]==null){
                 //  home_Button.addTo(map);
-                  L.marker([-19.7391716,20.3707833], {icon:communityIcon}).addTo(map);
+                //  L.marker([0.670322, 35.507470], {icon:communityIcon}).addTo(map);
                 }else{
                   gps_Button.addTo(map);
                 }
