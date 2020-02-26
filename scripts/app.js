@@ -232,13 +232,13 @@ rose.addTo(map)
 //chat emoji ui///
 
 
-$(document).ready(function() {
-	$("#emojionearea1").emojioneArea({
-  	pickerPosition: "left",
-    tonesStyle: "bullet"
-  });
-
-});
+// $(document).ready(function() {
+// 	$("#emojionearea1").emojioneArea({
+//   	pickerPosition: "left",
+//     tonesStyle: "bullet"
+//   });
+//
+// });
 
 
 var AOI = L.geoJson(AOI_Tsumkwe,{
@@ -1342,7 +1342,7 @@ document.getElementById("goBack2").onclick = function(e){
   	filtersPosition: "bottom",
     tones: false,
     autocomplete: false,
-    inline: true,
+    inline: false,
     hidePickerOnBlur: false,
     search: false,
     placeholder: "Land use..."
