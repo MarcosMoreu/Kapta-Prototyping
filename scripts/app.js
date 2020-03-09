@@ -129,8 +129,8 @@ var map = L.map('map',{
         editable:true,
         center: [0.670322, 35.507470],
         zoom: 14,
-        minZoom:10,
-        maxZoom:18,
+        minZoom:5,
+        maxZoom:21,
         zoomControl:false,
        attributionControl:false
       });
@@ -373,7 +373,7 @@ map.addLayer(markers);
 
 var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb,{
         minZoom: 3,
-        maxZoom: 18,
+        maxZoom: 21,
       //  maxNativeZoom: 20,
         //transparent: false,
         //border: 'solid black 5px',
@@ -940,8 +940,8 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
            document.getElementById("polygon").style.display = "initial";
            document.getElementById("polyline").style.display = "initial";
            document.getElementById("point").style.display = "initial";
-           document.getElementById("polyline").style.opacity = "0.15";
-           document.getElementById("point").style.opacity = "0.15";
+           // document.getElementById("polyline").style.opacity = "0.15";
+           // document.getElementById("point").style.opacity = "0.15";
 
            // document.getElementById('googleSat').style.visibility='hidden';
            // document.getElementById('planet').style.visibility='hidden';
@@ -1342,7 +1342,7 @@ document.getElementById("goBack2").onclick = function(e){
   	filtersPosition: "bottom",
     tones: false,
     autocomplete: false,
-    inline: false,
+    inline: false,  //text box resizes with text input
     hidePickerOnBlur: false,
     search: false,
     placeholder: "Land use..."
