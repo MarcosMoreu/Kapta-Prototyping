@@ -730,6 +730,7 @@ var gps_Button = L.easyButton({
         //  btn.button.style.backgroundColor = 'black';
         //  home_Button.addTo(map);
         //  gps_Button.removeFrom(map);
+      // console.log(currentLocation)
 
         }
     }]
