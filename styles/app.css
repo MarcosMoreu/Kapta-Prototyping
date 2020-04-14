@@ -5,7 +5,8 @@ body {
     padding: 0;
     margin: 0;
     background-color: white;
-    overflow:hidden
+    overflow:hidden;
+
 }
 html,body {
     height: 100%;
@@ -13,14 +14,14 @@ html,body {
 
 }
 
-#map {
+map {
 
     position:relative;
     margin-bottom:100;
 
     width: 100%;
 
-    z-index: 2;
+    /* z-index: -1; */
 
 }
 
@@ -35,8 +36,10 @@ html,body {
 }
 
 .button {
-
-  margin-top: 2px;
+  width:50px;
+  height:50px;
+  border-radius: 50px;
+  /* margin-top: 200px; */
 
   background-color: white; /* Green */
   /* border: true; */
@@ -45,36 +48,37 @@ html,body {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  height:10%;
   border: 2px solid grey;
-  position:center;
+  position:relative;
   /* font-size: 16px; */
   /* width:100%; */
-  border-radius: 40px;
+
   background-color:#ededf0;
+  /* z-index:10; */
 }
 
 .button:active {
-
-  /* transform: translateY(4px);
+  /* border:2px solid yellow; */
+  /* background-color: grey; */
+  /* box-shadow: 0 5px white; */
+  /* transform: translateY(4px); */
 }
 
 
 
 .buttonsFirstLastScreen {
-visibility:hidden;
   background-color: white; /* Green */
   /* border: true; */
   /* color: black; */
   /* padding: 15px 32px; */
-  /* text-align: center;
+  text-align: center;
   text-decoration: none;
   display: inline;
 
   width: 200px;
-  position: absolute;
+  position: fixed;
   left: 50%;
-  margin-left: -100px; */
+  margin-left: -100px;
 
 }
 
@@ -84,7 +88,6 @@ visibility:hidden;
   /* box-shadow: 0 5px white; */
   transform: translateY(8px);
 }
-
 
 
 .video{

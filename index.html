@@ -27,43 +27,92 @@
   <!-- <iframe src="images/audio1.mp3" allow="autoplay" style="display:none" id="iframeAudio">
   </iframe> -->
 </head>
+<!-- <h1 style='height:5px'>5dd</h1> -->
+
+<!-- ////////////FORM///////////////
+<h1 style='height:5px'>5dd</h1>
+<form action="process.php">
+    <input type="text" name="data">
+    <input type="submit" value="Submitdddd">
+</form>
+/////////////////////////////// -->
+
+<!-- <h1>POST FORM</h1>
+<form method="POST" action="process.php">
+  <input type="text" name="name">
+  <input type="submit" value="Submit">
+</form>
+
+<h1>AJAX POST FORMdddd</h1>
+<form id="postForm">
+  <input type="text" name="nameX" id="name2">
+  <input type="submit" value="Submit">
+</form> -->
 
 <body>
 
-  <div id="map" style='height:88%'>
-    <div id="rose"> </div>
-  </div>
+<div id="map" style='height:100%; z-index:1; position:relative'>
+    <div id="rose" style='margin-bottom:90px'> </div>
+</div>
 
-<div align='center' >
-  <!-- <button id='goBack1' class='button'style='width:15% ; background-color:#c1c0c0'>
+<!-- <div>
+  <text style='color:white'>Contact us</text>
+
+<form id="postForm" visibility:hidden>
+  <input type="text" name="comment" id="comment">
+  <input type="submit" value="Post a comment">
+</form>
+</div> -->
+<div align='center'>
+  <button id='youtube' class='buttonsFirstLastScreen' align='center' style='bottom:55%; height:100px; border:none; background:black'>
+    <img src="images/youtube.png" style='width:125px ; height:125px'>
+  </button>
+  <button id='startMapping' class='buttonsFirstLastScreen' align='center' style='bottom:12%; height:100px; border:none; background:none'>
+    <img src="images/Start.png" style='width:50px ; height:50px'>
+  </button>
+  <text id='text' class='buttonsFirstLastScreen' style='color:white; bottom:55%; background:black' > Video under development</text>
+  <button id='spanish' class='buttonsFirstLastScreen' align='center' style='bottom:55%; height:100px; border:none; background:none'>
+    <img src="images/uk.png" style='width:40px ; height:40px'>
+  </button>
+  <button id='english' class='buttonsFirstLastScreen' align='center' style='bottom:45%; height:100px; border:none; background:none'>
+    <img src="images/spain.png" style='width:40px ; height:40px'>
+  </button>
+
+</div>
+
+<div align='center' style='z-index:2; position:relative; margin-top:-100px' >
+  <!-- <button id='goBack1' class='button'style=' background-color:#c1c0c0'>
     <img src="images/backButton.png" style='width:50px ; height:60px '>
   </button> -->
-  <button id='polygon' class='button' style='width:32%'>
-    <img src="images/drawPolygon.png" style='width:60px ; height:60px'>
+  <button id='goBack1' class='button' style='z-index:3;background-color:#c1c0c0; position:relative' action='process.php' name="data" type="submit">
+    <img src="images/backButton.png" style='width:30px ; height:30px'>
   </button>
-  <button id='polyline' class='button' style='width:32%'>
-    <img src="images/polyline.png" style='width:60px ; height:60px'>
+  <button id='polygon' class='button' style='z-index:3; position:relative' action='process.php' name="data" type="submit">
+    <img src="images/drawPolygon.png" style='width:30px ; height:30px'>
   </button>
-  <button id='point' class='button'style='width:32%'>
-    <img src="images/point.png" style='width:60px ; height:60px'>
+  <button id='polyline' class='button' >
+    <img src="images/polyline.png" style='width:30px ; height:30px'>
+  </button>
+  <button id='point' class='button'>
+    <img src="images/point.png" style='width:30px ; height:30px'>
   </button>
 </div>
 
-<div align='center' >
-  <button id='goBack2' class='button'style='display:none; width:15% ; background-color:#9C1F04'>
-    <img src="images/backButton.png" style='width:50px ; height:60px '>
+<div align='center' style='z-index:2; position:relative; margin-top:-100px'>
+  <button id='goBack2' class='button'style='display:none; background-color:#9C1F04'>
+    <img src="images/backButton.png" style='width:30px ; height:30px '>
   </button>
-  <button id='deleteLastVertex' class='button'style='display:none; width:27%'>
-    <img src="images/deleteLastvertex.png" style='width:60px ; height:60px'>
+  <button id='deleteLastVertex' class='button'>
+    <img src="images/deleteLastvertex.png" style='width:30px ; height:30px'>
   </button>
-  <button id='deleteAllVertexs' class='button'style='display:none; width:27%'>
-    <img src="images/deleteAllvertex.png" style='width:60px ; height:60px'>
+  <button id='deleteAllVertexs' class='button'>
+    <img src="images/deleteAllvertex.png" style='width:30px ; height:30px'>
   </button>
-  <button id='deletePolygon' class='button' style='display:none; width:27%'>
-    <img src="images/deletePolygon.png" style='width:60px ; height:60px'>
+  <button id='deletePolygon' class='button' >
+    <img src="images/deletePolygon.png" style='width:30px ; height:30px'>
   </button>
-  <button id='changeMapSize' class='button' style='display:none; width:27%'>
-    <img src="images/ThumbsUpGreen.png" style='width:60px ; height:60px'>
+  <button id='changeMapSize' class='button' >
+    <img src="images/ThumbsUpGreen.png" style='width:30px ; height:30px'>
   </button>
 </div>
 
@@ -105,9 +154,9 @@
     </a>
   </button>
 </div> -->
-
+<div align='center' style='z-index:2; position:relative; margin-top:-100px'>
 <div id='classification'  style='display:none; vertical-align:top'>
-  <button id='Cancel' class='button'style='width:16%; height:7%'>
+  <button id='Cancel' class='button'>
     <img src="images/cancel.png" style='width:30px ; height:30px'>
   </button>
 
@@ -123,21 +172,26 @@
     <img id='voiceGif' src="images/voice.gif" style='width:0% ; height:0%' >
   </div>
 
-  <button id="record" disabled class='button' style='width:16%;height:7%'>
+  <button id="recordFake" disabled class='button' style='opacity:0.5'>
     <img src="images/record.png" style='width:30px ; height:30px'>
   </button>
 
-  <button id='Confirm' class='button'style='display:none; width:16%;height:7%'>
+  <button id="record" disabled class='button' >
+    <img src="images/record.png" style='width:30px ; height:30px'>
+  </button>
+
+  <button id='Confirm' class='button'style='display:none'>
     <img src="images/ThumbsUpGreen.png" style='width:30px ; height:30px;'>
   </button>
 
-  <button id='exportButton' class='button' style='display:none; width:16%;height:7%'>
+  <button id='exportButton' class='button' style='display:none'>
     <a id='export'>
         <img  src="images/Send.png" style='width:30px ; height:30px'></img>
     </a>
   </button>
 </div>
-<div align='center'>
+</div>
+<div align='center' style='z-index:2; position:relative; margin-top:-100px'>
 
   <video id='Sent'  class='video'  muted autoplay>
     <source src="images/Sent.mp4"  type="video/mp4">
@@ -149,39 +203,27 @@
 <br></br>
 
 
-<audio  id='LandUse' loop>
+<!-- <audio  id='LandUse' loop style='z-index:2; position:relative; margin-top:-100px'>
   <source src="images/classification.mp3"  type="audio/mp3">
-  <!-- <div class="center">.</div> -->
 </audio>
 
-
-<!-- <div align='center'>
-  <button id="goToIdentification"  style='margin-top: 30px;width:47%;height:60px;background-color:grey'>
-    <img src="images/arrowRight.png" style='width:60px ; height:40px'>
-  </button>
-</div> -->
-
-
-<!-- ///////////////////////Identification////////////////////////////////////////////////////////////////////////////// -->
-
-<audio  id='Identification'>
+<audio  id='Identification' style='z-index:2; position:relative; margin-top:-100px'>
   <source src="images/audioRecording.mp3"  type="audio/mp3">
-  <!-- <div class="center">.</div> -->
-</audio>
+</audio> -->
 
 <!-- <div align='center' >
   <button id='start' class='button'style='width:98%;margin-top:120px'>
-    <img src="images/Microphone.png" style='width:60px ; height:60px'>
+    <img src="images/Microphone.png" style='width:30px ; height:30px'>
   </button>
 </div> -->
 
-<div id='voice' align='center' style='display:none'>
+<div id='voice'  align='center' style='display:none' style='z-index:2; position:relative; margin-top:-100px'>
   <img src="images/voice.gif" style='width:50% ; height:60px'>
 </div>
 
-<div align='center'>
+<div align='center' style='z-index:2; position:relative; margin-top:-100px'>
         <!-- <button id="start" style='margin-top: 55px;width:80px;height:80px;background-color:green'>
-            <img src="images/Microphone.png" style='width:60px ; height:60px'>
+            <img src="images/Microphone.png" style='width:30px ; height:30px'>
         </button> -->
 
         <button id="play" disabled class='audioButtons' style='margin-top: 15px;width:47%;height:60px;border-color: grey;background-color:white'>
@@ -210,7 +252,7 @@
   </button>
 </div> -->
 
-<audio  id='finalScreen'>
+<audio  id='finalScreen' style='z-index:2; position:relative; margin-top:-100px'>
   <source src="images/finalScreen.mp3"  type="audio/mp3">
   <!-- <div class="center">.</div> -->
 </audio>

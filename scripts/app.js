@@ -928,7 +928,7 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
            // window.onload = function (){
            //   document.getElementById("mappingInstructions").play();
            // };
-           //document.getElementById("startMapping").style.display = "none";
+          document.getElementById("startMapping").style.display = "none";
           // document.getElementById("goBack1").style.display = "none";
 
           document.getElementById("goBack2").style.display = "none";
@@ -1009,11 +1009,11 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
         //////      document.getElementById("mappingInstructions").play();
 
           //    document.getElementById("videoTutorial").style.display = "none";
-              //document.getElementById("startMapping").style.display = "none";
+              document.getElementById("startMapping").style.display = "none";
 
               document.getElementById("map").style.display = "block";
               //document.getElementById("map").style.height = "90%";
-            //  document.getElementById("goBack1").style.display = "initial";
+              document.getElementById("goBack1").style.display = "initial";
               document.getElementById("polygon").style.display = "initial";
               document.getElementById("polyline").style.display = "initial";
               document.getElementById("point").style.display = "initial";
@@ -1027,24 +1027,63 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
               // document.getElementById("deletePolygon").style.opacity = "0.15";
               // document.getElementById("deletePolygon").disabled = true;
 
+            document.getElementById('startMapping').onclick = function(e){
+              document.getElementById("startMapping").style.display = "none";
+              document.getElementById("spanish").style.display = "none";
+              document.getElementById("english").style.display = "none";
+              document.getElementById("youtube").style.display = "none";
+              document.getElementById("text").style.display = "none";
 
-          // document.getElementById("goBack1").onclick = function(e){
-          //
-          //   document.getElementById("mappingInstructions").pause();
-          //   document.getElementById("mappingInstructions").currentTime = 0;
-          //
-          //    document.body.style.backgroundColor = "black";
-          //    document.getElementById("map").style.display = "none";
-          //    document.getElementById("goBack1").style.display = "none";
-          //    document.getElementById("polygon").style.display = "none";
-          //    document.getElementById("polyline").style.display = "none";
-          //    document.getElementById("point").style.display = "none";
-          //    document.getElementById("videoTutorial").style.display = "initial";
-          //    document.getElementById("startMapping").style.display = "initial";
-          //    document.getElementById("audioTutorial").play();
-          //
-          //
-          //  }
+
+              document.getElementById("map").style.display = "block";
+              document.getElementById("goBack1").style.display = "initial";
+              document.getElementById("polygon").style.display = "initial";
+              document.getElementById("polyline").style.display = "initial";
+              document.getElementById("point").style.display = "initial";
+
+            }
+            document.getElementById("spanish").style.display = "none";
+            document.getElementById("english").style.display = "none";
+            document.getElementById("text").style.display = "none";
+
+          document.getElementById('youtube').onclick = function(e){
+              document.getElementById("youtube").style.display = "none";
+
+              document.getElementById("spanish").style.display = "initial";
+              document.getElementById("english").style.display = "initial";
+            }
+
+          document.getElementById('spanish').onclick = function(e){
+            document.getElementById("spanish").style.display = "none";
+            document.getElementById("english").style.display = "none";
+            document.getElementById("text").style.display = "initial";
+
+          }
+
+          document.getElementById('english').onclick = function(e){
+            document.getElementById("spanish").style.display = "none";
+            document.getElementById("english").style.display = "none";
+            document.getElementById("text").style.display = "initial";
+
+          }
+          document.getElementById("goBack1").onclick = function(e){
+
+            // document.getElementById("mappingInstructions").pause();
+            // document.getElementById("mappingInstructions").currentTime = 0;
+
+             document.body.style.backgroundColor = "black";
+             document.getElementById("map").style.display = "none";
+
+             document.getElementById("goBack1").style.display = "none";
+             document.getElementById("polygon").style.display = "none";
+             document.getElementById("polyline").style.display = "none";
+             document.getElementById("point").style.display = "none";
+             // document.getElementById("videoTutorial").style.display = "initial";
+             document.getElementById("startMapping").style.display = "initial";
+             document.getElementById("youtube").style.display = "initial";
+             // document.getElementById("audioTutorial").play();
+
+           }
 ///////////////////////////////////////////draw screen////////////////////////////////////////////////
 
 var created = false; //variable to determine whether a polygon has been completed.
@@ -1053,7 +1092,7 @@ var clickDelVertCount = 0;
 document.getElementById("goBack2").onclick = function(e){
       clickMapCount = 0;
 
-       //document.getElementById("goBack1").style.display = "initial";
+       document.getElementById("goBack1").style.display = "initial";
        document.getElementById("goBack2").style.display = "none";
        document.getElementById("polygon").style.display = "initial";
        document.getElementById("polyline").style.display = "initial";
@@ -1076,10 +1115,23 @@ document.getElementById("goBack2").onclick = function(e){
 
      }
 
+
+//var data = 'sok';
+var data1 = {
+  "id":1,
+  "name":"Rick",
+  "email":"rick@gmail.com"
+}
+//var data = JSON.stringify(data1);
+var data2 = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"landUses":"dd","dateTime":"2020_4_5__11_54_7","participantLocation":"41.546274499999996,2.1086131","randomID":5806},"geometry":{"type":"Polygon","coordinates":[[[35.482235,0.657286],[35.485239,0.64759],[35.494337,0.660976],[35.482235,0.657286]]]}}]};
+var data = JSON.stringify(data2);
+//var data = data2.toString();
+//var data = data1.toString();
+
   document.getElementById('polygon').onclick = function(e){
             clickMapCount = 0;
             drawPolygon.enable();
-          //  document.getElementById("goBack1").style.display = "none";
+            document.getElementById("goBack1").style.display = "none";
             document.getElementById("polygon").style.display = "none";
             document.getElementById("polyline").style.display = "none";
             document.getElementById("point").style.display = "none";
@@ -1093,8 +1145,104 @@ document.getElementById("goBack2").onclick = function(e){
             document.getElementById("changeMapSize").style.opacity = "0.15";
 
             document.getElementById("deletePolygon").style.display = "none";
+/////////////////// TRANSMISSION TEST /////////////////////
+        //
+        //     const toSend = {
+        //       name:'marcos',
+        //       age:32,
+        //       occupation:'researcher'
+        //     };
+        //
+        //     const jsonString = JSON.stringify(toSend);
+        //     //const url = 'http://167.71.129.243/'; //THE URL IS DEFINED IN THE PHP FILE
+        //
+        //     //create xhr object
+        //     const xhr = new XMLHttpRequest();//////
+        //     //open: type, url, async?
+        // //    xhr.open('POST',url, true);//////
+        //     xhr.open('POST','process.php', true);////// PHP!!!!!!!
+        //
+        //     //check for status of response
+        //     xhr.onload =  function(){
+        //       if(this.status == 200){
+        //         console.log(this.responseText);
+        //         }
+        //     };
+        //     // xhttp.onreadystatechange = function() {
+        //     //   if (this.readyState == 4 && this.status == 200) {
+        //     //     document.getElementById("demo").innerHTML = this.responseText;
+        //     //   }
+        //     // };
+        //
+        //     xhr.setRequestHeader('Content-Type','application/json');/////
+        //     //sends request
+        // //    xhr.send(jsonString);//////
+        //     xhr.send('marquitos');//////
+//////////////////////////////////////////////
 
+
+///////////////////////////test transmission /////////////////////////////////////////
+
+//   var xhr = new XMLHttpRequest();
+//   xhr.open('POST', 'process.php', true);
+//   xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+//   //xhr.setRequestHeader('Content-type', 'application/json');
+//
+//
+// //line to insert a js variable (name) with its value (var data) into the php file
+//       $.post("process.php",{name: data})
+//
+//
+//   xhr.onload = function(){
+//     console.log(this.responseText);
+//   }
+//
+//   xhr.send();
+
+//////////////////////////////////////////////////////////////////////////////////////////
+            // const toSend = {
+            //   name:'marcos',
+            //   age:32,
+            //   occupation:'researcher'
+            // };
+            // const jsonString = JSON.stringify(toSend);
+            // const url = 'http://167.71.129.243/';
+            //
+            // //create xhr object
+            // const xhr = new XMLHttpRequest();
+            // //open: type, url, async?
+            // xhr.open('GET', 'receive.php', true);
+            // //check for status of response
+            // xhr.onload =  function(){
+            //   if(this.status == 200){
+            //     console.log(this.responseText);
+            //     }
+            // }
+            //
+            // xhr.setRequestHeader('Content-Type','application/json');
+            // //sends request
+            // xhr.send(jsonString);
   };
+
+  ///////////////////////////////    test with POST FORM DEMO
+  // document.getElementById('postForm').addEventListener('submit', postName);
+  //
+  // function postName(e){
+  //   e.preventDefault();
+  //
+  //   var name = document.getElementById('name2').value;
+  //   var params = "name="+name;
+  //
+  //   var xhr = new XMLHttpRequest();
+  //   xhr.open('POST', 'process.php', true);
+  //   xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  //
+  //   xhr.onload = function(){
+  //     console.log(this.responseText);
+  //   }
+  //
+  //   xhr.send(params);
+  // }
 
   document.getElementById('map').onclick = function(e){
       // if(clickMapCount==0){
@@ -1322,8 +1470,8 @@ document.getElementById("goBack2").onclick = function(e){
 
           //    document.getElementById('Identification').play();
           //    document.getElementById('start').style.display = 'initial';
-              document.getElementById('record').style.display = 'initial';
-              document.getElementById('record').style.opacity = '1';
+              // document.getElementById('record').style.display = 'initial';
+              // document.getElementById('record').style.opacity = '0.5';
               // document.getElementById('play').style.display = 'initial';
               // document.getElementById('play').style.opacity = '0.1';
 
@@ -1369,58 +1517,58 @@ document.getElementById("goBack2").onclick = function(e){
 
 
 var recording=true;
-        document.getElementById('record').onclick = function(e){
-          // var boxContent = document.getElementById('emojionearea1').value;
-          // console.log(boxContent);
-
-            if(recording==true){  //recording true/false inverse.
-              this.style.backgroundColor = 'white';
-              //this.style.borderWidth = '2px';
-              //this.style.borderColor = 'transparent';
-          //    document.getElementById('play').style.opacity = '1';
-              document.getElementById('download').style.opacity = '1';
-              document.getElementById('emoji').style.display = 'initial';
-              document.getElementById('voice').style.display = 'none';
-              document.getElementById('voice').style.opacity = '0';
-              // document.getElementById('voice').style.width = '45%';
-              // document.getElementById('voice').style.height = '7%';
-
-              document.getElementById('Confirm').disabled = false;
-              document.getElementById('Confirm').style.opacity = '1';
-            }
-            if(recording==false){
-              this.style.backgroundColor = 'yellow';
-              //this.style.borderWidth = '8px';
-              //this.style.borderColor = 'black';
-            //  document.getElementById('play').style.opacity = '0.1';
-              document.getElementById('download').style.opacity = '0.1';
-              document.getElementById('emoji').style.display = 'none';
-
-              document.getElementById('voice').style.display = 'initial';
-              document.getElementById('voice').style.opacity = '1';
-              document.getElementById('voiceGif').style.width = '45%';
-              document.getElementById('voiceGif').style.height = '5%';
-
-
-
-
-      //        document.getElementById('goBackToLandUse').style.display = 'none';
-
-            }
-            document.getElementById('Identification').pause();
-            document.getElementById('Identification').currentTime = 0;
-
-           document.getElementById('gum').style.display = 'none';
-           document.getElementById('recorded').style.display = 'none';
-           document.getElementById('echoCancellation').style.display = 'none';
-
-      }
+      //   document.getElementById('record').onclick = function(e){
+      //     // var boxContent = document.getElementById('emojionearea1').value;
+      //     // console.log(boxContent);
+      //
+      //       if(recording==true){  //recording true/false inverse.
+      //         this.style.backgroundColor = 'white';
+      //         //this.style.borderWidth = '2px';
+      //         //this.style.borderColor = 'transparent';
+      //     //    document.getElementById('play').style.opacity = '1';
+      //         document.getElementById('download').style.opacity = '1';
+      //         document.getElementById('emoji').style.display = 'initial';
+      //         document.getElementById('voice').style.display = 'none';
+      //         document.getElementById('voice').style.opacity = '0';
+      //         // document.getElementById('voice').style.width = '45%';
+      //         // document.getElementById('voice').style.height = '7%';
+      //
+      //         document.getElementById('Confirm').disabled = false;
+      //         document.getElementById('Confirm').style.opacity = '1';
+      //       }
+      //       if(recording==false){
+      //         this.style.backgroundColor = 'yellow';
+      //         //this.style.borderWidth = '8px';
+      //         //this.style.borderColor = 'black';
+      //       //  document.getElementById('play').style.opacity = '0.1';
+      //         document.getElementById('download').style.opacity = '0.1';
+      //         document.getElementById('emoji').style.display = 'none';
+      //
+      //         document.getElementById('voice').style.display = 'initial';
+      //         document.getElementById('voice').style.opacity = '1';
+      //         document.getElementById('voiceGif').style.width = '45%';
+      //         document.getElementById('voiceGif').style.height = '5%';
+      //
+      //
+      //
+      //
+      // //        document.getElementById('goBackToLandUse').style.display = 'none';
+      //
+      //       }
+      //       document.getElementById('Identification').pause();
+      //       document.getElementById('Identification').currentTime = 0;
+      //
+      //      document.getElementById('gum').style.display = 'none';
+      //      document.getElementById('recorded').style.display = 'none';
+      //      document.getElementById('echoCancellation').style.display = 'none';
+      //
+      // }
 var boxContent;
 
       document.getElementById('Confirm').onclick = function(e) {
             goToDS = 1;
-            document.getElementById("Identification").pause();
-            document.getElementById("Identification").currentTime = 0;
+            // document.getElementById("Identification").pause();
+            // document.getElementById("Identification").currentTime = 0;
 
              document.getElementById("Confirm").style.display = "none";
             // document.getElementById("Cancel").style.display = "none";
@@ -1464,7 +1612,7 @@ var boxContent;
              document.getElementById("map").style.display = "block";
              document.getElementById("map").style.height = "88%";
 
-            //document.getElementById("goBack1").style.display = "initial";
+            document.getElementById("goBack1").style.display = "initial";
              document.getElementById("polygon").style.display = "initial";
              document.getElementById("polyline").style.display = "initial";
              document.getElementById("point").style.display = "initial";
@@ -1566,14 +1714,35 @@ var layer1;
                 //                          + encodeURIComponent(JSON.stringify(currentLocation))
                 //                          + encodeURIComponent(JSON.stringify(dateTime));
 
+                ////////////////////////  TRANSMISSION ////////////////////////////////////////
+                                var toSend = JSON.stringify(data)
+                                var xhr = new XMLHttpRequest();
+                                xhr.open('POST', 'process.php', true);
+                                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                                //xhr.setRequestHeader('Content-type', 'application/json');
 
+
+                                //line to insert a js variable (name) with its value (var data) into the php file
+                                    $.post("process.php",{name: toSend})
+
+                                    // function(data,status){
+                                    //     document.getElementById("saveWarningText").innerHTML = data;
+                                    //     $( "#saveWarningText" ).fadeIn(100);
+                                    //     setTimeout(function(){ $( "#saveWarningText" ).fadeOut(100); }, 3000);
+                                    // });
+
+                                // xhr.onload = function(){
+                                //   console.log(this.responseText);
+                                // }
+                                //
+                                // xhr.send();
 
 
                 //console.log(convertedData)
                 // Create export
                 document.getElementById('export').setAttribute('href', 'data:' + convertedData);
                 //document.getElementById('export').setAttribute('href', 'data:' + convertedData + convertedText );
-
+                console.log(convertedData)
 
                 document.getElementById('export').setAttribute('download',dateTimeRandomID);
                 layer1=data;
@@ -1642,6 +1811,14 @@ var layer1;
               var tempName = randomID // each polygon must have a different name!!!
               var layerToLocalStorage = localStorage.setItem(tempName, dataStringified);
               console.log(dataStringified);
+
+//////////////////// TRANSMISSION /////////////////////
+              // var ourRequest = new XMLHttpRequest();
+              // var theURL = 'http://178.62.113.144/';
+              // ourRequest.open('POST',theURL);
+              // ourRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+              // ourRequest.send(JSON.stringify({ "email": "hello@user.com", "response": { "name": "Tester" } }));
+
 
       return layer1;
   }
