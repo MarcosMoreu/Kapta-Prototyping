@@ -152,8 +152,7 @@ var scale = L.control.scale({
   imperial:false,
 }).addTo(map);
 
-var rose = L.control.rose('rose', {position:'bottomright', icon:'nautical', iSize:'large', opacity:1});
-rose.addTo(map)
+
 //wwwwwwwwwwwwwww
 //note that google tile layer must be copied using mt instead of {s}
 // var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb, {
@@ -742,7 +741,8 @@ gps_Button.button.style.transitionDuration = '.3s';
 gps_Button.button.style.backgroundColor = 'white';
 gps_Button.addTo(map);
 
-
+var rose = L.control.rose('rose', {position:'topleft', icon:'nautical', iSize:'medium', opacity:1});
+rose.addTo(map)
 
 ///////////////messages for tile download/////////
 googleSat.on('offline:save-start', function (data) {
@@ -928,7 +928,7 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
            // window.onload = function (){
            //   document.getElementById("mappingInstructions").play();
            // };
-          document.getElementById("startMapping").style.display = "none";
+          //document.getElementById("startMapping").style.display = "none";
           // document.getElementById("goBack1").style.display = "none";
 
           document.getElementById("goBack2").style.display = "none";
@@ -941,8 +941,8 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
            document.getElementById("polygon").style.display = "initial";
            document.getElementById("polyline").style.display = "initial";
            document.getElementById("point").style.display = "initial";
-           // document.getElementById("polyline").style.opacity = "0.15";
-           // document.getElementById("point").style.opacity = "0.15";
+           // document.getElementById("polyline").style.opacity = "0.35";
+           // document.getElementById("point").style.opacity = "0.35";
 
            // document.getElementById('googleSat').style.visibility='hidden';
            // document.getElementById('planet').style.visibility='hidden';
@@ -1009,7 +1009,7 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
         //////      document.getElementById("mappingInstructions").play();
 
           //    document.getElementById("videoTutorial").style.display = "none";
-              document.getElementById("startMapping").style.display = "none";
+              //document.getElementById("startMapping").style.display = "none";
 
               document.getElementById("map").style.display = "block";
               //document.getElementById("map").style.height = "90%";
@@ -1018,59 +1018,59 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
               document.getElementById("polyline").style.display = "initial";
               document.getElementById("point").style.display = "initial";
 
-              document.getElementById("deleteLastVertex").style.opacity = "0.15";
+              document.getElementById("deleteLastVertex").style.opacity = "0.35";
               document.getElementById("deleteLastVertex").disabled = true;
-              document.getElementById("deleteAllVertexs").style.opacity = "0.15";
+              document.getElementById("deleteAllVertexs").style.opacity = "0.35";
               document.getElementById("deleteAllVertexs").disabled = true;
               document.getElementById("deletePolygon").style.display = 'none';
 
-              // document.getElementById("deletePolygon").style.opacity = "0.15";
+              // document.getElementById("deletePolygon").style.opacity = "0.35";
               // document.getElementById("deletePolygon").disabled = true;
 
-            document.getElementById('startMapping').onclick = function(e){
-              document.getElementById("startMapping").style.display = "none";
-              document.getElementById("spanish").style.display = "none";
-              document.getElementById("english").style.display = "none";
-              document.getElementById("youtube").style.display = "none";
-              document.getElementById("text").style.display = "none";
+            // document.getElementById('startMapping').onclick = function(e){
+            //   document.getElementById("startMapping").style.display = "none";
+            //   document.getElementById("spanish").style.display = "none";
+            //   document.getElementById("english").style.display = "none";
+            //   document.getElementById("youtube").style.display = "none";
+            //   document.getElementById("text").style.display = "none";
+            //
+            //
+            //   document.getElementById("map").style.display = "block";
+            //   document.getElementById("goBack1").style.display = "initial";
+            //   document.getElementById("polygon").style.display = "initial";
+            //   document.getElementById("polyline").style.display = "initial";
+            //   document.getElementById("point").style.display = "initial";
+            //
+            // }
+            // document.getElementById("spanish").style.display = "none";
+            // document.getElementById("english").style.display = "none";
+            // document.getElementById("text").style.display = "none";
 
-
-              document.getElementById("map").style.display = "block";
-              document.getElementById("goBack1").style.display = "initial";
-              document.getElementById("polygon").style.display = "initial";
-              document.getElementById("polyline").style.display = "initial";
-              document.getElementById("point").style.display = "initial";
-
-            }
-            document.getElementById("spanish").style.display = "none";
-            document.getElementById("english").style.display = "none";
-            document.getElementById("text").style.display = "none";
-
-          document.getElementById('youtube').onclick = function(e){
-              document.getElementById("youtube").style.display = "none";
-
-              document.getElementById("spanish").style.display = "initial";
-              document.getElementById("english").style.display = "initial";
-            }
-
-          document.getElementById('spanish').onclick = function(e){
-            document.getElementById("spanish").style.display = "none";
-            document.getElementById("english").style.display = "none";
-            document.getElementById("text").style.display = "initial";
-
-          }
-
-          document.getElementById('english').onclick = function(e){
-            document.getElementById("spanish").style.display = "none";
-            document.getElementById("english").style.display = "none";
-            document.getElementById("text").style.display = "initial";
-
-          }
+          // document.getElementById('youtube').onclick = function(e){
+          //     document.getElementById("youtube").style.display = "none";
+          //
+          //     document.getElementById("spanish").style.display = "initial";
+          //     document.getElementById("english").style.display = "initial";
+          //   }
+          //
+          // document.getElementById('spanish').onclick = function(e){
+          //   document.getElementById("spanish").style.display = "none";
+          //   document.getElementById("english").style.display = "none";
+          //   document.getElementById("text").style.display = "initial";
+          //
+          // }
+          //
+          // document.getElementById('english').onclick = function(e){
+          //   document.getElementById("spanish").style.display = "none";
+          //   document.getElementById("english").style.display = "none";
+          //   document.getElementById("text").style.display = "initial";
+          //
+          // }
           document.getElementById("goBack1").onclick = function(e){
 
             // document.getElementById("mappingInstructions").pause();
             // document.getElementById("mappingInstructions").currentTime = 0;
-
+             window.location.href ='pages/tutorial.html';
              document.body.style.backgroundColor = "black";
              document.getElementById("map").style.display = "none";
 
@@ -1079,8 +1079,8 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
              document.getElementById("polyline").style.display = "none";
              document.getElementById("point").style.display = "none";
              // document.getElementById("videoTutorial").style.display = "initial";
-             document.getElementById("startMapping").style.display = "initial";
-             document.getElementById("youtube").style.display = "initial";
+            // document.getElementById("startMapping").style.display = "initial";
+            // document.getElementById("youtube").style.display = "initial";
              // document.getElementById("audioTutorial").play();
 
            }
@@ -1103,9 +1103,9 @@ document.getElementById("goBack2").onclick = function(e){
        document.getElementById("changeMapSize").style.display = "none";
        document.getElementById("deletePolygon").style.display = "none";
 
-       document.getElementById("deleteLastVertex").style.opacity = "0.15";
+       document.getElementById("deleteLastVertex").style.opacity = "0.35";
        document.getElementById("deleteLastVertex").disabled = true;
-       document.getElementById("deleteAllVertexs").style.opacity = "0.15";
+       document.getElementById("deleteAllVertexs").style.opacity = "0.35";
        document.getElementById("deleteAllVertexs").disabled = true;
        document.getElementById("deletePolygon").style.display = 'none';
 
@@ -1131,6 +1131,7 @@ var data = JSON.stringify(data2);
   document.getElementById('polygon').onclick = function(e){
             clickMapCount = 0;
             drawPolygon.enable();
+
             document.getElementById("goBack1").style.display = "none";
             document.getElementById("polygon").style.display = "none";
             document.getElementById("polyline").style.display = "none";
@@ -1142,7 +1143,7 @@ var data = JSON.stringify(data2);
 
             document.getElementById("changeMapSize").style.display = "initial";
             document.getElementById("changeMapSize").disabled = true;
-            document.getElementById("changeMapSize").style.opacity = "0.15";
+            document.getElementById("changeMapSize").style.opacity = "0.35";
 
             document.getElementById("deletePolygon").style.display = "none";
 /////////////////// TRANSMISSION TEST /////////////////////
@@ -1246,7 +1247,7 @@ var data = JSON.stringify(data2);
 
   document.getElementById('map').onclick = function(e){
       // if(clickMapCount==0){
-      //   document.getElementById("deleteAllVertexs").style.opacity = "0.15";
+      //   document.getElementById("deleteAllVertexs").style.opacity = "0.35";
       //   document.getElementById("deleteAllVertexs").disabled = true;
       // }
 
@@ -1262,11 +1263,11 @@ var data = JSON.stringify(data2);
          document.getElementById("deleteAllVertexs").disabled = false;
        }
        // }else if(clickMapCount==1){
-       //   document.getElementById("deleteAllVertexs").style.opacity = "0.15";
+       //   document.getElementById("deleteAllVertexs").style.opacity = "0.35";
        //   document.getElementById("deleteAllVertexs").disabled = true;
        // }
        else if(created==true){
-         document.getElementById("deleteLastVertex").style.opacity = "0.15";
+         document.getElementById("deleteLastVertex").style.opacity = "0.35";
          document.getElementById("deleteLastVertex").disabled = true;
        }
        else{
@@ -1295,9 +1296,9 @@ var data = JSON.stringify(data2);
        created = true;
        //document.getElementById("deleteLastVertex").style.display = "none";
 
-       document.getElementById("deleteLastVertex").style.opacity = "0.15";
+       document.getElementById("deleteLastVertex").style.opacity = "0.35";
        document.getElementById("deleteLastVertex").disabled = true;
-       document.getElementById("deleteAllVertexs").style.opacity = "0.15";
+       document.getElementById("deleteAllVertexs").style.opacity = "0.35";
        document.getElementById("deleteAllVertexs").disabled = true;
        drawPolygon.disable();
        drawPolygon.enable();
@@ -1325,17 +1326,17 @@ var data = JSON.stringify(data2);
           drawPolygon.disable();
           drawPolygon.enable();
           clickMapCount = 1;
-          document.getElementById("deleteLastVertex").style.opacity = "0.15";
+          document.getElementById("deleteLastVertex").style.opacity = "0.35";
           document.getElementById("deleteLastVertex").disabled = true;
-          document.getElementById("deleteAllVertexs").style.opacity = "0.15";
+          document.getElementById("deleteAllVertexs").style.opacity = "0.35";
           document.getElementById("deleteAllVertexs").disabled = true;
         }else if(clickMapCount==clickDelVertCount){
 
           drawPolygon.disable();
           drawPolygon.enable();
-          document.getElementById("deleteLastVertex").style.opacity = "0.15";
+          document.getElementById("deleteLastVertex").style.opacity = "0.35";
           document.getElementById("deleteLastVertex").disabled = true;
-          document.getElementById("deleteAllVertexs").style.opacity = "0.15";
+          document.getElementById("deleteAllVertexs").style.opacity = "0.35";
           document.getElementById("deleteAllVertexs").disabled = true;
         }
 
@@ -1354,9 +1355,9 @@ var data = JSON.stringify(data2);
             clickDelVertCount = 0;
             drawPolygon.disable();
             drawPolygon.enable();
-            document.getElementById("deleteLastVertex").style.opacity = "0.15";
+            document.getElementById("deleteLastVertex").style.opacity = "0.35";
             document.getElementById("deleteLastVertex").disabled = true;
-            document.getElementById("deleteAllVertexs").style.opacity = "0.15";
+            document.getElementById("deleteAllVertexs").style.opacity = "0.35";
             document.getElementById("deleteAllVertexs").disabled = true;
         return clickMapCount;
         }
@@ -1368,20 +1369,20 @@ var data = JSON.stringify(data2);
             //   drawPolygon.enable();
             //
             //   document.getElementById("deleteAllVertexs").disabled = true;
-            //   document.getElementById("deleteAllVertexs").style.opacity = "0.15";
+            //   document.getElementById("deleteAllVertexs").style.opacity = "0.35";
             //
             //   document.getElementById("deleteLastVertex").disabled = true;
-            //   document.getElementById("deleteLastVertex").style.opacity = "0.15";
+            //   document.getElementById("deleteLastVertex").style.opacity = "0.35";
             // } else{
               document.getElementById("changeMapSize").disabled = true;
-              document.getElementById("changeMapSize").style.opacity = "0.15";
+              document.getElementById("changeMapSize").style.opacity = "0.35";
             //  document.getElementById("deletePolygon").disabled = true;
               document.getElementById("deletePolygon").style.display = "none";
 
-              document.getElementById("deleteLastVertex").style.opacity = "0.15";
+              document.getElementById("deleteLastVertex").style.opacity = "0.35";
               document.getElementById("deleteLastVertex").disabled = true;
               document.getElementById("deleteAllVertexs").style.display = "initial";
-              document.getElementById("deleteAllVertexs").style.opacity = "0.15";
+              document.getElementById("deleteAllVertexs").style.opacity = "0.35";
               document.getElementById("deleteAllVertexs").disabled = true;
 
               drawnItems.remove();
@@ -1412,7 +1413,7 @@ var data = JSON.stringify(data2);
           var screenHeight = screen.height;
           var paddingDist = screenHeight*0.4;
         //  console.log('screenHeight', screenHeight)
-          document.getElementById("map").style.height = "88%";
+        //  document.getElementById("map").style.height = "88%";
 
             // map.fitBounds(drawnItems.getBounds(),{
             //   maxZoom:30,
@@ -1593,7 +1594,7 @@ var boxContent;
              created = false;
              drawnItems.remove();
              drawnItems.clearLayers();
-             recordedVideo.pause();
+            // recordedVideo.pause();
       /////       document.getElementById("mappingInstructions").play();
 
         /////     document.getElementById('LandUse').pause();
@@ -1610,7 +1611,7 @@ var boxContent;
              //map.fitBounds(drawnItems.getBounds(),{maxZoom:20});
 
              document.getElementById("map").style.display = "block";
-             document.getElementById("map").style.height = "88%";
+             //document.getElementById("map").style.height = "88%";
 
             document.getElementById("goBack1").style.display = "initial";
              document.getElementById("polygon").style.display = "initial";
@@ -1761,15 +1762,24 @@ var layer1;
                 document.getElementById("exportButton").style.display = "none";
 
                 document.getElementById("record").style.display = "none";
+                document.getElementById("recordFake").style.display = "none";
+
                 document.getElementById("play").style.display = "none";
             //    document.getElementById("goBackToLandUse").style.display = "none";
 
                 document.getElementById('voice').style.display = 'none';
                 document.getElementById('voice').style.opacity = '0';
 
+                // document.getElementById("tutorialScreen").style.visibility = "hidden";
+                // document.getElementById("startMapping").style.display = "none";
+                // document.getElementById("spanish").style.display = "none";
+                // document.getElementById("english").style.display = "none";
+                // document.getElementById("youtube").style.display = "none";
+                // document.getElementById("text").style.display = "none";
 
-                recordedVideo.pause();
-                recordedVideo.currentTime = 0;
+
+                // recordedVideo.pause();
+                // recordedVideo.currentTime = 0;
 
                 document.getElementById('emoji').style.display = 'none';
 
@@ -1782,16 +1792,20 @@ var layer1;
 
                 document.getElementById('Sent').style.display = 'none';
 
-                document.getElementById("deleteAllVertexs").style.opacity = "0.15";
+                document.getElementById("deleteAllVertexs").style.opacity = "0.35";
                 document.getElementById("deleteAllVertexs").disabled = true;
+                document.body.style.backgroundColor = "white";
 
+                document.getElementById("map").style.height = "100%";
+                document.getElementById("goBack1").style.display = "initial";
                 document.getElementById("polygon").style.display = "initial";
                 document.getElementById("polyline").style.display = "initial";
                 document.getElementById("point").style.display = "initial";
-                drawnItems.remove();
-                recordedVideo.pause();
 
-                document.getElementById("map").style.height = "88%";
+                // drawnItems.remove();
+                // recordedVideo.pause();
+
+              //.style.height = "88%";
                 // document.getElementById("Exit").style.display = "none";
                 // document.getElementById("Return").style.display = "none";
 

@@ -6,6 +6,7 @@ var version = 'v5.3';
 // Default files to always cache
 var offlineFundamentals = [
   "index.html",
+  "pages/tutorial.html",
   "styles/app.css",
   "scripts/app.js",
   "images/Start.png",

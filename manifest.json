@@ -5,7 +5,7 @@
   "lang": "en-GB",
   "theme_color": "#2196f3",
   "background_color": "#ffffff",
-  "display": "fullscreen",
+  "display": "standalone",
   "orientation": "portrait",
   "start_url": "index.html",
   "prefer_related_applications": false,

@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="scripts/lib/leaflet/plugins/L.Control.Rose-master/dist/L.Control.Rose.css" />
   <!-- <link rel="stylesheet" href="lib/leaflet/plugins/Leaflet.Basemaps-master/L.Control.Basemaps.css" /> -->
   <link href="scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css" rel="stylesheet" >
-
+  <link href="pages/tutorial.html" rel="text/html" >
   <link href="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.css" rel="stylesheet" >
   <link rel="shortcut icon" href="#">
   <!-- <iframe src="images/audio1.mp3" allow="autoplay" style="display:none" id="iframeAudio">
@@ -52,7 +52,7 @@
 <body>
 
 <div id="map" style='height:100%; z-index:1; position:relative'>
-    <div id="rose" style='margin-bottom:90px'> </div>
+    <div id="rose" style='margin-bottom:75px'> </div>
 </div>
 
 <!-- <div>
@@ -63,7 +63,7 @@
   <input type="submit" value="Post a comment">
 </form>
 </div> -->
-<div align='center'>
+<!-- <div id='tutorialScreen' align='center'>
   <button id='youtube' class='buttonsFirstLastScreen' align='center' style='bottom:55%; height:100px; border:none; background:black'>
     <img src="images/youtube.png" style='width:125px ; height:125px'>
   </button>
@@ -78,28 +78,28 @@
     <img src="images/spain.png" style='width:40px ; height:40px'>
   </button>
 
-</div>
+</div> -->
 
-<div align='center' style='z-index:2; position:relative; margin-top:-100px' >
+<div align='center' style='z-index:2; position:relative; margin-top:-90px' >
   <!-- <button id='goBack1' class='button'style=' background-color:#c1c0c0'>
-    <img src="images/backButton.png" style='width:50px ; height:60px '>
+    <img src="images/backButton.png" style='width:50px ; height:60px '   onClick="location.href='pages/tutorial.html'">
   </button> -->
-  <button id='goBack1' class='button' style='z-index:3;background-color:#c1c0c0; position:relative' action='process.php' name="data" type="submit">
-    <img src="images/backButton.png" style='width:30px ; height:30px'>
+  <button id='goBack1' class='button' style='z-index:3; position:relative' action='process.php' name="data" type="submit">
+    <img src="images/questionmark.png" style='width:30px ; height:30px'>
   </button>
   <button id='polygon' class='button' style='z-index:3; position:relative' action='process.php' name="data" type="submit">
     <img src="images/drawPolygon.png" style='width:30px ; height:30px'>
   </button>
-  <button id='polyline' class='button' >
+  <button id='polyline' class='button' style='opacity:0.5'>
     <img src="images/polyline.png" style='width:30px ; height:30px'>
   </button>
-  <button id='point' class='button'>
+  <button id='point' class='button' style='opacity:0.5'>
     <img src="images/point.png" style='width:30px ; height:30px'>
   </button>
 </div>
 
-<div align='center' style='z-index:2; position:relative; margin-top:-100px'>
-  <button id='goBack2' class='button'style='display:none; background-color:#9C1F04'>
+<div align='center' style='z-index:2; position:relative; margin-top:-90px'>
+  <button id='goBack2' class='button'style='display:none;border: 2px solid #9C1F04; background-color:#9C1F04'>
     <img src="images/backButton.png" style='width:30px ; height:30px '>
   </button>
   <button id='deleteLastVertex' class='button'>
@@ -154,7 +154,7 @@
     </a>
   </button>
 </div> -->
-<div align='center' style='z-index:2; position:relative; margin-top:-100px'>
+<div align='center' style='z-index:2; position:relative; margin-top:-90px'>
 <div id='classification'  style='display:none; vertical-align:top'>
   <button id='Cancel' class='button'>
     <img src="images/cancel.png" style='width:30px ; height:30px'>
@@ -191,7 +191,7 @@
   </button>
 </div>
 </div>
-<div align='center' style='z-index:2; position:relative; margin-top:-100px'>
+<div align='center' style='z-index:2; position:relative; margin-top:-90px'>
 
   <video id='Sent'  class='video'  muted autoplay>
     <source src="images/Sent.mp4"  type="video/mp4">
@@ -203,11 +203,11 @@
 <br></br>
 
 
-<!-- <audio  id='LandUse' loop style='z-index:2; position:relative; margin-top:-100px'>
+<!-- <audio  id='LandUse' loop style='z-index:2; position:relative; margin-top:-90px'>
   <source src="images/classification.mp3"  type="audio/mp3">
 </audio>
 
-<audio  id='Identification' style='z-index:2; position:relative; margin-top:-100px'>
+<audio  id='Identification' style='z-index:2; position:relative; margin-top:-90px'>
   <source src="images/audioRecording.mp3"  type="audio/mp3">
 </audio> -->
 
@@ -217,11 +217,11 @@
   </button>
 </div> -->
 
-<div id='voice'  align='center' style='display:none' style='z-index:2; position:relative; margin-top:-100px'>
+<div id='voice'  align='center' style='display:none' style='z-index:2; position:relative; margin-top:-90px'>
   <img src="images/voice.gif" style='width:50% ; height:60px'>
 </div>
 
-<div align='center' style='z-index:2; position:relative; margin-top:-100px'>
+<div align='center' style='z-index:2; position:relative; margin-top:-90px'>
         <!-- <button id="start" style='margin-top: 55px;width:80px;height:80px;background-color:green'>
             <img src="images/Microphone.png" style='width:30px ; height:30px'>
         </button> -->
@@ -252,7 +252,7 @@
   </button>
 </div> -->
 
-<audio  id='finalScreen' style='z-index:2; position:relative; margin-top:-100px'>
+<audio  id='finalScreen' style='z-index:2; position:relative; margin-top:-90px'>
   <source src="images/finalScreen.mp3"  type="audio/mp3">
   <!-- <div class="center">.</div> -->
 </audio>
@@ -326,7 +326,7 @@
 
    <!-- <script src="scripts/lib/leaflet/leaflet-src.js"></script> -->
    <script src="scripts/app.js"></script>
-   <script src="scripts/audio.js"></script>
+   <!-- <script src="scripts/audio.js"></script> -->
 
    <!-- <script src="scripts/map.js"></script> -->
 
