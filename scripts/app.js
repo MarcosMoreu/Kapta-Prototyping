@@ -91,38 +91,38 @@ var tilesDb = {
 // Script to hide audio button after first load. Run function on load, could also run on dom ready
 var isFirstTime; //var to store if the site is visited for the first time
 ////////////////////////////////////////////////////////      first load         /////////////////////////////////////////////////////////////////////////
-// var firstLoad = function() {//fucntion to determine if the site is visited for first time
-//     // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
-//     if(typeof window.localStorage !== "undefined" && !localStorage.getItem('visited')) {
-//          // Set visited flag in local storage
-//          localStorage.setItem('visited', true);
-//          // Alert the user
-//         // document.getElementById("startMapping").style.visibility = "hidden";
-//          document.getElementById("unmute").style.visibility = "visible";
-//          isFirstTime = true;
-//          console.log(isFirstTime)
-//          //alert("Hello my friend. This is your first visit.");
-//     }else {
-//   //    document.getElementById("startMapping").style.visibility = "visible";
-//     //  document.getElementById("unmute").style.visibility = "hidden";
-//
-//
-//       function catchAudioError() { //function to avoid uncaught promise when loading audio tutorial
-//        try {
-//     //////     document.getElementById("audioTutorial").play();
-//        } catch (e) {
-//       }
-//      }
-//
-//       isFirstTime = false;
-//       console.log(isFirstTime)
-//
-//     }
-//     return isFirstTime;
-// }
-// window.onload = firstLoad;
-// firstLoad();
-// console.log(isFirstTime);
+var firstLoad = function() {//fucntion to determine if the site is visited for first time
+    // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
+    if(typeof window.localStorage !== "undefined" && !localStorage.getItem('visited')) {
+         // Set visited flag in local storage
+         localStorage.setItem('visited', true);
+         // Alert the user
+        // document.getElementById("startMapping").style.visibility = "hidden";
+        // document.getElementById("unmute").style.visibility = "visible";
+         isFirstTime = true;
+         console.log(isFirstTime)
+         //alert("Hello my friend. This is your first visit.");
+    }else {
+  //    document.getElementById("startMapping").style.visibility = "visible";
+    //  document.getElementById("unmute").style.visibility = "hidden";
+
+
+      function catchAudioError() { //function to avoid uncaught promise when loading audio tutorial
+       try {
+    //////     document.getElementById("audioTutorial").play();
+       } catch (e) {
+      }
+     }
+
+      isFirstTime = false;
+      console.log(isFirstTime)
+
+    }
+    return isFirstTime;
+}
+window.onload = firstLoad;
+firstLoad();
+console.log(isFirstTime);
 
 /////////////////////////////////////////////////////////adding map elements///////////////////////////////////////////////////
 var map = L.map('map',{
@@ -1411,14 +1411,15 @@ var data = JSON.stringify(data2);
 
         //  console.log('zoom',map.getZoom())
           var screenHeight = screen.height;
-          var paddingDist = screenHeight*0.4;
+        //  var paddingDist = screenHeight*0.6;
+
         //  console.log('screenHeight', screenHeight)
         //  document.getElementById("map").style.height = "88%";
 
-            // map.fitBounds(drawnItems.getBounds(),{
-            //   maxZoom:30,
-            //   paddingBottomRight: [0, paddingDist]
-            // })
+            map.fitBounds(drawnItems.getBounds(),{
+              maxZoom:30,
+              paddingBottomRight: [0, 0]
+            })
 
               document.getElementById("goBack2").style.display = "none";
               document.getElementById("deleteLastVertex").style.display = "none";
@@ -1471,8 +1472,8 @@ var data = JSON.stringify(data2);
 
           //    document.getElementById('Identification').play();
           //    document.getElementById('start').style.display = 'initial';
-              // document.getElementById('record').style.display = 'initial';
-              // document.getElementById('record').style.opacity = '0.5';
+              document.getElementById('record').style.display = 'initial';
+              document.getElementById('record').style.opacity = '1';
               // document.getElementById('play').style.display = 'initial';
               // document.getElementById('play').style.opacity = '0.1';
 
@@ -1518,58 +1519,58 @@ var data = JSON.stringify(data2);
 
 
 var recording=true;
-      //   document.getElementById('record').onclick = function(e){
-      //     // var boxContent = document.getElementById('emojionearea1').value;
-      //     // console.log(boxContent);
-      //
-      //       if(recording==true){  //recording true/false inverse.
-      //         this.style.backgroundColor = 'white';
-      //         //this.style.borderWidth = '2px';
-      //         //this.style.borderColor = 'transparent';
-      //     //    document.getElementById('play').style.opacity = '1';
-      //         document.getElementById('download').style.opacity = '1';
-      //         document.getElementById('emoji').style.display = 'initial';
-      //         document.getElementById('voice').style.display = 'none';
-      //         document.getElementById('voice').style.opacity = '0';
-      //         // document.getElementById('voice').style.width = '45%';
-      //         // document.getElementById('voice').style.height = '7%';
-      //
-      //         document.getElementById('Confirm').disabled = false;
-      //         document.getElementById('Confirm').style.opacity = '1';
-      //       }
-      //       if(recording==false){
-      //         this.style.backgroundColor = 'yellow';
-      //         //this.style.borderWidth = '8px';
-      //         //this.style.borderColor = 'black';
-      //       //  document.getElementById('play').style.opacity = '0.1';
-      //         document.getElementById('download').style.opacity = '0.1';
-      //         document.getElementById('emoji').style.display = 'none';
-      //
-      //         document.getElementById('voice').style.display = 'initial';
-      //         document.getElementById('voice').style.opacity = '1';
-      //         document.getElementById('voiceGif').style.width = '45%';
-      //         document.getElementById('voiceGif').style.height = '5%';
-      //
-      //
-      //
-      //
-      // //        document.getElementById('goBackToLandUse').style.display = 'none';
-      //
-      //       }
-      //       document.getElementById('Identification').pause();
-      //       document.getElementById('Identification').currentTime = 0;
-      //
-      //      document.getElementById('gum').style.display = 'none';
-      //      document.getElementById('recorded').style.display = 'none';
-      //      document.getElementById('echoCancellation').style.display = 'none';
-      //
-      // }
+        document.getElementById('record').onclick = function(e){
+          // var boxContent = document.getElementById('emojionearea1').value;
+          // console.log(boxContent);
+
+            if(recording==true){  //recording true/false inverse.
+              this.style.backgroundColor = 'white';
+              //this.style.borderWidth = '2px';
+              //this.style.borderColor = 'transparent';
+          //    document.getElementById('play').style.opacity = '1';
+              document.getElementById('download').style.opacity = '1';
+              document.getElementById('emoji').style.display = 'initial';
+              document.getElementById('voice').style.display = 'none';
+              document.getElementById('voice').style.opacity = '0';
+              // document.getElementById('voice').style.width = '45%';
+              // document.getElementById('voice').style.height = '7%';
+
+              document.getElementById('Confirm').disabled = false;
+              document.getElementById('Confirm').style.opacity = '1';
+            }
+            if(recording==false){
+              this.style.backgroundColor = 'yellow';
+              //this.style.borderWidth = '8px';
+              //this.style.borderColor = 'black';
+            //  document.getElementById('play').style.opacity = '0.1';
+              document.getElementById('download').style.opacity = '0.1';
+              document.getElementById('emoji').style.display = 'none';
+
+              document.getElementById('voice').style.display = 'initial';
+              document.getElementById('voice').style.opacity = '1';
+              document.getElementById('voiceGif').style.width = '45%';
+              document.getElementById('voiceGif').style.height = '5%';
+
+
+
+
+      //        document.getElementById('goBackToLandUse').style.display = 'none';
+
+            }
+            document.getElementById('Identification').pause();
+            document.getElementById('Identification').currentTime = 0;
+
+           document.getElementById('gum').style.display = 'none';
+           document.getElementById('recorded').style.display = 'none';
+           document.getElementById('echoCancellation').style.display = 'none';
+
+      }
 var boxContent;
 
       document.getElementById('Confirm').onclick = function(e) {
             goToDS = 1;
-            // document.getElementById("Identification").pause();
-            // document.getElementById("Identification").currentTime = 0;
+            document.getElementById("Identification").pause();
+            document.getElementById("Identification").currentTime = 0;
 
              document.getElementById("Confirm").style.display = "none";
             // document.getElementById("Cancel").style.display = "none";
@@ -1594,7 +1595,7 @@ var boxContent;
              created = false;
              drawnItems.remove();
              drawnItems.clearLayers();
-            // recordedVideo.pause();
+            recordedVideo.pause();
       /////       document.getElementById("mappingInstructions").play();
 
         /////     document.getElementById('LandUse').pause();
@@ -1650,6 +1651,17 @@ var boxContent;
 var dateTimeRandomID;
 var layer1;
 
+////////function for pop ups//////////
+function onEachFeature(feature, layer) {
+  var popupContent = feature.properties.landUses  ; //+ '    ' +dateTimeRandomID 
+
+  if (feature.properties && feature.properties.popupContent) {
+    popupContent += feature.properties.popupContent;
+  }
+
+  layer.bindPopup(popupContent);
+}
+//////////////////////////////////
   document.getElementById('export').onclick = function(e) {
                 //refresh location
                 console.log(currentLocation)
@@ -1663,9 +1675,9 @@ var layer1;
                 var randomID = Math.round(randomNumber);
                 //here the datetime
                 var today = new Date();
-                var date = today.getFullYear()+'_'+(today.getMonth()+1)+'_'+today.getDate();
-                var time = today.getHours() + "_" + today.getMinutes() + "_" + today.getSeconds();
-                var dateTime = date+'__'+time;
+                var date = today.getFullYear()+' '+(today.getMonth()+1)+' '+today.getDate();
+                var time = today.getHours() + " " + today.getMinutes() + " " + today.getSeconds();
+                var dateTime = date+' - '+time;
                 //here we combine datetime with randomID
                 dateTimeRandomID ='Date&time: '+ dateTime+' RandomID:'+randomID;
                 dateTimeRandomID.toString();
@@ -1748,7 +1760,13 @@ var layer1;
                 document.getElementById('export').setAttribute('download',dateTimeRandomID);
                 layer1=data;
                 console.log(layer1);
-                var finalLayer = L.geoJSON(layer1).addTo(map);
+                var finalLayer = L.geoJSON(layer1,{
+                  style: function (feature) {
+                    return feature.properties && feature.properties.style;
+                  },
+
+                  onEachFeature: onEachFeature,
+                }).addTo(map);
 
                 drawnItems.clearLayers();
 
@@ -1762,7 +1780,7 @@ var layer1;
                 document.getElementById("exportButton").style.display = "none";
 
                 document.getElementById("record").style.display = "none";
-                document.getElementById("recordFake").style.display = "none";
+              //  document.getElementById("recordFake").style.display = "none";
 
                 document.getElementById("play").style.display = "none";
             //    document.getElementById("goBackToLandUse").style.display = "none";
@@ -1778,8 +1796,8 @@ var layer1;
                 // document.getElementById("text").style.display = "none";
 
 
-                // recordedVideo.pause();
-                // recordedVideo.currentTime = 0;
+                recordedVideo.pause();
+                recordedVideo.currentTime = 0;
 
                 document.getElementById('emoji').style.display = 'none';
 
@@ -1803,7 +1821,7 @@ var layer1;
                 document.getElementById("point").style.display = "initial";
 
                 // drawnItems.remove();
-                // recordedVideo.pause();
+                recordedVideo.pause();
 
               //.style.height = "88%";
                 // document.getElementById("Exit").style.display = "none";
@@ -1836,6 +1854,9 @@ var layer1;
 
       return layer1;
   }
+console.log(isFirstTime)
+
+
 
   if(isFirstTime == false){
 
@@ -1860,11 +1881,21 @@ var layer1;
 
       var getItemToJSON = JSON.parse(itemFetched);
       console.log(getItemToJSON)
+      console.log(itemFetched)
 
-      //L.geoJSON(getItemToJSON).addTo(map);
+    var myLayer =  L.geoJSON(getItemToJSON, {
 
-    }
+      style: function (feature) {
+        return feature.properties && feature.properties.style;
+      },
+
+      onEachFeature: onEachFeature,
+
+
+    }).addTo(map);
    }
   console.log('local storage accessed!!!!')
   }
   console.log(isFirstTime);
+}
+  ////////////////////////  pop up on each feature  //////////////////////////
