@@ -1809,7 +1809,7 @@ var layer1;
                 // document.getElementById("Exit").style.display = "none";
                 // document.getElementById("Return").style.display = "none";
 
-              }, 3300);
+              }, 2800);
               //reset all land use boxes
               // document.getElementById('lu1').style.borderColor = 'transparent';
               // document.getElementById('lu2').style.borderColor = 'transparent';
