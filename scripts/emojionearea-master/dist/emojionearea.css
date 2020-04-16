@@ -160,6 +160,7 @@
     position: absolute;
     top: 0;
     left: 12px;
+    /* locate icon on the right or left of the text bar */
     right: 24px;
     padding: 6px 0; }
   .emojionearea.emojionearea-inline > .emojionearea-button {
@@ -167,7 +168,7 @@
 .emojionearea .emojionearea-button {
   z-index: 5;
   position: absolute;
-  right: 3px;
+  left: 3px;
   top: 3px;
   width: 24px;
   height: 24px;
@@ -219,6 +220,8 @@
     transform: rotate(0deg);
     filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
     opacity: 1; }
+
+    /* this is the emoji box ---------------------------------------------------------------*/
 .emojionearea .emojionearea-picker {
   background: #FFFFFF;
   position: absolute;
@@ -489,7 +492,8 @@
       height: 10px;
       background-position: -2px -49px;
       bottom: -10px;
-      right: 20px; }
+      /* line for modifiying the arrow of the wrapper  --original value is right:20px*/
+      left: 50px; }
     .emojionearea .emojionearea-picker.emojionearea-picker-position-top.emojionearea-filters-position-bottom .emojionearea-wrapper:after {
       background-position: -2px -80px; }
   .emojionearea .emojionearea-picker.emojionearea-picker-position-left, .emojionearea .emojionearea-picker.emojionearea-picker-position-right {
