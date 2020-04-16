@@ -314,27 +314,6 @@ var pointsIcon = L.icon({
 });
 
 
-// var community11 = L.marker([-19.740486 , 20.3695308], {icon:pointsIcon}).addTo(map);
-// var community12 = L.marker( [-19.7404658, 20.3695296], {icon:pointsIcon}).addTo(map);
-// var community13 = L.marker( [-19.7435148, 20.3677033 ] , {icon:pointsIcon}).addTo(map);
-// var community14 = L.marker( [-19.7407043, 20.3704892] , {icon:pointsIcon}).addTo(map);
-// var community15 = L.marker( [ -19.7389414, 20.3659412], {icon:pointsIcon}).addTo(map);
-// var community16 = L.marker( [-19.7404787, 20.369528 ], {icon:pointsIcon}).addTo(map);
-// var community17 = L.marker( [ -19.7404716, 20.3695185], {icon:pointsIcon}).addTo(map);
-// var community18 = L.marker([ -19.7404422, 20.3695892 ], {icon:pointsIcon}).addTo(map);
-// var community19 = L.marker( [ -19.740721,20.3704324 ], {icon:pointsIcon}).addTo(map);
-// var community110 = L.marker([-19.7407391,  20.3704794], {icon:pointsIcon}).addTo(map);
-// var community111 = L.marker( [-19.7405721 , 20.3695689], {icon:pointsIcon}).addTo(map);
-// var community112 = L.marker( [ -19.5914482 ,20.5047116], {icon:pointsIcon}).addTo(map);
-// var community113 = L.marker( [ -19.5918552,20.5035004 ], {icon:pointsIcon}).addTo(map);
-// var community114 = L.marker([ -19.595553, 20.5058281 ], {icon:pointsIcon}).addTo(map);
-// var community115 = L.marker( [ -19.5955303, 20.5056082 ] , {icon:pointsIcon}).addTo(map);
-// var community116 = L.marker( [ -19.5955182 ,20.505709], {icon:pointsIcon}).addTo(map);
-// var community117 = L.marker([ -19.5957291, 20.5057855 ] , {icon:pointsIcon}).addTo(map);
-// var community118 = L.marker( [ -19.5955427 , 20.5058277], {icon:pointsIcon}).addTo(map);
-// var community119 = L.marker( [ -19.7389991, 20.3706885 ], {icon:pointsIcon}).addTo(map);
-// var community120 = L.marker([ -19.7389953, 20.3706428 ], {icon:pointsIcon}).addTo(map);
-
 
 // create an options object that specifies which function will called on each feature
 // let myLayerOptions = {
@@ -570,7 +549,7 @@ var gpsIcon = L.icon({
 
 
 // add location via browser geolocation
-var currentLocation = []; // variable created to allow the user recenter the map.
+var currentLocation = []; // variable created to allow the user recenter the map
 
 function displayLocation(position) {
     var lat = position.coords.latitude;
@@ -586,7 +565,7 @@ function displayLocation(position) {
 
 //////////////////////////////////////activate gps///////////////////////////////////////////
 navigator.geolocation.getCurrentPosition(displayLocation); //Note that it requires a secure domain (i.e. HTTPS)
-                                                                                                       //define center map and zooooooms
+console.log(currentLocation.length)                                                                                                       //define center map and zooooooms
 
 
 var clickButtonCount=0;
@@ -596,13 +575,14 @@ var osm_Button = L.easyButton({
     position: 'topright',
     //background:'images/forest.png',
     states: [{
-      icon: '<img src="images/osm.png" width=50px ; height=50px> ',
+      icon: '<img src="images/osm.png" width=40px ; height=40px> ',
       //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn,map) {
           clickButtonCount +=1;
           osm_Button.removeFrom(map);
           planet_Button.addTo(map);
+          myLayer_Button.addTo(map)
 
         //  console.log('countbutton clicks', clickButtonCount)
           if(clickButtonCount == 10){
@@ -623,8 +603,8 @@ var osm_Button = L.easyButton({
     }]
 });
 //osm_Button.button.style.backgroundColor = 'black';
-osm_Button.button.style.width = '60px';
-osm_Button.button.style.height = '60px';
+osm_Button.button.style.width = '50px';
+osm_Button.button.style.height = '50px';
 //osm_Button.button.style.backgroundColor = 'none';
 //osm_Button.button.style.transitionDuration = '.3s';
 osm_Button.addTo(map);
@@ -637,12 +617,14 @@ var googleSat_Button = L.easyButton({
     position: 'topright',
 
     states: [{
-        icon: '<img src="images/google.png" width=50px ; height=50px>',
+        icon: '<img src="images/google.png" width=40px ; height=40px>',
               //stateName: 'check-mark',
         onClick: function(btn,map) {
           clickButtonCount +=1;
           googleSat_Button.removeFrom(map);
           osm_Button.addTo(map);
+          myLayer_Button.addTo(map)
+
           //console.log('countbutton clicks', clickButtonCount)
           if(clickButtonCount == 10){
             offlineControlGoogle.addTo(map);
@@ -662,8 +644,8 @@ var googleSat_Button = L.easyButton({
     }]
 });
 
-googleSat_Button.button.style.width = '60px';
-googleSat_Button.button.style.height = '60px';
+googleSat_Button.button.style.width = '50px';
+googleSat_Button.button.style.height = '50px';
 googleSat_Button.button.style.transitionDuration = '.3s';
 googleSat_Button.button.style.backgroundColor = 'black';
 //googleSat_Button.addTo(map);
@@ -673,7 +655,7 @@ var planet_Button = L.easyButton({
     class:'easyButton',
     position: 'topright',
     states: [{
-        icon: '<img src="images/planet.png" width=50px ; height=50px>',
+        icon: '<img src="images/planet.png" width=40px ; height=40px>',
         stateName: 'check-mark',
         onClick: function(btn,map) {
             clickButtonCount=0;
@@ -682,6 +664,8 @@ var planet_Button = L.easyButton({
             planet.addTo(map);
             googleSat.removeFrom(map);
             osm.removeFrom(map);
+            myLayer_Button.addTo(map)
+
             // btn.button.style.backgroundColor = 'yellow';
             //   googleSat_Button.button.style.backgroundColor = 'black';
             //   osm_Button.button.style.backgroundColor = 'black'
@@ -690,8 +674,8 @@ var planet_Button = L.easyButton({
     }]
 });
 
-planet_Button.button.style.width = '60px';
-planet_Button.button.style.height = '60px';
+planet_Button.button.style.width = '50px';
+planet_Button.button.style.height = '50px';
 planet_Button.button.style.transitionDuration = '.3s';
 //planet_Button.addTo(map);
 //
@@ -717,15 +701,63 @@ planet_Button.button.style.transitionDuration = '.3s';
 // home_Button.button.style.height = '60px';
 // home_Button.button.style.transitionDuration = '.3s';
 // home_Button.button.style.backgroundColor = 'white';
+var myLayerIsOn = true;
+var myLayer_Button = L.easyButton({
+    id: 'myLayer',
+    class:'easyButton',
+    position: 'topright',
+    //background:'images/forest.png',
+    states: [{
+      icon: '<img src="images/myLayer.png" width=37.5px ; height=37.5px> ',
+      //  background:"images/forest.png",
+        stateName: 'check-mark',
+        onClick: function(btn,map) {
+          //  var clickMyLayerCount = 1
+          // myLayer.removeFrom(map);
 
+        //  console.log('countbutton clicks', clickButtonCount)
+          if(myLayerIsOn == true){
+            myLayer.removeFrom(map);
+            myLayerIsOn = false;
+            myLayer_Button.button.style.backgroundColor = 'grey';
+
+
+          }else{
+            myLayer.addTo(map);
+            myLayerIsOn = true;
+            myLayer_Button.button.style.backgroundColor = 'black';
+
+          // btn.button.style.backgroundColor = 'yellow';
+          // googleSat_Button.button.style.backgroundColor = 'black';
+          // planet_Button.button.style.backgroundColor = 'black'
+          }
+          return myLayerIsOn;
+        }
+
+    }]
+});
+//osm_Button.button.style.backgroundColor = 'black';
+myLayer_Button.button.style.width = '50px';
+myLayer_Button.button.style.height = '50px';
+myLayer_Button.button.style.transitionDuration = '.3s';
+myLayer_Button.button.style.backgroundColor = 'black';
+myLayer_Button.addTo(map)
+
+
+console.log(currentLocation[0])
 var gps_Button = L.easyButton({
     id: 'gps',
     position: 'topleft',
     states: [{
-        icon: '<img src="images/man.png" width=40px ; height=40px>',
+        icon: '<img src="images/man.png" width=35px ; height=35px>',
         stateName: 'check-mark',
         onClick: function(btn,map) {
           map.setView(currentLocation,15);
+            if(currentLocation != null){
+              gps_Button.button.style.backgroundColor = 'green';
+
+            }
+
         //  btn.button.style.backgroundColor = 'black';
         //  home_Button.addTo(map);
         //  gps_Button.removeFrom(map);
@@ -735,8 +767,8 @@ var gps_Button = L.easyButton({
     }]
 });
 
-gps_Button.button.style.width = '60px';
-gps_Button.button.style.height = '60px';
+gps_Button.button.style.width = '50px';
+gps_Button.button.style.height = '50px';
 gps_Button.button.style.transitionDuration = '.3s';
 gps_Button.button.style.backgroundColor = 'white';
 gps_Button.addTo(map);
@@ -993,13 +1025,13 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-              console.log('location'+ currentLocation)
-                if(currentLocation[0]==null){
-                //  home_Button.addTo(map);
-                //  L.marker([0.670322, 35.507470], {icon:communityIcon}).addTo(map);
-                }else{
-                  gps_Button.addTo(map);
-                }
+              // console.log('location'+ currentLocation)
+              //   if(currentLocation[0]==null){
+              //   //  home_Button.addTo(map);
+              //   //  L.marker([0.670322, 35.507470], {icon:communityIcon}).addTo(map);
+              //   }else{
+              //     gps_Button.addTo(map);
+              //   }
 
               document.body.style.backgroundColor = "white";
               // document.getElementById("audioTutorial").pause();
@@ -1091,7 +1123,7 @@ var clickMapCount = 0;
 var clickDelVertCount = 0;
 document.getElementById("goBack2").onclick = function(e){
       clickMapCount = 0;
-
+    //  map.zoomOut(1); //decreases the zoom level when click
        document.getElementById("goBack1").style.display = "initial";
        document.getElementById("goBack2").style.display = "none";
        document.getElementById("polygon").style.display = "initial";
@@ -1129,6 +1161,9 @@ var data = JSON.stringify(data2);
 //var data = data1.toString();
 
   document.getElementById('polygon').onclick = function(e){
+            currentZoom = map.getZoom();
+            map.zoomIn(1); //increases the zoom level when click on polygon
+
             clickMapCount = 0;
             drawPolygon.enable();
 
@@ -1596,6 +1631,7 @@ var boxContent;
              drawnItems.remove();
              drawnItems.clearLayers();
             recordedVideo.pause();
+            map.zoomOut(1);
       /////       document.getElementById("mappingInstructions").play();
 
         /////     document.getElementById('LandUse').pause();
@@ -1653,7 +1689,7 @@ var layer1;
 
 ////////function for pop ups//////////
 function onEachFeature(feature, layer) {
-  var popupContent = feature.properties.landUses  ; //+ '    ' +dateTimeRandomID 
+  var popupContent = feature.properties.landUses  ; //+ '    ' +dateTimeRandomID
 
   if (feature.properties && feature.properties.popupContent) {
     popupContent += feature.properties.popupContent;

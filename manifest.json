@@ -1,9 +1,9 @@
 
 {
-  "name": "Prototype #4.3",
-  "short_name": "Prototype #4.3",
+  "name": "Prototype #4.4",
+  "short_name": "Prototype #4.4",
   "lang": "en-GB",
-  "theme_color": "#2196f3",
+  "theme_color": "#000000",
   "background_color": "#ffffff",
   "display": "standalone",
   "orientation": "portrait",

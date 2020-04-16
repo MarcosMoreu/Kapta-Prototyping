@@ -67,28 +67,6 @@ map {
 
 
 
-.buttonsFirstLastScreen {
-  background-color: white; /* Green */
-  text-align: center;
-  text-decoration: none;
-  display: inline;
-
-  width: 200px;
-  position: fixed;
-  left: 50%;
-  margin-left: -100px;
-
-
-}
-
-.buttonsFirstLastScreen:active {
-  /* border:2px solid yellow; */
-  /* background-color: grey; */
-  /* box-shadow: 0 5px white; */
-  transform: translateY(8px);
-}
-
-
 .video{
   /* display: block; */
 /* height:1000px; */
