@@ -136,7 +136,7 @@ var map = L.map('map',{
       });
 function addPreviousPolygons(){
   if(!data.length==0){
-    data.addTo(map);
+  //  data.addTo(map); //////////////////////////////////////////////
     //console.log(data);
   }
 }
@@ -151,6 +151,85 @@ var scale = L.control.scale({
   metric:true,
   imperial:false,
 }).addTo(map);
+
+
+console.log(isFirstTime)
+
+
+//var groupLayer = new L.FeatureGroup().addTo(map);
+var finalLayer;
+var groupGeoJSON =[]
+  if(isFirstTime == false & localStorage.key(0)!=null){
+
+//  loop for going through all geoJSON stored in the localStorage
+    for(var i=0, len=localStorage.length; i<len; i++) {   //len-1 to avoid a error of geojson object not recognised
+      var key = localStorage.key(i);
+      var value = localStorage[key];
+      var itemFetched = localStorage.getItem(key);
+      console.log(i+ '____' + key + " => " + value +'__'+ '__ccc__'+itemFetched);
+//catch error in case no json
+      function isJson(str) {
+       try {
+         JSON.parse(str);
+       } catch (e) {
+       return false;
+     }
+     return true;
+     }
+//call catch function
+    isJson(itemFetched);
+     // console.log(isJson(itemFetched))
+    if (isJson(itemFetched) == true){
+
+     var getItemToJSON = JSON.parse(itemFetched);
+     //add each json to an array-------------------------
+      groupGeoJSON[i]=getItemToJSON
+      console.log(groupGeoJSON)
+
+    }
+
+  }
+}
+//console.log(groupLayer)
+console.log('local storage accessed!!!!')
+
+var myLayer = L.geoJSON(groupGeoJSON,{
+  style: function (feature) {
+    return feature.properties && feature.properties.style;
+  },
+  color:'blue',
+  onEachFeature: onEachFeature,
+}).addTo(map)  ///////////  add my layer to the map by default
+
+// var myLayer =  L.FeatureGroup(groupLayer, {
+//
+//   style: function (feature) {
+//     return feature.properties && feature.properties.style;
+//   },
+//
+//   onEachFeature: onEachFeature,
+//
+//
+// }).addTo(map);
+
+
+// var myLayer =  L.geoJSON(groupGeoJSON, {
+//
+//   style: function (feature) {
+//     return feature.properties && feature.properties.style;
+//   },
+//
+//   onEachFeature: onEachFeature,
+//
+//
+// }).addTo(map);
+  //console.log(getItemToJSON);
+  //   console.log(myLayer)
+  // var group = new L.FeatureGroup(groupGeoJSON);
+  // console.log(group)
+
+
+
 
 
 //wwwwwwwwwwwwwww
@@ -240,13 +319,13 @@ var scale = L.control.scale({
 // });
 
 
-var AOI = L.geoJson(AOI_Tsumkwe,{
-  fillColor: '#000000',
-  color:'red',
-  opacity: 5,
-  fillOpacity: 0,
-  weight:2
-}).addTo(map);
+// var AOI = L.geoJson(AOI_Tsumkwe,{
+//   fillColor: '#000000',
+//   color:'red',
+//   opacity: 5,
+//   fillOpacity: 0,
+//   weight:2
+// }).addTo(map);
 
 var communityIcon = L.icon({
     iconUrl: 'images/house.png',
@@ -701,6 +780,8 @@ planet_Button.button.style.transitionDuration = '.3s';
 // home_Button.button.style.height = '60px';
 // home_Button.button.style.transitionDuration = '.3s';
 // home_Button.button.style.backgroundColor = 'white';
+
+
 var myLayerIsOn = true;
 var myLayer_Button = L.easyButton({
     id: 'myLayer',
@@ -714,18 +795,25 @@ var myLayer_Button = L.easyButton({
         onClick: function(btn,map) {
           //  var clickMyLayerCount = 1
           // myLayer.removeFrom(map);
+          //onsole.log(myLayer)
 
         //  console.log('countbutton clicks', clickButtonCount)
           if(myLayerIsOn == true){
+
             myLayer.removeFrom(map);
+            console.log(myLayer)
             myLayerIsOn = false;
             myLayer_Button.button.style.backgroundColor = 'grey';
-
-
-          }else{
-            myLayer.addTo(map);
+            if(finalLayer !=null){finalLayer.removeFrom(map)
+               finalLayer.removeFrom(map)
+}
+            }else{
+            myLayer.addTo(map)          //  layer1.addTo(map);
             myLayerIsOn = true;
             myLayer_Button.button.style.backgroundColor = 'black';
+            if(finalLayer !=null){finalLayer.addTo(map)
+              finalLayer.addTo(map)
+            }
 
           // btn.button.style.backgroundColor = 'yellow';
           // googleSat_Button.button.style.backgroundColor = 'black';
@@ -1123,7 +1211,7 @@ var clickMapCount = 0;
 var clickDelVertCount = 0;
 document.getElementById("goBack2").onclick = function(e){
       clickMapCount = 0;
-    //  map.zoomOut(1); //decreases the zoom level when click
+       map.zoomOut(1); //decreases the zoom level when click
        document.getElementById("goBack1").style.display = "initial";
        document.getElementById("goBack2").style.display = "none";
        document.getElementById("polygon").style.display = "initial";
@@ -1685,7 +1773,6 @@ var boxContent;
 /////////////////////////// Export  ////////////////////////////////////////////////////////
 
 var dateTimeRandomID;
-var layer1;
 
 ////////function for pop ups//////////
 function onEachFeature(feature, layer) {
@@ -1796,11 +1883,12 @@ function onEachFeature(feature, layer) {
                 document.getElementById('export').setAttribute('download',dateTimeRandomID);
                 layer1=data;
                 console.log(layer1);
-                var finalLayer = L.geoJSON(layer1,{
+                //finalLayer is a global variable
+                finalLayer = L.geoJSON(layer1,{
                   style: function (feature) {
                     return feature.properties && feature.properties.style;
                   },
-
+                  color:'#ffff00',
                   onEachFeature: onEachFeature,
                 }).addTo(map);
 
@@ -1887,51 +1975,11 @@ function onEachFeature(feature, layer) {
               // ourRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
               // ourRequest.send(JSON.stringify({ "email": "hello@user.com", "response": { "name": "Tester" } }));
 
+              console.log(finalLayer)
 
-      return layer1;
+      return finalLayer;
   }
-console.log(isFirstTime)
+console.log(finalLayer)
 
 
-
-  if(isFirstTime == false){
-
-    for(var i=0, len=localStorage.length; i<len-1; i++) {   //len-1 to avoid a error of geojson object not recognised
-      var key = localStorage.key(i);
-      var value = localStorage[key];
-      var itemFetched = localStorage.getItem(key);
-      console.log(i+ '____' + key + " => " + value +'__'+ '__ccc__'+itemFetched);
-
-      function isJson(str) {
-       try {
-         JSON.parse(str);
-       } catch (e) {
-       return false;
-     }
-     return true;
-     }
-
-  isJson(itemFetched);
-     console.log(isJson(itemFetched))
-    if (isJson(itemFetched) == true){
-
-      var getItemToJSON = JSON.parse(itemFetched);
-      console.log(getItemToJSON)
-      console.log(itemFetched)
-
-    var myLayer =  L.geoJSON(getItemToJSON, {
-
-      style: function (feature) {
-        return feature.properties && feature.properties.style;
-      },
-
-      onEachFeature: onEachFeature,
-
-
-    }).addTo(map);
-   }
-  console.log('local storage accessed!!!!')
-  }
-  console.log(isFirstTime);
-}
   ////////////////////////  pop up on each feature  //////////////////////////
