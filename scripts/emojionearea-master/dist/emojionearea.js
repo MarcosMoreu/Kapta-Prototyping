@@ -833,6 +833,7 @@ document = window.document || {};
 
                 self.recentCategory.children(".emojibtn").on("click", function() {
                     self.trigger("emojibtn.click", $(this));
+                    console.log('kkkkkkkkk')
                 });
 
                 self.recentFilter.show();
@@ -1082,7 +1083,7 @@ document = window.document || {};
         attach(self, window, {resize: "!resize"});
         attach(self, tones.children(), {click: "tone.click"});
         attach(self, [picker, button], {mousedown: "!mousedown"}, editor);
-        attach(self, button, {click: "button.click"});
+        attach(self, button, {click: "button.click"});/////////////////////////////////////////////////////////////////////////////
         attach(self, editor, {paste :"!paste"}, editor);
         attach(self, editor, ["focus", "blur"], function() { return self.stayFocused ? false : editor; } );
         attach(self, picker, {mousedown: "picker.mousedown", mouseup: "picker.mouseup", click: "picker.click",
@@ -1163,16 +1164,28 @@ document = window.document || {};
                 self.trigger('search.keypress');
             }
         })
-
+//////////////////////////////////////////////////////////////////////////////////////////////
         .on("@button.click", function(button) {
             if (button.is(".active")) {
                 self.hidePicker();
             } else {
                 self.showPicker();
                 self.searchSel = null;
+                 //map.zoomOut(1);
+                // onfocus="blur();"
+                 //self.trigger("keydown");
+                 // self.keydown();
+                 // self.blur();
+    $('item').keydown();
+    // $('item').keypress();
+    // $('item').keyup();
+    $('item').blur();
+
+
+
             }
         })
-
+//////////////////////////////////////////////////////////////////////////////
         .on("@!paste", function(editor, event) {
 
             var pasteText = function(text) {
@@ -1253,8 +1266,7 @@ document = window.document || {};
             self.trigger('search.keypress');
         })
 
-        .on("@!resize @keyup @emojibtn.click", calcButtonPosition)
-
+        .on("@!resize @keyup @emojibtn.click", calcButtonPosition,)
         .on("@!mousedown", function(editor, event) {
             if ($(event.target).hasClass('search')) {
                 // Allow search clicks
