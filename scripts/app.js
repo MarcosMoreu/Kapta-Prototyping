@@ -193,13 +193,31 @@ var groupGeoJSON =[]
 //console.log(groupLayer)
 console.log('local storage accessed!!!!')
 
+
+function isJson(str) {
+ try {
+   JSON.parse(str);
+ } catch (e) {
+ return false;
+}
+return true;
+}
+
+isJson(groupGeoJSON)
+//conditions to catch error in case no geojson and also to avoid error when adding to map an empty layer if is first time
+var myLayerIsOk = false;
+if(isJson(groupGeoJSON)==true && isFirstTime==false ){
 var myLayer = L.geoJSON(groupGeoJSON,{
   style: function (feature) {
-    return feature.properties && feature.properties.style;
+    myLayerIsOk = true;
+    console.log(myLayerIsOk)
+    return feature.properties && feature.properties.style && myLayerIsOk;
   },
   color:'blue',
   onEachFeature: onEachFeature,
-}).addTo(map)  ///////////  add my layer to the map by default
+
+}).addTo(map)
+}//.addTo(map)  ///////////  add my layer to the map by default
 
 // var myLayer =  L.FeatureGroup(groupLayer, {
 //
@@ -449,106 +467,120 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
         });
 
 
-        var planetS1 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083048_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains:['tiles0','tiles1','tiles2','tiles3'],
-                attribution: 'Planet Imagery AUGUST 2019'
-            });
-         var planetS2 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083047_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains:['tiles0','tiles1','tiles2','tiles3'],
-            });
-         var planetS3 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083046_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains:['tiles0','tiles1','tiles2','tiles3'],
-            });
-         var planetS4 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083045_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains:['tiles0','tiles1','tiles2','tiles3'],
-            });
-         var planetS5 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083044_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains:['tiles0','tiles1','tiles2','tiles3'],
-            });
-         var planetS6 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083043_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        // var planetS1 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083048_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        //         maxZoom: 18,
+        //         maxNativeZoom: 20,
+        //         subdomains:['tiles0','tiles1','tiles2','tiles3'],
+        //         attribution: 'Planet Imagery AUGUST 2019'
+        //     });
+        //  var planetS2 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083047_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        //         maxZoom: 18,
+        //         maxNativeZoom: 20,
+        //         subdomains:['tiles0','tiles1','tiles2','tiles3'],
+        //     });
+        //  var planetS3 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083046_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        //         maxZoom: 18,
+        //         maxNativeZoom: 20,
+        //         subdomains:['tiles0','tiles1','tiles2','tiles3'],
+        //     });
+        //  var planetS4 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083045_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        //         maxZoom: 18,
+        //         maxNativeZoom: 20,
+        //         subdomains:['tiles0','tiles1','tiles2','tiles3'],
+        //     });
+        //  var planetS5 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083044_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        //         maxZoom: 18,
+        //         maxNativeZoom: 20,
+        //         subdomains:['tiles0','tiles1','tiles2','tiles3'],
+        //     });
+        ////////////////////ENSCHEDE/////////////////////
+         var planetS6 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200411_104056_53_105e/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
                 maxZoom: 18,
                 maxNativeZoom: 20,
                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
 
             });
-         var planetS7 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082746_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+         var planetS7 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200411_104054_50_105e/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
                 maxZoom: 18,
                 maxNativeZoom: 20,
                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
             });
-         var planetS8 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082745_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        ////////////CAMEROON//////////////////////
+         var planetS8 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200402_080331_1043/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
                 maxZoom: 18,
                 maxNativeZoom: 20,
                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
             });
-         var planetS9 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082744_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+         var planetS9 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200402_080330_1043/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
                 maxZoom: 18,
                 maxNativeZoom: 20,
                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
             });
-         var planetS10 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082743_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+         var planetS10 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200402_080329_1043/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
                 maxZoom: 18,
                 maxNativeZoom: 20,
                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
             });
-         var planetS11 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082742_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        /////NAIROBI/////////////////////////////
+         var planetS11 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200306_073616_1011/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
                 maxZoom: 18,
                 maxNativeZoom: 20,
                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
                   });
-         var planetS12 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082741_1038/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+         var planetS12 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200306_073615_1011/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
                 maxZoom: 18,
                 maxNativeZoom: 20,
                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
             });
-         var planetS13 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082607_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains:['tiles0','tiles1','tiles2','tiles3'],
-            });
-         var planetS14 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082606_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains:['tiles0','tiles1','tiles2','tiles3'],
-            });
-         var planetS15 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082605_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains:['tiles0','tiles1','tiles2','tiles3'],
-            });
-         var planetS16 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082604_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains:['tiles0','tiles1','tiles2','tiles3'],
-            });
-         var planetS17 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082603_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains:['tiles0','tiles1','tiles2','tiles3'],
-            });
-         var planetS18 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_082602_1020/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        ///////TSUMKWE
+         var planetS13 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200416_083425_1018/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
                 maxZoom: 18,
                 maxNativeZoom: 20,
                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
             });
 
-            var planetS20 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200218_064237_0f2a/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        ///////FRAGA////////////////////////
+         var planetS14 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200403_105241_78_1064/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+            });
+         var planetS15 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200403_105239_76_1064/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+            });
+        ///ITEN///////////////
+         var planetS16 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200410_083657_42_1065/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+                 attribution: 'Planet Imagery APRIL 2020'
+            });
+         var planetS17 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200410_074244_1018/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+            });
+         var planetS18 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200410_074243_1018/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains:['tiles0','tiles1','tiles2','tiles3'],
+            });
+            ///LONDON/////////////////
+            var planetS19 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200411_104513_103d/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
                    maxZoom: 18,
                    maxNativeZoom: 20,
                    subdomains:['tiles0','tiles1','tiles2','tiles3'],
-                     attribution: 'Planet Imagery FEBRUARY 2020'
+
                });
-            var planetS21 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200218_064236_0f2a/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+            var planetS20 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200411_104512_103d/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+                   maxZoom: 18,
+                   maxNativeZoom: 20,
+                   subdomains:['tiles0','tiles1','tiles2','tiles3'],
+
+               });
+            var planetS21 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200411_104511_103d/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
                    maxZoom: 18,
                    maxNativeZoom: 20,
                    subdomains:['tiles0','tiles1','tiles2','tiles3'],
@@ -558,7 +590,7 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
 
         // var planet = L.layerGroup([planetS1,planetS2,planetS3,planetS4,planetS5,planetS6,planetS7,planetS8,planetS9,planetS10,
         //                           planetS11,planetS12,planetS13,planetS14,planetS15,planetS16,planetS17,planetS18]);
-        var planet = L.layerGroup([planetS20,planetS21]);
+        var planet = L.layerGroup([planetS6,planetS7,planetS8,planetS9,planetS10,planetS11,planetS12,planetS13,planetS14,planetS15,planetS16,planetS17,planetS18,planetS19,planetS20,planetS21]);
 
 var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
     saveButtonHtml: '<img src="images/download.png" width=15px ; height=15px>',
@@ -782,7 +814,7 @@ planet_Button.button.style.transitionDuration = '.3s';
 // home_Button.button.style.backgroundColor = 'white';
 
 
-var myLayerIsOn = true;
+var myLayerIsOn = false;
 var myLayer_Button = L.easyButton({
     id: 'myLayer',
     class:'easyButton',
@@ -798,27 +830,96 @@ var myLayer_Button = L.easyButton({
           //onsole.log(myLayer)
 
         //  console.log('countbutton clicks', clickButtonCount)
-          if(myLayerIsOn == true){
 
-            myLayer.removeFrom(map);
-            console.log(myLayer)
-            myLayerIsOn = false;
-            myLayer_Button.button.style.backgroundColor = 'grey';
-            if(finalLayer !=null){finalLayer.removeFrom(map)
-               finalLayer.removeFrom(map)
+        // if(myLayerIsOn == true && firstLoad==false && myLayerIsOk == true){
+        //
+        //   myLayer.removeFrom(map);
+        //   console.log(myLayer)
+        //   myLayerIsOn = false;
+        //   myLayer_Button.button.style.backgroundColor = 'grey';
+        //   if(finalLayer !=null){
+        //      finalLayer.removeFrom(map)
+        //    }
+        // }else if(firstLoad==false && myLayerIsOk == true){
+        //   myLayer.addTo(map)          //  layer1.addTo(map);
+        //   myLayerIsOn = true;
+        //   myLayer_Button.button.style.backgroundColor = 'black';
+        //   if(finalLayer !=null){
+        //     finalLayer.addTo(map)
+        //   }
+        //
+        // // btn.button.style.backgroundColor = 'yellow';
+        // // googleSat_Button.button.style.backgroundColor = 'black';
+        // // planet_Button.button.style.backgroundColor = 'black'
+        // }
+        // return myLayerIsOn;
+///////////////////////////////////////////////////////////////////////////
+console.log(myLayerIsOn)
+console.log(isFirstTime)
+console.log(finalLayer)
+console.log(myLayerIsOk)
+        if(myLayerIsOn == true && isFirstTime==false && finalLayer !=null){
+
+          console.log('if1')
+          myLayerIsOn = false;
+          myLayer_Button.button.style.backgroundColor = 'grey';
+          finalLayer.removeFrom(map)
+
+         if(myLayerIsOk == true){
+           console.log('if2')
+
+           myLayer.removeFrom(map);
+           myLayer_Button.button.style.backgroundColor = 'grey';
+
+          }
+        }
+        else if(myLayerIsOn == false && isFirstTime==false &&  finalLayer !=null){
+          console.log('if3')
+
+          myLayerIsOn = true;
+          myLayer_Button.button.style.backgroundColor = 'black';
+         finalLayer.addTo(map)
+
+          if(myLayerIsOk == true){
+            console.log('if4')
+
+         myLayer.addTo(map)          //  layer1.addTo(map);
+         myLayer_Button.button.style.backgroundColor = 'black';
+
+
+         }
+       }else{
+         myLayer_Button.button.style.backgroundColor = 'red';
+          console.log('if5')
 }
-            }else{
-            myLayer.addTo(map)          //  layer1.addTo(map);
-            myLayerIsOn = true;
-            myLayer_Button.button.style.backgroundColor = 'black';
-            if(finalLayer !=null){finalLayer.addTo(map)
-              finalLayer.addTo(map)
-            }
-
+/////////////////////////////////////////////
+         //  if(myLayerIsOn == true && firstLoad==false && myLayerIsOk == true && finalLayer !=null){
+         //
+         //    myLayer.removeFrom(map);
+         //    console.log(myLayer)
+         //    myLayerIsOn = false;
+         //    myLayer_Button.button.style.backgroundColor = 'grey';
+         //    finalLayer.removeFrom(map)
+         //   }
+         //   else if(myLayerIsOn == true && finalLayer !=null){
+         //            finalLayer.removeFrom(map)
+         //          }
+         //
+         //    else if(myLayerIsOn == false && firstLoad==false && myLayerIsOk == true && finalLayer !=null){
+         //    myLayer.addTo(map)          //  layer1.addTo(map);
+         //    myLayerIsOn = true;
+         //    myLayer_Button.button.style.backgroundColor = 'black';
+         //
+         //   finalLayer.addTo(map)
+         // } else if(myLayerIsOn == false && finalLayer !=null){
+         //   finalLayer.addTo(map)
+         //
+         // }
+////////////////////////////////////////////
           // btn.button.style.backgroundColor = 'yellow';
           // googleSat_Button.button.style.backgroundColor = 'black';
           // planet_Button.button.style.backgroundColor = 'black'
-          }
+
           return myLayerIsOn;
         }
 
@@ -1619,7 +1720,7 @@ var data = JSON.stringify(data2);
     inline: false,  //text box resizes with text input
     hidePickerOnBlur: false,
     search: false,
-    placeholder: "Land use..."
+    placeholder: "Land use"
   });
 
   // var el = $("selector").emojioneArea();
@@ -1664,15 +1765,15 @@ var recording=true;
             if(recording==false){
               this.style.backgroundColor = 'yellow';
               //this.style.borderWidth = '8px';
-              //this.style.borderColor = 'black';
+              this.style.borderColor = 'yellow';
             //  document.getElementById('play').style.opacity = '0.1';
               document.getElementById('download').style.opacity = '0.1';
               document.getElementById('emoji').style.display = 'none';
 
               document.getElementById('voice').style.display = 'initial';
               document.getElementById('voice').style.opacity = '1';
-              document.getElementById('voiceGif').style.width = '45%';
-              document.getElementById('voiceGif').style.height = '5%';
+              document.getElementById('voiceGif').style.width = '40%';
+              document.getElementById('voiceGif').style.height = '7%';
 
 
 
@@ -1967,6 +2068,9 @@ function onEachFeature(feature, layer) {
               var tempName = randomID // each polygon must have a different name!!!
               var layerToLocalStorage = localStorage.setItem(tempName, dataStringified);
               console.log(dataStringified);
+              myLayerIsOn = true;
+              myLayer_Button.button.style.backgroundColor = 'black';
+
 
 //////////////////// TRANSMISSION /////////////////////
               // var ourRequest = new XMLHttpRequest();
@@ -1977,7 +2081,7 @@ function onEachFeature(feature, layer) {
 
               console.log(finalLayer)
 
-      return finalLayer;
+      return finalLayer && myLayerIsOn
   }
 console.log(finalLayer)
 
