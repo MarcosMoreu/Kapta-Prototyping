@@ -930,6 +930,10 @@ myLayer_Button.button.style.width = '50px';
 myLayer_Button.button.style.height = '50px';
 myLayer_Button.button.style.transitionDuration = '.3s';
 myLayer_Button.button.style.backgroundColor = 'black';
+
+// if(isFirstTime == false){
+//   myLayer_Button.addTo(map)
+// }
 myLayer_Button.addTo(map)
 
 
@@ -1155,8 +1159,8 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
           document.getElementById("goBack2").style.display = "none";
           document.getElementById("deleteLastVertex").style.display = "none";
           document.getElementById("deleteAllVertexs").style.display = "none";
-          document.getElementById("deletePolygon").style.display = " none";
-          document.getElementById("changeMapSize").style.display = "none";
+        //  document.getElementById("deletePolygon").style.display = " none";
+          //document.getElementById("changeMapSize").style.display = "none";
 
            document.getElementById("map").style.display = "initial";
            document.getElementById("polygon").style.display = "initial";
@@ -1184,6 +1188,8 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
 
         //   document.getElementById('start').style.display = 'none';
            document.getElementById('record').style.display = 'none';
+           document.getElementById('enableRecording').style.display = 'none';
+
           document.getElementById('play').style.display = 'none';
            document.getElementById('download').style.display = 'none';
            document.getElementById('gum').style.display = 'none';
@@ -1243,7 +1249,7 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
               document.getElementById("deleteLastVertex").disabled = true;
               document.getElementById("deleteAllVertexs").style.opacity = "0.35";
               document.getElementById("deleteAllVertexs").disabled = true;
-              document.getElementById("deletePolygon").style.display = 'none';
+          //    document.getElementById("deletePolygon").style.display = 'none';
 
               // document.getElementById("deletePolygon").style.opacity = "0.35";
               // document.getElementById("deletePolygon").disabled = true;
@@ -1321,14 +1327,14 @@ document.getElementById("goBack2").onclick = function(e){
 
        document.getElementById("deleteLastVertex").style.display = "none";
        document.getElementById("deleteAllVertexs").style.display = "none";
-       document.getElementById("changeMapSize").style.display = "none";
-       document.getElementById("deletePolygon").style.display = "none";
+      // document.getElementById("changeMapSize").style.display = "none";
+       //document.getElementById("deletePolygon").style.display = "none";
 
        document.getElementById("deleteLastVertex").style.opacity = "0.35";
        document.getElementById("deleteLastVertex").disabled = true;
        document.getElementById("deleteAllVertexs").style.opacity = "0.35";
        document.getElementById("deleteAllVertexs").disabled = true;
-       document.getElementById("deletePolygon").style.display = 'none';
+      // document.getElementById("deletePolygon").style.display = 'none';
 
        drawPolygon.disable();
        drawnItems.remove();
@@ -1351,7 +1357,7 @@ var data = JSON.stringify(data2);
 
   document.getElementById('polygon').onclick = function(e){
             currentZoom = map.getZoom();
-            map.zoomIn(1); //increases the zoom level when click on polygon
+          //  map.zoomIn(1); //increases the zoom level when click on polygon
 
             clickMapCount = 0;
             drawPolygon.enable();
@@ -1365,11 +1371,11 @@ var data = JSON.stringify(data2);
             document.getElementById("deleteLastVertex").style.display = "initial";
             document.getElementById("deleteAllVertexs").style.display = "initial";
 
-            document.getElementById("changeMapSize").style.display = "initial";
-            document.getElementById("changeMapSize").disabled = true;
-            document.getElementById("changeMapSize").style.opacity = "0.35";
+            // document.getElementById("changeMapSize").style.display = "initial";
+            // document.getElementById("changeMapSize").disabled = true;
+            // document.getElementById("changeMapSize").style.opacity = "0.35";
 
-            document.getElementById("deletePolygon").style.display = "none";
+          //  document.getElementById("deletePolygon").style.display = "none";
 /////////////////// TRANSMISSION TEST /////////////////////
         //
         //     const toSend = {
@@ -1514,33 +1520,121 @@ var data = JSON.stringify(data2);
     //       $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
     //       .css({ 'background-color': '#F905EA' });
     //   });
+
+    var boxContent;
       //this function must be inside the polygon onclick function
+
+  var tempLayer;
+  var data;
   map.on('draw:created', function (e) {
        //drawnItems.completeShape();
        created = true;
        //document.getElementById("deleteLastVertex").style.display = "none";
 
-       document.getElementById("deleteLastVertex").style.opacity = "0.35";
-       document.getElementById("deleteLastVertex").disabled = true;
-       document.getElementById("deleteAllVertexs").style.opacity = "0.35";
-       document.getElementById("deleteAllVertexs").disabled = true;
+       // document.getElementById("deleteLastVertex").style.opacity = "0.35";
+       // document.getElementById("deleteLastVertex").disabled = true;
+       // document.getElementById("deleteAllVertexs").style.opacity = "0.35";
+       // document.getElementById("deleteAllVertexs").disabled = true;
+       //
+       // document.getElementById("deletePolygon").style.display = "initial";
+       // document.getElementById("deleteAllVertexs").style.display = "none";
+       //
+       // document.getElementById("changeMapSize").disabled = false;
+       // document.getElementById("changeMapSize").style.opacity = "1";
+
        drawPolygon.disable();
        drawPolygon.enable();
-       drawnItems.addTo(map);
-       // drawnItems.toGeoJSON();
-       document.getElementById("deletePolygon").style.display = "initial";
-       document.getElementById("deleteAllVertexs").style.display = "none";
+       drawnItems.removeFrom(map); //remove the drawn item as yellow polygon appears
+      document.getElementById("deleteAllVertexs").style.display = "none";
+      document.getElementById("deleteLastVertex").style.display = "none";
+        document.getElementById("goBack2").style.display = "none";
+
+        document.getElementById("goBack2").style.display = "none";
+        document.getElementById("deleteLastVertex").style.display = "none";
+        document.getElementById("deleteAllVertexs").style.display = "none";
+      //  document.getElementById("changeMapSize").style.display = "none";
+      //  document.getElementById("deletePolygon").style.display = "none";
+
+      //  document.getElementById("Confirm").style.visibility = "hidden";
 
 
-       document.getElementById("changeMapSize").disabled = false;
-       document.getElementById("changeMapSize").style.opacity = "1";
+        // document.getElementById("Confirm").style.opacity = "0.155";
+        // document.getElementById("Confirm").disabled = true;
+        document.getElementById("Confirm").style.display = "initial";
+        document.getElementById("Cancel").style.display = "initial";
+
+        document.getElementById("classification").style.display = "initial";
+
+        document.getElementById("emoji").style.display = "initial";
+
+        document.getElementById('Sent').currentTime = 0;
+
+        document.getElementById('voice').style.display = 'none';
+        document.getElementById('voice').style.opacity = '0';
+
+        document.getElementById('enableRecording').style.display = 'initial';
+
+        // document.getElementById('record').style.display = 'initial';
+        // document.getElementById('record').style.opacity = '1';
+
+        document.getElementById('emoji').style.display = 'initial';
+
+
        //console.log('created')
-
+//boxContent = document.getElementById('emojionearea1').value;
        var mapNewBounds =  map.getBounds();
-        //console.log(mapNewBounds);
-       return created;
+
+       map.fitBounds(drawnItems.getBounds(),{
+                    maxZoom:30,
+                    paddingBottomRight: [0, 0]
+                  })
+        console.log(mapNewBounds);
+
+        data = drawnItems.toGeoJSON();
+      //  var boxContentToString = boxContent.toString();
+        //attributes added to Geojson file properties
+        //var combinedAttributeData = landUses + dateTime + currentLocation;
+        // var propertiesGeoJSON = {
+        //   'landUses':boxContentToString,
+        //
+        // };
+      //  adding the properties to the geoJSON file:
+    //  data.features[0].properties = propertiesGeoJSON;
+
+        function onEachFeature(feature, layer) {
+          var popupContent = '...'  ; //+ '    ' +dateTimeRandomID
+
+          if (feature.properties && feature.properties.popupContent) {
+            popupContent += feature.properties.popupContent;
+          }
+
+          layer.bindPopup(popupContent).addTo(map);
+              layer.bindPopup(popupContent).openPopup(); ///automatically shows the pop up!
+            //  layer.updatePopup(popupContent)
+        }
+
+        tempLayer = L.geoJSON(data,{
+          style: function (feature) {
+            return feature.properties && feature.properties.style;
+          },
+          color:'#ffff00',
+          onEachFeature: onEachFeature,
+
+        }).addTo(map);
+
+       return created & data;
 
    });
+
+      document.getElementById('enableRecording').onclick = function(e){
+        document.getElementById('record').style.display = 'initial';
+        document.getElementById('record').style.opacity = '1';
+        document.getElementById('enableRecording').style.display = 'none';
+
+
+      }
+
+
 
     document.getElementById('deleteLastVertex').onclick = function(e){
          clickDelVertCount += 1;
@@ -1585,130 +1679,130 @@ var data = JSON.stringify(data2);
             document.getElementById("deleteAllVertexs").disabled = true;
         return clickMapCount;
         }
-    document.getElementById('deletePolygon').onclick = function(e){
-            clickMapCount = 0;
-            clickDelVertCount = 0;
-            // if(create==false){
-            //   drawPolygon.disable();
-            //   drawPolygon.enable();
-            //
-            //   document.getElementById("deleteAllVertexs").disabled = true;
-            //   document.getElementById("deleteAllVertexs").style.opacity = "0.35";
-            //
-            //   document.getElementById("deleteLastVertex").disabled = true;
-            //   document.getElementById("deleteLastVertex").style.opacity = "0.35";
-            // } else{
-              document.getElementById("changeMapSize").disabled = true;
-              document.getElementById("changeMapSize").style.opacity = "0.35";
-            //  document.getElementById("deletePolygon").disabled = true;
-              document.getElementById("deletePolygon").style.display = "none";
-
-              document.getElementById("deleteLastVertex").style.opacity = "0.35";
-              document.getElementById("deleteLastVertex").disabled = true;
-              document.getElementById("deleteAllVertexs").style.display = "initial";
-              document.getElementById("deleteAllVertexs").style.opacity = "0.35";
-              document.getElementById("deleteAllVertexs").disabled = true;
-
-              drawnItems.remove();
-              drawnItems.clearLayers();
-            //  drawnItems = [];
-              drawPolygon.enable();
-
-              created=false;
-
-          return created;
-          }
+    // document.getElementById('deletePolygon').onclick = function(e){
+    //         clickMapCount = 0;
+    //         clickDelVertCount = 0;
+    //         // if(create==false){
+    //         //   drawPolygon.disable();
+    //         //   drawPolygon.enable();
+    //         //
+    //         //   document.getElementById("deleteAllVertexs").disabled = true;
+    //         //   document.getElementById("deleteAllVertexs").style.opacity = "0.35";
+    //         //
+    //         //   document.getElementById("deleteLastVertex").disabled = true;
+    //         //   document.getElementById("deleteLastVertex").style.opacity = "0.35";
+    //         // } else{
+    //           // document.getElementById("changeMapSize").disabled = true;
+    //           // document.getElementById("changeMapSize").style.opacity = "0.35";
+    //         //  document.getElementById("deletePolygon").disabled = true;
+    //       //    document.getElementById("deletePolygon").style.display = "none";
+    //
+    //           document.getElementById("deleteLastVertex").style.opacity = "0.35";
+    //           document.getElementById("deleteLastVertex").disabled = true;
+    //           document.getElementById("deleteAllVertexs").style.display = "initial";
+    //           document.getElementById("deleteAllVertexs").style.opacity = "0.35";
+    //           document.getElementById("deleteAllVertexs").disabled = true;
+    //
+    //           drawnItems.remove();
+    //           drawnItems.clearLayers();
+    //         //  drawnItems = [];
+    //           drawPolygon.enable();
+    //
+    //           created=false;
+    //
+    //       return created;
+    //       }
 
   //var goToLT = 0; //variable to know whether the LT instructions have played, so can be paused when cancel click
-  var goToId = 0;
-      document.getElementById('changeMapSize').onclick = function(e) {
-            clickMapCount = 0;
-            clickDelVertCount = 0;
-
-          // document.getElementById("mappingInstructions").pause();
-          // document.getElementById("mappingInstructions").currentTime = 0;
-
-          // document.getElementById('goToIdentification').style.display = 'initial';
-          // document.getElementById('goToIdentification').disabled = true;
-          // document.getElementById('goToIdentification').style.opacity = '0.1';
-
-
-        //  console.log('zoom',map.getZoom())
-          var screenHeight = screen.height;
-        //  var paddingDist = screenHeight*0.6;
-
-        //  console.log('screenHeight', screenHeight)
-        //  document.getElementById("map").style.height = "88%";
-
-            map.fitBounds(drawnItems.getBounds(),{
-              maxZoom:30,
-              paddingBottomRight: [0, 0]
-            })
-
-              document.getElementById("goBack2").style.display = "none";
-              document.getElementById("deleteLastVertex").style.display = "none";
-              document.getElementById("deleteAllVertexs").style.display = "none";
-              document.getElementById("changeMapSize").style.display = "none";
-              document.getElementById("deletePolygon").style.display = "none";
-
-            //  document.getElementById("Confirm").style.visibility = "hidden";
-
-
-              // document.getElementById("Confirm").style.opacity = "0.155";
-              // document.getElementById("Confirm").disabled = true;
-              document.getElementById("Confirm").style.display = "initial";
-              document.getElementById("Cancel").style.display = "initial";
-
-              document.getElementById("classification").style.display = "initial";
-
-              document.getElementById("emoji").style.display = "initial";
-
-            // document.getElementById('emojionearea1').value = 'aaaaa'
-            // console.log(document.getElementById('emojionearea1').value);
-
-
-              //document.getElementById("microphone").style.display = "initial";
-      ////        document.getElementById('LandUse').play();
-              // document.getElementById('lu1').style.display = 'initial';
-              // document.getElementById('lu2').style.display = 'initial';
-              // document.getElementById('lu3').style.display = 'initial';
-              // document.getElementById('lu4').style.display = 'initial';
-              // document.getElementById('lu5').style.display = 'initial';
-              // document.getElementById('luOther').style.display = 'initial';
-
-              //document.getElementById('goToIdentification').style.display = 'initial';
-///go to identificiation script
-              document.getElementById('Sent').currentTime = 0;
-
-              goToId = 1;
-
-
-              // document.getElementById('Confirm').style.display = 'initial';
-              // document.getElementById('Confirm').disabled = true;
-              // document.getElementById('Confirm').style.opacity = '0.1';
-
-              //document.getElementById('goBackToLandUse').style.display = 'initial';
-              document.getElementById('voice').style.display = 'none';
-              document.getElementById('voice').style.opacity = '0';
-
-              // document.getElementById('LandUse').pause();
-              // document.getElementById('LandUse').currentTime = 0;
-
-          //    document.getElementById('Identification').play();
-          //    document.getElementById('start').style.display = 'initial';
-              document.getElementById('record').style.display = 'initial';
-              document.getElementById('record').style.opacity = '1';
-              // document.getElementById('play').style.display = 'initial';
-              // document.getElementById('play').style.opacity = '0.1';
-
-              document.getElementById('emoji').style.display = 'initial';
-
-
-              // document.getElementById('download').style.display = 'initial';
-              // document.getElementById('download').style.opacity = '0.1';
-
-
-           }
+//   var goToId = 0;
+//       document.getElementById('changeMapSize').onclick = function(e) {
+//             clickMapCount = 0;
+//             clickDelVertCount = 0;
+//
+//           // document.getElementById("mappingInstructions").pause();
+//           // document.getElementById("mappingInstructions").currentTime = 0;
+//
+//           // document.getElementById('goToIdentification').style.display = 'initial';
+//           // document.getElementById('goToIdentification').disabled = true;
+//           // document.getElementById('goToIdentification').style.opacity = '0.1';
+//
+//
+//         //  console.log('zoom',map.getZoom())
+//           var screenHeight = screen.height;
+//         //  var paddingDist = screenHeight*0.6;
+//
+//         //  console.log('screenHeight', screenHeight)
+//         //  document.getElementById("map").style.height = "88%";
+//
+//             map.fitBounds(drawnItems.getBounds(),{
+//               maxZoom:30,
+//               paddingBottomRight: [0, 0]
+//             })
+//
+//               document.getElementById("goBack2").style.display = "none";
+//               document.getElementById("deleteLastVertex").style.display = "none";
+//               document.getElementById("deleteAllVertexs").style.display = "none";
+//               document.getElementById("changeMapSize").style.display = "none";
+//               document.getElementById("deletePolygon").style.display = "none";
+//
+//             //  document.getElementById("Confirm").style.visibility = "hidden";
+//
+//
+//               // document.getElementById("Confirm").style.opacity = "0.155";
+//               // document.getElementById("Confirm").disabled = true;
+//               document.getElementById("Confirm").style.display = "initial";
+//               document.getElementById("Cancel").style.display = "initial";
+//
+//               document.getElementById("classification").style.display = "initial";
+//
+//               document.getElementById("emoji").style.display = "initial";
+//
+//             // document.getElementById('emojionearea1').value = 'aaaaa'
+//             // console.log(document.getElementById('emojionearea1').value);
+//
+//
+//               //document.getElementById("microphone").style.display = "initial";
+//       ////        document.getElementById('LandUse').play();
+//               // document.getElementById('lu1').style.display = 'initial';
+//               // document.getElementById('lu2').style.display = 'initial';
+//               // document.getElementById('lu3').style.display = 'initial';
+//               // document.getElementById('lu4').style.display = 'initial';
+//               // document.getElementById('lu5').style.display = 'initial';
+//               // document.getElementById('luOther').style.display = 'initial';
+//
+//               //document.getElementById('goToIdentification').style.display = 'initial';
+// ///go to identificiation script
+//               document.getElementById('Sent').currentTime = 0;
+//
+//               goToId = 1;
+//
+//
+//               // document.getElementById('Confirm').style.display = 'initial';
+//               // document.getElementById('Confirm').disabled = true;
+//               // document.getElementById('Confirm').style.opacity = '0.1';
+//
+//               //document.getElementById('goBackToLandUse').style.display = 'initial';
+//               document.getElementById('voice').style.display = 'none';
+//               document.getElementById('voice').style.opacity = '0';
+//
+//               // document.getElementById('LandUse').pause();
+//               // document.getElementById('LandUse').currentTime = 0;
+//
+//           //    document.getElementById('Identification').play();
+//           //    document.getElementById('start').style.display = 'initial';
+//               document.getElementById('record').style.display = 'initial';
+//               document.getElementById('record').style.opacity = '1';
+//               // document.getElementById('play').style.display = 'initial';
+//               // document.getElementById('play').style.opacity = '0.1';
+//
+//               document.getElementById('emoji').style.display = 'initial';
+//
+//
+//               // document.getElementById('download').style.display = 'initial';
+//               // document.getElementById('download').style.opacity = '0.1';
+//
+//
+//            }
 
 
 
@@ -1720,7 +1814,7 @@ var data = JSON.stringify(data2);
     inline: false,  //text box resizes with text input
     hidePickerOnBlur: false,
     search: false,
-    placeholder: "Land use"
+    placeholder: "..."
   });
 
   // var el = $("selector").emojioneArea();
@@ -1781,8 +1875,8 @@ var recording=true;
       //        document.getElementById('goBackToLandUse').style.display = 'none';
 
             }
-            document.getElementById('Identification').pause();
-            document.getElementById('Identification').currentTime = 0;
+            // document.getElementById('Identification').pause();
+            // document.getElementById('Identification').currentTime = 0;
 
            document.getElementById('gum').style.display = 'none';
            document.getElementById('recorded').style.display = 'none';
@@ -1793,8 +1887,8 @@ var boxContent;
 
       document.getElementById('Confirm').onclick = function(e) {
             goToDS = 1;
-            document.getElementById("Identification").pause();
-            document.getElementById("Identification").currentTime = 0;
+            // document.getElementById("Identification").pause();
+            // document.getElementById("Identification").currentTime = 0;
 
              document.getElementById("Confirm").style.display = "none";
             // document.getElementById("Cancel").style.display = "none";
@@ -1806,10 +1900,32 @@ var boxContent;
              document.getElementById("export").style.opacity = "1";
              document.getElementById("exportButton").style.display = "1";
 
+
+
              boxContent = document.getElementById('emojionearea1').value;
              console.log(boxContent);
 
+             tempLayer.removeFrom(map);
+             function onEachFeature(feature, layer) {
+               var popupContent = boxContent  ; //+ '    ' +dateTimeRandomID
 
+               if (feature.properties && feature.properties.popupContent) {
+                 popupContent += feature.properties.popupContent;
+               }
+
+               layer.bindPopup(popupContent).addTo(map);
+                   layer.bindPopup(popupContent).openPopup(); ///automatically shows the pop up!
+                 //  layer.updatePopup(popupContent)
+             }
+
+             tempLayer = L.geoJSON(data,{
+               style: function (feature) {
+                 return feature.properties && feature.properties.style;
+               },
+               color:'#ffff00',
+               onEachFeature: onEachFeature,
+
+             }).addTo(map);
 
 
           return boxContent;
@@ -1824,12 +1940,12 @@ var boxContent;
       /////       document.getElementById("mappingInstructions").play();
 
         /////     document.getElementById('LandUse').pause();
-             document.getElementById('LandUse').currentTime = 0;
+          //   document.getElementById('LandUse').currentTime = 0;
 
-             if(goToId ==1){
-               document.getElementById('Identification').pause();
-               document.getElementById('Identification').currentTime = 0;
-             }
+             // if(goToId ==1){
+             //   document.getElementById('Identification').pause();
+             //   document.getElementById('Identification').currentTime = 0;
+             // }
 
 
 
@@ -1853,13 +1969,14 @@ var boxContent;
 
 
              document.getElementById('record').style.display = 'none';
+             document.getElementById('enableRecording').style.display = 'none';
           //   document.getElementById('play').style.display = 'none';
              document.getElementById('voice').style.display = 'none';
 
           //   document.getElementById('goBackToLandUse').style.display = 'none';
           //   document.getElementById('goToIdentification').style.display = 'none';
              document.getElementById('emoji').style.display = 'none';
-
+             tempLayer.clearLayers()
            }
 
 
@@ -1883,7 +2000,8 @@ function onEachFeature(feature, layer) {
     popupContent += feature.properties.popupContent;
   }
 
-  layer.bindPopup(popupContent);
+  layer.bindPopup(popupContent).addTo(map);
+    layer.bindPopup(popupContent).openPopup();
 }
 //////////////////////////////////
   document.getElementById('export').onclick = function(e) {
@@ -1989,12 +2107,12 @@ function onEachFeature(feature, layer) {
                   style: function (feature) {
                     return feature.properties && feature.properties.style;
                   },
-                  color:'#ffff00',
+                  color:'blue',
                   onEachFeature: onEachFeature,
                 }).addTo(map);
 
                 drawnItems.clearLayers();
-
+                tempLayer.clearLayers()
                 //defining the final screen
           //////      document.getElementById('Sent').play();
                 document.getElementById("map").style.height = "0px";
@@ -2005,6 +2123,8 @@ function onEachFeature(feature, layer) {
                 document.getElementById("exportButton").style.display = "none";
 
                 document.getElementById("record").style.display = "none";
+                document.getElementById('enableRecording').style.display = 'none';
+
               //  document.getElementById("recordFake").style.display = "none";
 
                 document.getElementById("play").style.display = "none";

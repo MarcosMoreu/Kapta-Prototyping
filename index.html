@@ -89,7 +89,7 @@
     <img src="images/questionmark.png" style='width:30px ; height:30px'>
   </button>
   <button id='polygon' class='button' style='z-index:3; position:relative' action='process.php' name="data" type="submit">
-    <img src="images/drawPolygon.png" style='width:30px ; height:30px'>
+    <img src="images/drawPolygon.png" style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
   </button>
   <button id='polyline' class='button' style='opacity:0.5'>
     <img src="images/polyline.png" style='width:30px ; height:30px'>
@@ -104,10 +104,10 @@
     <img src="images/backButton.png" style='width:30px ; height:30px '>
   </button>
   <button id='deleteLastVertex' class='button' style='display:none'>
-    <img src="images/deleteLastvertex.png" style='width:30px ; height:30px;'>
+    <img src="images/deleteLastVertex.png" style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
   </button>
   <button id='deleteAllVertexs' class='button'style='display:none'>
-    <img src="images/deleteAllvertex.png" style='width:30px ; height:30px'>
+    <img src="images/deleteAllVertex.png" style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
   </button>
   <button id='deletePolygon' class='button' style='display:none'>
     <img src="images/deletePolygon.png" style='width:30px ; height:30px'>
@@ -175,6 +175,9 @@
   <!-- <button id="recordFake" disabled class='button' style='opacity:0.5'>
     <img src="images/record.png" style='width:30px ; height:30px'>
   </button> -->
+  <button id="enableRecording" class='button' >
+    <img src="images/record.png" style='width:30px ; height:30px'>
+  </button>
 
   <button id="record" class='button' >
     <img src="images/record.png" style='width:30px ; height:30px'>
@@ -186,7 +189,7 @@
 
   <button id='exportButton' class='button2' style='display:none'>
     <a id='export'>
-        <img  src="images/Send.png" style='width:30px ; height:30px'></img>
+        <img  src="images/Send.png" style='width:30px ; height:30px; margin-top:4px; margin-right:4px'></img>
     </a>
   </button>
 
@@ -200,13 +203,13 @@
 </div>
 
 <br></br>
-<audio  id='Identification' style='z-index:2; position:relative; margin-top:-90px'>
+<!-- <audio  id='Identification' style='z-index:2; position:relative; margin-top:-90px'>
   <source src="images/audioRecording.mp3"  type="audio/mp3">
-</audio>
+</audio> -->
 
- <audio  id='LandUse' loop style='z-index:2; position:relative; margin-top:-90px'>
+ <!-- <audio  id='LandUse' loop style='z-index:2; position:relative; margin-top:-90px'>
   <source src="images/classification.mp3"  type="audio/mp3">
-</audio>
+</audio> -->
 
 
 <div id='voice' style='display:none' style='z-index:2; position:relative; margin-top:-90px'>
@@ -242,10 +245,9 @@
   </button>
 </div> -->
 
-<audio  id='finalScreen' style='z-index:2; position:relative; margin-top:-90px'>
+<!-- <audio  id='finalScreen' style='z-index:2; position:relative; margin-top:-90px'>
   <source src="images/finalScreen.mp3"  type="audio/mp3">
-  <!-- <div class="center">.</div> -->
-</audio>
+</audio> -->
 <!-- ////////////////////////////////////data sharing//////////////////////////////// -->
 
 <!-- <script src="https://npmcdn.com/leaflet@1.3.4/dist/leaflet.js"></script> -->
