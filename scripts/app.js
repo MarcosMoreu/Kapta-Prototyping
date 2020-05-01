@@ -125,15 +125,31 @@ firstLoad();
 console.log(isFirstTime);
 
 /////////////////////////////////////////////////////////adding map elements///////////////////////////////////////////////////
-var map = L.map('map',{
+// var map;
+// var tutorialViewed = false;
+// if(tutorialViewed ==true){
+//   map = L.map('map',{
+//           editable:true,
+//           center: mapCurrentCenter,
+//           zoom: mapCurrentZoom,
+//           minZoom:3,
+//           maxZoom:21,
+//           zoomControl:false,
+//          attributionControl:false
+//         });
+// }else{
+
+  var map = L.map('map',{
         editable:true,
-        center: [0.670322, 35.507470],
-        zoom: 14,
-        minZoom:5,
+        center: [18, 20],
+        zoom: 3,
+        minZoom:3,
         maxZoom:21,
         zoomControl:false,
        attributionControl:false
       });
+
+
 function addPreviousPolygons(){
   if(!data.length==0){
   //  data.addTo(map); //////////////////////////////////////////////
@@ -647,43 +663,8 @@ var offlineControlOSM = L.control.offline(osm, tilesDb, {
 //offlineControlGoogle.addTo(map);
 //offlineControlOSM.addTo(map);
 
-var gpsIcon = L.icon({
-    iconUrl: 'images/man.png',
-  //  shadowUrl: 'leaf-shadow.png',
 
-    iconSize:     [40, 40], // size of the icon
-    //shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [20, 40], // point of the icon which will correspond to marker's location
-    //shadowAnchor: [4, 62],  // the same for the shadow
-    //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-});
-
-
-// add location via browser geolocation
-var currentLocation = []; // variable created to allow the user recenter the map
-
-function displayLocation(position) {
-    var lat = position.coords.latitude;
-    var lng = position.coords.longitude;
-    L.marker([lat, lng],{icon:gpsIcon}).addTo(map);
-    //console.log('{longitude:' + lng + ', latitude:' + lat + '}');
-  //  map.setView([lat, lng], 15);
-    currentLocation = [lat,lng];
-    //console.log(currentLocation)
-    //console.log(currentLocation);
-  return currentLocation;
-}
-
-//////////////////////////////////////activate gps///////////////////////////////////////////
-
-try {
-  navigator.geolocation.getCurrentPosition(displayLocation);
-}
-catch(err) {
-  currentLocation == null;
-}
-//navigator.geolocation.getCurrentPosition(displayLocation); //Note that it requires a secure domain (i.e. HTTPS)
-console.log(currentLocation.length)                                                                                                       //define center map and zooooooms
+                                                                                         //define center map and zooooooms
 
 
 var clickButtonCount=0;
@@ -943,6 +924,108 @@ myLayer_Button.button.style.backgroundColor = 'black';
 // }
 myLayer_Button.addTo(map)
 
+////////////////////////////////   gps  ///////////////
+var gpsIcon = L.icon({
+    iconUrl: 'images/man.png',
+  //  shadowUrl: 'leaf-shadow.png',
+
+    iconSize:     [40, 40], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [20, 40], // point of the icon which will correspond to marker's location
+    //shadowAnchor: [4, 62],  // the same for the shadow
+    //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
+
+// add location via browser geolocation
+var currentLocation = []; // variable created to allow the user recenter the map
+
+  // function displayLocation(position) {
+  //      L.marker(currentLocation,{icon:gpsIcon}).removeFrom(map);
+  //     var lat = position.coords.latitude;
+  //     var lng = position.coords.longitude;
+  //     L.marker([lat, lng],{icon:gpsIcon}).addTo(map);
+  //     //console.log('{longitude:' + lng + ', latitude:' + lat + '}');
+  //   //  map.setView([lat, lng], 15);
+  //     currentLocation = [lat,lng];
+  //     console.log(currentLocation)
+  //     //console.log(currentLocation);
+  //   return currentLocation;
+  // }
+// setInterval(function(){ navigator.geolocation.getCurrentPosition(displayLocation)
+// }, 3000);
+var accuracy = 0
+var markerAdded=false; // var to avoid multiple markers
+function findLocation(position) {
+    //  L.marker([lat, lng],{icon:gpsIcon}).removeFrom(map);
+    var lat = position.coords.latitude;
+    var lng = position.coords.longitude;
+    accuracy = position.coords.accuracy;
+    console.log(accuracy)
+    if(markerAdded == false){
+   L.marker([lat, lng],{icon:gpsIcon}).addTo(map);
+    markerAdded=true;
+
+    }
+    currentLocation = [lat,lng];
+    //console.log(currentLocation)
+    //console.log(currentLocation);
+  return currentLocation & markerAdded & accuracy;
+}
+
+//////////////////////////////////////activate gps///////////////////////////////////////////
+
+// try {
+//   navigator.geolocation.getCurrentPosition(displayLocation);
+// }
+// catch(err) {
+//   currentLocation == null;
+// }
+
+//navigator.geolocation.getCurrentPosition(displayLocation); //Note that it requires a secure domain (i.e. HTTPS)
+console.log(currentLocation[0])
+
+var locationFound=false;
+//script to update color of gps button
+
+// if(currentLocation[0]==null){
+var refreshGPSbutton = setInterval(function(){
+
+  try {
+    navigator.geolocation.getCurrentPosition(findLocation);
+   console.log(currentLocation[0])
+  }
+  catch(err) {
+    currentLocation == null;
+  }
+//navigator.geolocation.getCurrentPosition(findLocation);
+
+if(currentLocation[0] != null){
+
+    locationFound = true
+    console.log(currentLocation)
+    console.log(accuracy)
+
+    //console.log(geolocationCoordinates.accuracy)
+    clearInterval(refreshGPSbutton)//once the position has been found, we stop checking if the user deactivates again (the position will be recorded anyway)
+      if(accuracy<=50){
+      gps_Button.button.style.backgroundColor = 'green';
+    }else if(accuracy>50 && accuracy<=250){
+      gps_Button.button.style.backgroundColor = 'yellow';
+    }else if(accuracy>250){
+      gps_Button.button.style.backgroundColor = 'orange';
+
+    }
+  //  locationFound = true
+}else{
+    gps_Button.button.style.backgroundColor = 'red';
+  //  locationFound = false
+
+  }
+  return currentLocation;
+},1000)
+
+
 
 console.log(currentLocation[0])
 var gps_Button = L.easyButton({
@@ -952,15 +1035,23 @@ var gps_Button = L.easyButton({
         icon: '<img src="images/gps.png" width=35px ; height=35px>',
         stateName: 'check-mark',
         onClick: function(btn,map) {
-console.log(currentLocation)
+          console.log(currentLocation)
             if(currentLocation[0] != null){
-              gps_Button.button.style.backgroundColor = 'green';
-                map.setView(currentLocation,15);
+            map.setView(currentLocation,15);
+
+            if(accuracy<=50){
+            gps_Button.button.style.backgroundColor = 'green';
+          }else if(accuracy>50 && accuracy<=250){
+            gps_Button.button.style.backgroundColor = 'yellow';
+          }else if(accuracy>250){
+            gps_Button.button.style.backgroundColor = 'orange';
+
+          }
 
             }
 
             if (currentLocation[0] == null){
-
+//navigator.geolocation.getCurrentPosition(findLocation)
               gps_Button.button.style.backgroundColor = 'red';
             }
 
@@ -976,6 +1067,15 @@ console.log(currentLocation)
 gps_Button.button.style.width = '50px';
 gps_Button.button.style.height = '50px';
 gps_Button.button.style.transitionDuration = '.3s';
+
+
+//L.marker(currentLocation,{icon:gpsIcon}).addTo(map);
+
+// if(locationFound==true){
+//   L.marker(currentLocation,{icon:gpsIcon}).addTo(map);
+//
+// }
+
 gps_Button.button.style.backgroundColor = 'white';
 gps_Button.addTo(map);
 
@@ -1306,6 +1406,10 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
           //   document.getElementById("text").style.display = "initial";
           //
           // }
+
+          var mapCurrentBounds;
+          var mapCurrentZoom;
+          var mapCurrentCenter;
           document.getElementById("goBack1").onclick = function(e){
 
             // document.getElementById("mappingInstructions").pause();
@@ -1318,11 +1422,19 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
              document.getElementById("polygon").style.display = "none";
              document.getElementById("polyline").style.display = "none";
              document.getElementById("point").style.display = "none";
+
+             mapCurrentBounds =  map.getBounds();
+             mapCurrentZoom = map.getZoom();
+             mapCurrentCenter = map.getCenter();
+             tutorialViewed = true
+
+
+
              // document.getElementById("videoTutorial").style.display = "initial";
             // document.getElementById("startMapping").style.display = "initial";
             // document.getElementById("youtube").style.display = "initial";
              // document.getElementById("audioTutorial").play();
-
+             return mapCurrentBounds & mapCurrentZoom
            }
 ///////////////////////////////////////////draw screen////////////////////////////////////////////////
 
