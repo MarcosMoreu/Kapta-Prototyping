@@ -942,7 +942,7 @@ var gps_Button = L.easyButton({
     id: 'gps',
     position: 'topleft',
     states: [{
-        icon: '<img src="images/man.png" width=35px ; height=35px>',
+        icon: '<img src="images/gps.png" width=35px ; height=35px>',
         stateName: 'check-mark',
         onClick: function(btn,map) {
           map.setView(currentLocation,15);
