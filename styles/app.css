@@ -80,6 +80,10 @@ map {
   /* background-color:#ededf0; */
   /* z-index:10; */
 }
+.buttonActivatePlay{
+  border: 4px solid white;
+
+}
 
 .button:active {
   /* border:2px solid yellow; */

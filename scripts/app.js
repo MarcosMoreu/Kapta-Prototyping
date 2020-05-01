@@ -989,15 +989,20 @@ var locationFound=false;
 //script to update color of gps button
 
 // if(currentLocation[0]==null){
+var refreshAccuracy = setInterval(function(){
+
+  if(accuracy<=50){
+  gps_Button.button.style.backgroundColor = 'green';
+}else if(accuracy>50 && accuracy<=250){
+  gps_Button.button.style.backgroundColor = 'yellow';
+}else if(accuracy>250){
+  gps_Button.button.style.backgroundColor = 'orange';
+
+}
+},10000)
 var refreshGPSbutton = setInterval(function(){
 
-  try {
-    navigator.geolocation.getCurrentPosition(findLocation);
-   console.log(currentLocation[0])
-  }
-  catch(err) {
-    currentLocation == null;
-  }
+
 //navigator.geolocation.getCurrentPosition(findLocation);
 
 if(currentLocation[0] != null){
@@ -1019,6 +1024,13 @@ if(currentLocation[0] != null){
   //  locationFound = true
 }else{
     gps_Button.button.style.backgroundColor = 'red';
+    try {
+      navigator.geolocation.getCurrentPosition(findLocation);
+     console.log(currentLocation[0])
+    }
+    catch(err) {
+      currentLocation == null;
+    }
   //  locationFound = false
 
   }
@@ -1257,6 +1269,7 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
 
 /////////////////////////////////////////Initial state of buttons //////////////////////////////////////
 
+//document.getElementById('activatePlay').style.display = 'initial';
 
           // document.getElementById("videoTutorial").style.display = "initial";
 
@@ -1303,7 +1316,11 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
            document.getElementById('record').style.display = 'none';
            document.getElementById('enableRecording').style.display = 'none';
 
-          document.getElementById('play').style.display = 'none';
+    //      document.getElementById('play').style.display = 'none';
+      //    document.getElementById('activatePlay').style.display = 'none';
+      document.getElementById('activatePlay').style.opacity = '0';
+
+
            document.getElementById('download').style.display = 'none';
            document.getElementById('gum').style.display = 'none';
            document.getElementById('recorded').style.display = 'none';
@@ -1756,6 +1773,9 @@ var data = JSON.stringify(data2);
         document.getElementById('record').style.opacity = '1';
         document.getElementById('enableRecording').style.display = 'none';
 
+        //setTimeout(function(){ document.getElementById("record").click();}, 500);
+        //document.getElementById("record").click();
+
 
       }
 
@@ -1970,7 +1990,11 @@ var recording=true;
               this.style.backgroundColor = 'white';
               //this.style.borderWidth = '2px';
               //this.style.borderColor = 'transparent';
-          //    document.getElementById('play').style.opacity = '1';
+              // document.getElementById('play').style.display = 'initial';
+              // document.getElementById('play').style.opacity = '1';
+              document.getElementById('activatePlay').style.display = 'initial';
+              document.getElementById('activatePlay').style.opacity = '1';
+
               document.getElementById('download').style.opacity = '1';
               document.getElementById('emoji').style.display = 'initial';
               document.getElementById('voice').style.display = 'none';
@@ -1985,14 +2009,14 @@ var recording=true;
               this.style.backgroundColor = 'yellow';
               //this.style.borderWidth = '8px';
               this.style.borderColor = 'yellow';
-            //  document.getElementById('play').style.opacity = '0.1';
+              document.getElementById('activatePlay').style.display = 'none';
               document.getElementById('download').style.opacity = '0.1';
               document.getElementById('emoji').style.display = 'none';
 
               document.getElementById('voice').style.display = 'initial';
               document.getElementById('voice').style.opacity = '1';
               document.getElementById('voiceGif').style.width = '40%';
-              document.getElementById('voiceGif').style.height = '7%';
+              document.getElementById('voiceGif').style.height = '40px';
 
 
 
@@ -2008,6 +2032,9 @@ var recording=true;
            document.getElementById('echoCancellation').style.display = 'none';
 
       }
+        document.getElementById('activatePlay').onclick = function(e){
+          document.getElementById("play").click(); //added so no need to click button twice
+        }
 var boxContent;
 
       document.getElementById('Confirm').onclick = function(e) {
@@ -2095,7 +2122,9 @@ var boxContent;
 
              document.getElementById('record').style.display = 'none';
              document.getElementById('enableRecording').style.display = 'none';
-          //   document.getElementById('play').style.display = 'none';
+        //   document.getElementById('play').style.display = 'none';
+             document.getElementById('activatePlay').style.display = 'none';
+
              document.getElementById('voice').style.display = 'none';
 
           //   document.getElementById('goBackToLandUse').style.display = 'none';
@@ -2257,6 +2286,8 @@ function onEachFeature(feature, layer) {
 
                 document.getElementById('voice').style.display = 'none';
                 document.getElementById('voice').style.opacity = '0';
+                document.getElementById('activatePlay').style.display = 'none';
+
 
                 // document.getElementById("tutorialScreen").style.visibility = "hidden";
                 // document.getElementById("startMapping").style.display = "none";
@@ -2289,6 +2320,8 @@ function onEachFeature(feature, layer) {
                 document.getElementById("polygon").style.display = "initial";
                 document.getElementById("polyline").style.display = "initial";
                 document.getElementById("point").style.display = "initial";
+
+                document.getElementById('emojionearea1').placeholder = '.'
 
                 // drawnItems.remove();
                 recordedVideo.pause();

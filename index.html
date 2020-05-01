@@ -24,7 +24,7 @@
   <link href="pages/tutorial.html" rel="text/html" >
   <link href="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.css" rel="stylesheet" >
 <!-- for solving the favicon issues... -->
-  <link rel="shortcut icon" href="images/icons/icon-72x72.png">
+  <link rel="shortcut icon" href="images/icons/icon-96x96.png">
   <!-- <iframe src="images/audio1.mp3" allow="autoplay" style="display:none" id="iframeAudio">
   </iframe> -->
 </head>
@@ -52,7 +52,7 @@
 
 <body>
 
-<div id="map" style='height:100%; z-index:1; position:relative'>
+<div id="map" style='height:100%; z-index:1; position:relative;'>
     <div id="rose" style='margin-bottom:75px; margin-left:-8px'> </div>
 </div>
 
@@ -115,6 +115,7 @@
   <button id='changeMapSize' class='button' style='display:none'>
     <img src="images/ThumbsUpGreen.png" style='width:30px ; height:30px'>
   </button>
+
 </div>
 
 
@@ -155,7 +156,11 @@
     </a>
   </button>
 </div> -->
+
+
 <div id='classification' align='center' style='display:none; vertical-align:top;z-index:2; position:relative; margin-top:-90px'>
+
+
   <button id='Cancel' class='button' >
     <img src="images/cancel.png" style='width:30px ; height:30px'>
   </button>
@@ -212,26 +217,37 @@
 </audio> -->
 
 
-<div id='voice' style='display:none' style='z-index:2; position:relative; margin-top:-90px'>
+<!-- <div id='voice' style='display:none' style='z-index:2; position:relative'>
   <img src="images/voice.gif" style='width:50% ; height:60px'>
-</div>
+</div> -->
+<div  style='z-index:2; position:relative'>
 
-<div  style='z-index:2; position:relative; margin-top:-90px'>
 
-
-        <button id="play" disabled class='audioButtons' style='display:none;margin-top: 15px;width:47%;height:60px;border-color: grey;background-color:white'>
-          <img src="images/play.png" style='width:40px ; height:40px'>
+        <button id="play"  style='display:none;width:50px;height:50px;top:300px;background-color:white;  border-radius: 50px'>
+          <img src="images/play.png" style='width:30px ; height:30px'>
         </button>
         <button id="download" disabled style='display:none;margin-top: 15px;width:80px;height:60px;background-color:yellow; '></button>
 
 </div>
 
+
 <div>
   <p> <input type="checkbox" id="echoCancellation"></p>
 </div>
-<video id="gum" playsinline autoplay muted></video>
+<video id="gum" playsinline  muted></video>
 <video id="recorded" playsinline loop></video>
+<div style='z-index:2; position:relative;margin-top:-350px;margin-left:0%'>
+  <button  id='activatePlay' class='buttonActivatePlay' style='display:none;width:50px;height:50px;background-color:white; border-color: yellow; border-radius: 50px'>
+    <img src="images/play.png" style='width:30px ; height:30px'>
+  </button>
 </div>
+</div>
+
+
+
+<!-- <button id="play" style='position:absolute;margin-top:35px;width:47%;height:60px;border-color: grey;background-color:white'>
+  <img src="images/play.png" style='width:40px ; height:40px'>
+</button> -->
 <!-- <div>
   <button id="emoji"  style='margin-top: 10px;width:47%;height:60px;background-color:grey'>
     <img src="images/arrowLeft.png" style='width:60px ; height:40px'>
