@@ -49,14 +49,19 @@ playButton.addEventListener('click', () => {
   recordedVideo.play();
 });
 
+
 const downloadButton = document.querySelector('button#exportButton');/////////////////////////////////change the download button
 downloadButton.addEventListener('click', () => {
 
   var randomNumber = Math.random();
   randomNumber = randomNumber*10000;
   var randomID = Math.round(randomNumber);
+console.log(recordedBlobs)
 
+/////////catch error in case recordedBlobs ==null
+try{
   const blob = new Blob(recordedBlobs, {type: 'video/webm'});
+
   const url = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.style.display = 'none';
@@ -68,7 +73,12 @@ downloadButton.addEventListener('click', () => {
     document.body.removeChild(a);
     window.URL.revokeObjectURL(url);
   }, 100);
+}
+catch(err){ //////////////////////////////////
+  recordedBlobs==null
+}
 });
+
 
 function handleSourceOpen(event) {
   console.log('MediaSource opened');
