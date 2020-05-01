@@ -675,7 +675,14 @@ function displayLocation(position) {
 }
 
 //////////////////////////////////////activate gps///////////////////////////////////////////
-navigator.geolocation.getCurrentPosition(displayLocation); //Note that it requires a secure domain (i.e. HTTPS)
+
+try {
+  navigator.geolocation.getCurrentPosition(displayLocation);
+}
+catch(err) {
+  currentLocation == null;
+}
+//navigator.geolocation.getCurrentPosition(displayLocation); //Note that it requires a secure domain (i.e. HTTPS)
 console.log(currentLocation.length)                                                                                                       //define center map and zooooooms
 
 
@@ -945,10 +952,16 @@ var gps_Button = L.easyButton({
         icon: '<img src="images/gps.png" width=35px ; height=35px>',
         stateName: 'check-mark',
         onClick: function(btn,map) {
-          map.setView(currentLocation,15);
-            if(currentLocation != null){
+console.log(currentLocation)
+            if(currentLocation[0] != null){
               gps_Button.button.style.backgroundColor = 'green';
+                map.setView(currentLocation,15);
 
+            }
+
+            if (currentLocation[0] == null){
+
+              gps_Button.button.style.backgroundColor = 'red';
             }
 
         //  btn.button.style.backgroundColor = 'black';
