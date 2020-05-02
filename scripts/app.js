@@ -123,7 +123,7 @@ var firstLoad = function() {//fucntion to determine if the site is visited for f
 window.onload = firstLoad;
 firstLoad();
 console.log(isFirstTime);
-
+console.log('udddd?')
 /////////////////////////////////////////////////////////adding map elements///////////////////////////////////////////////////
 // var map;
 // var tutorialViewed = false;
@@ -233,186 +233,7 @@ var myLayer = L.geoJSON(groupGeoJSON,{
   onEachFeature: onEachFeature,
 
 }).addTo(map)
-}//.addTo(map)  ///////////  add my layer to the map by default
-
-// var myLayer =  L.FeatureGroup(groupLayer, {
-//
-//   style: function (feature) {
-//     return feature.properties && feature.properties.style;
-//   },
-//
-//   onEachFeature: onEachFeature,
-//
-//
-// }).addTo(map);
-
-
-// var myLayer =  L.geoJSON(groupGeoJSON, {
-//
-//   style: function (feature) {
-//     return feature.properties && feature.properties.style;
-//   },
-//
-//   onEachFeature: onEachFeature,
-//
-//
-// }).addTo(map);
-  //console.log(getItemToJSON);
-  //   console.log(myLayer)
-  // var group = new L.FeatureGroup(groupGeoJSON);
-  // console.log(group)
-
-
-
-
-
-//wwwwwwwwwwwwwww
-//note that google tile layer must be copied using mt instead of {s}
-// var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb, {
-//     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-//     subdomains: 'abc',
-//     minZoom: 3,
-//     maxZoom: 19,
-//     crossOrigin: true
-// });
-
-///////////////////////////////////////////////////adding map layers///////////////////////////////////////////////////////
-
-////////////////layers in localStorage////////////////////////////////////
-
-// if(isFirstTime == false){
-//
-//   for(var i=0, len=localStorage.length; i<len-1; i++) {   //len-1 to avoid a error of geojson object not recognised
-//     var key = localStorage.key(i);
-//     var value = localStorage[key];
-//     var itemFetched = localStorage.getItem(key);
-//     console.log(i+ '____' + key + " => " + value +'__'+ '__ccc__'+itemFetched);
-//
-//     function isJson(str) {
-//      try {
-//        JSON.parse(str);
-//      } catch (e) {
-//      return false;
-//    }
-//    return true;
-//    }
-//
-// isJson(itemFetched);
-//    console.log(isJson(itemFetched))
-//   if (isJson(itemFetched) == true){
-//
-//     var getItemToJSON = JSON.parse(itemFetched);
-//     console.log(getItemToJSON)
-//
-//     L.geoJSON(getItemToJSON,{
-//       style:function(features) {
-//          // var mag = feature.properties.mag;
-//          if (features.properties.landUses == 'animals') {
-//          return {
-//              color: features.properties.color="black"}
-//            }
-//          if (features.properties.landUses == 'water') {
-//          return {
-//              color: features.properties.color="#E0E0E0"}
-//            }
-//          if (features.properties.landUses == 'trees/wood') {
-//          return {
-//              color: features.properties.color="green"}
-//            }
-//          if (features.properties.landUses == 'gathering') {
-//          return {
-//              color: features.properties.color="yellow"}
-//            }
-//          if (features.properties.landUses == 'poison') {
-//          return {
-//              color: features.properties.color="red"}
-//            }
-//          if (features.properties.landUses == 'Other') {
-//          return {
-//              color: features.properties.color="#6E6E6D"}
-//            }
-//
-//       }
-//     }).addTo(map);
-//
-//   }
-//  }
-// console.log('local storage accessed!!!!')
-// }
-// console.log(isFirstTime);
-///////////////////aoi///////////////////////////
-//chat emoji ui///
-
-
-// $(document).ready(function() {
-// 	$("#emojionearea1").emojioneArea({
-//   	pickerPosition: "left",
-//     tonesStyle: "bullet"
-//   });
-//
-// });
-
-
-// var AOI = L.geoJson(AOI_Tsumkwe,{
-//   fillColor: '#000000',
-//   color:'red',
-//   opacity: 5,
-//   fillOpacity: 0,
-//   weight:2
-// }).addTo(map);
-
-var communityIcon = L.icon({
-    iconUrl: 'images/house.png',
-  //  shadowUrl: 'leaf-shadow.png',
-
-    iconSize:     [40, 40], // size of the icon
-    //shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [20, 40], // point of the icon which will correspond to marker's location
-    //shadowAnchor: [4, 62],  // the same for the shadow
-    //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-});
-
-//var community1 = L.marker([0.670322, 35.507470], {icon:communityIcon}).addTo(map);
-
-// var AOI_Test_Namibia = {
-// "type": "FeatureCollection",
-// "name": "AOI_Test_Namibia",
-// "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-// "features": [
-// { "type": "Feature", "properties": { "id": 1 }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 20.427600969682395, -19.516088866014119 ], [ 20.605322403200432, -19.515727070939903 ], [ 20.605322403200432, -19.515727070939903 ], [ 20.607241641143393, -19.671585547789892 ], [ 20.429136360036757, -19.673031322562018 ], [ 20.427600969682395, -19.516088866014119 ] ] ] ] } }
-// ]
-// };
-//
-// L.geoJSON(AOI_Test_Namibia).addTo(map);
-//OSM tiles attribution and URL
-
-// var planetMosaic = L.tileLayer('https://tiles0.planet.com/basemaps/v1/planet-tiles/global_monthly_2016_05_mosaic/gmap/0/0/0.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-//         minZoom: 3,
-//         maxZoom: 26,
-//       //  maxNativeZoom: 20,
-//         //transparent: false,
-//         //border: 'solid black 5px',
-//         subdomains:['tiles0','tiles1','tiles2','tiles3'],
-//         attribution: 'Google Imagery OCTOBER 2013'
-//     }).addTo(map);
-
-/////////////////////////Collected data///////////////////
-
-// var denui = L.geoJson(denui,{
-//   fillColor: '#FC03F6',
-//   color:'#FC03F6',
-//   opacity: 5,
-//   fillOpacity: 0.2,
-//   weight:2
-// }).addTo(map);
-//
-// var giacoma = L.geoJson(giacoma,{
-//   fillColor: '#03FAFC',
-//   color:'#03FAFC',
-//   opacity: 5,
-//   fillOpacity: 0.2,
-//   weight:2
-// }).addTo(map);
+}
 
 ////////////////to create a custom icon instead of Marker
 var pointsIcon = L.icon({
@@ -426,25 +247,6 @@ var pointsIcon = L.icon({
     //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
-
-
-// create an options object that specifies which function will called on each feature
-// let myLayerOptions = {
-//   pointToLayer: createCustomIcon
-// }
-//
-// // create the GeoJSON layer
-// L.geoJSON(pointsCollector, myLayerOptions).addTo(map)
-/////////////////////////////////////
-
-// var pointsCollector = L.geoJson(pointsCollector,{
-//   fillColor: '#03FAFC',
-//   color:'white',
-//   opacity: 5,
-//   fillOpacity: 0.2,
-//   weight:2,
-//   iconUrl: 'images/whiteDot.png'
-// }).addTo(map);
 
 var pointsSap = L.geoJson(pointsSapelli,{
   iconUrl: 'images/whiteDot.png',
@@ -482,7 +284,7 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
 
         });
 
-
+{
         // var planetS1 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083048_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         //         maxZoom: 18,
         //         maxNativeZoom: 20,
@@ -607,7 +409,7 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
         // var planet = L.layerGroup([planetS1,planetS2,planetS3,planetS4,planetS5,planetS6,planetS7,planetS8,planetS9,planetS10,
         //                           planetS11,planetS12,planetS13,planetS14,planetS15,planetS16,planetS17,planetS18]);
         var planet = L.layerGroup([planetS6,planetS7,planetS8,planetS9,planetS10,planetS11,planetS12,planetS13,planetS14,planetS15,planetS16,planetS17,planetS18,planetS19,planetS20,planetS21]);
-
+}
 var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
     saveButtonHtml: '<img src="images/download.png" width=15px ; height=15px>',
     removeButtonHtml: '<img src="images/bin.png" width=15px ; height=15px>',
@@ -776,30 +578,6 @@ var planet_Button = L.easyButton({
 planet_Button.button.style.width = '50px';
 planet_Button.button.style.height = '50px';
 planet_Button.button.style.transitionDuration = '.3s';
-//planet_Button.addTo(map);
-//
-// var home_Button = L.easyButton({
-//     id: 'home',
-//     position: 'topleft',
-//
-//     states: [{
-//         icon: '<img src="images/house.png" width=40px ; height=40px>',
-//         stateName: 'check-mark',
-//         onClick: function(btn,map) {
-//           map.setView([-19.7391716,20.3707833],15); //UCL London coordinates
-//           //btn.button.style.backgroundColor = 'black';
-//           gps_Button.addTo(map);
-//           home_Button.removeFrom(map);
-//
-//
-//         }
-//     }]
-// });
-//
-// home_Button.button.style.width = '60px';
-// home_Button.button.style.height = '60px';
-// home_Button.button.style.transitionDuration = '.3s';
-// home_Button.button.style.backgroundColor = 'white';
 
 
 var myLayerIsOn = false;
@@ -968,8 +746,23 @@ function findLocation(position) {
 
     }
     currentLocation = [lat,lng];
-    //console.log(currentLocation)
-    //console.log(currentLocation);
+
+  return currentLocation & markerAdded & accuracy;
+}
+
+function findBuffer(position) {
+    //  L.marker([lat, lng],{icon:gpsIcon}).removeFrom(map);
+    var lat = position.coords.latitude;
+    var lng = position.coords.longitude;
+    accuracy = position.coords.accuracy;
+    console.log(accuracy)
+    if(markerAdded == false){
+  // L.marker([lat, lng],{icon:gpsIcon}).addTo(map);
+    markerAdded=true;
+
+    }
+    currentLocation = [lat,lng];
+
   return currentLocation & markerAdded & accuracy;
 }
 
@@ -1000,10 +793,20 @@ var locationFound=false;
 //
 // }
 // },10000)
-
+var circleGT250
+var circleLT250
+var circleLT250Added = false
+var circleGT250Added = false
 var refreshGPSbutton = setInterval(function(){
 //navigator.geolocation.getCurrentPosition(findLocation);
-
+//circleGT250.removeFrom(map)
+try {
+  navigator.geolocation.watchPosition(findBuffer);
+ console.log(currentLocation[0])
+}
+catch(err) {
+  currentLocation == null;
+}
 if(currentLocation[0] != null){
 
     locationFound = true
@@ -1013,27 +816,71 @@ if(currentLocation[0] != null){
     //console.log(geolocationCoordinates.accuracy)
     //once the position has been found, we stop checking if the user deactivates again (the position will be recorded anyway)
       if(accuracy<=50){
-      gps_Button.button.style.backgroundColor = 'green';
+          gps_Button.button.style.backgroundColor = 'green';
+          clearInterval(refreshGPSbutton)
+          L.marker(currentLocation,{icon:gpsIcon}).addTo(map);
+
     }else if(accuracy>50 && accuracy<=250){
-      gps_Button.button.style.backgroundColor = 'yellow';
+          gps_Button.button.style.backgroundColor = 'yellow';
+          try {
+            navigator.geolocation.watchPosition(findBuffer);
+           console.log(currentLocation[0])
+          }
+          catch(err) {
+            currentLocation == null;
+          }
+          circleGT250.removeFrom(map)//remove orange circle if it has been added
+
+          if(circleLT250Added == false){
+
+
+              circleLT250 = L.circle(currentLocation, {
+                 color: "#ffffff00",
+                 fillColor: "yellow",
+                 fillOpacity: 0.3,
+                 radius: accuracy
+               }).addTo(map);
+               setTimeout(function(){ circleLT250.removeFrom(map) }, 10000);
+
+               circleLT250Added = true
+          }
+
     }else if(accuracy>250){
-      gps_Button.button.style.backgroundColor = 'orange';
-    }
-    clearInterval(refreshGPSbutton)
+            gps_Button.button.style.backgroundColor = 'orange';
+            try {
+              navigator.geolocation.watchPosition(findBuffer);
+             console.log(currentLocation[0])
+            }
+            catch(err) {
+              currentLocation == null;
+            }
+            if(circleGT250Added == false){
+              circleGT250 = L.circle(currentLocation, {
+                   color: "#ffffff00",
+                   fillColor: "orange",
+                   fillOpacity: 0.3,
+                   radius: accuracy
+                 }).addTo(map);
+                 setTimeout(function(){ circleGT250.removeFrom(map) }, 10000);
+
+                 circleGT250Added = true
+              }
+            }
+
   //  locationFound = true
-}else{
-    gps_Button.button.style.backgroundColor = 'red';
-    try {
-      navigator.geolocation.getCurrentPosition(findLocation);
-     console.log(currentLocation[0])
-    }
-    catch(err) {
-      currentLocation == null;
-    }
+    }else{
+          gps_Button.button.style.backgroundColor = 'red';
+          try {
+            navigator.geolocation.watchPosition(findBuffer);
+           console.log(currentLocation[0])
+          }
+          catch(err) {
+            currentLocation == null;
+          }
   //  locationFound = false
 
   }
-  return currentLocation;
+  return currentLocation & circleLT250Added & circleGT250Added & circleLT250 & circleGT250;
 },1000)
 
 
@@ -1048,15 +895,18 @@ var gps_Button = L.easyButton({
         onClick: function(btn,map) {
           console.log(currentLocation)
             if(currentLocation[0] != null){
-            map.setView(currentLocation,15);
 
             if(accuracy<=50){
             gps_Button.button.style.backgroundColor = 'green';
+            map.setView(currentLocation,15);
+
           }else if(accuracy>50 && accuracy<=250){
             gps_Button.button.style.backgroundColor = 'yellow';
+            map.fitBounds(circleLT250.getBounds());
+
           }else if(accuracy>250){
             gps_Button.button.style.backgroundColor = 'orange';
-
+            map.fitBounds(circleGT250.getBounds());
           }
 
             }
@@ -1495,6 +1345,7 @@ var data2 = {"type":"FeatureCollection","features":[{"type":"Feature","propertie
 var data = JSON.stringify(data2);
 //var data = data2.toString();
 //var data = data1.toString();
+var boxContent;
 
   document.getElementById('polygon').onclick = function(e){
             currentZoom = map.getZoom();
@@ -1511,8 +1362,10 @@ var data = JSON.stringify(data2);
             document.getElementById("goBack2").style.display = "initial";
             document.getElementById("deleteLastVertex").style.display = "initial";
             document.getElementById("deleteAllVertexs").style.display = "initial";
+            document.getElementById('emojionearea1').value='ddd'
 
-
+//$("#emoji").load(window.location.href + " #emoji" );
+//  document.getElementById("emoji").load(window.location.href + " #emoji" )
           //     setTimeout(function(){
           //   document.getElementById("handDraw").style.display = "initial";
           // },1000)
@@ -1668,7 +1521,6 @@ var data = JSON.stringify(data2);
     //       .css({ 'background-color': '#F905EA' });
     //   });
 
-    var boxContent;
       //this function must be inside the polygon onclick function
 
   var tempLayer;
@@ -2326,7 +2178,7 @@ function onEachFeature(feature, layer) {
                 document.getElementById("polyline").style.display = "initial";
                 document.getElementById("point").style.display = "initial";
 
-                document.getElementById('emojionearea1').placeholder = '.'
+              //  document.getElementById('emojionearea1').placeholder = '.'
 
                 // drawnItems.remove();
                 recordedVideo.pause();
@@ -2354,7 +2206,9 @@ function onEachFeature(feature, layer) {
               myLayerIsOn = true;
               myLayer_Button.button.style.backgroundColor = 'black';
 
-
+            //   function updateEmoji(){
+            //   $("#emoji").load(window.location.href + " #emoji" );
+            // }
 //////////////////// TRANSMISSION /////////////////////
               // var ourRequest = new XMLHttpRequest();
               // var theURL = 'http://178.62.113.144/';
