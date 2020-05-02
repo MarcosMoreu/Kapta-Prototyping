@@ -989,20 +989,19 @@ var locationFound=false;
 //script to update color of gps button
 
 // if(currentLocation[0]==null){
-var refreshAccuracy = setInterval(function(){
+// var refreshAccuracy = setInterval(function(){
+//
+//   if(accuracy<=50){
+//   gps_Button.button.style.backgroundColor = 'green';
+// }else if(accuracy>50 && accuracy<=250){
+//   gps_Button.button.style.backgroundColor = 'yellow';
+// }else if(accuracy>250){
+//   gps_Button.button.style.backgroundColor = 'orange';
+//
+// }
+// },10000)
 
-  if(accuracy<=50){
-  gps_Button.button.style.backgroundColor = 'green';
-}else if(accuracy>50 && accuracy<=250){
-  gps_Button.button.style.backgroundColor = 'yellow';
-}else if(accuracy>250){
-  gps_Button.button.style.backgroundColor = 'orange';
-
-}
-},10000)
 var refreshGPSbutton = setInterval(function(){
-
-
 //navigator.geolocation.getCurrentPosition(findLocation);
 
 if(currentLocation[0] != null){
@@ -1012,15 +1011,15 @@ if(currentLocation[0] != null){
     console.log(accuracy)
 
     //console.log(geolocationCoordinates.accuracy)
-    clearInterval(refreshGPSbutton)//once the position has been found, we stop checking if the user deactivates again (the position will be recorded anyway)
+    //once the position has been found, we stop checking if the user deactivates again (the position will be recorded anyway)
       if(accuracy<=50){
       gps_Button.button.style.backgroundColor = 'green';
     }else if(accuracy>50 && accuracy<=250){
       gps_Button.button.style.backgroundColor = 'yellow';
     }else if(accuracy>250){
       gps_Button.button.style.backgroundColor = 'orange';
-
     }
+    clearInterval(refreshGPSbutton)
   //  locationFound = true
 }else{
     gps_Button.button.style.backgroundColor = 'red';
@@ -1503,7 +1502,7 @@ var data = JSON.stringify(data2);
 
             clickMapCount = 0;
             drawPolygon.enable();
-
+          //    document.getElementById("handDraw").style.display = "initial";
             document.getElementById("goBack1").style.display = "none";
             document.getElementById("polygon").style.display = "none";
             document.getElementById("polyline").style.display = "none";
@@ -1512,6 +1511,12 @@ var data = JSON.stringify(data2);
             document.getElementById("goBack2").style.display = "initial";
             document.getElementById("deleteLastVertex").style.display = "initial";
             document.getElementById("deleteAllVertexs").style.display = "initial";
+
+
+          //     setTimeout(function(){
+          //   document.getElementById("handDraw").style.display = "initial";
+          // },1000)
+
 
             // document.getElementById("changeMapSize").style.display = "initial";
             // document.getElementById("changeMapSize").disabled = true;
