@@ -734,21 +734,21 @@ var currentLocation = []; // variable created to allow the user recenter the map
 // }, 3000);
 var accuracy = 0
 var markerAdded=false; // var to avoid multiple markers
-function findLocation(position) {
-    //  L.marker([lat, lng],{icon:gpsIcon}).removeFrom(map);
-    var lat = position.coords.latitude;
-    var lng = position.coords.longitude;
-    accuracy = position.coords.accuracy;
-    console.log(accuracy)
-    if(markerAdded == false){
-   L.marker([lat, lng],{icon:gpsIcon}).addTo(map);
-    markerAdded=true;
-
-    }
-    currentLocation = [lat,lng];
-
-  return currentLocation & markerAdded & accuracy;
-}
+// function findLocation(position) {
+//     //  L.marker([lat, lng],{icon:gpsIcon}).removeFrom(map);
+//     var lat = position.coords.latitude;
+//     var lng = position.coords.longitude;
+//     accuracy = position.coords.accuracy;
+//     console.log(accuracy)
+//     if(markerAdded == false){
+//    L.marker([lat, lng],{icon:gpsIcon}).addTo(map);
+//     markerAdded=true;
+//
+//     }
+//     currentLocation = [lat,lng];
+//
+//   return currentLocation & markerAdded & accuracy;
+// }
 
 function findBuffer(position) {
     //  L.marker([lat, lng],{icon:gpsIcon}).removeFrom(map);
@@ -797,7 +797,8 @@ var circleGT250
 var circleLT250
 var circleLT250Added = false
 var circleGT250Added = false
-var refreshGPSbutton = setInterval(function(){
+
+var refreshGPSbutton = setInterval(function(){ ///////////////////////////////////////// function to keep searching for gps position
 //navigator.geolocation.getCurrentPosition(findLocation);
 //circleGT250.removeFrom(map)
 try {
@@ -807,6 +808,7 @@ try {
 catch(err) {
   currentLocation == null;
 }
+//if location found, then set button color, and create circle or add marker if <50m
 if(currentLocation[0] != null){
 
     locationFound = true
@@ -817,11 +819,12 @@ if(currentLocation[0] != null){
     //once the position has been found, we stop checking if the user deactivates again (the position will be recorded anyway)
       if(accuracy<=50){
           gps_Button.button.style.backgroundColor = 'green';
-          clearInterval(refreshGPSbutton)
+          clearInterval(refreshGPSbutton) //stop searching once accuracy <50
           L.marker(currentLocation,{icon:gpsIcon}).addTo(map);
 
     }else if(accuracy>50 && accuracy<=250){
           gps_Button.button.style.backgroundColor = 'yellow';
+          //if accuracy >50, keep searching
           try {
             navigator.geolocation.watchPosition(findBuffer);
            console.log(currentLocation[0])
@@ -829,17 +832,19 @@ if(currentLocation[0] != null){
           catch(err) {
             currentLocation == null;
           }
+
           circleGT250.removeFrom(map)//remove orange circle if it has been added
 
           if(circleLT250Added == false){
 
-
+            //set circle based on radious-accuracy
               circleLT250 = L.circle(currentLocation, {
                  color: "#ffffff00",
                  fillColor: "yellow",
                  fillOpacity: 0.3,
                  radius: accuracy
                }).addTo(map);
+               //remove circle after 10 seconds
                setTimeout(function(){ circleLT250.removeFrom(map) }, 10000);
 
                circleLT250Added = true
@@ -893,15 +898,24 @@ var gps_Button = L.easyButton({
         icon: '<img src="images/gps.png" width=35px ; height=35px>',
         stateName: 'check-mark',
         onClick: function(btn,map) {
-          console.log(currentLocation)
+          try {
+            navigator.geolocation.watchPosition(findBuffer);
+           console.log(currentLocation[0])
+          }
+          catch(err) {
+            currentLocation == null;
+          }
+            console.log(currentLocation)
             if(currentLocation[0] != null){
 
             if(accuracy<=50){
             gps_Button.button.style.backgroundColor = 'green';
+            //
             map.setView(currentLocation,15);
 
           }else if(accuracy>50 && accuracy<=250){
             gps_Button.button.style.backgroundColor = 'yellow';
+            //set view based on circle radius
             map.fitBounds(circleLT250.getBounds());
 
           }else if(accuracy>250){
