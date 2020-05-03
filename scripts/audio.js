@@ -57,7 +57,6 @@ downloadButton.addEventListener('click', () => {
   var randomNumber = Math.random();
   randomNumber = randomNumber*10000;
   var randomID = Math.round(randomNumber);
-console.log(recordedBlobs)
 
 /////////catch error in case recordedBlobs ==null
 try{

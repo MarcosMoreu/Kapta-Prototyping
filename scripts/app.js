@@ -799,28 +799,17 @@ var gps_Button = L.easyButton({
             setTimeout(function(){circleLT250.removeFrom(map); }, 200);
 
 
-            // try {
-            //   map.fitBounds(circleLT250.getBounds());
-            // }
-            // catch(err) {
-            //   circleGT250.getBounds() == null;
-            //   }
-
           }else if(accuracy>250){
             gps_Button.button.style.backgroundColor = 'orange';
           //  setTimeout(function(){circleGT250.addTo(map)}, 200);
-            circleGT250.addTo(map);
+            circleGT250.addTo(map); //the layer must be added before the getbounds is fired, then the layer is removed
+        //    console.log(circleGT250)
             map.fitBounds(circleGT250.getBounds());
+            // console.log(circleGT250.getBounds())
+            // console.log(map.getBounds())
 
             setTimeout(function(){circleGT250.removeFrom(map); }, 200);
 
-            // try {
-            //   map.fitBounds(circleGT250.getBounds());
-            //   console.log(circleGT250.getBounds())
-            // }
-            // catch(err) {
-            //   this._map.layerPointToLatLng() == null;
-            //   }
           }
 
             }
@@ -1267,7 +1256,7 @@ var boxContent;
             document.getElementById("goBack2").style.display = "initial";
             document.getElementById("deleteLastVertex").style.display = "initial";
             document.getElementById("deleteAllVertexs").style.display = "initial";
-            document.getElementById('emojionearea1').value='ddd'
+          //  document.getElementById('emojionearea1').value='ddd'
 
 //$("#emoji").load(window.location.href + " #emoji" );
 //  document.getElementById("emoji").load(window.location.href + " #emoji" )
@@ -1486,15 +1475,28 @@ var boxContent;
 
        //console.log('created')
 //boxContent = document.getElementById('emojionearea1').value;
-       var mapNewBounds =  map.getBounds();
 
-       map.fitBounds(drawnItems.getBounds(),{
-                    maxZoom:30,
-                    paddingBottomRight: [0, 0]
-                  })
-        console.log(mapNewBounds);
+      //  console.log(mapNewBounds);
 
         data = drawnItems.toGeoJSON();
+
+        //script for calculating the center of the polygon and recenter the map there
+        var boundsPolygon = drawnItems.getBounds()
+        var centerBoundsPolygon = boundsPolygon.getCenter()
+        ///////////////
+        console.log(centerBoundsPolygon)
+
+
+          var mapNewBounds =  map.getBounds();
+
+          map.fitBounds(drawnItems.getBounds(),{
+                     //  maxZoom:30,
+                       paddingBottomRight: [0, 0]
+                     })
+
+        //  map.setView(centerBoundsPolygon);
+        // var polygonCenter = drawnItems.getCenter();
+        // console.log(polygonCenter)
       //  var boxContentToString = boxContent.toString();
         //attributes added to Geojson file properties
         //var combinedAttributeData = landUses + dateTime + currentLocation;
@@ -1796,6 +1798,9 @@ var recording=true;
       }
         document.getElementById('activatePlay').onclick = function(e){
           document.getElementById("play").click(); //added so no need to click button twice
+          document.getElementById('activatePlay').style.background = 'grey'
+         setTimeout(function(){document.getElementById('activatePlay').style.background = 'white'},500)
+
         }
 var boxContent;
 
@@ -1840,7 +1845,10 @@ var boxContent;
                onEachFeature: onEachFeature,
 
              }).addTo(map);
+          //   console.log(EmojioneArea.prototype.getText)
+//range.deleteContents();
 
+console.log(recordedBlobs)
 
           return boxContent;
         }
@@ -1974,7 +1982,6 @@ function onEachFeature(feature, layer) {
                 };
               //  adding the properties to the geoJSON file:
               data.features[0].properties = propertiesGeoJSON;
-              console.log(data)
 
                 //data.innerHTML = JSON.stringify(prop_1);
                 // Stringify the GeoJson
@@ -1986,15 +1993,62 @@ function onEachFeature(feature, layer) {
                 //                          + encodeURIComponent(JSON.stringify(dateTime));
 
                 ////////////////////////  TRANSMISSION ////////////////////////////////////////
-                                var toSend = JSON.stringify(data)
+              //  var convertedDataBlob = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(recordedBlobs));
+var toSendGeometry = JSON.stringify(data)
+var toSendAudio = JSON.stringify(recordedBlobs)
+//var toSendAudio = recordedBlobs.toJSON();
+
+console.log(toSendAudio)
+
+//console.log(toSend)
+console.log(recordedBlobs)
+console.log('updated44')
+
+console.log(typeof recordedBlobs)
+                                // function upload() {
+                                // const blob = new Blob(recordedBlobs, { type: 'video/webm' });
+                                // var formData = new FormData();
+                                // formData.append("video", blob, fileName + ".webm");
+//var toSend = recordedBlobs
+                              // var toSend = JSON.stringify(data)
+
+                              // var fd=new FormData();
+                              //       fd.append("audio_data",blob, "filename.wav");
+                              //
+
+                              const blb    = new Blob(recordedBlobs, {type: "text/plain"});
+                              const reader = new FileReader();
+
+                              // This fires after the blob has been read/loaded.
+                              var text;
+                              reader.addEventListener('loadend', (e) => {
+                                text = e.srcElement.result;
+                                  console.log(text);
+                              return text
+                              });
+                              console.log(text);
+
+                              // Start reading the blob as text. readAsText call loadend method
+                              var readerBlob = reader.readAsText(blb);
+
+
+                              console.log(blb)
+
+
+
                                 var xhr = new XMLHttpRequest();
                                 xhr.open('POST', 'process.php', true);
-                                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                                xhr.setRequestHeader('Content-Type', 'video/webm');
+                                xhr.setRequestHeader('Content-Type', 'application/json');
+
+
                                 //xhr.setRequestHeader('Content-type', 'application/json');
 
 
                                 //line to insert a js variable (name) with its value (var data) into the php file
-                                    $.post("process.php",{name: toSend})
+                                    $.post("process.php",{name:toSendGeometry,audio:recordedBlobs})
+                                    //$.post("process.php",{audio:toSendAudio})
 
                                     // function(data,status){
                                     //     document.getElementById("saveWarningText").innerHTML = data;

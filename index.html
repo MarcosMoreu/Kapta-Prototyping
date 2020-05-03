@@ -25,6 +25,7 @@
   <link href="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.css" rel="stylesheet" >
 <!-- for solving the favicon issues... -->
   <link rel="shortcut icon" href="images/icons/icon-96x96.png">
+  <link rel="apple-touch-icon" href="images/icons/icon-96x96.png">
   <!-- <iframe src="images/audio1.mp3" allow="autoplay" style="display:none" id="iframeAudio">
   </iframe> -->
 </head>
@@ -82,13 +83,12 @@
 </div> -->
 
 <div align='center' style='z-index:2; position:relative; margin-top:-90px' >
-  <!-- <button id='goBack1' class='button'style=' background-color:#c1c0c0'>
-    <img src="images/backButton.png" style='width:50px ; height:60px '   onClick="location.href='pages/tutorial.html'">
-  </button> -->
-  <button id='goBack1' class='button' style='z-index:3; position:relative' action='process.php' name="data" type="submit">
-    <img src="images/questionmark.png" style='width:30px ; height:30px'>
+
+  <button id='goBack1' class='button' style='z-index:3; position:relative' >
+    <img  src="images/questionmark.png"  style='width:30px ; height:30px'>
   </button>
-  <button id='polygon' class='button' style='z-index:3; position:relative' action='process.php' name="data" type="submit">
+  <!-- <button id='goBack1'class='button' style='background:url(images/xx.png) no-repeat;    background-size: 50px 50px;'  /> -->
+  <button id='polygon' class='button' style='z-index:3; position:relative'>
     <img src="images/drawPolygon.png" style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
   </button>
   <button id='polyline' class='button' style='opacity:0.5'>
@@ -236,11 +236,17 @@
 </div>
 <video id="gum" playsinline  muted></video>
 <video id="recorded" playsinline loop></video>
-<div style='z-index:2; position:relative;margin-top:-350px;margin-left:0%'>
+<div style='z-index:1; position:relative;margin-top:-200px;margin-left:0%'>
   <button  id='activatePlay' class='buttonActivatePlay' style='display:none;width:50px;height:50px;background-color:white; border-color: yellow; border-radius: 50px'>
     <img src="images/play.png" style='width:30px ; height:30px;margin-top:1px'>
   </button>
 </div>
+<!-- <div style='z-index:1; position:relative;margin-top:-200px;margin-left:0%'>
+  <button  id='pausePlay' class='buttonActivatePlay' style='display:none;width:50px;height:50px;background-color:white; border-color: yellow; border-radius: 50px'>
+    <img src="images/pause.png" style='width:30px ; height:30px;margin-top:1px'>
+  </button>
+</div> -->
+
 
 <!-- <div style='z-index:2; margin-top:-450px;margin-left:0%'>
   <button  id='handDraw' style='display:initial;width:50px;height:50px;background-color:white; border-color: yellow; border-radius: 50px'>

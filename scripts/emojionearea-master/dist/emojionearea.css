@@ -168,11 +168,14 @@
 .emojionearea .emojionearea-button {
   z-index: 5;
   position: absolute;
-  left: 3px;
-  top: 3px;
+  /* margins of the emoji button */
+  left: 6px;
+  top: 4px;
   width: 24px;
   height: 24px;
-  opacity: 0.6;
+  opacity: 1;
+  /* background white to avoid overlap with text */
+  background-color:white;
   cursor: pointer;
   -moz-transition: opacity 300ms ease-in-out;
   -o-transition: opacity 300ms ease-in-out;

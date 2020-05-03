@@ -1674,7 +1674,7 @@ document = window.document || {};
         });
         return self;
     }
-
+//function to get the content in the text bar
     EmojioneArea.prototype.getText = function() {
         return textFromHtml(this.editor.html(), this);
     }
