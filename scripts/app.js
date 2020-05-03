@@ -444,30 +444,6 @@ var offlineControlOSM = L.control.offline(osm, tilesDb, {
     maxZoom: 19
 });
 
-// var offlineControlPlanet = L.control.offline(planet, tilesDb, {
-//     saveButtonHtml: '<img src="images/download.png" width=15px ; height=15px>',
-//     removeButtonHtml: '<img src="images/bin.png" width=15px ; height=15px>',
-//   //  icon: '<img src="images/OSM.png" width=50px ; height=50px>',
-//     confirmSavingCallback: function (nTilesToSave, continueSaveTiles) {
-//         if (window.confirm('Save ' + nTilesToSave + '?')) {
-//             continueSaveTiles();
-//         }
-//     },
-//     confirmRemovalCallback: function (continueRemoveTiles) {
-//         if (window.confirm('Remove all the tiles?')) {
-//             continueRemoveTiles();
-//         }
-//     },
-//     minZoom: 13,
-//     maxZoom: 19
-// });
-//googleSat.addTo(map);
-//offlineControlGoogle.addTo(map);
-//offlineControlOSM.addTo(map);
-
-
-                                                                                         //define center map and zooooooms
-
 
 var clickButtonCount=0;
 var osm_Button = L.easyButton({
@@ -591,34 +567,7 @@ var myLayer_Button = L.easyButton({
       //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn,map) {
-          //  var clickMyLayerCount = 1
-          // myLayer.removeFrom(map);
-          //onsole.log(myLayer)
 
-        //  console.log('countbutton clicks', clickButtonCount)
-
-        // if(myLayerIsOn == true && firstLoad==false && myLayerIsOk == true){
-        //
-        //   myLayer.removeFrom(map);
-        //   console.log(myLayer)
-        //   myLayerIsOn = false;
-        //   myLayer_Button.button.style.backgroundColor = 'grey';
-        //   if(finalLayer !=null){
-        //      finalLayer.removeFrom(map)
-        //    }
-        // }else if(firstLoad==false && myLayerIsOk == true){
-        //   myLayer.addTo(map)          //  layer1.addTo(map);
-        //   myLayerIsOn = true;
-        //   myLayer_Button.button.style.backgroundColor = 'black';
-        //   if(finalLayer !=null){
-        //     finalLayer.addTo(map)
-        //   }
-        //
-        // // btn.button.style.backgroundColor = 'yellow';
-        // // googleSat_Button.button.style.backgroundColor = 'black';
-        // // planet_Button.button.style.backgroundColor = 'black'
-        // }
-        // return myLayerIsOn;
 ///////////////////////////////////////////////////////////////////////////
 console.log(myLayerIsOn)
 console.log(isFirstTime)
@@ -658,33 +607,7 @@ console.log(myLayerIsOk)
          myLayer_Button.button.style.backgroundColor = 'red';
           console.log('if5')
 }
-/////////////////////////////////////////////
-         //  if(myLayerIsOn == true && firstLoad==false && myLayerIsOk == true && finalLayer !=null){
-         //
-         //    myLayer.removeFrom(map);
-         //    console.log(myLayer)
-         //    myLayerIsOn = false;
-         //    myLayer_Button.button.style.backgroundColor = 'grey';
-         //    finalLayer.removeFrom(map)
-         //   }
-         //   else if(myLayerIsOn == true && finalLayer !=null){
-         //            finalLayer.removeFrom(map)
-         //          }
-         //
-         //    else if(myLayerIsOn == false && firstLoad==false && myLayerIsOk == true && finalLayer !=null){
-         //    myLayer.addTo(map)          //  layer1.addTo(map);
-         //    myLayerIsOn = true;
-         //    myLayer_Button.button.style.backgroundColor = 'black';
-         //
-         //   finalLayer.addTo(map)
-         // } else if(myLayerIsOn == false && finalLayer !=null){
-         //   finalLayer.addTo(map)
-         //
-         // }
-////////////////////////////////////////////
-          // btn.button.style.backgroundColor = 'yellow';
-          // googleSat_Button.button.style.backgroundColor = 'black';
-          // planet_Button.button.style.backgroundColor = 'black'
+
 
           return myLayerIsOn;
         }
@@ -718,37 +641,8 @@ var gpsIcon = L.icon({
 // add location via browser geolocation
 var currentLocation = []; // variable created to allow the user recenter the map
 
-  // function displayLocation(position) {
-  //      L.marker(currentLocation,{icon:gpsIcon}).removeFrom(map);
-  //     var lat = position.coords.latitude;
-  //     var lng = position.coords.longitude;
-  //     L.marker([lat, lng],{icon:gpsIcon}).addTo(map);
-  //     //console.log('{longitude:' + lng + ', latitude:' + lat + '}');
-  //   //  map.setView([lat, lng], 15);
-  //     currentLocation = [lat,lng];
-  //     console.log(currentLocation)
-  //     //console.log(currentLocation);
-  //   return currentLocation;
-  // }
-// setInterval(function(){ navigator.geolocation.getCurrentPosition(displayLocation)
-// }, 3000);
 var accuracy = 0
 var markerAdded=false; // var to avoid multiple markers
-// function findLocation(position) {
-//     //  L.marker([lat, lng],{icon:gpsIcon}).removeFrom(map);
-//     var lat = position.coords.latitude;
-//     var lng = position.coords.longitude;
-//     accuracy = position.coords.accuracy;
-//     console.log(accuracy)
-//     if(markerAdded == false){
-//    L.marker([lat, lng],{icon:gpsIcon}).addTo(map);
-//     markerAdded=true;
-//
-//     }
-//     currentLocation = [lat,lng];
-//
-//   return currentLocation & markerAdded & accuracy;
-// }
 
 function findBuffer(position) {
     //  L.marker([lat, lng],{icon:gpsIcon}).removeFrom(map);
@@ -768,12 +662,6 @@ function findBuffer(position) {
 
 //////////////////////////////////////activate gps///////////////////////////////////////////
 
-// try {
-//   navigator.geolocation.getCurrentPosition(displayLocation);
-// }
-// catch(err) {
-//   currentLocation == null;
-// }
 
 //navigator.geolocation.getCurrentPosition(displayLocation); //Note that it requires a secure domain (i.e. HTTPS)
 console.log(currentLocation[0])
@@ -781,18 +669,6 @@ console.log(currentLocation[0])
 var locationFound=false;
 //script to update color of gps button
 
-// if(currentLocation[0]==null){
-// var refreshAccuracy = setInterval(function(){
-//
-//   if(accuracy<=50){
-//   gps_Button.button.style.backgroundColor = 'green';
-// }else if(accuracy>50 && accuracy<=250){
-//   gps_Button.button.style.backgroundColor = 'yellow';
-// }else if(accuracy>250){
-//   gps_Button.button.style.backgroundColor = 'orange';
-//
-// }
-// },10000)
 var circleGT250
 var circleLT250
 var circleLT250Added = false
@@ -822,7 +698,7 @@ if(currentLocation[0] != null){
           clearInterval(refreshGPSbutton) //stop searching once accuracy <50
           L.marker(currentLocation,{icon:gpsIcon}).addTo(map);
 
-    }else if(accuracy>50 && accuracy<=250){
+      }else if(accuracy>50 && accuracy<=250){
           gps_Button.button.style.backgroundColor = 'yellow';
           //if accuracy >50, keep searching
           try {
@@ -843,9 +719,9 @@ if(currentLocation[0] != null){
                  fillColor: "yellow",
                  fillOpacity: 0.3,
                  radius: accuracy
-               }).addTo(map);
+               })//.addTo(map);
                //remove circle after 10 seconds
-               setTimeout(function(){ circleLT250.removeFrom(map) }, 10000);
+              // setTimeout(function(){ circleLT250.removeFrom(map) }, 10000);
 
                circleLT250Added = true
           }
@@ -865,8 +741,8 @@ if(currentLocation[0] != null){
                    fillColor: "orange",
                    fillOpacity: 0.3,
                    radius: accuracy
-                 }).addTo(map);
-                 setTimeout(function(){ circleGT250.removeFrom(map) }, 10000);
+                 })//.addTo(map);
+              //   setTimeout(function(){ circleGT250.removeFrom(map) }, 10000);
 
                  circleGT250Added = true
               }
@@ -915,12 +791,36 @@ var gps_Button = L.easyButton({
 
           }else if(accuracy>50 && accuracy<=250){
             gps_Button.button.style.backgroundColor = 'yellow';
+
             //set view based on circle radius
+            circleLT250.addTo(map);
             map.fitBounds(circleLT250.getBounds());
+
+            setTimeout(function(){circleLT250.removeFrom(map); }, 200);
+
+
+            // try {
+            //   map.fitBounds(circleLT250.getBounds());
+            // }
+            // catch(err) {
+            //   circleGT250.getBounds() == null;
+            //   }
 
           }else if(accuracy>250){
             gps_Button.button.style.backgroundColor = 'orange';
+          //  setTimeout(function(){circleGT250.addTo(map)}, 200);
+            circleGT250.addTo(map);
             map.fitBounds(circleGT250.getBounds());
+
+            setTimeout(function(){circleGT250.removeFrom(map); }, 200);
+
+            // try {
+            //   map.fitBounds(circleGT250.getBounds());
+            //   console.log(circleGT250.getBounds())
+            // }
+            // catch(err) {
+            //   this._map.layerPointToLatLng() == null;
+            //   }
           }
 
             }
@@ -942,15 +842,6 @@ var gps_Button = L.easyButton({
 gps_Button.button.style.width = '50px';
 gps_Button.button.style.height = '50px';
 gps_Button.button.style.transitionDuration = '.3s';
-
-
-//L.marker(currentLocation,{icon:gpsIcon}).addTo(map);
-
-// if(locationFound==true){
-//   L.marker(currentLocation,{icon:gpsIcon}).addTo(map);
-//
-// }
-
 gps_Button.button.style.backgroundColor = 'white';
 gps_Button.addTo(map);
 
