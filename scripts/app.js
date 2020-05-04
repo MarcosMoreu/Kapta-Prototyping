@@ -2016,23 +2016,23 @@ console.log(typeof recordedBlobs)
                               //       fd.append("audio_data",blob, "filename.wav");
                               //
 
-                              const blb    = new Blob(recordedBlobs, {type: "text/plain"});
-                              const reader = new FileReader();
-
-                              // This fires after the blob has been read/loaded.
-                              var text;
-                              reader.addEventListener('loadend', (e) => {
-                                text = e.srcElement.result;
-                                  console.log(text);
-                              return text
-                              });
-                              console.log(text);
+                              // const blb    = new Blob(recordedBlobs, {type: "text/plain"});
+                              // const reader = new FileReader();
+                              //
+                              // // This fires after the blob has been read/loaded.
+                              // var text;
+                              // reader.addEventListener('loadend', (e) => {
+                              //   text = e.srcElement.result;
+                              //     console.log(text);
+                              // return text
+                              // });
+                              // console.log(text);
 
                               // Start reading the blob as text. readAsText call loadend method
-                              var readerBlob = reader.readAsText(blb);
+                            //  var readerBlob = reader.readAsText(blb);
 
 
-                              console.log(blb)
+                              //console.log(blb)
 
 
 
@@ -2047,7 +2047,7 @@ console.log(typeof recordedBlobs)
 
 
                                 //line to insert a js variable (name) with its value (var data) into the php file
-                                    $.post("process.php",{name:toSendGeometry,audio:recordedBlobs})
+                                    $.post("process.php",{name:toSendGeometry,audio:toSendAudio})
                                     //$.post("process.php",{audio:toSendAudio})
 
                                     // function(data,status){

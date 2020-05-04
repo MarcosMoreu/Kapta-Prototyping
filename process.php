@@ -24,7 +24,7 @@ $myname = mysqli_real_escape_string($conn, $_POST['name']); //// i !!!!!.///////
 
 }
 if(isset($_POST['audio'])){
-  $myaudio = $_FILES($conn, $_POST['audio']);
+  $myaudio = mysqli_real_escape_string($conn, $_POST['audio']);
 }
 
 // $myname = $_GET['name'];
