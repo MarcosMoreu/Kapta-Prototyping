@@ -679,7 +679,7 @@ var refreshGPSbutton = setInterval(function(){ /////////////////////////////////
 //circleGT250.removeFrom(map)
 try {
   navigator.geolocation.watchPosition(findBuffer);
- console.log(currentLocation[0])
+// console.log(currentLocation[0])
 }
 catch(err) {
   currentLocation == null;
@@ -753,7 +753,7 @@ if(currentLocation[0] != null){
           gps_Button.button.style.backgroundColor = 'red';
           try {
             navigator.geolocation.watchPosition(findBuffer);
-           console.log(currentLocation[0])
+    //       console.log(currentLocation[0])
           }
           catch(err) {
             currentLocation == null;
@@ -909,11 +909,12 @@ var drawnItems = new L.FeatureGroup();
                polyline: {
 
                    shapeOptions: {
-                       color: '#f357a1',
-                       weight: 10
+                       color: 'black',
+                       weight: 4
                    }
                },
                polygon: {
+                 showArea:true,
                    allowIntersection: false, // Restricts shapes to simple polygons
                   // icon: new MyCustomMarker() ,
                                      icon: new L.DivIcon({
@@ -941,7 +942,8 @@ var drawnItems = new L.FeatureGroup();
 
            },
            marker: {
-               icon: new MyCustomMarker()
+             icon: new MyCustomMarker('images/point.png')
+          //  icon:'images/point.png'
            },
            edit: {
                featureGroup: drawnItems, //REQUIRED!!
@@ -951,20 +953,7 @@ var drawnItems = new L.FeatureGroup();
        };
 
 
-         map.on('draw:drawvertex',
-           function (e) {
-               $(".leaflet-div-icon")
-              // $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
 
-               .css({ 'background-color': '#DAFDC4','border-radius': '10px', 'height':'10px', 'width':'10px'});
-           });
-           map.on('draw:drawvertex',
-             function (e) {
-                 $(".leaflet-div-icon.leaflet-interactive:first")
-                // $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
-
-                 .css({ 'background-color': '#F905EA','border-radius': '25px', 'height':'15px', 'width':'15px'});
-             });
 
 
    var drawControl = new L.Control.Draw(options);
@@ -1221,7 +1210,7 @@ var data = JSON.stringify(data2);
 //var data = data1.toString();
 var boxContent;
 
-
+var drawingPoint = false
   document.getElementById('point').onclick = function(e){
             currentZoom = map.getZoom();
           //  map.zoomIn(1); //increases the zoom level when click on polygon
@@ -1235,12 +1224,30 @@ var boxContent;
             document.getElementById("point").style.display = "none";
 
             document.getElementById("goBack2").style.display = "initial";
-            document.getElementById("deleteLastVertex").style.display = "initial";
-            document.getElementById("deleteAllVertexs").style.display = "initial";
-
+          //  document.getElementById("deletePoint").style.display = "initial";
+          //  document.getElementById("deleteAllVertexs").style.display = "initial";
+          drawingPoint = true;
+          return drawingPoint
   };
 
   document.getElementById('polyline').onclick = function(e){
+
+    map.on('draw:drawvertex',
+      function (e) {
+          $(".leaflet-div-icon")
+         // $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
+
+          .css({ 'background-color': '#b3b1b1','border-radius': '10px', 'height':'10px', 'width':'10px'});
+      });
+      map.on('draw:drawvertex',
+        function (e) {
+            $(".leaflet-div-icon.leaflet-interactive:last")
+           // $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
+
+            .css({ 'background-color': '#F905EA','border-radius': '25px', 'height':'15px', 'width':'15px'});
+        });
+
+
             currentZoom = map.getZoom();
           //  map.zoomIn(1); //increases the zoom level when click on polygon
 
@@ -1253,12 +1260,29 @@ var boxContent;
             document.getElementById("point").style.display = "none";
 
             document.getElementById("goBack2").style.display = "initial";
-            document.getElementById("deleteLastVertex").style.display = "initial";
-            document.getElementById("deleteAllVertexs").style.display = "initial";
+            document.getElementById("deleteLastVertexLine").style.display = "initial";
+            document.getElementById("deleteAllVertexsLine").style.display = "initial";
 
   };
 
   document.getElementById('polygon').onclick = function(e){
+
+    map.on('draw:drawvertex',
+      function (e) {
+          $(".leaflet-div-icon")
+         // $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
+
+          .css({ 'background-color': '#DAFDC4','border-radius': '10px', 'height':'10px', 'width':'10px'});
+      });
+      map.on('draw:drawvertex',
+        function (e) {
+            $(".leaflet-div-icon.leaflet-interactive:first")
+           // $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
+
+            .css({ 'background-color': '#F905EA','border-radius': '25px', 'height':'15px', 'width':'15px'});
+        });
+
+
             currentZoom = map.getZoom();
           //  map.zoomIn(1); //increases the zoom level when click on polygon
 
@@ -1342,7 +1366,7 @@ var boxContent;
        // document.getElementById("changeMapSize").style.opacity = "1";
 
        drawPolygon.disable();
-       drawPolygon.enable();
+    //   drawPolygon.enable();
        drawnItems.removeFrom(map); //remove the drawn item as yellow polygon appears
       document.getElementById("deleteAllVertexs").style.display = "none";
       document.getElementById("deleteLastVertex").style.display = "none";
@@ -1351,6 +1375,9 @@ var boxContent;
         document.getElementById("goBack2").style.display = "none";
         document.getElementById("deleteLastVertex").style.display = "none";
         document.getElementById("deleteAllVertexs").style.display = "none";
+
+        document.getElementById("deleteLastVertexLine").style.display = "none";
+        document.getElementById("deleteAllVertexsLine").style.display = "none";
       //  document.getElementById("changeMapSize").style.display = "none";
       //  document.getElementById("deletePolygon").style.display = "none";
 
@@ -1385,6 +1412,22 @@ var boxContent;
       //  console.log(mapNewBounds);
 
         data = drawnItems.toGeoJSON();
+        console.log(data)
+////////////////   script to get area of polygon    //////////////
+        // var type = e.layerType,
+      //   var layerType = e.layerType;
+      //   layer = e.layer
+      //   console.log(layerType)
+      // //  polygons.addLayer(layer);
+      // //    polygons.addLayer(drawnItems);
+      //
+      //  var seeArea = L.GeometryUtil.geodesicArea(layer.getLatLngs());
+      //     console.log(layer.getLatLngs());
+      // //  console.log(L.GeometryUtil.readableArea(area, this.options.metric, this.options.precision));
+
+
+      console.log(finalArea) // area obtained from DRAW plugin, always in sq m
+
 
         //script for calculating the center of the polygon and recenter the map there
         var boundsPolygon = drawnItems.getBounds()
@@ -1399,7 +1442,11 @@ var boxContent;
                      //  maxZoom:30,
                        paddingBottomRight: [0, 0]
                      })
+          //script to avoid zoom to unavailable tile
+          if (drawingPoint ==true){
+            map.zoomOut(10)
 
+          }
         //  map.setView(centerBoundsPolygon);
         // var polygonCenter = drawnItems.getCenter();
         // console.log(polygonCenter)
@@ -1494,131 +1541,85 @@ var boxContent;
             document.getElementById("deleteAllVertexs").disabled = true;
         return clickMapCount;
         }
-    // document.getElementById('deletePolygon').onclick = function(e){
-    //         clickMapCount = 0;
-    //         clickDelVertCount = 0;
-    //         // if(create==false){
-    //         //   drawPolygon.disable();
-    //         //   drawPolygon.enable();
-    //         //
-    //         //   document.getElementById("deleteAllVertexs").disabled = true;
-    //         //   document.getElementById("deleteAllVertexs").style.opacity = "0.35";
-    //         //
-    //         //   document.getElementById("deleteLastVertex").disabled = true;
-    //         //   document.getElementById("deleteLastVertex").style.opacity = "0.35";
-    //         // } else{
-    //           // document.getElementById("changeMapSize").disabled = true;
-    //           // document.getElementById("changeMapSize").style.opacity = "0.35";
-    //         //  document.getElementById("deletePolygon").disabled = true;
-    //       //    document.getElementById("deletePolygon").style.display = "none";
-    //
-    //           document.getElementById("deleteLastVertex").style.opacity = "0.35";
-    //           document.getElementById("deleteLastVertex").disabled = true;
-    //           document.getElementById("deleteAllVertexs").style.display = "initial";
-    //           document.getElementById("deleteAllVertexs").style.opacity = "0.35";
-    //           document.getElementById("deleteAllVertexs").disabled = true;
-    //
-    //           drawnItems.remove();
-    //           drawnItems.clearLayers();
-    //         //  drawnItems = [];
-    //           drawPolygon.enable();
-    //
-    //           created=false;
-    //
-    //       return created;
-    //       }
 
-  //var goToLT = 0; //variable to know whether the LT instructions have played, so can be paused when cancel click
-//   var goToId = 0;
-//       document.getElementById('changeMapSize').onclick = function(e) {
-//             clickMapCount = 0;
-//             clickDelVertCount = 0;
-//
-//           // document.getElementById("mappingInstructions").pause();
-//           // document.getElementById("mappingInstructions").currentTime = 0;
-//
-//           // document.getElementById('goToIdentification').style.display = 'initial';
-//           // document.getElementById('goToIdentification').disabled = true;
-//           // document.getElementById('goToIdentification').style.opacity = '0.1';
-//
-//
-//         //  console.log('zoom',map.getZoom())
-//           var screenHeight = screen.height;
-//         //  var paddingDist = screenHeight*0.6;
-//
-//         //  console.log('screenHeight', screenHeight)
-//         //  document.getElementById("map").style.height = "88%";
-//
-//             map.fitBounds(drawnItems.getBounds(),{
-//               maxZoom:30,
-//               paddingBottomRight: [0, 0]
-//             })
-//
-//               document.getElementById("goBack2").style.display = "none";
-//               document.getElementById("deleteLastVertex").style.display = "none";
-//               document.getElementById("deleteAllVertexs").style.display = "none";
-//               document.getElementById("changeMapSize").style.display = "none";
-//               document.getElementById("deletePolygon").style.display = "none";
-//
-//             //  document.getElementById("Confirm").style.visibility = "hidden";
-//
-//
-//               // document.getElementById("Confirm").style.opacity = "0.155";
-//               // document.getElementById("Confirm").disabled = true;
-//               document.getElementById("Confirm").style.display = "initial";
-//               document.getElementById("Cancel").style.display = "initial";
-//
-//               document.getElementById("classification").style.display = "initial";
-//
-//               document.getElementById("emoji").style.display = "initial";
-//
-//             // document.getElementById('emojionearea1').value = 'aaaaa'
-//             // console.log(document.getElementById('emojionearea1').value);
-//
-//
-//               //document.getElementById("microphone").style.display = "initial";
-//       ////        document.getElementById('LandUse').play();
-//               // document.getElementById('lu1').style.display = 'initial';
-//               // document.getElementById('lu2').style.display = 'initial';
-//               // document.getElementById('lu3').style.display = 'initial';
-//               // document.getElementById('lu4').style.display = 'initial';
-//               // document.getElementById('lu5').style.display = 'initial';
-//               // document.getElementById('luOther').style.display = 'initial';
-//
-//               //document.getElementById('goToIdentification').style.display = 'initial';
-// ///go to identificiation script
-//               document.getElementById('Sent').currentTime = 0;
-//
-//               goToId = 1;
-//
-//
-//               // document.getElementById('Confirm').style.display = 'initial';
-//               // document.getElementById('Confirm').disabled = true;
-//               // document.getElementById('Confirm').style.opacity = '0.1';
-//
-//               //document.getElementById('goBackToLandUse').style.display = 'initial';
-//               document.getElementById('voice').style.display = 'none';
-//               document.getElementById('voice').style.opacity = '0';
-//
-//               // document.getElementById('LandUse').pause();
-//               // document.getElementById('LandUse').currentTime = 0;
-//
-//           //    document.getElementById('Identification').play();
-//           //    document.getElementById('start').style.display = 'initial';
-//               document.getElementById('record').style.display = 'initial';
-//               document.getElementById('record').style.opacity = '1';
-//               // document.getElementById('play').style.display = 'initial';
-//               // document.getElementById('play').style.opacity = '0.1';
-//
-//               document.getElementById('emoji').style.display = 'initial';
-//
-//
-//               // document.getElementById('download').style.display = 'initial';
-//               // document.getElementById('download').style.opacity = '0.1';
-//
-//
-//            }
 
+/////////////line////////////////////////
+        document.getElementById('deleteLastVertexLine').onclick = function(e){
+             clickDelVertCount += 1;
+          //console.log(clickCount);
+
+            if(clickMapCount==1){
+              drawPolyline.disable();
+          //    drawPolygon.enable();
+              clickMapCount = 1;
+              document.getElementById("deleteLastVertexLine").style.opacity = "0.35";
+              document.getElementById("deleteLastVertexLine").disabled = true;
+              document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
+              document.getElementById("deleteAllVertexsLine").disabled = true;
+            }else if(clickMapCount==clickDelVertCount){
+
+              drawPolyline.disable();
+              drawPolyline.enable();
+              document.getElementById("deleteLastVertexLine").style.opacity = "0.35";
+              document.getElementById("deleteLastVertexLine").disabled = true;
+              document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
+              document.getElementById("deleteAllVertexsLine").disabled = true;
+            }
+
+            else{
+              drawPolyline.deleteLastVertex();
+              //clickCount-=1;
+            }
+          // console.log('click delete vertex count ', clickDelVertCount);
+          // console.log('click map count ', clickMapCount);
+
+          return clickMapCount;
+        }
+
+        document.getElementById('deleteAllVertexsLine').onclick = function(e){
+                clickMapCount = 0;
+                clickDelVertCount = 0;
+                drawPolyline.disable();
+              //  drawPolygon.enable();
+                document.getElementById("deleteLastVertexLine").style.opacity = "0.35";
+                document.getElementById("deleteLastVertexLine").disabled = true;
+                document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
+                document.getElementById("deleteAllVertexsLine").disabled = true;
+            return clickMapCount;
+            }
+
+
+                // document.getElementById('deletePoint').onclick = function(e){
+                //      clickDelVertCount += 1;
+                //   //console.log(clickCount);
+                //
+                //     if(clickMapCount==1){
+                //       drawMarker.disable();
+                //   //    drawPolygon.enable();
+                //       clickMapCount = 1;
+                //       document.getElementById("deletePoint").style.opacity = "0.35";
+                //       document.getElementById("deletePoint").disabled = true;
+                //       // document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
+                //       // document.getElementById("deleteAllVertexsLine").disabled = true;
+                //     }else if(clickMapCount==clickDelVertCount){
+                //
+                //       drawMarker.disable();
+                //       drawMarker.enable();
+                //       document.getElementById("deletePoint").style.opacity = "0.35";
+                //       document.getElementById("deletePoint").disabled = true;
+                //       // document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
+                //       // document.getElementById("deleteAllVertexsLine").disabled = true;
+                //     }
+                //
+                //     else{
+                //       drawMarker.deleteLastVertex();
+                //       //clickCount-=1;
+                //     }
+                //   // console.log('click delete vertex count ', clickDelVertCount);
+                //   // console.log('click map count ', clickMapCount);
+                //
+                //   return clickMapCount;
+                // }
 
 
 	$("#emojionearea1").emojioneArea({

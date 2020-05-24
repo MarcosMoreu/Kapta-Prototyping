@@ -92,7 +92,7 @@
     <img src="images/drawPolygon.png" style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
   </button>
   <button id='polyline' class='button' style='z-index:3; position:relative'>
-    <img src="images/polyline.png" style='width:30px ; height:30px'>
+    <img src="images/line.png" style='width:30px ; height:30px'>
   </button>
   <button id='point' class='button' style='z-index:3; position:relative'>
     <img src="images/point.png" style='width:30px ; height:30px'>
@@ -103,15 +103,27 @@
   <button id='goBack2' class='button'style='display:none;border: 2px solid #9C1F04; background-color:#9C1F04'>
     <img src="images/backButton.png" style='width:30px ; height:30px '>
   </button>
+
   <button id='deleteLastVertex' class='button' style='display:none'>
     <img src="images/deleteLastVertex.png" style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
   </button>
   <button id='deleteAllVertexs' class='button'style='display:none'>
     <img src="images/deleteAllVertex.png" style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
   </button>
-  <button id='deletePolygon' class='button' style='display:none'>
-    <img src="images/deletePolygon.png" style='width:30px ; height:30px'>
+
+  <button id='deleteLastVertexLine' class='button' style='display:none'>
+    <img src="images/lineDeleteVertex.png" style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
   </button>
+  <button id='deleteAllVertexsLine' class='button'style='display:none'>
+    <img src="images/lineDeleteAll.png" style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
+  </button>
+
+  <button id='deletePoint' class='button'style='display:none'>
+    <img src="images/deletePoint.png" style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
+  </button>
+  <!-- <button id='deletePolygon' class='button' style='display:none'>
+    <img src="images/deletePolygon.png" style='width:30px ; height:30px'>
+  </button> -->
   <button id='changeMapSize' class='button' style='display:none'>
     <img src="images/ThumbsUpGreen.png" style='width:30px ; height:30px'>
   </button>
@@ -294,6 +306,7 @@
 <script src="scripts/lib/jquery-3.4.1.min.js"></script>
 
 <script src="scripts/emojionearea-master/dist/emojionearea.js"></script>
+<!-- <script src="scripts/lib/leaflet/plugins/Leaflet.GeometryUtil-master/src/leaflet.geometryutil.js"></script> -->
 
 <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.draw.js"></script>
 <script src="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.js"></script>
@@ -301,6 +314,10 @@
 <script src="scripts/lib/leaflet/plugins/localForage-master/dist/localforage.js"></script>
 <script src="scripts/lib/leaflet/plugins/leaflet-offline-master/dist/leaflet-offline.js"></script>
 <script src="scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/leaflet.markercluster-src.js"></script>
+<!-- <script src="scripts/lib/leaflet/plugins/Leaflet.GeometryUtil-master/src/leaflet.geometryutil.js"></script> -->
+<!-- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/spec/suites/GeometryUtilSpec.js"></script> -->
+
+
 
 
 <script src="layers/AOI_Tsumkwe.geojson" type='text/javascript'></script>

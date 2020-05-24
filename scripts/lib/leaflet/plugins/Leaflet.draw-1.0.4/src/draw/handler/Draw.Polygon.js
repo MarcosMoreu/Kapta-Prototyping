@@ -3,6 +3,7 @@
  * @aka Draw.Polygon
  * @inherits L.Draw.Polyline
  */
+var finalArea; //var created to store area
 L.Draw.Polygon = L.Draw.Polyline.extend({
 	statics: {
 		TYPE: 'polygon'
@@ -11,7 +12,7 @@ L.Draw.Polygon = L.Draw.Polyline.extend({
 	Poly: L.Polygon,
 
 	options: {
-		showArea: false,
+	  showArea: true,
 		showLength: false,
 		// icon: new L.DivIcon({
 		// 						iconSize: new L.Point(2, 2),
@@ -33,10 +34,10 @@ L.Draw.Polygon = L.Draw.Polyline.extend({
 		// Also defines the units to use for the metric system as an array of
 		// strings (e.g. `['ha', 'm']`).
 		metric: true,
-		feet: true, // When not metric, to use feet instead of yards for display.
+		feet: false, // When not metric, to use feet instead of yards for display.
 		nautic: false, // When not metric, not feet use nautic mile for display
 		// Defines the precision for each type of unit (e.g. {km: 2, ft: 0}
-		precision: {}
+	//	precision: {}
 	},
 
 
@@ -63,6 +64,7 @@ L.Draw.Polygon = L.Draw.Polyline.extend({
 			// Only need to remove handler if has been added before
 			if (markerCount > 3) {
 				this._markers[markerCount - 2].off('dblclick', this._finishShape, this);
+
 			}
 		}
 	},
@@ -117,10 +119,15 @@ L.Draw.Polygon = L.Draw.Polyline.extend({
 		if (!this.options.allowIntersection && this.options.showArea) {
 			latLngs = this._poly.getLatLngs();
 
-			this._area = L.GeometryUtil.geodesicArea(latLngs);
+		//	this._area = L.GeometryUtil.geodesicArea(latLngs); // this line must be removed to avoid area showing in each vertex
+			//this.options.showArea=true;
+			finalArea = L.GeometryUtil.geodesicArea(latLngs); // var to store area, return
+//return finalArea
 		}
 
 		L.Draw.Polyline.prototype._vertexChanged.call(this, latlng, added);
+		// finalArea = L.GeometryUtil.geodesicArea(latLngs); // var to store area, return
+		 return finalArea
 	},
 
 	_cleanUpShape: function () {

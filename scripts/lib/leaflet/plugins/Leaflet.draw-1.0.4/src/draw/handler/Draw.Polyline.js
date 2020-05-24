@@ -29,7 +29,7 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 		maxGuideLineLength: 4000,
 		shapeOptions: {
 			stroke: true,
-			color: '#3388ff',
+			color: '#0ff007',
 			weight: 4,
 			opacity: 0.5,
 			fill: false,
@@ -38,7 +38,7 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 		metric: true, // Whether to use the metric measurement system or imperial
 		feet: true, // When not metric, to use feet instead of yards for display.
 		nautic: false, // When not metric, not feet use nautic mile for display
-		showLength: true, // Whether to display distance in the tooltip
+		showLength: false, // Whether to display distance in the tooltip 
 		zIndexOffset: 2000, // This should be > than the highest z-index any map layers
 		factor: 1, // To change distance calculation
 		maxPoints: 0 // Once this number of points are placed, finish shape
