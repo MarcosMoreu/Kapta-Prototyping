@@ -709,7 +709,7 @@ if(currentLocation[0] != null){
             currentLocation == null;
           }
 
-          circleGT250.removeFrom(map)//remove orange circle if it has been added
+        //  circleGT250.removeFrom(map)//remove orange circle if it has been added
 
           if(circleLT250Added == false){
 
@@ -914,7 +914,7 @@ var drawnItems = new L.FeatureGroup();
                    }
                },
                polygon: {
-                 showArea:true,
+                // showArea:true,
                    allowIntersection: false, // Restricts shapes to simple polygons
                   // icon: new MyCustomMarker() ,
                                      icon: new L.DivIcon({
@@ -1425,11 +1425,40 @@ var drawingPoint = false
       //     console.log(layer.getLatLngs());
       // //  console.log(L.GeometryUtil.readableArea(area, this.options.metric, this.options.precision));
 
-
       console.log(finalArea) // area obtained from DRAW plugin, always in sq m
+      console.log(finalLength)
+      var type = e.layerType
+      console.log(type)
 
+      ////////////////    area   //////////////
+      if(type == 'polygon'){
+      // convert sq m to
+      var finalAreaHa = finalArea*0.0001
+      var finalAreaAcres = finalArea*0.000247105
+      //to remove decimals ....
+      var  finalAreaHa2Decimals = finalAreaHa.toFixed(2) + ' ' +'hectares'
+      var  finalAreaAcres2Decimals = finalAreaAcres.toFixed(2) + ' ' +'acres'
+    //  console.log(finalArea2Decimals)
+//to show the final area on the top
+      document.getElementById('showAreaHa').style.display = 'initial';
+      document.getElementById("showAreaHa").innerHTML = finalAreaHa2Decimals;
 
+      document.getElementById('showAreaAcres').style.display = 'initial';
+      document.getElementById("showAreaAcres").innerHTML = finalAreaAcres2Decimals;
         //script for calculating the center of the polygon and recenter the map there
+      }
+        ////////    length    ///////////
+        if (type == 'polyline'){
+        //to remove decimals ....
+        var  finalLength2Decimals = finalLength.toFixed(2) + ' ' +'meters'
+      //  console.log(finalArea2Decimals)
+      //to show the final length on the top
+
+        document.getElementById('showLength').style.display = 'initial';
+        document.getElementById("showLength").innerHTML = finalLength2Decimals;
+
+      }
+        //////////////////////////////////////////
         var boundsPolygon = drawnItems.getBounds()
         var centerBoundsPolygon = boundsPolygon.getCenter()
         ///////////////
@@ -1807,7 +1836,17 @@ console.log(recordedBlobs)
           //   document.getElementById('goBackToLandUse').style.display = 'none';
           //   document.getElementById('goToIdentification').style.display = 'none';
              document.getElementById('emoji').style.display = 'none';
+
+             document.getElementById('showAreaHa').style.display = 'none';
+             document.getElementById('showAreaAcres').style.display = 'none';
+             document.getElementById('showLength').style.display = 'none';
+             // finalAreaHa = null
+             // finalAreaAcres = null
+             // finalLength = null
+
+
              tempLayer.clearLayers()
+          //   return finalAreaHa & finalAreaAcres & finalLength
            }
 
 

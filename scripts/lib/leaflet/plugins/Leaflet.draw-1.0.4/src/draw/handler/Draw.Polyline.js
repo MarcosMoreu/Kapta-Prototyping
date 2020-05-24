@@ -3,6 +3,8 @@
  * @aka Draw.Polyline
  * @inherits L.Draw.Feature
  */
+
+ var finalLength;
 L.Draw.Polyline = L.Draw.Feature.extend({
 	statics: {
 		TYPE: 'polyline'
@@ -38,7 +40,7 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 		metric: true, // Whether to use the metric measurement system or imperial
 		feet: true, // When not metric, to use feet instead of yards for display.
 		nautic: false, // When not metric, not feet use nautic mile for display
-		showLength: false, // Whether to display distance in the tooltip 
+		showLength: false, // Whether to display distance in the tooltip
 		zIndexOffset: 2000, // This should be > than the highest z-index any map layers
 		factor: 1, // To change distance calculation
 		maxPoints: 0 // Once this number of points are placed, finish shape
@@ -489,7 +491,7 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 				};
 			}
 		}
-		return labelText;
+		return labelText
 	},
 
 	_updateRunningMeasure: function (latlng, added) {
@@ -509,7 +511,9 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 			}
 
 			this._measurementRunningTotal += distance * (added ? 1 : -1);
+		finalLength = distance  //// to store the final length into a global variable
 		}
+		return finalLength
 	},
 
 	_getMeasurementString: function () {
@@ -523,8 +527,8 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 		} else {
 			distance = previousLatLng && currentLatLng ? this._measurementRunningTotal + this._map.distance(currentLatLng, previousLatLng) * (this.options.factor || 1) : this._measurementRunningTotal || 0;
 		}
-
-		return L.GeometryUtil.readableDistance(distance, this.options.metric, this.options.feet, this.options.nautic, this.options.precision);
+	 var finalLength =	L.GeometryUtil.readableDistance(distance, this.options.metric, this.options.feet, this.options.nautic, this.options.precision)
+		return L.GeometryUtil.readableDistance(distance, this.options.metric, this.options.feet, this.options.nautic, this.options.precision) ;
 	},
 
 	_showErrorTooltip: function () {
