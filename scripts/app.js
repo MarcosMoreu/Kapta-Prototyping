@@ -938,27 +938,7 @@ var drawnItems = new L.FeatureGroup();
 
 
                },
-               // polygon: {
-               //     allowIntersection: false, // Restricts shapes to simple polygons
-               //     icon: new MyCustomMarker() ,
-               //                       // icon: new L.DivIcon({
-               //     //             iconSize: new L.Point(2, 2)}),
-               //     //             className: 'leaflet-div-icon leaflet-editing-icon my-own-icon',
-               //
-               //     drawError: {
-               //         color: '#e1e100', // Color the shape will turn when intersects
-               //         // message: '<strong>Oh snap!<strong> you can\'t draw that!' // Message that will show when intersect
-               //     },
-               //     shapeOptions: {
-               //         color: '#919187'
-               //     }
-               //
-               //
-               // }
 
-               circle: false, // Turns off this drawing tool
-               rectangle: false,
-               marker: true,
            },
            marker: {
                icon: new MyCustomMarker()
@@ -1241,6 +1221,43 @@ var data = JSON.stringify(data2);
 //var data = data1.toString();
 var boxContent;
 
+
+  document.getElementById('point').onclick = function(e){
+            currentZoom = map.getZoom();
+          //  map.zoomIn(1); //increases the zoom level when click on polygon
+
+          //  clickMapCount = 0;
+            drawMarker.enable();
+          //    document.getElementById("handDraw").style.display = "initial";
+            document.getElementById("goBack1").style.display = "none";
+            document.getElementById("polygon").style.display = "none";
+            document.getElementById("polyline").style.display = "none";
+            document.getElementById("point").style.display = "none";
+
+            document.getElementById("goBack2").style.display = "initial";
+            document.getElementById("deleteLastVertex").style.display = "initial";
+            document.getElementById("deleteAllVertexs").style.display = "initial";
+
+  };
+
+  document.getElementById('polyline').onclick = function(e){
+            currentZoom = map.getZoom();
+          //  map.zoomIn(1); //increases the zoom level when click on polygon
+
+          //  clickMapCount = 0;
+            drawPolyline.enable();
+          //    document.getElementById("handDraw").style.display = "initial";
+            document.getElementById("goBack1").style.display = "none";
+            document.getElementById("polygon").style.display = "none";
+            document.getElementById("polyline").style.display = "none";
+            document.getElementById("point").style.display = "none";
+
+            document.getElementById("goBack2").style.display = "initial";
+            document.getElementById("deleteLastVertex").style.display = "initial";
+            document.getElementById("deleteAllVertexs").style.display = "initial";
+
+  };
+
   document.getElementById('polygon').onclick = function(e){
             currentZoom = map.getZoom();
           //  map.zoomIn(1); //increases the zoom level when click on polygon
@@ -1256,119 +1273,8 @@ var boxContent;
             document.getElementById("goBack2").style.display = "initial";
             document.getElementById("deleteLastVertex").style.display = "initial";
             document.getElementById("deleteAllVertexs").style.display = "initial";
-          //  document.getElementById('emojionearea1').value='ddd'
 
-//$("#emoji").load(window.location.href + " #emoji" );
-//  document.getElementById("emoji").load(window.location.href + " #emoji" )
-          //     setTimeout(function(){
-          //   document.getElementById("handDraw").style.display = "initial";
-          // },1000)
-
-
-            // document.getElementById("changeMapSize").style.display = "initial";
-            // document.getElementById("changeMapSize").disabled = true;
-            // document.getElementById("changeMapSize").style.opacity = "0.35";
-
-          //  document.getElementById("deletePolygon").style.display = "none";
-/////////////////// TRANSMISSION TEST /////////////////////
-        //
-        //     const toSend = {
-        //       name:'marcos',
-        //       age:32,
-        //       occupation:'researcher'
-        //     };
-        //
-        //     const jsonString = JSON.stringify(toSend);
-        //     //const url = 'http://167.71.129.243/'; //THE URL IS DEFINED IN THE PHP FILE
-        //
-        //     //create xhr object
-        //     const xhr = new XMLHttpRequest();//////
-        //     //open: type, url, async?
-        // //    xhr.open('POST',url, true);//////
-        //     xhr.open('POST','process.php', true);////// PHP!!!!!!!
-        //
-        //     //check for status of response
-        //     xhr.onload =  function(){
-        //       if(this.status == 200){
-        //         console.log(this.responseText);
-        //         }
-        //     };
-        //     // xhttp.onreadystatechange = function() {
-        //     //   if (this.readyState == 4 && this.status == 200) {
-        //     //     document.getElementById("demo").innerHTML = this.responseText;
-        //     //   }
-        //     // };
-        //
-        //     xhr.setRequestHeader('Content-Type','application/json');/////
-        //     //sends request
-        // //    xhr.send(jsonString);//////
-        //     xhr.send('marquitos');//////
-//////////////////////////////////////////////
-
-
-///////////////////////////test transmission /////////////////////////////////////////
-
-//   var xhr = new XMLHttpRequest();
-//   xhr.open('POST', 'process.php', true);
-//   xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-//   //xhr.setRequestHeader('Content-type', 'application/json');
-//
-//
-// //line to insert a js variable (name) with its value (var data) into the php file
-//       $.post("process.php",{name: data})
-//
-//
-//   xhr.onload = function(){
-//     console.log(this.responseText);
-//   }
-//
-//   xhr.send();
-
-//////////////////////////////////////////////////////////////////////////////////////////
-            // const toSend = {
-            //   name:'marcos',
-            //   age:32,
-            //   occupation:'researcher'
-            // };
-            // const jsonString = JSON.stringify(toSend);
-            // const url = 'http://167.71.129.243/';
-            //
-            // //create xhr object
-            // const xhr = new XMLHttpRequest();
-            // //open: type, url, async?
-            // xhr.open('GET', 'receive.php', true);
-            // //check for status of response
-            // xhr.onload =  function(){
-            //   if(this.status == 200){
-            //     console.log(this.responseText);
-            //     }
-            // }
-            //
-            // xhr.setRequestHeader('Content-Type','application/json');
-            // //sends request
-            // xhr.send(jsonString);
   };
-
-  ///////////////////////////////    test with POST FORM DEMO
-  // document.getElementById('postForm').addEventListener('submit', postName);
-  //
-  // function postName(e){
-  //   e.preventDefault();
-  //
-  //   var name = document.getElementById('name2').value;
-  //   var params = "name="+name;
-  //
-  //   var xhr = new XMLHttpRequest();
-  //   xhr.open('POST', 'process.php', true);
-  //   xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-  //
-  //   xhr.onload = function(){
-  //     console.log(this.responseText);
-  //   }
-  //
-  //   xhr.send(params);
-  // }
-
   document.getElementById('map').onclick = function(e){
       // if(clickMapCount==0){
       //   document.getElementById("deleteAllVertexs").style.opacity = "0.35";
