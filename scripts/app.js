@@ -1430,6 +1430,9 @@ var drawingPoint = false
 
   var tempLayer;
   var data;
+  var  finalAreaHa2Decimals
+  var  finalAreaAcres2Decimals
+  var  finalLength2Decimals
   map.on('draw:created', function (e) {
        //drawnItems.completeShape();
        created = true;
@@ -1506,8 +1509,8 @@ var drawingPoint = false
       var finalAreaHa = finalArea*0.0001
       var finalAreaAcres = finalArea*0.000247105
       //to remove decimals ....
-      var  finalAreaHa2Decimals = finalAreaHa.toFixed(2) + ' ' +'hectares'
-      var  finalAreaAcres2Decimals = finalAreaAcres.toFixed(2) + ' ' +'acres'
+      finalAreaHa2Decimals = finalAreaHa.toFixed(2) + ' ' +'hectares'
+      finalAreaAcres2Decimals = finalAreaAcres.toFixed(2) + ' ' +'acres'
     //  console.log(finalArea2Decimals)
 //to show the final area on the top
       document.getElementById('showAreaHa').style.display = 'initial';
@@ -1520,7 +1523,7 @@ var drawingPoint = false
         ////////    length    ///////////
         if (type == 'polyline'){
         //to remove decimals ....
-        var  finalLength2Decimals = finalLength.toFixed(2) + ' ' +'meters'
+        finalLength2Decimals = finalLength.toFixed(2) + ' ' +'meters'
       //  console.log(finalArea2Decimals)
       //to show the final length on the top
 
@@ -1543,7 +1546,7 @@ var drawingPoint = false
                      })
           //script to avoid zoom to unavailable tile
           if (drawingPoint ==true){
-            map.zoomOut(10)
+            map.zoomOut(6)
 
           }
         //  map.setView(centerBoundsPolygon);
@@ -1743,6 +1746,7 @@ console.log(recordedBlobs)
              drawnItems.clearLayers();
             recordedVideo.pause();
             map.zoomOut(1);
+            drawingPoint =false
       /////       document.getElementById("mappingInstructions").play();
 
         /////     document.getElementById('LandUse').pause();
@@ -1864,12 +1868,26 @@ function onEachFeature(feature, layer) {
                 }
                 console.log(currentLocation[0])
                 var landUses = allLandUsesFiltered.toString();
-                console.log(landUses);
-                var boxContentToString = boxContent.toString();
+              //  console.log(landUses);
+              //to convert emojis from unicode to short name, before the data is transmitted
+                var boxContentToShortname = emojione.toShort(boxContent)
+                console.log(boxContentToShortname)
+                console.log(boxContent)
+
+                var boxContentToString = boxContentToShortname.toString();
                 //attributes added to Geojson file properties
                 //var combinedAttributeData = landUses + dateTime + currentLocation;
+                if(finalAreaHa2Decimals == null){
+                  finalAreaHa2Decimals = 'null'
+                }
+
+                if(finalLength2Decimals == null){
+                  finalLength2Decimals = 'null'
+                }
                 var propertiesGeoJSON = {
                   'landUses':boxContentToString,
+                  'area': finalAreaHa2Decimals,
+                  'length':finalLength2Decimals,
                   'dateTime':dateTime,
                   'participantLocation':currentLocationString,
                   'randomID':randomID
