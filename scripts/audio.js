@@ -14,7 +14,7 @@
 /* globals MediaRecorder */
 document.getElementById('gum').style.visibility = 'hidden';
 document.getElementById('recorded').style.visibility = 'hidden';
-
+//var blobFinal;
 const mediaSource = new MediaSource();
 mediaSource.addEventListener('sourceopen', handleSourceOpen, false);
 let mediaRecorder;
@@ -61,7 +61,8 @@ downloadButton.addEventListener('click', () => {
 /////////catch error in case recordedBlobs ==null
 try{
   const blob = new Blob(recordedBlobs, {type: 'video/webm'});
-
+//  blobFinal = new Blob(recordedBlobs, {type: 'video/webm'})
+console.log(blob)
   const url = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.style.display = 'none';

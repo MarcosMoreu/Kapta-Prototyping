@@ -4,6 +4,20 @@
 <html>
 
 <head>
+
+<!-- Firebase imports -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+<!--  Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-analytics.js"></script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+<!--  Add SDKs for Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+
+<!-- end of firebase imports -->
+
   <meta charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- maximumscale and userscalable value disable the zoom/pan option on the mobile screen -->
@@ -51,6 +65,16 @@
   <input type="submit" value="Submit">
 </form> -->
 
+<!-- firebase divs -->
+<!-- this div is hidden, other functions fire the click event... -->
+<div>
+
+<!-- <input type="file" id="files" style='display:none' multiple /> -->
+<button id="send" style='display:none;width:0px;height:0px'>Upload</button>
+<p id="uploading" style='display:none'></p>
+<progress value="0" max="100" id="progress" style='display:none'></progress>
+</div>
+<!-- end of firebase divs -->
 <body>
   <!-- <div   style='z-index:2;position:absolute;'> -->
   <h1 id='showAreaHa' style='z-index:2;position:absolute;left:20%;display:none;color:yellow;font-size:19px' ></h1>

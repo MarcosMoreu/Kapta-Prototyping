@@ -1,3 +1,23 @@
+
+
+
+  // Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBZqAR37JeL2BOjU_B2CujpiivGpONKh5k",
+    authDomain: "test-p4-49e77.firebaseapp.com",
+    databaseURL: "https://test-p4-49e77.firebaseio.com",
+    projectId: "test-p4-49e77",
+    storageBucket: "test-p4-49e77.appspot.com",
+    messagingSenderId: "754694156437",
+    appId: "1:754694156437:web:7deadde8385b0c189beb9c",
+    measurementId: "G-GXM9D4Y6V8"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+//  firebase.analytics();
+
+
+////////////////////////////////////////////////////////////////////
 // window.addEventListener('load',e )
 // (function() {
 if('serviceWorker' in navigator) {
@@ -182,7 +202,7 @@ var groupGeoJSON =[]
       var key = localStorage.key(i);
       var value = localStorage[key];
       var itemFetched = localStorage.getItem(key);
-      console.log(i+ '____' + key + " => " + value +'__'+ '__ccc__'+itemFetched);
+  //    console.log(i+ '____' + key + " => " + value +'__'+ '__ccc__'+itemFetched);//////////////////////////////////////////
 //catch error in case no json
       function isJson(str) {
        try {
@@ -200,7 +220,7 @@ var groupGeoJSON =[]
      var getItemToJSON = JSON.parse(itemFetched);
      //add each json to an array-------------------------
       groupGeoJSON[i]=getItemToJSON
-      console.log(groupGeoJSON)
+  //    console.log(groupGeoJSON)///////////////////////////////////////////////////////////////////////////////////
 
     }
 
@@ -630,7 +650,7 @@ var gpsIcon = L.icon({
     iconUrl: 'images/man.png',
   //  shadowUrl: 'leaf-shadow.png',
 
-    iconSize:     [40, 40], // size of the icon
+    iconSize:     [30, 30], // size of the icon
     //shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [20, 40], // point of the icon which will correspond to marker's location
     //shadowAnchor: [4, 62],  // the same for the shadow
@@ -1736,6 +1756,10 @@ var boxContent;
 //range.deleteContents();
 
 console.log(recordedBlobs)
+/////////////  firebase     ////////////
+//document.getElementById('send').style.display = 'initial'
+//document.getElementById('files').style.display = 'initial'
+
 
           return boxContent;
         }
@@ -1802,15 +1826,166 @@ console.log(recordedBlobs)
            }
 
 
-           // document.getElementById('emojibtn').onclick = function (e){
-           //
-           //   console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-           // }
+///////////////////   firebase code   //////////////////////////////////////////////////////////////////////////////////////
+
+var files = [];
+var filesLength;
+var urlGeo;
+var urlAudio;
+
+var storage;
+var urls = []
+var finalFiles = []
+var percentage
+var finalPercentage =[]
+
+// document.getElementById("files").addEventListener("change", function(e) {
+//   files = e.target.files;
+//   for (let i = 0; i < files.length; i++) {
+//     console.log(files[i]);
+//   }
+// });
+
+document.getElementById("send").addEventListener("click", function() {
+  //checks if files are selected
+  // if (files.length != 0) {
+    //Loops through all the selected files
+    for (let i = 0; i < filesLength; i++) {  //there will be only 2 files
+      //create a storage reference
+    //  files[i] = dataFile
+    //  files[i+1] = dataFile
+
+      console.log(files[i])
+      console.log(typeof files[i])
+      storage = firebase.storage().ref(files[i].name);
+      console.log(storage)
+      // var url = storage.getDownloadURL()
+      //
+      //         console.log(url);
+
+      //upload file
+      var upload = storage.put(files[i]);
+        // function getFileUrl(filename) {
+        //   //create a storage reference
+        //   var storage = firebase.storage().ref(filename);
+        //
+        //   //get file url
+        //   storage
+        //     .getDownloadURL()
+        //     .then(function(url) {
+        //       console.log(url);
+        //     })
+        //     .catch(function(error) {
+        //       console.log("error encountered");
+        //     });
+        // }
+        // var tempFile = files[i]
+        // var tempFileName = tempFile.name
+        // storage.getFileUrl(tempFileName)
+      //update progress bar
+      var completed;
+      upload.on(
+        "state_changed",
+        function progress(snapshot) {
+         percentage =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          document.getElementById("progress").value = percentage;
+          console.log(percentage)
+          finalPercentage[i] = percentage
+
+          return finalPercentage
+
+        },
+      );
+
+    }
+
+//         // function error() {
+//         //   alert("error uploading file");
+//         // },
+// //script to show files names on the screen is removed
+//         // function complete() {
+//         //   document.getElementById(
+//         //     "uploading"
+//         //   ).innerHTML += `${files[i].name} upoaded <br />`;
+//         //    completed = true
+//         //   return completed
+//         // }
+//   // setTimeout(function(){
+//
+//       // },2000)
+//
+//       );
+//       // if(completed == true){
+//       // storage
+//       //   .getDownloadURL()
+//       //   .then(function(url) {
+//       //     urls[i] = url
+//       //     console.log(urls);
+//       //   })
+//       //   .catch(function(error) {
+//       //     console.log("error encountered");
+//       //   });
+//     // }
+//     finalFiles[i] = files[i]
+//     }
+  // } else {
+  //   alert("No file chosen");
+  // }
+
+  //finalPercentage = document.getElementById("progress").value
+  console.log(finalPercentage)
+  // if(percentage!=0){
+  //   finalPercentage = percentage
+  //     console.log(finalPercentage)
+  //
+  // }
+
+
+//to wait until the files have been uploaded so the path can be found
+// if(finalPercentage[0]==100){
+//   setTimeout(function(){
+//   urlGeo = firebase.storage().ref(files[0].name).getDownloadURL().then(function(url) { console.log('1'+url); })
+//   if(recordedBlobs!=null && finalPercentage[1]==100){
+//   urlAudio = firebase.storage().ref(files[1].name).getDownloadURL().then(function(url) { console.log(url); })
+//   }
+// },1000)
+// }
+// else{setTimeout(function(){
+//   urlGeo = firebase.storage().ref(files[0].name).getDownloadURL().then(function(url) { console.log('2'+url); })
+//   if(recordedBlobs!=null){
+//   urlAudio = firebase.storage().ref(files[1].name).getDownloadURL().then(function(url) { console.log(url); })
+//   }
+// },10000)
+// }
+
+
+  setTimeout(function(){
+  urlGeo = firebase.storage().ref(files[0].name).getDownloadURL().then(function(url) { console.log(url); })
+  if(recordedBlobs!=null){
+  urlAudio = firebase.storage().ref(files[1].name).getDownloadURL().then(function(url) { console.log(url); })
+  }
+},1000)
+
+
+// setTimeout(function(){
+//   urlGeo = firebase.storage().ref(files[0].name).getDownloadURL().then(function(url) { console.log(url); })
+//   if(recordedBlobs!=null){
+//   urlAudio = firebase.storage().ref(files[1].name).getDownloadURL().then(function(url) { console.log(url); })
+//   }
+// },3000)
+
+//finalFiles[0].getDownloadURL().then(function(url) { console.log(url); })
+return urlGeo && urlAudio && finalPercentage
+});
+console.log(urlGeo)
+console.log(urlAudio)
+console.log(finalPercentage)
 
 
 
 
-/////////////////////////// Export  ////////////////////////////////////////////////////////
+///////////////////  end of  firebase code   ///////////////
 
 var dateTimeRandomID;
 
@@ -1825,7 +2000,8 @@ function onEachFeature(feature, layer) {
   layer.bindPopup(popupContent).addTo(map);
     layer.bindPopup(popupContent).openPopup();
 }
-//////////////////////////////////
+
+
   document.getElementById('export').onclick = function(e) {
                 //refresh location
                 console.log(currentLocation)
@@ -1847,7 +2023,7 @@ function onEachFeature(feature, layer) {
                 dateTimeRandomID.toString();
                 //console.log(dateTimeRandomID);
 
-                var data = drawnItems.toGeoJSON();
+               var  data = drawnItems.toGeoJSON();
                 //The coordinate reference system for all GeoJSON coordinates is a  geographic coordinate reference system, using the World Geodetic
                 //System 1984 (WGS 84) [WGS84] datum, with longitude and latitude units of decimal degrees.
 
@@ -1897,7 +2073,7 @@ function onEachFeature(feature, layer) {
 
                 //data.innerHTML = JSON.stringify(prop_1);
                 // Stringify the GeoJson
-                var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
+              var  convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
                 //var convertedData = JSON.stringify(data);
 
                 // var convertedText =   '' + encodeURIComponent(JSON.stringify(attributes))
@@ -1906,80 +2082,25 @@ function onEachFeature(feature, layer) {
 
                 ////////////////////////  TRANSMISSION ////////////////////////////////////////
               //  var convertedDataBlob = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(recordedBlobs));
-var toSendGeometry = JSON.stringify(data)
-var toSendAudio = JSON.stringify(recordedBlobs)
-//var toSendAudio = recordedBlobs.toJSON();
-
-console.log(toSendAudio)
-
-//console.log(toSend)
-console.log(recordedBlobs)
-console.log('updated44')
-
-console.log(typeof recordedBlobs)
-                                // function upload() {
-                                // const blob = new Blob(recordedBlobs, { type: 'video/webm' });
-                                // var formData = new FormData();
-                                // formData.append("video", blob, fileName + ".webm");
-//var toSend = recordedBlobs
-                              // var toSend = JSON.stringify(data)
-
-                              // var fd=new FormData();
-                              //       fd.append("audio_data",blob, "filename.wav");
-                              //
-
-                              // const blb    = new Blob(recordedBlobs, {type: "text/plain"});
-                              // const reader = new FileReader();
-                              //
-                              // // This fires after the blob has been read/loaded.
-                              // var text;
-                              // reader.addEventListener('loadend', (e) => {
-                              //   text = e.srcElement.result;
-                              //     console.log(text);
-                              // return text
-                              // });
-                              // console.log(text);
-
-                              // Start reading the blob as text. readAsText call loadend method
-                            //  var readerBlob = reader.readAsText(blb);
 
 
-                              //console.log(blb)
+// var toSendGeometry = JSON.stringify(data)
+// //var toSendAudio = JSON.stringify(recordedBlobs)
+// //var toSendAudio = recordedBlobs.toJSON();
+//
+if(recordedBlobs !=null){
+ var blob = new Blob(recordedBlobs, {type: 'video/webm'});
+ console.log(blob)
+}  ////////from plugin
 
-                                var xhr = new XMLHttpRequest();
-                                xhr.open('POST', 'process.php', true);
-                                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                                xhr.setRequestHeader('Content-Type', 'video/webm');
-                                xhr.setRequestHeader('Content-Type', 'application/json');
-
-
-                                //xhr.setRequestHeader('Content-type', 'application/json');
-
-
-                                //line to insert a js variable (name) with its value (var data) into the php file
-                                    $.post("process.php",{name:toSendGeometry,audio:toSendAudio})
-                                    //$.post("process.php",{audio:toSendAudio})
-
-                                    // function(data,status){
-                                    //     document.getElementById("saveWarningText").innerHTML = data;
-                                    //     $( "#saveWarningText" ).fadeIn(100);
-                                    //     setTimeout(function(){ $( "#saveWarningText" ).fadeOut(100); }, 3000);
-                                    // });
-
-                                // xhr.onload = function(){
-                                //   console.log(this.responseText);
-                                // }
-                                //
-                                // xhr.send();
-
-
-                //console.log(convertedData)
                 // Create export
                 document.getElementById('export').setAttribute('href', 'data:' + convertedData);
                 //document.getElementById('export').setAttribute('href', 'data:' + convertedData + convertedText );
                 console.log(convertedData)
 
                 document.getElementById('export').setAttribute('download',dateTimeRandomID);
+
+
                 layer1=data;
                 console.log(layer1);
                 //finalLayer is a global variable
@@ -2033,12 +2154,21 @@ console.log(typeof recordedBlobs)
 
 
                 document.getElementById('Sent').style.display = 'initial';
+                // document.getElementById('uploading').style.display = 'initial'
+                // document.getElementById('progress').style.display = 'initial'
+
+                //progress bar remains hidden
+                // document.getElementById('uploading').style.display = 'initial'
+                // document.getElementById('progress').style.display = 'initial'
+
                 document.getElementById('voice').style.visibility = 'hidden';
               //  document.getElementById('Sent').src='images/Sent.gif';
 
               setTimeout(function(){
 
                 document.getElementById('Sent').style.display = 'none';
+                document.getElementById('uploading').style.display = 'none'
+                document.getElementById('progress').style.display = 'none'
 
                 document.getElementById("deleteAllVertexs").style.opacity = "0.35";
                 document.getElementById("deleteAllVertexs").disabled = true;
@@ -2092,9 +2222,58 @@ console.log(typeof recordedBlobs)
               // ourRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
               // ourRequest.send(JSON.stringify({ "email": "hello@user.com", "response": { "name": "Tester" } }));
 
-              console.log(finalLayer)
+            //  console.log(finalLayer)
 
-      return finalLayer && myLayerIsOn
+
+            /////////////////////////firebase   ////////////////
+            //rename files...
+            var nameGeoJSON = 'geojson'+' '+dateTimeRandomID
+            var nameAudio = 'audio'+' '+dateTimeRandomID
+
+            var  audioBlob = blob; //to assign to a new variable the blob created in the audio.js
+            console.log(audioBlob)
+          //  var fileName = dateTimeRandomID
+
+          //to convert the audio blob into a file (webm)
+            function blobToFile(theBlob, fileName){
+                //A Blob() is almost a File() - it's just missing the two properties below which we will add
+                theBlob.lastModifiedDate = new Date();
+                theBlob.name = fileName;
+                return theBlob;
+            }
+
+            if(recordedBlobs !=null){
+            audioBlobFile = blobToFile(audioBlob, nameAudio);
+            console.log(audioBlobFile)
+            }
+            //////////not working  ///////
+            // audioBlobString = JSON.stringify(recordedBlobs)
+            //
+            // dataFile = new File([audioBlobString], "foo2.txt", {
+            //     type: "text/plain",
+            //     });
+//////////////////////////////////
+
+          //to convert geojson into File format
+            dataFile = new File([dataStringified], nameGeoJSON, {
+                type: "application/json",
+                });
+                console.log(dataFile)
+          //to store both audio and geojson into an array, and also get the length of the array and pass this value ot the firebase loop
+              if(recordedBlobs !=null){
+                files = [dataFile,audioBlobFile]
+                filesLength = 2
+
+              }else{
+                files = [dataFile]
+                filesLength = 1
+                }
+            //to simulate that the upload button is clicked.
+            document.getElementById("send").click();
+// var url = storage.getDownloadURL()
+// console.log(url)
+// console.log(storage)
+      return finalLayer && myLayerIsOn && files && filesLength
   }
 console.log(finalLayer)
 
