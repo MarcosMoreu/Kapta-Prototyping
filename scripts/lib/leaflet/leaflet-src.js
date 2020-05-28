@@ -327,7 +327,7 @@ Class.extend = function (props) {
 
 	// mix includes into the prototype
 	if (props.includes) {
-		checkDeprecatedMixinEvents(props.includes);
+	//	checkDeprecatedMixinEvents(props.includes);
 		extend.apply(null, [proto].concat(props.includes));
 		delete props.includes;
 	}
