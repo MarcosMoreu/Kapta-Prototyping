@@ -188,7 +188,6 @@ console.log('udddd?')
        attributionControl:false
       });
 
-
 function addPreviousPolygons(){
   if(!data.length==0){
   //  data.addTo(map); //////////////////////////////////////////////
@@ -1175,6 +1174,10 @@ var created = false; //variable to determine whether a polygon has been complete
 var clickMapCount = 0;
 var clickDelVertCount = 0;
 document.getElementById("goBack2").onclick = function(e){
+  
+//to enable doubleclick zoom that is disabled while drawing
+  map.doubleClickZoom.enable();
+
       clickMapCount = 0;
        map.zoomOut(1); //decreases the zoom level when click
        document.getElementById("goBack1").style.display = "initial";
@@ -1214,6 +1217,8 @@ var boxContent;
 
 var drawingPoint = false
   document.getElementById('point').onclick = function(e){
+    map.doubleClickZoom.disable();
+
             currentZoom = map.getZoom();
           //  map.zoomIn(1); //increases the zoom level when click on polygon
 
@@ -1233,6 +1238,7 @@ var drawingPoint = false
   };
 
   document.getElementById('polyline').onclick = function(e){
+    map.doubleClickZoom.disable();
 
     map.on('draw:drawvertex',
       function (e) {
@@ -1268,6 +1274,7 @@ var drawingPoint = false
   };
 
   document.getElementById('polygon').onclick = function(e){
+    map.doubleClickZoom.disable();
 
     map.on('draw:drawvertex',
       function (e) {
@@ -1460,6 +1467,7 @@ var drawingPoint = false
   var  finalAreaHa2Decimals
   var  finalAreaAcres2Decimals
   var  finalLength2Decimals
+
   map.on('draw:created', function (e) {
        //drawnItems.completeShape();
        created = true;
@@ -1738,6 +1746,9 @@ var boxContent;
         }
 
       document.getElementById('Cancel').onclick = function(e){
+        map.doubleClickZoom.enable();
+
+
              created = false;
              drawnItems.remove();
              drawnItems.clearLayers();
