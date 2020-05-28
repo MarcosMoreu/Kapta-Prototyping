@@ -5,7 +5,7 @@
 
 
 // Set a name for the current cache. Note that when version is changed, the pwa only updates autmotically after reloading!
-var version = 'v6.1';
+var version = 'v6.4';
 console.log(version)
 
 // Default files to always cache
