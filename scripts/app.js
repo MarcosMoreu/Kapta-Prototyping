@@ -1210,18 +1210,6 @@ document.getElementById("goBack2").onclick = function(e){
 
      }
 
-
-//var data = 'sok';
-var data1 = {
-  "id":1,
-  "name":"Rick",
-  "email":"rick@gmail.com"
-}
-//var data = JSON.stringify(data1);
-var data2 = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"landUses":"dd","dateTime":"2020_4_5__11_54_7","participantLocation":"41.546274499999996,2.1086131","randomID":5806},"geometry":{"type":"Polygon","coordinates":[[[35.482235,0.657286],[35.485239,0.64759],[35.494337,0.660976],[35.482235,0.657286]]]}}]};
-var data = JSON.stringify(data2);
-//var data = data2.toString();
-//var data = data1.toString();
 var boxContent;
 
 var drawingPoint = false
@@ -1484,20 +1472,9 @@ var drawingPoint = false
       document.getElementById("deleteLastVertex").style.display = "none";
         document.getElementById("goBack2").style.display = "none";
 
-        // document.getElementById("goBack2").style.display = "none";
-        // document.getElementById("deleteLastVertex").style.display = "none";
-        // document.getElementById("deleteAllVertexs").style.display = "none";
-
         document.getElementById("deleteLastVertexLine").style.display = "none";
         document.getElementById("deleteAllVertexsLine").style.display = "none";
-      //  document.getElementById("changeMapSize").style.display = "none";
-      //  document.getElementById("deletePolygon").style.display = "none";
 
-      //  document.getElementById("Confirm").style.visibility = "hidden";
-
-
-        // document.getElementById("Confirm").style.opacity = "0.155";
-        // document.getElementById("Confirm").disabled = true;
         document.getElementById("Confirm").style.display = "initial";
         document.getElementById("Cancel").style.display = "initial";
 
@@ -1512,16 +1489,7 @@ var drawingPoint = false
 
         document.getElementById('enableRecording').style.display = 'initial';
 
-        // document.getElementById('record').style.display = 'initial';
-        // document.getElementById('record').style.opacity = '1';
-
         document.getElementById('emoji').style.display = 'initial';
-
-
-       //console.log('created')
-//boxContent = document.getElementById('emojionearea1').value;
-
-      //  console.log(mapNewBounds);
 
         data = drawnItems.toGeoJSON();
         console.log(data)
@@ -1745,17 +1713,17 @@ var boxContent;
              console.log(boxContent);
 
              tempLayer.removeFrom(map);
-             function onEachFeature(feature, layer) {
-               var popupContent = boxContent  ; //+ '    ' +dateTimeRandomID
+         function onEachFeature(feature, layer) {
+           var popupContent = boxContent  ; //+ '    ' +dateTimeRandomID
 
-               if (feature.properties && feature.properties.popupContent) {
-                 popupContent += feature.properties.popupContent;
-               }
+           if (feature.properties && feature.properties.popupContent) {
+             popupContent += feature.properties.popupContent;
+           }
 
-               layer.bindPopup(popupContent).addTo(map);
-                   layer.bindPopup(popupContent).openPopup(); ///automatically shows the pop up!
-                 //  layer.updatePopup(popupContent)
-             }
+           layer.bindPopup(popupContent).addTo(map);
+               layer.bindPopup(popupContent).openPopup(); ///automatically shows the pop up!
+             //  layer.updatePopup(popupContent)
+         }
 
              tempLayer = L.geoJSON(data,{
                style: function (feature) {
@@ -1765,14 +1733,6 @@ var boxContent;
                onEachFeature: onEachFeature,
 
              }).addTo(map);
-          //   console.log(EmojioneArea.prototype.getText)
-//range.deleteContents();
-
-console.log(recordedBlobs)
-/////////////  firebase     ////////////
-//document.getElementById('send').style.display = 'initial'
-//document.getElementById('files').style.display = 'initial'
-
 
           return boxContent;
         }
@@ -1913,7 +1873,7 @@ function onEachFeature(feature, layer) {
 
 }
 
-
+////////////////////////////////////////////      EXPORT     /////////////////////////////////////////////////////////////////////////////////////////////
   document.getElementById('export').onclick = function(e) {
                 //refresh location
 
@@ -1997,11 +1957,11 @@ function onEachFeature(feature, layer) {
                 ////////////////////////  TRANSMISSION ////////////////////////////////////////
               //  var convertedDataBlob = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(recordedBlobs));
 
-//
-if(recordedBlobs !=null){
- var blob = new Blob(recordedBlobs, {type: 'video/webm'});
- console.log(blob)
-}  ////////from plugin
+
+          if(recordedBlobs !=null){
+           var blob = new Blob(recordedBlobs, {type: 'video/webm'});
+           console.log(blob)
+          }  ////////from plugin
 
                 // Create export
                 document.getElementById('export').setAttribute('href', 'data:' + convertedData);
