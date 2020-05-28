@@ -164,29 +164,43 @@ console.log('udddd?')
 
 
 /////////////////////////////////////////////////////////adding map elements///////////////////////////////////////////////////
-// var map;
-// var tutorialViewed = false;
-// if(tutorialViewed ==true){
-//   map = L.map('map',{
-//           editable:true,
-//           center: mapCurrentCenter,
-//           zoom: mapCurrentZoom,
-//           minZoom:3,
-//           maxZoom:21,
-//           zoomControl:false,
-//          attributionControl:false
-//         });
-// }else{
 
-  var map = L.map('map',{
+
+//to identify last postion, which was stored in localstorage
+var lastPositionStoredLOCALLY;
+
+lastPositionStoredLOCALLY = localStorage.getItem('lastPositionStoredLOCALLY')
+console.log(typeof lastPositionStoredLOCALLY)
+
+//to avoid error if no location was stored either because first load, not allowed, or cache cleared
+if(lastPositionStoredLOCALLY != null){
+lastPositionStoredLOCALLY = lastPositionStoredLOCALLY.split(',')  // to convert string to array
+console.log(lastPositionStoredLOCALLY[0])
+}
+//to center map, depending on if location was stored.
+if(lastPositionStoredLOCALLY==null){
+var map = L.map('map',{
         editable:true,
-        center: [18, 20],
+        center: [18,20],
         zoom: 3,
         minZoom:3,
         maxZoom:21,
         zoomControl:false,
        attributionControl:false
       });
+}
+else{
+  var map = L.map('map',{
+          editable:true,
+          center: [lastPositionStoredLOCALLY[0],lastPositionStoredLOCALLY[1]],
+          zoom: 10,    /////////what is the most appropriate???/
+          minZoom:3,
+          maxZoom:21,
+          zoomControl:false,
+         attributionControl:false
+        });
+}
+
 
 function addPreviousPolygons(){
   if(!data.length==0){
@@ -724,7 +738,7 @@ catch(err) {
 }
 //if location found, then set button color, and create circle or add marker if <50m
 if(currentLocation[0] != null){
-
+    localStorage.setItem('lastPositionStoredLOCALLY',currentLocation)
     locationFound = true
   //  console.log(currentLocation)
   //  console.log(accuracy)
@@ -803,7 +817,6 @@ if(currentLocation[0] != null){
 },1000)
 
 
-
 console.log(currentLocation[0])
 var gps_Button = L.easyButton({
     id: 'gps',
@@ -826,6 +839,7 @@ var gps_Button = L.easyButton({
             gps_Button.button.style.backgroundColor = 'green';
             //
             map.setView(currentLocation,15);
+            console.log(currentLocation)
 
           }else if(accuracy>50 && accuracy<=250){
             gps_Button.button.style.backgroundColor = 'yellow';
@@ -835,7 +849,6 @@ var gps_Button = L.easyButton({
             map.fitBounds(circleLT250.getBounds());
 
             setTimeout(function(){circleLT250.removeFrom(map); }, 200);
-
 
           }else if(accuracy>250){
             gps_Button.button.style.backgroundColor = 'orange';
@@ -896,8 +909,8 @@ googleSat.on('offline:remove-error', function (err) {
 });
 googleSat.on('offline:below-min-zoom-error', function () {
     alert('Can not save tiles below minimum zoom level.');
-
 });
+////////////////
 
 osm.on('offline:save-start', function (data) {
     console.log('Saving ' + data.nTilesToSave + ' tiles.');
@@ -919,7 +932,6 @@ osm.on('offline:remove-error', function (err) {
 });
 osm.on('offline:below-min-zoom-error', function () {
     alert('Can not save tiles below minimum zoom level.');
-
 });
 ///////////////////////////////////
 
@@ -945,7 +957,6 @@ var drawnItems = new L.FeatureGroup();
            position: 'topright',
            draw: {
                polyline: {
-
                    shapeOptions: {
                        color: 'black',
                        weight: 4
@@ -957,13 +968,10 @@ var drawnItems = new L.FeatureGroup();
                   // icon: new MyCustomMarker() ,
                                      icon: new L.DivIcon({
                                iconSize: new L.Point(10, 10),
-
                                className: 'leaflet-div-icon',
                                weight:5
 
-
                             //   className: 'leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated',
-
 
                              }),
 
@@ -974,8 +982,6 @@ var drawnItems = new L.FeatureGroup();
                    shapeOptions: {
                        color: '#00ff00'
                    }
-
-
                },
 
            },
@@ -1021,72 +1027,37 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
 // console.log(initialBoxContent)
 //document.getElementById('activatePlay').style.display = 'initial';
 
-          // document.getElementById("videoTutorial").style.display = "initial";
+           document.getElementById("goBack2").style.display = "none";
+           document.getElementById("deleteLastVertex").style.display = "none";
+           document.getElementById("deleteAllVertexs").style.display = "none";
 
-          // document.getElementById("unmute").style.display = "initial";
-
-
-           // window.onload = function (){
-           //   document.getElementById("mappingInstructions").play();
-           // };
-          //document.getElementById("startMapping").style.display = "none";
-          // document.getElementById("goBack1").style.display = "none";
-
-          document.getElementById("goBack2").style.display = "none";
-          document.getElementById("deleteLastVertex").style.display = "none";
-          document.getElementById("deleteAllVertexs").style.display = "none";
-
-          document.getElementById("deleteLastVertexLine").style.display = "none";
-          document.getElementById("deleteAllVertexsLine").style.display = "none";
-        //  document.getElementById("deletePolygon").style.display = " none";
-          //document.getElementById("changeMapSize").style.display = "none";
+           document.getElementById("deleteLastVertexLine").style.display = "none";
+           document.getElementById("deleteAllVertexsLine").style.display = "none";
 
            document.getElementById("map").style.display = "initial";
            document.getElementById("polygon").style.display = "initial";
            document.getElementById("polyline").style.display = "initial";
            document.getElementById("point").style.display = "initial";
-           // document.getElementById("polyline").style.opacity = "0.35";
-           // document.getElementById("point").style.opacity = "0.35";
 
-           // document.getElementById('googleSat').style.visibility='hidden';
-           // document.getElementById('planet').style.visibility='hidden';
-
-
-
-
-        //   document.getElementById('goToIdentification').style.display = 'none';
            document.getElementById("export").style.display = "none";
            document.getElementById("Cancel").style.display = "none";
            document.getElementById("exportButton").style.display = "none";
            document.getElementById("Confirm").style.display = "none";
 
-
-        //   document.getElementById('goToIdentification').style.display = 'none';
-      //     document.getElementById('goBackToLandUse').style.display = 'none';
-
-
-        //   document.getElementById('start').style.display = 'none';
            document.getElementById('record').style.display = 'none';
            document.getElementById('enableRecording').style.display = 'none';
 
-    //      document.getElementById('play').style.display = 'none';
-      //    document.getElementById('activatePlay').style.display = 'none';
-      document.getElementById('activatePlay').style.opacity = '0';
-
+           document.getElementById('activatePlay').style.opacity = '0';
 
            document.getElementById('download').style.display = 'none';
            document.getElementById('gum').style.display = 'none';
            document.getElementById('recorded').style.display = 'none';
            document.getElementById('echoCancellation').style.display = 'none';
-      //     document.getElementById('goBackToLandUse').style.display = 'none';
 
            document.getElementById('voice').style.display = 'none';
 
            document.getElementById('Sent').style.display = 'none';
-           // document.getElementById("Exit").style.display = "none";
-           // document.getElementById("Return").style.display = "none";
-           // document.getElementById("Exit").style.display = "none";
-           // document.getElementById("Return").style.display = "none";
+
            document.getElementById('emoji').style.display = 'none';
 
 
@@ -1112,17 +1083,9 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
               //   }
 
               document.body.style.backgroundColor = "white";
-              // document.getElementById("audioTutorial").pause();
-              // document.getElementById("audioTutorial").currentTime = 0;
-
-
-        //////      document.getElementById("mappingInstructions").play();
-
-          //    document.getElementById("videoTutorial").style.display = "none";
-              //document.getElementById("startMapping").style.display = "none";
 
               document.getElementById("map").style.display = "block";
-              //document.getElementById("map").style.height = "90%";
+
               document.getElementById("goBack1").style.display = "initial";
               document.getElementById("polygon").style.display = "initial";
               document.getElementById("polyline").style.display = "initial";
@@ -1139,13 +1102,17 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
               document.getElementById("deleteAllVertexsLine").disabled = true;
 
 
-          var mapCurrentBounds;
-          var mapCurrentZoom;
-          var mapCurrentCenter;
-          document.getElementById("goBack1").onclick = function(e){
+var mapCurrentBounds;
+var mapCurrentZoom;
+var mapCurrentCenter;
 
-            // document.getElementById("mappingInstructions").pause();
-            // document.getElementById("mappingInstructions").currentTime = 0;
+    document.getElementById("goBack1").onclick = function(e){
+
+            mapCurrentBounds =  map.getBounds();
+            mapCurrentZoom = map.getZoom();
+            mapCurrentCenter = map.getCenter();
+
+          setTimeout(function(){
              window.location.href ='pages/tutorial.html';
              document.body.style.backgroundColor = "black";
              document.getElementById("map").style.display = "none";
@@ -1154,32 +1121,23 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
              document.getElementById("polygon").style.display = "none";
              document.getElementById("polyline").style.display = "none";
              document.getElementById("point").style.display = "none";
+          },0001)
 
-             mapCurrentBounds =  map.getBounds();
-             mapCurrentZoom = map.getZoom();
-             mapCurrentCenter = map.getCenter();
-             tutorialViewed = true
-
-
-
-             // document.getElementById("videoTutorial").style.display = "initial";
-            // document.getElementById("startMapping").style.display = "initial";
-            // document.getElementById("youtube").style.display = "initial";
-             // document.getElementById("audioTutorial").play();
-             return mapCurrentBounds & mapCurrentZoom
-           }
+       return  mapCurrentBounds & mapCurrentZoom & mapCurrentCenter
+     }
 ///////////////////////////////////////////draw screen////////////////////////////////////////////////
+
 
 var created = false; //variable to determine whether a polygon has been completed.
 var clickMapCount = 0;
 var clickDelVertCount = 0;
 document.getElementById("goBack2").onclick = function(e){
-  
+
 //to enable doubleclick zoom that is disabled while drawing
   map.doubleClickZoom.enable();
 
-      clickMapCount = 0;
-       map.zoomOut(1); //decreases the zoom level when click
+    clickMapCount = 0;
+     map.zoomOut(1); //decreases the zoom level when click
        document.getElementById("goBack1").style.display = "initial";
        document.getElementById("goBack2").style.display = "none";
        document.getElementById("polygon").style.display = "initial";
@@ -1205,11 +1163,11 @@ document.getElementById("goBack2").onclick = function(e){
       document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
       document.getElementById("deleteAllVertexsLine").disabled = true;
 
-       drawPolygon.disable();
-       drawPolyline.disable();
-       drawMarker.disable();
-       drawnItems.remove();
-       drawnItems.clearLayers();
+     drawPolygon.disable();
+     drawPolyline.disable();
+     drawMarker.disable();
+     drawnItems.remove();
+     drawnItems.clearLayers();
 
      }
 
@@ -1217,7 +1175,8 @@ var boxContent;
 
 var drawingPoint = false
   document.getElementById('point').onclick = function(e){
-    map.doubleClickZoom.disable();
+      map.doubleClickZoom.disable();
+
 
             currentZoom = map.getZoom();
           //  map.zoomIn(1); //increases the zoom level when click on polygon
@@ -1233,8 +1192,8 @@ var drawingPoint = false
             document.getElementById("goBack2").style.display = "initial";
           //  document.getElementById("deletePoint").style.display = "initial";
           //  document.getElementById("deleteAllVertexs").style.display = "initial";
-          drawingPoint = true;
-          return drawingPoint
+      drawingPoint = true;
+      return drawingPoint
   };
 
   document.getElementById('polyline').onclick = function(e){
@@ -1244,17 +1203,14 @@ var drawingPoint = false
       function (e) {
           $(".leaflet-div-icon")
          // $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
-
           .css({ 'background-color': '#b3b1b1','border-radius': '10px', 'height':'10px', 'width':'10px'});
       });
-      map.on('draw:drawvertex',
+    map.on('draw:drawvertex',
         function (e) {
             $(".leaflet-div-icon.leaflet-interactive:last")
            // $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
-
             .css({ 'background-color': '#F905EA','border-radius': '25px', 'height':'15px', 'width':'15px'});
-        });
-
+      });
 
             currentZoom = map.getZoom();
           //  map.zoomIn(1); //increases the zoom level when click on polygon
@@ -1270,7 +1226,6 @@ var drawingPoint = false
             document.getElementById("goBack2").style.display = "initial";
             document.getElementById("deleteLastVertexLine").style.display = "initial";
             document.getElementById("deleteAllVertexsLine").style.display = "initial";
-
   };
 
   document.getElementById('polygon').onclick = function(e){
@@ -1280,17 +1235,15 @@ var drawingPoint = false
       function (e) {
           $(".leaflet-div-icon")
          // $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
-
           .css({ 'background-color': '#DAFDC4','border-radius': '10px', 'height':'10px', 'width':'10px'});
       });
-      map.on('draw:drawvertex',
+
+    map.on('draw:drawvertex',
         function (e) {
             $(".leaflet-div-icon.leaflet-interactive:first")
            // $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
-
             .css({ 'background-color': '#F905EA','border-radius': '25px', 'height':'15px', 'width':'15px'});
-        });
-
+      });
 
             currentZoom = map.getZoom();
           //  map.zoomIn(1); //increases the zoom level when click on polygon
@@ -1308,6 +1261,7 @@ var drawingPoint = false
             document.getElementById("deleteAllVertexs").style.display = "initial";
 
   };
+
   document.getElementById('map').onclick = function(e){
       // if(clickMapCount==0){
       //   document.getElementById("deleteAllVertexs").style.opacity = "0.35";
@@ -1356,95 +1310,94 @@ var drawingPoint = false
 ///////////////////////////       delete vertexs      //////////////////////////////////
 
 
-    document.getElementById('deleteLastVertex').onclick = function(e){
-         clickDelVertCount += 1;
-      //console.log(clickCount);
+  document.getElementById('deleteLastVertex').onclick = function(e){
+       clickDelVertCount += 1;
+    //console.log(clickCount);
 
-        if(clickMapCount==1){
-          drawPolygon.disable();
-          drawPolygon.enable();
-          clickMapCount = 1;
-          document.getElementById("deleteLastVertex").style.opacity = "0.35";
-          document.getElementById("deleteLastVertex").disabled = true;
-          document.getElementById("deleteAllVertexs").style.opacity = "0.35";
-          document.getElementById("deleteAllVertexs").disabled = true;
-        }else if(clickMapCount==clickDelVertCount){
+      if(clickMapCount==1){
+        drawPolygon.disable();
+        drawPolygon.enable();
+        clickMapCount = 1;
+        document.getElementById("deleteLastVertex").style.opacity = "0.35";
+        document.getElementById("deleteLastVertex").disabled = true;
+        document.getElementById("deleteAllVertexs").style.opacity = "0.35";
+        document.getElementById("deleteAllVertexs").disabled = true;
+      }else if(clickMapCount==clickDelVertCount){
 
-          drawPolygon.disable();
-          drawPolygon.enable();
-          document.getElementById("deleteLastVertex").style.opacity = "0.35";
-          document.getElementById("deleteLastVertex").disabled = true;
-          document.getElementById("deleteAllVertexs").style.opacity = "0.35";
-          document.getElementById("deleteAllVertexs").disabled = true;
-        }
+        drawPolygon.disable();
+        drawPolygon.enable();
+        document.getElementById("deleteLastVertex").style.opacity = "0.35";
+        document.getElementById("deleteLastVertex").disabled = true;
+        document.getElementById("deleteAllVertexs").style.opacity = "0.35";
+        document.getElementById("deleteAllVertexs").disabled = true;
+      }
 
-        else{
-          drawPolygon.deleteLastVertex();
-          //clickCount-=1;
-        }
-      // console.log('click delete vertex count ', clickDelVertCount);
-      // console.log('click map count ', clickMapCount);
+      else{
+        drawPolygon.deleteLastVertex();
+        //clickCount-=1;
+      }
 
-      return clickMapCount;
-    }
 
-    document.getElementById('deleteAllVertexs').onclick = function(e){
-            clickMapCount = 0;
-            clickDelVertCount = 0;
-            drawPolygon.disable();
-            drawPolygon.enable();
-            document.getElementById("deleteLastVertex").style.opacity = "0.35";
-            document.getElementById("deleteLastVertex").disabled = true;
-            document.getElementById("deleteAllVertexs").style.opacity = "0.35";
-            document.getElementById("deleteAllVertexs").disabled = true;
-        return clickMapCount;
-        }
+    return clickMapCount;
+  }
+
+ document.getElementById('deleteAllVertexs').onclick = function(e){
+        clickMapCount = 0;
+        clickDelVertCount = 0;
+        drawPolygon.disable();
+        drawPolygon.enable();
+        document.getElementById("deleteLastVertex").style.opacity = "0.35";
+        document.getElementById("deleteLastVertex").disabled = true;
+        document.getElementById("deleteAllVertexs").style.opacity = "0.35";
+        document.getElementById("deleteAllVertexs").disabled = true;
+    return clickMapCount;
+  }
 
 
 /////////////line////////////////////////
-        document.getElementById('deleteLastVertexLine').onclick = function(e){
-             clickDelVertCount += 1;
-          //console.log(clickCount);
+  document.getElementById('deleteLastVertexLine').onclick = function(e){
+           clickDelVertCount += 1;
+        //console.log(clickCount);
 
-            if(clickMapCount==1){
-              drawPolyline.disable();
-              drawPolyline.enable();
-              clickMapCount = 1;
-              document.getElementById("deleteLastVertexLine").style.opacity = "0.35";
-              document.getElementById("deleteLastVertexLine").disabled = true;
-              document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
-              document.getElementById("deleteAllVertexsLine").disabled = true;
-            }else if(clickMapCount==clickDelVertCount){
+      if(clickMapCount==1){
+        drawPolyline.disable();
+        drawPolyline.enable();
+        clickMapCount = 1;
+            document.getElementById("deleteLastVertexLine").style.opacity = "0.35";
+            document.getElementById("deleteLastVertexLine").disabled = true;
+            document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
+            document.getElementById("deleteAllVertexsLine").disabled = true;
+      }else if(clickMapCount==clickDelVertCount){
 
-              drawPolyline.disable();
-              drawPolyline.enable();
-              document.getElementById("deleteLastVertexLine").style.opacity = "0.35";
-              document.getElementById("deleteLastVertexLine").disabled = true;
-              document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
-              document.getElementById("deleteAllVertexsLine").disabled = true;
-            }
+            drawPolyline.disable();
+            drawPolyline.enable();
+            document.getElementById("deleteLastVertexLine").style.opacity = "0.35";
+            document.getElementById("deleteLastVertexLine").disabled = true;
+            document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
+            document.getElementById("deleteAllVertexsLine").disabled = true;
+      }
 
-            else{
-              drawPolyline.deleteLastVertex();
-              //clickCount-=1;
-            }
-          // console.log('click delete vertex count ', clickDelVertCount);
-          // console.log('click map count ', clickMapCount);
+      else{
+            drawPolyline.deleteLastVertex();
+            //clickCount-=1;
+      }
+        // console.log('click delete vertex count ', clickDelVertCount);
+        // console.log('click map count ', clickMapCount);
 
-          return clickMapCount;
-        }
+        return clickMapCount;
+  }
 
-        document.getElementById('deleteAllVertexsLine').onclick = function(e){
-                clickMapCount = 0;
-                clickDelVertCount = 0;
-                drawPolyline.disable();
-                drawPolyline.enable();
-                document.getElementById("deleteLastVertexLine").style.opacity = "0.35";
-                document.getElementById("deleteLastVertexLine").disabled = true;
-                document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
-                document.getElementById("deleteAllVertexsLine").disabled = true;
-            return clickMapCount;
-            }
+  document.getElementById('deleteAllVertexsLine').onclick = function(e){
+          clickMapCount = 0;
+          clickDelVertCount = 0;
+          drawPolyline.disable();
+          drawPolyline.enable();
+          document.getElementById("deleteLastVertexLine").style.opacity = "0.35";
+          document.getElementById("deleteLastVertexLine").disabled = true;
+          document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
+          document.getElementById("deleteAllVertexsLine").disabled = true;
+      return clickMapCount;
+      }
 
 
 
@@ -1462,22 +1415,22 @@ var drawingPoint = false
 
       //this function must be inside the polygon onclick function
 
-  var tempLayer;
-  var data;
-  var  finalAreaHa2Decimals
-  var  finalAreaAcres2Decimals
-  var  finalLength2Decimals
+var tempLayer;
+var data;
+var  finalAreaHa2Decimals
+var  finalAreaAcres2Decimals
+var  finalLength2Decimals
 
-  map.on('draw:created', function (e) {
+map.on('draw:created', function (e) {
        //drawnItems.completeShape();
-       created = true;
+     created = true;
 
 
-       drawPolygon.disable();
+     drawPolygon.disable();
     //   drawPolygon.enable();
-       drawnItems.removeFrom(map); //remove the drawn item as yellow polygon appears
-      document.getElementById("deleteAllVertexs").style.display = "none";
-      document.getElementById("deleteLastVertex").style.display = "none";
+     drawnItems.removeFrom(map); //remove the drawn item as yellow polygon appears
+        document.getElementById("deleteAllVertexs").style.display = "none";
+        document.getElementById("deleteLastVertex").style.display = "none";
         document.getElementById("goBack2").style.display = "none";
 
         document.getElementById("deleteLastVertexLine").style.display = "none";
@@ -1519,13 +1472,13 @@ var drawingPoint = false
       console.log(type)
 
       ////////////////    area   //////////////
-      if(type == 'polygon'){
-      // convert sq m to
-      var finalAreaHa = finalArea*0.0001
-      var finalAreaAcres = finalArea*0.000247105
-      //to remove decimals ....
-      finalAreaHa2Decimals = finalAreaHa.toFixed(2) + ' ' +'hectares'
-      finalAreaAcres2Decimals = finalAreaAcres.toFixed(2) + ' ' +'acres'
+  if(type == 'polygon'){
+  // convert sq m to
+  var finalAreaHa = finalArea*0.0001
+  var finalAreaAcres = finalArea*0.000247105
+  //to remove decimals ....
+  finalAreaHa2Decimals = finalAreaHa.toFixed(2) + ' ' +'hectares'
+  finalAreaAcres2Decimals = finalAreaAcres.toFixed(2) + ' ' +'acres'
     //  console.log(finalArea2Decimals)
 //to show the final area on the top
       document.getElementById('showAreaHa').style.display = 'initial';
@@ -1534,36 +1487,35 @@ var drawingPoint = false
       document.getElementById('showAreaAcres').style.display = 'initial';
       document.getElementById("showAreaAcres").innerHTML = finalAreaAcres2Decimals;
         //script for calculating the center of the polygon and recenter the map there
-      }
+  }
         ////////    length    ///////////
-        if (type == 'polyline'){
-        //to remove decimals ....
-        finalLength2Decimals = finalLength.toFixed(2) + ' ' +'meters'
-      //  console.log(finalArea2Decimals)
+  if (type == 'polyline'){
+  //to remove decimals ....
+  finalLength2Decimals = finalLength.toFixed(2) + ' ' +'meters'
+    //  console.log(finalArea2Decimals)
       //to show the final length on the top
 
         document.getElementById('showLength').style.display = 'initial';
         document.getElementById("showLength").innerHTML = finalLength2Decimals;
 
-      }
+  }
         //////////////////////////////////////////
-        var boundsPolygon = drawnItems.getBounds()
-        var centerBoundsPolygon = boundsPolygon.getCenter()
+  var boundsPolygon = drawnItems.getBounds()
+  var centerBoundsPolygon = boundsPolygon.getCenter()
         ///////////////
         console.log(centerBoundsPolygon)
 
+  var mapNewBounds =  map.getBounds();
 
-          var mapNewBounds =  map.getBounds();
-
-          map.fitBounds(drawnItems.getBounds(),{
+  map.fitBounds(drawnItems.getBounds(),{
                      //  maxZoom:30,
-                       paddingBottomRight: [0, 0]
-                     })
+       paddingBottomRight: [0, 0]
+   })
           //script to avoid zoom to unavailable tile
-          if (drawingPoint ==true){
-            map.zoomOut(6)
+  if (drawingPoint ==true){
+    map.zoomOut(6)
 
-          }
+  }
         //  map.setView(centerBoundsPolygon);
         // var polygonCenter = drawnItems.getCenter();
         // console.log(polygonCenter)
@@ -1627,17 +1579,6 @@ var drawingPoint = false
   //   console.log(btn.html());
   // });
 
-
-
-	// document.getElementById("#emojionearea1").emojioneArea({
-  // 	pickerPosition: "top",
-  // 	filtersPosition: "bottom",
-  //   tones: false,
-  //   autocomplete: false,
-  //   inline: true,
-  //   hidePickerOnBlur: false
-  // });
-
 ////////////////////////////////////////////////////////classify screen//////////////////////////////////////////////////////////////
 
 
@@ -1678,23 +1619,17 @@ var recording=true;
               document.getElementById('voiceGif').style.width = '40%';
               document.getElementById('voiceGif').style.height = '40px';
 
-
-
-
-      //        document.getElementById('goBackToLandUse').style.display = 'none';
-
             }
-            // document.getElementById('Identification').pause();
-            // document.getElementById('Identification').currentTime = 0;
 
-           document.getElementById('gum').style.display = 'none';
-           document.getElementById('recorded').style.display = 'none';
-           document.getElementById('echoCancellation').style.display = 'none';
+
+             document.getElementById('gum').style.display = 'none';
+             document.getElementById('recorded').style.display = 'none';
+             document.getElementById('echoCancellation').style.display = 'none';
 
       }
-        document.getElementById('activatePlay').onclick = function(e){
-          document.getElementById("play").click(); //added so no need to click button twice
-          document.getElementById('activatePlay').style.background = 'grey'
+             document.getElementById('activatePlay').onclick = function(e){
+             document.getElementById("play").click(); //added so no need to click button twice
+             document.getElementById('activatePlay').style.background = 'grey'
          setTimeout(function(){document.getElementById('activatePlay').style.background = 'white'},500)
 
         }
@@ -1791,7 +1726,6 @@ var boxContent;
              // finalAreaAcres = null
              // finalLength = null
 
-
              tempLayer.clearLayers()
           //   return finalAreaHa & finalAreaAcres & finalLength
            }
@@ -1850,7 +1784,6 @@ document.getElementById("sendFirebase").onclick = function(e) {
     //urlAudio = firebase.storage().ref(files[1].name).getDownloadURL();
     }
   },1000);
-
 };
 
 ///////////////////  end of  firebase code   ///////////////
@@ -1871,7 +1804,6 @@ function onEachFeature(feature, layer) {
     }else{
     var popupContent = feature.properties.landUsesEmoji
     }
-
 
     if (feature.properties && feature.properties.popupContent) {
       popupContent += feature.properties.popupContent;
@@ -2023,15 +1955,6 @@ function onEachFeature(feature, layer) {
                 document.getElementById('showAreaAcres').style.display = 'none'
                 document.getElementById('showLength').style.display = 'none'
 
-
-                // document.getElementById("tutorialScreen").style.visibility = "hidden";
-                // document.getElementById("startMapping").style.display = "none";
-                // document.getElementById("spanish").style.display = "none";
-                // document.getElementById("english").style.display = "none";
-                // document.getElementById("youtube").style.display = "none";
-                // document.getElementById("text").style.display = "none";
-
-
                 recordedVideo.pause();
                 recordedVideo.currentTime = 0;
 
@@ -2079,13 +2002,6 @@ function onEachFeature(feature, layer) {
                 // document.getElementById("Return").style.display = "none";
 
               }, 2800);
-              //reset all land use boxes
-              // document.getElementById('lu1').style.borderColor = 'transparent';
-              // document.getElementById('lu2').style.borderColor = 'transparent';
-              // document.getElementById('lu3').style.borderColor = 'transparent';
-              // document.getElementById('lu4').style.borderColor = 'transparent';
-              // document.getElementById('lu5').style.borderColor = 'transparent';
-              // document.getElementById('luOther').style.borderColor = 'transparent';
 
               created=false;
 
@@ -2106,9 +2022,6 @@ function onEachFeature(feature, layer) {
               // ourRequest.open('POST',theURL);
               // ourRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
               // ourRequest.send(JSON.stringify({ "email": "hello@user.com", "response": { "name": "Tester" } }));
-
-            //  console.log(finalLayer)
-
 
             /////////////////////////firebase   ////////////////
             //rename files...
@@ -2156,7 +2069,6 @@ function onEachFeature(feature, layer) {
             //to simulate that the upload button is clicked.
             document.getElementById("sendFirebase").click();
             // document.getElementById('emojionearea1').value = '...'
-
 
       return finalLayer && myLayerIsOn && files && filesLength
   }
