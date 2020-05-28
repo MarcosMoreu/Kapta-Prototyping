@@ -1,7 +1,12 @@
+// export {version};
+
+
 "use strict";
 
-// Set a name for the current cache
-var version = 'v5.5';
+
+// Set a name for the current cache. Note that when version is changed, the pwa only updates autmotically after reloading!
+var version = 'v6';
+console.log(version)
 
 // Default files to always cache
 var offlineFundamentals = [
@@ -28,6 +33,8 @@ self.addEventListener("install", function(event) {
   /* Using event.waitUntil(p) blocks the installation process on the provided
      promise. If the promise is rejected, the service worker won't be installed.
   */
+  self.skipWaiting(); // to skip waiting activation when changes have been made
+
   event.waitUntil(
     /* The caches built-in is a promise-based API that helps you cache responses,
        as well as finding and deleting them.
@@ -167,9 +174,12 @@ self.addEventListener("fetch", function(event) {
    installing.
 */
 self.addEventListener("activate", function(event) {
+
+
   /* Just like with the install event, event.waitUntil blocks activate on a promise.
      Activation will fail unless the promise is fulfilled.
   */
+
   console.log('WORKER: activate event in progress.');
 
   event.waitUntil(
@@ -198,4 +208,6 @@ self.addEventListener("activate", function(event) {
         console.log('WORKER: activate completed.');
       })
   );
+
+
 });

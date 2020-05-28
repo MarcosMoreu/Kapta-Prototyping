@@ -1,4 +1,4 @@
-
+// import {version} from '/sw.js'
 
 
   // Firebase configuration
@@ -22,10 +22,27 @@
 // (function() {
 if('serviceWorker' in navigator) {
 
+
 navigator.serviceWorker
-    .register('./sw.js',{ scope: './'})
+    .register('./sw.js')
     .then(function(registration){
       console.log('Service Worker Registered');
+      console.log('sw has been updated')
+
+
+      registration.update()//to update the sw and caches if version has changed
+      console.log('sw has been updated')
+      //to reload the page if sw version has changed. This is to provide the user the latest version without the need of reloading or clearing cache
+      registration.onupdatefound = () => {
+        const installingWorker = registration.installing;
+        installingWorker.onstatechange = () => {
+          if (installingWorker.state === 'installed' &&
+              navigator.serviceWorker.controller) {
+            // reload the page
+            location.reload();
+          }
+        };
+      };
     })
     .catch(function(err){
       console.log('Service Worker Failed to register', err);
@@ -55,7 +72,7 @@ var get = function(url) {
   });
 };
 
-//function to download tiles leaflet.offline
+//function to download tiles leaflet.offline NOT USED NOW
 var tilesDb = {
     getItem: function (key) {
         return localforage.getItem(key);
@@ -116,6 +133,7 @@ var firstLoad = function() {//fucntion to determine if the site is visited for f
     if(typeof window.localStorage !== "undefined" && !localStorage.getItem('visited')) {
          // Set visited flag in local storage
          localStorage.setItem('visited', true);
+
          // Alert the user
         // document.getElementById("startMapping").style.visibility = "hidden";
         // document.getElementById("unmute").style.visibility = "visible";
@@ -144,6 +162,8 @@ window.onload = firstLoad;
 firstLoad();
 console.log(isFirstTime);
 console.log('udddd?')
+
+
 /////////////////////////////////////////////////////////adding map elements///////////////////////////////////////////////////
 // var map;
 // var tutorialViewed = false;
