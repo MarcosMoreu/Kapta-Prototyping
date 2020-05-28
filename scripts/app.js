@@ -1856,9 +1856,9 @@ function onEachFeature(feature, layer) {
     //conditions to avoid showing audio link if no audio has been recorded
     if(recordedBlobs != null){
     clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
-    var popupContent = feature.properties.landUses + '</br>'+ clickableFinalUrlAudio ; //+ '    ' +dateTimeRandomID
+    var popupContent = feature.properties.landUsesEmoji + '</br>'+ clickableFinalUrlAudio ; //+ '    ' +dateTimeRandomID
     }else{
-    var popupContent = feature.properties.landUses
+    var popupContent = feature.properties.landUsesEmoji
     }
 
 
@@ -1939,6 +1939,7 @@ function onEachFeature(feature, layer) {
                 }
                 var propertiesGeoJSON = {
                   'landUses':boxContentToString,
+                  'landUsesEmoji':boxContent,
                   'area': finalAreaHa2Decimals,
                   'length':finalLength2Decimals,
                   'dateTime':dateTime,
