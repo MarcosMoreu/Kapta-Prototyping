@@ -3,17 +3,16 @@
 
   // Firebase configuration
   var firebaseConfig = {
-    apiKey: "AIzaSyBZqAR37JeL2BOjU_B2CujpiivGpONKh5k",
-    authDomain: "test-p4-49e77.firebaseapp.com",
-    databaseURL: "https://test-p4-49e77.firebaseio.com",
-    projectId: "test-p4-49e77",
-    storageBucket: "test-p4-49e77.appspot.com",
-    messagingSenderId: "754694156437",
-    appId: "1:754694156437:web:7deadde8385b0c189beb9c",
-    measurementId: "G-GXM9D4Y6V8"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+      apiKey: "AIzaSyDt3_yMQ5Zu_MhqlRzssZ_931YEBzMsIMk",
+      authDomain: "prototype4-dc434.firebaseapp.com",
+      databaseURL: "https://prototype4-dc434.firebaseio.com",
+      projectId: "prototype4-dc434",
+      storageBucket: "prototype4-dc434.appspot.com",
+      messagingSenderId: "995673679156",
+      appId: "1:995673679156:web:cff466b0d7489a868bb161"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
 //  firebase.analytics();
 
 
@@ -1634,13 +1633,7 @@ var drawingPoint = false
 
         //setTimeout(function(){ document.getElementById("record").click();}, 500);
         //document.getElementById("record").click();
-
-
       }
-
-
-
-
 
 	$("#emojionearea1").emojioneArea({
   	pickerPosition: "top",
@@ -1791,20 +1784,7 @@ console.log(recordedBlobs)
             recordedVideo.pause();
             map.zoomOut(1);
             drawingPoint =false
-      /////       document.getElementById("mappingInstructions").play();
 
-        /////     document.getElementById('LandUse').pause();
-          //   document.getElementById('LandUse').currentTime = 0;
-
-             // if(goToId ==1){
-             //   document.getElementById('Identification').pause();
-             //   document.getElementById('Identification').currentTime = 0;
-             // }
-
-
-
-
-             //map.fitBounds(drawnItems.getBounds(),{maxZoom:20});
 
              document.getElementById("map").style.display = "block";
              //document.getElementById("map").style.height = "88%";
@@ -1850,58 +1830,31 @@ console.log(recordedBlobs)
 
 var files = [];
 var filesLength;
-var urlGeo;
-var urlAudio;
 
 var storage;
-var urls = []
-var finalFiles = []
 var percentage
 var finalPercentage =[]
+var finalUrlAudio
 
-// document.getElementById("files").addEventListener("change", function(e) {
-//   files = e.target.files;
-//   for (let i = 0; i < files.length; i++) {
-//     console.log(files[i]);
-//   }
-// });
 
-document.getElementById("send").addEventListener("click", function() {
+//sendFirebase script that will be fire when 'export' is clicked.
+document.getElementById("sendFirebase").onclick = function(e) {
+
   //checks if files are selected
-  // if (files.length != 0) {
+
     //Loops through all the selected files
     for (let i = 0; i < filesLength; i++) {  //there will be only 2 files
       //create a storage reference
-    //  files[i] = dataFile
-    //  files[i+1] = dataFile
 
       console.log(files[i])
       console.log(typeof files[i])
       storage = firebase.storage().ref(files[i].name);
       console.log(storage)
-      // var url = storage.getDownloadURL()
-      //
-      //         console.log(url);
+
 
       //upload file
       var upload = storage.put(files[i]);
-        // function getFileUrl(filename) {
-        //   //create a storage reference
-        //   var storage = firebase.storage().ref(filename);
-        //
-        //   //get file url
-        //   storage
-        //     .getDownloadURL()
-        //     .then(function(url) {
-        //       console.log(url);
-        //     })
-        //     .catch(function(error) {
-        //       console.log("error encountered");
-        //     });
-        // }
-        // var tempFile = files[i]
-        // var tempFileName = tempFile.name
-        // storage.getFileUrl(tempFileName)
+
       //update progress bar
       var completed;
       upload.on(
@@ -1914,96 +1867,20 @@ document.getElementById("send").addEventListener("click", function() {
           finalPercentage[i] = percentage
 
           return finalPercentage
-
         },
       );
-
     }
-
-//         // function error() {
-//         //   alert("error uploading file");
-//         // },
-// //script to show files names on the screen is removed
-//         // function complete() {
-//         //   document.getElementById(
-//         //     "uploading"
-//         //   ).innerHTML += `${files[i].name} upoaded <br />`;
-//         //    completed = true
-//         //   return completed
-//         // }
-//   // setTimeout(function(){
-//
-//       // },2000)
-//
-//       );
-//       // if(completed == true){
-//       // storage
-//       //   .getDownloadURL()
-//       //   .then(function(url) {
-//       //     urls[i] = url
-//       //     console.log(urls);
-//       //   })
-//       //   .catch(function(error) {
-//       //     console.log("error encountered");
-//       //   });
-//     // }
-//     finalFiles[i] = files[i]
-//     }
-  // } else {
-  //   alert("No file chosen");
-  // }
-
   //finalPercentage = document.getElementById("progress").value
   console.log(finalPercentage)
-  // if(percentage!=0){
-  //   finalPercentage = percentage
-  //     console.log(finalPercentage)
-  //
-  // }
 
+  setTimeout(function(){  firebase.storage().ref(files[0].name).getDownloadURL().then(function(url) { console.log(url); })
+    if(recordedBlobs!=null){
+    firebase.storage().ref(files[1].name).getDownloadURL().then(function(url) { finalUrlAudio = url;console.log(url); return finalUrlAudio })
+    //urlAudio = firebase.storage().ref(files[1].name).getDownloadURL();
+    }
+  },1000);
 
-//to wait until the files have been uploaded so the path can be found
-// if(finalPercentage[0]==100){
-//   setTimeout(function(){
-//   urlGeo = firebase.storage().ref(files[0].name).getDownloadURL().then(function(url) { console.log('1'+url); })
-//   if(recordedBlobs!=null && finalPercentage[1]==100){
-//   urlAudio = firebase.storage().ref(files[1].name).getDownloadURL().then(function(url) { console.log(url); })
-//   }
-// },1000)
-// }
-// else{setTimeout(function(){
-//   urlGeo = firebase.storage().ref(files[0].name).getDownloadURL().then(function(url) { console.log('2'+url); })
-//   if(recordedBlobs!=null){
-//   urlAudio = firebase.storage().ref(files[1].name).getDownloadURL().then(function(url) { console.log(url); })
-//   }
-// },10000)
-// }
-
-
-  setTimeout(function(){
-  urlGeo = firebase.storage().ref(files[0].name).getDownloadURL().then(function(url) { console.log(url); })
-  if(recordedBlobs!=null){
-  urlAudio = firebase.storage().ref(files[1].name).getDownloadURL().then(function(url) { console.log(url); })
-  }
-},1000)
-
-
-// setTimeout(function(){
-//   urlGeo = firebase.storage().ref(files[0].name).getDownloadURL().then(function(url) { console.log(url); })
-//   if(recordedBlobs!=null){
-//   urlAudio = firebase.storage().ref(files[1].name).getDownloadURL().then(function(url) { console.log(url); })
-//   }
-// },3000)
-
-//finalFiles[0].getDownloadURL().then(function(url) { console.log(url); })
-return urlGeo && urlAudio && finalPercentage
-});
-console.log(urlGeo)
-console.log(urlAudio)
-console.log(finalPercentage)
-
-
-
+};
 
 ///////////////////  end of  firebase code   ///////////////
 
@@ -2011,20 +1888,37 @@ var dateTimeRandomID;
 
 ////////function for pop ups//////////
 function onEachFeature(feature, layer) {
-  var popupContent = feature.properties.landUses  ; //+ '    ' +dateTimeRandomID
+//  setTimeout(function(){console.log(finalUrlAudio)},1600)
+  //timeout is used to wait 1000ms until the download link is ready
+  setTimeout(function(){
+    var audioLinkText = '🔊 AUDIO 🔊'
 
-  if (feature.properties && feature.properties.popupContent) {
-    popupContent += feature.properties.popupContent;
-  }
+    //conditions to avoid showing audio link if no audio has been recorded
+    if(recordedBlobs != null){
+    clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
+    var popupContent = feature.properties.landUses + '</br>'+ clickableFinalUrlAudio ; //+ '    ' +dateTimeRandomID
+    }else{
+    var popupContent = feature.properties.landUses
+    }
 
-  layer.bindPopup(popupContent).addTo(map);
-    layer.bindPopup(popupContent).openPopup();
+
+    if (feature.properties && feature.properties.popupContent) {
+      popupContent += feature.properties.popupContent;
+    }
+
+    layer.bindPopup(popupContent).addTo(map);
+      layer.bindPopup(popupContent).openPopup();
+
+  },1600)
+
 }
 
 
   document.getElementById('export').onclick = function(e) {
                 //refresh location
+
                 console.log(currentLocation)
+
                 // document.body.style.backgroundColor = "#13FA04";
 
                 // Extract GeoJson from featureGroup
@@ -2103,10 +1997,6 @@ function onEachFeature(feature, layer) {
                 ////////////////////////  TRANSMISSION ////////////////////////////////////////
               //  var convertedDataBlob = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(recordedBlobs));
 
-
-// var toSendGeometry = JSON.stringify(data)
-// //var toSendAudio = JSON.stringify(recordedBlobs)
-// //var toSendAudio = recordedBlobs.toJSON();
 //
 if(recordedBlobs !=null){
  var blob = new Blob(recordedBlobs, {type: 'video/webm'});
@@ -2289,10 +2179,8 @@ if(recordedBlobs !=null){
                 filesLength = 1
                 }
             //to simulate that the upload button is clicked.
-            document.getElementById("send").click();
-// var url = storage.getDownloadURL()
-// console.log(url)
-// console.log(storage)
+            document.getElementById("sendFirebase").click();
+
       return finalLayer && myLayerIsOn && files && filesLength
   }
 console.log(finalLayer)
