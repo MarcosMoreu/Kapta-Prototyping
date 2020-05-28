@@ -1920,6 +1920,9 @@ function onEachFeature(feature, layer) {
                 var landUses = allLandUsesFiltered.toString();
               //  console.log(landUses);
               //to convert emojis from unicode to short name, before the data is transmitted
+
+              //value of boxcontent is obtained again (was obtained in 'confirm'), in case user click on 'confirm' before filling in the box
+              boxContent = document.getElementById('emojionearea1').value;
                 var boxContentToShortname = emojione.toShort(boxContent)
                 console.log(boxContentToShortname)
                 console.log(boxContent)
