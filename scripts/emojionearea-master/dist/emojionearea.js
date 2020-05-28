@@ -1243,7 +1243,8 @@ document = window.document || {};
 
         .on("@emojibtn.click", function(emojibtn) {
             editor.removeClass("has-placeholder");
-
+//self.editor.html(self.content = '');
+//self.setText(placeholder);
             if (self.searchSel !== null) {
                 editor.focus();
                 restoreSelection(editor[0], self.searchSel);

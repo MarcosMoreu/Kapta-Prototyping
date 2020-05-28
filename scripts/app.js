@@ -38,7 +38,7 @@ navigator.serviceWorker
           if (installingWorker.state === 'installed' &&
               navigator.serviceWorker.controller) {
             // reload the page
-            location.reload();
+                      location.reload();
           }
         };
       };
@@ -992,9 +992,6 @@ var drawnItems = new L.FeatureGroup();
        };
 
 
-
-
-
    var drawControl = new L.Control.Draw(options);
    // map.addControl(drawControl); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
    map.on(L.Draw.Event.CREATED, function (e) {
@@ -1019,7 +1016,10 @@ var drawPolyline = new L.Draw.Polyline(map, drawControl.options.draw.polyline);
 var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
 
 /////////////////////////////////////////Initial state of buttons //////////////////////////////////////
-
+//to empty emoji box... ? not working? better to keep attributes?
+// var initialBoxContent = document.getElementById('emojionearea1').value
+// document.getElementById('emojionearea1').value = '...'
+// console.log(initialBoxContent)
 //document.getElementById('activatePlay').style.display = 'initial';
 
           // document.getElementById("videoTutorial").style.display = "initial";
@@ -1851,12 +1851,12 @@ function onEachFeature(feature, layer) {
 //  setTimeout(function(){console.log(finalUrlAudio)},1600)
   //timeout is used to wait 1000ms until the download link is ready
   setTimeout(function(){
-    var audioLinkText = '🔊 AUDIO 🔊'
+    var audioLinkText = '🔊 AUDIO'
 
     //conditions to avoid showing audio link if no audio has been recorded
     if(recordedBlobs != null){
     clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
-    var popupContent = feature.properties.landUsesEmoji + '</br>'+ clickableFinalUrlAudio ; //+ '    ' +dateTimeRandomID
+    var popupContent = feature.properties.landUsesEmoji + '</br>'+ '</br>'+ '⏳...'+ clickableFinalUrlAudio ; //+ '    ' +dateTimeRandomID
     }else{
     var popupContent = feature.properties.landUsesEmoji
     }
@@ -2144,6 +2144,8 @@ function onEachFeature(feature, layer) {
                 }
             //to simulate that the upload button is clicked.
             document.getElementById("sendFirebase").click();
+            // document.getElementById('emojionearea1').value = '...'
+
 
       return finalLayer && myLayerIsOn && files && filesLength
   }
