@@ -1121,7 +1121,7 @@ var mapCurrentCenter;
              document.getElementById("polygon").style.display = "none";
              document.getElementById("polyline").style.display = "none";
              document.getElementById("point").style.display = "none";
-          },100)
+          },200)
 
        return  mapCurrentBounds & mapCurrentZoom & mapCurrentCenter
      }
@@ -1163,7 +1163,7 @@ document.getElementById("goBack2").onclick = function(e){
       document.getElementById("deleteLastVertexLine").disabled = true;
       document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
       document.getElementById("deleteAllVertexsLine").disabled = true;
-    },100)
+    },200)
 
      drawPolygon.disable();
      drawPolyline.disable();
@@ -1193,7 +1193,7 @@ var drawingPoint = false
             document.getElementById("point").style.display = "none";
 
             document.getElementById("goBack2").style.display = "initial";
-          },100)
+          },200)
           //  document.getElementById("deletePoint").style.display = "initial";
           //  document.getElementById("deleteAllVertexs").style.display = "initial";
       drawingPoint = true;
@@ -1207,7 +1207,7 @@ var drawingPoint = false
       function (e) {
           $(".leaflet-div-icon")
          // $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
-          .css({ 'background-color': '#b3b1b1','border-radius': '10px', 'height':'10px', 'width':'10px'});
+          .css({ 'background-color': 'white','border-radius': '10px', 'height':'10px', 'width':'10px'});
       });
     map.on('draw:drawvertex',
         function (e) {
@@ -1231,7 +1231,7 @@ var drawingPoint = false
             document.getElementById("goBack2").style.display = "initial";
             document.getElementById("deleteLastVertexLine").style.display = "initial";
             document.getElementById("deleteAllVertexsLine").style.display = "initial";
-          },100)
+          },200)
   };
 
   document.getElementById('polygon').onclick = function(e){
@@ -1266,7 +1266,7 @@ var drawingPoint = false
             document.getElementById("goBack2").style.display = "initial";
             document.getElementById("deleteLastVertex").style.display = "initial";
             document.getElementById("deleteAllVertexs").style.display = "initial";
-          },100)
+          },200)
   };
 
   document.getElementById('map').onclick = function(e){
@@ -1330,7 +1330,7 @@ var drawingPoint = false
         document.getElementById("deleteLastVertex").disabled = true;
         document.getElementById("deleteAllVertexs").style.opacity = "0.35";
         document.getElementById("deleteAllVertexs").disabled = true;
-      },100)
+      },200)
       }else if(clickMapCount==clickDelVertCount){
 
         drawPolygon.disable();
@@ -1340,7 +1340,7 @@ var drawingPoint = false
         document.getElementById("deleteLastVertex").disabled = true;
         document.getElementById("deleteAllVertexs").style.opacity = "0.35";
         document.getElementById("deleteAllVertexs").disabled = true;
-      },100)
+      },200)
       }
 
       else{
@@ -1362,7 +1362,7 @@ var drawingPoint = false
         document.getElementById("deleteLastVertex").disabled = true;
         document.getElementById("deleteAllVertexs").style.opacity = "0.35";
         document.getElementById("deleteAllVertexs").disabled = true;
-      },100)
+      },200)
     return clickMapCount;
   }
 
@@ -1381,7 +1381,7 @@ var drawingPoint = false
             document.getElementById("deleteLastVertexLine").disabled = true;
             document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
             document.getElementById("deleteAllVertexsLine").disabled = true;
-          },100)
+          },200)
       }else if(clickMapCount==clickDelVertCount){
 
             drawPolyline.disable();
@@ -1391,7 +1391,7 @@ var drawingPoint = false
             document.getElementById("deleteLastVertexLine").disabled = true;
             document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
             document.getElementById("deleteAllVertexsLine").disabled = true;
-          },100)
+          },200)
       }
 
       else{
@@ -1414,7 +1414,7 @@ var drawingPoint = false
           document.getElementById("deleteLastVertexLine").disabled = true;
           document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
           document.getElementById("deleteAllVertexsLine").disabled = true;
-        },100)
+        },200)
       return clickMapCount;
       }
 
@@ -1472,7 +1472,7 @@ map.on('draw:created', function (e) {
         document.getElementById('enableRecording').style.display = 'initial';
 
         document.getElementById('emoji').style.display = 'initial';
-      },100)
+      },200)
 
         data = drawnItems.toGeoJSON();
         console.log(data)
@@ -1581,7 +1581,7 @@ map.on('draw:created', function (e) {
         document.getElementById('record').style.display = 'initial';
         document.getElementById('record').style.opacity = '1';
         document.getElementById('enableRecording').style.display = 'none';
-      },100)
+      },200)
         //setTimeout(function(){ document.getElementById("record").click();}, 500);
         //document.getElementById("record").click();
       }
@@ -1622,7 +1622,7 @@ var recording=true;
                 document.getElementById('voice').style.opacity = '0';
                 document.getElementById('Confirm').disabled = false;
                 document.getElementById('Confirm').style.opacity = '1';
-              },100)
+              },200)
             }
             if(recording==false){
               this.style.backgroundColor = 'yellow';
@@ -1637,7 +1637,7 @@ var recording=true;
                 document.getElementById('voice').style.opacity = '1';
                 document.getElementById('voiceGif').style.width = '40%';
                 document.getElementById('voiceGif').style.height = '40px';
-              },100)
+              },200)
             }
 
 
@@ -1668,7 +1668,7 @@ var boxContent;
              document.getElementById("exportButton").disabled = false;
              document.getElementById("export").style.opacity = "1";
              document.getElementById("exportButton").style.display = "1";
-           },100)
+           },200)
 
 
              boxContent = document.getElementById('emojionearea1').value;
@@ -1735,7 +1735,7 @@ var boxContent;
              document.getElementById('showAreaHa').style.display = 'none';
              document.getElementById('showAreaAcres').style.display = 'none';
              document.getElementById('showLength').style.display = 'none';
-           },100)
+           },200)
              // finalAreaHa = null
              // finalAreaAcres = null
              // finalLength = null
@@ -1982,7 +1982,7 @@ function onEachFeature(feature, layer) {
 
                 document.getElementById('voice').style.visibility = 'hidden';
               //  document.getElementById('Sent').src='images/Sent.gif';
-            },100)
+            },200)
               recordedVideo.pause();
               recordedVideo.currentTime = 0;
 

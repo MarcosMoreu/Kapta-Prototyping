@@ -33,7 +33,7 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 			stroke: true,
 			color: '#0ff007',
 			weight: 4,
-			opacity: 0.5,
+			opacity: 0.8,
 			fill: false,
 			clickable: true
 		},
