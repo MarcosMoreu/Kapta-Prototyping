@@ -39,7 +39,7 @@
   <button id='youtube' class='buttonsFirstLastScreen' align='center' style='bottom:55%; height:100px; border:none; background:black'>
     <img src="../images/youtube.png" style='width:125px ; height:125px'>
   </button>
-  <button id='startMapping' class='buttonsFirstLastScreen' onClick="location.href='../index.html'" align='center' style='bottom:12%; height:100px; border:none; background:none; transform: translateY(8px)'>
+  <button id='startMapping' class='buttonsFirstLastScreen' onClick="location.href='../index.html'" align='center' style='bottom:12%; height:100px; border:none; background:none;'>
     <img src="../images/arrowRight.png" style='width:50px ; height:50px'>
   </button>
   <text id='textEnglish' class='buttonsFirstLastScreen' style='display:none;color:white; bottom:55%; background:black' > Video tutorial under development.</text>
@@ -78,6 +78,10 @@ html,body {
   position: fixed;
   left: 50%;
   margin-left: -100px;
+  outline:none; /* to avoid yellow border when button is clicked*/
+  /* cursor: pointer; */
+  transition: 0.1s;
+  /* box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24); */
 
 
 }
@@ -86,29 +90,37 @@ html,body {
   /* border:2px solid yellow; */
   /* background-color: grey; */
   /* box-shadow: 0 5px white; */
-  transform: translateY(8px);
+  /* transform: translateY(8px); */
+  transform: scale(0.9);
+  /* Scaling button to 0.98 to its original size */
+  /* box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); */
+  /* Lowering the shadow */
 }
 </style>
 
 <script>
 document.getElementById('youtube').onclick = function(e){
+   setTimeout(function(){
     document.getElementById("youtube").style.display = "none";
-
     document.getElementById("spanish").style.display = "initial";
     document.getElementById("english").style.display = "initial";
+   },100)
   }
 
-  document.getElementById('english').onclick = function(e){
+document.getElementById('english').onclick = function(e){
+   setTimeout(function(){
     document.getElementById("spanish").style.display = "none";
     document.getElementById("english").style.display = "none";
     document.getElementById("textEnglish").style.display = "initial";
+  },100)
 
   }
 document.getElementById('spanish').onclick = function(e){
-  document.getElementById("spanish").style.display = "none";
-  document.getElementById("english").style.display = "none";
-  document.getElementById("textSpanish").style.display = "initial";
-
+   setTimeout(function(){
+    document.getElementById("spanish").style.display = "none";
+    document.getElementById("english").style.display = "none";
+    document.getElementById("textSpanish").style.display = "initial";
+  },100)    
 }
 
 

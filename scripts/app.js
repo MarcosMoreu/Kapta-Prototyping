@@ -1121,7 +1121,7 @@ var mapCurrentCenter;
              document.getElementById("polygon").style.display = "none";
              document.getElementById("polyline").style.display = "none";
              document.getElementById("point").style.display = "none";
-          },0001)
+          },100)
 
        return  mapCurrentBounds & mapCurrentZoom & mapCurrentCenter
      }
@@ -1138,6 +1138,7 @@ document.getElementById("goBack2").onclick = function(e){
 
     clickMapCount = 0;
      map.zoomOut(1); //decreases the zoom level when click
+      setTimeout(function(){
        document.getElementById("goBack1").style.display = "initial";
        document.getElementById("goBack2").style.display = "none";
        document.getElementById("polygon").style.display = "initial";
@@ -1162,6 +1163,7 @@ document.getElementById("goBack2").onclick = function(e){
       document.getElementById("deleteLastVertexLine").disabled = true;
       document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
       document.getElementById("deleteAllVertexsLine").disabled = true;
+    },100)
 
      drawPolygon.disable();
      drawPolyline.disable();
@@ -1184,12 +1186,14 @@ var drawingPoint = false
           //  clickMapCount = 0;
             drawMarker.enable();
           //    document.getElementById("handDraw").style.display = "initial";
+          setTimeout(function(){
             document.getElementById("goBack1").style.display = "none";
             document.getElementById("polygon").style.display = "none";
             document.getElementById("polyline").style.display = "none";
             document.getElementById("point").style.display = "none";
 
             document.getElementById("goBack2").style.display = "initial";
+          },100)
           //  document.getElementById("deletePoint").style.display = "initial";
           //  document.getElementById("deleteAllVertexs").style.display = "initial";
       drawingPoint = true;
@@ -1218,6 +1222,7 @@ var drawingPoint = false
             clickMapCount = 0;
             drawPolyline.enable();
           //    document.getElementById("handDraw").style.display = "initial";
+          setTimeout(function(){
             document.getElementById("goBack1").style.display = "none";
             document.getElementById("polygon").style.display = "none";
             document.getElementById("polyline").style.display = "none";
@@ -1226,6 +1231,7 @@ var drawingPoint = false
             document.getElementById("goBack2").style.display = "initial";
             document.getElementById("deleteLastVertexLine").style.display = "initial";
             document.getElementById("deleteAllVertexsLine").style.display = "initial";
+          },100)
   };
 
   document.getElementById('polygon').onclick = function(e){
@@ -1251,6 +1257,7 @@ var drawingPoint = false
             clickMapCount = 0;
             drawPolygon.enable();
           //    document.getElementById("handDraw").style.display = "initial";
+          setTimeout(function(){
             document.getElementById("goBack1").style.display = "none";
             document.getElementById("polygon").style.display = "none";
             document.getElementById("polyline").style.display = "none";
@@ -1259,7 +1266,7 @@ var drawingPoint = false
             document.getElementById("goBack2").style.display = "initial";
             document.getElementById("deleteLastVertex").style.display = "initial";
             document.getElementById("deleteAllVertexs").style.display = "initial";
-
+          },100)
   };
 
   document.getElementById('map').onclick = function(e){
@@ -1318,18 +1325,22 @@ var drawingPoint = false
         drawPolygon.disable();
         drawPolygon.enable();
         clickMapCount = 1;
+      setTimeout(function(){
         document.getElementById("deleteLastVertex").style.opacity = "0.35";
         document.getElementById("deleteLastVertex").disabled = true;
         document.getElementById("deleteAllVertexs").style.opacity = "0.35";
         document.getElementById("deleteAllVertexs").disabled = true;
+      },100)
       }else if(clickMapCount==clickDelVertCount){
 
         drawPolygon.disable();
         drawPolygon.enable();
+      setTimeout(function(){
         document.getElementById("deleteLastVertex").style.opacity = "0.35";
         document.getElementById("deleteLastVertex").disabled = true;
         document.getElementById("deleteAllVertexs").style.opacity = "0.35";
         document.getElementById("deleteAllVertexs").disabled = true;
+      },100)
       }
 
       else{
@@ -1346,10 +1357,12 @@ var drawingPoint = false
         clickDelVertCount = 0;
         drawPolygon.disable();
         drawPolygon.enable();
+      setTimeout(function(){
         document.getElementById("deleteLastVertex").style.opacity = "0.35";
         document.getElementById("deleteLastVertex").disabled = true;
         document.getElementById("deleteAllVertexs").style.opacity = "0.35";
         document.getElementById("deleteAllVertexs").disabled = true;
+      },100)
     return clickMapCount;
   }
 
@@ -1363,18 +1376,22 @@ var drawingPoint = false
         drawPolyline.disable();
         drawPolyline.enable();
         clickMapCount = 1;
+         setTimeout(function(){
             document.getElementById("deleteLastVertexLine").style.opacity = "0.35";
             document.getElementById("deleteLastVertexLine").disabled = true;
             document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
             document.getElementById("deleteAllVertexsLine").disabled = true;
+          },100)
       }else if(clickMapCount==clickDelVertCount){
 
             drawPolyline.disable();
             drawPolyline.enable();
+          setTimeout(function(){
             document.getElementById("deleteLastVertexLine").style.opacity = "0.35";
             document.getElementById("deleteLastVertexLine").disabled = true;
             document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
             document.getElementById("deleteAllVertexsLine").disabled = true;
+          },100)
       }
 
       else{
@@ -1392,10 +1409,12 @@ var drawingPoint = false
           clickDelVertCount = 0;
           drawPolyline.disable();
           drawPolyline.enable();
+        setTimeout(function(){
           document.getElementById("deleteLastVertexLine").style.opacity = "0.35";
           document.getElementById("deleteLastVertexLine").disabled = true;
           document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
           document.getElementById("deleteAllVertexsLine").disabled = true;
+        },100)
       return clickMapCount;
       }
 
@@ -1429,6 +1448,8 @@ map.on('draw:created', function (e) {
      drawPolygon.disable();
     //   drawPolygon.enable();
      drawnItems.removeFrom(map); //remove the drawn item as yellow polygon appears
+
+      setTimeout(function(){
         document.getElementById("deleteAllVertexs").style.display = "none";
         document.getElementById("deleteLastVertex").style.display = "none";
         document.getElementById("goBack2").style.display = "none";
@@ -1451,6 +1472,7 @@ map.on('draw:created', function (e) {
         document.getElementById('enableRecording').style.display = 'initial';
 
         document.getElementById('emoji').style.display = 'initial';
+      },100)
 
         data = drawnItems.toGeoJSON();
         console.log(data)
@@ -1555,10 +1577,11 @@ map.on('draw:created', function (e) {
    });
 
       document.getElementById('enableRecording').onclick = function(e){
+      setTimeout(function(){
         document.getElementById('record').style.display = 'initial';
         document.getElementById('record').style.opacity = '1';
         document.getElementById('enableRecording').style.display = 'none';
-
+      },100)
         //setTimeout(function(){ document.getElementById("record").click();}, 500);
         //document.getElementById("record").click();
       }
@@ -1589,36 +1612,32 @@ var recording=true;
 
             if(recording==true){  //recording true/false inverse.
               this.style.backgroundColor = 'white';
-              //this.style.borderWidth = '2px';
-              //this.style.borderColor = 'transparent';
-              // document.getElementById('play').style.display = 'initial';
-              // document.getElementById('play').style.opacity = '1';
-              document.getElementById('activatePlay').style.display = 'initial';
-              document.getElementById('activatePlay').style.opacity = '1';
+              setTimeout(function(){
+                document.getElementById('activatePlay').style.display = 'initial';
+                document.getElementById('activatePlay').style.opacity = '1';
 
-              document.getElementById('download').style.opacity = '1';
-              document.getElementById('emoji').style.display = 'initial';
-              document.getElementById('voice').style.display = 'none';
-              document.getElementById('voice').style.opacity = '0';
-              // document.getElementById('voice').style.width = '45%';
-              // document.getElementById('voice').style.height = '7%';
-
-              document.getElementById('Confirm').disabled = false;
-              document.getElementById('Confirm').style.opacity = '1';
+                document.getElementById('download').style.opacity = '1';
+                document.getElementById('emoji').style.display = 'initial';
+                document.getElementById('voice').style.display = 'none';
+                document.getElementById('voice').style.opacity = '0';
+                document.getElementById('Confirm').disabled = false;
+                document.getElementById('Confirm').style.opacity = '1';
+              },100)
             }
             if(recording==false){
               this.style.backgroundColor = 'yellow';
-              //this.style.borderWidth = '8px';
               this.style.borderColor = 'yellow';
-              document.getElementById('activatePlay').style.display = 'none';
-              document.getElementById('download').style.opacity = '0.1';
-              document.getElementById('emoji').style.display = 'none';
+              setTimeout(function(){
 
-              document.getElementById('voice').style.display = 'initial';
-              document.getElementById('voice').style.opacity = '1';
-              document.getElementById('voiceGif').style.width = '40%';
-              document.getElementById('voiceGif').style.height = '40px';
+                document.getElementById('activatePlay').style.display = 'none';
+                document.getElementById('download').style.opacity = '0.1';
+                document.getElementById('emoji').style.display = 'none';
 
+                document.getElementById('voice').style.display = 'initial';
+                document.getElementById('voice').style.opacity = '1';
+                document.getElementById('voiceGif').style.width = '40%';
+                document.getElementById('voiceGif').style.height = '40px';
+              },100)
             }
 
 
@@ -1627,11 +1646,11 @@ var recording=true;
              document.getElementById('echoCancellation').style.display = 'none';
 
       }
-             document.getElementById('activatePlay').onclick = function(e){
-             document.getElementById("play").click(); //added so no need to click button twice
-             document.getElementById('activatePlay').style.background = 'grey'
-         setTimeout(function(){document.getElementById('activatePlay').style.background = 'white'},500)
 
+     document.getElementById('activatePlay').onclick = function(e){
+          document.getElementById("play").click(); //added so no need to click button twice
+          document.getElementById('activatePlay').style.background = 'grey'
+          setTimeout(function(){document.getElementById('activatePlay').style.background = 'white'},500)
         }
 var boxContent;
 
@@ -1639,7 +1658,7 @@ var boxContent;
             goToDS = 1;
             // document.getElementById("Identification").pause();
             // document.getElementById("Identification").currentTime = 0;
-
+          setTimeout(function(){
              document.getElementById("Confirm").style.display = "none";
             // document.getElementById("Cancel").style.display = "none";
 
@@ -1649,7 +1668,7 @@ var boxContent;
              document.getElementById("exportButton").disabled = false;
              document.getElementById("export").style.opacity = "1";
              document.getElementById("exportButton").style.display = "1";
-
+           },100)
 
 
              boxContent = document.getElementById('emojionearea1').value;
@@ -1691,37 +1710,32 @@ var boxContent;
             map.zoomOut(1);
             drawingPoint =false
 
-
+            setTimeout(function(){
              document.getElementById("map").style.display = "block";
-             //document.getElementById("map").style.height = "88%";
 
-            document.getElementById("goBack1").style.display = "initial";
+             document.getElementById("goBack1").style.display = "initial";
              document.getElementById("polygon").style.display = "initial";
              document.getElementById("polyline").style.display = "initial";
              document.getElementById("point").style.display = "initial";
 
-            // document.getElementById("changeMapSize").style.display = "none";
              document.getElementById("export").style.display = "none";
              document.getElementById("Cancel").style.display = "none";
              document.getElementById("exportButton").style.display = "none";
              document.getElementById("Confirm").style.display = "none";
 
-
-
              document.getElementById('record').style.display = 'none';
              document.getElementById('enableRecording').style.display = 'none';
-        //   document.getElementById('play').style.display = 'none';
+
              document.getElementById('activatePlay').style.display = 'none';
 
              document.getElementById('voice').style.display = 'none';
 
-          //   document.getElementById('goBackToLandUse').style.display = 'none';
-          //   document.getElementById('goToIdentification').style.display = 'none';
              document.getElementById('emoji').style.display = 'none';
 
              document.getElementById('showAreaHa').style.display = 'none';
              document.getElementById('showAreaAcres').style.display = 'none';
              document.getElementById('showLength').style.display = 'none';
+           },100)
              // finalAreaHa = null
              // finalAreaAcres = null
              // finalLength = null
@@ -1933,6 +1947,7 @@ function onEachFeature(feature, layer) {
                 tempLayer.clearLayers()
                 //defining the final screen
           //////      document.getElementById('Sent').play();
+             setTimeout(function(){
                 document.getElementById("map").style.height = "0px";
                 document.getElementById("Confirm").style.display = "none";
                 document.getElementById("Cancel").style.display = "none";
@@ -1943,10 +1958,8 @@ function onEachFeature(feature, layer) {
                 document.getElementById("record").style.display = "none";
                 document.getElementById('enableRecording').style.display = 'none';
 
-              //  document.getElementById("recordFake").style.display = "none";
 
                 document.getElementById("play").style.display = "none";
-            //    document.getElementById("goBackToLandUse").style.display = "none";
 
                 document.getElementById('voice').style.display = 'none';
                 document.getElementById('voice').style.opacity = '0';
@@ -1955,11 +1968,9 @@ function onEachFeature(feature, layer) {
                 document.getElementById('showAreaAcres').style.display = 'none'
                 document.getElementById('showLength').style.display = 'none'
 
-                recordedVideo.pause();
-                recordedVideo.currentTime = 0;
+
 
                 document.getElementById('emoji').style.display = 'none';
-
 
                 document.getElementById('Sent').style.display = 'initial';
                 // document.getElementById('uploading').style.display = 'initial'
@@ -1971,6 +1982,9 @@ function onEachFeature(feature, layer) {
 
                 document.getElementById('voice').style.visibility = 'hidden';
               //  document.getElementById('Sent').src='images/Sent.gif';
+            },100)
+              recordedVideo.pause();
+              recordedVideo.currentTime = 0;
 
               setTimeout(function(){
 
