@@ -1,6 +1,6 @@
 // import {version} from '/sw.js'
 
-
+console.log(navigator.language)
   // Firebase configuration
   var firebaseConfig = {
       apiKey: "AIzaSyDt3_yMQ5Zu_MhqlRzssZ_931YEBzMsIMk",
@@ -1731,7 +1731,7 @@ var boxContent;
            }
 
 
-///////////////////   firebase code   //////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////   FIREBASE CODE   ///////////////////////////////////////////////////////////////
 
 var files = [];
 var filesLength;
@@ -1742,7 +1742,7 @@ var finalPercentage =[]
 var finalUrlAudio
 
 
-//sendFirebase script that will be fire when 'export' is clicked.
+/////sendFirebase script that will be fire when 'export' is clicked.
 document.getElementById("sendFirebase").onclick = function(e) {
 
   //checks if files are selected
@@ -1906,7 +1906,7 @@ function onEachFeature(feature, layer) {
 
 
           if(recordedBlobs !=null){
-           var blob = new Blob(recordedBlobs, {type: 'video/webm'});
+           var blob = new Blob(recordedBlobs, {type: 'audio/webm'});
            console.log(blob)
           }  ////////from plugin
 
