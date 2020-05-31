@@ -62,37 +62,7 @@ outline:none;
   border: 2px solid #D3D2D2;
 }
 
-.button2 {
-  width:50px;
-  height:50px;
-  border-radius: 50px;
-  margin:1px;
-  /* margin-top: 200px; */
 
-  background-color: white; /* Green */
-  /* border: true; */
-  /* color: black; */
-  padding: 0px 0px; */
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  border: 2px solid white;
-  position:relative;
-  outline:none;
-  transition: 0.2s all;
-
-  /* font-size: 16px; */
-  /* width:100%; */
-
-  /* background-color:#ededf0; */
-  /* z-index:10; */
-}
-
-.button2:active{
-  /* transform: scale(0.9); */
-  background-color: #D3D2D2;
-  border: 2px solid #D3D2D2;
-}
 .buttonActivatePlay{
   border: 4px solid white;
   outline:none;
@@ -151,12 +121,12 @@ transition: 0.2s all;
 }
 
 .buttonShare {
-  border-radius: 50px;
-  margin:5px;
-  width:100px;
-  height:100px;
+  border-radius: 100px;
+  margin:0px;
+  width:200px;
+  height:200px;
   left:50%;
-  margin-left:-50px;
+  margin-left:-100px;
   /* margin-top: 200px; */
   /* border: true; */
   /* color: black; */
@@ -175,7 +145,11 @@ transition: 0.2s all;
   /* background-color:#ededf0; */
   /* z-index:10; */
 }
-
+.buttonShare:active{
+  /* transform: scale(0.9); */
+  background-color: #D3D2D2;
+  border: 2px solid #D3D2D2;
+}
 
 * {
   font-family: Arial, Helvetica, san-serif;
@@ -189,7 +163,8 @@ display: inline-block;
 }
 .span6 {
   /* float: left; */
-  width: 40%;
+  /* the bar is 100% of its size minus the 190px space used for the other 3 buttons and their margins */
+  width: calc(100% - 190px);
   /* padding: 1%; */
   z-index: 10;
 

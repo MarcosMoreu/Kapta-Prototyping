@@ -1899,7 +1899,7 @@ var diffTimes;
               }else{
                 distanceObfTrunc = 'Location not recorded';
               }
-
+              ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
                 //here we combine datetime with randomID
@@ -1941,7 +1941,7 @@ var diffTimes;
                   'lengthLine':finalLength2Decimals,
                   'dateTime':dateTime,
                   'timeSpendSeconds':totalTimeSpent,
-                  'dist_Participant-Feature':distanceObfTrunc,
+                  'dist_m_Participant_Feature':distanceObfTrunc,
                   'randomID':randomID
                 };
               //  adding the properties to the geoJSON file:
