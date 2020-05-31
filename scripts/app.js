@@ -335,8 +335,8 @@ var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={
 
 var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',tilesDb,{
         minZoom: 3,
-        maxZoom: 18,
-        maxNativeZoom: 20,
+        maxZoom: 21,
+        maxNativeZoom: 21,
         // subdomains:['mt0','mt1','mt2','mt3'],
         attribution: 'OpenStreetMap Contributors'
 
@@ -431,7 +431,7 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
                 maxZoom: 18,
                 maxNativeZoom: 20,
                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
-                 attribution: 'Planet Imagery APRIL 2020'
+                 attribution: 'Planet/Sentinel 2 Imagery MAY 2020'
             });
          var planetS17 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200410_074244_1018/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
                 maxZoom: 18,
@@ -468,6 +468,18 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
         //                           planetS11,planetS12,planetS13,planetS14,planetS15,planetS16,planetS17,planetS18]);
         var planet = L.layerGroup([planetS6,planetS7,planetS8,planetS9,planetS10,planetS11,planetS12,planetS13,planetS14,planetS15,planetS16,planetS17,planetS18,planetS19,planetS20,planetS21]);
 }
+// var wmsSentinel2 = L.tileLayer.wms('http://services.sentinel-hub.com/ogc/wms/064f130d-c591-45b7-a80d-397152d6e995?REQUEST=GetMap&PREVIEW=2', {
+//   layers:'TRUECOLOR-PRE',
+//   attribution: '&copy; <a href="http://www.sentinel-hub.com/">Sentinel Hub</a>'
+//
+// });
+//Sentinel-hub (level 2 chosen as it allow any zoom level)
+var wmsSentinel2 = L.tileLayer.wms('http://services.sentinel-hub.com/ogc/wms/064f130d-c591-45b7-a80d-397152d6e995?REQUEST=GetMap&PREVIEW=2', {
+  layers:'P4',
+  // attribution: 'Sentinel 2 Imagery May 2020'
+
+});
+
 var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
     saveButtonHtml: '<img src="images/download.png" width=15px ; height=15px>',
     removeButtonHtml: '<img src="images/bin.png" width=15px ; height=15px>',
@@ -515,6 +527,8 @@ var osm_Button = L.easyButton({
         stateName: 'check-mark',
         onClick: function(btn,map) {
           clickButtonCount +=1;
+          map.options.maxZoom = 19; //Set max zoom level as OSM does not serve tiles with 20+ zoom levels
+          map.options.minZoom = 3;
           osm_Button.removeFrom(map);
           planet_Button.addTo(map);
           myLayer_Button.addTo(map)
@@ -556,6 +570,8 @@ var googleSat_Button = L.easyButton({
               //stateName: 'check-mark',
         onClick: function(btn,map) {
           clickButtonCount +=1;
+          map.options.maxZoom = 21;// set the max zoom level to 21 for google imagery
+          map.options.minZoom = 3;
           googleSat_Button.removeFrom(map);
           osm_Button.addTo(map);
           myLayer_Button.addTo(map)
@@ -594,9 +610,28 @@ var planet_Button = L.easyButton({
         stateName: 'check-mark',
         onClick: function(btn,map) {
             clickButtonCount=0;
+            //to avoid black tiles as sentinel does not server tiles above 10 (or perhaps yes), then zoom back to 10 again
+            map.options.maxZoom = 18;//no need for more zoom levels as 'low' resolution
+            map.options.minZoom = 5;
+            // var currentZoom =  map.getZoom();
+            // if(currentZoom > 9){
+            //   // var difZoom = currentZoom - 10;
+            //   // map.zoomIn(difZoom)
+            //   map.setZoom(10)
+            //   console.log('zoom bove 10?')
+            // }
+            // if(currentZoom < 6){
+            //   //var difZoom = 6 - currentZoom;
+            //   map.setZoom(6)
+            //
+            // }
+           //  console.log(currentZoom)
+
             planet_Button.removeFrom(map);
             googleSat_Button.addTo(map);
-            planet.addTo(map);
+
+            wmsSentinel2.addTo(map);
+            planet.addTo(map); // planet imagery goes after so it stays on top of sentinel data (sentinel is global, planet is not yet?)
             googleSat.removeFrom(map);
             osm.removeFrom(map);
             myLayer_Button.addTo(map)
