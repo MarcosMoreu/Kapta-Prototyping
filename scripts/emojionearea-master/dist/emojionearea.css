@@ -114,7 +114,7 @@
   min-height: 8em;
   max-height: 15em;
   overflow: auto;
-  padding: 6px 24px 6px 12px;
+  padding: 6px 24px 6px 33px; /*the fourth position is for modifiying the starting point of the text (i.e. margin) */
   line-height: 1.42857143;
   font-size: inherit;
   color: #555555;
@@ -237,7 +237,7 @@
   height: 276px;
   width: 216px;
   top: -15px;
-  right: -15px;
+  left:5px;  /*to define the horizontal postion of the wrapper */
   z-index: 90;
   -moz-transition: all 0.25s ease-in-out;
   -o-transition: all 0.25s ease-in-out;
@@ -252,7 +252,7 @@
   .emojionearea .emojionearea-picker.hidden {
     display: none; }
   .emojionearea .emojionearea-picker .emojionearea-wrapper {
-    position: relative;
+    position: absolute;
     height: 276px;
     width: 216px; }
     .emojionearea .emojionearea-picker .emojionearea-wrapper:after {
@@ -492,11 +492,11 @@
     right: -14px; }
     .emojionearea .emojionearea-picker.emojionearea-picker-position-top .emojionearea-wrapper:after {
       width: 19px;
-      height: 10px;
+      height: 12px; /*to modify the dimensions of the arrow of the wrapper */
       background-position: -2px -49px;
       bottom: -10px;
       /* line for modifiying the arrow of the wrapper  --original value is right:20px*/
-      left: 40px; }
+      left: 4px; }
     .emojionearea .emojionearea-picker.emojionearea-picker-position-top.emojionearea-filters-position-bottom .emojionearea-wrapper:after {
       background-position: -2px -80px; }
   .emojionearea .emojionearea-picker.emojionearea-picker-position-left, .emojionearea .emojionearea-picker.emojionearea-picker-position-right {
