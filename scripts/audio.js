@@ -51,7 +51,7 @@ playButton.addEventListener('click', () => {
 });
 
 
-const downloadButton = document.querySelector('button#exportButton');/////////////////////////////////change the download button
+const downloadButton = document.querySelector('button#DownloadButton');/////////////////////////////////change the download button
 downloadButton.addEventListener('click', () => {
 
   var randomNumber = Math.random();
@@ -159,6 +159,7 @@ async function init(constraints) {
   } catch (e) {
     console.error('navigator.getUserMedia error:', e);
     errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
+
   }
 }
 
@@ -170,5 +171,6 @@ document.querySelector('button#enableRecording').addEventListener('click', async
   };
   console.log('Using media constraints:', constraints);
   await init(constraints);
+  
   document.getElementById("record").click(); //added so no need to click button twice
 });

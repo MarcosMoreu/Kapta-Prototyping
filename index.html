@@ -90,6 +90,8 @@
 <p id='showArea' style='display:initial'class='button' >ddddd </p>
 </div> -->
 
+
+
 <div align='center' style='z-index:2; position:relative; margin-top:-90px'  >
 
   <button id='goBack1' class='button' style='z-index:3; position:relative;' >
@@ -137,20 +139,15 @@
     <img src="images/ThumbsUpGreen.png" style='width:30px ; height:30px'>
   </button>
 
+
 </div>
 
 
-
-
-
-<div id='classification' align='center' style='display:none; vertical-align:top;z-index:2; position:relative; margin-top:-90px'>
-
+<div id='classification' align='center' style='display:none; vertical-align:top;z-index:2; position:relative; margin-top:-90px;'>
 
   <button id='Cancel' class='button' >
     <img src="images/cancel.png" style='width:30px ; height:30px'>
   </button>
-
-
 
   <div id='emoji' class="row" >
     <div class="span6" style='display:inline-block'>
@@ -177,15 +174,25 @@
     <img src="images/ThumbsUpGreen.png" style='width:30px ; height:30px; '>
   </button>
 
-  <button id='exportButton' class='button2' style='display:none'>
-    <a id='export'>
-        <img  src="images/Send.png" style='width:30px ; height:30px; margin-top:4px; margin-right:4px'></img>
-    </a>
+  <button id='share-download' class='button2'style='display:none'>
+    <img src="images/share-download.png" style='width:30px ; height:30px; '>
   </button>
+
+  <!-- <button id='share-download' class='button'style='display:none;position:absolute;'>
+    <img src="images/share-download.png" style='width:60px ; height:60px '>
+  </button> -->
 
 
 <div id='Sent'  style='display:none'>
   <img src="images/Sent.gif"   style='text-align:center; width:100%; display:block; margin:auto; margin-top:40%'>
+  <!-- <video id='Sent'  class='video'  muted autoplay>
+    <source src="images/Sent.mp4"  type="video/mp4"> -->
+    <!-- <div class="center">.</div> -->
+  <!-- <video  id='Sent' src="images/Sent.mp4" autoplay style='width:400px ; height:400px; margin-top:10%'> -->
+</div>
+
+<div id='Downloaded'  style='display:none'>
+  <img src="images/downloaded.gif"   style='text-align:center; width:100%; display:block; margin:auto; margin-top:40%'>
   <!-- <video id='Sent'  class='video'  muted autoplay>
     <source src="images/Sent.mp4"  type="video/mp4"> -->
     <!-- <div class="center">.</div> -->
@@ -211,7 +218,7 @@
         <button id="play"  style='display:none;width:50px;height:50px;top:300px;background-color:white;  border-radius: 50px'>
           <img src="images/play.png" style='width:30px ; height:30px'>
         </button>
-        <button id="download" disabled style='display:none;margin-top: 15px;width:80px;height:60px;background-color:yellow; '></button>
+        <button id="storeAudio" disabled style='display:none;margin-top: 15px;width:80px;height:60px;background-color:yellow; '></button>
 
 </div>
 
@@ -239,9 +246,19 @@
   </button>
 </div> -->
 </div>
+<!-- share final screen -->
+<div>
+  <button id="shareWorldButton" class='buttonShare'  style='display:none;position:absolute;margin-top:300px'>
+    <img src="images/shareWorld.png" style='width:60px ; height:60px; '>
+  </button>
 
+  <button id='DownloadButton' class='buttonShare' style='display:none;position:absolute;margin-top:500px'>
+    <a id='Download'>
+        <img  src="images/download.png" style='width:60px ; height:60px;'></img>
+    </a>
+  </button>
 
-
+</div>
 
 <script src="scripts/lib/leaflet/leaflet-src.js"></script>
 <script src="scripts/lib/jquery-3.4.1.min.js"></script>

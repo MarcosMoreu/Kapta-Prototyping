@@ -1,6 +1,12 @@
-// import {version} from '/sw.js'
-
+//Download// import {version} from '/sw.js'
+console.log(navigator.onLine)
 console.log(navigator.language)
+//var  timeFinish = today.getHours() + " " + today.getMinutes() + " " + today.getSeconds();
+var timeStart = new Date();
+//var startDateTime = today.getMinutes() + " " + today.getSeconds()
+
+console.log(timeStart)
+//console.log(seconds)
   // Firebase configuration
   var firebaseConfig = {
       apiKey: "AIzaSyDt3_yMQ5Zu_MhqlRzssZ_931YEBzMsIMk",
@@ -1039,9 +1045,9 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
            document.getElementById("polyline").style.display = "initial";
            document.getElementById("point").style.display = "initial";
 
-           document.getElementById("export").style.display = "none";
+           document.getElementById("Download").style.display = "none";
            document.getElementById("Cancel").style.display = "none";
-           document.getElementById("exportButton").style.display = "none";
+           document.getElementById("DownloadButton").style.display = "none";
            document.getElementById("Confirm").style.display = "none";
 
            document.getElementById('record').style.display = 'none';
@@ -1049,7 +1055,7 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
 
            document.getElementById('activatePlay').style.opacity = '0';
 
-           document.getElementById('download').style.display = 'none';
+           document.getElementById('storeAudio').style.display = 'none';
            document.getElementById('gum').style.display = 'none';
            document.getElementById('recorded').style.display = 'none';
            document.getElementById('echoCancellation').style.display = 'none';
@@ -1449,7 +1455,7 @@ map.on('draw:created', function (e) {
     //   drawPolygon.enable();
      drawnItems.removeFrom(map); //remove the drawn item as yellow polygon appears
 
-      setTimeout(function(){
+    //  setTimeout(function(){
         document.getElementById("deleteAllVertexs").style.display = "none";
         document.getElementById("deleteLastVertex").style.display = "none";
         document.getElementById("goBack2").style.display = "none";
@@ -1472,7 +1478,7 @@ map.on('draw:created', function (e) {
         document.getElementById('enableRecording').style.display = 'initial';
 
         document.getElementById('emoji').style.display = 'initial';
-      },200)
+    //  },200)
 
         data = drawnItems.toGeoJSON();
         console.log(data)
@@ -1584,6 +1590,7 @@ map.on('draw:created', function (e) {
       },200)
         //setTimeout(function(){ document.getElementById("record").click();}, 500);
         //document.getElementById("record").click();
+
       }
 
 	$("#emojionearea1").emojioneArea({
@@ -1609,6 +1616,7 @@ var recording=true;
         document.getElementById('record').onclick = function(e){
           // var boxContent = document.getElementById('emojionearea1').value;
           // console.log(boxContent);
+        //  catch
 
             if(recording==true){  //recording true/false inverse.
               this.style.backgroundColor = 'white';
@@ -1616,7 +1624,7 @@ var recording=true;
                 document.getElementById('activatePlay').style.display = 'initial';
                 document.getElementById('activatePlay').style.opacity = '1';
 
-                document.getElementById('download').style.opacity = '1';
+                document.getElementById('storeAudio').style.opacity = '1';
                 document.getElementById('emoji').style.display = 'initial';
                 document.getElementById('voice').style.display = 'none';
                 document.getElementById('voice').style.opacity = '0';
@@ -1630,14 +1638,18 @@ var recording=true;
               setTimeout(function(){
 
                 document.getElementById('activatePlay').style.display = 'none';
-                document.getElementById('download').style.opacity = '0.1';
+                document.getElementById('storeAudio').style.opacity = '0.1';
                 document.getElementById('emoji').style.display = 'none';
 
                 document.getElementById('voice').style.display = 'initial';
                 document.getElementById('voice').style.opacity = '1';
                 document.getElementById('voiceGif').style.width = '40%';
                 document.getElementById('voiceGif').style.height = '40px';
+
               },200)
+              setTimeout(function(){
+                document.getElementById("record").click();
+              },30000) // to stop recording after 30 seconds
             }
 
 
@@ -1662,12 +1674,13 @@ var boxContent;
              document.getElementById("Confirm").style.display = "none";
             // document.getElementById("Cancel").style.display = "none";
 
-             document.getElementById("export").style.display = "initial";
-             document.getElementById("exportButton").style.display = "initial";
-             document.getElementById("export").disabled = false;
-             document.getElementById("exportButton").disabled = false;
-             document.getElementById("export").style.opacity = "1";
-             document.getElementById("exportButton").style.display = "1";
+             // document.getElementById("Download").style.display = "initial";
+             // document.getElementById("DownloadButton").style.display = "initial";
+             // document.getElementById("Download").disabled = false;
+             // document.getElementById("DownloadButton").disabled = false;
+             // document.getElementById("Download").style.opacity = "1";
+             // document.getElementById("DownloadButton").style.display = "1";
+             document.getElementById("share-download").style.display = "initial";
            },200)
 
 
@@ -1718,9 +1731,9 @@ var boxContent;
              document.getElementById("polyline").style.display = "initial";
              document.getElementById("point").style.display = "initial";
 
-             document.getElementById("export").style.display = "none";
+             document.getElementById("Download").style.display = "none";
              document.getElementById("Cancel").style.display = "none";
-             document.getElementById("exportButton").style.display = "none";
+             document.getElementById("DownloadButton").style.display = "none";
              document.getElementById("Confirm").style.display = "none";
 
              document.getElementById('record').style.display = 'none';
@@ -1735,6 +1748,7 @@ var boxContent;
              document.getElementById('showAreaHa').style.display = 'none';
              document.getElementById('showAreaAcres').style.display = 'none';
              document.getElementById('showLength').style.display = 'none';
+             document.getElementById('share-download').style.display = 'none';
            },200)
              // finalAreaHa = null
              // finalAreaAcres = null
@@ -1756,7 +1770,7 @@ var finalPercentage =[]
 var finalUrlAudio
 
 
-/////sendFirebase script that will be fire when 'export' is clicked.
+/////sendFirebase script that will be fire when 'Download' is clicked.
 document.getElementById("sendFirebase").onclick = function(e) {
 
   //checks if files are selected
@@ -1802,7 +1816,6 @@ document.getElementById("sendFirebase").onclick = function(e) {
 
 ///////////////////  end of  firebase code   ///////////////
 
-var dateTimeRandomID;
 
 ////////function for pop ups//////////
 function onEachFeature(feature, layer) {
@@ -1830,13 +1843,16 @@ function onEachFeature(feature, layer) {
 
 }
 
-////////////////////////////////////////////      EXPORT     /////////////////////////////////////////////////////////////////////////////////////////////
-  document.getElementById('export').onclick = function(e) {
-                //refresh location
+////////////////////////////////////////////      Download     /////////////////////////////////////////////////////////////////////////////////////////////
+var  convertedData;
+var data;
+var blob;
+var dateTimeRandomID;
+var timeFinish;
+var diffTimes;
 
-                console.log(currentLocation)
 
-                // document.body.style.backgroundColor = "#13FA04";
+  document.getElementById('share-download').onclick = function(e) {
 
                 // Extract GeoJson from featureGroup
                 // var data = drawnItems.toGeoJSON();
@@ -1845,38 +1861,62 @@ function onEachFeature(feature, layer) {
                 randomNumber = randomNumber*10000;
                 var randomID = Math.round(randomNumber);
                 //here the datetime
-                var today = new Date();
-                var date = today.getFullYear()+' '+(today.getMonth()+1)+' '+today.getDate();
-                var time = today.getHours() + " " + today.getMinutes() + " " + today.getSeconds();
+                var timeEnd = new Date();
+                var date = timeEnd.getFullYear()+' '+(timeEnd.getMonth()+1)+' '+timeEnd.getDate();
+                var time = timeEnd.getHours() + " " + timeEnd.getMinutes() + " " + timeEnd.getSeconds();
                 var dateTime = date+' - '+time;
+
+
+                 ////////////////////// get time spend on mapping (in seconds)///////////////////////////////////////
+                 var res = Math.abs(timeStart - timeEnd) / 1000;
+
+                 var minutes = Math.floor(res / 60) % 60;
+                 var minutesToSeconds = minutes*60
+                 var seconds = res % 60;
+                // console.log('seconds'+seconds)
+
+                 var totalTimeSpent = seconds + minutesToSeconds
+                 console.log('secondsSpent'+totalTimeSpent)
+                 /////////////////////////////////////////////////////////////////////////
+
+                /////////////script to obfuscate user's currentLocation, in case user allow geolocation//////////////////
+
+                if(currentLocation[0] != null){
+                  var currentLocationString = currentLocation.toString();
+
+                featureApproxLocation = map.getCenter() // instaead of recoding the coordinates of the feature, we simply record the center of the screen once drawn
+
+                var latlngFrom = L.latLng(featureApproxLocation)
+                var latlngTo = L.latLng(currentLocation)
+                var distanceExact = latlngFrom.distanceTo(latlngTo) // distance calculated in meters
+                var distanceObfuscated = (Math.random() * 100)*distanceExact
+                var distanceObfTrunc = Math.trunc(distanceObfuscated)
+                console.log(latlngFrom)
+                console.log(latlngTo)
+                console.log(distanceExact)
+                console.log(distanceObfTrunc)
+
+              }else{
+                distanceObfTrunc = 'Location not recorded';
+              }
+
+
+
                 //here we combine datetime with randomID
                 dateTimeRandomID ='Date&time: '+ dateTime+' RandomID:'+randomID;
                 dateTimeRandomID.toString();
                 //console.log(dateTimeRandomID);
 
-               var  data = drawnItems.toGeoJSON();
+                data = drawnItems.toGeoJSON();
                 //The coordinate reference system for all GeoJSON coordinates is a  geographic coordinate reference system, using the World Geodetic
                 //System 1984 (WGS 84) [WGS84] datum, with longitude and latitude units of decimal degrees.
 
-                //script to remove null values of land use
-              //  var allLandUses = [lu1,lu2,lu3,lu4,lu5,luOther];
-              var allLandUses = [1]
+                var allLandUses = [1]
                 //land uses array filtered.
                 var allLandUsesFiltered = allLandUses.filter(noNull => noNull != null);
                 console.log(allLandUsesFiltered)
-                //convert final land uses array into string
-
-                //currentLocation array Stringify, if location is found/activated
-                if(currentLocation[0] != null){
-                  var currentLocationString = currentLocation.toString();
-
-                }else{
-                  currentLocationString = 'Location not recorded';
-                }
-                console.log(currentLocation[0])
                 var landUses = allLandUsesFiltered.toString();
-              //  console.log(landUses);
-              //to convert emojis from unicode to short name, before the data is transmitted
+                //to convert emojis from unicode to short name, before the data is transmitted
 
               //value of boxcontent is obtained again (was obtained in 'confirm'), in case user click on 'confirm' before filling in the box
               boxContent = document.getElementById('emojionearea1').value;
@@ -1897,10 +1937,11 @@ function onEachFeature(feature, layer) {
                 var propertiesGeoJSON = {
                   'landUses':boxContentToString,
                   'landUsesEmoji':boxContent,
-                  'area': finalAreaHa2Decimals,
-                  'length':finalLength2Decimals,
+                  'areaPolygon': finalAreaHa2Decimals,
+                  'lengthLine':finalLength2Decimals,
                   'dateTime':dateTime,
-                  'participantLocation':currentLocationString,
+                  'timeSpendSeconds':totalTimeSpent,
+                  'dist_Participant-Feature':distanceObfTrunc,
                   'randomID':randomID
                 };
               //  adding the properties to the geoJSON file:
@@ -1908,33 +1949,32 @@ function onEachFeature(feature, layer) {
 
                 //data.innerHTML = JSON.stringify(prop_1);
                 // Stringify the GeoJson
-              var  convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
+              convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
                 //var convertedData = JSON.stringify(data);
 
                 // var convertedText =   '' + encodeURIComponent(JSON.stringify(attributes))
                 //                          + encodeURIComponent(JSON.stringify(currentLocation))
                 //                          + encodeURIComponent(JSON.stringify(dateTime));
 
+                // document.getElementById('Download').setAttribute('href', 'data:' + convertedData);
+                // //document.getElementById('Download').setAttribute('href', 'data:' + convertedData + convertedText );
+                // console.log(convertedData)
+                //
+                // document.getElementById('Download').setAttribute('download',dateTimeRandomID);
                 ////////////////////////  TRANSMISSION ////////////////////////////////////////
               //  var convertedDataBlob = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(recordedBlobs));
 
 
           if(recordedBlobs !=null){
-           var blob = new Blob(recordedBlobs, {type: 'audio/webm'});
+           blob = new Blob(recordedBlobs, {type: 'audio/webm'});
            console.log(blob)
           }  ////////from plugin
-
-                // Create export
-                document.getElementById('export').setAttribute('href', 'data:' + convertedData);
-                //document.getElementById('export').setAttribute('href', 'data:' + convertedData + convertedText );
-                console.log(convertedData)
-
-                document.getElementById('export').setAttribute('download',dateTimeRandomID);
 
 
                 layer1=data;
                 console.log(layer1);
                 //finalLayer is a global variable
+                setTimeout(function(){
                 finalLayer = L.geoJSON(layer1,{
                   style: function (feature) {
                     return feature.properties && feature.properties.style;
@@ -1942,7 +1982,7 @@ function onEachFeature(feature, layer) {
                   color:'blue',
                   onEachFeature: onEachFeature,
                 }).addTo(map);
-
+              },200)
                 drawnItems.clearLayers();
                 tempLayer.clearLayers()
                 //defining the final screen
@@ -1951,13 +1991,13 @@ function onEachFeature(feature, layer) {
                 document.getElementById("map").style.height = "0px";
                 document.getElementById("Confirm").style.display = "none";
                 document.getElementById("Cancel").style.display = "none";
+                document.getElementById("share-download").style.display = "none";
 
-                document.getElementById("export").style.display = "none";
-                document.getElementById("exportButton").style.display = "none";
+                // document.getElementById("Download").style.display = "none";
+                // document.getElementById("DownloadButton").style.display = "none";
 
                 document.getElementById("record").style.display = "none";
                 document.getElementById('enableRecording').style.display = 'none';
-
 
                 document.getElementById("play").style.display = "none";
 
@@ -1968,55 +2008,19 @@ function onEachFeature(feature, layer) {
                 document.getElementById('showAreaAcres').style.display = 'none'
                 document.getElementById('showLength').style.display = 'none'
 
-
-
                 document.getElementById('emoji').style.display = 'none';
-
-                document.getElementById('Sent').style.display = 'initial';
-                // document.getElementById('uploading').style.display = 'initial'
-                // document.getElementById('progress').style.display = 'initial'
-
-                //progress bar remains hidden
-                // document.getElementById('uploading').style.display = 'initial'
-                // document.getElementById('progress').style.display = 'initial'
-
                 document.getElementById('voice').style.visibility = 'hidden';
-              //  document.getElementById('Sent').src='images/Sent.gif';
+
+                document.getElementById('shareWorldButton').style.display = 'initial';
+                document.getElementById('DownloadButton').style.display = 'initial';
+                document.getElementById('Download').style.display = 'initial';
+
+
+                document.body.style.backgroundColor = "black";
+
             },200)
               recordedVideo.pause();
               recordedVideo.currentTime = 0;
-
-              setTimeout(function(){
-
-                document.getElementById('Sent').style.display = 'none';
-                document.getElementById('uploading').style.display = 'none'
-                document.getElementById('progress').style.display = 'none'
-
-                document.getElementById("deleteAllVertexs").style.opacity = "0.35";
-                document.getElementById("deleteAllVertexs").disabled = true;
-
-                document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
-                document.getElementById("deleteAllVertexsLine").disabled = true;
-
-                document.body.style.backgroundColor = "white";
-
-                document.getElementById("map").style.height = "100%";
-                document.getElementById("goBack1").style.display = "initial";
-                document.getElementById("polygon").style.display = "initial";
-                document.getElementById("polyline").style.display = "initial";
-                document.getElementById("point").style.display = "initial";
-
-              //  document.getElementById('emojionearea1').placeholder = '.'
-
-                // drawnItems.remove();
-                recordedVideo.pause();
-
-              //.style.height = "88%";
-                // document.getElementById("Exit").style.display = "none";
-                // document.getElementById("Return").style.display = "none";
-
-              }, 2800);
-
               created=false;
 
 //adding layers to localstorage
@@ -2080,13 +2084,92 @@ function onEachFeature(feature, layer) {
                 files = [dataFile]
                 filesLength = 1
                 }
-            //to simulate that the upload button is clicked.
-            document.getElementById("sendFirebase").click();
-            // document.getElementById('emojionearea1').value = '...'
+//             //to simulate that the upload button is clicked.
+//             document.getElementById("sendFirebase").click();
+//             // document.getElementById('emojionearea1').value = '...'
 
-      return finalLayer && myLayerIsOn && files && filesLength
+      return finalLayer && myLayerIsOn && files && filesLength && convertedData && blob //&& dateTimeRandomID && data
   }
 console.log(finalLayer)
 
 
-  ////////////////////////  pop up on each feature  //////////////////////////
+/////////////////////////////////////////  screenS SHARE-DOWNLOAD  /////////////////////////////////////
+  document.getElementById('shareWorldButton').onclick = function(e){
+
+      setTimeout(function(){
+         document.getElementById('shareWorldButton').style.display = 'none';
+         document.getElementById('DownloadButton').style.display = 'none';
+         document.getElementById('Sent').style.display = 'initial';
+
+         document.body.style.backgroundColor = "white";
+
+       //to simulate that the upload button is clicked.
+         document.getElementById("sendFirebase").click();
+
+     },200)
+
+           setTimeout(function(){
+
+             document.getElementById('Sent').style.display = 'none';
+             document.getElementById('uploading').style.display = 'none'
+             document.getElementById('progress').style.display = 'none'
+
+             document.getElementById("deleteAllVertexs").style.opacity = "0.35";
+             document.getElementById("deleteAllVertexs").disabled = true;
+
+             document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
+             document.getElementById("deleteAllVertexsLine").disabled = true;
+
+             document.body.style.backgroundColor = "white";
+
+             document.getElementById("map").style.height = "100%";
+             document.getElementById("goBack1").style.display = "initial";
+             document.getElementById("polygon").style.display = "initial";
+             document.getElementById("polyline").style.display = "initial";
+             document.getElementById("point").style.display = "initial";
+
+           }, 2800);
+
+  }
+
+  document.getElementById('DownloadButton').onclick = function(e){
+
+        document.getElementById('Download').setAttribute('href', 'data:' + convertedData);
+        //document.getElementById('Download').setAttribute('href', 'data:' + convertedData + convertedText );
+        console.log(convertedData)
+
+        document.getElementById('Download').setAttribute('download',dateTimeRandomID);
+
+        document.getElementById('shareWorldButton').style.display = 'none';
+        document.getElementById('DownloadButton').style.display = 'none';
+
+        document.getElementById('Downloaded').style.display = 'initial';
+
+        document.body.style.backgroundColor = "white";
+
+      ////////////////////////  TRANSMISSION ////////////////////////////////////////
+      //  var convertedDataBlob = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(recordedBlobs));
+
+               setTimeout(function(){
+
+                 document.getElementById('Downloaded').style.display = 'none';
+                 document.getElementById('uploading').style.display = 'none'
+                 document.getElementById('progress').style.display = 'none'
+
+                 document.getElementById("deleteAllVertexs").style.opacity = "0.35";
+                 document.getElementById("deleteAllVertexs").disabled = true;
+
+                 document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
+                 document.getElementById("deleteAllVertexsLine").disabled = true;
+
+                 document.body.style.backgroundColor = "white";
+
+                 document.getElementById("map").style.height = "100%";
+                 document.getElementById("goBack1").style.display = "initial";
+                 document.getElementById("polygon").style.display = "initial";
+                 document.getElementById("polyline").style.display = "initial";
+                 document.getElementById("point").style.display = "initial";
+
+               }, 2500);
+
+  }
