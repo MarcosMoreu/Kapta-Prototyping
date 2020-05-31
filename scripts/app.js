@@ -1,5 +1,7 @@
-//Download// import {version} from '/sw.js'
+//first, detect whether the user is online & the language of the browser
+var isOnline = navigator.online
 console.log(navigator.onLine)
+var browserLanguage = navigator.language
 console.log(navigator.language)
 //var  timeFinish = today.getHours() + " " + today.getMinutes() + " " + today.getSeconds();
 var timeStart = new Date();
@@ -174,6 +176,7 @@ console.log('udddd?')
 
 //to identify last postion, which was stored in localstorage
 var lastPositionStoredLOCALLY;
+var created = false; // variable to detect wheter the feature (point,line,polygon) has been created
 
 lastPositionStoredLOCALLY = localStorage.getItem('lastPositionStoredLOCALLY')
 console.log(typeof lastPositionStoredLOCALLY)
@@ -527,6 +530,8 @@ var osm_Button = L.easyButton({
         stateName: 'check-mark',
         onClick: function(btn,map) {
           clickButtonCount +=1;
+          document.getElementById('imageryAlert').style.display = 'none'
+
           map.options.maxZoom = 19; //Set max zoom level as OSM does not serve tiles with 20+ zoom levels
           map.options.minZoom = 3;
           osm_Button.removeFrom(map);
@@ -570,6 +575,7 @@ var googleSat_Button = L.easyButton({
               //stateName: 'check-mark',
         onClick: function(btn,map) {
           clickButtonCount +=1;
+          document.getElementById('imageryAlert').style.display = 'none'
           map.options.maxZoom = 21;// set the max zoom level to 21 for google imagery
           map.options.minZoom = 3;
           googleSat_Button.removeFrom(map);
@@ -613,6 +619,26 @@ var planet_Button = L.easyButton({
             //to avoid black tiles as sentinel does not server tiles above 10 (or perhaps yes), then zoom back to 10 again
             map.options.maxZoom = 18;//no need for more zoom levels as 'low' resolution
             map.options.minZoom = 5;
+            //to add the imagery alert ....
+            if(browserLanguage[0] == 'e' && browserLanguage[1] == 'n'){ //english
+              document.getElementById("imageryAlert").innerHTML = 'After mapping, use the textbox to request better recent or past  imagery';
+            }
+            if(browserLanguage[0] == 'e' && browserLanguage[1] == 's'){ //spanish
+              document.getElementById("imageryAlert").innerHTML = 'Después de mappear, utiliza la casilla de texto para solicitar mejores imágenes, recientes o pasadas';
+            }
+            if(browserLanguage[0] == 'p' && browserLanguage[1] == 't'){ //portuguese
+              document.getElementById("imageryAlert").innerHTML = 'Após o mapeamento, use a caixa de texto para solicitar melhores imagens recentes ou passadas';
+            }
+            if(browserLanguage[0] == 'f' && browserLanguage[1] == 'r'){ //french
+              document.getElementById("imageryAlert").innerHTML = 'Après le mappage, utilisez la zone de texte pour demander de meilleures images récentes ou passées';
+            }
+            if(browserLanguage == 'sw'){                                //swahili
+              document.getElementById("imageryAlert").innerHTML = 'Baada ya uchoraji wa ramani, tumia kisanduku cha maandishi kuuliza picha bora za hivi karibuni au za zamani';
+            }
+
+        if(created == false){
+        document.getElementById('imageryAlert').style.display = 'initial'
+        }
             // var currentZoom =  map.getZoom();
             // if(currentZoom > 9){
             //   // var difZoom = currentZoom - 10;
@@ -1154,6 +1180,8 @@ var mapCurrentCenter;
             mapCurrentCenter = map.getCenter();
 
           setTimeout(function(){
+            document.getElementById('imageryAlert').style.display = 'none'
+
              window.location.href ='pages/tutorial.html';
              document.body.style.backgroundColor = "black";
              document.getElementById("map").style.display = "none";
@@ -1169,7 +1197,7 @@ var mapCurrentCenter;
 ///////////////////////////////////////////draw screen////////////////////////////////////////////////
 
 
-var created = false; //variable to determine whether a polygon has been completed.
+ //variable to determine whether a polygon has been completed.
 var clickMapCount = 0;
 var clickDelVertCount = 0;
 document.getElementById("goBack2").onclick = function(e){
@@ -1228,6 +1256,8 @@ var drawingPoint = false
             drawMarker.enable();
           //    document.getElementById("handDraw").style.display = "initial";
           setTimeout(function(){
+            document.getElementById('imageryAlert').style.display = 'none'
+
             document.getElementById("goBack1").style.display = "none";
             document.getElementById("polygon").style.display = "none";
             document.getElementById("polyline").style.display = "none";
@@ -1264,6 +1294,8 @@ var drawingPoint = false
             drawPolyline.enable();
           //    document.getElementById("handDraw").style.display = "initial";
           setTimeout(function(){
+            document.getElementById('imageryAlert').style.display = 'none'
+
             document.getElementById("goBack1").style.display = "none";
             document.getElementById("polygon").style.display = "none";
             document.getElementById("polyline").style.display = "none";
@@ -1299,6 +1331,8 @@ var drawingPoint = false
             drawPolygon.enable();
           //    document.getElementById("handDraw").style.display = "initial";
           setTimeout(function(){
+            document.getElementById('imageryAlert').style.display = 'none'
+
             document.getElementById("goBack1").style.display = "none";
             document.getElementById("polygon").style.display = "none";
             document.getElementById("polyline").style.display = "none";
@@ -1791,6 +1825,8 @@ var boxContent;
 
              tempLayer.clearLayers()
           //   return finalAreaHa & finalAreaAcres & finalLength
+
+          return created;
            }
 
 

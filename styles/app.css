@@ -1,16 +1,26 @@
 /* * {
   box-sizing: border-box; } */
 
-body {
+/* body {
     padding: 0;
     margin: 0;
     background-color: white;
     overflow:hidden;
+    font-family:Ubuntu;
 
-}
+} */
 html,body {
     height: 100%;
     width: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    overflow:hidden;
+    font-family:Ubuntu;
+}
+h1,h2,h3,h4{
+  font-family:Ubuntu;
+
 }
 
 map {
