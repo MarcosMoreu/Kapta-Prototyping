@@ -171,6 +171,6 @@ document.querySelector('button#enableRecording').addEventListener('click', async
   };
   console.log('Using media constraints:', constraints);
   await init(constraints);
-  
+
   document.getElementById("record").click(); //added so no need to click button twice
 });

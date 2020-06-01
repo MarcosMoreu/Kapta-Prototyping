@@ -434,7 +434,7 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
                 maxZoom: 18,
                 maxNativeZoom: 20,
                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
-                 attribution: 'Planet/Sentinel 2 Imagery MAY 2020'
+                 attribution: 'Planet/Sentinel Imagery MAY 2020'
             });
          var planetS17 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20200410_074244_1018/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
                 maxZoom: 18,
@@ -1678,18 +1678,42 @@ map.on('draw:created', function (e) {
   //   console.log(btn.html());
   // });
 
-////////////////////////////////////////////////////////classify screen//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////classify screen, audio//////////////////////////////////////////////////////////////
 
+//function to stop the recording after X seconds. The function is called when right after the recording is activated (i.e. when click if recording == false)
+function stopAudioAutomatically(){
+   if(document.getElementById('record').style.backgroundColor == 'yellow'){
+     console.log('auto activated')
+     setTimeout(function(){
+       if(document.getElementById('record').style.backgroundColor == 'yellow'){ //condition to avoid that the button is click even when the recording is stopped. If after X seconds is white, should not be clicked.
+       document.getElementById('record').click();
+       }
+     },30000)  ///////////////////////////////  30 seconds is the appropriate time?
+   }
+ }
 
-var recording=true;
-        document.getElementById('record').onclick = function(e){
-          // var boxContent = document.getElementById('emojionearea1').value;
-          // console.log(boxContent);
-        //  catch
+document.getElementById('record').onclick = function(e){
+          console.log('clicked manual' + new Date)
 
-            if(recording==true){  //recording true/false inverse.
-              this.style.backgroundColor = 'white';
-              setTimeout(function(){
+              if(recording==false){
+                this.style.backgroundColor = 'yellow';
+                this.style.borderColor = 'yellow';
+
+                  document.getElementById('activatePlay').style.display = 'none';
+                  document.getElementById('storeAudio').style.opacity = '0.1';
+                  document.getElementById('emoji').style.display = 'none';
+
+                  document.getElementById('voice').style.display = 'initial';
+                  document.getElementById('voice').style.opacity = '1';
+                  document.getElementById('voiceGif').style.width = '40%';
+                  document.getElementById('voiceGif').style.height = '40px';
+                  stopAudioAutomatically();
+
+            }
+            if(recording==true){
+
+                this.style.backgroundColor = 'white';
+
                 document.getElementById('activatePlay').style.display = 'initial';
                 document.getElementById('activatePlay').style.opacity = '1';
 
@@ -1699,36 +1723,17 @@ var recording=true;
                 document.getElementById('voice').style.opacity = '0';
                 document.getElementById('Confirm').disabled = false;
                 document.getElementById('Confirm').style.opacity = '1';
-              },200)
+                audioStoppedManually = true
+
             }
-            if(recording==false){
-              this.style.backgroundColor = 'yellow';
-              this.style.borderColor = 'yellow';
-              setTimeout(function(){
-
-                document.getElementById('activatePlay').style.display = 'none';
-                document.getElementById('storeAudio').style.opacity = '0.1';
-                document.getElementById('emoji').style.display = 'none';
-
-                document.getElementById('voice').style.display = 'initial';
-                document.getElementById('voice').style.opacity = '1';
-                document.getElementById('voiceGif').style.width = '40%';
-                document.getElementById('voiceGif').style.height = '40px';
-
-              },200)
-              setTimeout(function(){
-                document.getElementById("record").click();
-              },30000) // to stop recording after 30 seconds
-            }
-
 
              document.getElementById('gum').style.display = 'none';
              document.getElementById('recorded').style.display = 'none';
              document.getElementById('echoCancellation').style.display = 'none';
+}
 
-      }
 
-     document.getElementById('activatePlay').onclick = function(e){
+    document.getElementById('activatePlay').onclick = function(e){
           document.getElementById("play").click(); //added so no need to click button twice
           document.getElementById('activatePlay').style.background = 'grey'
           setTimeout(function(){document.getElementById('activatePlay').style.background = 'white'},500)
