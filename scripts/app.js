@@ -236,40 +236,6 @@ console.log(isFirstTime)
 //var groupLayer = new L.FeatureGroup().addTo(map);
 var finalLayer;
 var groupGeoJSON =[]
-  if(isFirstTime == false & localStorage.key(0)!=null){
-
-//  loop for going through all geoJSON stored in the localStorage
-    for(var i=0, len=localStorage.length; i<len; i++) {   //len-1 to avoid a error of geojson object not recognised
-      var key = localStorage.key(i);
-      var value = localStorage[key];
-      var itemFetched = localStorage.getItem(key);
-  //    console.log(i+ '____' + key + " => " + value +'__'+ '__ccc__'+itemFetched);//////////////////////////////////////////
-//catch error in case no json
-      function isJson(str) {
-       try {
-         JSON.parse(str);
-       } catch (e) {
-       return false;
-     }
-     return true;
-     }
-//call catch function
-    isJson(itemFetched);
-     // console.log(isJson(itemFetched))
-    if (isJson(itemFetched) == true){
-
-     var getItemToJSON = JSON.parse(itemFetched);
-     //add each json to an array-------------------------
-      groupGeoJSON[i]=getItemToJSON
-  //    console.log(groupGeoJSON)///////////////////////////////////////////////////////////////////////////////////
-
-    }
-
-  }
-}
-//console.log(groupLayer)
-console.log('local storage accessed!!!!')
-
 
 function isJson(str) {
  try {
@@ -279,11 +245,59 @@ function isJson(str) {
 }
 return true;
 }
+  if(isFirstTime == false & localStorage.key(0)!=null){
 
-isJson(groupGeoJSON)
+//  loop for going through all geoJSON stored in the localStorage
+    for(var i=0, len=localStorage.length; i<len-1; i++) {   //len-2  to avoid a error of geojson object not recognised. last element is [true]...
+      var key = localStorage.key(i);
+      var value = localStorage[key];
+      var itemFetched = localStorage.getItem(key);
+  //    console.log(i+ '____' + key + " => " + value +'__'+ '__ccc__'+itemFetched);//////////////////////////////////////////
+//catch error in case no json
+
+//call catch function
+    isJson(itemFetched);
+     // console.log(isJson(itemFetched))
+    if (isJson(itemFetched) == true){
+      console.log(isJson(itemFetched))/////////////////////////////////!!
+      console.log(itemFetched)
+      var getItemToJSON = JSON.parse(itemFetched);
+      console.log(isJson(getItemToJSON))
+      console.log(getItemToJSON)
+      isJson(getItemToJSON)
+     //add each json to an array-------------------------
+      groupGeoJSON[i]=getItemToJSON
+      console.log(isJson(groupGeoJSON))
+      console.log(groupGeoJSON)
+    }else{
+      groupGeoJSON[i] = {}; // this is to avoid error when an array element is not a JSON
+    }
+  }
+}
+//console.log(groupLayer)
+console.log('local storage accessed!!!!')
+
+
+// function isJson(str) {
+//  try {
+//    JSON.parse(str);
+//  } catch (e) {
+//  return false;
+// }
+// return true;
+// }
+
+console.log(groupGeoJSON)
+ //groupGeoJSON.toJSON()
+//isJson(groupGeoJSON)
+console.log(typeof groupGeoJSON)
+var groupGeoJSON1 = JSON.stringify(groupGeoJSON)
+console.log(isJson(groupGeoJSON))
+
 //conditions to catch error in case no geojson and also to avoid error when adding to map an empty layer if is first time
 var myLayerIsOk = false;
-if(isJson(groupGeoJSON)==true && isFirstTime==false ){
+if(isJson(groupGeoJSON)==false && isFirstTime==false ){
+
 var myLayer = L.geoJSON(groupGeoJSON,{
   style: function (feature) {
     myLayerIsOk = true;
@@ -1130,14 +1144,14 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
 
 ////////////////////////////////////////////TUTORIAL//////////////////////////////////////////////////////////////
 
-////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// script to add drawn layers to local storage
-            // var layerFromLocalStorage = localStorage.getItem('storedLayer');
-            // console.log(layerFromLocalStorage)
-          //  var layerFromLocalStorageToGeoJson = JSON.parse(layerFromLocalStorage);
-          //  console.log(layerFromLocalStorageToGeoJson)
-          // L.geoJSON(layerFromLocalStorageToGeoJson).addTo(map);
-          //   //console.log(layerLocalStorageGeoJson)
+//////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//script to add drawn layers to local storage
+            var layerFromLocalStorage = localStorage.getItem('storedLayer');
+            console.log(layerFromLocalStorage)
+           var layerFromLocalStorageToGeoJson = JSON.parse(layerFromLocalStorage);
+           console.log(layerFromLocalStorageToGeoJson)
+          L.geoJSON(layerFromLocalStorageToGeoJson).addTo(map);
+            //console.log(layerLocalStorageGeoJson)
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -1685,7 +1699,8 @@ function stopAudioAutomatically(){
    if(document.getElementById('record').style.backgroundColor == 'yellow'){
      console.log('auto activated')
      setTimeout(function(){
-       if(document.getElementById('record').style.backgroundColor == 'yellow'){ //condition to avoid that the button is click even when the recording is stopped. If after X seconds is white, should not be clicked.
+       if(document.getElementById('record').style.backgroundColor == 'yellow'){ //condition to avoid that the button is autom clicked even
+         // when the recording is stopped but was previously yellow. If after X seconds is white, should not be clicked.
        document.getElementById('record').click();
        }
      },30000)  ///////////////////////////////  30 seconds is the appropriate time?
@@ -2059,11 +2074,12 @@ var diffTimes;
                   onEachFeature: onEachFeature,
                 }).addTo(map);
               },200)
-                drawnItems.clearLayers();
-                tempLayer.clearLayers()
+
                 //defining the final screen
           //////      document.getElementById('Sent').play();
              setTimeout(function(){
+               drawnItems.clearLayers();
+               tempLayer.clearLayers()
                 document.getElementById("map").style.height = "0px";
                 document.getElementById("Confirm").style.display = "none";
                 document.getElementById("Cancel").style.display = "none";
