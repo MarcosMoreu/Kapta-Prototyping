@@ -1,47 +1,45 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang='en'>
 
 <head>
 
 <!-- Firebase imports -->
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first. Defer (or async) to avoide redering blicking  -->
+<script async src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
 <!--  Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-analytics.js"></script>
+<!-- <script defer src="https://www.gstatic.com/firebasejs/7.14.5/firebase-analytics.js"></script> -->
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <!-- <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script> -->
 <!--  Add SDKs for Firebase products that you want to use -->
-<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+<script async src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
 
 <!-- end of firebase imports -->
 
   <meta charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- maximumscale and userscalable value disable the zoom/pan option on the mobile screen -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1,user-scalable=0" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
   <meta name="theme-color" content="#000000"/>
   <title>Prototype #4</title>
   <!-- <link rel="canonical" href="https://openchangedetectionmap.org/proto"/> -->
+    <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" type="text/css" href="styles/app.css"  >
-
-  <link rel="stylesheet" href="scripts/emojionearea-master/dist/emojionearea.css">
-<!-- manifest and meta theme color -->
-  <link rel="manifest" href="manifest.json">
-
-  <link rel="stylesheet" type="text/css" href="scripts/lib/leaflet/leaflet.css" >
-  <!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu" > -->
-  <link rel="stylesheet" type="text/css" href="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/leaflet.draw.css"  >
+  <link async rel="stylesheet" type="text/css" href="scripts/lib/leaflet/leaflet.css" >
+  <link async rel="stylesheet" href="scripts/emojionearea-master/dist/emojionearea.css">
+  <link rel="stylesheet" href="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.css"  >
   <link rel="stylesheet" href="scripts/lib/leaflet/plugins/L.Control.Rose-master/dist/L.Control.Rose.css" />
+
+  <link async rel="stylesheet" type="text/css" href="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/leaflet.draw.css"  >
   <!-- <link rel="stylesheet" href="lib/leaflet/plugins/Leaflet.Basemaps-master/L.Control.Basemaps.css" /> -->
-  <link href="scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css" rel="stylesheet" >
-  <link href="pages/tutorial.html" rel="text/html" >
-  <link href="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.css" rel="stylesheet" >
+  <link async rel="stylesheet" href="scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css" >
+  <link rel="text/html" href="pages/tutorial.html"  >
+
 <!-- for solving the favicon issues... -->
   <link rel="shortcut icon" href="images/icons/icon-96x96.png">
-  <link rel="apple-touch-icon" href="images/icons/icon-96x96.png">
+  <!-- <link rel="apple-touch-icon" href="images/icons/icon-96x96.png"> -->
   <!-- <iframe src="images/audio1.mp3" allow="autoplay" style="display:none" id="iframeAudio">
   </iframe> -->
 </head>
@@ -69,13 +67,7 @@
 
 <!-- firebase divs -->
 <!-- this div is hidden, other functions fire the click event... -->
-<div>
 
-<!-- <input type="file" id="files" style='display:none' multiple /> -->
-<button id="sendFirebase" style='display:none;width:0px;height:0px'>Upload</button>
-<p id="uploading" style='display:none'></p>
-<progress value="0" max="100" id="progress" style='display:none'></progress>
-</div>
 <!-- end of firebase divs -->
 <body>
   <!-- <div   style='z-index:2;position:absolute;'> -->
@@ -99,48 +91,48 @@
 
 <div align='center' style='z-index:2; position:relative; margin-top:-90px'  >
 
-  <button id='goBack1' class='button' style='z-index:3; position:relative;' >
-    <img  src="images/questionmark.png"  style='width:30px ; height:30px'>
+  <button id='goBack1' class='button' aria-label = 'goBack1' style='z-index:3; position:relative;' >
+    <img  src="images/questionmark.png" alt="..." style='width:30px ; height:30px'>
   </button>
   <!-- <button id='goBack1'class='button' style='background:url(images/xx.png) no-repeat;    background-size: 50px 50px;'  /> -->
-  <button id='polygon' class='button' style='z-index:3; position:relative'>
-    <img src="images/drawPolygon.png" style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
+  <button id='polygon' class='button' aria-label = 'polygon' style='z-index:3; position:relative'>
+    <img src="images/drawPolygon.png" alt="..." style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
   </button>
-  <button id='polyline' class='button' style='z-index:3; position:relative'>
-    <img src="images/line.png" style='width:30px ; height:30px'>
+  <button id='polyline' class='button' aria-label = 'polyline' style='z-index:3; position:relative'>
+    <img src="images/line.png" alt="..." style='width:30px ; height:30px'>
   </button>
-  <button id='point' class='button' style='z-index:3; position:relative'>
-    <img src="images/point.png" style='width:30px ; height:30px'>
+  <button id='point' class='button'  aria-label = 'point' style='z-index:3; position:relative'>
+    <img src="images/point.png" alt="..." style='width:30px ; height:30px'>
   </button>
 
 </div>
 
 <div align='center' style='z-index:2; position:relative; margin-top:-90px; '>
-  <button id='goBack2' class='button'style='display:none;border: 2px solid #9C1F04; background-color:#9C1F04'>
+  <button id='goBack2' class='button'aria-label = 'goBack2' style='display:none;border: 2px solid #9C1F04; background-color:#9C1F04'>
     <img src="images/backButton.png" loading="lazy" alt="..." style='width:30px ; height:30px '>
   </button>
 
-  <button id='deleteLastVertex' class='button' style='display:none'>
+  <button id='deleteLastVertex' class='button' aria-label = 'deleteLastVertex' style='display:none'>
     <img src="images/deleteLastVertex.png" loading="lazy" alt="..." style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
   </button>
-  <button id='deleteAllVertexs' class='button'style='display:none'>
+  <button id='deleteAllVertexs' class='button' aria-label = 'deleteAllVertexs' style='display:none'>
     <img src="images/deleteAllVertex.png" loading="lazy" alt="..." style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
   </button>
 
-  <button id='deleteLastVertexLine' class='button' style='display:none'>
+  <button id='deleteLastVertexLine' class='button' aria-label = 'deleteLastVertexLine' style='display:none'>
     <img src="images/lineDeleteVertex.png"  loading="lazy" alt="..." style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
   </button>
-  <button id='deleteAllVertexsLine' class='button'style='display:none'>
+  <button id='deleteAllVertexsLine' class='button' aria-label = 'deleteAllVertexsLine' style='display:none'>
     <img src="images/lineDeleteAll.png" loading="lazy" alt="..." style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
   </button>
 
-  <button id='deletePoint' class='button'style='display:none'>
+  <!-- <button id='deletePoint' class='button' aria-label = 'deletePoint' style='display:none'>
     <img src="images/deletePoint.png" loading="lazy" alt="..." style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
-  </button>
+  </button> -->
   <!-- <button id='deletePolygon' class='button' style='display:none'>
     <img src="images/deletePolygon.png" style='width:30px ; height:30px'>
   </button> -->
-  <button id='changeMapSize' class='button' style='display:none'>
+  <button id='changeMapSize' class='button' aria-label = 'changeMapSize' style='display:none'>
     <img src="images/ThumbsUpGreen.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
   </button>
 
@@ -150,7 +142,7 @@
 
 <div id='classification'  style='display:none; vertical-align:top;z-index:2; position:relative; margin-top:-90px;'>
 
-  <button id='Cancel' class='button' >
+  <button id='Cancel' class='button' aria-label = 'Cancel' >
     <img src="images/cancel.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
   </button>
 
@@ -169,19 +161,19 @@
   <!-- <button id="recordFake" disabled class='button' style='opacity:0.5'>
     <img src="images/record.png" style='width:30px ; height:30px'>
   </button> -->
-  <button id="enableRecording" class='button' >
+  <button id="enableRecording" class='button' aria-label = 'enableRecording'>
     <img src="images/record.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
   </button>
 
-  <button id="record" class='button' >
+  <button id="record" class='button' aria-label = 'record'>
     <img src="images/record.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
   </button>
 <!-- margin-left is 0 to avoid 10px separation... -->
-  <button id='Confirm' class='button'style='display:none;margin-left:0px'>
+  <button id='Confirm' class='button' aria-label = 'Confirm' style='display:none;margin-left:0px'>
     <img src="images/ThumbsUpGreen.png" loading="lazy" alt="..." style='width:30px ; height:30px; '>
   </button>
 
-  <button id='share-download' class='button'style='display:none;margin-left:0px'>
+  <button id='share-download' class='button' aria-label = 'share-download' style='display:none;margin-left:0px'>
     <img src="images/share-download.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
   </button>
 
@@ -204,10 +196,10 @@
 
 <div  style='z-index:2; position:relative'>
 
-        <button id="play"  style='display:none;width:50px;height:50px;top:300px;background-color:white;  border-radius: 50px'>
+        <button id="play"  aria-label = 'play' style='display:none;width:50px;height:50px;top:300px;background-color:white;  border-radius: 50px'>
           <img src="images/play.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
         </button>
-        <button id="storeAudio" disabled style='display:none;margin-top: 15px;width:80px;height:60px;background-color:yellow; '></button>
+        <button id="storeAudio" disabled aria-label = 'storeAudio' style='display:none;margin-top: 15px;width:80px;height:60px;background-color:yellow; '></button>
 </div>
 
 
@@ -217,7 +209,7 @@
 <video id="gum" playsinline  muted></video>
 <video id="recorded" playsinline loop></video>
 <div style='z-index:1; position:relative;margin-top:-200px;left:calc(50% - 25px)'>
-  <button  id='activatePlay' class='buttonActivatePlay' style='display:none;width:50px;height:50px;background-color:white; border-color: yellow; border-radius: 50px'>
+  <button  id='activatePlay' class='buttonActivatePlay' aria-label = 'activatePlay' style='display:none;width:50px;height:50px;background-color:white; border-color: yellow; border-radius: 50px'>
     <img src="images/play.png" loading="lazy" alt="..." style='width:30px ; height:30px;margin-top:1px'>
   </button>
 </div>
@@ -225,16 +217,25 @@
 </div>
 <!-- share final screen -->
 <div>
-  <button id="shareWorldButton" class='buttonShare'  style='display:none;position:absolute;bottom:calc(75% - 100px) '>
+  <button id="shareWorldButton" class='buttonShare' aria-label = 'shareWorldButton' style='display:none;position:absolute;bottom:calc(75% - 100px) '>
     <img src="images/shareWorld.png" loading="lazy" alt="..." style='width:60px ; height:60px; '>
   </button>
 
-  <button id='DownloadButton' class='buttonShare' style='display:none;position:absolute;bottom:calc(25% - 100px)'>
+  <button id='DownloadButton' class='buttonShare' aria-label = 'DownloadButton' style='display:none;position:absolute;bottom:calc(25% - 100px)'>
     <a id='Download'>
         <img  src="images/download.png" loading="lazy" alt="..." style='width:60px ; height:60px;'></img>
     </a>
   </button>
 
+</div>
+
+
+<div>
+
+<!-- <input type="file" id="files" style='display:none' multiple /> -->
+<button id="sendFirebase" style='display:none;width:0px;height:0px'>Upload</button>
+<p id="uploading" style='display:none'></p>
+<progress value="0" max="100" id="progress" style='display:none'></progress>
 </div>
 
 <script src="scripts/lib/leaflet/leaflet-src.js"></script>
