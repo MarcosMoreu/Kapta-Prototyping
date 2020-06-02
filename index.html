@@ -154,14 +154,16 @@
     <img src="images/cancel.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
   </button>
 
-  <div id='emoji' class="row" >
+  <div id='emoji' class="row">
     <div class="span6" style='display:inline-block'>
-      <textarea id="emojionearea1"></textarea>
+      <textarea id="emojionearea1" style='height:50px'></textarea>
     </div>
   </div>
 
-  <div id='voice' style='width:calc(100% - 190px)'>
-    <video id='voiceGif' src="images/voice.webm" autoplay loop loading="lazy" alt="..." style='height:40px;width:calc(100% - 190px) ' >
+  <div id='voice' >
+    <video id='voiceGif' src="images/voice.webm" autoplay loop loading="lazy" alt="..." style='vertical-align:bottom;margin-bottom:-20px;
+                                                                                              top:-20px;height:80px; width:calc(100% - 190px);object-fit:cover'>
+<!-- background:black;border-radius:34px; -->
   </div>
 
   <!-- <button id="recordFake" disabled class='button' style='opacity:0.5'>
