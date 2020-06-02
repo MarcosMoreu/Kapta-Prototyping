@@ -1753,9 +1753,14 @@ document.getElementById('record').onclick = function(e){
 
                   document.getElementById('voice').style.display = 'initial';
                   document.getElementById('voice').style.opacity = '1';
+                  //script to identify the screen width to maintain the width of the voiceGif element
+                  var width = window.innerWidth
+                  console.log(width)
+                  width = width - 190;
+                  width = width+'px'
+                  console.log(width)
 
-
-                  document.getElementById('voiceGif').style.width = '40%';
+                  document.getElementById('voiceGif').style.width = width;
                   document.getElementById('voiceGif').style.height = '40px';
                   stopAudioAutomatically();
 
