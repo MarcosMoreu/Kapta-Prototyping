@@ -179,7 +179,7 @@ var lastPositionStoredLOCALLY;
 var created = false; // variable to detect wheter the feature (point,line,polygon) has been created
 
 lastPositionStoredLOCALLY = localStorage.getItem('lastPositionStoredLOCALLY')
-console.log(typeof lastPositionStoredLOCALLY)
+console.log(lastPositionStoredLOCALLY)
 
 //to avoid error if no location was stored either because first load, not allowed, or cache cleared
 if(lastPositionStoredLOCALLY != null){
@@ -187,6 +187,8 @@ lastPositionStoredLOCALLY = lastPositionStoredLOCALLY.split(',')  // to convert 
 console.log(lastPositionStoredLOCALLY[0])
 }
 //to center map, depending on if location was stored.
+
+
 if(lastPositionStoredLOCALLY==null){
 var map = L.map('map',{
         editable:true,
@@ -199,6 +201,8 @@ var map = L.map('map',{
       });
 }
 else{
+  // console.log(lastPositionStoredLOCALLY)
+
   var map = L.map('map',{
           editable:true,
           center: [lastPositionStoredLOCALLY[0],lastPositionStoredLOCALLY[1]],
@@ -211,12 +215,13 @@ else{
 }
 
 
-function addPreviousPolygons(){
-  if(!data.length==0){
-  //  data.addTo(map); //////////////////////////////////////////////
-    //console.log(data);
-  }
-}
+
+// function addPreviousPolygons(){
+//   if(!data.length==0){
+//   //  data.addTo(map); //////////////////////////////////////////////
+//     //console.log(data);
+//   }
+// }
 //map.attributionControl.addAttribution("New attribution");
 map.addControl(L.control.attribution({
         position: 'bottomright',
@@ -232,8 +237,7 @@ var scale = L.control.scale({
 
 console.log(isFirstTime)
 
-
-//var groupLayer = new L.FeatureGroup().addTo(map);
+////////////////////////////////           script to get items from local storage    //////////////////////////////
 var finalLayer;
 var groupGeoJSON =[]
 
@@ -294,10 +298,10 @@ console.log(typeof groupGeoJSON)
 var groupGeoJSON1 = JSON.stringify(groupGeoJSON)
 console.log(isJson(groupGeoJSON))
 
+
 //conditions to catch error in case no geojson and also to avoid error when adding to map an empty layer if is first time
 var myLayerIsOk = false;
 if(isJson(groupGeoJSON)==false && isFirstTime==false ){
-
 var myLayer = L.geoJSON(groupGeoJSON,{
   style: function (feature) {
     myLayerIsOk = true;
@@ -306,10 +310,38 @@ var myLayer = L.geoJSON(groupGeoJSON,{
   },
   color:'blue',
   onEachFeature: onEachFeature,
+  autopan:false
 
-}).addTo(map)
+  }).addTo(map)
+//map.setView(lastPositionStoredLOCALLY,15);
 }
 
+// function onEachFeatureLocalStorage(feature, layer) {
+//
+//     var audioLinkText = '🔊 AUDIO'
+//
+//     //conditions to avoid showing audio link if no audio has been recorded
+//     if(recordedBlobs != null){
+//       if(isOnline == true){ //condition to only hyperlink the audiolinktext if online
+//     clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
+//     var popupContent = feature.properties.landUsesEmoji + '</br>'+ '</br>'+ '⏳...'+ clickableFinalUrlAudio ; //+ '    ' +dateTimeRandomID
+//       }else{
+//       var popupContent = feature.properties.landUsesEmoji + '</br>'+ '</br>'+ '⏳...'+ clickableFinalUrlAudio ;
+//       }
+//     }else{
+//     var popupContent = feature.properties.landUsesEmoji
+//     }
+//
+//     if (feature.properties && feature.properties.popupContent) {
+//       popupContent += feature.properties.popupContent;
+//     }
+//
+//     layer.bindPopup(popupContent).addTo(map);
+//     // layer.bindPopup(popupContent).openPopup();
+// }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////to create a custom icon instead of Marker
 var pointsIcon = L.icon({
     iconUrl: 'images/whiteDot.png',
@@ -1144,7 +1176,7 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
 
 ////////////////////////////////////////////TUTORIAL//////////////////////////////////////////////////////////////
 
-//////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //script to add drawn layers to local storage
             var layerFromLocalStorage = localStorage.getItem('storedLayer');
             console.log(layerFromLocalStorage)
@@ -1640,15 +1672,15 @@ map.on('draw:created', function (e) {
       //  adding the properties to the geoJSON file:
     //  data.features[0].properties = propertiesGeoJSON;
 
-        function onEachFeature(feature, layer) {
+        function onEachFeatureBlank(feature, layer) {
           var popupContent = '...'  ; //+ '    ' +dateTimeRandomID
 
-          if (feature.properties && feature.properties.popupContent) {
-            popupContent += feature.properties.popupContent;
-          }
+          // if (feature.properties && feature.properties.popupContent) {
+          //   popupContent += feature.properties.popupContent;
+          // }
 
           layer.bindPopup(popupContent).addTo(map);
-              layer.bindPopup(popupContent).openPopup(); ///automatically shows the pop up!
+          layer.bindPopup(popupContent).openPopup(); ///automatically shows the pop up!
             //  layer.updatePopup(popupContent)
         }
 
@@ -1657,7 +1689,7 @@ map.on('draw:created', function (e) {
             return feature.properties && feature.properties.style;
           },
           color:'#ffff00',
-          onEachFeature: onEachFeature,
+          onEachFeature: onEachFeatureBlank,
 
         }).addTo(map);
 
@@ -1777,7 +1809,7 @@ var boxContent;
              console.log(boxContent);
 
              tempLayer.removeFrom(map);
-         function onEachFeature(feature, layer) {
+         function onEachFeatureConfirm(feature, layer) {
            var popupContent = boxContent  ; //+ '    ' +dateTimeRandomID
 
            if (feature.properties && feature.properties.popupContent) {
@@ -1785,7 +1817,7 @@ var boxContent;
            }
 
            layer.bindPopup(popupContent).addTo(map);
-               layer.bindPopup(popupContent).openPopup(); ///automatically shows the pop up!
+           layer.bindPopup(popupContent).openPopup(); ///automatically shows the pop up!
              //  layer.updatePopup(popupContent)
          }
 
@@ -1794,7 +1826,7 @@ var boxContent;
                  return feature.properties && feature.properties.style;
                },
                color:'#ffff00',
-               onEachFeature: onEachFeature,
+               onEachFeature: onEachFeatureConfirm,
 
              }).addTo(map);
 
@@ -1917,8 +1949,12 @@ function onEachFeature(feature, layer) {
 
     //conditions to avoid showing audio link if no audio has been recorded
     if(recordedBlobs != null){
+      if(isOnline == true){  //condition to only hyperlink the audiolinktext if online
     clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
     var popupContent = feature.properties.landUsesEmoji + '</br>'+ '</br>'+ '⏳...'+ clickableFinalUrlAudio ; //+ '    ' +dateTimeRandomID
+      }else{
+      var popupContent = feature.properties.landUsesEmoji + '</br>'+ '</br>'+ '⏳...'+ clickableFinalUrlAudio ;
+      }
     }else{
     var popupContent = feature.properties.landUsesEmoji
     }
@@ -1928,7 +1964,36 @@ function onEachFeature(feature, layer) {
     }
 
     layer.bindPopup(popupContent).addTo(map);
-      layer.bindPopup(popupContent).openPopup();
+    layer.bindPopup(popupContent).openPopup();
+
+  },1600)
+
+}
+
+function onEachFeatureAudioLocalStorage(feature, layer) {
+//  setTimeout(function(){console.log(finalUrlAudio)},1600)
+  //timeout is used to wait 1000ms until the download link is ready
+  setTimeout(function(){
+    var audioLinkText = '🔊 AUDIO'
+
+    //conditions to avoid showing audio link if no audio has been recorded
+    if(recordedBlobs != null){
+      if(isOnline == true){ //condition to only hyperlink the audiolinktext if online
+    clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
+    var popupContent = feature.properties.landUsesEmoji + '</br>'+ '</br>'+ '⏳...'+ clickableFinalUrlAudio ; //+ '    ' +dateTimeRandomID
+      }else{
+      var popupContent = feature.properties.landUsesEmoji + '</br>'+ '</br>'+ '⏳...'+ clickableFinalUrlAudio ;
+      }
+    }else{
+    var popupContent = feature.properties.landUsesEmoji
+    }
+
+    if (feature.properties && feature.properties.popupContent) {
+      popupContent += feature.properties.popupContent;
+    }
+
+    layer.bindPopup(popupContent).addTo(map);
+    // layer.bindPopup(popupContent).openPopup();
 
   },1600)
 
