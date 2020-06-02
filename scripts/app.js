@@ -1892,8 +1892,8 @@ document.getElementById("sendFirebase").onclick = function(e) {
 
   //checks if files are selected
 
-    //Loops through all the selected files
-    for (let i = 0; i < filesLength; i++) {  //there will be only 2 files
+    //Loops through all the selected files . To send also the geojson file to firebase, then activate this line !!!!!!!
+    for (let i = 1; i < filesLength; i++) {  //there will be only 2 files
       //create a storage reference
 
       console.log(files[i])
@@ -1923,7 +1923,9 @@ document.getElementById("sendFirebase").onclick = function(e) {
   //finalPercentage = document.getElementById("progress").value
   console.log(finalPercentage)
 
-  setTimeout(function(){  firebase.storage().ref(files[0].name).getDownloadURL().then(function(url) { console.log(url); })
+  setTimeout(function(){
+    //to send also the geojson file to firebase, then activate this line !!!!!!!!!!
+    //firebase.storage().ref(files[0].name).getDownloadURL().then(function(url) { console.log(url); })
     if(recordedBlobs!=null){
     firebase.storage().ref(files[1].name).getDownloadURL().then(function(url) { finalUrlAudio = url;console.log(url); return finalUrlAudio })
     //urlAudio = firebase.storage().ref(files[1].name).getDownloadURL();
