@@ -167,7 +167,9 @@ display: inline-block;
 
 }
 
-
+.osm{
+  border: 2px solid yellow;
+}
 /* .container-chat div {
     display: inline-block;
 
