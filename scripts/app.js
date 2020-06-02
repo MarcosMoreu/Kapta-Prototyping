@@ -1,5 +1,6 @@
 //first, detect whether the user is online & the language of the browser
-var isOnline = navigator.online
+var isOnline = navigator.onLine
+var isOnlineGlobal = isOnline
 console.log(navigator.onLine)
 var browserLanguage = navigator.language
 console.log(navigator.language)
@@ -309,7 +310,7 @@ var myLayer = L.geoJSON(groupGeoJSON,{
     return feature.properties && feature.properties.style && myLayerIsOk;
   },
   color:'blue',
-  onEachFeature: onEachFeature,
+  onEachFeature: onEachFeatureAudioLocalStorage,
   autopan:false
 
   }).addTo(map)
@@ -1738,7 +1739,7 @@ function stopAudioAutomatically(){
      },30000)  ///////////////////////////////  30 seconds is the appropriate time?
    }
  }
-
+console.log(isOnlineGlobal)
 document.getElementById('record').onclick = function(e){
           console.log('clicked manual' + new Date)
 
@@ -1752,6 +1753,8 @@ document.getElementById('record').onclick = function(e){
 
                   document.getElementById('voice').style.display = 'initial';
                   document.getElementById('voice').style.opacity = '1';
+
+
                   document.getElementById('voiceGif').style.width = '40%';
                   document.getElementById('voiceGif').style.height = '40px';
                   stopAudioAutomatically();
@@ -1842,7 +1845,8 @@ var boxContent;
              drawnItems.clearLayers();
             recordedVideo.pause();
             map.zoomOut(1);
-            drawingPoint =false
+            drawingPoint =false;
+            recordedBlobs = null; // audio is removed if cancel is clicked
 
             setTimeout(function(){
              document.getElementById("map").style.display = "block";
@@ -1940,20 +1944,21 @@ document.getElementById("sendFirebase").onclick = function(e) {
 ///////////////////  end of  firebase code   ///////////////
 
 
+
 ////////function for pop ups//////////
 function onEachFeature(feature, layer) {
 //  setTimeout(function(){console.log(finalUrlAudio)},1600)
   //timeout is used to wait 1000ms until the download link is ready
   setTimeout(function(){
     var audioLinkText = '🔊 AUDIO'
-
     //conditions to avoid showing audio link if no audio has been recorded
+    console.log(finalUrlAudio)
     if(recordedBlobs != null){
       if(isOnline == true){  //condition to only hyperlink the audiolinktext if online
     clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
     var popupContent = feature.properties.landUsesEmoji + '</br>'+ '</br>'+ '⏳...'+ clickableFinalUrlAudio ; //+ '    ' +dateTimeRandomID
       }else{
-      var popupContent = feature.properties.landUsesEmoji + '</br>'+ '</br>'+ '⏳...'+ clickableFinalUrlAudio ;
+      var popupContent = feature.properties.landUsesEmoji + '</br>'+ '</br>'+ '⏳...'+ 'AUDIO' ;
       }
     }else{
     var popupContent = feature.properties.landUsesEmoji
@@ -1969,22 +1974,18 @@ function onEachFeature(feature, layer) {
   },1600)
 
 }
-
-function onEachFeatureAudioLocalStorage(feature, layer) {
+var finished = false; // variable to openpopup only when file downloaded, not when loaded from local storage
+function onEachFeatureAudioLocalStorage(feature, layer) { // function duplicated to avoid openpop() with local storage
 //  setTimeout(function(){console.log(finalUrlAudio)},1600)
   //timeout is used to wait 1000ms until the download link is ready
   setTimeout(function(){
+    console.log('isonline' + ' ' + isOnline)
     var audioLinkText = '🔊 AUDIO'
-
+    var audioAvailable = feature.properties.audioAvailable;
     //conditions to avoid showing audio link if no audio has been recorded
-    if(recordedBlobs != null){
-      if(isOnline == true){ //condition to only hyperlink the audiolinktext if online
-    clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
-    var popupContent = feature.properties.landUsesEmoji + '</br>'+ '</br>'+ '⏳...'+ clickableFinalUrlAudio ; //+ '    ' +dateTimeRandomID
+    if(audioAvailable == true){
+      var popupContent = feature.properties.landUsesEmoji + '</br>'+ '</br>'+ '⏳...'+ 'AUDIO';
       }else{
-      var popupContent = feature.properties.landUsesEmoji + '</br>'+ '</br>'+ '⏳...'+ clickableFinalUrlAudio ;
-      }
-    }else{
     var popupContent = feature.properties.landUsesEmoji
     }
 
@@ -1993,11 +1994,44 @@ function onEachFeatureAudioLocalStorage(feature, layer) {
     }
 
     layer.bindPopup(popupContent).addTo(map);
-    // layer.bindPopup(popupContent).openPopup();
 
+    if(finished == true){
+    layer.bindPopup(popupContent).openPopup();
+    }
   },1600)
 
 }
+
+// function onEachFeatureAudioLocalStorage(feature, layer) { // function duplicated to avoid openpop() with local storage
+// //  setTimeout(function(){console.log(finalUrlAudio)},1600)
+//   //timeout is used to wait 1000ms until the download link is ready
+//   setTimeout(function(){
+//     var audioLinkText = '🔊 AUDIO'
+//
+//     //conditions to avoid showing audio link if no audio has been recorded
+//     if(recordedBlobs != null){
+//       if(isOnline == true){ //condition to only hyperlink the audiolinktext if online
+//   //  clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
+//    var audioURLGeoJSON = feature.properties.audioURL;
+//    clickableFinalUrlAudio = audioLinkText.link(audioURLGeoJSON)
+//     var popupContent = feature.properties.landUsesEmoji + '</br>'+ '</br>'+ '⏳...'+ clickableFinalUrlAudio ; //+ '    ' +dateTimeRandomID
+//       }else{
+//       var popupContent = feature.properties.landUsesEmoji + '</br>'+ '</br>'+ '⏳...'+ clickableFinalUrlAudio ;
+//       }
+//     }else{
+//     var popupContent = feature.properties.landUsesEmoji
+//     }
+//
+//     if (feature.properties && feature.properties.popupContent) {
+//       popupContent += feature.properties.popupContent;
+//     }
+//
+//     layer.bindPopup(popupContent).addTo(map);
+//     // layer.bindPopup(popupContent).openPopup();
+//
+//   },1600)
+//
+// }
 
 ////////////////////////////////////////////      Download     /////////////////////////////////////////////////////////////////////////////////////////////
 var  convertedData;
@@ -2090,9 +2124,15 @@ var diffTimes;
                 if(finalLength2Decimals == null){
                   finalLength2Decimals = 'null'
                 }
+                if(recordedBlobs != null){
+                  var audioAvailable = true
+                }else{
+                  audioAvailable = false
+                }
                 var propertiesGeoJSON = {
                   'landUses':boxContentToString,
                   'landUsesEmoji':boxContent,
+                  'audioAvailable':audioAvailable,
                   'areaPolygon': finalAreaHa2Decimals,
                   'lengthLine':finalLength2Decimals,
                   'dateTime':dateTime,
@@ -2127,18 +2167,8 @@ var diffTimes;
           }  ////////from plugin
 
 
-                layer1=data;
-                console.log(layer1);
-                //finalLayer is a global variable
-                setTimeout(function(){
-                finalLayer = L.geoJSON(layer1,{
-                  style: function (feature) {
-                    return feature.properties && feature.properties.style;
-                  },
-                  color:'blue',
-                  onEachFeature: onEachFeature,
-                }).addTo(map);
-              },200)
+              //  layer1=data;
+
 
                 //defining the final screen
           //////      document.getElementById('Sent').play();
@@ -2245,7 +2275,7 @@ var diffTimes;
 //             document.getElementById("sendFirebase").click();
 //             // document.getElementById('emojionearea1').value = '...'
 
-      return finalLayer && myLayerIsOn && files && filesLength && convertedData && blob //&& dateTimeRandomID && data
+      return data && myLayerIsOn && files && filesLength && convertedData && blob //&& dateTimeRandomID && data
   }
 console.log(finalLayer)
 
@@ -2262,6 +2292,7 @@ console.log(finalLayer)
 
        //to simulate that the upload button is clicked.
          document.getElementById("sendFirebase").click();
+
 
      },200)
 
@@ -2284,6 +2315,17 @@ console.log(finalLayer)
              document.getElementById("polygon").style.display = "initial";
              document.getElementById("polyline").style.display = "initial";
              document.getElementById("point").style.display = "initial";
+             console.log(finalUrlAudio)
+
+
+             //finalLayer is added at the end as the properties are different depending on if share or download
+             finalLayer = L.geoJSON(data,{
+               style: function (feature) {
+                 return feature.properties && feature.properties.style;
+               },
+               color:'blue',
+               onEachFeature: onEachFeature,
+             }).addTo(map);
 
            }, 2800);
 
@@ -2327,6 +2369,18 @@ console.log(finalLayer)
                  document.getElementById("polyline").style.display = "initial";
                  document.getElementById("point").style.display = "initial";
 
-               }, 2500);
+                 console.log(data);
+                 //finalLayer is added at the end as the properties are different depending on if share or download
+                 finalLayer = L.geoJSON(data,{
+                   style: function (feature) {
+                     return feature.properties && feature.properties.style;
+                   },
+                   color:'blue',
+                   onEachFeature: onEachFeatureAudioLocalStorage,
+                 }).addTo(map);
+                 finalLayer.bindPopup(popupContent).openPopup()
 
+               }, 2500);
+        finished = true;
+        return finished
   }
