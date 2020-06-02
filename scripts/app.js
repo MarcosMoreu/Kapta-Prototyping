@@ -301,13 +301,13 @@ console.log(isJson(groupGeoJSON))
 
 
 //conditions to catch error in case no geojson and also to avoid error when adding to map an empty layer if is first time
-var myLayerIsOk = false;
+//var myLayerIsOn = true;
 if(isJson(groupGeoJSON)==false && isFirstTime==false ){
 var myLayer = L.geoJSON(groupGeoJSON,{
   style: function (feature) {
-    myLayerIsOk = true;
-    console.log(myLayerIsOk)
-    return feature.properties && feature.properties.style && myLayerIsOk;
+    //myLayerIsOn = true;
+    console.log(myLayerIsOn)
+    return feature.properties && feature.properties.style;
   },
   color:'blue',
   onEachFeature: onEachFeatureAudioLocalStorage,
@@ -316,31 +316,6 @@ var myLayer = L.geoJSON(groupGeoJSON,{
   }).addTo(map)
 //map.setView(lastPositionStoredLOCALLY,15);
 }
-
-// function onEachFeatureLocalStorage(feature, layer) {
-//
-//     var audioLinkText = '🔊 AUDIO'
-//
-//     //conditions to avoid showing audio link if no audio has been recorded
-//     if(recordedBlobs != null){
-//       if(isOnline == true){ //condition to only hyperlink the audiolinktext if online
-//     clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
-//     var popupContent = feature.properties.landUsesEmoji + '</br>'+ '</br>'+ '⏳...'+ clickableFinalUrlAudio ; //+ '    ' +dateTimeRandomID
-//       }else{
-//       var popupContent = feature.properties.landUsesEmoji + '</br>'+ '</br>'+ '⏳...'+ clickableFinalUrlAudio ;
-//       }
-//     }else{
-//     var popupContent = feature.properties.landUsesEmoji
-//     }
-//
-//     if (feature.properties && feature.properties.popupContent) {
-//       popupContent += feature.properties.popupContent;
-//     }
-//
-//     layer.bindPopup(popupContent).addTo(map);
-//     // layer.bindPopup(popupContent).openPopup();
-// }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////to create a custom icon instead of Marker
@@ -722,7 +697,7 @@ planet_Button.button.style.height = '50px';
 planet_Button.button.style.transitionDuration = '.3s';
 
 
-var myLayerIsOn = false;
+var myLayerIsOn = true;
 var myLayer_Button = L.easyButton({
     id: 'myLayer',
     class:'easyButton',
@@ -738,15 +713,18 @@ var myLayer_Button = L.easyButton({
 console.log(myLayerIsOn)
 console.log(isFirstTime)
 console.log(finalLayer)
-console.log(myLayerIsOk)
-        if(myLayerIsOn == true && isFirstTime==false && finalLayer !=null){
+console.log(myLayerIsOn)
+        if(myLayerIsOn == true && isFirstTime==false){
 
           console.log('if1')
           myLayerIsOn = false;
           myLayer_Button.button.style.backgroundColor = 'grey';
-          finalLayer.removeFrom(map)
+          if(finalLayer != null){
+            finalLayer.removeFrom(map)
+          }
 
-         if(myLayerIsOk == true){
+          myLayer.removeFrom(map);
+         if(myLayerIsOn == true){
            console.log('if2')
 
            myLayer.removeFrom(map);
@@ -754,14 +732,18 @@ console.log(myLayerIsOk)
 
           }
         }
-        else if(myLayerIsOn == false && isFirstTime==false &&  finalLayer !=null){
+        else if(myLayerIsOn == false && isFirstTime==false){
           console.log('if3')
 
           myLayerIsOn = true;
           myLayer_Button.button.style.backgroundColor = 'black';
-         finalLayer.addTo(map)
+         //finalLayer.addTo(map)
 
-          if(myLayerIsOk == true){
+         if(finalLayer != null){
+           finalLayer.addTo(map)
+         }
+
+          if(myLayerIsOn == true){
             console.log('if4')
 
          myLayer.addTo(map)          //  layer1.addTo(map);
@@ -769,7 +751,7 @@ console.log(myLayerIsOk)
 
 
          }
-       }else{
+       }else if(isFirstTime==true && myLayer ==null){ //for first load when
          myLayer_Button.button.style.backgroundColor = 'red';
           console.log('if5')
 }
@@ -789,7 +771,10 @@ myLayer_Button.button.style.backgroundColor = 'black';
 // if(isFirstTime == false){
 //   myLayer_Button.addTo(map)
 // }
+
+if(myLayer !=null || finalLayer != null){
 myLayer_Button.addTo(map)
+}
 
 ////////////////////////////////   gps  ///////////////
 var gpsIcon = L.icon({
@@ -1989,7 +1974,7 @@ function onEachFeatureAudioLocalStorage(feature, layer) { // function duplicated
     var audioAvailable = feature.properties.audioAvailable;
     //conditions to avoid showing audio link if no audio has been recorded
     if(audioAvailable == true){
-      var popupContent = feature.properties.landUsesEmoji + '</br>'+ '</br>'+ '⏳...'+ 'AUDIO';
+      var popupContent = feature.properties.landUsesEmoji + '</br>'+ '</br>'+ '🔊 AUDIO';
       }else{
     var popupContent = feature.properties.landUsesEmoji
     }
@@ -2333,6 +2318,7 @@ console.log(finalLayer)
              }).addTo(map);
 
            }, 2800);
+           myLayer_Button.addTo(map)
 
   }
 
@@ -2353,6 +2339,7 @@ console.log(finalLayer)
 
       ////////////////////////  TRANSMISSION ////////////////////////////////////////
       //  var convertedDataBlob = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(recordedBlobs));
+      finished = true;
 
                setTimeout(function(){
 
@@ -2376,16 +2363,17 @@ console.log(finalLayer)
 
                  console.log(data);
                  //finalLayer is added at the end as the properties are different depending on if share or download
-                 finalLayer = L.geoJSON(data,{
-                   style: function (feature) {
-                     return feature.properties && feature.properties.style;
-                   },
-                   color:'blue',
-                   onEachFeature: onEachFeatureAudioLocalStorage,
-                 }).addTo(map);
-                 finalLayer.bindPopup(popupContent).openPopup()
 
                }, 2500);
-        finished = true;
+
+         finalLayer = L.geoJSON(data,{
+           style: function (feature) {
+             return feature.properties && feature.properties.style;
+           },
+           color:'#33CAFF',
+           onEachFeature: onEachFeatureAudioLocalStorage,
+         }).addTo(map);
+      //  finalLayer.bindPopup().openPopup()
+      myLayer_Button.addTo(map)
         return finished
   }
