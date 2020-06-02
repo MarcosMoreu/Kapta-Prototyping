@@ -344,8 +344,8 @@ var markers = L.markerClusterGroup({
 showCoverageOnHover: true,
 zoomToBoundsOnClick: true
 });
-markers.addLayer(pointsSap);
-map.addLayer(markers);
+//markers.addLayer(pointsSap);
+//map.addLayer(markers);
 
 var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb,{
         minZoom: 3,
