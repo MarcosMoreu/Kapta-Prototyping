@@ -1713,22 +1713,25 @@ map.on('draw:created', function (e) {
 ////////////////////////////////////////////////////////classify screen, audio//////////////////////////////////////////////////////////////
 
 //function to stop the recording after X seconds. The function is called when right after the recording is activated (i.e. when click if recording == false)
-function stopAudioAutomatically(){
-   if(document.getElementById('record').style.backgroundColor == 'yellow'){
-     console.log('auto activated')
-     setTimeout(function(){
-       if(document.getElementById('record').style.backgroundColor == 'yellow'){ //condition to avoid that the button is autom clicked even
-         // when the recording is stopped but was previously yellow. If after X seconds is white, should not be clicked.
-       document.getElementById('record').click();
+    function stopAudioAutomatically(){
+       if(document.getElementById('record').style.backgroundColor == 'yellow'){
+         console.log('auto activated')
+         setTimeout(function(){
+           if(document.getElementById('record').style.backgroundColor == 'yellow'){ //condition to avoid that the button is autom clicked even
+             // when the recording is stopped but was previously yellow. If after X seconds is white, should not be clicked.
+           document.getElementById('record').click();
+           }
+         },30000)  ///////////////////////////////  30 seconds is the appropriate time?
        }
-     },30000)  ///////////////////////////////  30 seconds is the appropriate time?
-   }
- }
+     }
+
+
 console.log(isOnlineGlobal)
 document.getElementById('record').onclick = function(e){
           console.log('clicked manual' + new Date)
 
               if(recording==false){
+                document.getElementById('voiceGif').play()
                 this.style.backgroundColor = 'yellow';
                 this.style.borderColor = 'yellow';
 
@@ -1745,8 +1748,8 @@ document.getElementById('record').onclick = function(e){
                   width = width+'px'
                   console.log(width)
 
-                  document.getElementById('voiceGif').style.width = width;
-                  document.getElementById('voiceGif').style.height = '40px';
+                  // document.getElementById('voiceGif').style.width = width;
+                  // document.getElementById('voiceGif').style.height = '40px';
                   stopAudioAutomatically();
 
             }
@@ -2279,6 +2282,7 @@ console.log(finalLayer)
          document.getElementById('shareWorldButton').style.display = 'none';
          document.getElementById('DownloadButton').style.display = 'none';
          document.getElementById('Sent').style.display = 'initial';
+         document.getElementById('sentVideo').play();
 
          document.body.style.backgroundColor = "white";
 
@@ -2353,6 +2357,8 @@ console.log(finalLayer)
         document.getElementById('DownloadButton').style.display = 'none';
 
         document.getElementById('Downloaded').style.display = 'initial';
+        document.getElementById('downloadedVideo').play();
+
 
         document.body.style.backgroundColor = "white";
 
