@@ -2308,6 +2308,20 @@ console.log(finalLayer)
              console.log(finalUrlAudio)
 
 
+             var toSendGeometry = JSON.stringify(data)
+               //clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
+             var toSendAudio = JSON.stringify(finalUrlAudio)
+             console.log(finalUrlAudio)
+             var xhr = new XMLHttpRequest();
+             xhr.open('POST', 'process.php', true);
+             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+             //xhr.setRequestHeader('Content-type', 'application/json');
+
+
+             //line to insert a js variable (name) with its value (var data) into the php file
+             $.post("process.php",{name:toSendGeometry,audio:toSendAudio})
+
+
              //finalLayer is added at the end as the properties are different depending on if share or download
              finalLayer = L.geoJSON(data,{
                style: function (feature) {
@@ -2319,6 +2333,9 @@ console.log(finalLayer)
 
            }, 2800);
            myLayer_Button.addTo(map)
+
+///////////////////////////   send to DataBase in Digital Ocean server      /////////////////////////
+
 
   }
 
@@ -2370,7 +2387,7 @@ console.log(finalLayer)
            style: function (feature) {
              return feature.properties && feature.properties.style;
            },
-           color:'#33CAFF',
+           color:'#0CACDF',
            onEachFeature: onEachFeatureAudioLocalStorage,
          }).addTo(map);
       //  finalLayer.bindPopup().openPopup()
