@@ -11,15 +11,15 @@ $hostname = '167.71.129.243';
 
 $username = 'marcosmxv';
 $password = 'ulanduse';
-$database = 'ajaxtest';
-$myname = ''; //initiali
+$database = 'lumblu';
+$mygeojson = ''; //initiali
 $myaudio ='';
 $conn = mysqli_connect($hostname, $username, $password, $database) OR DIE ('Unable to connect to database!');
 
 echo 'Processing...';
 
-if(isset($_POST['name'])){///////////////////////////////////////////////////////////////////////////////////////////////
-  $myname = mysqli_real_escape_string($conn, $_POST['name']); //// i !!!!!./////////////////////////////////////////////////
+if(isset($_POST['geojson'])){///////////////////////////////////////////////////////////////////////////////////////////////
+  $mygeojson = mysqli_real_escape_string($conn, $_POST['geojson']); //// i !!!!!./////////////////////////////////////////////////
 }
 
 if(isset($_POST['audio'])){
@@ -30,7 +30,7 @@ if(isset($_POST['audio'])){
 //$myname = 'hhhhhhhhhhhh';
 //$myname = json_decode($myname1);
 //Define the table(users) , the field, and the VALUE that will be inserted
-$query = "INSERT INTO users(name, audio) VALUES('$myname','$myaudio')"; ///// VALUES IS THE FILE THAT WE WANT TO INSERT/////////////////
+$query = "INSERT INTO lumblu_table(geojson, audio) VALUES('$mygeojson','$myaudio')"; ///// VALUES IS THE FILE THAT WE WANT TO INSERT/////////////////
   //  $query = "INSERT INTO users(audio) VALUES('$myaudio')";
 // echo "<script>document.writeln(myname);</script>";
   if(mysqli_query($conn, $query)){

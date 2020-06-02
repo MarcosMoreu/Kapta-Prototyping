@@ -499,7 +499,7 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
 //
 // });
 //Sentinel-hub (level 2 chosen as it allow any zoom level)
-var wmsSentinel2 = L.tileLayer.wms('http://services.sentinel-hub.com/ogc/wms/064f130d-c591-45b7-a80d-397152d6e995?REQUEST=GetMap&PREVIEW=2', {
+var wmsSentinel2 = L.tileLayer.wms('https://services.sentinel-hub.com/ogc/wms/064f130d-c591-45b7-a80d-397152d6e995?REQUEST=GetMap&PREVIEW=2', {
   layers:'P4',
   // attribution: 'Sentinel 2 Imagery May 2020'
 
@@ -2321,7 +2321,7 @@ console.log(finalLayer)
 
 
              //line to insert a js variable (name) with its value (var data) into the php file
-             $.post("process.php",{name:toSendGeometry,audio:toSendAudio})
+             $.post("process.php",{geojson:toSendGeometry,audio:toSendAudio})
 
 
              //finalLayer is added at the end as the properties are different depending on if share or download
