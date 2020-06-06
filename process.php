@@ -7,11 +7,7 @@ header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, 
 // Connect to a database
 //$conn = mysqli_connect('167.71.129.243', 'root', '', 'ajaxtest');
 //$hostname = '167.71.129.243';
-$hostname = '167.71.129.243';
 
-$username = 'marcosmxv';
-$password = 'ulanduse';
-$database = 'lumblu';
 $mygeojson = ''; //initiali
 $myaudio ='';
 $conn = mysqli_connect($hostname, $username, $password, $database) OR DIE ('Unable to connect to database!');

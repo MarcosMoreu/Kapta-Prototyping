@@ -172,3 +172,5 @@ display: inline-block;
     display: inline-block;
 
   } */
+  /* this is for the temporal buttons in last screen*/
+  a, a:visited, a:hover, a:active {color:grey;text-decoration:none}  /* Selected link   */

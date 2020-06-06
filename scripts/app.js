@@ -1,4 +1,69 @@
+
+
 //first, detect whether the user is online & the language of the browser
+ var xhr2 = new XMLHttpRequest();
+ xhr2.onload = function(){
+   console.log('created request')
+  // console.log(planetKey)
+
+ }
+ xhr2.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+      console.log(this.responseText)
+      var str = this.responseText
+
+//console.log(this.getAllResponseHeaders())
+    console.log('onready')
+      var array = str.split(',');
+       planetKey = array[0];
+       planetKey = planetKey.replace(/\s/g, '')
+       sentinelKey = array[1];
+       sentinelKey = sentinelKey.replace(/\s/g, '')
+       firebaseKey = array[2];
+       firebaseKey = firebaseKey.replace(/\s/g, '')
+
+       // planetKey = planetKey.toString();
+       // sentinelKey = sentinelKey.toString();
+       console.log(typeof planetKey)
+      // console.log(a)
+return planetKey && sentinelKey && firebaseKey
+  }
+
+};
+  xhr2.open("GET", 'hidden.php', true);
+  xhr2.send();
+
+  var planetKey ;
+  var hh = '2b11aafd06e2464a85d2e97c5a176a9a'
+
+  var sentinelKey;
+  var firebaseKey;
+//$.get('url', {planetKey: planetKey, sentinelKey: sentinelKey, firebaseKey: firebaseKey})
+// setTimeout(function(){
+//
+//
+// console.log(planetKey)
+// console.log(typeof hh)
+//
+// },1)
+// console.log(planetKey)
+// console.log(typeof hh)
+//  xhr2.getResponseHeader()
+
+  // $.ajax({
+  //   url:'hidden.php',
+  //   method:'GET',
+  //   data:{'planetKey':planetKey,'sentinelKey':sentinelKey}
+  // })
+  // document.getElementById("showAreaHa").innerHTML = xhr2.responseText;
+  // console.log(xhr2.responseText)
+
+
+ // $.get("hidden.php",{planetKey:planetKey,sentinelKey:sentinelKey})
+
+console.log(planetKey)
+
+
 var isOnline = navigator.onLine
 var isOnlineGlobal = isOnline
 console.log(navigator.onLine)
@@ -13,7 +78,19 @@ console.log(timeStart)
   // Firebase configuration
 
     // Initialize Firebase
-    
+    var firebaseConfig = {
+        apiKey: firebaseKey,
+        authDomain: "prototype4-dc434.firebaseapp.com",
+        databaseURL: "https://prototype4-dc434.firebaseio.com",
+        projectId: "prototype4-dc434",
+        storageBucket: "prototype4-dc434.appspot.com",
+        messagingSenderId: "995673679156",
+        appId: "1:995673679156:web:cff466b0d7489a868bb161"
+      };
+setTimeout(function(){
+  firebase.initializeApp(firebaseConfig);
+},1000)
+
 //  firebase.analytics();
 
 
@@ -323,13 +400,13 @@ var pointsIcon = L.icon({
 });
 
 
-var pointsSap = L.geoJson(pointsSapelli,{
-  iconUrl: 'images/whiteDot.png',
-  color:'#03FAFC',
-  opacity: 5,
-  fillOpacity: 0.2,
-  weight:2
-})//.addTo(map);
+// var pointsSap = L.geoJson(pointsSapelli,{
+//   iconUrl: 'images/whiteDot.png',
+//   color:'#03FAFC',
+//   opacity: 5,
+//   fillOpacity: 0.2,
+//   weight:2
+// })//.addTo(map);
 
 var markers = L.markerClusterGroup({
   spiderfyOnMaxZoom: true,
@@ -338,6 +415,41 @@ zoomToBoundsOnClick: true
 });
 //markers.addLayer(pointsSap);
 //map.addLayer(markers);
+var loadBasemaps = function(){
+
+
+}
+/////////////////////////////////////       CARTO    ADD TO MAP   //////////////////////////////////////////////
+
+// Add Data from CARTO using the SQL API
+// Declare Variables
+// Create Global Variable to hold CARTO points
+var cartoDBPoints = null;
+
+// Set your CARTO Username
+var cartoDBusername = "marcosmoreu";
+
+// Write SQL Selection Query to be Used on CARTO Table
+// Name of table is 'data_collector'
+var sqlQuery = "SELECT * FROM data_collector";
+
+// Get CARTO selection as GeoJSON and Add to Map
+function getGeoJSON(){
+  $.getJSON("https://"+cartoDBusername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery, function(data) {
+    cartoDBPoints = L.geoJson(data,{
+      pointToLayer: function(feature,latlng){
+        var marker = L.marker(latlng);
+        marker.bindPopup('' + feature.properties.description + 'Submitted by ' + feature.properties.name + '');
+        return marker;
+      }
+    }).addTo(map);
+  });
+};
+
+// Run showAll function automatically when document loads
+$( document ).ready(function() {
+  getGeoJSON();
+});
 
 var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb,{
         minZoom: 3,
@@ -358,36 +470,6 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
         attribution: 'OpenStreetMap Contributors'
 
         });
-
-{
-        // var planetS1 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083048_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        //         maxZoom: 18,
-        //         maxNativeZoom: 20,
-        //         subdomains:['tiles0','tiles1','tiles2','tiles3'],
-        //         attribution: 'Planet Imagery AUGUST 2019'
-        //     });
-        //  var planetS2 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083047_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        //         maxZoom: 18,
-        //         maxNativeZoom: 20,
-        //         subdomains:['tiles0','tiles1','tiles2','tiles3'],
-        //     });
-        //  var planetS3 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083046_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        //         maxZoom: 18,
-        //         maxNativeZoom: 20,
-        //         subdomains:['tiles0','tiles1','tiles2','tiles3'],
-        //     });
-        //  var planetS4 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083045_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        //         maxZoom: 18,
-        //         maxNativeZoom: 20,
-        //         subdomains:['tiles0','tiles1','tiles2','tiles3'],
-        //     });
-        //  var planetS5 = L.tileLayer('https://{s}.planet.com/data/v1/PSScene4Band/20190803_083044_1027/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        //         maxZoom: 18,
-        //         maxNativeZoom: 20,
-        //         subdomains:['tiles0','tiles1','tiles2','tiles3'],
-        //     });
-        ////////////////////ENSCHEDE/////////////////////
-}
 
 var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
     saveButtonHtml: '<img src="images/download.png" width=15px ; height=15px>',
@@ -435,6 +517,7 @@ var osm_Button = L.easyButton({
       //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn,map) {
+
           clickButtonCount +=1;
           document.getElementById('imageryAlert').style.display = 'none'
 
@@ -452,7 +535,7 @@ var osm_Button = L.easyButton({
           }else{
           osm.addTo(map);
           googleSat.removeFrom(map);
-          planet.removeFrom(map);
+        //  planet.removeFrom(map);
           // btn.button.style.backgroundColor = 'yellow';
           // googleSat_Button.button.style.backgroundColor = 'black';
           // planet_Button.button.style.backgroundColor = 'black'
@@ -521,6 +604,111 @@ var planet_Button = L.easyButton({
         icon: '<img src="images/planet.png" width=40px ; height=40px>',
         stateName: 'check-mark',
         onClick: function(btn,map) {
+          console.log(planetKey)
+          var planetS6 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200411_104056_53_105e/{z}/{x}/{y}.png?api_key="+planetKey+"",{
+                 maxZoom: 18,
+                 maxNativeZoom: 20,
+                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
+
+             });
+          var planetS7 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200411_104054_50_105e/{z}/{x}/{y}.png?api_key="+planetKey+"",{
+                 maxZoom: 18,
+                 maxNativeZoom: 20,
+                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
+             });
+          ////////////CAMEROON//////////////////////
+          var planetS8 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200402_080331_1043/{z}/{x}/{y}.png?api_key="+planetKey+"",{
+                 maxZoom: 18,
+                 maxNativeZoom: 20,
+                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
+             });
+          var planetS9 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200402_080330_1043/{z}/{x}/{y}.png?api_key="+planetKey+"",{
+                 maxZoom: 18,
+                 maxNativeZoom: 20,
+                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
+             });
+          var planetS10 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200402_080329_1043/{z}/{x}/{y}.png?api_key="+planetKey+"",{
+                 maxZoom: 18,
+                 maxNativeZoom: 20,
+                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
+             });
+          /////NAIROBI/////////////////////////////
+          var planetS11 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200306_073616_1011/{z}/{x}/{y}.png?api_key="+planetKey+"",{
+                 maxZoom: 18,
+                 maxNativeZoom: 20,
+                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
+                   });
+          var planetS12 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200306_073615_1011/{z}/{x}/{y}.png?api_key="+planetKey+"",{
+                 maxZoom: 18,
+                 maxNativeZoom: 20,
+                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
+             });
+          ///////TSUMKWE
+          var planetS13 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200416_083425_1018/{z}/{x}/{y}.png?api_key="+planetKey+"",{
+                 maxZoom: 18,
+                 maxNativeZoom: 20,
+                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
+             });
+
+          ///////FRAGA////////////////////////
+          var planetS14 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200403_105241_78_1064/{z}/{x}/{y}.png?api_key="+planetKey+"",{
+                 maxZoom: 18,
+                 maxNativeZoom: 20,
+                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
+             });
+          var planetS15 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200403_105239_76_1064/{z}/{x}/{y}.png?api_key="+planetKey+"",{
+                 maxZoom: 18,
+                 maxNativeZoom: 20,
+                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
+             });
+          ///ITEN///////////////
+          var planetS16 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200410_083657_42_1065/{z}/{x}/{y}.png?api_key="+planetKey+"",{
+                 maxZoom: 18,
+                 maxNativeZoom: 20,
+                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
+                  attribution: 'Planet/Sentinel Imagery MAY 2020'
+             });
+          var planetS17 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200410_074244_1018/{z}/{x}/{y}.png?api_key="+planetKey+"",{
+                 maxZoom: 18,
+                 maxNativeZoom: 20,
+                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
+             });
+          var planetS18 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200410_074243_1018/{z}/{x}/{y}.png?api_key="+planetKey+"",{
+                 maxZoom: 18,
+                 maxNativeZoom: 20,
+                 subdomains:['tiles0','tiles1','tiles2','tiles3'],
+             });
+             ///LONDON/////////////////
+             var planetS19 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200411_104513_103d/{z}/{x}/{y}.png?api_key="+planetKey+"",{
+                    maxZoom: 18,
+                    maxNativeZoom: 20,
+                    subdomains:['tiles0','tiles1','tiles2','tiles3'],
+
+                });
+             var planetS20 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200411_104512_103d/{z}/{x}/{y}.png?api_key="+planetKey+"",{
+                    maxZoom: 18,
+                    maxNativeZoom: 20,
+                    subdomains:['tiles0','tiles1','tiles2','tiles3'],
+
+                });
+             var planetS21 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200411_104511_103d/{z}/{x}/{y}.png?api_key="+planetKey+"",{
+                    maxZoom: 18,
+                    maxNativeZoom: 20,
+                    subdomains:['tiles0','tiles1','tiles2','tiles3'],
+                });
+
+          // var planet = L.layerGroup([planetS1,planetS2,planetS3,planetS4,planetS5,planetS6,planetS7,planetS8,planetS9,planetS10,
+          //                           planetS11,planetS12,planetS13,planetS14,planetS15,planetS16,planetS17,planetS18]);
+          planet = L.layerGroup([planetS6,planetS7,planetS8,planetS9,planetS10,planetS11,planetS12,planetS13,planetS14,planetS15,planetS16,planetS17,planetS18,planetS19,planetS20,planetS21]);
+
+          //Sentinel-hub (level 2 chosen as it allow any zoom level)
+          var wmsSentinel2 = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/"+sentinelKey+"?REQUEST=GetMap&PREVIEW=2", {
+          layers:'P4',
+          // attribution: 'Sentinel 2 Imagery May 2020'
+          });
+            // planetKey
+            // console.log(planetKey)
+            // loadBasemaps()
             clickButtonCount=0;
             //to avoid black tiles as sentinel does not server tiles above 10 (or perhaps yes), then zoom back to 10 again
             map.options.maxZoom = 18;//no need for more zoom levels as 'low' resolution
@@ -1164,6 +1352,7 @@ var drawingPoint = false
   document.getElementById('point').onclick = function(e){
       map.doubleClickZoom.disable();
 
+      console.log(planetKey)
 
             currentZoom = map.getZoom();
           //  map.zoomIn(1); //increases the zoom level when click on polygon
@@ -2196,14 +2385,37 @@ console.log(finalLayer)
              document.getElementById("polyline").style.display = "initial";
              document.getElementById("point").style.display = "initial";
              console.log(finalUrlAudio)
+////////////////////////////       CARTO POST DATA      //////////////////////////////////////////
+
+function setData() {
+    var enteredUsername = username.value;
+    var enteredDescription = description.value;
+    drawnItems.eachLayer(function (layer) {
+        var sql = "INSERT INTO data_collector (the_geom, description, name, latitude, longitude) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
+        var a = layer.getLatLng();
+        var sql2 ='{"type":"Point","coordinates":[' + a.lng + "," + a.lat + "]}'),4326),'" + 'enteredDescription' + "','" + 'enteredUsername' + "','" + a.lat + "','" + a.lng +"')";
+        var pURL = sql+sql2;
+        submitToProxy(pURL);
+        console.log("Feature has been submitted to the Proxy");
+    });
+    map.removeLayer(drawnItems);
+    drawnItems = new L.FeatureGroup();
+    console.log("drawnItems has been cleared");
+    dialog.dialog("close");
+};
 
 
-             var toSendGeometry = JSON.stringify(data)
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+            // var toSendGeometry = JSON.stringify(data)
+            var toSendGeometry = 'testeandooooo'
                //clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
-             var toSendAudio = JSON.stringify(finalUrlAudio)
+             // var toSendAudio = JSON.stringify(finalUrlAudio)
+             var toSendAudio = 'testeandoooaudio'
              console.log(finalUrlAudio)
              var xhr = new XMLHttpRequest();
-             xhr.open('POST', 'process.php', true);
+             xhr.open('POST', 'process.php', true); //true >> async
              xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
              //xhr.setRequestHeader('Content-type', 'application/json');
 
