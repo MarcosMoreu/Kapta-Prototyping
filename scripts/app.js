@@ -1,4 +1,4 @@
-// 
+//
 // // Detects if device is on iOS
 // const isIos = () => {
 //   const userAgent = window.navigator.userAgent.toLowerCase();
@@ -531,13 +531,33 @@ var offlineControlOSM = L.control.offline(osm, tilesDb, {
 
 
 var clickButtonCount=0;
+
+//to set the position of icon in easybutton based on OS - ios does not center the image
+if(isIOS == true){
+  var iconGPS = '<img src="images/gps.png" width=40px; height=40px; style="margin-left:-5px" > ';
+  var iconOSM = '<img src="images/osm.png" width=40px; height=40px; style="margin-left:-5px" > ';
+  var iconGOOGLE = '<img src="images/google.png" width=40px; height=40px; style="margin-left:-5px" > ';
+  var iconPLANET = '<img src="images/planet.png" width=40px; height=40px; style="margin-left:-5px" > ';
+  var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; style="margin-left:-5px" > ';
+
+}else{
+  var iconGPS = '<img src="images/gps.png" width=40px; height=40px; style="margin-left:-1px" > ';
+  var iconOSM = '<img src="images/osm.png" width=40px; height=40px; style="margin-left:-1px" > ';
+  var iconGOOGLE = '<img src="images/google.png" width=40px; height=40px; style="margin-left:-1px"> ';
+  var iconPLANET = '<img src="images/planet.png" width=40px; height=40px; style="margin-left:-1px"> ';
+  var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; style="margin-left:-1px"> ';
+
+}
 var osm_Button = L.easyButton({
     id: 'osm',
     class:'easyButton',
     position: 'topright',
     //background:'images/forest.png',
     states: [{
-      icon: '<img src="images/osm.png" width=40px ; height=40px> ',
+      // icon: '<img src="images/osm.png" width=40px ; height=40px; style="margin-left:-10px"> ',
+
+       icon: iconOSM  ,
+
       //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn,map) {
@@ -569,6 +589,8 @@ var osm_Button = L.easyButton({
 
     }]
 });
+
+console.log(osm_Button.icon)
 //osm_Button.button.style.backgroundColor = 'black';
 osm_Button.button.style.width = '50px';
 osm_Button.button.style.height = '50px';
@@ -584,7 +606,7 @@ var googleSat_Button = L.easyButton({
     position: 'topright',
 
     states: [{
-        icon: '<img src="images/google.png" width=40px ; height=40px>',
+        icon: iconGOOGLE,
               //stateName: 'check-mark',
         onClick: function(btn,map) {
           clickButtonCount +=1;
@@ -625,7 +647,7 @@ var planet_Button = L.easyButton({
     class:'easyButton',
     position: 'topright',
     states: [{
-        icon: '<img src="images/planet.png" width=40px ; height=40px>',
+        icon: iconPLANET,
         stateName: 'check-mark',
         onClick: function(btn,map) {
           console.log(planetKey)
@@ -800,7 +822,7 @@ var myLayer_Button = L.easyButton({
     position: 'topright',
     //background:'images/forest.png',
     states: [{
-      icon: '<img src="images/myLayer.png" width=37.5px ; height=37.5px> ',
+      icon: iconLAYERS,
       //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn,map) {
@@ -1017,7 +1039,7 @@ var gps_Button = L.easyButton({
     id: 'gps',
     position: 'topleft',
     states: [{
-        icon: '<img src="images/gps.png" width=35px ; height=35px>',
+        icon: iconGPS,
         stateName: 'check-mark',
         onClick: function(btn,map) {
           try {
