@@ -19,21 +19,26 @@
 <!-- end of firebase imports -->
 
   <meta charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <!-- maximumscale and userscalable value disable the zoom/pan option on the mobile screen -->
+
+
+  <title>Prototype #4</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
   <meta name="theme-color" content="#000000"/>
-  <title>Prototype #4</title>
+  <link rel="manifest" href="manifest.json">
+  <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
   <!-- <link rel="canonical" href="https://openchangedetectionmap.org/proto"/> -->
   <link rel="shortcut icon" href="images/icons/icon-96x96.png">
   <!-- <link rel="apple-touch-icon" href="images/icons/icon-96x96.png"> -->
-  <link rel="apple-touch-icon" href="touch-icon-iphone.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png">
-  <link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">
+<!-- include icon also from manifest -->
+  <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
+  <link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="apple-touch-icon.png">
 
 
-  <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" type="text/css" href="styles/app.css"  >
   <link async rel="stylesheet" type="text/css" href="scripts/lib/leaflet/leaflet.css" >
   <link async rel="stylesheet" href="scripts/emojionearea-master/dist/emojionearea.css">
@@ -161,7 +166,7 @@
   </div>
 
   <div id='voice' >
-    <video id='voiceGif' src="images/voice.webm" autoplay loop loading="lazy" alt="..." style='vertical-align:bottom;margin-bottom:-20px;
+    <video id='voiceGif' preload='none' src="images/voice.webm" autoplay loop muted playsinline loading="lazy" alt="..." style='vertical-align:bottom;margin-bottom:-20px;
                                                                                               top:-20px;height:80px; width:calc(100% - 190px);object-fit:cover'>
 <!-- background:black;border-radius:34px; -->
   </div>
@@ -176,6 +181,9 @@
   <button id="record" class='button' aria-label = 'record'>
     <img src="images/record.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
   </button>
+  <button id='noAudioIOS' class='button' aria-label = 'Confirm' style='display:none;margin-left:0px'>
+    <img src="images/record.png" loading="lazy" alt="..." style='width:30px ; height:30px; '>
+  </button>
 <!-- margin-left is 0 to avoid 10px separation... -->
   <button id='Confirm' class='button' aria-label = 'Confirm' style='display:none;margin-left:0px'>
     <img src="images/ThumbsUpGreen.png" loading="lazy" alt="..." style='width:30px ; height:30px; '>
@@ -189,6 +197,16 @@
     <img src="images/share-download.png" style='width:60px ; height:60px '>
   </button> -->
 
+
+<!-- <div id='Sent'  style='display:none'>
+    <video id='sentVideo' muted src="images/sent.mp4"  loading="lazy" alt="..." style='text-align:center; height:100%;width:100%; display:block; margin:auto;'>
+
+</div>
+
+<div id='Downloaded'  style='display:none'>
+  <video id='downloadedVideo'  muted src="images/downloaded.webm"  loading="lazy" alt="..." style='text-align:center;height:100%; width:100%; display:block; margin:auto;'>
+
+</div> -->
 
 <div id='Sent'  style='display:none'>
     <video id='sentVideo'src="images/sent.webm"  loading="lazy" alt="..." style='text-align:center; height:100%;width:100%; display:block; margin:auto;'>
@@ -252,6 +270,9 @@
 <progress value="0" max="100" id="progress" style='display:none'></progress>
 </div>
 
+
+
+<!-- <script async src="scripts/lib/pwacompat-master/src/pwacompat.js"></script> -->
 <script src="scripts/lib/leaflet/leaflet-src.js"></script>
 <script src="scripts/lib/jquery-3.4.1.min.js"></script>
 

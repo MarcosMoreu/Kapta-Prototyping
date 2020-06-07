@@ -8,6 +8,7 @@
 
 // This code is adapted from
 // https://rawgit.com/Miguelao/demos/master/mediarecorder.html
+// if (isIOS == false) {
 
 'use strict';
 
@@ -174,3 +175,4 @@ document.querySelector('button#enableRecording').addEventListener('click', async
 
   document.getElementById("record").click(); //added so no need to click button twice
 });
+// }

@@ -63,10 +63,21 @@ return planetKey && sentinelKey && firebaseKey
 
 console.log(planetKey)
 
+var isIOS = /iPad|iPhone|iPod|Mac OS X/.test(navigator.userAgent) && !window.MSStream;  // Mac OS X correct???
+if (isIOS == true) {
+// recordedBlobs = null;  // important in case ios device, so recorded blobs is not taken from audio.js
+  console.log('This is an IOS device');
+} else {
+  console.log('This is Not a IOS device');
+}
+console.log('isIOS  ' + isIOS)
 
 var isOnline = navigator.onLine
 var isOnlineGlobal = isOnline
 console.log(navigator.onLine)
+console.log(navigator.appVersion)
+console.log(navigator.platform)
+
 var browserLanguage = navigator.language
 console.log(navigator.language)
 //var  timeFinish = today.getHours() + " " + today.getMinutes() + " " + today.getSeconds();
@@ -1648,9 +1659,13 @@ map.on('draw:created', function (e) {
 
         document.getElementById('voice').style.display = 'none';
         document.getElementById('voice').style.opacity = '0';
+        if(isIOS == false){
 
         document.getElementById('enableRecording').style.display = 'initial';
+      }else{
+        document.getElementById('noAudioIOS').style.display = 'initial';
 
+      }
         document.getElementById('emoji').style.display = 'initial';
     //  },200)
 
@@ -1756,17 +1771,23 @@ map.on('draw:created', function (e) {
 
    });
 
+
+document.getElementById('noAudioIOS').onclick = function(e){
+  alert("Audio recording not available for iOS yet");
+}
+
+if(isIOS == false){
       document.getElementById('enableRecording').onclick = function(e){
-      setTimeout(function(){
-        document.getElementById('record').style.display = 'initial';
-        document.getElementById('record').style.opacity = '1';
-        document.getElementById('enableRecording').style.display = 'none';
-      },200)
+       setTimeout(function(){
+         document.getElementById('record').style.display = 'initial';
+         document.getElementById('record').style.opacity = '1';
+         document.getElementById('enableRecording').style.display = 'none';
+       },200)
         //setTimeout(function(){ document.getElementById("record").click();}, 500);
         //document.getElementById("record").click();
 
       }
-
+}
 	$("#emojionearea1").emojioneArea({
   	pickerPosition: "top",
   	filtersPosition: "bottom",
@@ -1800,6 +1821,7 @@ map.on('draw:created', function (e) {
 
 
 console.log(isOnlineGlobal)
+
 document.getElementById('record').onclick = function(e){
           console.log('clicked manual' + new Date)
 
@@ -1846,7 +1868,7 @@ document.getElementById('record').onclick = function(e){
              document.getElementById('gum').style.display = 'none';
              document.getElementById('recorded').style.display = 'none';
              document.getElementById('echoCancellation').style.display = 'none';
-}
+ }
 
 
     document.getElementById('activatePlay').onclick = function(e){
@@ -1854,6 +1876,7 @@ document.getElementById('record').onclick = function(e){
           document.getElementById('activatePlay').style.background = 'grey'
           setTimeout(function(){document.getElementById('activatePlay').style.background = 'white'},500)
         }
+
 var boxContent;
 
       document.getElementById('Confirm').onclick = function(e) {
@@ -1909,30 +1932,34 @@ var boxContent;
              created = false;
              drawnItems.remove();
              drawnItems.clearLayers();
-            recordedVideo.pause();
-            map.zoomOut(1);
-            drawingPoint =false;
-            recordedBlobs = null; // audio is removed if cancel is clicked
 
+
+            map.zoomOut(8);
+             drawingPoint =false;
+             if(isIOS == false){
+               recordedVideo.pause();
+              recordedBlobs = null; // audio is removed if cancel is clicked
+          }
             setTimeout(function(){
-             document.getElementById("map").style.display = "block";
+          //   document.getElementById("map").style.display = "block";
 
              document.getElementById("goBack1").style.display = "initial";
              document.getElementById("polygon").style.display = "initial";
              document.getElementById("polyline").style.display = "initial";
              document.getElementById("point").style.display = "initial";
-
-             document.getElementById("Download").style.display = "none";
              document.getElementById("Cancel").style.display = "none";
-             document.getElementById("DownloadButton").style.display = "none";
+
+            document.getElementById("Download").style.display = "none";
+            document.getElementById("DownloadButton").style.display = "none";
              document.getElementById("Confirm").style.display = "none";
 
-             document.getElementById('record').style.display = 'none';
-             document.getElementById('enableRecording').style.display = 'none';
+            document.getElementById('record').style.display = 'none';
+            document.getElementById('enableRecording').style.display = 'none';
+            document.getElementById('noAudioIOS').style.display = 'none';
 
-             document.getElementById('activatePlay').style.display = 'none';
+            document.getElementById('activatePlay').style.display = 'none';
 
-             document.getElementById('voice').style.display = 'none';
+            document.getElementById('voice').style.display = 'none';
 
              document.getElementById('emoji').style.display = 'none';
 
@@ -1964,6 +1991,8 @@ var finalUrlAudio
 
 
 /////sendFirebase script that will be fire when 'Download' is clicked.
+if(isIOS == false){
+
 document.getElementById("sendFirebase").onclick = function(e) {
 
   //checks if files are selected
@@ -2002,12 +2031,14 @@ document.getElementById("sendFirebase").onclick = function(e) {
   setTimeout(function(){
     //to send also the geojson file to firebase, then activate this line !!!!!!!!!!
     //firebase.storage().ref(files[0].name).getDownloadURL().then(function(url) { console.log(url); })
+
     if(recordedBlobs!=null){
     firebase.storage().ref(files[1].name).getDownloadURL().then(function(url) { finalUrlAudio = url;console.log(url); return finalUrlAudio })
     //urlAudio = firebase.storage().ref(files[1].name).getDownloadURL();
     }
   },1000);
 };
+}
 
 ///////////////////  end of  firebase code   ///////////////
 
@@ -2021,7 +2052,7 @@ function onEachFeature(feature, layer) {
     var audioLinkText = '🔊 AUDIO'
     //conditions to avoid showing audio link if no audio has been recorded
     console.log(finalUrlAudio)
-    if(recordedBlobs != null){
+    if(isIOS == false && recordedBlobs != null){
       if(isOnline == true){  //condition to only hyperlink the audiolinktext if online
     clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
     var popupContent = feature.properties.landUsesEmoji + '</br>'+ '</br>'+ '⏳...'+ clickableFinalUrlAudio ; //+ '    ' +dateTimeRandomID
@@ -2192,7 +2223,7 @@ var diffTimes;
                 if(finalLength2Decimals == null){
                   finalLength2Decimals = 'null'
                 }
-                if(recordedBlobs != null){
+                if(isIOS == false && recordedBlobs != null){
                   var audioAvailable = true
                 }else{
                   audioAvailable = false
@@ -2229,7 +2260,7 @@ var diffTimes;
               //  var convertedDataBlob = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(recordedBlobs));
 
 
-          if(recordedBlobs !=null){
+          if(isIOS == false && recordedBlobs !=null){
            blob = new Blob(recordedBlobs, {type: 'audio/webm'});
            console.log(blob)
           }  ////////from plugin
@@ -2247,6 +2278,8 @@ var diffTimes;
                 document.getElementById("Confirm").style.display = "none";
                 document.getElementById("Cancel").style.display = "none";
                 document.getElementById("share-download").style.display = "none";
+                document.getElementById('noAudioIOS').style.display = 'none';
+
 
                 // document.getElementById("Download").style.display = "none";
                 // document.getElementById("DownloadButton").style.display = "none";
@@ -2313,7 +2346,7 @@ var diffTimes;
                 return theBlob;
             }
 
-            if(recordedBlobs !=null){
+            if(isIOS == false && recordedBlobs !=null){
             audioBlobFile = blobToFile(audioBlob, nameAudio);
             console.log(audioBlobFile)
             }
@@ -2331,7 +2364,7 @@ var diffTimes;
                 });
                 console.log(dataFile)
           //to store both audio and geojson into an array, and also get the length of the array and pass this value ot the firebase loop
-              if(recordedBlobs !=null){
+              if(isIOS == false && recordedBlobs !=null){
                 files = [dataFile,audioBlobFile]
                 filesLength = 2
 
