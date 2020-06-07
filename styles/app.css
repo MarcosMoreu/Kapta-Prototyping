@@ -51,7 +51,7 @@ outline:none;
   background-color: white; /* Green */
   /* border: true; */
   /* color: black; */
-  padding: 0px 0px; */
+  padding: 0px 0px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -147,17 +147,14 @@ outline:none;
 * {
   font-family: Arial, Helvetica, san-serif;
 }
-.row:before, .row:before {
-  /* content: " "; */
-display: inline-block;
-  /* clear: both; */
-  z-index: 10;
 
-}
 .span6 {
   /* float: left; */
   /* the bar is 100% of its size minus the 190px space used for the other 3 buttons and their margins */
-  width: calc(100% - 190px);
+  width: calc(100% - 195px);
+  display: inline-block;
+
+/* margin-top:35px; */
   /* padding: 1%; */
   z-index: 10;
 
@@ -172,5 +169,5 @@ display: inline-block;
     display: inline-block;
 
   } */
-  /* this is for the temporal buttons in last screen*/
+  /* this is for the temporary buttons in last screen*/
   a, a:visited, a:hover, a:active {color:grey;text-decoration:none}  /* Selected link   */

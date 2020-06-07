@@ -1,3 +1,16 @@
+// 
+// // Detects if device is on iOS
+// const isIos = () => {
+//   const userAgent = window.navigator.userAgent.toLowerCase();
+//   return /iphone|ipad|ipod/.test( userAgent );
+// }
+// // Detects if device is in standalone mode
+// const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+//
+// // Checks if should display install popup notification:
+// if (isIos() && !isInStandaloneMode()) {
+//   this.setState({ showInstallMessage: true });
+// }
 
 
 //first, detect whether the user is online & the language of the browser
@@ -2391,6 +2404,7 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
          document.getElementById('DownloadButton').style.display = 'none';
          document.getElementById('Sent').style.display = 'initial';
          document.getElementById('sentVideo').play();
+         document.getElementById("sentVideo").controls = false;
 
          document.body.style.backgroundColor = "white";
 
@@ -2478,6 +2492,8 @@ function setData() {
 
   document.getElementById('DownloadButton').onclick = function(e){
         document.getElementById('downloadedVideo').play();
+        document.getElementById("downloadedVideo").controls = false;
+
 
 
         document.getElementById('shareWorldButton').style.display = 'none';
