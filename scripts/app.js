@@ -2382,6 +2382,8 @@ console.log(finalLayer)
 
 
 /////////////////////////////////////////  screenS SHARE-DOWNLOAD  /////////////////////////////////////
+var timeOfVideo; //variable to define time of video based on OS. For some reason, is iOS takes longer to play
+if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
   document.getElementById('shareWorldButton').onclick = function(e){
 
       setTimeout(function(){
@@ -2466,7 +2468,7 @@ function setData() {
                onEachFeature: onEachFeature,
              }).addTo(map);
 
-           }, 2800);
+           }, timeOfVideo);
            myLayer_Button.addTo(map)
 
 ///////////////////////////   send to DataBase in Digital Ocean server      /////////////////////////
@@ -2475,18 +2477,14 @@ function setData() {
   }
 
   document.getElementById('DownloadButton').onclick = function(e){
+        document.getElementById('downloadedVideo').play();
 
-        document.getElementById('Download').setAttribute('href', 'data:' + convertedData);
-        //document.getElementById('Download').setAttribute('href', 'data:' + convertedData + convertedText );
-        console.log(convertedData)
-
-        document.getElementById('Download').setAttribute('download',dateTimeRandomID);
 
         document.getElementById('shareWorldButton').style.display = 'none';
         document.getElementById('DownloadButton').style.display = 'none';
 
         document.getElementById('Downloaded').style.display = 'initial';
-        document.getElementById('downloadedVideo').play();
+
 
 
         document.body.style.backgroundColor = "white";
@@ -2496,7 +2494,11 @@ function setData() {
       finished = true;
 
                setTimeout(function(){
+                 document.getElementById('Download').setAttribute('href', 'data:' + convertedData);
+                 //document.getElementById('Download').setAttribute('href', 'data:' + convertedData + convertedText );
+                 console.log(convertedData)
 
+                 document.getElementById('Download').setAttribute('download',dateTimeRandomID);
                  document.getElementById('Downloaded').style.display = 'none';
                  document.getElementById('uploading').style.display = 'none'
                  document.getElementById('progress').style.display = 'none'
@@ -2518,7 +2520,7 @@ function setData() {
                  console.log(data);
                  //finalLayer is added at the end as the properties are different depending on if share or download
 
-               }, 2500);
+               }, timeOfVideo - 300);
 
          finalLayer = L.geoJSON(data,{
            style: function (feature) {
