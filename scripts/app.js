@@ -1886,6 +1886,7 @@ document.getElementById('record').onclick = function(e){
             if(recording==true){
 
                 this.style.backgroundColor = 'white';
+                document.getElementById('voiceGif').pause()
 
                 document.getElementById('activatePlay').style.display = 'initial';
                 document.getElementById('activatePlay').style.opacity = '1';
@@ -2332,7 +2333,7 @@ var diffTimes;
                 document.getElementById('showLength').style.display = 'none'
 
                 document.getElementById('emoji').style.display = 'none';
-                document.getElementById('voice').style.visibility = 'hidden';
+                // document.getElementById('voice').style.visibility = 'hidden';
 
                 document.getElementById('shareWorldButton').style.display = 'initial';
                 document.getElementById('DownloadButton').style.display = 'initial';
