@@ -12,7 +12,6 @@
 //   this.setState({ showInstallMessage: true });
 // }
 
-
 //first, detect whether the user is online & the language of the browser
  var xhr2 = new XMLHttpRequest();
  xhr2.onload = function(){
@@ -73,6 +72,29 @@ return planetKey && sentinelKey && firebaseKey
 
 
  // $.get("hidden.php",{planetKey:planetKey,sentinelKey:sentinelKey})
+
+ /////////////////////////////////////        indexedDB          /////////////////////////////
+ // if (!('indexedDB' in window)) {
+ //   console.log('This browser doesn\'t support IndexedDB');
+ //   //return ;
+ // }
+ //
+ // idb.open(name, version, upgradeCallback)
+ //
+ // (function() {
+ //   'use strict';
+ //
+ //   //check for support
+ //   if (!('indexedDB' in window)) {
+ //     console.log('This browser doesn\'t support IndexedDB');
+ //  //   return;
+ //   }
+ //
+ //   var dbPromise = idb.open('test-db1', 1);
+ //
+ // })();
+
+ //////////////////////////////////////////////////////////////////////////////////////////////
 
 console.log(planetKey)
 
@@ -1251,6 +1273,8 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
            document.getElementById("deleteLastVertexLine").style.display = "none";
            document.getElementById("deleteAllVertexsLine").style.display = "none";
 
+           document.getElementById("completeFeature").style.display = "none";
+
            document.getElementById("map").style.display = "initial";
            document.getElementById("polygon").style.display = "initial";
            document.getElementById("polyline").style.display = "initial";
@@ -1318,6 +1342,9 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
               document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
               document.getElementById("deleteAllVertexsLine").disabled = true;
 
+              document.getElementById("completeFeature").style.opacity = "0.35";
+              document.getElementById("completeFeature").disabled = true;
+
 
 var mapCurrentBounds;
 var mapCurrentZoom;
@@ -1352,7 +1379,7 @@ var clickMapCount = 0;
 var clickDelVertCount = 0;
 document.getElementById("goBack2").onclick = function(e){
 
-  document.getElementById('finishDrawInst').style.display = 'none';
+  // document.getElementById('finishDrawInst').style.display = 'none';
 
 //to enable doubleclick zoom that is disabled while drawing
   map.doubleClickZoom.enable();
@@ -1384,6 +1411,13 @@ document.getElementById("goBack2").onclick = function(e){
       document.getElementById("deleteLastVertexLine").disabled = true;
       document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
       document.getElementById("deleteAllVertexsLine").disabled = true;
+
+      document.getElementById('completeFeature').style.display = 'none';
+
+      document.getElementById("completeFeature").style.opacity = "0.35";
+      document.getElementById("completeFeature").disabled = true;
+
+
     },200)
 
      drawPolygon.disable();
@@ -1395,9 +1429,10 @@ document.getElementById("goBack2").onclick = function(e){
      }
 
 var boxContent;
-
+var featureType;
 var drawingPoint = false
   document.getElementById('point').onclick = function(e){
+    featureType = 'point';
       map.doubleClickZoom.disable();
 
       console.log(planetKey)
@@ -1421,10 +1456,11 @@ var drawingPoint = false
           //  document.getElementById("deletePoint").style.display = "initial";
           //  document.getElementById("deleteAllVertexs").style.display = "initial";
       drawingPoint = true;
-      return drawingPoint
+      return drawingPoint && featureType
   };
 
   document.getElementById('polyline').onclick = function(e){
+    featureType = 'polyline';
     map.doubleClickZoom.disable();
 
     map.on('draw:drawvertex',
@@ -1457,219 +1493,175 @@ var drawingPoint = false
             document.getElementById("goBack2").style.display = "initial";
             document.getElementById("deleteLastVertexLine").style.display = "initial";
             document.getElementById("deleteAllVertexsLine").style.display = "initial";
+            document.getElementById('completeFeature').style.display = 'initial';
+
           },200)
+      return featureType;
   };
 
   document.getElementById('polygon').onclick = function(e){
-    map.doubleClickZoom.disable();
+        featureType = 'polygon'
+        map.doubleClickZoom.disable();
 
-    map.on('draw:drawvertex',
-      function (e) {
-          $(".leaflet-div-icon")
-         // $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
-          .css({ 'background-color': '#DAFDC4','border-radius': '10px', 'height':'10px', 'width':'10px'});
-      });
+        map.on('draw:drawvertex',
+          function (e) {
+              $(".leaflet-div-icon")
+             // $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
+              .css({ 'background-color': '#DAFDC4','border-radius': '10px', 'height':'10px', 'width':'10px'});
+          });
 
-    map.on('draw:drawvertex',
-        function (e) {
-            $(".leaflet-div-icon.leaflet-interactive:first")
-           // $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
-            .css({ 'background-color': '#F905EA','border-radius': '25px', 'height':'15px', 'width':'15px'});
-      });
+        map.on('draw:drawvertex',
+            function (e) {
+                $(".leaflet-div-icon.leaflet-interactive:first")
+               // $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
+                .css({ 'background-color': '#F905EA','border-radius': '25px', 'height':'15px', 'width':'15px'});
+          });
 
-            currentZoom = map.getZoom();
-          //  map.zoomIn(1); //increases the zoom level when click on polygon
+                currentZoom = map.getZoom();
+              //  map.zoomIn(1); //increases the zoom level when click on polygon
 
-            clickMapCount = 0;
-            drawPolygon.enable();
-          //    document.getElementById("handDraw").style.display = "initial";
-          setTimeout(function(){
-            document.getElementById('imageryAlert').style.display = 'none'
+                clickMapCount = 0;
+                drawPolygon.enable();
+              //    document.getElementById("handDraw").style.display = "initial";
+              setTimeout(function(){
+                document.getElementById('imageryAlert').style.display = 'none'
 
-            document.getElementById("goBack1").style.display = "none";
-            document.getElementById("polygon").style.display = "none";
-            document.getElementById("polyline").style.display = "none";
-            document.getElementById("point").style.display = "none";
+                document.getElementById("goBack1").style.display = "none";
+                document.getElementById("polygon").style.display = "none";
+                document.getElementById("polyline").style.display = "none";
+                document.getElementById("point").style.display = "none";
 
-            document.getElementById("goBack2").style.display = "initial";
-            document.getElementById("deleteLastVertex").style.display = "initial";
-            document.getElementById("deleteAllVertexs").style.display = "initial";
-          },200)
+                document.getElementById("goBack2").style.display = "initial";
+                document.getElementById("deleteLastVertex").style.display = "initial";
+                document.getElementById("deleteAllVertexs").style.display = "initial";
+                document.getElementById('completeFeature').style.display = 'initial';
+
+              },200)
+          return featureType;
   };
 
   document.getElementById('map').onclick = function(e){
-      // if(clickMapCount==0){
-      //   document.getElementById("deleteAllVertexs").style.opacity = "0.35";
-      //   document.getElementById("deleteAllVertexs").disabled = true;
+
+      // if(featureType == 'polygon'){
+      //   console.log('number of vertex polygon ' + drawPolygon._markers.length)
+      //
+      // }if(featureType == 'polyline'){
+      //   console.log('number of vertex polyline ' + drawPolyline._markers.length)
       // }
-      // document.getElementById('finishDrawInst').style.display = 'initial';
 
-    clickMapCount += 1;
-    clickButtonCount=0;
-  //  console.log('click map count ', clickMapCount);
-  ////good !!!!
 
-      if(created==false && clickMapCount!=1 ){
-        // document.getElementById("finishDrawInst").innerHTML = '';
-        document.getElementById('finishDrawInst').style.display = 'initial';
-
-         document.getElementById("deleteLastVertex").style.opacity = "1";
-         document.getElementById("deleteLastVertex").disabled = false;
-         document.getElementById("deleteAllVertexs").style.opacity = "1";
-         document.getElementById("deleteAllVertexs").disabled = false;
-
-         document.getElementById("deleteLastVertexLine").style.opacity = "1";
-         document.getElementById("deleteLastVertexLine").disabled = false;
-         document.getElementById("deleteAllVertexsLine").style.opacity = "1";
-         document.getElementById("deleteAllVertexsLine").disabled = false;
+         if(featureType == 'polyline' && drawPolyline._markers.length > 0){ //add condition to allow user complete shape if vertext >=2. var from DRAW plugin
+          console.log(drawPolyline._markers.length)
+          document.getElementById("deleteLastVertexLine").style.opacity = "1";
+          document.getElementById("deleteLastVertexLine").disabled = false;
        }
-       // }else if(clickMapCount==1){
-       //   document.getElementById("deleteAllVertexs").style.opacity = "0.35";
-       //   document.getElementById("deleteAllVertexs").disabled = true;
-       // }
-       else if(created==true){
-         document.getElementById("deleteLastVertex").style.opacity = "0.35";
-         document.getElementById("deleteLastVertex").disabled = true;
-
-         document.getElementById("deleteLastVertexLine").style.opacity = "0.35";
-         document.getElementById("deleteLastVertexLine").disabled = true;
+        if(featureType == 'polyline' && drawPolyline._markers.length > 1){
+          document.getElementById("deleteAllVertexsLine").style.opacity = "1";
+          document.getElementById("deleteAllVertexsLine").disabled = false;
+          document.getElementById("completeFeature").style.opacity = "1";
+          document.getElementById("completeFeature").disabled = false;
        }
-       else{
-         document.getElementById("deleteLastVertex").style.opacity = "1";
-         document.getElementById("deleteLastVertex").disabled = false;
+        if(featureType == 'polygon' && drawPolygon._markers.length > 0){ // polygon vertex >=3
 
-         document.getElementById("deleteLastVertexLine").style.opacity = "1";
-         document.getElementById("deleteLastVertexLine").disabled = false;
+          document.getElementById("deleteLastVertex").style.opacity = "1";
+          document.getElementById("deleteLastVertex").disabled = false;
        }
-  ////////
+        if(featureType == 'polygon' && drawPolygon._markers.length > 1){
+          document.getElementById("deleteAllVertexs").style.opacity = "1";
+          document.getElementById("deleteAllVertexs").disabled = false;
+       }
+        if(featureType == 'polygon' && drawPolygon._markers.length > 2){
+          document.getElementById("completeFeature").style.opacity = "1";
+          document.getElementById("completeFeature").disabled = false;
+       }
 
-     return clickMapCount;
-  }
+}
 
 ///////////////////////////       delete vertexs      //////////////////////////////////
 
 
-  document.getElementById('deleteLastVertex').onclick = function(e){
-       clickDelVertCount += 1;
-    //console.log(clickCount);
+document.getElementById('deleteLastVertex').onclick = function(e){
+        console.log('number of vertex polygon ' +drawPolygon._markers.length)
+        if(drawPolygon._markers.length == 1){
+          document.getElementById("deleteAllVertexs").disabled = false;
+          document.getElementById('deleteAllVertexs').click()
 
-      if(clickMapCount==1){
-        drawPolygon.disable();
-        drawPolygon.enable();
-        clickMapCount = 1;
-      setTimeout(function(){
-        document.getElementById("deleteLastVertex").style.opacity = "0.35";
-        document.getElementById("deleteLastVertex").disabled = true;
-        document.getElementById("deleteAllVertexs").style.opacity = "0.35";
-        document.getElementById("deleteAllVertexs").disabled = true;
-      },200)
-      }else if(clickMapCount==clickDelVertCount){
-
-        drawPolygon.disable();
-        drawPolygon.enable();
-      setTimeout(function(){
-        document.getElementById("deleteLastVertex").style.opacity = "0.35";
-        document.getElementById("deleteLastVertex").disabled = true;
-        document.getElementById("deleteAllVertexs").style.opacity = "0.35";
-        document.getElementById("deleteAllVertexs").disabled = true;
-      },200)
-      }
-
-      else{
-        drawPolygon.deleteLastVertex();
-        //clickCount-=1;
-      }
-
-
-    return clickMapCount;
-  }
+        }else if(drawPolygon._markers.length > 1){
+          drawPolygon.deleteLastVertex();
+        }
+        if(drawPolygon._markers.length < 3){
+          document.getElementById("completeFeature").style.opacity = "0.35";
+          document.getElementById("completeFeature").disabled = true;
+        }
+        if(drawPolygon._markers.length < 2){
+          document.getElementById("deleteAllVertexs").style.opacity = "0.35";
+          document.getElementById("deleteAllVertexs").disabled = true;
+        }
+}
 
  document.getElementById('deleteAllVertexs').onclick = function(e){
         clickMapCount = 0;
-        clickDelVertCount = 0;
+        // clickDelVertCount = 0;
         drawPolygon.disable();
         drawPolygon.enable();
-        document.getElementById('finishDrawInst').style.display = 'none';
+      //  document.getElementById('finishDrawInst').style.display = 'none';
 
       setTimeout(function(){
         document.getElementById("deleteLastVertex").style.opacity = "0.35";
         document.getElementById("deleteLastVertex").disabled = true;
         document.getElementById("deleteAllVertexs").style.opacity = "0.35";
         document.getElementById("deleteAllVertexs").disabled = true;
+        document.getElementById("completeFeature").style.opacity = "0.35";
+        document.getElementById("completeFeature").disabled = true;
       },200)
-    return clickMapCount;
-  }
+}
 
 
 /////////////line////////////////////////
   document.getElementById('deleteLastVertexLine').onclick = function(e){
-           clickDelVertCount += 1;
-        //console.log(clickCount);
-        document.getElementById('finishDrawInst').style.display = 'none';
+      console.log('number of vertex polygon ' +drawPolyline._markers.length)
+      if(drawPolyline._markers.length == 1){
+        document.getElementById("deleteAllVertexsLine").disabled = false;
+        document.getElementById('deleteAllVertexsLine').click()
 
-      if(clickMapCount==1){
-        drawPolyline.disable();
-        drawPolyline.enable();
-        clickMapCount = 1;
-         setTimeout(function(){
-            document.getElementById("deleteLastVertexLine").style.opacity = "0.35";
-            document.getElementById("deleteLastVertexLine").disabled = true;
-            document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
-            document.getElementById("deleteAllVertexsLine").disabled = true;
-          },200)
-      }else if(clickMapCount==clickDelVertCount){
-
-            drawPolyline.disable();
-            drawPolyline.enable();
-          setTimeout(function(){
-            document.getElementById("deleteLastVertexLine").style.opacity = "0.35";
-            document.getElementById("deleteLastVertexLine").disabled = true;
-            document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
-            document.getElementById("deleteAllVertexsLine").disabled = true;
-          },200)
+      }else if(drawPolyline._markers.length > 1){
+        drawPolyline.deleteLastVertex();
       }
-
-      else{
-            drawPolyline.deleteLastVertex();
-            //clickCount-=1;
+      if(drawPolyline._markers.length == 1){
+        document.getElementById("completeFeature").style.opacity = "0.35";
+        document.getElementById("completeFeature").disabled = true;
+        document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
+        document.getElementById("deleteAllVertexsLine").disabled = true;
       }
-        // console.log('click delete vertex count ', clickDelVertCount);
-        // console.log('click map count ', clickMapCount);
-
-        return clickMapCount;
   }
 
   document.getElementById('deleteAllVertexsLine').onclick = function(e){
-          clickMapCount = 0;
-          clickDelVertCount = 0;
+
           drawPolyline.disable();
           drawPolyline.enable();
-          document.getElementById('finishDrawInst').style.display = 'none';
+        //  document.getElementById('finishDrawInst').style.display = 'none';
 
         setTimeout(function(){
           document.getElementById("deleteLastVertexLine").style.opacity = "0.35";
           document.getElementById("deleteLastVertexLine").disabled = true;
           document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
           document.getElementById("deleteAllVertexsLine").disabled = true;
+          document.getElementById("completeFeature").style.opacity = "0.35";
+          document.getElementById("completeFeature").disabled = true;
         },200)
-      return clickMapCount;
       }
 
+//to complete polygon when click on green thumbs up
+  document.getElementById('completeFeature').onclick = function(e){
+    if(featureType == 'polyline'){
+      drawPolyline.completeShape();
 
+    }else if(featureType == 'polygon'){
+      drawPolygon.completeShape();
+    }
 
-  // map.on('draw:drawvertex',
-  //   function (e) {
-  //       $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
-  //       .css({ 'background-color': '#F905EA' });
-  //   });
+  }
 
-    // map.on('draw:drawvertex',
-    //   function (e) {
-    //       $(".leaflet-marker-icon.leaflet-div-icon.leaflet-editing-icon.leaflet-touch-icon.leaflet-zoom-animated.leaflet-interactive:first")
-    //       .css({ 'background-color': '#F905EA' });
-    //   });
-
-      //this function must be inside the polygon onclick function
 
 var tempLayer;
 var data;
@@ -1687,7 +1679,7 @@ map.on('draw:created', function (e) {
      drawnItems.removeFrom(map); //remove the drawn item as yellow polygon appears
 
     //  setTimeout(function(){
-    document.getElementById('finishDrawInst').style.display = 'none';
+    //document.getElementById('finishDrawInst').style.display = 'none';
 
         document.getElementById("deleteAllVertexs").style.display = "none";
         document.getElementById("deleteLastVertex").style.display = "none";
@@ -1695,6 +1687,9 @@ map.on('draw:created', function (e) {
 
         document.getElementById("deleteLastVertexLine").style.display = "none";
         document.getElementById("deleteAllVertexsLine").style.display = "none";
+
+        document.getElementById("completeFeature").style.display = "none";
+
 
         document.getElementById("Confirm").style.display = "initial";
         document.getElementById("Cancel").style.display = "initial";
@@ -2472,6 +2467,9 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
              document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
              document.getElementById("deleteAllVertexsLine").disabled = true;
 
+             document.getElementById("completeFeature").style.opacity = "0.35";
+             document.getElementById("completeFeature").disabled = true;
+
              document.body.style.backgroundColor = "white";
 
              document.getElementById("map").style.height = "100%";
@@ -2570,6 +2568,9 @@ function setData() {
 
                  document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
                  document.getElementById("deleteAllVertexsLine").disabled = true;
+
+                 document.getElementById("completeFeature").style.opacity = "0.35";
+                 document.getElementById("completeFeature").disabled = true;
 
                  document.body.style.backgroundColor = "white";
 
