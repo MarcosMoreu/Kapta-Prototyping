@@ -1818,15 +1818,15 @@ map.on('draw:created', function (e) {
 document.getElementById('noAudioIOS').onclick = function(e){
 
   if(browserLanguage[0] == 'e' && browserLanguage[1] == 'n'){ //english
-  alert("Voice recording not yet available for iPhone,iPad or Mac");  }
+  alert("Voice recording not yet available for iPhone,iPad or Mac.");  }
   if(browserLanguage[0] == 'e' && browserLanguage[1] == 's'){ //spanish
-  alert("La grabación de voz aún no está disponible para iPhone, iPad o Mac");  }
+  alert("La grabación de voz aún no está disponible para iPhone, iPad o Mac.");  }
   if(browserLanguage[0] == 'p' && browserLanguage[1] == 't'){ //portuguese
-  alert("A gravação de voz ainda não está disponível para iPhone, iPad ou Mac");  }
+  alert("A gravação de voz ainda não está disponível para iPhone, iPad ou Mac.");  }
   if(browserLanguage[0] == 'f' && browserLanguage[1] == 'r'){ //french
-  alert("L'enregistrement vocal n'est pas encore disponible pour iPhone, iPad ou Mac");  }
+  alert("L'enregistrement vocal n'est pas encore disponible pour iPhone, iPad ou Mac.");  }
   if(browserLanguage == 'sw'){                                //swahili
-  alert("Kurekodi kwa sauti bado haipatikani kwa iPhone, iPad au Mac");  }
+  alert("Kurekodi kwa sauti bado haipatikani kwa iPhone, iPad au Mac.");  }
 }
 
 if(isIOS == false){
