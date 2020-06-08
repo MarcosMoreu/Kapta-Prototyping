@@ -1,8 +1,0 @@
-var AOI_Tsumkwe = {
-"type": "FeatureCollection",
-"name": "AOI_Tsumkwe",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-"features": [
-{ "type": "Feature", "properties": { "id": 2 }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 20.171039124095444, -19.902338435023424 ], [ 20.175759039981937, -19.573292870364721 ], [ 20.538443526162901, -19.57449833835042 ], [ 20.531534269568247, -19.904742600904246 ], [ 20.171039124095444, -19.902338435023424 ] ] ] ] } }
-]
-}

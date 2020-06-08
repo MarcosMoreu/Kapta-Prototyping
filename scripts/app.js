@@ -1352,6 +1352,8 @@ var clickMapCount = 0;
 var clickDelVertCount = 0;
 document.getElementById("goBack2").onclick = function(e){
 
+  document.getElementById('finishDrawInst').style.display = 'none';
+
 //to enable doubleclick zoom that is disabled while drawing
   map.doubleClickZoom.enable();
 
@@ -1445,7 +1447,7 @@ var drawingPoint = false
             drawPolyline.enable();
           //    document.getElementById("handDraw").style.display = "initial";
           setTimeout(function(){
-            document.getElementById('imageryAlert').style.display = 'none'
+            document.getElementById('imageryAlert').style.display = 'none';
 
             document.getElementById("goBack1").style.display = "none";
             document.getElementById("polygon").style.display = "none";
@@ -1500,6 +1502,7 @@ var drawingPoint = false
       //   document.getElementById("deleteAllVertexs").style.opacity = "0.35";
       //   document.getElementById("deleteAllVertexs").disabled = true;
       // }
+      // document.getElementById('finishDrawInst').style.display = 'initial';
 
     clickMapCount += 1;
     clickButtonCount=0;
@@ -1507,6 +1510,9 @@ var drawingPoint = false
   ////good !!!!
 
       if(created==false && clickMapCount!=1 ){
+        // document.getElementById("finishDrawInst").innerHTML = '';
+        document.getElementById('finishDrawInst').style.display = 'initial';
+
          document.getElementById("deleteLastVertex").style.opacity = "1";
          document.getElementById("deleteLastVertex").disabled = false;
          document.getElementById("deleteAllVertexs").style.opacity = "1";
@@ -1583,6 +1589,8 @@ var drawingPoint = false
         clickDelVertCount = 0;
         drawPolygon.disable();
         drawPolygon.enable();
+        document.getElementById('finishDrawInst').style.display = 'none';
+
       setTimeout(function(){
         document.getElementById("deleteLastVertex").style.opacity = "0.35";
         document.getElementById("deleteLastVertex").disabled = true;
@@ -1597,6 +1605,7 @@ var drawingPoint = false
   document.getElementById('deleteLastVertexLine').onclick = function(e){
            clickDelVertCount += 1;
         //console.log(clickCount);
+        document.getElementById('finishDrawInst').style.display = 'none';
 
       if(clickMapCount==1){
         drawPolyline.disable();
@@ -1635,6 +1644,8 @@ var drawingPoint = false
           clickDelVertCount = 0;
           drawPolyline.disable();
           drawPolyline.enable();
+          document.getElementById('finishDrawInst').style.display = 'none';
+
         setTimeout(function(){
           document.getElementById("deleteLastVertexLine").style.opacity = "0.35";
           document.getElementById("deleteLastVertexLine").disabled = true;
@@ -1676,6 +1687,8 @@ map.on('draw:created', function (e) {
      drawnItems.removeFrom(map); //remove the drawn item as yellow polygon appears
 
     //  setTimeout(function(){
+    document.getElementById('finishDrawInst').style.display = 'none';
+
         document.getElementById("deleteAllVertexs").style.display = "none";
         document.getElementById("deleteLastVertex").style.display = "none";
         document.getElementById("goBack2").style.display = "none";
@@ -1808,7 +1821,17 @@ map.on('draw:created', function (e) {
 
 
 document.getElementById('noAudioIOS').onclick = function(e){
-  alert("Audio recording not available for iOS yet");
+
+  if(browserLanguage[0] == 'e' && browserLanguage[1] == 'n'){ //english
+  alert("Voice recording not yet available for iPhone,iPad or Mac");  }
+  if(browserLanguage[0] == 'e' && browserLanguage[1] == 's'){ //spanish
+  alert("La grabación de voz aún no está disponible para iPhone, iPad o Mac");  }
+  if(browserLanguage[0] == 'p' && browserLanguage[1] == 't'){ //portuguese
+  alert("A gravação de voz ainda não está disponível para iPhone, iPad ou Mac");  }
+  if(browserLanguage[0] == 'f' && browserLanguage[1] == 'r'){ //french
+  alert("L'enregistrement vocal n'est pas encore disponible pour iPhone, iPad ou Mac");  }
+  if(browserLanguage == 'sw'){                                //swahili
+  alert("Kurekodi kwa sauti bado haipatikani kwa iPhone, iPad au Mac");  }
 }
 
 if(isIOS == false){
