@@ -174,8 +174,8 @@
 
 <!-- vetical-align:middle ++++ position:flex; !!!!!!!!!!!!! -->
   <div id='emoji' class="span6"  >
-    <div class="span6" style='vertical-align:middle;display:inline-block; position:flex; height:50px;'>
-      <textarea id="emojionearea1" style='vertical-align:middle;'></textarea>
+    <div id='span6' class="span6" style='vertical-align:middle;display:inline-block; position:flex; height:50px;'>
+      <textarea id="emojionearea" style='vertical-align:middle;'></textarea>
     </div>
   </div>
 
@@ -199,13 +199,17 @@
     <img src="images/record.png" loading="lazy" alt="..." style='width:30px ; height:30px; '>
   </button>
 <!-- margin-left is 0 to avoid 10px separation... -->
-  <button id='Confirm' class='button' aria-label = 'Confirm' style='display:none;margin-left:0px'>
+  <!-- <button id='Confirm' class='button' aria-label = 'Confirm' style='display:none;margin-left:0px'>
     <img src="images/ThumbsupYellow.png" loading="lazy" alt="..." style='width:30px ; height:30px; '>
-  </button>
+  </button> -->
 
   <button id='share-download' class='button' aria-label = 'share-download' style='display:none;margin-left:0px'>
     <img src="images/share-download.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
   </button>
+
+  <!-- <button id='tosimulateclick' class='button' aria-label = 'tosimulateclick' style='margin-left:0px'>
+    <img src="images/share-download.png" loading="lazy" alt="..." style='width:0px ; height:0px'>
+  </button> -->
 
   <!-- <button id='share-download' class='button'style='display:none;position:absolute;'>
     <img src="images/share-download.png" style='width:60px ; height:60px '>
@@ -291,6 +295,14 @@
 <script src="scripts/lib/jquery-3.4.1.min.js"></script>
 
 <script src="scripts/emojionearea-master/dist/emojionearea.js"></script>
+
+<!-- <script src="scripts/emoji-aware-master/emoji-aware.js"></script>
+<script src="scripts/emoji-aware-master/lib/console-format.js"></script>
+<script src="scripts/emoji-aware-master/lib/is-emoji.js"></script>
+
+
+<script src="scripts/lib/lodash.js"></script> -->
+
 <!-- <script src="scripts/lib/leaflet/plugins/Leaflet.GeometryUtil-master/src/leaflet.geometryutil.js"></script> -->
 
 <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.draw.js"></script>
@@ -343,6 +355,10 @@
  <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/EditToolbar.js"></script>
  <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Edit.js"></script>
  <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Delete.js"></script>
+ <!-- <script src="scripts/lib/leaflet/plugins//scripts/lib/leaflet/plugins/touchemulator-master/touch-emulator.js"></script>
+ <script> TouchEmulator(); </script> -->
+
+
 
  <!-- <script src="scripts/lib/leaflet/leaflet-src.js"></script> -->
  <!-- type module to import and export -->

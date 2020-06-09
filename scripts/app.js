@@ -570,6 +570,8 @@ if(isIOS == true){
   var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; style="margin-left:-1px"> ';
 
 }
+
+
 var osm_Button = L.easyButton({
     id: 'osm',
     class:'easyButton',
@@ -908,6 +910,8 @@ myLayer_Button.button.style.height = '50px';
 myLayer_Button.button.style.transitionDuration = '.3s';
 myLayer_Button.button.style.backgroundColor = 'black';
 
+
+
 // if(isFirstTime == false){
 //   myLayer_Button.addTo(map)
 // }
@@ -928,6 +932,27 @@ var gpsIcon = L.icon({
     //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
+// var tosimulateclick = L.easyButton({
+//     id: 'tosimulateclickEB',
+//     class:'easyButton',
+//     position: 'topright',
+//     //background:'images/forest.png',
+//     states: [{
+//        icon: '<img src="images/osm.png" width=0px ; height=0px; style="margin-left:-10px"> ',
+//
+//       // icon: iconOSM  ,
+//
+//      //  background:"images/forest.png",
+//        stateName: 'check-mark',
+//
+//       //  background:"images/forest.png",
+//         stateName: 'check-mark',
+//         onClick: function(btn,map) {
+//           }
+// }]
+// })
+// tosimulateclick.addTo(map);
+// document.getElementById('tosimulateclickEB').style.display = 'none'
 
 // add location via browser geolocation
 var currentLocation = []; // variable created to allow the user recenter the map
@@ -1283,7 +1308,7 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
            document.getElementById("Download").style.display = "none";
            document.getElementById("Cancel").style.display = "none";
            document.getElementById("DownloadButton").style.display = "none";
-           document.getElementById("Confirm").style.display = "none";
+           // document.getElementById("Confirm").style.display = "none";
 
            document.getElementById('record').style.display = 'none';
            document.getElementById('enableRecording').style.display = 'none';
@@ -1549,6 +1574,7 @@ var drawingPoint = false
       //   console.log('number of vertex polyline ' + drawPolyline._markers.length)
       // }
 
+      if(created == false){ // to avoid the script to seach for _markers.length when the feature still has not been created
 
          if(featureType == 'polyline' && drawPolyline._markers.length > 0){ //add condition to allow user complete shape if vertext >=2. var from DRAW plugin
           console.log(drawPolyline._markers.length)
@@ -1574,7 +1600,7 @@ var drawingPoint = false
           document.getElementById("completeFeature").style.opacity = "1";
           document.getElementById("completeFeature").disabled = false;
        }
-
+  }
 }
 
 ///////////////////////////       delete vertexs      //////////////////////////////////
@@ -1669,9 +1695,9 @@ var  finalAreaHa2Decimals
 var  finalAreaAcres2Decimals
 var  finalLength2Decimals
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 map.on('draw:created', function (e) {
        //drawnItems.completeShape();
-     created = true;
 
 
      drawPolygon.disable();
@@ -1690,8 +1716,8 @@ map.on('draw:created', function (e) {
 
         document.getElementById("completeFeature").style.display = "none";
 
-
-        document.getElementById("Confirm").style.display = "initial";
+        document.getElementById("share-download").style.display = "initial";
+        // document.getElementById("Confirm").style.display = "initial";
         document.getElementById("Cancel").style.display = "initial";
 
         document.getElementById("classification").style.display = "initial";
@@ -1809,11 +1835,62 @@ map.on('draw:created', function (e) {
           onEachFeature: onEachFeatureBlank,
 
         }).addTo(map);
+        created = true;
+console.log(created)
 
+      startCheckingText() // to call the function to start checking the input text
        return created & data;
 
    });
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//the problem with document.getElementById('emojionearea').value is that it only updates when the text box is not selected, which is as issue. TextContent methodworks
+//well, except that it does not capture emojis
+// if(created == true){
+var startCheckingText = function(){
+  tempLayer.removeFrom(map);
+    function onEachFeatureConfirm(feature, layer) {
+        //  var popupContent = document.getElementById('emoji').textContent ; //+ '    ' +dateTimeRandomID
+          if (feature.properties && feature.properties.popupContent) {
+            popupContent += feature.properties.popupContent;
+          }
+/////////////////////////////////////////////////////////lllllllllllllllllllllllllllllllllllllllllllllllllllkjjjjjjjjjjjjjjjjjjjjjjjjjtop
+var someimage = document.getElementById('span6');
+var myimg = someimage.getElementsByTagName('img')[1];
+var mysrc = myimg.alt;
+console.log('alt tag....'+mysrc)
+////////////ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+console.log(document.getElementsByClassName('emojionearea-editor').innerText)
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////top
 
+      var refreshConfirm = setInterval(function(){
+
+
+          var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
+          console.log(emojioneareaeditor)
+          var emojioneareaeditor0 = emojioneareaeditor[0]
+          console.log(emojioneareaeditor0)
+          var emojioneareaeditor0innerHTML = emojioneareaeditor0.innerHTML       /////////////////////////////////////////////11111111111111111111111ddddddddddddddddddddddddddddddESTE!!!
+          console.log(emojioneareaeditor0innerHTML)
+          // emojioneareaeditor0innerHTMLresized = emojioneareaeditor0innerHTML.width = '20'
+          emojioneareaeditor.heigth = '20'
+        layer.bindPopup(emojioneareaeditor0innerHTML).addTo(map);
+        layer.bindPopup(emojioneareaeditor0innerHTML).openPopup(); ///automatically shows the pop up!
+
+     },3000)
+  }
+
+      tempLayer = L.geoJSON(data,{
+        style: function (feature) {
+          return feature.properties && feature.properties.style;
+        },
+        color:'#ffff00',
+        onEachFeature: onEachFeatureConfirm,
+
+      }).addTo(map);
+}
+
+
+////////////////////////////         audio          ///////////////////////////////
 
 document.getElementById('noAudioIOS').onclick = function(e){
 
@@ -1841,16 +1918,7 @@ if(isIOS == false){
 
       }
 }
-	$("#emojionearea1").emojioneArea({
-  	pickerPosition: "top",
-  	filtersPosition: "bottom",
-    tones: false,
-    autocomplete: false,
-    inline: false,  //text box resizes with text input
-    hidePickerOnBlur: false,
-    search: false,
-    placeholder: "..."
-  });
+
 
   // var el = $("selector").emojioneArea();
   // el[0].emojionearea1.on("emojibtn.click", function(btn, event) {
@@ -1877,6 +1945,7 @@ console.log(isOnlineGlobal)
 
 document.getElementById('record').onclick = function(e){
           console.log('clicked manual' + new Date)
+          console.log(created)
 
               if(recording==false){
                 document.getElementById('voiceGif').play()
@@ -1913,8 +1982,8 @@ document.getElementById('record').onclick = function(e){
                 document.getElementById('emoji').style.display = 'initial';
                 document.getElementById('voice').style.display = 'none';
                 document.getElementById('voice').style.opacity = '0';
-                document.getElementById('Confirm').disabled = false;
-                document.getElementById('Confirm').style.opacity = '1';
+                // document.getElementById('Confirm').disabled = false;
+                // document.getElementById('Confirm').style.opacity = '1';
                 audioStoppedManually = true
 
             }
@@ -1925,59 +1994,245 @@ document.getElementById('record').onclick = function(e){
  }
 
 
-    document.getElementById('activatePlay').onclick = function(e){
+  document.getElementById('activatePlay').onclick = function(e){
           document.getElementById("play").click(); //added so no need to click button twice
           document.getElementById('activatePlay').style.background = 'grey'
           setTimeout(function(){document.getElementById('activatePlay').style.background = 'white'},500)
-        }
+  }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+  $("#emojionearea").emojioneArea({
+  	pickerPosition: "top",
+  	filtersPosition: "bottom",
+    tones: false,
+    autocomplete: false,
+    inline: false,  //text box resizes with text input
+    hidePickerOnBlur: false,
+    search: false,
+    placeholder: "..."
+  });
 var boxContent;
 
-      document.getElementById('Confirm').onclick = function(e) {
-            goToDS = 1;
-            // document.getElementById("Identification").pause();
-            // document.getElementById("Identification").currentTime = 0;
-          setTimeout(function(){
-             document.getElementById("Confirm").style.display = "none";
-            // document.getElementById("Cancel").style.display = "none";
-
-             // document.getElementById("Download").style.display = "initial";
-             // document.getElementById("DownloadButton").style.display = "initial";
-             // document.getElementById("Download").disabled = false;
-             // document.getElementById("DownloadButton").disabled = false;
-             // document.getElementById("Download").style.opacity = "1";
-             // document.getElementById("DownloadButton").style.display = "1";
-             document.getElementById("share-download").style.display = "initial";
-           },200)
+// document.getElementById('tosimulateclick').onclick = function(e){
+//   map.zoomOut(1)
+// }
 
 
-             boxContent = document.getElementById('emojionearea1').value;
-             console.log(boxContent);
 
-             tempLayer.removeFrom(map);
-         function onEachFeatureConfirm(feature, layer) {
-           var popupContent = boxContent  ; //+ '    ' +dateTimeRandomID
 
-           if (feature.properties && feature.properties.popupContent) {
-             popupContent += feature.properties.popupContent;
-           }
+// document.getElementById('Confirm').onclick = function(e) {
+//     //  goToDS = 1;
+//       // document.getElementById("Identification").pause();
+//       // document.getElementById("Identification").currentTime = 0;
+//     setTimeout(function(){
+//        document.getElementById("Confirm").style.display = "none";
+//       // document.getElementById("Cancel").style.display = "none";
+//
+//        // document.getElementById("Download").style.display = "initial";
+//        // document.getElementById("DownloadButton").style.display = "initial";
+//        // document.getElementById("Download").disabled = false;
+//        // document.getElementById("DownloadButton").disabled = false;
+//        // document.getElementById("Download").style.opacity = "1";
+//        // document.getElementById("DownloadButton").style.display = "1";
+//        document.getElementById("share-download").style.display = "initial";
+//      },200)
+//
+//
+//         //boxContent = document.getElementById('emojionearea1').value;
+//        // console.log(boxContent);
+//
+//        tempLayer.removeFrom(map);
+//    function onEachFeatureConfirm(feature, layer) {
+//      var popupContent = document.getElementById('emoji').textContent ; //+ '    ' +dateTimeRandomID
+//
+//      if (feature.properties && feature.properties.popupContent) {
+//        popupContent += feature.properties.popupContent;
+//      }
+//          var refreshConfirm = setInterval(function(){
+//
+//      layer.bindPopup(document.getElementById('emoji').textContent).addTo(map);
+//      layer.bindPopup(document.getElementById('emoji').textContent).openPopup(); ///automatically shows the pop up!
+//       // layer.updatePopup(document.getElementById('emojionearea1'))
+//     //  document.getElementById('tosimulateclickEB').click();
+// //       $(".emojionearea").emojioneArea({
+// //     inline: true
+// // });
+//
+// // $("emojionearea").emojioneArea().onclick = function(e){
+// //   console.log('ffffffffffffffffffffffffffff')
+// // };
+// // var e = $("emojionearea").emojioneArea()
+// // var e0 = e.prevObject[0];
+// //   // e0.emojioneArea.getText();
+// //   console.log(e0)
+// // console.log(e.prevObject)
+//
+// // OR
+// // $("selector2").emojioneArea();
+// // $("selector2")[0].emojioneArea.getText();
+//       //  document.getElementById('emojionearea').click()
+// // document.elementFromPoint(120, 90).click();
+// //document.getElementById("emoji").disabled = false;
+//
+// //console.log(pasteText(text))
+//       console.log(document.getElementById('emoji').textContent)
+//     },3000)
+//    }
+//
+//        tempLayer = L.geoJSON(data,{
+//          style: function (feature) {
+//            return feature.properties && feature.properties.style;
+//          },
+//          color:'#ffff00',
+//          onEachFeature: onEachFeatureConfirm,
+//
+//        }).addTo(map);
+//
+//        return boxContent;
+//      }
 
-           layer.bindPopup(popupContent).addTo(map);
-           layer.bindPopup(popupContent).openPopup(); ///automatically shows the pop up!
-             //  layer.updatePopup(popupContent)
-         }
 
-             tempLayer = L.geoJSON(data,{
-               style: function (feature) {
-                 return feature.properties && feature.properties.style;
-               },
-               color:'#ffff00',
-               onEachFeature: onEachFeatureConfirm,
 
-             }).addTo(map);
 
-          return boxContent;
-        }
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+   //     tempLayer.removeFrom(map);
+   // function onEachFeatureConfirm(feature, layer) {
+   //   var popupContent = document.getElementById('emojionearea1').value ; //+ '    ' +dateTimeRandomID
+   //
+   //   if (feature.properties && feature.properties.popupContent) {
+   //     popupContent += feature.properties.popupContent;
+   //   }
+   //       var refreshConfirm = setInterval(function(){
+   //
+   //   layer.bindPopup(document.getElementById('emojionearea1').value).addTo(map);
+   //   layer.bindPopup(document.getElementById('emojionearea1').value).openPopup(); ///automatically shows the pop up!
+
+//          document.getElementById('myLayer').click()
+
+   //  },1000)
+   // }
+   //
+   //     tempLayer = L.geoJSON(data,{
+   //       style: function (feature) {
+   //         return feature.properties && feature.properties.style;
+   //       },
+   //       color:'#ffff00',
+   //       onEachFeature: onEachFeatureConfirm,
+   //
+   //     }).addTo(map);
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+   //     var refreshConfirm = setInterval(function(){
+   //
+   //      //console.log(boxContent);
+   //     tempLayer.removeFrom(map)
+   //     tempLayer = L.geoJSON(data,{
+   //       style: function (feature) {
+   //         return feature.properties && feature.properties.style;
+   //       },
+   //       color:'#ffff00',
+   //       onEachFeature: onEachFeatureConfirm,
+   //
+   //     }).addTo(map);
+   //
+   //     function log(ev) {
+   //      console.log(ev);
+   //     }
+   //
+   //     document.body.addEventListener('touchstart', log, false);
+   //     document.body.addEventListener('touchmove', log, false);
+   //     document.body.addEventListener('touchend', log, false);  // function reload(){
+   //     //     var container = document.getElementById("emojionearea1").value;
+   //     //     var content = container.innerHTML;
+   //     //     container.innerHTML= content;
+   //     //    //this line is to watch the result in console , you can remove it later
+   //     //     console.log("Refreshed");
+   //     // }
+   //     // // document.getElementById('emojionearea1').reload()
+   //     // reload()
+   //     console.log(document.getElementById("emojionearea1").value)
+   // },1000)
+
+
+
+
+      // document.getElementById('Confirm').onclick = function(e) {
+      //       goToDS = 1;
+      //       // document.getElementById("Identification").pause();
+      //       // document.getElementById("Identification").currentTime = 0;
+      //     setTimeout(function(){
+      //        document.getElementById("Confirm").style.display = "none";
+      //       // document.getElementById("Cancel").style.display = "none";
+      //
+      //        // document.getElementById("Download").style.display = "initial";
+      //        // document.getElementById("DownloadButton").style.display = "initial";
+      //        // document.getElementById("Download").disabled = false;
+      //        // document.getElementById("DownloadButton").disabled = false;
+      //        // document.getElementById("Download").style.opacity = "1";
+      //        // document.getElementById("DownloadButton").style.display = "1";
+      //        document.getElementById("share-download").style.display = "initial";
+      //      },200)
+      //
+      //
+      //        boxContent = document.getElementById('emojionearea1').value;
+      //        console.log(boxContent);
+      //
+      //        tempLayer.removeFrom(map);
+      //    function onEachFeatureConfirm(feature, layer) {
+      //      var popupContent = boxContent  ; //+ '    ' +dateTimeRandomID
+      //
+      //      if (feature.properties && feature.properties.popupContent) {
+      //        popupContent += feature.properties.popupContent;
+      //      }
+      //
+      //      layer.bindPopup(popupContent).addTo(map);
+      //   //   layer.bindPopup(popupContent).closePopup(); ///automatically shows the pop up!
+      //
+      //      layer.bindPopup(popupContent).openPopup(); ///automatically shows the pop up!
+      //        //  layer.updatePopup(popupContent)
+      //
+      //    }
+      //
+      //        tempLayer = L.geoJSON(data,{
+      //          style: function (feature) {
+      //            return feature.properties && feature.properties.style;
+      //          },
+      //          color:'#ffff00',
+      //          onEachFeature: onEachFeatureConfirm,
+      //
+      //        }).addTo(map);
+      //
+      //
+      //        var refreshConfirm = setInterval(function(){
+      //
+      //          boxContent = document.getElementById('emojionearea1').value;
+      //        console.log(boxContent);
+      //        tempLayer.removeFrom(map)
+      //        tempLayer = L.geoJSON(data,{
+      //          style: function (feature) {
+      //            return feature.properties && feature.properties.style;
+      //          },
+      //          color:'#ffff00',
+      //          onEachFeature: onEachFeatureConfirm,
+      //
+      //        }).addTo(map);
+      //
+      //
+      //      return boxContent
+      //    },1000)
+      //
+      //
+      //     return boxContent;
+      //   }
+
 
       document.getElementById('Cancel').onclick = function(e){
         map.doubleClickZoom.enable();
@@ -2005,7 +2260,7 @@ var boxContent;
 
             document.getElementById("Download").style.display = "none";
             document.getElementById("DownloadButton").style.display = "none";
-             document.getElementById("Confirm").style.display = "none";
+            // document.getElementById("Confirm").style.display = "none";
 
             document.getElementById('record').style.display = 'none';
             document.getElementById('enableRecording').style.display = 'none';
@@ -2262,7 +2517,7 @@ var diffTimes;
                 //to convert emojis from unicode to short name, before the data is transmitted
 
               //value of boxcontent is obtained again (was obtained in 'confirm'), in case user click on 'confirm' before filling in the box
-              boxContent = document.getElementById('emojionearea1').value;
+              boxContent = document.getElementById('emojionearea').value;
                 var boxContentToShortname = emojione.toShort(boxContent)
                 console.log(boxContentToShortname)
                 console.log(boxContent)
@@ -2329,7 +2584,7 @@ var diffTimes;
                drawnItems.clearLayers();
                tempLayer.clearLayers()
                 document.getElementById("map").style.height = "0px";
-                document.getElementById("Confirm").style.display = "none";
+            //    document.getElementById("Confirm").style.display = "none";
                 document.getElementById("Cancel").style.display = "none";
                 document.getElementById("share-download").style.display = "none";
                 document.getElementById('noAudioIOS').style.display = 'none';

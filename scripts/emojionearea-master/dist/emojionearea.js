@@ -264,20 +264,20 @@ document = window.document || {};
 
                 recent: {
                     icon: "clock3",
-                    title: "Recent",
+                    title: "",
                     emoji: ""
                 },
 
                 crops: {
                     icon: "corn",
-                    title: "Crops",
+                    title: "",
                     emoji: "green_apple apple pear tangerine lemon banana watermelon grapes strawberry melon cherries peach pineapple kiwi " +
                     "avocado tomato eggplant cucumber carrot corn hot_pepper potato sweet_potato chestnut peanuts honey_pot coconut"
                 },
 
                 animals: {
                     icon: "cow2",
-                    title: "Animals",
+                    title: "",
                     emoji: "dog cat mouse hamster rabbit fox bear panda_face koala tiger lion_face cow pig pig_nose frog monkey_face see_no_evil " +
                     "hear_no_evil speak_no_evil monkey chicken penguin bird baby_chick hatching_chick hatched_chick duck eagle owl bat wolf boar " +
                     "horse unicorn bee bug butterfly snail shell beetle ant spider spider_web turtle snake lizard scorpion crab squid octopus shrimp " +
@@ -295,7 +295,7 @@ document = window.document || {};
 
                 earth: {
                     icon: "earth_africa",
-                    title: "Earth",
+                    title: "",
                     emoji: "earth_americas earth_africa earth_asia full_moon waning_gibbous_moon last_quarter_moon " +
                     "waning_crescent_moon new_moon waxing_crescent_moon first_quarter_moon waxing_gibbous_moon new_moon_with_face " +
                     "full_moon_with_face sun_with_face first_quarter_moon_with_face last_quarter_moon_with_face crescent_moon dizzy star star2 " +
@@ -306,7 +306,7 @@ document = window.document || {};
 
                 humans: {
                     icon: "neutral_face",
-                    title: "Humans",
+                    title: "",
                     emoji: "grinning smiley smile grin laughing sweat_smile joy rofl relaxed blush innocent slight_smile upside_down " +
                     "wink relieved crazy_face star_struck heart_eyes kissing_heart kissing kissing_smiling_eyes kissing_closed_eyes yum " +
                     "stuck_out_tongue_winking_eye stuck_out_tongue_closed_eyes stuck_out_tongue money_mouth hugging nerd sunglasses " +
@@ -759,6 +759,7 @@ document = window.document || {};
                 break;
             case 'shortname':
                 str = emojione.toShort(str);
+
         }
         return str;
     }
