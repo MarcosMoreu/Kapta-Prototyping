@@ -250,6 +250,7 @@ var tilesDb = {
 
 // Script to hide audio button after first load. Run function on load, could also run on dom ready
 var isFirstTime; //var to store if the site is visited for the first time
+var oneMapCompleted; // to know if in this section this is the first map or not
 ////////////////////////////////////////////////////////      first load         /////////////////////////////////////////////////////////////////////////
 var firstLoad = function() {//fucntion to determine if the site is visited for first time
     // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
@@ -1152,7 +1153,7 @@ gps_Button.addTo(map);
 var rose = L.control.rose('rose', {position:'topleft', icon:'nautical', iSize:'medium', opacity:1});
 rose.addTo(map)
 
-///////////////messages for tile download/////////
+ ///////////////messages for tile download/////////
 googleSat.on('offline:save-start', function (data) {
     console.log('Saving ' + data.nTilesToSave + ' tiles.');
 });
@@ -1838,6 +1839,12 @@ map.on('draw:created', function (e) {
         created = true;
 console.log(created)
 
+      // if(oneMapCompleted == true){
+      //  var emptyTextbox = document.getElementsByClassName('emojionearea-editor').innerHTML
+      //  emptyTextbox.load(window.location.href + "index.html" );
+      // }
+      //$('#emojionearea-editor').load(location.href + ' #emojionearea-editor');
+      document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
       startCheckingText() // to call the function to start checking the input text
        return created & data;
 
@@ -1845,8 +1852,13 @@ console.log(created)
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //the problem with document.getElementById('emojionearea').value is that it only updates when the text box is not selected, which is as issue. TextContent methodworks
 //well, except that it does not capture emojis
-// if(created == true){
+
+//var emptyTextbox = document.getElementsByClassName('emojionearea-editor').innerHTML
+var refreshConfirm;
 var startCheckingText = function(){
+  // $('#emoji').load(' #emoji')
+
+  // document.getElementsByClassName('emojionearea-editor').innerHTML = null
   tempLayer.removeFrom(map);
     function onEachFeatureConfirm(feature, layer) {
         //  var popupContent = document.getElementById('emoji').textContent ; //+ '    ' +dateTimeRandomID
@@ -1862,7 +1874,7 @@ console.log('alt tag....'+mysrc)
 console.log(document.getElementsByClassName('emojionearea-editor').innerText)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////top
 
-      var refreshConfirm = setInterval(function(){
+         refreshConfirm = setInterval(function(){
 
 
           var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
@@ -1887,6 +1899,7 @@ console.log(document.getElementsByClassName('emojionearea-editor').innerText)
         onEachFeature: onEachFeatureConfirm,
 
       }).addTo(map);
+  return tempLayer && refreshConfirm
 }
 
 
@@ -2013,228 +2026,9 @@ document.getElementById('record').onclick = function(e){
   });
 var boxContent;
 
-// document.getElementById('tosimulateclick').onclick = function(e){
-//   map.zoomOut(1)
-// }
-
-
-
-
-// document.getElementById('Confirm').onclick = function(e) {
-//     //  goToDS = 1;
-//       // document.getElementById("Identification").pause();
-//       // document.getElementById("Identification").currentTime = 0;
-//     setTimeout(function(){
-//        document.getElementById("Confirm").style.display = "none";
-//       // document.getElementById("Cancel").style.display = "none";
-//
-//        // document.getElementById("Download").style.display = "initial";
-//        // document.getElementById("DownloadButton").style.display = "initial";
-//        // document.getElementById("Download").disabled = false;
-//        // document.getElementById("DownloadButton").disabled = false;
-//        // document.getElementById("Download").style.opacity = "1";
-//        // document.getElementById("DownloadButton").style.display = "1";
-//        document.getElementById("share-download").style.display = "initial";
-//      },200)
-//
-//
-//         //boxContent = document.getElementById('emojionearea1').value;
-//        // console.log(boxContent);
-//
-//        tempLayer.removeFrom(map);
-//    function onEachFeatureConfirm(feature, layer) {
-//      var popupContent = document.getElementById('emoji').textContent ; //+ '    ' +dateTimeRandomID
-//
-//      if (feature.properties && feature.properties.popupContent) {
-//        popupContent += feature.properties.popupContent;
-//      }
-//          var refreshConfirm = setInterval(function(){
-//
-//      layer.bindPopup(document.getElementById('emoji').textContent).addTo(map);
-//      layer.bindPopup(document.getElementById('emoji').textContent).openPopup(); ///automatically shows the pop up!
-//       // layer.updatePopup(document.getElementById('emojionearea1'))
-//     //  document.getElementById('tosimulateclickEB').click();
-// //       $(".emojionearea").emojioneArea({
-// //     inline: true
-// // });
-//
-// // $("emojionearea").emojioneArea().onclick = function(e){
-// //   console.log('ffffffffffffffffffffffffffff')
-// // };
-// // var e = $("emojionearea").emojioneArea()
-// // var e0 = e.prevObject[0];
-// //   // e0.emojioneArea.getText();
-// //   console.log(e0)
-// // console.log(e.prevObject)
-//
-// // OR
-// // $("selector2").emojioneArea();
-// // $("selector2")[0].emojioneArea.getText();
-//       //  document.getElementById('emojionearea').click()
-// // document.elementFromPoint(120, 90).click();
-// //document.getElementById("emoji").disabled = false;
-//
-// //console.log(pasteText(text))
-//       console.log(document.getElementById('emoji').textContent)
-//     },3000)
-//    }
-//
-//        tempLayer = L.geoJSON(data,{
-//          style: function (feature) {
-//            return feature.properties && feature.properties.style;
-//          },
-//          color:'#ffff00',
-//          onEachFeature: onEachFeatureConfirm,
-//
-//        }).addTo(map);
-//
-//        return boxContent;
-//      }
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////
-
-
-   //     tempLayer.removeFrom(map);
-   // function onEachFeatureConfirm(feature, layer) {
-   //   var popupContent = document.getElementById('emojionearea1').value ; //+ '    ' +dateTimeRandomID
-   //
-   //   if (feature.properties && feature.properties.popupContent) {
-   //     popupContent += feature.properties.popupContent;
-   //   }
-   //       var refreshConfirm = setInterval(function(){
-   //
-   //   layer.bindPopup(document.getElementById('emojionearea1').value).addTo(map);
-   //   layer.bindPopup(document.getElementById('emojionearea1').value).openPopup(); ///automatically shows the pop up!
-
-//          document.getElementById('myLayer').click()
-
-   //  },1000)
-   // }
-   //
-   //     tempLayer = L.geoJSON(data,{
-   //       style: function (feature) {
-   //         return feature.properties && feature.properties.style;
-   //       },
-   //       color:'#ffff00',
-   //       onEachFeature: onEachFeatureConfirm,
-   //
-   //     }).addTo(map);
-
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////
-   //     var refreshConfirm = setInterval(function(){
-   //
-   //      //console.log(boxContent);
-   //     tempLayer.removeFrom(map)
-   //     tempLayer = L.geoJSON(data,{
-   //       style: function (feature) {
-   //         return feature.properties && feature.properties.style;
-   //       },
-   //       color:'#ffff00',
-   //       onEachFeature: onEachFeatureConfirm,
-   //
-   //     }).addTo(map);
-   //
-   //     function log(ev) {
-   //      console.log(ev);
-   //     }
-   //
-   //     document.body.addEventListener('touchstart', log, false);
-   //     document.body.addEventListener('touchmove', log, false);
-   //     document.body.addEventListener('touchend', log, false);  // function reload(){
-   //     //     var container = document.getElementById("emojionearea1").value;
-   //     //     var content = container.innerHTML;
-   //     //     container.innerHTML= content;
-   //     //    //this line is to watch the result in console , you can remove it later
-   //     //     console.log("Refreshed");
-   //     // }
-   //     // // document.getElementById('emojionearea1').reload()
-   //     // reload()
-   //     console.log(document.getElementById("emojionearea1").value)
-   // },1000)
-
-
-
-
-      // document.getElementById('Confirm').onclick = function(e) {
-      //       goToDS = 1;
-      //       // document.getElementById("Identification").pause();
-      //       // document.getElementById("Identification").currentTime = 0;
-      //     setTimeout(function(){
-      //        document.getElementById("Confirm").style.display = "none";
-      //       // document.getElementById("Cancel").style.display = "none";
-      //
-      //        // document.getElementById("Download").style.display = "initial";
-      //        // document.getElementById("DownloadButton").style.display = "initial";
-      //        // document.getElementById("Download").disabled = false;
-      //        // document.getElementById("DownloadButton").disabled = false;
-      //        // document.getElementById("Download").style.opacity = "1";
-      //        // document.getElementById("DownloadButton").style.display = "1";
-      //        document.getElementById("share-download").style.display = "initial";
-      //      },200)
-      //
-      //
-      //        boxContent = document.getElementById('emojionearea1').value;
-      //        console.log(boxContent);
-      //
-      //        tempLayer.removeFrom(map);
-      //    function onEachFeatureConfirm(feature, layer) {
-      //      var popupContent = boxContent  ; //+ '    ' +dateTimeRandomID
-      //
-      //      if (feature.properties && feature.properties.popupContent) {
-      //        popupContent += feature.properties.popupContent;
-      //      }
-      //
-      //      layer.bindPopup(popupContent).addTo(map);
-      //   //   layer.bindPopup(popupContent).closePopup(); ///automatically shows the pop up!
-      //
-      //      layer.bindPopup(popupContent).openPopup(); ///automatically shows the pop up!
-      //        //  layer.updatePopup(popupContent)
-      //
-      //    }
-      //
-      //        tempLayer = L.geoJSON(data,{
-      //          style: function (feature) {
-      //            return feature.properties && feature.properties.style;
-      //          },
-      //          color:'#ffff00',
-      //          onEachFeature: onEachFeatureConfirm,
-      //
-      //        }).addTo(map);
-      //
-      //
-      //        var refreshConfirm = setInterval(function(){
-      //
-      //          boxContent = document.getElementById('emojionearea1').value;
-      //        console.log(boxContent);
-      //        tempLayer.removeFrom(map)
-      //        tempLayer = L.geoJSON(data,{
-      //          style: function (feature) {
-      //            return feature.properties && feature.properties.style;
-      //          },
-      //          color:'#ffff00',
-      //          onEachFeature: onEachFeatureConfirm,
-      //
-      //        }).addTo(map);
-      //
-      //
-      //      return boxContent
-      //    },1000)
-      //
-      //
-      //     return boxContent;
-      //   }
-
 
       document.getElementById('Cancel').onclick = function(e){
+            clearInterval(refreshConfirm)
         map.doubleClickZoom.enable();
 
 
@@ -2451,6 +2245,8 @@ var diffTimes;
 
 
   document.getElementById('share-download').onclick = function(e) {
+                clearInterval(refreshConfirm) //to stop searching for changes in the textbox
+                oneMapCompleted = true //variable to know that in the second process (if any), there was a previous one so text box is emptied
 
                 // Extract GeoJson from featureGroup
                 // var data = drawnItems.toGeoJSON();
@@ -2685,7 +2481,7 @@ var diffTimes;
 //             document.getElementById("sendFirebase").click();
 //             // document.getElementById('emojionearea1').value = '...'
 
-      return data && myLayerIsOn && files && filesLength && convertedData && blob //&& dateTimeRandomID && data
+      return data && myLayerIsOn && files && filesLength && convertedData && blob && oneMapCompleted //&& dateTimeRandomID && data
   }
 console.log(finalLayer)
 
@@ -2735,22 +2531,22 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
              console.log(finalUrlAudio)
 ////////////////////////////       CARTO POST DATA      //////////////////////////////////////////
 
-function setData() {
-    var enteredUsername = username.value;
-    var enteredDescription = description.value;
-    drawnItems.eachLayer(function (layer) {
-        var sql = "INSERT INTO data_collector (the_geom, description, name, latitude, longitude) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
-        var a = layer.getLatLng();
-        var sql2 ='{"type":"Point","coordinates":[' + a.lng + "," + a.lat + "]}'),4326),'" + 'enteredDescription' + "','" + 'enteredUsername' + "','" + a.lat + "','" + a.lng +"')";
-        var pURL = sql+sql2;
-        submitToProxy(pURL);
-        console.log("Feature has been submitted to the Proxy");
-    });
-    map.removeLayer(drawnItems);
-    drawnItems = new L.FeatureGroup();
-    console.log("drawnItems has been cleared");
-    dialog.dialog("close");
-};
+            function setData() {
+                var enteredUsername = username.value;
+                var enteredDescription = description.value;
+                drawnItems.eachLayer(function (layer) {
+                    var sql = "INSERT INTO data_collector (the_geom, description, name, latitude, longitude) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
+                    var a = layer.getLatLng();
+                    var sql2 ='{"type":"Point","coordinates":[' + a.lng + "," + a.lat + "]}'),4326),'" + 'enteredDescription' + "','" + 'enteredUsername' + "','" + a.lat + "','" + a.lng +"')";
+                    var pURL = sql+sql2;
+                    submitToProxy(pURL);
+                    console.log("Feature has been submitted to the Proxy");
+                });
+                map.removeLayer(drawnItems);
+                drawnItems = new L.FeatureGroup();
+                console.log("drawnItems has been cleared");
+                dialog.dialog("close");
+            };
 
 
 
@@ -2836,6 +2632,13 @@ function setData() {
                  document.getElementById("point").style.display = "initial";
 
                  console.log(data);
+                //document.getElementById('emoji').load(window.location.href + 'emoji');
+                // document.getElementById("emojionearea-editor").innerHTML.reload
+                  // $('classification').load(window.location.href + 'classification');
+                //window.location.load()
+
+
+                 //window.location.reload();
                  //finalLayer is added at the end as the properties are different depending on if share or download
 
                }, timeOfVideo - 300);
@@ -2849,5 +2652,6 @@ function setData() {
          }).addTo(map);
       //  finalLayer.bindPopup().openPopup()
       myLayer_Button.addTo(map)
+
         return finished
   }
