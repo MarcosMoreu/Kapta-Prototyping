@@ -1169,10 +1169,14 @@ document = window.document || {};
         .on("@button.click", function(button) {
             if (button.is(".active")) {
                 self.hidePicker();
+                console.log('emoji clicked hide')
+                moveMaptoBottom() // function defined in app.js to recenter the map (to not hide the popup with emoji menu)
             } else {
                 self.showPicker();
                 self.searchSel = null;
-                 //map.zoomOut(1);
+                console.log('emoji clicked show')
+                moveMaptoTop() // function defined in app.js to recenter the map (to not hide the popup with emoji menu)
+
                 // onfocus="blur();"
                  //self.trigger("keydown");
                  // self.keydown();

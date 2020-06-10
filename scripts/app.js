@@ -1700,6 +1700,7 @@ var  finalAreaAcres2Decimals
 var  finalLength2Decimals
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+var typeOfFeature;
 map.on('draw:created', function (e) {
        //drawnItems.completeShape();
 
@@ -1764,23 +1765,26 @@ map.on('draw:created', function (e) {
 
       ////////////////    area   //////////////
   if(type == 'polygon'){
-  // convert sq m to
-  var finalAreaHa = finalArea*0.0001
-  var finalAreaAcres = finalArea*0.000247105
-  //to remove decimals ....
-  finalAreaHa2Decimals = finalAreaHa.toFixed(2) + ' ' +'hectares'
-  finalAreaAcres2Decimals = finalAreaAcres.toFixed(2) + ' ' +'acres'
-    //  console.log(finalArea2Decimals)
-//to show the final area on the top
-      document.getElementById('showAreaHa').style.display = 'initial';
-      document.getElementById("showAreaHa").innerHTML = finalAreaHa2Decimals;
+    typeOfFeature = 'polygon'
+    // convert sq m to
+    var finalAreaHa = finalArea*0.0001
+    var finalAreaAcres = finalArea*0.000247105
+    //to remove decimals ....
+    finalAreaHa2Decimals = finalAreaHa.toFixed(2) + ' ' +'hectares'
+    finalAreaAcres2Decimals = finalAreaAcres.toFixed(2) + ' ' +'acres'
+      //  console.log(finalArea2Decimals)
+  //to show the final area on the top
+        document.getElementById('showAreaHa').style.display = 'initial';
+        document.getElementById("showAreaHa").innerHTML = finalAreaHa2Decimals;
 
-      document.getElementById('showAreaAcres').style.display = 'initial';
-      document.getElementById("showAreaAcres").innerHTML = finalAreaAcres2Decimals;
-        //script for calculating the center of the polygon and recenter the map there
+        document.getElementById('showAreaAcres').style.display = 'initial';
+        document.getElementById("showAreaAcres").innerHTML = finalAreaAcres2Decimals;
+          //script for calculating the center of the polygon and recenter the map there
   }
         ////////    length    ///////////
   if (type == 'polyline'){
+    typeOfFeature = 'polyline'
+
   //to remove decimals ....
   finalLength2Decimals = finalLength.toFixed(2) + ' ' +'meters'
     //  console.log(finalArea2Decimals)
@@ -1791,22 +1795,36 @@ map.on('draw:created', function (e) {
 
   }
         //////////////////////////////////////////
-  var boundsPolygon = drawnItems.getBounds()
-  var centerBoundsPolygon = boundsPolygon.getCenter()
-        ///////////////
-        console.log(centerBoundsPolygon)
 
-  var mapNewBounds =  map.getBounds();
-
-  map.fitBounds(drawnItems.getBounds(),{
-                     //  maxZoom:30,
-       paddingBottomRight: [0, 0]
-   })
           //script to avoid zoom to unavailable tile
-  if (drawingPoint ==true){
-    map.zoomOut(6)
+//   if (drawingPoint ==true){
+//     typeOfFeature = 'point'
+//
+//     map.zoomOut(6)
+//
+//   }
+//
+// //to recenter the map to the center of the feature
+//     if(typeOfFeature == 'polygon' || typeOfFeature == 'polyline'){
+//       var boundsOfFeature = drawnItems.getBounds()
+//       centerOfFeature = boundsOfFeature.getCenter();
+//     //  var centerOfFeatureLatLong = L.latLng(centerOfFeature)
+//       console.log('centerOfFeatureLatLong   ' + centerOfFeature)
+//       map.fitBounds(boundsOfFeature,{
+//                          //  maxZoom:30,
+//            paddingBottomRight: [0, 0]
+//        })
+//      map.panTo(new centerOfFeature);
+//        //map.setView(centerOfFeature,map.getZoom())
+//
+//     }else{
+//       var centerOfFeature = data.getCenter();
+//       console.log('centerOfFeature' + centerOfFeature)
+//       map.panTo(centerOfFeature);
+//
+//     }
 
-  }
+
         //  map.setView(centerBoundsPolygon);
         // var polygonCenter = drawnItems.getCenter();
         // console.log(polygonCenter)
@@ -1840,6 +1858,18 @@ map.on('draw:created', function (e) {
           onEachFeature: onEachFeatureBlank,
 
         }).addTo(map);
+//to locate the feature at the center of the map. This must go right after creating the geojson file tempLayer
+        var boundsPolygon = drawnItems.getBounds()
+        var centerBoundsPolygon = boundsPolygon.getCenter()
+              ///////////////
+              console.log(centerBoundsPolygon)
+
+        var mapNewBounds =  map.getBounds();
+
+        map.fitBounds(drawnItems.getBounds(),{
+                           //  maxZoom:30,
+             paddingBottomRight: [0, 0]
+         })
         //created = true;
 console.log(created)
 
@@ -1853,12 +1883,38 @@ console.log(created)
       console.log(document.getElementsByClassName('emojionearea').value)
 
       startCheckingText() // to call the function to start checking the input text
-       return created & data;
+       return created & data && typeOfFeature;
 
    });
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-//the problem with document.getElementById('emojionearea').value is that it only updates when the text box is not selected, which is as issue. TextContent methodworks
-//well, except that it does not capture emojis
+//functions to move map up/down when emoji menu is opened/closed ONLY IN 'SMALL' SCREENS. The funciton is called in emojionearea.js
+var screenwidth = screen.width
+var screenheight = screen.height
+console.log('screenheight' + screenheight)
+
+var moveMaptoTop = function(){
+
+  var top75p = screenheight*0.75
+  var bounds = map.getBounds()
+  var centerPoint = [screenwidth/2,top75p]
+  var targetLatLng = map.containerPointToLatLng(centerPoint);
+
+  if(screenheight < 700){
+    map.panTo(targetLatLng);
+  }
+}
+var moveMaptoBottom = function(){
+  var top50p = screenheight*0.25
+  var bounds = map.getBounds()
+  var centerPoint = [screenwidth/2,top50p]
+  var targetLatLng = map.containerPointToLatLng(centerPoint);
+
+  if(screenheight < 700){
+    map.panTo(targetLatLng);
+  }
+}
+////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 //var emptyTextbox = document.getElementsByClassName('emojionearea-editor').innerHTML
 var refreshPopup;
@@ -1886,7 +1942,8 @@ console.log(document.getElementsByClassName('emojionearea-editor').innerText)
 
          refreshPopup = setInterval(function(){
 
-
+ //the problem with document.getElementById('emojionearea').value is that it only updates when the text box is not selected, which is as issue. TextContent methodworks
+ //well, except that it does not capture emojis
           var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
           console.log(emojioneareaeditor)
           var emojioneareaeditor0 = emojioneareaeditor[0]
@@ -2266,6 +2323,8 @@ var diffTimes;
 
 
   document.getElementById('share-download').onclick = function(e) {
+                typeOfFeature = null;
+                drawingPoint = false //to reset value for this session
                 clearInterval(refreshPopup) //to stop searching for changes in the textbox
               //  oneMapCompleted = true //variable to know that in the second process (if any), there was a previous one so text box is emptied
 
