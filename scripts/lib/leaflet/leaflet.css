@@ -465,11 +465,12 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 
 /* popup */
-
+/* @width: 'Math.round( screen.width * @{0.3})'; */
 .leaflet-popup {
 	position: absolute;
 	text-align: center;
 	margin-bottom: 20px;
+	max-width:180px; /* to avoid that when popup goes up the popup is covered by easybuttons*/
 	}
 .leaflet-popup-content-wrapper {
 	padding: 1px;
@@ -500,6 +501,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	margin-left: -20px;
 	overflow: hidden;
 	pointer-events: none;
+	
 	}
 .leaflet-popup-tip {
 	width: 17px;

@@ -1870,6 +1870,14 @@ map.on('draw:created', function (e) {
                            //  maxZoom:30,
              paddingBottomRight: [0, 0]
          })
+         console.log(typeOfFeature)
+
+  // to avoid to many zoom when a point is created >> zoom +2
+     if(typeOfFeature != 'polygon' && typeOfFeature != 'polyline'){
+       map.zoomOut(2)
+
+     }
+
         //created = true;
 console.log(created)
 
@@ -1889,6 +1897,7 @@ console.log(created)
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //functions to move map up/down when emoji menu is opened/closed ONLY IN 'SMALL' SCREENS. The funciton is called in emojionearea.js
 var screenwidth = screen.width
+var screenwithWithMargins = screenwidth*0.3
 var screenheight = screen.height
 console.log('screenheight' + screenheight)
 
@@ -2106,6 +2115,7 @@ var boxContent;
 
 
       document.getElementById('Cancel').onclick = function(e){
+        typeOfFeature = null; //to refresh the var
             clearInterval(refreshPopup)
         map.doubleClickZoom.enable();
 
@@ -2542,6 +2552,8 @@ var diffTimes;
             //     type: "text/plain",
             //     });
 //////////////////////////////////
+          //to close emoji menu in case user left it open
+          document.getElementsByClassName('emojionearea-button-close').click()
 
           //to convert geojson into File format
             dataFile = new File([dataStringified], nameGeoJSON, {
