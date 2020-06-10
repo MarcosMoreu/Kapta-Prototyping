@@ -475,11 +475,14 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	padding: 1px;
 	text-align: left;
 	border-radius: 12px;
+	min-height:51px; /* to make the pop up higher even when it is empty*/
+
 	}
 .leaflet-popup-content {
 	margin: 13px 19px;
 	line-height: 1.4;
 	font-size:17px; /*to set the font size inside the pop up*/
+
 
 	}
 	/* .leaflet-popup-content text{

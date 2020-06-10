@@ -250,7 +250,7 @@ var tilesDb = {
 
 // Script to hide audio button after first load. Run function on load, could also run on dom ready
 var isFirstTime; //var to store if the site is visited for the first time
-var oneMapCompleted; // to know if in this section this is the first map or not
+//var oneMapCompleted; // to know if in this section this is the first map or not
 ////////////////////////////////////////////////////////      first load         /////////////////////////////////////////////////////////////////////////
 var firstLoad = function() {//fucntion to determine if the site is visited for first time
     // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
@@ -1458,6 +1458,7 @@ var boxContent;
 var featureType;
 var drawingPoint = false
   document.getElementById('point').onclick = function(e){
+    recordedBlobs = null; //to empty recorded blobs from previous map in this session
     featureType = 'point';
       map.doubleClickZoom.disable();
 
@@ -1486,6 +1487,7 @@ var drawingPoint = false
   };
 
   document.getElementById('polyline').onclick = function(e){
+    recordedBlobs = null;
     featureType = 'polyline';
     map.doubleClickZoom.disable();
 
@@ -1526,6 +1528,7 @@ var drawingPoint = false
   };
 
   document.getElementById('polygon').onclick = function(e){
+        recordedBlobs = null;
         featureType = 'polygon'
         map.doubleClickZoom.disable();
 
@@ -1700,6 +1703,7 @@ var  finalLength2Decimals
 map.on('draw:created', function (e) {
        //drawnItems.completeShape();
 
+       created = true;
 
      drawPolygon.disable();
     //   drawPolygon.enable();
@@ -1836,7 +1840,7 @@ map.on('draw:created', function (e) {
           onEachFeature: onEachFeatureBlank,
 
         }).addTo(map);
-        created = true;
+        //created = true;
 console.log(created)
 
       // if(oneMapCompleted == true){
@@ -1844,7 +1848,10 @@ console.log(created)
       //  emptyTextbox.load(window.location.href + "index.html" );
       // }
       //$('#emojionearea-editor').load(location.href + ' #emojionearea-editor');
-      document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
+      document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null   // to empty text box
+      document.getElementsByClassName('emojionearea-wrapper').innerHTML = null   // to empty text box
+      console.log(document.getElementsByClassName('emojionearea').value)
+
       startCheckingText() // to call the function to start checking the input text
        return created & data;
 
@@ -1854,27 +1861,30 @@ console.log(created)
 //well, except that it does not capture emojis
 
 //var emptyTextbox = document.getElementsByClassName('emojionearea-editor').innerHTML
-var refreshConfirm;
+var refreshPopup;
 var startCheckingText = function(){
+  var popupContent = '...'  ;
   // $('#emoji').load(' #emoji')
-
+  //console.log(document.getElementsByClassName('emojionearea').value)
+//document.getElementsByClassName('emojionearea').value = '...'
   // document.getElementsByClassName('emojionearea-editor').innerHTML = null
-  tempLayer.removeFrom(map);
+
+    tempLayer.removeFrom(map);
     function onEachFeatureConfirm(feature, layer) {
         //  var popupContent = document.getElementById('emoji').textContent ; //+ '    ' +dateTimeRandomID
-          if (feature.properties && feature.properties.popupContent) {
-            popupContent += feature.properties.popupContent;
-          }
+          // if (feature.properties && feature.properties.popupContent) {
+          //   popupContent += feature.properties.popupContent;
+          // }
 /////////////////////////////////////////////////////////lllllllllllllllllllllllllllllllllllllllllllllllllllkjjjjjjjjjjjjjjjjjjjjjjjjjtop
-var someimage = document.getElementById('span6');
-var myimg = someimage.getElementsByTagName('img')[1];
-var mysrc = myimg.alt;
-console.log('alt tag....'+mysrc)
+// var someimage = document.getElementById('span6');
+// var myimg = someimage.getElementsByTagName('img')[1];
+// var mysrc = myimg.alt;
+// console.log('alt tag....'+mysrc)
 ////////////ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 console.log(document.getElementsByClassName('emojionearea-editor').innerText)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////top
 
-         refreshConfirm = setInterval(function(){
+         refreshPopup = setInterval(function(){
 
 
           var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
@@ -1884,9 +1894,19 @@ console.log(document.getElementsByClassName('emojionearea-editor').innerText)
           var emojioneareaeditor0innerHTML = emojioneareaeditor0.innerHTML       /////////////////////////////////////////////11111111111111111111111ddddddddddddddddddddddddddddddESTE!!!
           console.log(emojioneareaeditor0innerHTML)
           // emojioneareaeditor0innerHTMLresized = emojioneareaeditor0innerHTML.width = '20'
-          emojioneareaeditor.heigth = '20'
-        layer.bindPopup(emojioneareaeditor0innerHTML).addTo(map);
-        layer.bindPopup(emojioneareaeditor0innerHTML).openPopup(); ///automatically shows the pop up!
+        //  emojioneareaeditor.heigth = '20';
+
+console.log(emojioneareaeditor[0].textContent.lenght)
+          if(emojioneareaeditor0innerHTML.length == 0){ //to show '...' while the textbox is empty of characters (both letter and emojis)
+            layer.bindPopup(popupContent).addTo(map);
+            layer.bindPopup(popupContent).openPopup(); ///automatically shows the pop up!
+            console.log('innerhtml is nullllllllllllllllllllllllllll22222222')
+          }else{
+            layer.bindPopup(emojioneareaeditor0innerHTML).addTo(map);
+            layer.bindPopup(emojioneareaeditor0innerHTML).openPopup(); ///automatically shows the pop up!
+            console.log('innerhtml is not nulllllllllllllll')
+          }
+
 
      },3000)
   }
@@ -1899,7 +1919,8 @@ console.log(document.getElementsByClassName('emojionearea-editor').innerText)
         onEachFeature: onEachFeatureConfirm,
 
       }).addTo(map);
-  return tempLayer && refreshConfirm
+      console.log(tempLayer)
+  return tempLayer && refreshPopup
 }
 
 
@@ -1959,7 +1980,7 @@ console.log(isOnlineGlobal)
 document.getElementById('record').onclick = function(e){
           console.log('clicked manual' + new Date)
           console.log(created)
-
+          clearInterval(refreshPopup) //stop checking for changes in the textbox whiele audio recording on
               if(recording==false){
                 document.getElementById('voiceGif').play()
                 this.style.backgroundColor = 'yellow';
@@ -1981,7 +2002,6 @@ document.getElementById('record').onclick = function(e){
                   // document.getElementById('voiceGif').style.width = width;
                   // document.getElementById('voiceGif').style.height = '40px';
                   stopAudioAutomatically();
-
             }
             if(recording==true){
 
@@ -1998,6 +2018,7 @@ document.getElementById('record').onclick = function(e){
                 // document.getElementById('Confirm').disabled = false;
                 // document.getElementById('Confirm').style.opacity = '1';
                 audioStoppedManually = true
+                startCheckingText() //to start checking if changes in text box when audio stops
 
             }
 
@@ -2028,7 +2049,7 @@ var boxContent;
 
 
       document.getElementById('Cancel').onclick = function(e){
-            clearInterval(refreshConfirm)
+            clearInterval(refreshPopup)
         map.doubleClickZoom.enable();
 
 
@@ -2037,7 +2058,7 @@ var boxContent;
              drawnItems.clearLayers();
 
 
-            map.zoomOut(8);
+             map.zoomOut(1);
              drawingPoint =false;
              if(isIOS == false){
                recordedVideo.pause();
@@ -2245,8 +2266,8 @@ var diffTimes;
 
 
   document.getElementById('share-download').onclick = function(e) {
-                clearInterval(refreshConfirm) //to stop searching for changes in the textbox
-                oneMapCompleted = true //variable to know that in the second process (if any), there was a previous one so text box is emptied
+                clearInterval(refreshPopup) //to stop searching for changes in the textbox
+              //  oneMapCompleted = true //variable to know that in the second process (if any), there was a previous one so text box is emptied
 
                 // Extract GeoJson from featureGroup
                 // var data = drawnItems.toGeoJSON();
@@ -2481,7 +2502,7 @@ var diffTimes;
 //             document.getElementById("sendFirebase").click();
 //             // document.getElementById('emojionearea1').value = '...'
 
-      return data && myLayerIsOn && files && filesLength && convertedData && blob && oneMapCompleted //&& dateTimeRandomID && data
+      return data && myLayerIsOn && files && filesLength && convertedData && blob// && oneMapCompleted //&& dateTimeRandomID && data
   }
 console.log(finalLayer)
 
@@ -2595,21 +2616,21 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
         document.getElementById('DownloadButton').style.display = 'none';
 
         document.getElementById('Downloaded').style.display = 'initial';
+        document.getElementById('Download').setAttribute('href', 'data:' + convertedData);
+        //document.getElementById('Download').setAttribute('href', 'data:' + convertedData + convertedText );
+        console.log(convertedData)
 
+        document.getElementById('Download').setAttribute('download',dateTimeRandomID);
 
 
         document.body.style.backgroundColor = "white";
 
       ////////////////////////  TRANSMISSION ////////////////////////////////////////
       //  var convertedDataBlob = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(recordedBlobs));
-      finished = true;
+       finished = true;
 
                setTimeout(function(){
-                 document.getElementById('Download').setAttribute('href', 'data:' + convertedData);
-                 //document.getElementById('Download').setAttribute('href', 'data:' + convertedData + convertedText );
-                 console.log(convertedData)
 
-                 document.getElementById('Download').setAttribute('download',dateTimeRandomID);
                  document.getElementById('Downloaded').style.display = 'none';
                  document.getElementById('uploading').style.display = 'none'
                  document.getElementById('progress').style.display = 'none'
@@ -2641,17 +2662,19 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
                  //window.location.reload();
                  //finalLayer is added at the end as the properties are different depending on if share or download
 
-               }, timeOfVideo - 300);
+                 finalLayer = L.geoJSON(data,{
+                   style: function (feature) {
+                     return feature.properties && feature.properties.style;
+                   },
+                   color:'#0CACDF',
+                   onEachFeature: onEachFeatureAudioLocalStorage,
+                 }).addTo(map);
+              //  finalLayer.bindPopup().openPopup()
 
-         finalLayer = L.geoJSON(data,{
-           style: function (feature) {
-             return feature.properties && feature.properties.style;
-           },
-           color:'#0CACDF',
-           onEachFeature: onEachFeatureAudioLocalStorage,
-         }).addTo(map);
-      //  finalLayer.bindPopup().openPopup()
-      myLayer_Button.addTo(map)
+               }, timeOfVideo - 300);
+               myLayer_Button.addTo(map)
+               //recordedBlobs = null
+
 
         return finished
   }
