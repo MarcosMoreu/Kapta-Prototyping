@@ -1170,13 +1170,14 @@ document = window.document || {};
             if (button.is(".active")) {
                 self.hidePicker();
                 console.log('emoji clicked hide')
-                moveMaptoBottom() // function defined in app.js to recenter the map (to not hide the popup with emoji menu)
+                // moveMaptoBottom() // function defined in app.js to recenter the map (to not hide the popup with emoji menu)
             } else {
                 self.showPicker();
                 self.searchSel = null;
                 console.log('emoji clicked show')
+                if(alreadyMovedUp == false){
                 moveMaptoTop() // function defined in app.js to recenter the map (to not hide the popup with emoji menu)
-
+                }
                 // onfocus="blur();"
                  //self.trigger("keydown");
                  // self.keydown();
@@ -1190,6 +1191,9 @@ document = window.document || {};
 
             }
         })
+        // .on('@map.click',function(e){
+        //   self.hidePicker();
+        // })
 //////////////////////////////////////////////////////////////////////////////
         .on("@!paste", function(editor, event) {
 
