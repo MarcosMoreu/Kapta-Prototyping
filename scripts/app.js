@@ -42,7 +42,7 @@ return planetKey && sentinelKey && firebaseKey
   }
 
 };
-  xhr2.open("GET", 'hidden.php', true);
+  xhr2.open("GET", '../hidden.php', true);
   xhr2.send();
 
   var planetKey ;
@@ -2376,6 +2376,7 @@ var blob;
 var dateTimeRandomID;
 var timeFinish;
 var diffTimes;
+var geometryCenter;
 
 
   document.getElementById('share-download').onclick = function(e) {
@@ -2430,18 +2431,64 @@ var diffTimes;
               }else{
                 distanceObfTrunc = 'Location not recorded';
               }
-              ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
                 //here we combine datetime with randomID
                 dateTimeRandomID ='Date&time: '+ dateTime+' RandomID:'+randomID;
                 dateTimeRandomID.toString();
                 //console.log(dateTimeRandomID);
+              //  console.log(data)
 
                 data = drawnItems.toGeoJSON();
                 //The coordinate reference system for all GeoJSON coordinates is a  geographic coordinate reference system, using the World Geodetic
                 //System 1984 (WGS 84) [WGS84] datum, with longitude and latitude units of decimal degrees.
+                ////////////////////////////////    script to store the center of the feature  /////////////////
+                if(featureType == 'point'){
+                  var boundsPoint = drawnItems.getBounds() //we convert point to have the same format as in lines and polygon's centers
+                  var centerPoint = boundsPoint.getCenter()
+                //  console.log(centerPolyline)
+                  var centerPointLat = centerPoint.lat
+                //  console.log(centerPolylineLat)
+                  var centerPointLng = centerPoint.lng
+                //  console.log(centerPolylineLng)
+                  var centerPointMarker = L.marker([centerPointLat,centerPointLng])
+                //  console.log(centerPolylineMarker)
+                  geometryCenter = centerPointMarker.toGeoJSON()
+                  console.log(geometryCenter )
+                }
 
+                if(featureType == 'polyline'){
+                //   var boundsPolyline = drawnItems.getBounds()
+                //   geometryCenter = boundsPolyline.getCenter()
+                // // geometryCenter == L.latLng(drawnItems);
+                //   console.log(geometryCenter )
+                var boundsPolyline = drawnItems.getBounds()
+                var centerPolyline = boundsPolyline.getCenter()
+              //  console.log(centerPolyline)
+                var centerPolylineLat = centerPolyline.lat
+              //  console.log(centerPolylineLat)
+                var centerPolylineLng = centerPolyline.lng
+              //  console.log(centerPolylineLng)
+                var centerPolylineMarker = L.marker([centerPolylineLat,centerPolylineLng])
+              //  console.log(centerPolylineMarker)
+                geometryCenter = centerPolylineMarker.toGeoJSON()
+                console.log(geometryCenter )
+
+                }
+                if(featureType == 'polygon'){
+                  var boundsPolygon = drawnItems.getBounds()
+                  var centerPolygon = boundsPolygon.getCenter()
+                //  console.log(centerPolygon)
+                  var centerPolygonLat = centerPolygon.lat
+              //    console.log(centerPolygonLat)
+                  var centerPolygonLng = centerPolygon.lng
+              //    console.log(centerPolygonLng)
+                  var centerPolygonMarker = L.marker([centerPolygonLat,centerPolygonLng])
+              //    console.log(centerPolygonMarker)
+                  geometryCenter = centerPolygonMarker.toGeoJSON()
+                  console.log(geometryCenter )
+
+                }
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////
                 var allLandUses = [1]
                 //land uses array filtered.
                 var allLandUsesFiltered = allLandUses.filter(noNull => noNull != null);
@@ -2471,6 +2518,7 @@ var diffTimes;
                   audioAvailable = false
                 }
                 var propertiesGeoJSON = {
+                  'geometryCenter':geometryCenter,
                   'landUses':boxContentToString,
                   'landUsesEmoji':boxContent,
                   'audioAvailable':audioAvailable,
