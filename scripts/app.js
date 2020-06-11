@@ -1469,7 +1469,8 @@ var drawingPoint = false
   document.getElementById('point').onclick = function(e){
     if(isIOS == false){
       recordedBlobs = null; //to empty recorded blobs from previous map in this session
- }
+    }
+
     featureType = 'point';
       map.doubleClickZoom.disable();
 
@@ -1490,7 +1491,15 @@ var drawingPoint = false
             document.getElementById("point").style.display = "none";
 
             document.getElementById("goBack2").style.display = "initial";
-          },200)
+          //  document.getElementById('DrawInstruction').style.display = 'initial';
+
+          },200);
+          // setTimeout(function(){ //to remove the Draw instruction after X seconds
+          //   document.getElementById('DrawInstruction').style.display = 'none';
+          //
+          // },2200);
+
+
           //  document.getElementById("deletePoint").style.display = "initial";
           //  document.getElementById("deleteAllVertexs").style.display = "initial";
       drawingPoint = true;
@@ -1535,10 +1544,19 @@ var drawingPoint = false
             document.getElementById("deleteLastVertexLine").style.display = "initial";
             document.getElementById("deleteAllVertexsLine").style.display = "initial";
             document.getElementById('completeFeature').style.display = 'initial';
+          //   document.getElementById('DrawInstruction').style.display = 'initial';
+          //
+           },200)
+          //
+          // setTimeout(function(){ //to remove the Draw instruction after X seconds
+          //   document.getElementById('DrawInstruction').style.display = 'none';
+          //
+          // },2200);
 
-          },200)
+
       return featureType;
   };
+
 
   document.getElementById('polygon').onclick = function(e){
         if(isIOS == false){
@@ -1579,8 +1597,14 @@ var drawingPoint = false
                 document.getElementById("deleteLastVertex").style.display = "initial";
                 document.getElementById("deleteAllVertexs").style.display = "initial";
                 document.getElementById('completeFeature').style.display = 'initial';
+                // document.getElementById('DrawInstruction').style.display = 'initial';
 
-              },200)
+              },200);
+
+              // setTimeout(function(){ //to remove the Draw instruction after X seconds
+              //   document.getElementById('DrawInstruction').style.display = 'none';
+              //
+              // },2200);
           return featureType;
   };
 
