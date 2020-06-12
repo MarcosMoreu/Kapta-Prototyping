@@ -312,10 +312,49 @@ if(lastPositionStoredLOCALLY != null){
 lastPositionStoredLOCALLY = lastPositionStoredLOCALLY.split(',')  // to convert string to array
 console.log(lastPositionStoredLOCALLY[0])
 }
-//to center map, depending on if location was stored.
 
+// function to get coordinates and zoom level from URL, and then use the zoom and center variables to center the map if url != original
+var mappos = L.Permalink.getMapLocation();
+var getUrl = window.location.href
+// console.log(getUrl)
+var getUrlLength = getUrl.length
+// console.log(getUrlLength)
+var lastPositionUrl = getUrl[getUrlLength-1]
+// console.log(lastPositionUrl)
+// console.log(sameSession)
+var mySubString = getUrl.substring(
+  getUrl.lastIndexOf("#") + 1,
+  getUrl.lastIndexOf("z")
+);
+var mySubStringArray = mySubString.split(',');
+// console.log(mySubString)
+// console.log(mySubStringArray)
 
-if(lastPositionStoredLOCALLY==null){
+var center = [mySubStringArray[0],mySubStringArray[1]];
+var zoom = mySubStringArray[2];
+console.log(center + '   ' + zoom)
+//////////////////////////////to center map, depending on if location was stored, or if url has coordinates ////////////////////////////////
+
+//to check if the url contains coordinates (z is last possition)
+if(lastPositionUrl == 'z' && sameSession == false){
+  console.log('map centered as if URL with coordinates')
+
+  var center = [mySubString[0],mySubString[1]];
+  var zoom = mySubString[2];
+  var map = L.map('map',{
+          editable:true,
+          //center: [lastPositionStoredLOCALLY[0],lastPositionStoredLOCALLY[1]],
+          center: center,
+          zoom: zoom,
+          // zoom: 10,    /////////what is the most appropriate???/
+          minZoom:3,
+          maxZoom:21,
+          zoomControl:false,
+         attributionControl:false
+        });
+
+}else if(lastPositionStoredLOCALLY == null){
+  console.log('map centered as if not last position')
 var map = L.map('map',{
         editable:true,
         center: [18,20],
@@ -325,27 +364,31 @@ var map = L.map('map',{
         zoomControl:false,
        attributionControl:false
       });
-}
-else{
-  // console.log(lastPositionStoredLOCALLY)
-  var mappos = L.Permalink.getMapLocation();
-console.log(mappos.center)
+}else{
+  console.log('map centered as if YES last position')
+
   var map = L.map('map',{
+
           editable:true,
-          //center: [lastPositionStoredLOCALLY[0],lastPositionStoredLOCALLY[1]],
-          center: mappos.center,
-          zoom: mappos.zoom,
-          // zoom: 10,    /////////what is the most appropriate???/
+          center: [lastPositionStoredLOCALLY[0],lastPositionStoredLOCALLY[1]],
+          // center: mappos.center,
+          // zoom: mappos.zoom,
+          zoom: 10,    /////////what is the most appropriate???/
           minZoom:3,
           maxZoom:21,
           zoomControl:false,
          attributionControl:false
         });
 }
+L.Permalink.setup(map);
 console.log(map.getZoom())
 console.log(map.getCenter())
 
-L.Permalink.setup(map);
+console.log(mappos.center)
+
+  // console.log(lastPositionStoredLOCALLY)
+
+
 
 // //create a callback function that sets the hash
 // var updateUrlHash = function () {
@@ -2387,13 +2430,14 @@ function onEachFeatureAudioLocalStorage(feature, layer) { // function duplicated
 // }
 
 ////////////////////////////////////////////      Download     /////////////////////////////////////////////////////////////////////////////////////////////
-var  convertedData;
+var convertedData;
 var data;
 var dataGeometry;
 var dataGeometry;
 var blob;
 var dateTimeRandomID;
 var timeFinish;
+var sameSession; //to know if user has already mapped in this session
 var diffTimes;
 var geometryCenter;
 var centerPointLat;
@@ -2404,10 +2448,13 @@ var centerPolygonMarker;
 
 
   document.getElementById('share-download').onclick = function(e) {
+                sameSession = true;
                 alreadyMovedUp = false;
                 typeOfFeature = null;
                 drawingPoint = false //to reset value for this session
                 clearInterval(refreshPopup) //to stop searching for changes in the textbox
+                var getUrl = window.location.href
+                console.log(getUrl)
               //  oneMapCompleted = true //variable to know that in the second process (if any), there was a previous one so text box is emptied
 
                 // Extract GeoJson from featureGroup
@@ -2683,7 +2730,7 @@ var centerPolygonMarker;
           //
           // });
         console.log(document.getElementsByClassName('emojibtn'))
-
+        featureType = null; //to avoid error of length not recognised when on map click
           //to convert geojson into File format
             dataFile = new File([dataStringified], nameGeoJSON, {
                 type: "application/json",
@@ -2702,14 +2749,14 @@ var centerPolygonMarker;
 //             document.getElementById("sendFirebase").click();
 //             // document.getElementById('emojionearea1').value = '...'
 
-      return data && myLayerIsOn && files && filesLength && convertedData && blob && centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
+      return data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType && centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
   }
 console.log(finalLayer)
 
 
 /////////////////////////////////////////  screenS SHARE-DOWNLOAD  /////////////////////////////////////
 var timeOfVideo; //variable to define time of video based on OS. For some reason, is iOS takes longer to play
-var geojson = '{\"type\":\"Point\",\"coordinates\":[ 66,10 ]}'
+//var geojson = '{\"type\":\"Point\",\"coordinates\":[ 66,10 ]}'
 
 if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
   document.getElementById('shareWorldButton').onclick = function(e){
@@ -2771,16 +2818,16 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
               console.log(data)
               console.log("setdata function called");
 
-                var enteredDescription = 'descriptiontest';
-                var enteredUsername = 'usernametest';
-                var lat = '40'
-                var lng = '45';
+                // var enteredDescription = 'descriptiontest';
+                // var enteredUsername = 'usernametest';
+                // var lat = '40'
+                // var lng = '45';
                 dataGeometry = data.features[0].geometry
                 console.log(dataGeometry)
                 var dataGeometryString = JSON.stringify(dataGeometry)
                 console.log(dataGeometryString)
 
-console.log(geojson)
+//console.log(geojson)
 //NOTE THAT  this doesn't work:         ##############################################################################
 // var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON( '{"type":"Point","coordinates":[-0.090637,51.695544]}'),4326))"  , must be like that {\"type\":\"Point\",\"coordinates\":[ 45,11 ]}
 //var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON(dataGeometryString),4326))"
