@@ -1053,6 +1053,7 @@ function findBuffer(position) {
 console.log(currentLocation[0])
 
 var locationFound=false;
+var audioRecorded = false;
 //script to update color of gps button
 
 var circleGT250
@@ -1822,6 +1823,8 @@ map.on('draw:created', function (e) {
         document.getElementById("completeFeature").style.display = "none";
 
         document.getElementById("share-download").style.display = "initial";
+        document.getElementById("share-download").style.opacity = "0.35";//to disable button until user adds attributes, either with audio or text
+        document.getElementById("share-download").disabled = true;
         // document.getElementById("Confirm").style.display = "initial";
         document.getElementById("Cancel").style.display = "initial";
 
@@ -2072,10 +2075,17 @@ console.log(emojioneareaeditor[0].textContent.lenght)
             layer.bindPopup(popupContent).addTo(map);
             layer.bindPopup(popupContent).openPopup(); ///automatically shows the pop up!
             console.log('innerhtml is nullllllllllllllllllllllllllll22222222')
+
+            if(audioRecorded == false){
+            document.getElementById("share-download").style.opacity = "0.35";//to disable button until user adds attributes, either with audio or text
+            document.getElementById("share-download").disabled = true;
+            }
           }else{
             layer.bindPopup(emojioneareaeditor0innerHTML).addTo(map);
             layer.bindPopup(emojioneareaeditor0innerHTML).openPopup(); ///automatically shows the pop up!
             console.log('innerhtml is not nulllllllllllllll')
+            document.getElementById("share-download").style.opacity = "1";//to disable button until user adds attributes, either with audio or text
+            document.getElementById("share-download").disabled = false;
           }
 
 
@@ -2151,6 +2161,7 @@ console.log(isOnlineGlobal)
 document.getElementById('record').onclick = function(e){
           console.log('clicked manual' + new Date)
           console.log(created)
+
           //clearInterval(refreshPopup) //stop checking for changes in the textbox whiele audio recording on
               if(recording==false){
                 document.getElementById('voiceGif').play()
@@ -2176,6 +2187,11 @@ document.getElementById('record').onclick = function(e){
             }
             if(recording==true){
 
+                audioRecorded = true;
+              //to activate share-download button when audio is recorded
+                document.getElementById("share-download").style.opacity = "1";
+                document.getElementById("share-download").disabled = false;
+
                 this.style.backgroundColor = 'white';
                 document.getElementById('voiceGif').pause()
 
@@ -2196,6 +2212,7 @@ document.getElementById('record').onclick = function(e){
              document.getElementById('gum').style.display = 'none';
              document.getElementById('recorded').style.display = 'none';
              document.getElementById('echoCancellation').style.display = 'none';
+      return audioRecorded
  }
 
 
@@ -2221,6 +2238,7 @@ var boxContent;
 
       document.getElementById('Cancel').onclick = function(e){
         alreadyMovedUp = false;
+        audioRecorded = false;
         typeOfFeature = null; //to refresh the var
             clearInterval(refreshPopup)
         map.doubleClickZoom.enable();
@@ -2450,6 +2468,7 @@ var centerPolygonMarker;
   document.getElementById('share-download').onclick = function(e) {
                 sameSession = true;
                 alreadyMovedUp = false;
+                audioRecorded = false;
                 typeOfFeature = null;
                 drawingPoint = false //to reset value for this session
                 clearInterval(refreshPopup) //to stop searching for changes in the textbox
