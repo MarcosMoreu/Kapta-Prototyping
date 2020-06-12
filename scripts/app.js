@@ -328,18 +328,35 @@ var map = L.map('map',{
 }
 else{
   // console.log(lastPositionStoredLOCALLY)
-
+  var mappos = L.Permalink.getMapLocation();
+console.log(mappos.center)
   var map = L.map('map',{
           editable:true,
-          center: [lastPositionStoredLOCALLY[0],lastPositionStoredLOCALLY[1]],
-          zoom: 10,    /////////what is the most appropriate???/
+          //center: [lastPositionStoredLOCALLY[0],lastPositionStoredLOCALLY[1]],
+          center: mappos.center,
+          zoom: mappos.zoom,
+          // zoom: 10,    /////////what is the most appropriate???/
           minZoom:3,
           maxZoom:21,
           zoomControl:false,
          attributionControl:false
         });
 }
+console.log(map.getZoom())
+console.log(map.getCenter())
 
+L.Permalink.setup(map);
+
+// //create a callback function that sets the hash
+// var updateUrlHash = function () {
+//     //this is bound to the map, so:
+//     var zoom = map.getZoom();
+//     var lonLat = map.getCenter()
+//     window.location.hash = zoom + '/' + lonLat.lat + '/' + lonLat.lon;
+// }
+//
+// //register the moveend event on the map (also catches zoomend)
+// map.events.register('moveend', map, updateUrlHash);
 
 
 // function addPreviousPolygons(){
@@ -477,36 +494,36 @@ var loadBasemaps = function(){
 }
 /////////////////////////////////////       CARTO    ADD TO MAP   //////////////////////////////////////////////
 
-// Add Data from CARTO using the SQL API
-// Declare Variables
-// Create Global Variable to hold CARTO points
-var cartoDBPoints = null;
-
-// Set your CARTO Username
-var cartoDBusername = "marcosmoreu";
-
-// Write SQL Selection Query to be Used on CARTO Table
-// Name of table is 'data_collector'
-var sqlQuery = "SELECT * FROM data_collector";
-
-// Get CARTO selection as GeoJSON and Add to Map
-function getGeoJSON(){
-  $.getJSON("https://"+cartoDBusername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery, function(data) {
-    cartoDBPoints = L.geoJson(data,{
-      pointToLayer: function(feature,latlng){
-        var marker = L.marker(latlng);
-        marker.bindPopup('' + feature.properties.description + 'Submitted by ' + feature.properties.name + '');
-        return marker;
-      }
-    }).addTo(map);
-  });
-};
-
-// Run showAll function automatically when document loads
-$( document ).ready(function() {
-  getGeoJSON();
-});
-
+// // Add Data from CARTO using the SQL API
+// // Declare Variables
+// // Create Global Variable to hold CARTO points
+// var cartoDBPoints = null;
+//
+// // Set your CARTO Username
+// var cartoDBusername = "marcosmoreu";
+//
+// // Write SQL Selection Query to be Used on CARTO Table
+// // Name of table is 'data_collector'
+// var sqlQuery = "SELECT * FROM data_collector";
+//
+// // Get CARTO selection as GeoJSON and Add to Map
+// function getGeoJSON(){
+//   $.getJSON("https://"+cartoDBusername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery, function(data) {
+//     cartoDBPoints = L.geoJson(data,{
+//       pointToLayer: function(feature,latlng){
+//         var marker = L.marker(latlng);
+//         marker.bindPopup('' + feature.properties.description + 'Submitted by ' + feature.properties.name + '');
+//         return marker;
+//       }
+//     }).addTo(map);
+//   });
+// };
+//
+// // Run showAll function automatically when document loads
+// $( document ).ready(function() {
+//   getGeoJSON();
+// });
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb,{
         minZoom: 3,
         maxZoom: 21,
@@ -2372,11 +2389,18 @@ function onEachFeatureAudioLocalStorage(feature, layer) { // function duplicated
 ////////////////////////////////////////////      Download     /////////////////////////////////////////////////////////////////////////////////////////////
 var  convertedData;
 var data;
+var dataGeometry;
+var dataGeometry;
 var blob;
 var dateTimeRandomID;
 var timeFinish;
 var diffTimes;
 var geometryCenter;
+var centerPointLat;
+var centerPointMarker;
+var centerPolylineMarker;
+var centerPolygonMarker;
+
 
 
   document.getElementById('share-download').onclick = function(e) {
@@ -2439,6 +2463,9 @@ var geometryCenter;
               //  console.log(data)
 
                 data = drawnItems.toGeoJSON();
+                dataGeometry = data.features[0].geometry
+                console.log(data)
+                console.log(dataGeometry)
                 //The coordinate reference system for all GeoJSON coordinates is a  geographic coordinate reference system, using the World Geodetic
                 //System 1984 (WGS 84) [WGS84] datum, with longitude and latitude units of decimal degrees.
                 ////////////////////////////////    script to store the center of the feature  /////////////////
@@ -2447,11 +2474,9 @@ var geometryCenter;
                   var centerPoint = boundsPoint.getCenter()
                 //  console.log(centerPolyline)
                   var centerPointLat = centerPoint.lat
-                //  console.log(centerPolylineLat)
+                  console.log(centerPointLat)
                   var centerPointLng = centerPoint.lng
-                //  console.log(centerPolylineLng)
-                  var centerPointMarker = L.marker([centerPointLat,centerPointLng])
-                //  console.log(centerPolylineMarker)
+                  centerPointMarker = L.marker([centerPointLat,centerPointLng])
                   geometryCenter = centerPointMarker.toGeoJSON()
                   console.log(geometryCenter )
                 }
@@ -2468,7 +2493,7 @@ var geometryCenter;
               //  console.log(centerPolylineLat)
                 var centerPolylineLng = centerPolyline.lng
               //  console.log(centerPolylineLng)
-                var centerPolylineMarker = L.marker([centerPolylineLat,centerPolylineLng])
+                centerPolylineMarker = L.marker([centerPolylineLat,centerPolylineLng])
               //  console.log(centerPolylineMarker)
                 geometryCenter = centerPolylineMarker.toGeoJSON()
                 console.log(geometryCenter )
@@ -2482,7 +2507,7 @@ var geometryCenter;
               //    console.log(centerPolygonLat)
                   var centerPolygonLng = centerPolygon.lng
               //    console.log(centerPolygonLng)
-                  var centerPolygonMarker = L.marker([centerPolygonLat,centerPolygonLng])
+                  centerPolygonMarker = L.marker([centerPolygonLat,centerPolygonLng])
               //    console.log(centerPolygonMarker)
                   geometryCenter = centerPolygonMarker.toGeoJSON()
                   console.log(geometryCenter )
@@ -2518,7 +2543,7 @@ var geometryCenter;
                   audioAvailable = false
                 }
                 var propertiesGeoJSON = {
-                  'geometryCenter':geometryCenter,
+                  // 'geometryCenter':geometryCenter,
                   'landUses':boxContentToString,
                   'landUsesEmoji':boxContent,
                   'audioAvailable':audioAvailable,
@@ -2603,9 +2628,12 @@ var geometryCenter;
 
 //adding layers to localstorage
               var dataStringified = JSON.stringify(data);
+
               var tempName = randomID // each polygon must have a different name!!!
               var layerToLocalStorage = localStorage.setItem(tempName, dataStringified);
               console.log(dataStringified);
+              console.log(dataStringified.geometry)
+              console.log(data.geometry)
               myLayerIsOn = true;
               myLayer_Button.button.style.backgroundColor = 'black';
 
@@ -2674,13 +2702,15 @@ var geometryCenter;
 //             document.getElementById("sendFirebase").click();
 //             // document.getElementById('emojionearea1').value = '...'
 
-      return data && myLayerIsOn && files && filesLength && convertedData && blob// && oneMapCompleted //&& dateTimeRandomID && data
+      return data && myLayerIsOn && files && filesLength && convertedData && blob && centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
   }
 console.log(finalLayer)
 
 
 /////////////////////////////////////////  screenS SHARE-DOWNLOAD  /////////////////////////////////////
 var timeOfVideo; //variable to define time of video based on OS. For some reason, is iOS takes longer to play
+var geojson = '{\"type\":\"Point\",\"coordinates\":[ 66,10 ]}'
+
 if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
   document.getElementById('shareWorldButton').onclick = function(e){
 
@@ -2723,42 +2753,91 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
              document.getElementById("point").style.display = "initial";
              console.log(finalUrlAudio)
 ////////////////////////////       CARTO POST DATA      //////////////////////////////////////////
+            // Submit data to the PHP using a jQuery Post method
+            var submitToProxy = function(q){
+              $.post("./callProxy.php", { // <--- Enter the path to your callProxy.php file here
+                qurl:q,
+                // geojson:data,
+                cache: false,
+                timeStamp: new Date().getTime()
+              }, function(data) {
+                console.log(data);
+      //          refreshLayer();
+              });
+            };
+            setData();
 
             function setData() {
-                var enteredUsername = username.value;
-                var enteredDescription = description.value;
-                drawnItems.eachLayer(function (layer) {
-                    var sql = "INSERT INTO data_collector (the_geom, description, name, latitude, longitude) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
-                    var a = layer.getLatLng();
-                    var sql2 ='{"type":"Point","coordinates":[' + a.lng + "," + a.lat + "]}'),4326),'" + 'enteredDescription' + "','" + 'enteredUsername' + "','" + a.lat + "','" + a.lng +"')";
-                    var pURL = sql+sql2;
+              console.log(data)
+              console.log("setdata function called");
+
+                var enteredDescription = 'descriptiontest';
+                var enteredUsername = 'usernametest';
+                var lat = '40'
+                var lng = '45';
+                dataGeometry = data.features[0].geometry
+                console.log(dataGeometry)
+                var dataGeometryString = JSON.stringify(dataGeometry)
+                console.log(dataGeometryString)
+
+console.log(geojson)
+//NOTE THAT  this doesn't work:         ##############################################################################
+// var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON( '{"type":"Point","coordinates":[-0.090637,51.695544]}'),4326))"  , must be like that {\"type\":\"Point\",\"coordinates\":[ 45,11 ]}
+//var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON(dataGeometryString),4326))"
+//var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('dataGeometryString'),4326))"
+//var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRIDST(ST_Point(-110, 43),4326))"
+//this works // var sql = "INSERT INTO data_collector (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
+// var sql2 ='{"type":"Point","coordinates":[' + lng + "," + lat + "]}'),4326))";
+//var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('"+'{"type":"Point","coordinates":[' + lng + "," + lat + "]}'),4326))"
+//var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('{\"type\":\"Point\",\"coordinates\":[ 45,40 ]}'),4326))"
+
+//#####################################################################################################################
+
+var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('"
+var sql2 = dataGeometryString;
+var sql3 = "'),4326))"
+
+// {\"type\":\"Point\",\"coordinates\":[ 45,11 ]}'),4326))"
+
+
+
+
+                    var pURL = sql+sql2+sql3;
+                    console.log(pURL)
                     submitToProxy(pURL);
                     console.log("Feature has been submitted to the Proxy");
-                });
-                map.removeLayer(drawnItems);
-                drawnItems = new L.FeatureGroup();
-                console.log("drawnItems has been cleared");
-                dialog.dialog("close");
+                // });
+                // map.removeLayer(drawnItems);
+                // drawnItems = new L.FeatureGroup();
+                // console.log("drawnItems has been cleared");
+                // dialog.dialog("close");
             };
 
 
+            // refresh the layers to show the updated dataset
+            // function refreshLayer() {
+            //   if (map.hasLayer(cartoDBPoints)) {
+            //     map.removeLayer(cartoDBPoints);
+            //   };
+            //   getGeoJSON();
+            // };
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
             // var toSendGeometry = JSON.stringify(data)
-            var toSendGeometry = 'testeandooooo'
-               //clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
-             // var toSendAudio = JSON.stringify(finalUrlAudio)
-             var toSendAudio = 'testeandoooaudio'
-             console.log(finalUrlAudio)
-             var xhr = new XMLHttpRequest();
-             xhr.open('POST', 'process.php', true); //true >> async
-             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-             //xhr.setRequestHeader('Content-type', 'application/json');
-
-
-             //line to insert a js variable (name) with its value (var data) into the php file
-             $.post("process.php",{geojson:toSendGeometry,audio:toSendAudio})
+            // var toSendGeometry = 'testeandooooo'
+            //    //clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
+            //  // var toSendAudio = JSON.stringify(finalUrlAudio)
+            //  var toSendAudio = 'testeandoooaudio'
+            //  console.log(finalUrlAudio)
+            //  var xhr = new XMLHttpRequest();
+            //  xhr.open('POST', 'process.php', true); //true >> async
+            //  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            //  //xhr.setRequestHeader('Content-type', 'application/json');
+            //
+            //
+            //  //line to insert a js variable (name) with its value (var data) into the php file
+            //  $.post("process.php",{geojson:toSendGeometry,audio:toSendAudio})
 
 
              //finalLayer is added at the end as the properties are different depending on if share or download
