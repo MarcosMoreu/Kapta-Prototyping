@@ -142,9 +142,13 @@ console.log(timeStart)
         messagingSenderId: "995673679156",
         appId: "1:995673679156:web:cff466b0d7489a868bb161"
       };
-setTimeout(function(){
-  firebase.initializeApp(firebaseConfig);
-},1000)
+if(isOnline == true){
+  setTimeout(function(){
+    firebase.initializeApp(firebaseConfig);
+    console.log('Firebase initialized')
+  },3000)
+}
+
 
 //  firebase.analytics();
 
@@ -303,6 +307,8 @@ console.log('udddd?')
 //to identify last postion, which was stored in localstorage
 var lastPositionStoredLOCALLY;
 var created = false; // variable to detect wheter the feature (point,line,polygon) has been created
+var sameSession = false; //to know if user has already mapped in this session
+
 
 lastPositionStoredLOCALLY = localStorage.getItem('lastPositionStoredLOCALLY')
 console.log(lastPositionStoredLOCALLY)
@@ -330,30 +336,36 @@ var mySubStringArray = mySubString.split(',');
 // console.log(mySubString)
 // console.log(mySubStringArray)
 
-var center = [mySubStringArray[0],mySubStringArray[1]];
-var zoom = mySubStringArray[2];
-console.log(center + '   ' + zoom)
+//var center = [mySubStringArray[0],mySubStringArray[1]];
+//console.log(center)
+
+//var zoom = mySubStringArray[2];
+//var zoom = 10
+// console.log(zoom)
+// console.log(center + '   ' + zoom)
 //////////////////////////////to center map, depending on if location was stored, or if url has coordinates ////////////////////////////////
 
-//to check if the url contains coordinates (z is last possition)
-if(lastPositionUrl == 'z' && sameSession == false){
-  console.log('map centered as if URL with coordinates')
-
-  var center = [mySubString[0],mySubString[1]];
-  var zoom = mySubString[2];
-  var map = L.map('map',{
-          editable:true,
-          //center: [lastPositionStoredLOCALLY[0],lastPositionStoredLOCALLY[1]],
-          center: center,
-          zoom: zoom,
-          // zoom: 10,    /////////what is the most appropriate???/
-          minZoom:3,
-          maxZoom:21,
-          zoomControl:false,
-         attributionControl:false
-        });
-
-}else if(lastPositionStoredLOCALLY == null){
+//to check if the url contains coordinates (z is last possition) and when user copy-paste the url shared, zoom to there //ERROR @attempted to load an infinite number of tiles.
+// if(lastPositionUrl == 'z' && sameSession == false){
+//   console.log('map centered as if URL with coordinates')
+//
+//   var urlCenter = [mySubString[0],mySubString[1]];
+//   var urlZoom = mySubString[2];
+//
+//   var map = L.map('map',{
+//           editable:true,
+//           //center: [lastPositionStoredLOCALLY[0],lastPositionStoredLOCALLY[1]],
+//           center: urlCenter,
+//           zoom: urlZoom,
+//           // zoom: 10,    /////////what is the most appropriate???/
+//           minZoom:3,
+//           maxZoom:21,
+//           zoomControl:false,
+//          attributionControl:false
+//         });
+//
+// }else
+ if(lastPositionStoredLOCALLY == null){
   console.log('map centered as if not last position')
 var map = L.map('map',{
         editable:true,
@@ -2455,7 +2467,6 @@ var dataGeometry;
 var blob;
 var dateTimeRandomID;
 var timeFinish;
-var sameSession; //to know if user has already mapped in this session
 var diffTimes;
 var geometryCenter;
 var centerPointLat;
