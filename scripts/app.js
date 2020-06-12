@@ -2837,7 +2837,12 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
               console.log(landUses)
               landUsesEmoji = propertiesGeoJSON.landUsesEmoji;
               console.log(landUsesEmoji)
-              audioAvailable = propertiesGeoJSON.audioAvailable;
+              // include the firebase url (if audio has been recorded)
+              var audioLinkText = '🔊 AUDIO';
+              var clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
+              audioAvailable = clickableFinalUrlAudio;
+              //audioAvailable = finalUrlAudio; 
+
               console.log(audioAvailable)
               areaPolygon = propertiesGeoJSON.areaPolygon;
               console.log(areaPolygon)
@@ -2870,29 +2875,16 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
               console.log(data)
               console.log("setdata function called");
 
-                // var enteredDescription = 'descriptiontest';
-                // var enteredUsername = 'usernametest';
-                // var lat = '40'
-                // var lng = '45';
                 dataGeometry = data.features[0].geometry
                 console.log(dataGeometry)
                 var dataGeometryString = JSON.stringify(dataGeometry)
                 console.log(dataGeometryString)
 
-              //  var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('"
-                 var sql = "INSERT INTO lumblu (the_geom, datetime, randomid, landuses, landusesemoji, audioavailable, areapolygon, lengthline, timespent, distance) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
-//  timespendseconds, dist_m_participant_feature
+                var sql = "INSERT INTO lumblu (the_geom, datetime, randomid, landuses, landusesemoji, audioavailable, areapolygon, lengthline, timespent, distance) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
                 var sql2 = dataGeometryString;
-                //var sql3 = "'),4326),'" + dateTime + "','" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + audioAvailable + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "')";
                 var sql3 = "'),4326),'" + dateTime + "','" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + audioAvailable + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "')";
 
-            //    'Xdatetime','Xrandomid','Xlanduses','XlandusesEmoji','Xaudioavailable','XareaPolygon','Xlengthline','Xtimespe','Xdistance')";
 
-                //,'" + dateTime + "','" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + audioAvailable + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "')";
-
-// var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('"
-// var sql2 = dataGeometryString;
-// var sql3 = "'),4326))"
 
                     var pURL = sql+sql2+sql3;
                     console.log(pURL)
