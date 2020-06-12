@@ -2468,11 +2468,11 @@ var blob;
 var dateTimeRandomID;
 var timeFinish;
 var diffTimes;
-var geometryCenter;
-var centerPointLat;
-var centerPointMarker;
-var centerPolylineMarker;
-var centerPolygonMarker;
+// var geometryCenter;
+// var centerPointLat;
+// var centerPointMarker;
+// var centerPolylineMarker;
+// var centerPolygonMarker;
 
 
 
@@ -2546,50 +2546,50 @@ var centerPolygonMarker;
                 //The coordinate reference system for all GeoJSON coordinates is a  geographic coordinate reference system, using the World Geodetic
                 //System 1984 (WGS 84) [WGS84] datum, with longitude and latitude units of decimal degrees.
                 ////////////////////////////////    script to store the center of the feature  /////////////////
-                if(featureType == 'point'){
-                  var boundsPoint = drawnItems.getBounds() //we convert point to have the same format as in lines and polygon's centers
-                  var centerPoint = boundsPoint.getCenter()
-                //  console.log(centerPolyline)
-                  var centerPointLat = centerPoint.lat
-                  console.log(centerPointLat)
-                  var centerPointLng = centerPoint.lng
-                  centerPointMarker = L.marker([centerPointLat,centerPointLng])
-                  geometryCenter = centerPointMarker.toGeoJSON()
-                  console.log(geometryCenter )
-                }
-
-                if(featureType == 'polyline'){
-                //   var boundsPolyline = drawnItems.getBounds()
-                //   geometryCenter = boundsPolyline.getCenter()
-                // // geometryCenter == L.latLng(drawnItems);
-                //   console.log(geometryCenter )
-                var boundsPolyline = drawnItems.getBounds()
-                var centerPolyline = boundsPolyline.getCenter()
-              //  console.log(centerPolyline)
-                var centerPolylineLat = centerPolyline.lat
-              //  console.log(centerPolylineLat)
-                var centerPolylineLng = centerPolyline.lng
-              //  console.log(centerPolylineLng)
-                centerPolylineMarker = L.marker([centerPolylineLat,centerPolylineLng])
-              //  console.log(centerPolylineMarker)
-                geometryCenter = centerPolylineMarker.toGeoJSON()
-                console.log(geometryCenter )
-
-                }
-                if(featureType == 'polygon'){
-                  var boundsPolygon = drawnItems.getBounds()
-                  var centerPolygon = boundsPolygon.getCenter()
-                //  console.log(centerPolygon)
-                  var centerPolygonLat = centerPolygon.lat
-              //    console.log(centerPolygonLat)
-                  var centerPolygonLng = centerPolygon.lng
-              //    console.log(centerPolygonLng)
-                  centerPolygonMarker = L.marker([centerPolygonLat,centerPolygonLng])
-              //    console.log(centerPolygonMarker)
-                  geometryCenter = centerPolygonMarker.toGeoJSON()
-                  console.log(geometryCenter )
-
-                }
+              //   if(featureType == 'point'){
+              //     var boundsPoint = drawnItems.getBounds() //we convert point to have the same format as in lines and polygon's centers
+              //     var centerPoint = boundsPoint.getCenter()
+              //   //  console.log(centerPolyline)
+              //     var centerPointLat = centerPoint.lat
+              //     console.log(centerPointLat)
+              //     var centerPointLng = centerPoint.lng
+              //     centerPointMarker = L.marker([centerPointLat,centerPointLng])
+              //     geometryCenter = centerPointMarker.toGeoJSON()
+              //     console.log(geometryCenter )
+              //   }
+              //
+              //   if(featureType == 'polyline'){
+              //   //   var boundsPolyline = drawnItems.getBounds()
+              //   //   geometryCenter = boundsPolyline.getCenter()
+              //   // // geometryCenter == L.latLng(drawnItems);
+              //   //   console.log(geometryCenter )
+              //   var boundsPolyline = drawnItems.getBounds()
+              //   var centerPolyline = boundsPolyline.getCenter()
+              // //  console.log(centerPolyline)
+              //   var centerPolylineLat = centerPolyline.lat
+              // //  console.log(centerPolylineLat)
+              //   var centerPolylineLng = centerPolyline.lng
+              // //  console.log(centerPolylineLng)
+              //   centerPolylineMarker = L.marker([centerPolylineLat,centerPolylineLng])
+              // //  console.log(centerPolylineMarker)
+              //   geometryCenter = centerPolylineMarker.toGeoJSON()
+              //   console.log(geometryCenter )
+              //
+              //   }
+              //   if(featureType == 'polygon'){
+              //     var boundsPolygon = drawnItems.getBounds()
+              //     var centerPolygon = boundsPolygon.getCenter()
+              //   //  console.log(centerPolygon)
+              //     var centerPolygonLat = centerPolygon.lat
+              // //    console.log(centerPolygonLat)
+              //     var centerPolygonLng = centerPolygon.lng
+              // //    console.log(centerPolygonLng)
+              //     centerPolygonMarker = L.marker([centerPolygonLat,centerPolygonLng])
+              // //    console.log(centerPolygonMarker)
+              //     geometryCenter = centerPolygonMarker.toGeoJSON()
+              //     console.log(geometryCenter )
+              //
+              //   }
                 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
                 var allLandUses = [1]
                 //land uses array filtered.
@@ -2779,7 +2779,7 @@ var centerPolygonMarker;
 //             document.getElementById("sendFirebase").click();
 //             // document.getElementById('emojionearea1').value = '...'
 
-      return data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType && centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
+      return data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType //&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
   }
 console.log(finalLayer)
 
@@ -2830,6 +2830,28 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
              document.getElementById("point").style.display = "initial";
              console.log(finalUrlAudio)
 ////////////////////////////       CARTO POST DATA      //////////////////////////////////////////
+//first, we define the variables that store the attributes
+            propertiesGeoJSON =  data.features[0].properties
+              //to assign each attribute to a variable, which will be added as columns to the DB
+              landUses = propertiesGeoJSON.landUses;
+              console.log(landUses)
+              landUsesEmoji = propertiesGeoJSON.landUsesEmoji;
+              console.log(landUsesEmoji)
+              audioAvailable = propertiesGeoJSON.audioAvailable;
+              console.log(audioAvailable)
+              areaPolygon = propertiesGeoJSON.areaPolygon;
+              console.log(areaPolygon)
+              lengthLine = propertiesGeoJSON.lengthLine;
+              console.log(lengthLine)
+              dateTime = propertiesGeoJSON.dateTime;
+              console.log(dateTime)
+              timeSpendSeconds = propertiesGeoJSON.timeSpendSeconds;
+              console.log(timeSpendSeconds)
+              dist_m_Participant_Feature = propertiesGeoJSON.dist_m_Participant_Feature;
+              console.log(dist_m_Participant_Feature)
+              randomID = propertiesGeoJSON.randomID;
+              console.log(randomID)
+//////////////
             // Submit data to the PHP using a jQuery Post method
             var submitToProxy = function(q){
               $.post("./callProxy.php", { // <--- Enter the path to your callProxy.php file here
@@ -2857,27 +2879,20 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
                 var dataGeometryString = JSON.stringify(dataGeometry)
                 console.log(dataGeometryString)
 
-//console.log(geojson)
-//NOTE THAT  this doesn't work:         ##############################################################################
-// var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON( '{"type":"Point","coordinates":[-0.090637,51.695544]}'),4326))"  , must be like that {\"type\":\"Point\",\"coordinates\":[ 45,11 ]}
-//var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON(dataGeometryString),4326))"
-//var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('dataGeometryString'),4326))"
-//var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRIDST(ST_Point(-110, 43),4326))"
-//this works // var sql = "INSERT INTO data_collector (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
-// var sql2 ='{"type":"Point","coordinates":[' + lng + "," + lat + "]}'),4326))";
-//var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('"+'{"type":"Point","coordinates":[' + lng + "," + lat + "]}'),4326))"
-//var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('{\"type\":\"Point\",\"coordinates\":[ 45,40 ]}'),4326))"
+              //  var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('"
+                 var sql = "INSERT INTO lumblu (the_geom, datetime, randomid, landuses, landusesemoji, audioavailable, areapolygon, lengthline, timespent, distance) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
+//  timespendseconds, dist_m_participant_feature
+                var sql2 = dataGeometryString;
+                //var sql3 = "'),4326),'" + dateTime + "','" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + audioAvailable + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "')";
+                var sql3 = "'),4326),'" + dateTime + "','" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + audioAvailable + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "')";
 
-//#####################################################################################################################
+            //    'Xdatetime','Xrandomid','Xlanduses','XlandusesEmoji','Xaudioavailable','XareaPolygon','Xlengthline','Xtimespe','Xdistance')";
 
-var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('"
-var sql2 = dataGeometryString;
-var sql3 = "'),4326))"
+                //,'" + dateTime + "','" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + audioAvailable + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "')";
 
-// {\"type\":\"Point\",\"coordinates\":[ 45,11 ]}'),4326))"
-
-
-
+// var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('"
+// var sql2 = dataGeometryString;
+// var sql3 = "'),4326))"
 
                     var pURL = sql+sql2+sql3;
                     console.log(pURL)
@@ -2898,24 +2913,20 @@ var sql3 = "'),4326))"
             //   };
             //   getGeoJSON();
             // };
+            //console.log(geojson)
+  //NOTE THAT  this doesn't work:         ##############################################################################
+  // var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON( '{"type":"Point","coordinates":[-0.090637,51.695544]}'),4326))"  , must be like that {\"type\":\"Point\",\"coordinates\":[ 45,11 ]}
+  //var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON(dataGeometryString),4326))"
+  //var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('dataGeometryString'),4326))"
+  //var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRIDST(ST_Point(-110, 43),4326))"
+  //this works // var sql = "INSERT INTO data_collector (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
+  // var sql2 ='{"type":"Point","coordinates":[' + lng + "," + lat + "]}'),4326))";
+  //var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('"+'{"type":"Point","coordinates":[' + lng + "," + lat + "]}'),4326))"
+  //var sql = "INSERT INTO lumblu (the_geom) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('{\"type\":\"Point\",\"coordinates\":[ 45,40 ]}'),4326))"
+
+  //#####################################################################################################################
 
 //////////////////////////////////////////////////////////////////////////////////////////
-
-            // var toSendGeometry = JSON.stringify(data)
-            // var toSendGeometry = 'testeandooooo'
-            //    //clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
-            //  // var toSendAudio = JSON.stringify(finalUrlAudio)
-            //  var toSendAudio = 'testeandoooaudio'
-            //  console.log(finalUrlAudio)
-            //  var xhr = new XMLHttpRequest();
-            //  xhr.open('POST', 'process.php', true); //true >> async
-            //  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            //  //xhr.setRequestHeader('Content-type', 'application/json');
-            //
-            //
-            //  //line to insert a js variable (name) with its value (var data) into the php file
-            //  $.post("process.php",{geojson:toSendGeometry,audio:toSendAudio})
-
 
              //finalLayer is added at the end as the properties are different depending on if share or download
              finalLayer = L.geoJSON(data,{
