@@ -431,6 +431,9 @@ console.log(mappos.center)
 //   }
 // }
 //map.attributionControl.addAttribution("New attribution");
+
+
+
 map.addControl(L.control.attribution({
         position: 'bottomright',
         prefix: 'Leaflet'
@@ -448,6 +451,10 @@ console.log(isFirstTime)
 ////////////////////////////////           script to get items from local storage    //////////////////////////////
 var finalLayer;
 var groupGeoJSON =[]
+//the deflate plugin exndens the markerCluster plugin (:true)
+var deflated = L.deflate({minSize: 1000,maxsize:1,markerCluster:true})
+deflated.addTo(map) // to initialize
+
 
 function isJson(str) {
  try {
@@ -503,14 +510,14 @@ console.log(groupGeoJSON)
  //groupGeoJSON.toJSON()
 //isJson(groupGeoJSON)
 console.log(typeof groupGeoJSON)
-var groupGeoJSON1 = JSON.stringify(groupGeoJSON)
+//var groupGeoJSON1 = JSON.stringify(groupGeoJSON)
 console.log(isJson(groupGeoJSON))
 
 
 //conditions to catch error in case no geojson and also to avoid error when adding to map an empty layer if is first time
 //var myLayerIsOn = true;
 if(isJson(groupGeoJSON)==false && isFirstTime==false ){
-var myLayer = L.geoJSON(groupGeoJSON,{
+var localStorageLayer = L.geoJSON(groupGeoJSON,{
   style: function (feature) {
     //myLayerIsOn = true;
     console.log(myLayerIsOn)
@@ -520,7 +527,7 @@ var myLayer = L.geoJSON(groupGeoJSON,{
   onEachFeature: onEachFeatureAudioLocalStorage,
   autopan:false
 
-  }).addTo(map)
+}).addTo(deflated)
 //map.setView(lastPositionStoredLOCALLY,15);
 }
 
@@ -546,42 +553,80 @@ var pointsIcon = L.icon({
 //   weight:2
 // })//.addTo(map);
 
-var markers = L.markerClusterGroup({
+var clusters = L.markerClusterGroup({
   spiderfyOnMaxZoom: true,
 showCoverageOnHover: true,
 zoomToBoundsOnClick: true
+
 });
-//markers.addLayer(pointsSap);
-//map.addLayer(markers);
-var loadBasemaps = function(){
 
+// showCoverageOnHover: When you mouse over a cluster it shows the bounds of its markers.
+// zoomToBoundsOnClick: When you click a cluster we zoom to its bounds.
+// spiderfyOnMaxZoom: When you click a cluster at the bottom zoom level we spiderfy it so you can see all of its markers. (Note: the spiderfy occurs at the current zoom level if all items within the cluster are still clustered at the maximum zoom level or at zoom specified by disableClusteringAtZoom option).
+// removeOutsideVisibleBounds: Clusters and markers too far from the viewport are removed from the map for performance.
+// animate: Smoothly split / merge cluster children when zooming and spiderfying. If L.DomUtil.TRANSITION is false, this option has no effect (no animation is possible).
+// animateAddingMarkers: If set to true (and animate option is also true) then adding individual markers to the MarkerClusterGroup after it has been added to the map will add the marker and animate it into the cluster. Defaults to false as this gives better performance when bulk adding markers. addLayers does not support this, only addLayer with individual Markers.
+// disableClusteringAtZoom: If set, at this zoom level and below, markers will not be clustered. This defaults to disabled. See Example. Note: you may be interested in disabling spiderfyOnMaxZoom option when using disableClusteringAtZoom.
+// maxClusterRadius: The maximum radius that a cluster will cover from the central marker (in pixels). Default 80. Decreasing will make more, smaller clusters. You can also use a function that accepts the current map zoom and returns the maximum cluster radius in pixels.
+// polygonOptions: Options to pass when creating the L.Polygon(points, options) to show the bounds of a cluster. Defaults to empty, which lets Leaflet use the default Path options.
+// singleMarkerMode: If set to true, overrides the icon for all added markers to make them appear as a 1 size cluster. Note: the markers are not replaced by cluster objects, only their icon is replaced. Hence they still react to normal events, and option disableClusteringAtZoom does not restore their previous icon (see #391).
+// spiderLegPolylineOptions: Allows you to specify PolylineOptions to style spider legs. By default, they are { weight: 1.5, color: '#222', opacity: 0.5 }.
+// spiderfyDistanceMultiplier: Increase from 1 to increase the distance away from the center that spiderfied markers are placed. Use if you are using big marker icons (Default: 1).
+// iconCreateFunction: Function used to create the cluster icon. See the default implementation or the custom example.
+// spiderfyShapePositions: Function used to override spiderfy default shape positions.
+// clusterPane: Map pane where the cluster icons will be added. Defaults to L.Marker's default (currently 'markerPane'). See the pane example.
 
-}
+ // deflated.addTo(clusters)
+ //  map.addLayer(clusters)
+
 /////////////////////////////////////       CARTO    ADD TO MAP   //////////////////////////////////////////////
 
 // Add Data from CARTO using the SQL API
 // Declare Variables
 // Create Global Variable to hold CARTO points
-var cartoDBPoints = null;
+var cartoGeometries = null;
 
 // Set your CARTO Username
-var cartoDBusername = "marcosmoreu";
+//var cartoDBusername = "marcosmoreu";
 
 // Write SQL Selection Query to be Used on CARTO Table
 // Name of table is 'data_collector'
 var sqlQuery = "SELECT * FROM lumblu";
 
 // Get CARTO selection as GeoJSON and Add to Map
+
+
 function getGeoJSON(){
-  $.getJSON("https://"+cartoDBusername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery+cartoapi, function(data) {
+  $.getJSON("https://"+cartousername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery+cartoapi, function(data) {
   //  console.log(cartousername)
-    cartoDBPoints = L.geoJson(data,{
-      pointToLayer: function(feature,latlng){
-        var marker = L.marker(latlng);
-        marker.bindPopup('' + feature.properties.datetime + 'Submitted by ' + feature.properties.name + '');
-        return marker;
-     }
-    }).addTo(map);
+
+
+    cartoGeometries = L.geoJson(data,{
+            // style: function (feature) {
+      //   return feature.properties && feature.properties.style;
+      // },
+       color:'blue',
+      //
+      onEachFeature: function(feature,latlng){
+      //  var geometry = L.FeatureCollection(latlng);
+        latlng.bindPopup('' + feature.properties.datetime + 'TESTTTTING ' + feature.properties.name + '');
+        // latlng.addTo(clusters)
+
+        // latlng.addTo(deflated)
+         //deflated.addTo(clusters)
+        // clusters.refreshClusters();
+
+      //  return geometry;
+      }
+    //pointToLayer:
+
+  }).addTo(deflated)
+   // map.addLayer(clusters)
+
+    //cartoGeometries.addTo(deflated)
+    //cartoGeometries
+    // clusters.addLayer(cartoGeometries)
+
   });
 };
 
@@ -686,7 +731,7 @@ var osm_Button = L.easyButton({
           map.options.minZoom = 3;
           osm_Button.removeFrom(map);
           planet_Button.addTo(map);
-          myLayer_Button.addTo(map)
+        //  myLayer_Button.addTo(map)
 
         //  console.log('countbutton clicks', clickButtonCount)
           if(clickButtonCount == 10){
@@ -732,7 +777,7 @@ var googleSat_Button = L.easyButton({
           map.options.minZoom = 3;
           googleSat_Button.removeFrom(map);
           osm_Button.addTo(map);
-          myLayer_Button.addTo(map)
+          //myLayer_Button.addTo(map)
 
           //console.log('countbutton clicks', clickButtonCount)
           if(clickButtonCount == 10){
@@ -917,7 +962,7 @@ var planet_Button = L.easyButton({
             planet.addTo(map); // planet imagery goes after so it stays on top of sentinel data (sentinel is global, planet is not yet?)
             googleSat.removeFrom(map);
             osm.removeFrom(map);
-            myLayer_Button.addTo(map)
+          //  myLayer_Button.addTo(map)
 
             // btn.button.style.backgroundColor = 'yellow';
             //   googleSat_Button.button.style.backgroundColor = 'black';
@@ -943,6 +988,7 @@ var myLayer_Button = L.easyButton({
       //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn,map) {
+          deflated.removeFrom(map)
 
 ///////////////////////////////////////////////////////////////////////////
 console.log(myLayerIsOn)
@@ -958,16 +1004,17 @@ console.log(myLayerIsOn)
             finalLayer.removeFrom(map)
           }
 
-          myLayer.removeFrom(map);
+          localStorageLayer.removeFrom(map);
          if(myLayerIsOn == true){
            console.log('if2')
 
-           myLayer.removeFrom(map);
+           localStorageLayer.removeFrom(map);
            myLayer_Button.button.style.backgroundColor = 'grey';
 
           }
         }
         else if(myLayerIsOn == false && isFirstTime==false){
+          deflated.addTo(map)
           console.log('if3')
 
           myLayerIsOn = true;
@@ -981,12 +1028,12 @@ console.log(myLayerIsOn)
           if(myLayerIsOn == true){
             console.log('if4')
 
-         myLayer.addTo(map)          //  layer1.addTo(map);
+         localStorageLayer.addTo(map)          //  layer1.addTo(map);
          myLayer_Button.button.style.backgroundColor = 'black';
 
 
          }
-       }else if(isFirstTime==true && myLayer ==null){ //for first load when
+       }else if(isFirstTime==true && localStorageLayer ==null){ //for first load when
          myLayer_Button.button.style.backgroundColor = 'red';
           console.log('if5')
 }
@@ -996,7 +1043,9 @@ console.log(myLayerIsOn)
         }
 
     }]
-});
+}).addTo(map); //always on as there will always be features in the map, even when first load
+
+
 //osm_Button.button.style.backgroundColor = 'black';
 myLayer_Button.button.style.width = '50px';
 myLayer_Button.button.style.height = '50px';
@@ -1009,9 +1058,9 @@ myLayer_Button.button.style.backgroundColor = 'black';
 //   myLayer_Button.addTo(map)
 // }
 
-if(myLayer !=null || finalLayer != null){
-myLayer_Button.addTo(map)
-}
+// if(localStorageLayer !=null || finalLayer != null){
+// myLayer_Button.addTo(map)
+// }
 
 ////////////////////////////////   gps  ///////////////
 var gpsIcon = L.icon({
@@ -1421,15 +1470,14 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
            document.getElementById('emoji').style.display = 'none';
 
 
-////////////////////////////////////////////TUTORIAL//////////////////////////////////////////////////////////////
 
 ////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//script to add drawn layers to local storage
-            var layerFromLocalStorage = localStorage.getItem('storedLayer');
-            console.log(layerFromLocalStorage)
-           var layerFromLocalStorageToGeoJson = JSON.parse(layerFromLocalStorage);
-           console.log(layerFromLocalStorageToGeoJson)
-          L.geoJSON(layerFromLocalStorageToGeoJson).addTo(map);
+          //   var layerFromLocalStorage = localStorage.getItem('storedLayer');
+          //   console.log(layerFromLocalStorage)
+          //  var layerFromLocalStorageToGeoJson = JSON.parse(layerFromLocalStorage);
+          //  console.log(layerFromLocalStorageToGeoJson)
+          // L.geoJSON(layerFromLocalStorageToGeoJson).addTo(map);
+
             //console.log(layerLocalStorageGeoJson)
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -2430,7 +2478,7 @@ function onEachFeatureAudioLocalStorage(feature, layer) { // function duplicated
       popupContent += feature.properties.popupContent;
     }
 
-    layer.bindPopup(popupContent).addTo(map);
+    layer.bindPopup(popupContent)//.addTo(map); // removed otherwise the layer is automatically added to the map when oneachfeaturelocl.. is called
 
     if(finished == true){
     layer.bindPopup(popupContent).openPopup();
