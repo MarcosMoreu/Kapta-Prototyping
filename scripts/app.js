@@ -13,6 +13,8 @@
 // }
 
 //first, detect whether the user is online & the language of the browser
+
+//to get the api key and credentials from hidden php file
  var xhr2 = new XMLHttpRequest();
  xhr2.onload = function(){
    console.log('created request')
@@ -33,12 +35,18 @@
        sentinelKey = sentinelKey.replace(/\s/g, '')
        firebaseKey = array[2];
        firebaseKey = firebaseKey.replace(/\s/g, '')
+       cartousername = array[3];
+       cartousername = cartousername.replace(/\s/g, '')
+       cartoapi = array[4];
+       cartoapi = cartoapi.replace(/\s/g, '')
 
        // planetKey = planetKey.toString();
        // sentinelKey = sentinelKey.toString();
-       console.log(typeof planetKey)
+       console.log(cartousername)
+       console.log(cartoapi)
+
       // console.log(a)
-return planetKey && sentinelKey && firebaseKey
+return planetKey && sentinelKey && firebaseKey && cartousername && cartoapi
   }
 
 };
@@ -46,10 +54,12 @@ return planetKey && sentinelKey && firebaseKey
   xhr2.send();
 
   var planetKey ;
-  var hh = '2b11aafd06e2464a85d2e97c5a176a9a'
+  //var hh = '2b11aafd06e2464a85d2e97c5a176a9a'
 
   var sentinelKey;
   var firebaseKey;
+  var cartousername;
+  var cartoapi;
 //$.get('url', {planetKey: planetKey, sentinelKey: sentinelKey, firebaseKey: firebaseKey})
 // setTimeout(function(){
 //
@@ -549,35 +559,36 @@ var loadBasemaps = function(){
 }
 /////////////////////////////////////       CARTO    ADD TO MAP   //////////////////////////////////////////////
 
-// // Add Data from CARTO using the SQL API
-// // Declare Variables
-// // Create Global Variable to hold CARTO points
-// var cartoDBPoints = null;
-//
-// // Set your CARTO Username
-// var cartoDBusername = "marcosmoreu";
-//
-// // Write SQL Selection Query to be Used on CARTO Table
-// // Name of table is 'data_collector'
-// var sqlQuery = "SELECT * FROM data_collector";
-//
-// // Get CARTO selection as GeoJSON and Add to Map
-// function getGeoJSON(){
-//   $.getJSON("https://"+cartoDBusername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery, function(data) {
-//     cartoDBPoints = L.geoJson(data,{
-//       pointToLayer: function(feature,latlng){
-//         var marker = L.marker(latlng);
-//         marker.bindPopup('' + feature.properties.description + 'Submitted by ' + feature.properties.name + '');
-//         return marker;
-//       }
-//     }).addTo(map);
-//   });
-// };
-//
-// // Run showAll function automatically when document loads
-// $( document ).ready(function() {
-//   getGeoJSON();
-// });
+// Add Data from CARTO using the SQL API
+// Declare Variables
+// Create Global Variable to hold CARTO points
+var cartoDBPoints = null;
+
+// Set your CARTO Username
+var cartoDBusername = "marcosmoreu";
+
+// Write SQL Selection Query to be Used on CARTO Table
+// Name of table is 'data_collector'
+var sqlQuery = "SELECT * FROM lumblu";
+
+// Get CARTO selection as GeoJSON and Add to Map
+function getGeoJSON(){
+  $.getJSON("https://"+cartoDBusername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery+cartoapi, function(data) {
+  //  console.log(cartousername)
+    cartoDBPoints = L.geoJson(data,{
+      pointToLayer: function(feature,latlng){
+        var marker = L.marker(latlng);
+        marker.bindPopup('' + feature.properties.datetime + 'Submitted by ' + feature.properties.name + '');
+        return marker;
+     }
+    }).addTo(map);
+  });
+};
+
+// Run showAll function automatically when document loads
+$( document ).ready(function() {
+  getGeoJSON();
+});
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb,{
         minZoom: 3,
@@ -2101,7 +2112,7 @@ console.log(emojioneareaeditor[0].textContent.lenght)
           }
 
 
-     },1000)
+     },500) // time to refresh the content in the popup
   }
 
       tempLayer = L.geoJSON(data,{
@@ -2841,7 +2852,7 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
               var audioLinkText = '🔊 AUDIO';
               var clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
               audioAvailable = clickableFinalUrlAudio;
-              //audioAvailable = finalUrlAudio; 
+              //audioAvailable = finalUrlAudio;
 
               console.log(audioAvailable)
               areaPolygon = propertiesGeoJSON.areaPolygon;
