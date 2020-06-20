@@ -516,6 +516,17 @@ console.log(isJson(groupGeoJSON))
 
 //conditions to catch error in case no geojson and also to avoid error when adding to map an empty layer if is first time
 //var myLayerIsOn = true;
+var markerIconLocalStorage = new L.icon({
+    iconUrl: 'scripts/lib/leaflet/images/marker-icon-black.png',
+  //  shadowUrl: 'leaf-shadow.png',
+
+    iconSize:     [40, 40], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+    //shadowAnchor: [4, 62],  // the same for the shadow
+    //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
 if(isJson(groupGeoJSON)==false && isFirstTime==false ){
 var localStorageLayer = L.geoJSON(groupGeoJSON,{
   style: function (feature) {
@@ -523,7 +534,12 @@ var localStorageLayer = L.geoJSON(groupGeoJSON,{
     console.log(myLayerIsOn)
     return feature.properties && feature.properties.style;
   },
+  pointToLayer: function(feature, latlng) {
+
+    return L.marker(latlng, {icon: markerIconLocalStorage});
+  },
   color:'blue',
+//  icon: markerIconLocalStorage,
   onEachFeature: onEachFeatureAudioLocalStorage,
   autopan:false
 
@@ -533,16 +549,7 @@ var localStorageLayer = L.geoJSON(groupGeoJSON,{
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////to create a custom icon instead of Marker
-var pointsIcon = L.icon({
-    iconUrl: 'images/whiteDot.png',
-  //  shadowUrl: 'leaf-shadow.png',
 
-    iconSize:     [15, 15], // size of the icon
-    //shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
-    //shadowAnchor: [4, 62],  // the same for the shadow
-    //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-});
 
 
 // var pointsSap = L.geoJson(pointsSapelli,{
