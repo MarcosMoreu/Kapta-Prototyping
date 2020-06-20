@@ -41,7 +41,35 @@ outline:none;
   transform: scale(0.9);
 } */
 
+.buttonDelete {
+  width:50px;
+  height:50px;
+  border-radius: 50px;
+  margin:5px;
+  /* margin-top: 200px; */
+  background-color: white; /* Green */
+  /* border: true; */
+  /* color: black; */
+  padding: 0px 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border: 2px solid white;
+  position:relative;
+  outline:none;
+  transition: 0.2s all;
 
+  /* font-size: 16px; */
+  /* width:100%; */
+
+  /* background-color:#ededf0; */
+  /* z-index:10; */
+}
+.buttonDelete:active{
+  /* transform: scale(0.9); */
+  background-color: #D3D2D2;
+  border: 2px solid #D3D2D2;
+}
 .button {
   width:50px;
   height:50px;

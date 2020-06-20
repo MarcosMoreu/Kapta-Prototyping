@@ -131,6 +131,7 @@ var isOnlineGlobal = isOnline
 console.log(navigator.onLine)
 console.log(navigator.appVersion)
 console.log(navigator.platform)
+console.log('isoline' +isOnline)
 
 var browserLanguage = navigator.language
 console.log(navigator.language)
@@ -543,7 +544,13 @@ var localStorageLayer = L.geoJSON(groupGeoJSON,{
   onEachFeature: onEachFeatureAudioLocalStorage,
   autopan:false
 
-}).addTo(deflated)
+}).addTo(map)
+
+// if(isOnline == true){//condition to catch an error with deflate plugin when offline, or for another reason that I don't know
+//   localStorageLayer.addTo(deflated)
+// }else{
+//   localStorageLayer.addTo(map)
+// }
 //map.setView(lastPositionStoredLOCALLY,15);
 }
 
@@ -592,6 +599,7 @@ zoomToBoundsOnClick: true
 // Declare Variables
 // Create Global Variable to hold CARTO points
 var cartoGeometries = null;
+var cartoIdFeatureSelected;
 
 // Set your CARTO Username
 //var cartoDBusername = "marcosmoreu";
@@ -600,23 +608,23 @@ var cartoGeometries = null;
 // Name of table is 'data_collector'
 var sqlQuery = "SELECT * FROM lumblu";
 var selectedFeature = null;
+var featureType = null;
+var cartoLoaded;
 // Get CARTO selection as GeoJSON and Add to Map
 // cartoGeometries.editing.enable();
+if(isOnline == true){
 
 function getGeoJSON(){
-  $.getJSON("https://"+cartousername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery+cartoapi, function(data) {
-  //  console.log(cartousername)
-
-
+    $.getJSON("https://"+cartousername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery+cartoapi, function(data) {
+    cartoLoaded = true;
     cartoGeometries = L.geoJson(data,{
-            // style: function (feature) {
-      //   return feature.properties && feature.properties.style;
-      // },
        color:'blue',
       //
       onEachFeature: function(feature,layer){
       //  var geometry = L.FeatureCollection(latlng);
         layer.bindPopup('' + feature.properties.datetime + 'TESTTTTING ' + feature.properties.name + '');
+
+    //  if(featureType == 'initial'){
         layer.on('click', function(e){
             if(selectedFeature){
                 selectedFeature.editing.disable();
@@ -628,8 +636,11 @@ function getGeoJSON(){
 
             selectedFeature = e.target;
           //  polygon.editing.enable();
+          //console.log(featureType)
+
           console.log(selectedFeature)
           console.log(selectedFeature.feature.geometry.type)
+          console.log('cartodb id   ' + selectedFeature.feature.properties.cartodb_id)
 
   //there is a bug in the (deprecated) draw plugin (https://github.com/Leaflet/Leaflet.draw/issues/804), this is a workaround. polygons and LineString
   //can be enabled, but style cannot be set due to setstyle weight...
@@ -637,35 +648,70 @@ function getGeoJSON(){
             selectedFeature.setStyle({color:'red'})
           }
             selectedFeature.editing.enable();
+
+          //to store the cartoID of the future selected
+          cartoIdFeatureSelected = selectedFeature.feature.properties.cartodb_id
+
+              //to activate deactivate button
+            //  document.getElementsByClassName('button').visibility = 'hidden';
+            document.getElementById("backDeteleFeature").style.display = "initial";
+            document.getElementById("deteleFeature").style.display = "initial";
+
+            document.getElementById("tutorial").style.display = "none";
+            document.getElementById("polygon").style.display = "none";
+            document.getElementById("polyline").style.display = "none";
+            document.getElementById("point").style.display = "none";
+
+
         });
-
-
-
-
-        // latlng.addTo(clusters)
-
-        // latlng.addTo(deflated)
-         //deflated.addTo(clusters)
-        // clusters.refreshClusters();
-
-      //  return geometry;
-      }
-    //pointToLayer:
+      //}
+    }
 
   }).addTo(deflated)
-   // map.addLayer(clusters)
-
-    //cartoGeometries.addTo(deflated)
-    //cartoGeometries
-    // clusters.addLayer(cartoGeometries)
 
   });
+
+  return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
+
 };
+}
+
+console.log( 'cartoIdFeatureSelected  '+ cartoIdFeatureSelected)
 
 // Run showAll function automatically when document loads
 $( document ).ready(function() {
   getGeoJSON();
 });
+
+//to delete feature
+var initialScreen = true;
+
+document.getElementById("backDeteleFeature").onclick = function(){
+
+
+  document.getElementById("tutorial").style.display = "initial";
+  document.getElementById("polygon").style.display = "initial";
+  document.getElementById("polyline").style.display = "initial";
+  document.getElementById("point").style.display = "initial";
+
+  document.getElementById("backDeteleFeature").style.display = "none";
+  document.getElementById("deteleFeature").style.display = "none";
+
+
+}
+document.getElementById("deteleFeature").onclick = function(){
+  console.log('feature deletedxxx')
+
+  document.getElementById("tutorial").style.display = "initial";
+  document.getElementById("polygon").style.display = "initial";
+  document.getElementById("polyline").style.display = "initial";
+  document.getElementById("point").style.display = "initial";
+
+  document.getElementById("backDeteleFeature").style.display = "none";
+  document.getElementById("deteleFeature").style.display = "none";
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb,{
         minZoom: 3,
@@ -1541,7 +1587,7 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
 
               document.getElementById("map").style.display = "block";
 
-              document.getElementById("goBack1").style.display = "initial";
+              document.getElementById("tutorial").style.display = "initial";
               document.getElementById("polygon").style.display = "initial";
               document.getElementById("polyline").style.display = "initial";
               document.getElementById("point").style.display = "initial";
@@ -1564,7 +1610,7 @@ var mapCurrentBounds;
 var mapCurrentZoom;
 var mapCurrentCenter;
 
-    document.getElementById("goBack1").onclick = function(e){
+    document.getElementById("tutorial").onclick = function(e){
 
             mapCurrentBounds =  map.getBounds();
             mapCurrentZoom = map.getZoom();
@@ -1577,7 +1623,7 @@ var mapCurrentCenter;
              document.body.style.backgroundColor = "black";
              document.getElementById("map").style.display = "none";
 
-             document.getElementById("goBack1").style.display = "none";
+             document.getElementById("tutorial").style.display = "none";
              document.getElementById("polygon").style.display = "none";
              document.getElementById("polyline").style.display = "none";
              document.getElementById("point").style.display = "none";
@@ -1592,7 +1638,7 @@ var mapCurrentCenter;
 var clickMapCount = 0;
 var clickDelVertCount = 0;
 document.getElementById("goBack2").onclick = function(e){
-
+      //  featureType = 'initial';
   // document.getElementById('finishDrawInst').style.display = 'none';
 
 //to enable doubleclick zoom that is disabled while drawing
@@ -1601,7 +1647,7 @@ document.getElementById("goBack2").onclick = function(e){
     clickMapCount = 0;
      map.zoomOut(1); //decreases the zoom level when click
       setTimeout(function(){
-       document.getElementById("goBack1").style.display = "initial";
+       document.getElementById("tutorial").style.display = "initial";
        document.getElementById("goBack2").style.display = "none";
        document.getElementById("polygon").style.display = "initial";
        document.getElementById("polyline").style.display = "initial";
@@ -1639,11 +1685,10 @@ document.getElementById("goBack2").onclick = function(e){
      drawMarker.disable();
      drawnItems.remove();
      drawnItems.clearLayers();
-
+     return featureType
      }
 
 var boxContent;
-var featureType;
 var drawingPoint = false
   document.getElementById('point').onclick = function(e){
     if(isIOS == false){
@@ -1664,7 +1709,7 @@ var drawingPoint = false
           setTimeout(function(){
             document.getElementById('imageryAlert').style.display = 'none'
 
-            document.getElementById("goBack1").style.display = "none";
+            document.getElementById("tutorial").style.display = "none";
             document.getElementById("polygon").style.display = "none";
             document.getElementById("polyline").style.display = "none";
             document.getElementById("point").style.display = "none";
@@ -1714,7 +1759,7 @@ var drawingPoint = false
           setTimeout(function(){
             document.getElementById('imageryAlert').style.display = 'none';
 
-            document.getElementById("goBack1").style.display = "none";
+            document.getElementById("tutorial").style.display = "none";
             document.getElementById("polygon").style.display = "none";
             document.getElementById("polyline").style.display = "none";
             document.getElementById("point").style.display = "none";
@@ -1738,6 +1783,7 @@ var drawingPoint = false
 
 
   document.getElementById('polygon').onclick = function(e){
+
         if(isIOS == false){
           recordedBlobs = null; //to empty recorded blobs from previous map in this session
         }
@@ -1767,7 +1813,7 @@ var drawingPoint = false
               setTimeout(function(){
                 document.getElementById('imageryAlert').style.display = 'none'
 
-                document.getElementById("goBack1").style.display = "none";
+                document.getElementById("tutorial").style.display = "none";
                 document.getElementById("polygon").style.display = "none";
                 document.getElementById("polyline").style.display = "none";
                 document.getElementById("point").style.display = "none";
@@ -1920,14 +1966,14 @@ var  finalLength2Decimals
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var typeOfFeature;
 map.on('draw:created', function (e) {
-       //drawnItems.completeShape();
-
-       created = true;
+        created = true;
+        if(cartoLoaded == true){
+          cartoGeometries.removeFrom(deflated)
+        }
 
      drawPolygon.disable();
     //   drawPolygon.enable();
      drawnItems.removeFrom(map); //remove the drawn item as yellow polygon appears
-
     //  setTimeout(function(){
     //document.getElementById('finishDrawInst').style.display = 'none';
 
@@ -2355,6 +2401,7 @@ var boxContent;
 
 
       document.getElementById('Cancel').onclick = function(e){
+        featureType = 'initial';
         alreadyMovedUp = false;
         audioRecorded = false;
         typeOfFeature = null; //to refresh the var
@@ -2376,7 +2423,7 @@ var boxContent;
             setTimeout(function(){
           //   document.getElementById("map").style.display = "block";
 
-             document.getElementById("goBack1").style.display = "initial";
+             document.getElementById("tutorial").style.display = "initial";
              document.getElementById("polygon").style.display = "initial";
              document.getElementById("polyline").style.display = "initial";
              document.getElementById("point").style.display = "initial";
@@ -2406,9 +2453,12 @@ var boxContent;
              // finalLength = null
 
              tempLayer.clearLayers()
+             if(cartoLoaded == true){
+               cartoGeometries.addt(deflated)
+             }
           //   return finalAreaHa & finalAreaAcres & finalLength
 
-          return created;
+          return created & featureType;
            }
 
 
@@ -2583,6 +2633,8 @@ var diffTimes;
 
 
   document.getElementById('share-download').onclick = function(e) {
+              //  featureType = 'initial';
+
                 sameSession = true;
                 alreadyMovedUp = false;
                 audioRecorded = false;
@@ -2652,50 +2704,7 @@ var diffTimes;
                 //The coordinate reference system for all GeoJSON coordinates is a  geographic coordinate reference system, using the World Geodetic
                 //System 1984 (WGS 84) [WGS84] datum, with longitude and latitude units of decimal degrees.
                 ////////////////////////////////    script to store the center of the feature  /////////////////
-              //   if(featureType == 'point'){
-              //     var boundsPoint = drawnItems.getBounds() //we convert point to have the same format as in lines and polygon's centers
-              //     var centerPoint = boundsPoint.getCenter()
-              //   //  console.log(centerPolyline)
-              //     var centerPointLat = centerPoint.lat
-              //     console.log(centerPointLat)
-              //     var centerPointLng = centerPoint.lng
-              //     centerPointMarker = L.marker([centerPointLat,centerPointLng])
-              //     geometryCenter = centerPointMarker.toGeoJSON()
-              //     console.log(geometryCenter )
-              //   }
-              //
-              //   if(featureType == 'polyline'){
-              //   //   var boundsPolyline = drawnItems.getBounds()
-              //   //   geometryCenter = boundsPolyline.getCenter()
-              //   // // geometryCenter == L.latLng(drawnItems);
-              //   //   console.log(geometryCenter )
-              //   var boundsPolyline = drawnItems.getBounds()
-              //   var centerPolyline = boundsPolyline.getCenter()
-              // //  console.log(centerPolyline)
-              //   var centerPolylineLat = centerPolyline.lat
-              // //  console.log(centerPolylineLat)
-              //   var centerPolylineLng = centerPolyline.lng
-              // //  console.log(centerPolylineLng)
-              //   centerPolylineMarker = L.marker([centerPolylineLat,centerPolylineLng])
-              // //  console.log(centerPolylineMarker)
-              //   geometryCenter = centerPolylineMarker.toGeoJSON()
-              //   console.log(geometryCenter )
-              //
-              //   }
-              //   if(featureType == 'polygon'){
-              //     var boundsPolygon = drawnItems.getBounds()
-              //     var centerPolygon = boundsPolygon.getCenter()
-              //   //  console.log(centerPolygon)
-              //     var centerPolygonLat = centerPolygon.lat
-              // //    console.log(centerPolygonLat)
-              //     var centerPolygonLng = centerPolygon.lng
-              // //    console.log(centerPolygonLng)
-              //     centerPolygonMarker = L.marker([centerPolygonLat,centerPolygonLng])
-              // //    console.log(centerPolygonMarker)
-              //     geometryCenter = centerPolygonMarker.toGeoJSON()
-              //     console.log(geometryCenter )
-              //
-              //   }
+
                 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
                 var allLandUses = [1]
                 //land uses array filtered.
@@ -2930,7 +2939,7 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
              document.body.style.backgroundColor = "white";
 
              document.getElementById("map").style.height = "100%";
-             document.getElementById("goBack1").style.display = "initial";
+             document.getElementById("tutorial").style.display = "initial";
              document.getElementById("polygon").style.display = "initial";
              document.getElementById("polyline").style.display = "initial";
              document.getElementById("point").style.display = "initial";
@@ -3037,7 +3046,9 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
 
            }, timeOfVideo);
            myLayer_Button.addTo(map)
-
+           if(cartoLoaded == true){
+           cartoGeometries.addTo(deflated)
+           }
 ///////////////////////////   send to DataBase in Digital Ocean server      /////////////////////////
 
 
@@ -3084,7 +3095,7 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
                  document.body.style.backgroundColor = "white";
 
                  document.getElementById("map").style.height = "100%";
-                 document.getElementById("goBack1").style.display = "initial";
+                 document.getElementById("tutorial").style.display = "initial";
                  document.getElementById("polygon").style.display = "initial";
                  document.getElementById("polyline").style.display = "initial";
                  document.getElementById("point").style.display = "initial";
@@ -3111,7 +3122,9 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
                }, timeOfVideo - 300);
                myLayer_Button.addTo(map)
                //recordedBlobs = null
-
+               if(cartoLoaded == true){
+               cartoGeometries.addTo(deflated)
+               }
 
         return finished
   }
