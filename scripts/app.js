@@ -599,9 +599,9 @@ var cartoGeometries = null;
 // Write SQL Selection Query to be Used on CARTO Table
 // Name of table is 'data_collector'
 var sqlQuery = "SELECT * FROM lumblu";
-
+var selectedFeature = null;
 // Get CARTO selection as GeoJSON and Add to Map
-
+// cartoGeometries.editing.enable();
 
 function getGeoJSON(){
   $.getJSON("https://"+cartousername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery+cartoapi, function(data) {
@@ -614,9 +614,34 @@ function getGeoJSON(){
       // },
        color:'blue',
       //
-      onEachFeature: function(feature,latlng){
+      onEachFeature: function(feature,layer){
       //  var geometry = L.FeatureCollection(latlng);
-        latlng.bindPopup('' + feature.properties.datetime + 'TESTTTTING ' + feature.properties.name + '');
+        layer.bindPopup('' + feature.properties.datetime + 'TESTTTTING ' + feature.properties.name + '');
+        layer.on('click', function(e){
+            if(selectedFeature){
+                selectedFeature.editing.disable();
+
+                if(selectedFeature.feature.geometry.type != 'Point'){
+                selectedFeature.setStyle({color:'blue'})
+              }
+            }
+
+            selectedFeature = e.target;
+          //  polygon.editing.enable();
+          console.log(selectedFeature)
+          console.log(selectedFeature.feature.geometry.type)
+
+  //there is a bug in the (deprecated) draw plugin (https://github.com/Leaflet/Leaflet.draw/issues/804), this is a workaround. polygons and LineString
+  //can be enabled, but style cannot be set due to setstyle weight...
+            if(selectedFeature.feature.geometry.type != 'Point'){
+            selectedFeature.setStyle({color:'red'})
+          }
+            selectedFeature.editing.enable();
+        });
+
+
+
+
         // latlng.addTo(clusters)
 
         // latlng.addTo(deflated)
@@ -1366,7 +1391,7 @@ var drawnItems = new L.FeatureGroup();
            iconUrl: 'images/point.png'
        }
    });
-
+var editableLayers = new L.FeatureGroup();
    var options = {
            position: 'topright',
            draw: {
@@ -1380,7 +1405,7 @@ var drawnItems = new L.FeatureGroup();
                 // showArea:true,
                    allowIntersection: false, // Restricts shapes to simple polygons
                   // icon: new MyCustomMarker() ,
-                                     icon: new L.DivIcon({
+                               icon: new L.DivIcon({
                                iconSize: new L.Point(10, 10),
                                className: 'leaflet-div-icon',
                                weight:5
@@ -1394,20 +1419,35 @@ var drawnItems = new L.FeatureGroup();
                        // message: '<strong>Oh snap!<strong> you can\'t draw that!' // Message that will show when intersect
                    },
                    shapeOptions: {
-                       color: '#00ff00'
-                   }
+                       color: '#00ff00',
+                   },
                },
-
+             marker: {
+               icon: new MyCustomMarker('images/point.png')
            },
-           marker: {
-             icon: new MyCustomMarker('images/point.png')
+
           //  icon:'images/point.png'
            },
            edit: {
-               featureGroup: drawnItems, //REQUIRED!!
-               edit:false,
-               remove: false
-           }
+               featureGroup: editableLayers, // REQUIRED
+               remove: false,
+               edit: {
+                 selectedPathOptions: {
+                   dashArray: '5, 30',
+                   fill: true,
+                   fillColor: '#fe57a1',
+                   fillOpacity: 0.5,
+                   // Whether to user the existing layers color
+                   maintainColor: true
+                 }
+               },
+               poly: {
+                  icon: new L.DivIcon({
+                    iconSize: new L.Point(12, 12),
+                    className: 'leaflet-div-icon leaflet-editing-icon my-custom-icon'
+                  })
+                }
+            }
        };
 
 
