@@ -544,7 +544,7 @@ var localStorageLayer = L.geoJSON(groupGeoJSON,{
   onEachFeature: onEachFeatureAudioLocalStorage,
   autopan:false
 
-}).addTo(map)
+})//.addTo(map)
 
 // if(isOnline == true){//condition to catch an error with deflate plugin when offline, or for another reason that I don't know
 //   localStorageLayer.addTo(deflated)
@@ -1055,7 +1055,79 @@ planet_Button.button.style.height = '50px';
 planet_Button.button.style.transitionDuration = '.3s';
 
 
+// var myLayerIsOn = true;
+// var myLayer_Button = L.easyButton({
+//     id: 'myLayer',
+//     class:'easyButton',
+//     position: 'topright',
+//     //background:'images/forest.png',
+//     states: [{
+//       icon: iconLAYERS,
+//       //  background:"images/forest.png",
+//         stateName: 'check-mark',
+//         onClick: function(btn,map) {
+//           deflated.removeFrom(map)
+//           localStorageLayer.addTo(map)
+// ///////////////////////////////////////////////////////////////////////////
+// console.log(myLayerIsOn)
+// console.log(isFirstTime)
+// console.log(finalLayer)
+// console.log(myLayerIsOn)
+//         if(myLayerIsOn == true && isFirstTime==false){
+//
+//           console.log('if1')
+//           myLayerIsOn = false;
+//           myLayer_Button.button.style.backgroundColor = 'grey';
+//           if(finalLayer != null){
+//             finalLayer.removeFrom(map)
+//
+//           }
+//
+//         //  localStorageLayer.removeFrom(map);
+//          if(myLayerIsOn == true){
+//            console.log('if2')
+//
+//           // localStorageLayer.removeFrom(map);
+//            myLayer_Button.button.style.backgroundColor = 'grey';
+//
+//           }
+//         }
+//         else if(myLayerIsOn == false && isFirstTime==false){
+//           deflated.addTo(map)
+//           localStorageLayer.removeFrom(map)
+//
+//           console.log('if3')
+//
+//           myLayerIsOn = true;
+//           myLayer_Button.button.style.backgroundColor = 'black';
+//          //finalLayer.addTo(map)
+//
+//          if(finalLayer != null){
+//            finalLayer.addTo(map)
+//          }
+//
+//           if(myLayerIsOn == true){
+//             console.log('if4')
+//
+//          localStorageLayer.addTo(map)          //  layer1.addTo(map);
+//          myLayer_Button.button.style.backgroundColor = 'black';
+//
+//
+//          }
+//        }else if(isFirstTime==true && localStorageLayer ==null){ //for first load when
+//          myLayer_Button.button.style.backgroundColor = 'red';
+//           console.log('if5')
+// }
+//
+//
+//           return myLayerIsOn;
+//         }
+//
+//     }]
+// }).addTo(map); //always on as there will always be features in the map, even when first load
 var myLayerIsOn = true;
+
+var whichLayerIsOn = 'deflated';
 var myLayer_Button = L.easyButton({
     id: 'myLayer',
     class:'easyButton',
@@ -1066,64 +1138,41 @@ var myLayer_Button = L.easyButton({
       //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn,map) {
+         //  deflated.removeFrom(map)
+         // whichLayerIsOn = 'deflated'
+        if(whichLayerIsOn == 'deflated'){
           deflated.removeFrom(map)
+          localStorageLayer.addTo(map)
+              if(finalLayer != null){
+                finalLayer.addTo(map)
 
-///////////////////////////////////////////////////////////////////////////
-console.log(myLayerIsOn)
-console.log(isFirstTime)
-console.log(finalLayer)
-console.log(myLayerIsOn)
-        if(myLayerIsOn == true && isFirstTime==false){
-
-          console.log('if1')
-          myLayerIsOn = false;
+              }
+          whichLayerIsOn = 'localStorage'
           myLayer_Button.button.style.backgroundColor = 'grey';
-          if(finalLayer != null){
-            finalLayer.removeFrom(map)
-          }
 
-          localStorageLayer.removeFrom(map);
-         if(myLayerIsOn == true){
-           console.log('if2')
+        }else  if(whichLayerIsOn == 'localStorage'){
+          localStorageLayer.removeFrom(map)
+          whichLayerIsOn = 'none'
+        //  localStorageLayer.addTo(map)
+              if(finalLayer != null){
+                finalLayer.removeFrom(map)
 
-           localStorageLayer.removeFrom(map);
-           myLayer_Button.button.style.backgroundColor = 'grey';
+              }
+          myLayer_Button.button.style.backgroundColor = 'white'
 
-          }
-        }
-        else if(myLayerIsOn == false && isFirstTime==false){
+        }else  if(whichLayerIsOn == 'none'){
+          whichLayerIsOn = 'deflated'
           deflated.addTo(map)
-          console.log('if3')
-
-          myLayerIsOn = true;
-          myLayer_Button.button.style.backgroundColor = 'black';
-         //finalLayer.addTo(map)
-
-         if(finalLayer != null){
-           finalLayer.addTo(map)
-         }
-
-          if(myLayerIsOn == true){
-            console.log('if4')
-
-         localStorageLayer.addTo(map)          //  layer1.addTo(map);
-         myLayer_Button.button.style.backgroundColor = 'black';
+          myLayer_Button.button.style.backgroundColor = 'black'
+        }
 
 
-         }
-       }else if(isFirstTime==true && localStorageLayer ==null){ //for first load when
-         myLayer_Button.button.style.backgroundColor = 'red';
-          console.log('if5')
-}
 
-
-          return myLayerIsOn;
+        //  return whichLayerIsOn;
         }
 
     }]
 }).addTo(map); //always on as there will always be features in the map, even when first load
-
-
 //osm_Button.button.style.backgroundColor = 'black';
 myLayer_Button.button.style.width = '50px';
 myLayer_Button.button.style.height = '50px';
