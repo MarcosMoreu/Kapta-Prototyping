@@ -454,7 +454,7 @@ console.log(isFirstTime)
 var finalLayer;
 var groupGeoJSON =[]
 //the deflate plugin exndens the markerCluster plugin (:true)
-var deflated = L.deflate({minSize: 1000,maxsize:1,markerCluster:true})
+var deflated = L.deflate({minSize: 1000,maxsize:1,markerCluster:true, markerType: L.circleMarker,})
 deflated.addTo(map) // to initialize
 
 
@@ -519,10 +519,10 @@ console.log(isJson(groupGeoJSON))
 //conditions to catch error in case no geojson and also to avoid error when adding to map an empty layer if is first time
 //var myLayerIsOn = true;
 var markerIconLocalStorage = new L.icon({
-    iconUrl: 'scripts/lib/leaflet/images/marker-icon-black.png',
+    iconUrl: 'scripts/lib/leaflet/images/marker-icon-cian.png',
   //  shadowUrl: 'leaf-shadow.png',
 
-    iconSize:     [40, 40], // size of the icon
+    iconSize:     [25, 41], // size of the icon
     //shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
     //shadowAnchor: [4, 62],  // the same for the shadow
@@ -538,9 +538,11 @@ var localStorageLayer = L.geoJSON(groupGeoJSON,{
   },
   pointToLayer: function(feature, latlng) {
 
+
     return L.marker(latlng, {icon: markerIconLocalStorage});
+
   },
-  color:'blue',
+  color:'#33FFFF',
 //  icon: markerIconLocalStorage,
   onEachFeature: onEachFeatureAudioLocalStorage,
   autopan:false
@@ -617,6 +619,7 @@ if(isOnline == true){
 
 function getGeoJSON(){
     $.getJSON("https://"+cartousername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery+cartoapi, function(data) {
+  //  $.getJSON("https://marcosmoreu.cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery+"&api_key=4e895e6976be4482c0908dabbf81b26b3c96b270", function(data) {
     cartoLoaded = true;
     cartoGeometries = L.geoJson(data,{
        color:'blue',
@@ -625,23 +628,26 @@ function getGeoJSON(){
       //  var geometry = L.FeatureCollection(latlng);
         layer.bindPopup('' + feature.properties.datetime + 'TESTTTTING ' + feature.properties.name + '');
 
-    //  if(featureType == 'initial'){
-    // layer.on('click', function(event) {
-    // 				new LeafletToolbar.EditToolbar.Popup(event.latlng, {
-    // 					actions: editActions
-    // 				}).addTo(map, layer);
-    // 			});
-
         layer.on('click', function(e){
-            if(selectedFeature){
+console.log('geometry type' + e.target.feature.geometry.type)
+ if( e.target._radius == 10){ //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed
+   var currentZoom = map.getZoom()
+   map.setView(e.target.getLatLng(),currentZoom+2);
+
+ }else{
+
+            if(selectedFeature != null){
                 selectedFeature.editing.disable();
 
                 if(selectedFeature.feature.geometry.type != 'Point'){
                 selectedFeature.setStyle({color:'blue'})
               }
             }
+            // var boundsSeletectedFeature = selectedFeature.getBounds()
+            // map.setView(boundsSeletectedFeature)
 
             selectedFeature = e.target;
+
           //  polygon.editing.enable();
           //console.log(featureType)
 
@@ -652,7 +658,7 @@ function getGeoJSON(){
   //there is a bug in the (deprecated) draw plugin (https://github.com/Leaflet/Leaflet.draw/issues/804), this is a workaround. polygons and LineString
   //can be enabled, but style cannot be set due to setstyle weight...
             if(selectedFeature.feature.geometry.type != 'Point'){
-            selectedFeature.setStyle({color:'red'})
+            selectedFeature.setStyle({color:'#F70573'})
           }
             selectedFeature.editing.enable();
 
@@ -669,8 +675,8 @@ function getGeoJSON(){
             document.getElementById("polyline").style.display = "none";
             document.getElementById("point").style.display = "none";
 
-
-        });
+      }
+  });
       //}
     }
 
@@ -686,14 +692,23 @@ function getGeoJSON(){
 console.log( 'cartoIdFeatureSelected  '+ cartoIdFeatureSelected)
 
 // Run showAll function automatically when document loads
+
+setTimeout(function(){ //timer to avoid error when loading layer -  credentials must be get from hidden.php
 $( document ).ready(function() {
   getGeoJSON();
 });
+}, 200);
 
 //to delete feature
 var initialScreen = true;
 
 document.getElementById("backDeteleFeature").onclick = function(){
+  if(selectedFeature.feature.geometry.type != 'Point'){
+  selectedFeature.setStyle({color:'blue'})
+  }
+  selectedFeature.editing.disable()
+  map.zoomOut(1)
+  selectedFeature = null
 
 
   document.getElementById("tutorial").style.display = "initial";
@@ -704,6 +719,7 @@ document.getElementById("backDeteleFeature").onclick = function(){
   document.getElementById("backDeteleFeature").style.display = "none";
   document.getElementById("deteleFeature").style.display = "none";
 
+return selectedFeature
 
 }
 document.getElementById("deteleFeature").onclick = function(){
@@ -719,8 +735,16 @@ document.getElementById("deteleFeature").onclick = function(){
 
   //to delete from geoJSON
 //selectedFeature.setStyle({color:'#ffffff'})
-map.removeLayer(selectedFeature)
+deflated.removeLayer(selectedFeature)
+selectedFeature = null
+
   //to delete from cartodb
+
+
+
+
+  return selectedFeature
+
 }
 
 
@@ -1085,23 +1109,27 @@ var myLayer_Button = L.easyButton({
 
         if(whichLayerIsOn == 'deflated'){
           deflated.removeFrom(map)
+          if(localStorageLayer !=null){
           localStorageLayer.addTo(map)
+          }
               if(finalLayer != null){
                 finalLayer.addTo(map)
 
               }
           whichLayerIsOn = 'localStorage'
-          myLayer_Button.button.style.backgroundColor = 'grey';
+          myLayer_Button.button.style.backgroundColor = 'white';
 
         }else  if(whichLayerIsOn == 'localStorage'){
+          if(localStorageLayer !=null){
           localStorageLayer.removeFrom(map)
+        }
           whichLayerIsOn = 'none'
         //  localStorageLayer.addTo(map)
               if(finalLayer != null){
                 finalLayer.removeFrom(map)
 
               }
-          myLayer_Button.button.style.backgroundColor = 'white'
+          myLayer_Button.button.style.backgroundColor = 'grey'
 
         }else  if(whichLayerIsOn == 'none'){
           whichLayerIsOn = 'deflated'
@@ -1966,10 +1994,11 @@ var typeOfFeature;
 map.on('draw:created', function (e) {
   //  document.getElementById('myLayerButton').disable()
         myLayer_Button.removeFrom(map)
+        deflated.removeFrom(map)
         created = true;
-        if(cartoLoaded == true){
-          cartoGeometries.removeFrom(deflated)
-        }
+        // if(cartoLoaded == true){
+        //   cartoGeometries.removeFrom(deflated)
+        // }
 
      drawPolygon.disable();
     //   drawPolygon.enable();
