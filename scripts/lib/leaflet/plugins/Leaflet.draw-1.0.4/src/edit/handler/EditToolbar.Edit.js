@@ -91,7 +91,7 @@ L.EditToolbar.Edit = L.Handler.extend({
 				.on('mousemove', this._onMouseMove, this)
 				.on('touchmove', this._onMouseMove, this)
 				.on('MSPointerMove', this._onMouseMove, this)
-				.on(L.Draw.Event.EDITVERTEX, this._updateTooltip, this);
+			//	.on(L.Draw.Event.EDITVERTEX, this._updateTooltip, this);
 		}
 	},
 
@@ -112,7 +112,7 @@ L.EditToolbar.Edit = L.Handler.extend({
 				.off('mousemove', this._onMouseMove, this)
 				.off('touchmove', this._onMouseMove, this)
 				.off('MSPointerMove', this._onMouseMove, this)
-				.off(L.Draw.Event.EDITVERTEX, this._updateTooltip, this);
+			//	.off(L.Draw.Event.EDITVERTEX, this._updateTooltip, this);
 		}
 	},
 

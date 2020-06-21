@@ -629,20 +629,20 @@ function getGeoJSON(){
         layer.bindPopup('' + feature.properties.datetime + 'TESTTTTING ' + feature.properties.name + '');
 
         layer.on('click', function(e){
-console.log('geometry type' + e.target.feature.geometry.type)
- if( e.target._radius == 10){ //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed
-   var currentZoom = map.getZoom()
-   map.setView(e.target.getLatLng(),currentZoom+2);
+          console.log('geometry type' + e.target.feature.geometry.type)
+           if( e.target._radius == 10){ //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed
+             var currentZoom = map.getZoom()
+             map.setView(e.target.getLatLng(),currentZoom+2);
 
- }else{
+           }else{
 
-            if(selectedFeature != null){
-                selectedFeature.editing.disable();
+              if(selectedFeature != null){
+                  selectedFeature.editing.disable();
 
-                if(selectedFeature.feature.geometry.type != 'Point'){
-                selectedFeature.setStyle({color:'blue'})
+                  if(selectedFeature.feature.geometry.type != 'Point'){
+                  selectedFeature.setStyle({color:'blue'})
+                }
               }
-            }
             // var boundsSeletectedFeature = selectedFeature.getBounds()
             // map.setView(boundsSeletectedFeature)
 
@@ -657,10 +657,13 @@ console.log('geometry type' + e.target.feature.geometry.type)
 
   //there is a bug in the (deprecated) draw plugin (https://github.com/Leaflet/Leaflet.draw/issues/804), this is a workaround. polygons and LineString
   //can be enabled, but style cannot be set due to setstyle weight...
+
+            selectedFeature.editing.enable();
+            
             if(selectedFeature.feature.geometry.type != 'Point'){
             selectedFeature.setStyle({color:'#F70573'})
+            selectedFeature.editing.disable(); //to not allow user to edit, only delete
           }
-            selectedFeature.editing.enable();
 
           //to store the cartoID of the future selected
           cartoIdFeatureSelected = selectedFeature.feature.properties.cartodb_id
