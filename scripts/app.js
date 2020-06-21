@@ -385,7 +385,8 @@ var map = L.map('map',{
         minZoom:3,
         maxZoom:21,
         zoomControl:false,
-       attributionControl:false
+       attributionControl:false,
+
       });
 }else{
   console.log('map centered as if YES last position')
@@ -625,6 +626,12 @@ function getGeoJSON(){
         layer.bindPopup('' + feature.properties.datetime + 'TESTTTTING ' + feature.properties.name + '');
 
     //  if(featureType == 'initial'){
+    // layer.on('click', function(event) {
+    // 				new LeafletToolbar.EditToolbar.Popup(event.latlng, {
+    // 					actions: editActions
+    // 				}).addTo(map, layer);
+    // 			});
+
         layer.on('click', function(e){
             if(selectedFeature){
                 selectedFeature.editing.disable();
@@ -711,7 +718,8 @@ document.getElementById("deteleFeature").onclick = function(){
   document.getElementById("deteleFeature").style.display = "none";
 
   //to delete from geoJSON
-selectedFeature.setStyle({color:'#ffffff'})
+//selectedFeature.setStyle({color:'#ffffff'})
+map.removeLayer(selectedFeature)
   //to delete from cartodb
 }
 
@@ -1948,6 +1956,12 @@ var  finalAreaAcres2Decimals
 var  finalLength2Decimals
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+map.on('draw:deleted', function (e) {
+	self.drawControlEdit.remove();
+	self.drawControlFull.addTo(map);
+});
+
+
 var typeOfFeature;
 map.on('draw:created', function (e) {
   //  document.getElementById('myLayerButton').disable()
