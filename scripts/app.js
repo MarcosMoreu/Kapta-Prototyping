@@ -770,7 +770,7 @@ function setData() {
 
 //to delete feature
 var initialScreen = true;
-
+var clickCountDeleteButton = 0;
 document.getElementById("backDeteleFeature").onclick = function(){
   if(selectedFeature.feature.geometry.type != 'Point'){
   selectedFeature.setStyle({color:'blue'})
@@ -778,7 +778,7 @@ document.getElementById("backDeteleFeature").onclick = function(){
   selectedFeature.editing.disable()
   map.zoomOut(1)
   selectedFeature = null
-
+clickCountDeleteButton = 0
 
   document.getElementById("tutorial").style.display = "initial";
   document.getElementById("polygon").style.display = "initial";
@@ -788,10 +788,21 @@ document.getElementById("backDeteleFeature").onclick = function(){
   document.getElementById("backDeteleFeature").style.display = "none";
   document.getElementById("deteleFeature").style.display = "none";
 
-return selectedFeature
+  document.getElementById("deteleFeature").style.backgroundColor = 'white'
+  document.getElementById("deteleFeature").style.borderColor = 'white'
+
+return selectedFeature && clickCountDeleteButton
 
 }
 document.getElementById("deteleFeature").onclick = function(){
+//  clickCountDeleteButton = 0
+  if(clickCountDeleteButton ==0){
+    document.getElementById("deteleFeature").style.backgroundColor = 'red'
+    document.getElementById("deteleFeature").style.borderColor = 'red'
+
+    clickCountDeleteButton = 1
+  }else{
+    clickCountDeleteButton = 0
   console.log('feature deletedxxx')
 
   document.getElementById("tutorial").style.display = "initial";
@@ -802,18 +813,20 @@ document.getElementById("deteleFeature").onclick = function(){
   document.getElementById("backDeteleFeature").style.display = "none";
   document.getElementById("deteleFeature").style.display = "none";
 
-  //to delete from geoJSON
-//selectedFeature.setStyle({color:'#ffffff'})
-deflated.removeLayer(selectedFeature)
-selectedFeature = null
-setData()
+  document.getElementById("deteleFeature").style.backgroundColor = 'white'
+  document.getElementById("deteleFeature").style.borderColor = 'white'
+
+    //to delete from geoJSON
+  //selectedFeature.setStyle({color:'#ffffff'})
+  deflated.removeLayer(selectedFeature)
+  selectedFeature = null
+
 
   //to delete from cartodb
+  setData()
+}
 
-
-
-
-  return selectedFeature
+  return selectedFeature && clickCountDeleteButton
 
 }
 
@@ -1164,6 +1177,7 @@ planet_Button.button.style.transitionDuration = '.3s';
 var myLayerIsOn = true;
 
 var whichLayerIsOn = 'deflated';
+var featureSent;
 var myLayer_Button = L.easyButton({
     id: 'myLayerButton',
     class:'easyButton',
@@ -1203,7 +1217,16 @@ var myLayer_Button = L.easyButton({
 
         }else  if(whichLayerIsOn == 'none'){
           whichLayerIsOn = 'deflated'
+          //deflated = null;
+console.log ('finished is   '+ finished)
+        //  getGeoJSON()
+        if(featureSent == true){ //to update the carto layer with recently created feature
+          location.reload();
+          featureSent = false
+        }
+
           deflated.addTo(map)
+
           myLayer_Button.button.style.backgroundColor = 'black'
         }
 
@@ -3118,7 +3141,9 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
            }
 ///////////////////////////   send to DataBase in Digital Ocean server      /////////////////////////
 
+    featureSent = true;
 
+    return featureSent
   }
 
   document.getElementById('DownloadButton').onclick = function(e){
@@ -3189,9 +3214,9 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
                }, timeOfVideo - 300);
                myLayer_Button.addTo(map)
                //recordedBlobs = null
-               if(cartoLoaded == true){
-               cartoGeometries.addTo(deflated)
-               }
+               // if(cartoLoaded == true){
+               // cartoGeometries.addTo(deflated)
+               // }
 
         return finished
   }
