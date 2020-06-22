@@ -153,13 +153,28 @@ console.log(timeStart)
         messagingSenderId: "995673679156",
         appId: "1:995673679156:web:cff466b0d7489a868bb161"
       };
-if(isOnline == true){
-  setTimeout(function(){
-    firebase.initializeApp(firebaseConfig);
-    console.log('Firebase initialized')
-  },3000)
-}
 
+// var findFirebaseCredentials = setInterval(function(){
+//   if(isOnline == true & firebaseKey !=null){
+//
+//       firebase.initializeApp(firebaseConfig);
+//       console.log('Firebase initialized')
+//       clearInterval(findFirebaseCredentials)
+//     }
+// },500)
+
+var findFirebaseCredentials = setInterval(function(){
+
+  if(isOnline == true & firebaseKey !=null){
+         try {
+           firebase.initializeApp(firebaseConfig);
+           console.log('Firebase initialized')
+           clearInterval(findFirebaseCredentials)
+         } catch (e) {
+           console.log('firebase not initialized!!')
+        }
+  }
+},500)
 
 //  firebase.analytics();
 
@@ -619,12 +634,12 @@ var cartoLoaded;
 if(isOnline == true){
 
 function getGeoJSON(){
-//    $.getJSON("https://"+cartousername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery+cartoapi, function(data) {
-    $.getJSON("https://marcosmoreu.cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery+"&api_key=4e895e6976be4482c0908dabbf81b26b3c96b270", function(data) {
+    $.getJSON("https://"+cartousername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery+cartoapi, function(data) {
+  //  $.getJSON("https://marcosmoreu.cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery+"&api_key=4e895e6976be4482c0908dabbf81b26b3c96b270", function(data) {
     cartoLoaded = true;
     cartoGeometries = L.geoJson(data,{
        color:'blue',
-      
+
       onEachFeature: function(feature,layer){
       //  var geometry = L.FeatureCollection(latlng);
         layer.bindPopup('' + feature.properties.datetime + 'TESTTTTING ' + feature.properties.name + '');
@@ -700,11 +715,24 @@ console.log( 'cartoIdFeatureSelected  '+ cartoIdFeatureSelected)
 
 // Run showAll function automatically when document loads
 
-setTimeout(function(){ //timer to avoid error when loading layer -  credentials must be get from hidden.php
-$( document ).ready(function() {
-  getGeoJSON();
-});
-}, 200);
+//to only load carto layer once the credentials have been loaded from the server xhr2
+var findCartoCredential = setInterval(function(){
+    if(isOnline == true && cartousername != null){
+      clearInterval(findCartoCredential);
+      getGeoJSON();
+
+    }
+    console.log(cartousername)
+    return cartousername
+},500)
+
+
+
+// setTimeout(function(){ //timer to avoid error when loading layer -  credentials must be get from hidden.php
+// $( document ).ready(function() {
+//   getGeoJSON();
+// });
+// }, 1500);
 
 // var cartoLayerLoaded = false;
 // //if (cartoLayerLoaded == false){
@@ -1224,7 +1252,9 @@ var myLayer_Button = L.easyButton({
 console.log ('finished is   '+ finished)
         //  getGeoJSON()
         if(featureSent == true){ //to update the carto layer with recently created feature
-          location.reload();
+
+          getGeoJSON() //call the layer before reload so it is updated ( shouldn't be needed but...)
+          location.reload(true);  // set to true to force a hard reload
           featureSent = false
         }
 
@@ -3204,7 +3234,7 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
 
                  //window.location.reload();
                  //finalLayer is added at the end as the properties are different depending on if share or download
-
+                 myLayer_Button.addTo(map)
                  finalLayer = L.geoJSON(data,{
                    style: function (feature) {
                      return feature.properties && feature.properties.style;
@@ -3215,7 +3245,7 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
               //  finalLayer.bindPopup().openPopup()
 
                }, timeOfVideo - 300);
-               myLayer_Button.addTo(map)
+
                //recordedBlobs = null
                // if(cartoLoaded == true){
                // cartoGeometries.addTo(deflated)
