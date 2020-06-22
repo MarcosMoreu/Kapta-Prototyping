@@ -615,11 +615,12 @@ var featureType = null;
 var cartoLoaded;
 // Get CARTO selection as GeoJSON and Add to Map
 // cartoGeometries.editing.enable();
+
 if(isOnline == true){
 
 function getGeoJSON(){
-    $.getJSON("https://"+cartousername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery+cartoapi, function(data) {
-  //  $.getJSON("https://marcosmoreu.cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery+"&api_key=4e895e6976be4482c0908dabbf81b26b3c96b270", function(data) {
+//    $.getJSON("https://"+cartousername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery+cartoapi, function(data) {
+    $.getJSON("https://marcosmoreu.cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery+"&api_key=4e895e6976be4482c0908dabbf81b26b3c96b270", function(data) {
     cartoLoaded = true;
     cartoGeometries = L.geoJson(data,{
        color:'blue',
@@ -659,7 +660,7 @@ function getGeoJSON(){
   //can be enabled, but style cannot be set due to setstyle weight...
 
             selectedFeature.editing.enable();
-            
+
             if(selectedFeature.feature.geometry.type != 'Point'){
             selectedFeature.setStyle({color:'#F70573'})
             selectedFeature.editing.disable(); //to not allow user to edit, only delete
@@ -702,6 +703,69 @@ $( document ).ready(function() {
 });
 }, 200);
 
+// var cartoLayerLoaded = false;
+// //if (cartoLayerLoaded == false){
+//   setInterval(function(){
+//
+//     return cartousername
+//   },500)
+//
+// if(cartousername != null){
+//   $( document ).ready(function() {
+//     getGeoJSON();
+//     cartoLayerLoaded = true;
+//   });
+//   console.log('carto layer loaded')
+// };
+
+
+// Submit data to the PHP using a jQuery Post method
+var submitToProxy = function(q){
+  $.post("./callProxy.php", { // <--- Enter the path to your callProxy.php file here
+    qurl:q,
+    // geojson:data,
+    cache: false,
+    timeStamp: new Date().getTime()
+  }, function(data) {
+    console.log(data);
+//          refreshLayer();
+  });
+};
+//this function is called both when feature is deleted or feature is created and sent.
+function setData() {
+  //console.log(data)
+  console.log("setdata function called");
+
+
+
+    if(cartoIdFeatureSelected != null && created == false){
+      var pURL = "DELETE * FROM lumblu WEHRE cartodb_id="+cartoIdFeatureSelected+" RETURNING *"
+      //cartoIdFeatureSelected = null
+    }else{
+      dataGeometry = data.features[0].geometry
+      console.log(dataGeometry)
+      var dataGeometryString = JSON.stringify(dataGeometry)
+      console.log(dataGeometryString)
+
+      var sql = "INSERT INTO lumblu (the_geom, datetime, randomid, landuses, landusesemoji, audioavailable, areapolygon, lengthline, timespent, distance) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
+      var sql2 = dataGeometryString;
+      var sql3 = "'),4326),'" + dateTime + "','" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + audioAvailable + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "')";
+
+      var pURL = sql+sql2+sql3;
+
+    }
+
+        console.log(pURL)
+        submitToProxy(pURL);
+        console.log("Feature has been submitted to the Proxy");
+    // });
+    // map.removeLayer(drawnItems);
+    // drawnItems = new L.FeatureGroup();
+    // console.log("drawnItems has been cleared");
+    // dialog.dialog("close");
+};
+
+
 //to delete feature
 var initialScreen = true;
 
@@ -740,6 +804,7 @@ document.getElementById("deteleFeature").onclick = function(){
 //selectedFeature.setStyle({color:'#ffffff'})
 deflated.removeLayer(selectedFeature)
 selectedFeature = null
+setData()
 
   //to delete from cartodb
 
@@ -3007,45 +3072,10 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
               randomID = propertiesGeoJSON.randomID;
               console.log(randomID)
 //////////////
-            // Submit data to the PHP using a jQuery Post method
-            var submitToProxy = function(q){
-              $.post("./callProxy.php", { // <--- Enter the path to your callProxy.php file here
-                qurl:q,
-                // geojson:data,
-                cache: false,
-                timeStamp: new Date().getTime()
-              }, function(data) {
-                console.log(data);
-      //          refreshLayer();
-              });
-            };
+
             setData();
 
-            function setData() {
-              console.log(data)
-              console.log("setdata function called");
 
-                dataGeometry = data.features[0].geometry
-                console.log(dataGeometry)
-                var dataGeometryString = JSON.stringify(dataGeometry)
-                console.log(dataGeometryString)
-
-                var sql = "INSERT INTO lumblu (the_geom, datetime, randomid, landuses, landusesemoji, audioavailable, areapolygon, lengthline, timespent, distance) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
-                var sql2 = dataGeometryString;
-                var sql3 = "'),4326),'" + dateTime + "','" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + audioAvailable + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "')";
-
-
-
-                    var pURL = sql+sql2+sql3;
-                    console.log(pURL)
-                    submitToProxy(pURL);
-                    console.log("Feature has been submitted to the Proxy");
-                // });
-                // map.removeLayer(drawnItems);
-                // drawnItems = new L.FeatureGroup();
-                // console.log("drawnItems has been cleared");
-                // dialog.dialog("close");
-            };
 
 
             // refresh the layers to show the updated dataset
