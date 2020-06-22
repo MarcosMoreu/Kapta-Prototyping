@@ -739,8 +739,10 @@ function setData() {
 
 
     if(cartoIdFeatureSelected != null && created == false){
-      var pURL = "DELETE * FROM lumblu WEHRE cartodb_id="+cartoIdFeatureSelected+" RETURNING *"
-      //cartoIdFeatureSelected = null
+    //  var pURL = "DELETE * FROM lumblu WEHRE cartodb_id="+cartoIdFeatureSelected+" RETURNING *"
+      var pURL = "DELETE * FROM lumblu WEHRE cartodb_id='"+cartoIdFeatureSelected+"'"
+
+      cartoIdFeatureSelected = null
     }else{
       dataGeometry = data.features[0].geometry
       console.log(dataGeometry)
