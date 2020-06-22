@@ -738,12 +738,12 @@ function setData() {
 
 
 
-    if(cartoIdFeatureSelected != null && created == false){
-    //  var pURL = "DELETE * FROM lumblu WEHRE cartodb_id="+cartoIdFeatureSelected+" RETURNING *"
-      var pURL = "DELETE * FROM lumblu WEHRE cartodb_id='"+cartoIdFeatureSelected+"'"
+    if(cartoIdFeatureSelected != null && created == false){ //TO DELETE THE SELECTED FEATURE FROM THE CARTO DB
+
+     var pURL = "DELETE FROM lumblu WHERE cartodb_id='"+cartoIdFeatureSelected+"'";
 
       cartoIdFeatureSelected = null
-    }else{
+    }else{ //TO INSERT THE CREATED FEATURE INTO THE CARTO DB
       dataGeometry = data.features[0].geometry
       console.log(dataGeometry)
       var dataGeometryString = JSON.stringify(dataGeometry)
