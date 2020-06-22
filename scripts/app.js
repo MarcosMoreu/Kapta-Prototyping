@@ -519,7 +519,7 @@ console.log(isJson(groupGeoJSON))
 //conditions to catch error in case no geojson and also to avoid error when adding to map an empty layer if is first time
 //var myLayerIsOn = true;
 var markerIconLocalStorage = new L.icon({
-    iconUrl: 'scripts/lib/leaflet/images/marker-icon-cian.png',
+    iconUrl: 'images/marker-icon-cian.png',
   //  shadowUrl: 'leaf-shadow.png',
 
     iconSize:     [25, 41], // size of the icon
@@ -624,7 +624,7 @@ function getGeoJSON(){
     cartoLoaded = true;
     cartoGeometries = L.geoJson(data,{
        color:'blue',
-      //
+      
       onEachFeature: function(feature,layer){
       //  var geometry = L.FeatureCollection(latlng);
         layer.bindPopup('' + feature.properties.datetime + 'TESTTTTING ' + feature.properties.name + '');
@@ -643,6 +643,9 @@ function getGeoJSON(){
                   if(selectedFeature.feature.geometry.type != 'Point'){
                   selectedFeature.setStyle({color:'blue'})
                 }
+              //   if(selectedFeature.feature.geometry.type == 'Point'){
+              //   selectedFeature.setStyle({iconUrl:'images/marker-icon.png'})
+              // }
               }
             // var boundsSeletectedFeature = selectedFeature.getBounds()
             // map.setView(boundsSeletectedFeature)
