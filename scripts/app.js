@@ -465,11 +465,34 @@ var scale = L.control.scale({
 
 console.log(isFirstTime)
 
+//function to customise deflated shapes
+function customDeflateMarkers(f) {
+    // Use custom marker only for buildings
+    if (f.feature.geometry.type === 'Polygon') {
+        return {
+            icon: L.icon({
+                iconUrl: 'images/markerPolygon.png',
+                iconSize: [24, 24]
+            })
+        }
+    };
+    if (f.feature.geometry.type === 'LineString') {
+        return {
+            icon: L.icon({
+                iconUrl: 'images/markerLine.png',
+                iconSize: [24, 24]
+            })
+        }
+    }
+
+    return {};
+}
+
 ////////////////////////////////           script to get items from local storage    //////////////////////////////
 var finalLayer;
 var groupGeoJSON =[]
 //the deflate plugin exndens the markerCluster plugin (:true)
-var deflated = L.deflate({minSize: 1000,maxsize:1,markerCluster:true, markerType: L.circleMarker,})
+var deflated = L.deflate({minSize: 1000,maxsize:1,markerCluster:true, markerType: L.marker, markerOptions: customDeflateMarkers})
 deflated.addTo(map) // to initialize
 
 
@@ -534,10 +557,10 @@ console.log(isJson(groupGeoJSON))
 //conditions to catch error in case no geojson and also to avoid error when adding to map an empty layer if is first time
 //var myLayerIsOn = true;
 var markerIconLocalStorage = new L.icon({
-    iconUrl: 'images/marker-icon-cian.png',
+    iconUrl: 'images/markerLocalStorage.png',
   //  shadowUrl: 'leaf-shadow.png',
 
-    iconSize:     [25, 41], // size of the icon
+    iconSize:     [18, 33], // size of the icon
     //shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
     //shadowAnchor: [4, 62],  // the same for the shadow
@@ -586,9 +609,12 @@ var localStorageLayer = L.geoJSON(groupGeoJSON,{
 // })//.addTo(map);
 
 var clusters = L.markerClusterGroup({
+  animate:true,
   spiderfyOnMaxZoom: true,
 showCoverageOnHover: true,
-zoomToBoundsOnClick: true
+zoomToBoundsOnClick: true,
+animateAddingMarkers: true,
+
 
 });
 
@@ -638,7 +664,7 @@ function getGeoJSON(){
   //  $.getJSON("https://marcosmoreu.cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery+"&api_key=4e895e6976be4482c0908dabbf81b26b3c96b270", function(data) {
     cartoLoaded = true;
     cartoGeometries = L.geoJson(data,{
-       color:'blue',
+       color:'#AFFDA7',
 
       onEachFeature: function(feature,layer){
       //  var geometry = L.FeatureCollection(latlng);
@@ -656,7 +682,7 @@ function getGeoJSON(){
                   selectedFeature.editing.disable();
 
                   if(selectedFeature.feature.geometry.type != 'Point'){
-                  selectedFeature.setStyle({color:'blue'})
+                  selectedFeature.setStyle({color:'#AFFDA7'})
                 }
               //   if(selectedFeature.feature.geometry.type == 'Point'){
               //   selectedFeature.setStyle({iconUrl:'images/marker-icon.png'})
@@ -959,7 +985,7 @@ var osm_Button = L.easyButton({
           map.options.minZoom = 3;
           osm_Button.removeFrom(map);
           planet_Button.addTo(map);
-        //  myLayer_Button.addTo(map)
+         myLayer_Button.addTo(map)//keep this, other the button moves up
 
         //  console.log('countbutton clicks', clickButtonCount)
           if(clickButtonCount == 10){
@@ -1005,7 +1031,7 @@ var googleSat_Button = L.easyButton({
           map.options.minZoom = 3;
           googleSat_Button.removeFrom(map);
           osm_Button.addTo(map);
-          //myLayer_Button.addTo(map)
+          myLayer_Button.addTo(map)
 
           //console.log('countbutton clicks', clickButtonCount)
           if(clickButtonCount == 10){
@@ -1190,7 +1216,7 @@ var planet_Button = L.easyButton({
             planet.addTo(map); // planet imagery goes after so it stays on top of sentinel data (sentinel is global, planet is not yet?)
             googleSat.removeFrom(map);
             osm.removeFrom(map);
-          //  myLayer_Button.addTo(map)
+            myLayer_Button.addTo(map)
 
             // btn.button.style.backgroundColor = 'yellow';
             //   googleSat_Button.button.style.backgroundColor = 'black';
@@ -1612,6 +1638,7 @@ var editableLayers = new L.FeatureGroup();
                    },
                    shapeOptions: {
                        color: '#00ff00',
+                       weight:1
                    },
                },
              marker: {
