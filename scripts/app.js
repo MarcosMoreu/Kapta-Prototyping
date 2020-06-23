@@ -2348,8 +2348,12 @@ map.on('draw:created', function (e) {
          console.log(typeOfFeature)
 
   // to avoid to many zoom when a point is created >> zoom +2
-     if(typeOfFeature != 'polygon' && typeOfFeature != 'polyline'){
-       map.zoomOut(2)
+  // if(typeOfFeature != 'polygon' && typeOfFeature != 'polyline'){
+   if(featureType == 'point'){
+console.log('featuretype    '+ featureType)
+//console.log('typeOfFeature    '+ typeOfFeature)
+
+       map.zoomOut(5)
 
      }
 
