@@ -668,14 +668,25 @@ function getGeoJSON(){
        //icon: markerIconLocalStorage,
       onEachFeature: function(feature,layer){
       //  var geometry = L.FeatureCollection(latlng);
-        layer.bindPopup('' + feature.properties.datetime + 'TESTTTTING ' + feature.properties.name + '');
+      var audioAvailable = feature.properties.audioavailable
+
+        if(feature.geometry.type == 'Point'){
+          layer.bindPopup(feature.properties.landusesemoji + feature.properties.audioavailable);
+        }
+
+        if(feature.geometry.type == 'Polygon'){
+          layer.bindPopup(feature.properties.landusesemoji + feature.properties.audioavailable + ' ' + feature.properties.areapolygon);
+
+        }if(feature.geometry.type == 'LineString'){
+          layer.bindPopup(feature.properties.landusesemoji + feature.properties.audioavailable + ' ' + feature.properties.lengthline);
+        }
 
         layer.on('click', function(e){
           console.log('geometry type' + e.target.feature.geometry.type)
-           if( e.target._radius == 10){ //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed
+           if( e.target.options.icon.options.iconUrl != 'marker-icon.png'){ //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed
              var currentZoom = map.getZoom()
-             map.setView(e.target.getLatLng(),currentZoom+2);
-
+             map.setView(e.target.getLatLng(),currentZoom+3);
+             console.log(e.target.options.icon.options.iconUrl)
            }else{
 
               if(selectedFeature != null){
@@ -697,6 +708,8 @@ function getGeoJSON(){
           //console.log(featureType)
 
           console.log(selectedFeature)
+          console.log(selectedFeature.options.icon.options.iconUrl)
+
           console.log(selectedFeature.feature.geometry.type)
           console.log('cartodb id   ' + selectedFeature.feature.properties.cartodb_id)
 
@@ -832,12 +845,19 @@ var initialScreen = true;
 var clickCountDeleteButton = 0;
 document.getElementById("backDeleteFeature").onclick = function(){
   if(selectedFeature.feature.geometry.type != 'Point'){
-  selectedFeature.setStyle({color:'blue'})
+  selectedFeature.setStyle({color:'#AFFDA7'})
   }
-  selectedFeature.editing.disable()
+  try { //sometimes this fails
+    selectedFeature.editing.disable()
+  } catch (e) {
+    console.log('disable error catched')
+ }
+
   map.zoomOut(1)
   selectedFeature = null
-clickCountDeleteButton = 0
+  clickCountDeleteButton = 0
+  cartoIdFeatureSelected = null;
+  console.log(cartoIdFeatureSelected)
 
   document.getElementById("tutorial").style.display = "initial";
   document.getElementById("polygon").style.display = "initial";
@@ -852,11 +872,11 @@ clickCountDeleteButton = 0
   document.getElementById("deleteFeature").style.backgroundColor = 'white'
   document.getElementById("deleteFeature").style.borderColor = 'white'
 
-return selectedFeature && clickCountDeleteButton
+return selectedFeature && clickCountDeleteButton && cartoIdFeatureSelected
 
 }
 document.getElementById("deleteFeature").onclick = function(){
-//  clickCountDeleteButton = 0
+  console.log(cartoIdFeatureSelected)
   if(clickCountDeleteButton ==0){
     document.getElementById("deleteFeature").style.backgroundColor = 'red'
     document.getElementById("deleteFeature").style.borderColor = 'red'
@@ -864,6 +884,7 @@ document.getElementById("deleteFeature").onclick = function(){
     clickCountDeleteButton = 1
   }else{
     clickCountDeleteButton = 0
+    //cartoIdFeatureSelected = null;
   console.log('feature deletedxxx')
 
   document.getElementById("tutorial").style.display = "initial";
@@ -2855,7 +2876,6 @@ var diffTimes;
   document.getElementById('share-download').onclick = function(e) {
               //  featureType = 'initial';
               myLayer_Button.addTo(map)
-
                 sameSession = true;
                 alreadyMovedUp = false;
                 audioRecorded = false;
@@ -3037,7 +3057,7 @@ var diffTimes;
             },200)
               recordedVideo.pause();
               recordedVideo.currentTime = 0;
-              created=false;
+              created = false;
 
 //adding layers to localstorage
               var dataStringified = JSON.stringify(data);
@@ -3115,7 +3135,7 @@ var diffTimes;
 //             document.getElementById("sendFirebase").click();
 //             // document.getElementById('emojionearea1').value = '...'
 
-      return data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType //&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
+      return created && data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType //&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
   }
 console.log(finalLayer)
 
@@ -3174,9 +3194,14 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
               landUsesEmoji = propertiesGeoJSON.landUsesEmoji;
               console.log(landUsesEmoji)
               // include the firebase url (if audio has been recorded)
-              var audioLinkText = '🔊 AUDIO';
+              console.log(finalUrlAudio)
+              if(finalUrlAudio !=null){
+              var audioLinkText = ' 🔊 AUDIO';
               var clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
               audioAvailable = clickableFinalUrlAudio;
+            }else{ //to not show audio icon when no audio available
+              audioAvailable = '.'
+            }
               //audioAvailable = finalUrlAudio;
 
               console.log(audioAvailable)
