@@ -667,141 +667,84 @@ function getGeoJSON(){
        color:'#AFFDA7',
        //icon: markerIconLocalStorage,
       onEachFeature: function(feature,layer){
-          //  var geometry = L.FeatureCollection(latlng);
-          var audioAvailable = feature.properties.audioavailable
+      //  var geometry = L.FeatureCollection(latlng);
+      var audioAvailable = feature.properties.audioavailable
 
-            if(feature.geometry.type == 'Point'){
-              layer.bindPopup(feature.properties.landusesemoji + feature.properties.audioavailable);
-            }
+        if(feature.geometry.type == 'Point'){
+          layer.bindPopup(feature.properties.landusesemoji + feature.properties.audioavailable);
+        }
 
-            if(feature.geometry.type == 'Polygon'){
-              layer.bindPopup(feature.properties.landusesemoji + feature.properties.audioavailable + ' ' + feature.properties.areapolygon);
+        if(feature.geometry.type == 'Polygon'){
+          layer.bindPopup(feature.properties.landusesemoji + feature.properties.audioavailable + ' ' + feature.properties.areapolygon);
 
-            }if(feature.geometry.type == 'LineString'){
-              layer.bindPopup(feature.properties.landusesemoji + feature.properties.audioavailable + ' ' + feature.properties.lengthline);
-            }
-    /////////////////////////////
-    layer.on('click', function(e){
-      console.log('geometry type' + e.target.feature.geometry.type)
-      // if( !e.target._radius == 10){ //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed
-       if(!e.target.defaultOptions){ //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed
+        }if(feature.geometry.type == 'LineString'){
+          layer.bindPopup(feature.properties.landusesemoji + feature.properties.audioavailable + ' ' + feature.properties.lengthline);
+        }
 
-         var currentZoom = map.getZoom()
-         map.setView(e.target.getLatLng(),currentZoom+2);
+        layer.on('click', function(e){
+          console.log('geometry type' + e.target.feature.geometry.type)
 
-       }else{
+        //  if(e.target.feature.geometry.type == 'Point'){ //to catch error of option not found when the feature is not a point
+             // if( e.target.options.icon.options.iconUrl != 'marker-icon.png'){ //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed
+             //   var currentZoom = map.getZoom()
+             //   map.setView(e.target.getLatLng(),currentZoom+3);
+             //   console.log(e.target.options.icon.options.iconUrl)
+             // //}
+           //}
+           if (e.target.feature.geometry.type == 'Point'){
 
-          if(selectedFeature != null){
-            try{
-              selectedFeature.editing.disable();
-              
-            }catch(e){
-              console.log('disable error catched')
-            }
-              if(selectedFeature.feature.geometry.type != 'Point'){
-              selectedFeature.setStyle({color:'#AFFDA7'})
-            }
+              if(selectedFeature != null){
+                  selectedFeature.editing.disable();
+
+                  if(selectedFeature.feature.geometry.type != 'Point'){
+                  selectedFeature.setStyle({color:'#AFFDA7'})
+                }
+              //   if(selectedFeature.feature.geometry.type == 'Point'){
+              //   selectedFeature.setStyle({iconUrl:'images/marker-icon.png'})
+              // }
+              }
+            // var boundsSeletectedFeature = selectedFeature.getBounds()
+            // map.setView(boundsSeletectedFeature)
+
+
+          //  polygon.editing.enable();
+          //console.log(featureType)
+
+          console.log(selectedFeature)
+          console.log(selectedFeature.options.icon.options.iconUrl)
+
+          console.log(selectedFeature.feature.geometry.type)
+          console.log('cartodb id   ' + selectedFeature.feature.properties.cartodb_id)
+
+  //there is a bug in the (deprecated) draw plugin (https://github.com/Leaflet/Leaflet.draw/issues/804), this is a workaround. polygons and LineString
+  //can be enabled, but style cannot be set due to setstyle weight...
+
+            selectedFeature.editing.enable();
+
+            if(selectedFeature.feature.geometry.type != 'Point'){
+            selectedFeature.setStyle({color:'#F70573'})
+            selectedFeature.editing.disable(); //to not allow user to edit, only delete
           }
-        // var boundsSeletectedFeature = selectedFeature.getBounds()
-        // map.setView(boundsSeletectedFeature)
 
-        selectedFeature = e.target;
+          //to store the cartoID of the future selected
+          cartoIdFeatureSelected = selectedFeature.feature.properties.cartodb_id
 
-      //  polygon.editing.enable();
-      //console.log(featureType)
+              //to activate deactivate button
+            //  document.getElementsByClassName('button').visibility = 'hidden';
+            document.getElementById("backDeleteFeature").style.display = "initial";
+            document.getElementById("commentFeature").style.display = "initial";
+          //  document.getElementById("commentFeature").disabled = true;
+            document.getElementById("deleteFeature").style.display = "initial";
 
-      console.log(selectedFeature)
-      console.log(selectedFeature.feature.geometry.type)
-      console.log('cartodb id   ' + selectedFeature.feature.properties.cartodb_id)
+            document.getElementById("tutorial").style.display = "none";
+            document.getElementById("polygon").style.display = "none";
+            document.getElementById("polyline").style.display = "none";
+            document.getElementById("point").style.display = "none";
 
-//there is a bug in the (deprecated) draw plugin (https://github.com/Leaflet/Leaflet.draw/issues/804), this is a workaround. polygons and LineString
-//can be enabled, but style cannot be set due to setstyle weight...
-
-        selectedFeature.editing.enable();
-
-        if(selectedFeature.feature.geometry.type != 'Point'){
-        selectedFeature.setStyle({color:'#F70573'})
-        selectedFeature.editing.disable(); //to not allow user to edit, only delete
       }
-
-      //to store the cartoID of the future selected
-      cartoIdFeatureSelected = selectedFeature.feature.properties.cartodb_id
-
-          //to activate deactivate button
-        //  document.getElementsByClassName('button').visibility = 'hidden';
-        document.getElementById("backDeleteFeature").style.display = "initial";
-        document.getElementById("deleteFeature").style.display = "initial";
-        document.getElementById("commentFeature").style.display = "initial";
-
-
-        document.getElementById("tutorial").style.display = "none";
-        document.getElementById("polygon").style.display = "none";
-        document.getElementById("polyline").style.display = "none";
-        document.getElementById("point").style.display = "none";
-
-  }
-});
-
-
-      //       layer.on('click', function(e){
-      //         console.log('geometry type' + e.target.feature.geometry.type)
-      //
-      //       //  if(e.target.feature.geometry.type == 'Point'){ //to catch error of option not found when the feature is not a point
-      //            // if(e.target.options.icon.options.iconUrl != 'marker-icon.png'){ //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed
-      //            //   var currentZoom = map.getZoom()
-      //            //   map.setView(e.target.getLatLng(),currentZoom+3);
-      //            //   console.log(e.target.options.icon.options.iconUrl)
-      //            // //}
-      //
-      //       //   }else {
-      //
-      //             if(selectedFeature != null){
-      //                 selectedFeature.editing.disable();
-      //                 console.log(selectedFeature)
-      //
-      //                 if(selectedFeature.feature.geometry.type != 'Point'){
-      //                 selectedFeature.setStyle({color:'#AFFDA7'})
-      //               }
-      //
-      //             }
-      //           selectedFeature = e.target;
-      //           selectedFeature.editing.enable();
-      //
-      //         console.log(selectedFeature)
-      //         console.log(selectedFeature.options.icon.options.iconUrl)
-      //
-      //         console.log(selectedFeature.feature.geometry.type)
-      //         console.log('cartodb id   ' + selectedFeature.feature.properties.cartodb_id)
-      //
-      // //there is a bug in the (deprecated) draw plugin (https://github.com/Leaflet/Leaflet.draw/issues/804), this is a workaround. polygons and LineString
-      // //can be enabled, but style cannot be set due to setstyle weight...
-      //
-      //
-      //
-      //           if(selectedFeature.feature.geometry.type != 'Point'){
-      //           selectedFeature.setStyle({color:'#F70573'})
-      //           selectedFeature.editing.disable(); //to not allow user to edit, only delete
-      //         }
-      //
-      //         //to store the cartoID of the future selected
-      //         cartoIdFeatureSelected = selectedFeature.feature.properties.cartodb_id
-      //
-      //             //to activate deactivate button
-      //           //  document.getElementsByClassName('button').visibility = 'hidden';
-      //           document.getElementById("backDeleteFeature").style.display = "initial";
-      //           document.getElementById("commentFeature").style.display = "initial";
-      //         //  document.getElementById("commentFeature").disabled = true;
-      //           document.getElementById("deleteFeature").style.display = "initial";
-      //
-      //           document.getElementById("tutorial").style.display = "none";
-      //           document.getElementById("polygon").style.display = "none";
-      //           document.getElementById("polyline").style.display = "none";
-      //           document.getElementById("point").style.display = "none";
-      //
-      //       //}
-      //   });
-  ////////////////////////////////////////
-  }
+  });
+      //}
+    }
 
   }).addTo(deflated)
 
