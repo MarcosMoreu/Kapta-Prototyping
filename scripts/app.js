@@ -715,8 +715,10 @@ function getGeoJSON(){
 
               //to activate deactivate button
             //  document.getElementsByClassName('button').visibility = 'hidden';
-            document.getElementById("backDeteleFeature").style.display = "initial";
-            document.getElementById("deteleFeature").style.display = "initial";
+            document.getElementById("backDeleteFeature").style.display = "initial";
+            document.getElementById("commentFeature").style.display = "initial";
+          //  document.getElementById("commentFeature").disabled = true;
+            document.getElementById("deleteFeature").style.display = "initial";
 
             document.getElementById("tutorial").style.display = "none";
             document.getElementById("polygon").style.display = "none";
@@ -828,7 +830,7 @@ function setData() {
 //to delete feature
 var initialScreen = true;
 var clickCountDeleteButton = 0;
-document.getElementById("backDeteleFeature").onclick = function(){
+document.getElementById("backDeleteFeature").onclick = function(){
   if(selectedFeature.feature.geometry.type != 'Point'){
   selectedFeature.setStyle({color:'blue'})
   }
@@ -842,20 +844,22 @@ clickCountDeleteButton = 0
   document.getElementById("polyline").style.display = "initial";
   document.getElementById("point").style.display = "initial";
 
-  document.getElementById("backDeteleFeature").style.display = "none";
-  document.getElementById("deteleFeature").style.display = "none";
+  document.getElementById("backDeleteFeature").style.display = "none";
+  document.getElementById("commentFeature").style.display = "none";
 
-  document.getElementById("deteleFeature").style.backgroundColor = 'white'
-  document.getElementById("deteleFeature").style.borderColor = 'white'
+  document.getElementById("deleteFeature").style.display = "none";
+
+  document.getElementById("deleteFeature").style.backgroundColor = 'white'
+  document.getElementById("deleteFeature").style.borderColor = 'white'
 
 return selectedFeature && clickCountDeleteButton
 
 }
-document.getElementById("deteleFeature").onclick = function(){
+document.getElementById("deleteFeature").onclick = function(){
 //  clickCountDeleteButton = 0
   if(clickCountDeleteButton ==0){
-    document.getElementById("deteleFeature").style.backgroundColor = 'red'
-    document.getElementById("deteleFeature").style.borderColor = 'red'
+    document.getElementById("deleteFeature").style.backgroundColor = 'red'
+    document.getElementById("deleteFeature").style.borderColor = 'red'
 
     clickCountDeleteButton = 1
   }else{
@@ -867,11 +871,13 @@ document.getElementById("deteleFeature").onclick = function(){
   document.getElementById("polyline").style.display = "initial";
   document.getElementById("point").style.display = "initial";
 
-  document.getElementById("backDeteleFeature").style.display = "none";
-  document.getElementById("deteleFeature").style.display = "none";
+  document.getElementById("backDeleteFeature").style.display = "none";
+  document.getElementById("commentFeature").style.display = "none";
 
-  document.getElementById("deteleFeature").style.backgroundColor = 'white'
-  document.getElementById("deteleFeature").style.borderColor = 'white'
+  document.getElementById("deleteFeature").style.display = "none";
+
+  document.getElementById("deleteFeature").style.backgroundColor = 'white'
+  document.getElementById("deleteFeature").style.borderColor = 'white'
 
     //to delete from geoJSON
   //selectedFeature.setStyle({color:'#ffffff'})
