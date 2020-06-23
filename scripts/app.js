@@ -117,6 +117,8 @@ return planetKey && sentinelKey && firebaseKey && cartousername && cartoapi
 //    };
 console.log(planetKey)
 
+
+
 var isIOS = /iPad|iPhone|iPod|Mac OS X/.test(navigator.userAgent) && !window.MSStream;  // Mac OS X correct???
 if (isIOS == true) {
 // recordedBlobs = null;  // important in case ios device, so recorded blobs is not taken from audio.js
@@ -128,6 +130,7 @@ console.log('isIOS  ' + isIOS)
 
 var isOnline = navigator.onLine
 var isOnlineGlobal = isOnline
+// console.log('isChrome  '+ isChrome)
 console.log(navigator.onLine)
 console.log(navigator.appVersion)
 console.log(navigator.platform)
@@ -135,6 +138,7 @@ console.log('isoline' +isOnline)
 
 var browserLanguage = navigator.language
 console.log(navigator.language)
+
 //var  timeFinish = today.getHours() + " " + today.getMinutes() + " " + today.getSeconds();
 var timeStart = new Date();
 //var startDateTime = today.getMinutes() + " " + today.getSeconds()
@@ -326,6 +330,22 @@ firstLoad();
 console.log(isFirstTime);
 console.log('udddd?')
 
+//to alert user to use chrome browser
+// var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+//
+// if(isFirstTime == true && isIOS == false && isChrome == false){
+//   if(browserLanguage[0] == 'e' && browserLanguage[1] == 'n'){ //english
+//   alert("Please use the Chrome browser");  }
+//   if(browserLanguage[0] == 'e' && browserLanguage[1] == 's'){ //spanish
+//   alert("Por favor utiliza el navegador Chrome.");  }
+//   if(browserLanguage[0] == 'p' && browserLanguage[1] == 't'){ //portuguese
+//   alert("Por favor, use o navegador Chrome");  }
+//   if(browserLanguage[0] == 'f' && browserLanguage[1] == 'r'){ //french
+//   alert("Veuillez utiliser le navigateur Chrome");  }
+//   if(browserLanguage == 'sw'){                                //swahili
+//   alert("Tafadhali tumia kivinjari cha Chrome");  }
+// }
+
 
 /////////////////////////////////////////////////////////adding map elements///////////////////////////////////////////////////
 
@@ -392,15 +412,15 @@ var mySubStringArray = mySubString.split(',');
 //
 // }else
 
-var southWest = L.latLng(-90, -180);
-var northEast = L.latLng(90, 180); 
+var southWest = L.latLng(-70, -180);
+var northEast = L.latLng(80, 180);
 
  if(lastPositionStoredLOCALLY == null){
   console.log('map centered as if not last position')
 var map = L.map('map',{
         editable:true,
-        center: [18,20],
-        zoom: 3,
+        center: [0,0],
+        zoom: 0,
         minZoom:2,
         maxZoom:21,
         zoomControl:false,
@@ -481,7 +501,7 @@ function customDeflateMarkers(f) {
         return {
             icon: L.icon({
                 iconUrl: 'images/markerPolygon.png',
-                iconSize: [24, 24]
+                iconSize: [30, 30]
             })
         }
     };
@@ -489,7 +509,7 @@ function customDeflateMarkers(f) {
         return {
             icon: L.icon({
                 iconUrl: 'images/markerLine.png',
-                iconSize: [24, 24]
+                iconSize: [30, 30]
             })
         }
     }
@@ -663,6 +683,7 @@ var sqlQuery = "SELECT * FROM lumblu";
 var selectedFeature = null;
 var featureType = null;
 var cartoLoaded;
+var clickCountDelete;
 // Get CARTO selection as GeoJSON and Add to Map
 // cartoGeometries.editing.enable();
 
@@ -692,9 +713,7 @@ function getGeoJSON(){
     /////////////////////////////
     layer.on('click', function(e){
 
-      map.touchZoom.disable(); //to don't allow the user to zoomout/in while deleting a feature, only pan. This solves the issue of cluster not refresing and deselecting not working when zooming out
-      map.doubleClickZoom.disable();
-      map.scrollWheelZoom.disable();
+
 
       console.log('geometry type' + e.target.feature.geometry.type)
       // if( !e.target._radius == 10){ //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed
@@ -704,6 +723,10 @@ function getGeoJSON(){
          map.setView(e.target.getLatLng(),currentZoom+2);
 
        }else{
+         // map.touchZoom.disable(); //to don't allow the user to zoomout/in while deleting a feature, only pan. This solves the issue of cluster not refresing and deselecting not working when zooming out
+         // map.doubleClickZoom.disable();
+         // map.scrollWheelZoom.disable();
+         // map.dragging.disable();
 
           if(selectedFeature){
             try{
@@ -723,7 +746,42 @@ function getGeoJSON(){
         // map.setView(boundsSeletectedFeature)
         document.getElementById("deleteFeature").style.opacity = "1";
         document.getElementById("deleteFeature").disabled = false;
+        //document.getElementById("deleteFeature").style.borderColor = '#F70573'
+
         selectedFeature = e.target;
+
+        //to deselect feature if user changes zooms or pans, to avoid deletion without looking at the feature.
+        map.on('zoomend', function (e) {
+          try{
+            selectedFeature.editing.disable();
+
+          }catch(e){
+            console.log('disable error catched')
+          }
+          clickCountDeleteButton = 0
+          document.getElementById("deleteFeature").style.opacity = "0.35";
+          document.getElementById("deleteFeature").style.backgroundColor = 'white'
+          document.getElementById("deleteFeature").disabled = true;
+          if(selectedFeature && selectedFeature.feature.geometry.type != 'Point'){ //to avoid zoomend later, we need to check if !selectedFeature
+          selectedFeature.setStyle({color:'#AFFDA7'})
+      }
+      })
+        map.on('moveend', function (e) {
+          try{
+            selectedFeature.editing.disable();
+
+          }catch(e){
+            console.log('disable error catched')
+          }
+          clickCountDeleteButton = 0
+          document.getElementById("deleteFeature").style.opacity = "0.35";
+          document.getElementById("deleteFeature").style.backgroundColor = 'white'
+          document.getElementById("deleteFeature").disabled = true;
+          if(selectedFeature && selectedFeature.feature.geometry.type != 'Point'){  //to avoid zoomend later, we need to check if !selectedFeature
+          selectedFeature.setStyle({color:'#AFFDA7'})
+      }
+      })
+
 
       //  polygon.editing.enable();
       //console.log(featureType)
@@ -787,29 +845,6 @@ var findCartoCredential = setInterval(function(){
 },500)
 
 
-
-// setTimeout(function(){ //timer to avoid error when loading layer -  credentials must be get from hidden.php
-// $( document ).ready(function() {
-//   getGeoJSON();
-// });
-// }, 1500);
-
-// var cartoLayerLoaded = false;
-// //if (cartoLayerLoaded == false){
-//   setInterval(function(){
-//
-//     return cartousername
-//   },500)
-//
-// if(cartousername != null){
-//   $( document ).ready(function() {
-//     getGeoJSON();
-//     cartoLayerLoaded = true;
-//   });
-//   console.log('carto layer loaded')
-// };
-
-
 // Submit data to the PHP using a jQuery Post method
 var submitToProxy = function(q){
   $.post("./callProxy.php", { // <--- Enter the path to your callProxy.php file here
@@ -866,6 +901,8 @@ document.getElementById("backDeleteFeature").onclick = function(){
   map.touchZoom.enable();
   map.doubleClickZoom.enable();
   map.scrollWheelZoom.enable();
+  map.dragging.enable();
+
 
 
   if(selectedFeature.feature.geometry.type != 'Point'){
@@ -894,52 +931,69 @@ document.getElementById("backDeleteFeature").onclick = function(){
   document.getElementById("deleteFeature").style.display = "none";
 
   document.getElementById("deleteFeature").style.backgroundColor = 'white'
-  document.getElementById("deleteFeature").style.borderColor = 'white'
+  //document.getElementById("deleteFeature").style.borderColor = 'white'
 
-return selectedFeature && clickCountDeleteButton && cartoIdFeatureSelected
+return selectedFeature && clickCountDeleteButton && cartoIdFeatureSelected 
 
 }
+
 document.getElementById("deleteFeature").onclick = function(){
-  map.touchZoom.enable();
-  map.doubleClickZoom.enable();
-  map.scrollWheelZoom.enable();
 
 
-  console.log(cartoIdFeatureSelected)
-  if(clickCountDeleteButton ==0){
-    document.getElementById("deleteFeature").style.backgroundColor = '#F70573'
-  //  document.getElementById("deleteFeature").style.borderColor = 'red'
 
-    clickCountDeleteButton = 1
-  }else{
-    clickCountDeleteButton = 0
-    //cartoIdFeatureSelected = null;
-  console.log('feature deletedxxx')
-
-  document.getElementById("tutorial").style.display = "initial";
-  document.getElementById("polygon").style.display = "initial";
-  document.getElementById("polyline").style.display = "initial";
-  document.getElementById("point").style.display = "initial";
-
-  document.getElementById("backDeleteFeature").style.display = "none";
-  document.getElementById("commentFeature").style.display = "none";
-
-  document.getElementById("deleteFeature").style.display = "none";
-
-  document.getElementById("deleteFeature").style.backgroundColor = 'white'
-//  document.getElementById("deleteFeature").style.borderColor = 'white'
-
-    //to delete from geoJSON
-  //selectedFeature.setStyle({color:'#ffffff'})
-  deflated.removeLayer(selectedFeature)
-  selectedFeature = null
+  //if(clickCountDelete ==1){
+      map.touchZoom.enable();
+      map.doubleClickZoom.enable();
+      map.scrollWheelZoom.enable();
+      map.dragging.enable();
 
 
-  //to delete from cartodb
-  setData()
-}
+      console.log(cartoIdFeatureSelected)
+      if(clickCountDeleteButton ==0){
+        document.getElementById("deleteFeature").style.backgroundColor = '#F70573';
+        //document.getElementById("deleteFeature").style.borderColor = '#F70573'
 
-  return selectedFeature && clickCountDeleteButton
+      //  document.getElementById("deleteFeature").style.borderColor = 'red'
+
+        clickCountDeleteButton = 1
+      }else{
+        clickCountDeleteButton = 0
+        //cartoIdFeatureSelected = null;
+      console.log('feature deletedxxx')
+
+      document.getElementById("tutorial").style.display = "initial";
+      document.getElementById("polygon").style.display = "initial";
+      document.getElementById("polyline").style.display = "initial";
+      document.getElementById("point").style.display = "initial";
+
+      document.getElementById("backDeleteFeature").style.display = "none";
+      document.getElementById("commentFeature").style.display = "none";
+
+      document.getElementById("deleteFeature").style.display = "none";
+
+      document.getElementById("deleteFeature").style.backgroundColor = 'white'
+    //  document.getElementById("deleteFeature").style.borderColor = 'white'
+
+        //to delete from geoJSON
+      //selectedFeature.setStyle({color:'#ffffff'})
+      deflated.removeLayer(selectedFeature)
+      selectedFeature = null
+
+
+      //to delete from cartodb
+      setData()
+    }
+ //}
+ // else{
+ //   map.touchZoom.disable(); //to don't allow the user to zoomout/in while deleting a feature, only pan. This solves the issue of cluster not refresing and deselecting not working when zooming out
+ //   map.doubleClickZoom.disable();
+ //   map.scrollWheelZoom.disable();
+ //   map.dragging.disable();
+ //   clickCountDelete = 1;
+ // }
+
+
+  return selectedFeature && clickCountDeleteButton && clickCountDelete
 
 }
 
