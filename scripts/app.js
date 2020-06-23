@@ -665,7 +665,7 @@ function getGeoJSON(){
     cartoLoaded = true;
     cartoGeometries = L.geoJson(data,{
        color:'#AFFDA7',
-
+       //icon: markerIconLocalStorage,
       onEachFeature: function(feature,layer){
       //  var geometry = L.FeatureCollection(latlng);
         layer.bindPopup('' + feature.properties.datetime + 'TESTTTTING ' + feature.properties.name + '');
@@ -1628,14 +1628,14 @@ var drawnItems = new L.FeatureGroup();
    var editableLayers = new L.FeatureGroup();
    map.addLayer(editableLayers);
 
-   var MyCustomMarker = L.Icon.extend({
-       options: {
-           shadowUrl: null,
-           iconAnchor: new L.Point(12, 12),
-           iconSize: new L.Point(24, 24),
-           iconUrl: 'images/point.png'
-       }
-   });
+   // var MyCustomMarker = L.Icon.extend({
+   //     options: {
+   //         shadowUrl: null,
+   //         iconAnchor: new L.Point(12, 12),
+   //         iconSize: new L.Point(24, 24),
+   //         iconUrl: 'images/point.png'
+   //     }
+   // });
 var editableLayers = new L.FeatureGroup();
    var options = {
            position: 'topright',
@@ -1669,7 +1669,7 @@ var editableLayers = new L.FeatureGroup();
                    },
                },
              marker: {
-               icon: new MyCustomMarker('images/point.png')
+               icon: markerIconLocalStorage,
            },
 
           //  icon:'images/point.png'
@@ -2269,6 +2269,12 @@ map.on('draw:created', function (e) {
         document.getElementById("showLength").innerHTML = finalLength2Decimals;
 
   }
+  if(featureType == 'point'){
+     console.log('featuretype    '+ featureType)
+       //console.log('typeOfFeature    '+ typeOfFeature)
+      map.zoomOut(5)
+
+  }
         //////////////////////////////////////////
 
           //script to avoid zoom to unavailable tile
@@ -2326,10 +2332,15 @@ map.on('draw:created', function (e) {
         }
 
         tempLayer = L.geoJSON(data,{
+          pointToLayer: function (feature, latlng) { //to change the icon of the marker (i.e. avoid default)
+              return L.marker(latlng, {icon: markerIconLocalStorage});
+            },
           style: function (feature) {
+
             return feature.properties && feature.properties.style;
           },
           color:'#ffff00',
+          icon: markerIconLocalStorage,
           onEachFeature: onEachFeatureBlank,
 
         }).addTo(map);
@@ -2347,15 +2358,6 @@ map.on('draw:created', function (e) {
          })
          console.log(typeOfFeature)
 
-  // to avoid to many zoom when a point is created >> zoom +2
-  // if(typeOfFeature != 'polygon' && typeOfFeature != 'polyline'){
-   if(featureType == 'point'){
-console.log('featuretype    '+ featureType)
-//console.log('typeOfFeature    '+ typeOfFeature)
-
-       map.zoomOut(5)
-
-     }
 
         //created = true;
 console.log(created)
@@ -2470,6 +2472,9 @@ console.log(emojioneareaeditor[0].textContent.lenght)
   }
 
       tempLayer = L.geoJSON(data,{
+        pointToLayer: function (feature, latlng) { //to change the icon of the marker (i.e. avoid default)
+            return L.marker(latlng, {icon: markerIconLocalStorage});
+          },
         style: function (feature) {
           return feature.properties && feature.properties.style;
         },
