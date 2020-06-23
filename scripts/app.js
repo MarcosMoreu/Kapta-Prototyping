@@ -1248,7 +1248,7 @@ var myLayer_Button = L.easyButton({
          //  deflated.removeFrom(map)
          // whichLayerIsOn = 'deflated'
 
-        if(whichLayerIsOn == 'deflated'){
+        if(whichLayerIsOn == 'deflated' && localStorageLayer !=null){
           deflated.removeFrom(map)
           if(localStorageLayer !=null){
           localStorageLayer.addTo(map)
@@ -1260,7 +1260,14 @@ var myLayer_Button = L.easyButton({
           whichLayerIsOn = 'localStorage'
           myLayer_Button.button.style.backgroundColor = 'white';
 
-        }else  if(whichLayerIsOn == 'localStorage'){
+        }else if(whichLayerIsOn == 'deflated' && localStorageLayer ==null){ // to avoid three click when localstorage is limited on first load
+          whichLayerIsOn = 'none'
+          deflated.removeFrom(map)
+
+          myLayer_Button.button.style.backgroundColor = 'grey'
+
+        }
+        else  if(whichLayerIsOn == 'localStorage'){
           if(localStorageLayer !=null){
           localStorageLayer.removeFrom(map)
         }
@@ -1272,7 +1279,21 @@ var myLayer_Button = L.easyButton({
               }
           myLayer_Button.button.style.backgroundColor = 'grey'
 
-        }else  if(whichLayerIsOn == 'none'){
+        // }else  if(whichLayerIsOn == 'localStorage' && isFirstTime == true){
+        //   if(localStorageLayer !=null){
+        //   localStorageLayer.removeFrom(map)
+        // }
+        //   whichLayerIsOn = 'none'
+        // //  localStorageLayer.addTo(map)
+        //       if(finalLayer != null){
+        //         finalLayer.removeFrom(map)
+        //
+        //       }
+        //   myLayer_Button.button.style.backgroundColor = 'grey'
+        //
+         }
+
+        else  if(whichLayerIsOn == 'none'){
           whichLayerIsOn = 'deflated'
           //deflated = null;
 console.log ('finished is   '+ finished)
@@ -3190,7 +3211,7 @@ if(isIOS == false){timeOfVideo = 2800}else{timeOfVideo = 3400}
                style: function (feature) {
                  return feature.properties && feature.properties.style;
                },
-               color:'blue',
+               color:'#0CACDF',
                onEachFeature: onEachFeature,
              }).addTo(map);
 
