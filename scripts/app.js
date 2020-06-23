@@ -759,6 +759,7 @@ function getGeoJSON(){
             console.log('disable error catched')
           }
           clickCountDeleteButton = 0
+          map.closePopup();
           document.getElementById("deleteFeature").style.opacity = "0.35";
           document.getElementById("deleteFeature").style.backgroundColor = 'white'
           document.getElementById("deleteFeature").disabled = true;
@@ -774,6 +775,7 @@ function getGeoJSON(){
             console.log('disable error catched')
           }
           clickCountDeleteButton = 0
+          map.closePopup();
           document.getElementById("deleteFeature").style.opacity = "0.35";
           document.getElementById("deleteFeature").style.backgroundColor = 'white'
           document.getElementById("deleteFeature").disabled = true;
@@ -933,7 +935,7 @@ document.getElementById("backDeleteFeature").onclick = function(){
   document.getElementById("deleteFeature").style.backgroundColor = 'white'
   //document.getElementById("deleteFeature").style.borderColor = 'white'
 
-return selectedFeature && clickCountDeleteButton && cartoIdFeatureSelected 
+return selectedFeature && clickCountDeleteButton && cartoIdFeatureSelected
 
 }
 
