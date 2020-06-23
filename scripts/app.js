@@ -391,16 +391,21 @@ var mySubStringArray = mySubString.split(',');
 //         });
 //
 // }else
+
+var southWest = L.latLng(-90, -180);
+var northEast = L.latLng(90, 180); 
+
  if(lastPositionStoredLOCALLY == null){
   console.log('map centered as if not last position')
 var map = L.map('map',{
         editable:true,
         center: [18,20],
         zoom: 3,
-        minZoom:3,
+        minZoom:2,
         maxZoom:21,
         zoomControl:false,
        attributionControl:false,
+       maxBounds: L.latLngBounds(southWest, northEast)
 
       });
 }else{
@@ -413,10 +418,11 @@ var map = L.map('map',{
           // center: mappos.center,
           // zoom: mappos.zoom,
           zoom: 10,    /////////what is the most appropriate???/
-          minZoom:3,
+          minZoom:2,
           maxZoom:21,
           zoomControl:false,
-         attributionControl:false
+         attributionControl:false,
+         maxBounds: L.latLngBounds(southWest, northEast)
         });
 }
 L.Permalink.setup(map);
@@ -424,7 +430,10 @@ console.log(map.getZoom())
 console.log(map.getCenter())
 
 console.log(mappos.center)
-
+// map.on('zoomlevelschange', function(){
+//   var newZoomLevel = map.getZoom();
+//   if(newZoom)
+// })
   // console.log(lastPositionStoredLOCALLY)
 
 
@@ -682,19 +691,27 @@ function getGeoJSON(){
             }
     /////////////////////////////
     layer.on('click', function(e){
+
+      map.touchZoom.disable(); //to don't allow the user to zoomout/in while deleting a feature, only pan. This solves the issue of cluster not refresing and deselecting not working when zooming out
+      map.doubleClickZoom.disable();
+      map.scrollWheelZoom.disable();
+
       console.log('geometry type' + e.target.feature.geometry.type)
       // if( !e.target._radius == 10){ //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed
-       if(!e.target.defaultOptions){ //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed
+       if( !e.target.defaultOptions){ //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed. DefaultOptions is only in Points
 
          var currentZoom = map.getZoom()
          map.setView(e.target.getLatLng(),currentZoom+2);
 
        }else{
 
-          if(selectedFeature != null){
+          if(selectedFeature){
             try{
               selectedFeature.editing.disable();
-              
+              document.getElementById("deleteFeature").style.opacity = "0.35";
+              document.getElementById("deleteFeature").disabled = true;
+
+
             }catch(e){
               console.log('disable error catched')
             }
@@ -704,7 +721,8 @@ function getGeoJSON(){
           }
         // var boundsSeletectedFeature = selectedFeature.getBounds()
         // map.setView(boundsSeletectedFeature)
-
+        document.getElementById("deleteFeature").style.opacity = "1";
+        document.getElementById("deleteFeature").disabled = false;
         selectedFeature = e.target;
 
       //  polygon.editing.enable();
@@ -741,65 +759,6 @@ function getGeoJSON(){
 
   }
 });
-
-
-      //       layer.on('click', function(e){
-      //         console.log('geometry type' + e.target.feature.geometry.type)
-      //
-      //       //  if(e.target.feature.geometry.type == 'Point'){ //to catch error of option not found when the feature is not a point
-      //            // if(e.target.options.icon.options.iconUrl != 'marker-icon.png'){ //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed
-      //            //   var currentZoom = map.getZoom()
-      //            //   map.setView(e.target.getLatLng(),currentZoom+3);
-      //            //   console.log(e.target.options.icon.options.iconUrl)
-      //            // //}
-      //
-      //       //   }else {
-      //
-      //             if(selectedFeature != null){
-      //                 selectedFeature.editing.disable();
-      //                 console.log(selectedFeature)
-      //
-      //                 if(selectedFeature.feature.geometry.type != 'Point'){
-      //                 selectedFeature.setStyle({color:'#AFFDA7'})
-      //               }
-      //
-      //             }
-      //           selectedFeature = e.target;
-      //           selectedFeature.editing.enable();
-      //
-      //         console.log(selectedFeature)
-      //         console.log(selectedFeature.options.icon.options.iconUrl)
-      //
-      //         console.log(selectedFeature.feature.geometry.type)
-      //         console.log('cartodb id   ' + selectedFeature.feature.properties.cartodb_id)
-      //
-      // //there is a bug in the (deprecated) draw plugin (https://github.com/Leaflet/Leaflet.draw/issues/804), this is a workaround. polygons and LineString
-      // //can be enabled, but style cannot be set due to setstyle weight...
-      //
-      //
-      //
-      //           if(selectedFeature.feature.geometry.type != 'Point'){
-      //           selectedFeature.setStyle({color:'#F70573'})
-      //           selectedFeature.editing.disable(); //to not allow user to edit, only delete
-      //         }
-      //
-      //         //to store the cartoID of the future selected
-      //         cartoIdFeatureSelected = selectedFeature.feature.properties.cartodb_id
-      //
-      //             //to activate deactivate button
-      //           //  document.getElementsByClassName('button').visibility = 'hidden';
-      //           document.getElementById("backDeleteFeature").style.display = "initial";
-      //           document.getElementById("commentFeature").style.display = "initial";
-      //         //  document.getElementById("commentFeature").disabled = true;
-      //           document.getElementById("deleteFeature").style.display = "initial";
-      //
-      //           document.getElementById("tutorial").style.display = "none";
-      //           document.getElementById("polygon").style.display = "none";
-      //           document.getElementById("polyline").style.display = "none";
-      //           document.getElementById("point").style.display = "none";
-      //
-      //       //}
-      //   });
   ////////////////////////////////////////
   }
 
@@ -904,6 +863,11 @@ function setData() {
 var initialScreen = true;
 var clickCountDeleteButton = 0;
 document.getElementById("backDeleteFeature").onclick = function(){
+  map.touchZoom.enable();
+  map.doubleClickZoom.enable();
+  map.scrollWheelZoom.enable();
+
+
   if(selectedFeature.feature.geometry.type != 'Point'){
   selectedFeature.setStyle({color:'#AFFDA7'})
   }
@@ -936,10 +900,15 @@ return selectedFeature && clickCountDeleteButton && cartoIdFeatureSelected
 
 }
 document.getElementById("deleteFeature").onclick = function(){
+  map.touchZoom.enable();
+  map.doubleClickZoom.enable();
+  map.scrollWheelZoom.enable();
+
+
   console.log(cartoIdFeatureSelected)
   if(clickCountDeleteButton ==0){
-    document.getElementById("deleteFeature").style.backgroundColor = 'red'
-    document.getElementById("deleteFeature").style.borderColor = 'red'
+    document.getElementById("deleteFeature").style.backgroundColor = '#F70573'
+  //  document.getElementById("deleteFeature").style.borderColor = 'red'
 
     clickCountDeleteButton = 1
   }else{
@@ -958,7 +927,7 @@ document.getElementById("deleteFeature").onclick = function(){
   document.getElementById("deleteFeature").style.display = "none";
 
   document.getElementById("deleteFeature").style.backgroundColor = 'white'
-  document.getElementById("deleteFeature").style.borderColor = 'white'
+//  document.getElementById("deleteFeature").style.borderColor = 'white'
 
     //to delete from geoJSON
   //selectedFeature.setStyle({color:'#ffffff'})
@@ -977,9 +946,9 @@ document.getElementById("deleteFeature").onclick = function(){
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb,{
-        minZoom: 3,
+        minZoom: 2,
         maxZoom: 21,
-      //  maxNativeZoom: 20,
+        maxNativeZoom: 21,
         //transparent: false,
         //border: 'solid black 5px',
         subdomains:['mt0','mt1','mt2','mt3'],
@@ -988,7 +957,7 @@ var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={
 //console.log(googleSat)
 
 var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',tilesDb,{
-        minZoom: 3,
+        minZoom: 2,
         maxZoom: 21,
         maxNativeZoom: 21,
         // subdomains:['mt0','mt1','mt2','mt3'],
@@ -1069,7 +1038,7 @@ var osm_Button = L.easyButton({
           document.getElementById('imageryAlert').style.display = 'none'
 
           map.options.maxZoom = 19; //Set max zoom level as OSM does not serve tiles with 20+ zoom levels
-          map.options.minZoom = 3;
+          map.options.minZoom = 2;
           osm_Button.removeFrom(map);
           planet_Button.addTo(map);
          myLayer_Button.addTo(map)//keep this, other the button moves up
@@ -1115,7 +1084,7 @@ var googleSat_Button = L.easyButton({
           clickButtonCount +=1;
           document.getElementById('imageryAlert').style.display = 'none'
           map.options.maxZoom = 21;// set the max zoom level to 21 for google imagery
-          map.options.minZoom = 3;
+          map.options.minZoom = 2;
           googleSat_Button.removeFrom(map);
           osm_Button.addTo(map);
           myLayer_Button.addTo(map)
@@ -1261,7 +1230,7 @@ var planet_Button = L.easyButton({
             clickButtonCount=0;
             //to avoid black tiles as sentinel does not server tiles above 10 (or perhaps yes), then zoom back to 10 again
             map.options.maxZoom = 18;//no need for more zoom levels as 'low' resolution
-            map.options.minZoom = 5;
+            map.options.minZoom = 2;
             //to add the imagery alert ....
             if(browserLanguage[0] == 'e' && browserLanguage[1] == 'n'){ //english
               document.getElementById("imageryAlert").innerHTML = 'After mapping, use the textbox to request better recent or past  imagery';
@@ -1387,8 +1356,9 @@ console.log ('finished is   '+ finished)
         //  getGeoJSON()
         if(featureSent == true){ //to update the carto layer with recently created feature
 
-          getGeoJSON() //call the layer before reload so it is updated ( shouldn't be needed but...)
+
           location.reload(true);  // set to true to force a hard reload
+          getGeoJSON() //call the layer before reload so it is updated ( shouldn't be needed but...)
           featureSent = false
         }
 
@@ -2353,7 +2323,10 @@ map.on('draw:created', function (e) {
   if(featureType == 'point'){
      console.log('featuretype    '+ featureType)
        //console.log('typeOfFeature    '+ typeOfFeature)
-      map.zoomOut(5)
+       setTimeout(function(){
+         map.zoomOut(3)
+
+       },100)
 
   }
         //////////////////////////////////////////
@@ -2935,7 +2908,7 @@ var diffTimes;
 
   document.getElementById('share-download').onclick = function(e) {
               //  featureType = 'initial';
-              myLayer_Button.addTo(map)
+              //myLayer_Button.addTo(map)
                 sameSession = true;
                 alreadyMovedUp = false;
                 audioRecorded = false;
