@@ -50,7 +50,7 @@ return planetKey && sentinelKey && firebaseKey && cartousername && cartoapi
   }
 
 };
-  xhr2.open("GET", '../hidden.php', true);
+  xhr2.open("GET", '.env/hidden.php', true);
   xhr2.send();
 
   var planetKey ;
