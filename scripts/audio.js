@@ -8,14 +8,13 @@
 
 // This code is adapted from
 // https://rawgit.com/Miguelao/demos/master/mediarecorder.html
-// if (isIOS == false) {
+
 
 'use strict';
 
 /* globals MediaRecorder */
 document.getElementById('gum').style.visibility = 'hidden';
 document.getElementById('recorded').style.visibility = 'hidden';
-//var blobFinal;
 const mediaSource = new MediaSource();
 mediaSource.addEventListener('sourceopen', handleSourceOpen, false);
 let mediaRecorder;
@@ -51,7 +50,6 @@ playButton.addEventListener('click', () => {
   recordedVideo.loop = false; /////////////////////////////added to avoid loop.
 });
 
-
 const downloadButton = document.querySelector('button#DownloadButton');/////////////////////////////////change the download button
 downloadButton.addEventListener('click', () => {
 
@@ -62,7 +60,6 @@ downloadButton.addEventListener('click', () => {
 /////////catch error in case recordedBlobs ==null
 try{
   const blob = new Blob(recordedBlobs, {type: 'video/webm'});
-//  blobFinal = new Blob(recordedBlobs, {type: 'video/webm'})
 console.log(blob)
   const url = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -175,4 +172,3 @@ document.querySelector('button#enableRecording').addEventListener('click', async
 
   document.getElementById("record").click(); //added so no need to click button twice
 });
-// }

@@ -1,14 +1,4 @@
-/* * {
-  box-sizing: border-box; } */
 
-/* body {
-    padding: 0;
-    margin: 0;
-    background-color: white;
-    overflow:hidden;
-    font-family:Ubuntu;
-
-} */
 html,body {
     height: 100%;
     width: 100%;
@@ -20,36 +10,25 @@ html,body {
 }
 h1,h2,h3,h4,h5{
   font-family:Ubuntu;
-
 }
 
 map {
     position:relative;
     margin-bottom:100;
     width: 100%;
-    /* z-index: -1; */
 }
 
 .easyButton1 {
   background-color:yellow;
-/* background-size: 720px 46px; */
-outline:none;
-  /* transition: 0.2s all; */
-
+  outline:none;
 }
-/* .easyButton1:active{
-  transform: scale(0.9);
-} */
 
 .buttonDelete {
   width:50px;
   height:50px;
   border-radius: 50px;
   margin:5px;
-  /* margin-top: 200px; */
   background-color: white; /* Green */
-  /* border: true; */
-  /* color: black; */
   padding: 0px 0px;
   text-align: center;
   text-decoration: none;
@@ -59,11 +38,6 @@ outline:none;
   outline:none;
   transition: 0.2s all;
 
-  /* font-size: 16px; */
-  /* width:100%; */
-
-  /* background-color:#ededf0; */
-  /* z-index:10; */
 }
 .buttonDelete:active{
   /* transform: scale(0.9); */
@@ -75,10 +49,7 @@ outline:none;
   height:50px;
   border-radius: 50px;
   margin:5px;
-  /* margin-top: 200px; */
   background-color: white; /* Green */
-  /* border: true; */
-  /* color: black; */
   padding: 0px 0px;
   text-align: center;
   text-decoration: none;
@@ -88,11 +59,6 @@ outline:none;
   outline:none;
   transition: 0.2s all;
 
-  /* font-size: 16px; */
-  /* width:100%; */
-
-  /* background-color:#ededf0; */
-  /* z-index:10; */
 }
 .button:active{
   /* transform: scale(0.9); */
@@ -105,16 +71,12 @@ outline:none;
   border: 4px solid white;
   outline:none;
   transition: 0.2s all;
-
 }
 .buttonActivatePlay:active{
   /* transform: scale(0.9); */
   background-color: #D3D2D2;
   border: 2px solid #D3D2D2;
 }
-
-
-
 
 .attributeButtons{
   border: 8px solid transparent;
@@ -132,7 +94,6 @@ outline:none;
   border: 2px solid transparent;
   outline:none;
   transition: 0.2s all;
-
 }
 .audioButtons:active{
   /* transform: scale(0.9); */
@@ -148,23 +109,12 @@ outline:none;
   left:50%;
   margin-left:-100px;
   background-color: white;
-  /* margin-top: 200px; */
-  /* border: true; */
-  /* color: black; */
   padding: 0px 0px; */
   text-align: center;
   text-decoration: none;
-  /* display: inline-block; */
   border: 2px solid white;
-  /* position:absolute; */
   outline:none;
   transition: 0.2s all;
-
-  /* font-size: 16px; */
-  /* width:100%; */
-
-  /* background-color:#ededf0; */
-  /* z-index:10; */
 }
 .buttonShare:active{
   /* transform: scale(0.9); */
@@ -177,39 +127,19 @@ outline:none;
 }
 
 .span6 {
-  /* float: left; */
   /* the bar is 100% of its size minus the 190px space used for the other 3 buttons and their margins */
   width: calc(100% - 195px);
   display: inline-block;
-
-/* margin-top:35px; */
-  /* padding: 1%; */
   z-index: 10;
-
 }
+
 .emojionearea-editor:not(.inline) {
   min-height: 2em!important;
   z-index: 10;
-
 }
 
-/* .emojionearea-editor{
-  max-height
-} */
-/* .leaflet-popup-content{
-  min-height:20px!important;
-  font-size:20px
-
-} */
 .emojioneemoji{
 height:20px;  /*  to set the size of  both the emoji in the text box and the pop up. Both are 4px smaller than in the wrapper*/
 }
 
-/* .container-chat div {
-    display: inline-block;
-
-  } */
-  /* this is for the temporary buttons in last screen*/
-  a, a:visited, a:hover, a:active {color:grey;text-decoration:none}  /* Selected link   */
-
-  /* --------------------------for tutorial page------------------------ */
+a, a:visited, a:hover, a:active {color:grey;text-decoration:none}  /* Selected link   */

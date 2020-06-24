@@ -5,39 +5,23 @@
 
 <head>
 
-<!-- Firebase imports -->
-  <!-- The core Firebase JS SDK is always required and must be listed first. Defer (or async) to avoide redering blicking  -->
-<script async src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
-<!--  Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<!-- <script defer src="https://www.gstatic.com/firebasejs/7.14.5/firebase-analytics.js"></script> -->
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<!-- <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script> -->
-<!--  Add SDKs for Firebase products that you want to use -->
-<script async src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
-
-<!-- end of firebase imports -->
+  <script async src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+  <script async src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
 
   <meta charset="UTF-8" >
   <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <!-- maximumscale and userscalable value disable the zoom/pan option on the mobile screen -->
-
 
   <title>Prototype</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
   <meta name="theme-color" content="#000000"/>
   <link rel="manifest" href="manifest.json">
   <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
-  <!-- <link rel="canonical" href="https://openchangedetectionmap.org/proto"/> -->
   <link rel="shortcut icon" href="images/icons/icon-96x96.png">
-  <!-- <link rel="apple-touch-icon" href="images/icons/icon-96x96.png"> -->
-<!-- include icon also from manifest -->
-  <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
+
   <link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="apple-touch-icon" sizes="167x167" href="apple-touch-icon.png">
-
 
   <link rel="stylesheet" type="text/css" href="styles/app.css"  >
   <link async rel="stylesheet" type="text/css" href="scripts/lib/leaflet/leaflet.css" >
@@ -51,73 +35,24 @@
   <link async rel="stylesheet" href="scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css" >
   <link rel="text/html" href="pages/tutorial.html"  >
 
-<!-- for solving the favicon issues... -->
-
-  <!-- <link rel="apple-touch-icon" href="images/icons/icon-96x96.png"> -->
-  <!-- <iframe src="images/audio1.mp3" allow="autoplay" style="display:none" id="iframeAudio">
-  </iframe> -->
 </head>
-<!-- <h1 style='height:5px'>5dd</h1> -->
 
-<!-- ////////////FORM///////////////
-<h1 style='height:5px'>5dd</h1>
-<form action="process.php">
-    <input type="text" name="data">
-    <input type="submit" value="Submitdddd">
-</form>
-/////////////////////////////// -->
-
-<!-- <h1>POST FORM</h1>
-<form method="POST" action="process.php">
-  <input type="text" name="name">
-  <input type="submit" value="Submit">
-</form>
-
-<h1>AJAX POST FORMdddd</h1>
-<form id="postForm">
-  <input type="text" name="nameX" id="name2">
-  <input type="submit" value="Submit">
-</form> -->
-
-<!-- firebase divs -->
-<!-- this div is hidden, other functions fire the click event... -->
-
-<!-- end of firebase divs -->
 <body>
-  <!-- <div   style='z-index:2;position:absolute;'> -->
+
   <h1 id='showAreaHa' style='z-index:2;position:absolute;left:75px;display:none;color:yellow;font-size:19px' ></h1>
   <h2 id='showAreaAcres' style='z-index:2;position:absolute;left:75px;top:25px;display:none;color:yellow;font-size:19px' ></h2>
   <h3 id='showLength' style='z-index:2;position:absolute;left:75px;display:none;color:yellow;font-size:19px;font-family:'Ubuntu'' > </h3>
-
   <h4 id='imageryAlert' align = 'center' style='z-index:2;position:absolute;left:80px;top:-8px;display:none;color:#F1C202;font-size:16px; width:calc(100% - 160px)'> </h4>
 
-<!-- <div id='DrawInstruction' style='z-index:2;display:none;top:50%;left:50%;position:absolute;'>
-  <img  src="images/questionmark.png" alt="..." style='width:100px ; height:100px'>
-  <p  align = 'center' style='z-index:2;position:relative;font-size:50px;'> 🖢 </p>
-</div> -->
-
-  <!-- <h5 id='finishDrawInst' align = 'center' style='z-index:2;position:absolute;left:80px;top:-8px;display:none;font-size:40px; width:calc(100% - 160px)'> 👍 ❓ ✔️👍 ❓ 👇 ➡️ 🔴 ;&#10687;&#128071; dot &#8226;</h5> -->
-  <!-- <h5 id='finishDrawInst' align = 'center' style='z-index:2;position:absolute;left:80px;top:-25px;display:none;font-size:25px; width:calc(100% - 160px)'>
-                                                                                                     <span style='color:white;;align:center;'> 👍  </span ></br>  ;&#128077;? &#128073; &#8226  &#8634; recycle-->
-                                                                                                      <!-- <span style='color:#F4D005;text-align:center;font-size:25px;'> &#128071; &#8631; </span></h5> -->
-
-  <!-- </div> -->
 <div id="map" style='height:100%; z-index:1; position:relative;'>
     <div id="rose" style='margin-bottom:75px; margin-left:-8px'> </div>
 </div>
-
-<!-- <div class='button' style='z-index:3;position:relative;'>
-<p id='showArea' style='display:initial'class='button' >ddddd </p>
-</div> -->
-
-
 
 <div align='center' style='z-index:2; position:relative; margin-top:-90px'  >
 
   <button id='tutorial' class='button' aria-label = 'goBack1' style='z-index:3; position:relative;' >
     <img  src="images/questionmark.png" alt="..." style='width:30px ; height:30px'>
   </button>
-  <!-- <button id='goBack1'class='button' style='background:url(images/xx.png) no-repeat;    background-size: 50px 50px;'  /> -->
   <button id='polygon' class='button' aria-label = 'polygon' style='z-index:3; position:relative'>
     <img src="images/drawPolygon.png" alt="..." style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
   </button>
@@ -127,7 +62,6 @@
   <button id='point' class='button'  aria-label = 'point' style='z-index:3; position:relative'>
     <img src="images/point.png" alt="..." style='width:30px ; height:30px'>
   </button>
-
   <button id='backDeleteFeature' class='buttonDelete'  aria-label = 'point' style='display:none;z-index:3; position:relative'>
     <img src="images/backButton.png" alt="..." style='width:30px ; height:30px'>
   </button>
@@ -137,21 +71,18 @@
   <button id='deleteFeature' class='buttonDelete'  aria-label = 'point' style='display:none;z-index:3; position:relative;border-color:#F70573'>
     <img src="images/bin.png" alt="..." style='width:26px ; height:26px'>
   </button>
-
 </div>
 
 <div align='center' style='z-index:2; position:relative; margin-top:-90px; '>
   <button id='goBack2' class='button'aria-label = 'goBack2' style='display:none;border: 2px solid #9C1F04; background-color:#9C1F04'>
     <img src="images/backButton.png" loading="lazy" alt="..." style='width:30px ; height:30px '>
   </button>
-
   <button id='deleteLastVertex' class='button' aria-label = 'deleteLastVertex' style='display:none'>
     <img src="images/deleteLastVertex.png" loading="lazy" alt="..." style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
   </button>
   <button id='deleteAllVertexs' class='button' aria-label = 'deleteAllVertexs' style='display:none'>
     <img src="images/deleteAllVertex.png" loading="lazy" alt="..." style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
   </button>
-
   <button id='deleteLastVertexLine' class='button' aria-label = 'deleteLastVertexLine' style='display:none'>
     <img src="images/lineDeleteVertex.png"  loading="lazy" alt="..." style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
   </button>
@@ -162,164 +93,83 @@
     <img src="images/ThumbsUpGreen.png" loading="lazy" alt="..." style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
   </button>
 
-  <!-- <button id='deletePoint' class='button' aria-label = 'deletePoint' style='display:none'>
-    <img src="images/deletePoint.png" loading="lazy" alt="..." style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
-  </button> -->
-  <!-- <button id='deletePolygon' class='button' style='display:none'>
-    <img src="images/deletePolygon.png" style='width:30px ; height:30px'>
-  </button> -->
-  <!-- <button id='changeMapSize' class='button' aria-label = 'changeMapSize' style='display:none'>
-    <img src="images/ThumbsUpGreen.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
-  </button> -->
-
-
 </div>
 
-
 <div id='classification'  style='display:none; vertical-align:top;z-index:2; position:relative; margin-top:-90px;'>
-
   <button id='Cancel' class='button' aria-label = 'Cancel' >
     <img src="images/cancel.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
   </button>
-
-  <!-- <div id='emoji' class="span6" >
-    <div class="span6" style='display:inline-block; position:flex; vertical-align:center;margin-top:-500px'>
-      <textarea id="emojionearea1"></textarea>
-    </div>
-  </div> -->
-
-<!-- vetical-align:middle ++++ position:flex; !!!!!!!!!!!!! -->
   <div id='emoji' class="span6"  >
     <div id='span6' class="span6" style='vertical-align:middle;display:inline-block; position:flex; height:50px;'>
       <textarea id="emojionearea" style='vertical-align:middle;'></textarea>
     </div>
   </div>
-
   <div id='voice' >
-    <video id='voiceGif' preload='none' src="images/voice.webm" autoplay loop muted playsinline loading="lazy" alt="..." style='vertical-align:bottom;margin-bottom:-20px;
-                                                                                              top:-20px;height:80px; width:calc(100% - 195px);object-fit:cover'>
-<!-- background:black;border-radius:34px; -->
+    <video id='voiceGif' preload='none' src="images/voice.webm" autoplay loop muted playsinline loading="lazy" alt="..." style='vertical-align:bottom;margin-bottom:-20px;top:-20px;height:80px; width:calc(100% - 195px);object-fit:cover'>
   </div>
-
-  <!-- <button id="recordFake" disabled class='button' style='opacity:0.5'>
-    <img src="images/record.png" style='width:30px ; height:30px'>
-  </button> -->
   <button id="enableRecording" class='button' aria-label = 'enableRecording'>
     <img src="images/record.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
   </button>
-
   <button id="record" class='button' aria-label = 'record'>
     <img src="images/record.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
   </button>
   <button id='noAudioIOS' class='button' aria-label = 'Confirm' style='display:none;margin-left:0px'>
     <img src="images/record.png" loading="lazy" alt="..." style='width:30px ; height:30px; '>
   </button>
-<!-- margin-left is 0 to avoid 10px separation... -->
-  <!-- <button id='Confirm' class='button' aria-label = 'Confirm' style='display:none;margin-left:0px'>
-    <img src="images/ThumbsupYellow.png" loading="lazy" alt="..." style='width:30px ; height:30px; '>
-  </button> -->
-
   <button id='share-download' class='button' aria-label = 'share-download' style='display:none;margin-left:0px'>
     <img src="images/ThumbsUpGreen.png" loading="lazy" alt="..." style='margin-left:2px; width:30px ; height:30px'>
   </button>
+  <div id='Sent'  style='display:none'>
+      <video id='sentVideo'src="images/sent.mp4" autoplay='autoplay' playsinline muted loading="lazy" alt="..." style='text-align:center; height:100%;width:100%; display:block; margin:auto;'>
+  </div>
+  <div id='Downloaded'  style='display:none'>
+    <video id='downloadedVideo' src="images/downloaded.mp4" autoplay='autoplay' playsinline muted loading="lazy" alt="..." style='text-align:center;height:100%; width:100%; display:block; margin:auto;'>
+  </div>
 
-  <!-- <button id='tosimulateclick' class='button' aria-label = 'tosimulateclick' style='margin-left:0px'>
-    <img src="images/share-download.png" loading="lazy" alt="..." style='width:0px ; height:0px'>
-  </button> -->
+  <br></br>
 
-  <!-- <button id='share-download' class='button'style='display:none;position:absolute;'>
-    <img src="images/share-download.png" style='width:60px ; height:60px '>
-  </button> -->
-
-
-<!-- <div id='Sent'  style='display:none'>
-    <video id='sentVideo' muted src="images/sent.mp4"  loading="lazy" alt="..." style='text-align:center; height:100%;width:100%; display:block; margin:auto;'>
-
-</div>
-
-<div id='Downloaded'  style='display:none'>
-  <video id='downloadedVideo'  muted src="images/downloaded.webm"  loading="lazy" alt="..." style='text-align:center;height:100%; width:100%; display:block; margin:auto;'>
-
-</div> -->
-<!-- playsinline must be added to hide controls in iOS!!! -->
-<div id='Sent'  style='display:none'>
-    <video id='sentVideo'src="images/sent.mp4" autoplay='autoplay' playsinline muted loading="lazy" alt="..." style='text-align:center; height:100%;width:100%; display:block; margin:auto;'>
-
-</div>
-
-<div id='Downloaded'  style='display:none'>
-  <video id='downloadedVideo' src="images/downloaded.mp4" autoplay='autoplay' playsinline muted loading="lazy" alt="..." style='text-align:center;height:100%; width:100%; display:block; margin:auto;'>
-
-</div>
-
-<br></br>
-
-<div  style='z-index:2; position:relative'>
-
-        <button id="play"  aria-label = 'play' style='display:none;width:50px;height:50px;top:300px;background-color:white;  border-radius: 50px'>
-          <img src="images/play.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
-        </button>
-        <button id="storeAudio" disabled aria-label = 'storeAudio' style='display:none;margin-top: 15px;width:80px;height:60px;background-color:yellow; '></button>
-</div>
-
-
-<div>
-  <p> <input type="checkbox" id="echoCancellation"></p>
-</div>
-<video id="gum" playsinline  muted></video>
-<video id="recorded" playsinline loop></video>
-<div style='z-index:1; position:relative;margin-top:-200px;left:calc(50% - 25px)'>
-  <button  id='activatePlay' class='buttonActivatePlay' aria-label = 'activatePlay' style='display:none;width:50px;height:50px;background-color:white; border-color: yellow; border-radius: 50px'>
-    <img src="images/play.png" loading="lazy" alt="..." style='width:30px ; height:30px;margin-top:1px'>
-  </button>
-</div>
+  <div  style='z-index:2; position:relative'>
+    <button id="play"  aria-label = 'play' style='display:none;width:50px;height:50px;top:300px;background-color:white;  border-radius: 50px'>
+      <img src="images/play.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
+    </button>
+    <button id="storeAudio" disabled aria-label = 'storeAudio' style='display:none;margin-top: 15px;width:80px;height:60px;background-color:yellow; '></button>
+  </div>
+  <div>
+      <p> <input type="checkbox" id="echoCancellation"></p>
+  </div>
+  <video id="gum" playsinline  muted></video>
+  <video id="recorded" playsinline loop></video>
+  <div style='z-index:1; position:relative;margin-top:-200px;left:calc(50% - 25px)'>
+    <button  id='activatePlay' class='buttonActivatePlay' aria-label = 'activatePlay' style='display:none;width:50px;height:50px;background-color:white; border-color: yellow; border-radius: 50px'>
+      <img src="images/play.png" loading="lazy" alt="..." style='width:30px ; height:30px;margin-top:1px'>
+    </button>
+  </div>
 
 </div>
 <!-- share final screen -->
+
 <div>
-  <button id="shareWorldButton" class='buttonShare' aria-label = 'shareWorldButton' style='display:none;position:absolute;bottom:calc(75% - 100px)
-                                                                                ;color:grey;font-size:19px;font-family:'Ubuntu' '>
+  <button id="shareWorldButton" class='buttonShare' aria-label = 'shareWorldButton' style='display:none;position:absolute;bottom:calc(75% - 100px);color:grey;font-size:19px;font-family:'Ubuntu' '>
     <img src="images/shareworld.png" loading="lazy" alt="..." style='margin-left:-4px;width:120px ; height:120px; '>
-    <!-- *Icon meaning “Share with the world”? -->
-
   </button>
-
-  <button id='DownloadButton' class='buttonShare' aria-label = 'DownloadButton' style='display:none;position:absolute;bottom:calc(25% - 100px);
-                                                                                      ;color:grey;font-size:19px;font-family:'Ubuntu' '>
+  <button id='DownloadButton' class='buttonShare' aria-label = 'DownloadButton' style='display:none;position:absolute;bottom:calc(25% - 100px);color:grey;font-size:19px;font-family:'Ubuntu' '>
     <a id='Download'>
         <img  src="images/devicedownload.png" loading="lazy" alt="..." style=' width:120px ; height:120px;'></img>
-        <!-- *Icon meaning “Do not share with the world – Download” -->
-
     </a>
   </button>
 
 </div>
 
-
 <div>
-
-<!-- <input type="file" id="files" style='display:none' multiple /> -->
-<button id="sendFirebase" style='display:none;width:0px;height:0px'>Upload</button>
-<p id="uploading" style='display:none'></p>
-<progress value="0" max="100" id="progress" style='display:none'></progress>
+  <button id="sendFirebase" style='display:none;width:0px;height:0px'>Upload</button>
+  <p id="uploading" style='display:none'></p>
+  <progress value="0" max="100" id="progress" style='display:none'></progress>
 </div>
 
-
-
-<!-- <script async src="scripts/lib/pwacompat-master/src/pwacompat.js"></script> -->
 <script src="scripts/lib/leaflet/leaflet-src.js"></script>
 <script src="scripts/lib/jquery-3.4.1.min.js"></script>
 <script src="scripts/lib/leaflet/plugins/leaflet.Permalink-master/leaflet.permalink.js"></script>
 <script src="scripts/emojionearea-master/dist/emojionearea.js"></script>
-
-<!-- <script src="scripts/emoji-aware-master/emoji-aware.js"></script>
-<script src="scripts/emoji-aware-master/lib/console-format.js"></script>
-<script src="scripts/emoji-aware-master/lib/is-emoji.js"></script>
-
-
-<script src="scripts/lib/lodash.js"></script> -->
-
-<!-- <script src="scripts/lib/leaflet/plugins/Leaflet.GeometryUtil-master/src/leaflet.geometryutil.js"></script> -->
 
 <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.draw.js"></script>
 <script src="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.js"></script>
@@ -331,76 +181,37 @@
 
 <script src="scripts/lib/leaflet/plugins/L.Control.Rose-master/dist/L.Control.Rose.js"></script>
 
-<!-- <script src="scripts/lib/leaflet/plugins/Leaflet.GeometryUtil-master/src/leaflet.geometryutil.js"></script> -->
-<!-- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/spec/suites/GeometryUtilSpec.js"></script> -->
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.Poly.js"></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.SimpleShape.js"></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.Marker.js"></script>
 
 
-<!-- <script src="layers/AOI_Tsumkwe.geojson" type='text/javascript'></script>
-<script src="layers/denui.geojson" type='text/javascript'></script>
-<script src="layers/giacoma.geojson" type='text/javascript'></script>
-<script src="layers/pointsSapelli.json" type='text/javascript'></script> -->
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Feature.js"></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Polyline.js"></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Polygon.js"></script>
 
-<!-- <script src="layers/pointsCollector.geojson" type='text/javascript'></script> -->
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Marker.js"></script>
 
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/TouchEvents.js"></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/LatLngUtil.js"></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/GeometryUtil.js"></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/LineUtil.Intersect.js"></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/Polyline.Intersect.js"></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/Polygon.Intersect.js"></script>
 
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.Poly.js"></script>
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.SimpleShape.js"></script>
- <!-- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.Rectangle.js"></script> -->
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.Marker.js"></script>
- <!-- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.CircleMarker.js"></script>
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.Circle.js"></script> -->
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Control.Draw.js"></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Tooltip.js"></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Toolbar.js"></script>
 
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Feature.js"></script>
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Polyline.js"></script>
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Polygon.js"></script>
- <!-- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.SimpleShape.js"></script>
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Rectangle.js"></script>
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Circle.js"></script> -->
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Marker.js"></script>
- <!-- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.CircleMarker.js"></script> -->
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/DrawToolbar.js"></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/EditToolbar.js"></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Edit.js"></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Delete.js"></script>
 
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/TouchEvents.js"></script>
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/LatLngUtil.js"></script>
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/GeometryUtil.js"></script>
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/LineUtil.Intersect.js"></script>
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/Polyline.Intersect.js"></script>
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/Polygon.Intersect.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/audio.js"></script>
+<script src="sw.js"></script>
 
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Control.Draw.js"></script>
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Tooltip.js"></script>
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Toolbar.js"></script>
-
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/DrawToolbar.js"></script>
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/EditToolbar.js"></script>
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Edit.js"></script>
- <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Delete.js"></script>
- <!-- <script src="scripts/lib/leaflet/plugins//scripts/lib/leaflet/plugins/touchemulator-master/touch-emulator.js"></script>
- <script> TouchEmulator(); </script> -->
-
-
-
- <!-- <script src="scripts/lib/leaflet/leaflet-src.js"></script> -->
- <!-- type module to import and export -->
-
- <script src="scripts/app.js"></script>
- <script src="scripts/audio.js"></script>
- <script src="sw.js"></script>
-
-  <!-- <script src="basemaps/basemaps.js"></script> -->
-
-  <!-- <script type='module'src="scripts/app.js"></script>
-  <script src="scripts/audio.js"></script>
- <script type='module'src="sw.js"></script> -->
-
-   <!-- <script src="scripts/map.js"></script> -->
-
-
-   <!-- <script src="index.js"></script> -->
-   <!-- <script>
-    document.addEventListener("deviceready", function () {
-        startMap();
-        startButtons();
-    }, false);
-    </script> -->
 </body>
+
 </html>
