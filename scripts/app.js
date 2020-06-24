@@ -586,12 +586,13 @@ console.log(isJson(groupGeoJSON))
 //conditions to catch error in case no geojson and also to avoid error when adding to map an empty layer if is first time
 //var myLayerIsOn = true;
 var markerIconLocalStorage = new L.icon({
-    iconUrl: 'images/markerLocalStorage.png',
+   iconUrl: 'images/markerLocalStorage.png',
   //  shadowUrl: 'leaf-shadow.png',
+//    iconUrl: 'scripts/lib/leaflet/images/marker-icon.png',
 
-    iconSize:     [18, 33], // size of the icon
+    iconSize:     [22, 33], // size of the icon
     //shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+    iconAnchor:   [11, 0], // point of the icon which will correspond to marker's location
     //shadowAnchor: [4, 62],  // the same for the shadow
     //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
