@@ -25,7 +25,7 @@ xhr2.onreadystatechange = function() {
     }
 
 };
-xhr2.open("GET", '.env/hidden.php', true);
+xhr2.open("GET", '.env/process.php', true);
 xhr2.send();
 
 var planetKey;
