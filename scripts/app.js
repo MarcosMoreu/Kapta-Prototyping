@@ -1750,7 +1750,7 @@ var editableLayers = new L.FeatureGroup();
                polyline: {
                    shapeOptions: {
                        color: 'black',
-                       weight: 4
+                       weight: 2
                    }
                },
                polygon: {

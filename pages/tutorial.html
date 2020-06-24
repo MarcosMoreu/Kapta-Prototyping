@@ -211,6 +211,20 @@ document.getElementById('infoGoBackButton').onclick = function(e){
      document.getElementById("infoGoBackButton").style.display = "none";
      document.getElementById("infoCont").style.display = "none";
 
+     document.getElementById("spanish").style.display = "none";
+     document.getElementById("english").style.display = "none";
+     document.getElementById("french").style.display = "none";
+     document.getElementById("portuguese").style.display = "none";
+     document.getElementById("swahili").style.display = "none";
+     document.getElementById("juhoansi").style.display = "none";
+     document.getElementById("other1").style.display = "none";
+     document.getElementById("textEnglish").style.display = "none";
+     document.getElementById("textSpanish").style.display = "none";
+     document.getElementById("textFrench").style.display = "none";
+     document.getElementById("textPortuguese").style.display = "none";
+     document.getElementById("textSwahili").style.display = "none";
+     document.getElementById("textJuhoansi").style.display = "none";
+
 
      document.getElementById("infoButton").style.display = "initial";
      document.getElementById("youtube").style.display = "initial";
@@ -222,6 +236,9 @@ document.getElementById('infoGoBackButton').onclick = function(e){
 
 document.getElementById('youtube').onclick = function(e){
    setTimeout(function(){
+    document.getElementById("infoButton").style.display = "none";
+    document.getElementById("infoGoBackButton").style.display = "initial";
+
     document.getElementById("youtube").style.display = "none";
     document.getElementById("spanish").style.display = "initial";
     document.getElementById("english").style.display = "initial";
