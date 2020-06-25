@@ -847,7 +847,7 @@ var googleSat_Button = L.easyButton({
             osm_Button.addTo(map);
             myLayer_Button.addTo(map)
 
-            if (clickButtonCount == 10) {
+            if (clickButtonCount == 15) {  //this is to download google tiles 
                 offlineControlGoogle.addTo(map);
                 clickButtonCount = 0;
             } else {
