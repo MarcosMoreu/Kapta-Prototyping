@@ -1,37 +1,10 @@
 
-//to get the api key and credentials from hidden php file
-var xhr2 = new XMLHttpRequest();
-xhr2.onload = function() {
-  //  //console.log('created request')
-
-}
-xhr2.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      //  //console.log(this.responseText)
-        var str = this.responseText
-
-      //  //console.log('onready')
-        var array = str.split(',');
-        planetKey = array[0];
-        planetKey = planetKey.replace(/\s/g, '')
-        sentinelKey = array[1];
-        sentinelKey = sentinelKey.replace(/\s/g, '')
-        firebaseKey = array[2];
-        firebaseKey = firebaseKey.replace(/\s/g, '')
-        cartousername = array[3];
-        cartousername = cartousername.replace(/\s/g, '')
-
-        return planetKey && sentinelKey && firebaseKey && cartousername
-    }
-
-};
-xhr2.open("GET", '.env/process.php', true);
-xhr2.send();
-
 var planetKey;
 var sentinelKey;
 var firebaseKey;
+var firebaseConfig;
 var cartousername;
+var cartoapiSELECT;
 
 
 /////////////////////////////////////        indexedDB    (under development)      /////////////////////////////
@@ -79,16 +52,7 @@ var timeStart = new Date();
 //console.log(timeStart)
 
 /////////////////////// Initialize Firebase  ///////////////////////
-var firebaseConfig = {
-    apiKey: firebaseKey,
-    authDomain: "prototype4-dc434.firebaseapp.com",
-    databaseURL: "https://prototype4-dc434.firebaseio.com",
-    projectId: "prototype4-dc434",
-    storageBucket: "prototype4-dc434.appspot.com",
-    messagingSenderId: "995673679156",
-    appId: "1:995673679156:web:cff466b0d7489a868bb161"
-};
-
+//firebaseConfig stored in publicAPIKeys file
 var findFirebaseCredentials = setInterval(function() {
 
     if (isOnline == true & firebaseKey != null) {
@@ -479,7 +443,6 @@ var selectedFeature = null;
 var featureType = null;
 var cartoLoaded;
 var clickCountDelete;
-var cartoapiSELECT = '&api_key=JftZBo1Nb04U3nWJnWYNGQ'
 // Get CARTO selection as GeoJSON and Add to Map
 
 if (isOnline == true) {
@@ -847,7 +810,7 @@ var googleSat_Button = L.easyButton({
             osm_Button.addTo(map);
             myLayer_Button.addTo(map)
 
-            if (clickButtonCount == 15) {  //this is to download google tiles 
+            if (clickButtonCount == 15) {  //this is to download google tiles
                 offlineControlGoogle.addTo(map);
                 clickButtonCount = 0;
             } else {
