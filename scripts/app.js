@@ -955,7 +955,7 @@ var planet_Button = L.easyButton({
                 document.getElementById("imageryAlert").innerHTML = 'Baada ya uchoraji wa ramani, tumia kisanduku cha maandishi kuuliza picha bora za hivi karibuni au za zamani';
             }
             if (created == false) {
-                document.getElementById('imageryAlert').style.display = 'initial'
+              //  document.getElementById('imageryAlert').style.display = 'initial'  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             }
 
             planet_Button.removeFrom(map);
