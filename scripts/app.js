@@ -445,122 +445,131 @@ var cartoLoaded;
 var clickCountDelete;
 // Get CARTO selection as GeoJSON and Add to Map
 
+var cartoGeoJSONLayer = function(data) {
+    cartoLoaded = true;
+    cartoGeometries = L.geoJson(data, {
+        cache:false,
+        color: '#AFFDA7',
+        //icon: markerIconLocalStorage,
+        onEachFeature: function(feature, layer) {
+            var audioAvailable = feature.properties.audioavailable
+
+            if (feature.geometry.type == 'Point') {
+                layer.bindPopup(feature.properties.landusesemoji + feature.properties.audioavailable);
+            }
+            if (feature.geometry.type == 'Polygon') {
+                layer.bindPopup(feature.properties.landusesemoji + feature.properties.audioavailable + ' ' + feature.properties.areapolygon);
+            }
+            if (feature.geometry.type == 'LineString') {
+                layer.bindPopup(feature.properties.landusesemoji + feature.properties.audioavailable + ' ' + feature.properties.lengthline);
+            }
+            /////////////////////////////
+            layer.on('click', function(e) {
+                //console.log('geometry type' + e.target.feature.geometry.type)
+                if (!e.target.defaultOptions) { //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed. DefaultOptions is only in Points
+                    var currentZoom = map.getZoom()
+                    map.setView(e.target.getLatLng(), currentZoom + 2);
+                } else {
+                    if (selectedFeature) {
+                        try {
+                            selectedFeature.editing.disable();
+                            document.getElementById("deleteFeature").style.opacity = "0.35";
+                            document.getElementById("deleteFeature").disabled = true;
+                        } catch (e) {
+                            //console.log('disable error catched')
+                        }
+                        if (selectedFeature.feature.geometry.type != 'Point') {
+                            selectedFeature.setStyle({
+                                color: '#AFFDA7'
+                            })
+                        }
+                    }
+                    document.getElementById("deleteFeature").style.opacity = "1";
+                    document.getElementById("deleteFeature").disabled = false;
+
+                    selectedFeature = e.target;
+
+                    //to deselect feature if user changes zooms or pans, to avoid deletion without looking at the feature.
+                    map.on('zoomend', function(e) {
+                        try {
+                            selectedFeature.editing.disable();
+
+                        } catch (e) {
+                            //console.log('disable error catched')
+                        }
+                        clickCountDeleteButton = 0
+                        map.closePopup();
+                        document.getElementById("deleteFeature").style.opacity = "0.35";
+                        document.getElementById("deleteFeature").style.backgroundColor = 'white'
+                        document.getElementById("deleteFeature").disabled = true;
+                        if (selectedFeature && selectedFeature.feature.geometry.type != 'Point') { //to avoid zoomend later, we need to check if !selectedFeature
+                            selectedFeature.setStyle({
+                                color: '#AFFDA7'
+                            })
+                        }
+                    })
+                    map.on('moveend', function(e) {
+                        try {
+                            selectedFeature.editing.disable();
+
+                        } catch (e) {
+                            //console.log('disable error catched')
+                        }
+                        clickCountDeleteButton = 0
+                        map.closePopup();
+                        document.getElementById("deleteFeature").style.opacity = "0.35";
+                        document.getElementById("deleteFeature").style.backgroundColor = 'white'
+                        document.getElementById("deleteFeature").disabled = true;
+                        if (selectedFeature && selectedFeature.feature.geometry.type != 'Point') { //to avoid zoomend later, we need to check if !selectedFeature
+                            selectedFeature.setStyle({
+                                color: '#AFFDA7'
+                            })
+                        }
+                    })
+
+                    //console.log(selectedFeature)
+                    //console.log(selectedFeature.feature.geometry.type)
+                    //console.log('cartodb id   ' + selectedFeature.feature.properties.cartodb_id)
+
+                    //there is a bug in the (deprecated) draw plugin (https://github.com/Leaflet/Leaflet.draw/issues/804), this is a workaround. polygons and LineString
+                    //can be enabled, but style cannot be set due to setstyle weight...
+
+                    selectedFeature.editing.enable();
+
+                    if (selectedFeature.feature.geometry.type != 'Point') {
+                        selectedFeature.setStyle({
+                            color: '#F70573'
+                        })
+                        selectedFeature.editing.disable(); //to not allow user to edit, only delete
+                    }
+                    //to store the cartoID of the future selected
+                    cartoIdFeatureSelected = selectedFeature.feature.properties.cartodb_id
+
+                    //to activate deactivate button
+                    document.getElementById("backDeleteFeature").style.display = "initial";
+                    document.getElementById("deleteFeature").style.display = "initial";
+                    document.getElementById("commentFeature").style.display = "initial";
+
+                    document.getElementById("tutorial").style.display = "none";
+                    document.getElementById("polygon").style.display = "none";
+                    document.getElementById("polyline").style.display = "none";
+                    document.getElementById("point").style.display = "none";
+                }
+            });
+        }
+    }).addTo(deflated)
+    return cartoGeometries
+};
+
+
 if (isOnline == true) {
 
     function getGeoJSON() {
-        $.getJSON("https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT, function(data) {
-            cartoLoaded = true;
-            cartoGeometries = L.geoJson(data, {
-                color: '#AFFDA7',
-                //icon: markerIconLocalStorage,
-                onEachFeature: function(feature, layer) {
-                    var audioAvailable = feature.properties.audioavailable
-
-                    if (feature.geometry.type == 'Point') {
-                        layer.bindPopup(feature.properties.landusesemoji + feature.properties.audioavailable);
-                    }
-                    if (feature.geometry.type == 'Polygon') {
-                        layer.bindPopup(feature.properties.landusesemoji + feature.properties.audioavailable + ' ' + feature.properties.areapolygon);
-                    }
-                    if (feature.geometry.type == 'LineString') {
-                        layer.bindPopup(feature.properties.landusesemoji + feature.properties.audioavailable + ' ' + feature.properties.lengthline);
-                    }
-                    /////////////////////////////
-                    layer.on('click', function(e) {
-                        //console.log('geometry type' + e.target.feature.geometry.type)
-                        if (!e.target.defaultOptions) { //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed. DefaultOptions is only in Points
-                            var currentZoom = map.getZoom()
-                            map.setView(e.target.getLatLng(), currentZoom + 2);
-                        } else {
-                            if (selectedFeature) {
-                                try {
-                                    selectedFeature.editing.disable();
-                                    document.getElementById("deleteFeature").style.opacity = "0.35";
-                                    document.getElementById("deleteFeature").disabled = true;
-                                } catch (e) {
-                                    //console.log('disable error catched')
-                                }
-                                if (selectedFeature.feature.geometry.type != 'Point') {
-                                    selectedFeature.setStyle({
-                                        color: '#AFFDA7'
-                                    })
-                                }
-                            }
-                            document.getElementById("deleteFeature").style.opacity = "1";
-                            document.getElementById("deleteFeature").disabled = false;
-
-                            selectedFeature = e.target;
-
-                            //to deselect feature if user changes zooms or pans, to avoid deletion without looking at the feature.
-                            map.on('zoomend', function(e) {
-                                try {
-                                    selectedFeature.editing.disable();
-
-                                } catch (e) {
-                                    //console.log('disable error catched')
-                                }
-                                clickCountDeleteButton = 0
-                                map.closePopup();
-                                document.getElementById("deleteFeature").style.opacity = "0.35";
-                                document.getElementById("deleteFeature").style.backgroundColor = 'white'
-                                document.getElementById("deleteFeature").disabled = true;
-                                if (selectedFeature && selectedFeature.feature.geometry.type != 'Point') { //to avoid zoomend later, we need to check if !selectedFeature
-                                    selectedFeature.setStyle({
-                                        color: '#AFFDA7'
-                                    })
-                                }
-                            })
-                            map.on('moveend', function(e) {
-                                try {
-                                    selectedFeature.editing.disable();
-
-                                } catch (e) {
-                                    //console.log('disable error catched')
-                                }
-                                clickCountDeleteButton = 0
-                                map.closePopup();
-                                document.getElementById("deleteFeature").style.opacity = "0.35";
-                                document.getElementById("deleteFeature").style.backgroundColor = 'white'
-                                document.getElementById("deleteFeature").disabled = true;
-                                if (selectedFeature && selectedFeature.feature.geometry.type != 'Point') { //to avoid zoomend later, we need to check if !selectedFeature
-                                    selectedFeature.setStyle({
-                                        color: '#AFFDA7'
-                                    })
-                                }
-                            })
-
-                            //console.log(selectedFeature)
-                            //console.log(selectedFeature.feature.geometry.type)
-                            //console.log('cartodb id   ' + selectedFeature.feature.properties.cartodb_id)
-
-                            //there is a bug in the (deprecated) draw plugin (https://github.com/Leaflet/Leaflet.draw/issues/804), this is a workaround. polygons and LineString
-                            //can be enabled, but style cannot be set due to setstyle weight...
-
-                            selectedFeature.editing.enable();
-
-                            if (selectedFeature.feature.geometry.type != 'Point') {
-                                selectedFeature.setStyle({
-                                    color: '#F70573'
-                                })
-                                selectedFeature.editing.disable(); //to not allow user to edit, only delete
-                            }
-                            //to store the cartoID of the future selected
-                            cartoIdFeatureSelected = selectedFeature.feature.properties.cartodb_id
-
-                            //to activate deactivate button
-                            document.getElementById("backDeleteFeature").style.display = "initial";
-                            document.getElementById("deleteFeature").style.display = "initial";
-                            document.getElementById("commentFeature").style.display = "initial";
-
-                            document.getElementById("tutorial").style.display = "none";
-                            document.getElementById("polygon").style.display = "none";
-                            document.getElementById("polyline").style.display = "none";
-                            document.getElementById("point").style.display = "none";
-                        }
-                    });
-                }
-            }).addTo(deflated)
-        });
+        $.getJSON({
+          cache:false,
+          success:cartoGeoJSONLayer,
+          url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
+        })
         return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
     };
 }
