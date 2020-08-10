@@ -582,7 +582,7 @@ var findCartoCredential = setInterval(function() {
         getGeoJSON();
     }
     return cartousername
-}, 500)
+}, 100)
 
 // Send data to  PHP using a jQuery Post method
 var submitToProxy = function(q) {
@@ -756,12 +756,16 @@ if (isIOS == true) {
     var iconGOOGLE = '<img src="images/google.png" width=40px; height=40px; style="margin-left:-5px" > ';
     var iconPLANET = '<img src="images/planet.png" width=40px; height=40px; style="margin-left:-5px" > ';
     var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; style="margin-left:-5px" > ';
+    var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; style="margin-left:-5px" > ';
+
 } else {
     var iconGPS = '<img src="images/gps.png" width=40px; height=40px; style="margin-left:-1px" > ';
     var iconOSM = '<img src="images/osm.png" width=40px; height=40px; style="margin-left:-1px" > ';
     var iconGOOGLE = '<img src="images/google.png" width=40px; height=40px; style="margin-left:-1px"> ';
     var iconPLANET = '<img src="images/planet.png" width=40px; height=40px; style="margin-left:-1px"> ';
     var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; style="margin-left:-1px"> ';
+    var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; style="margin-left:-5px" > ';
+
 }
 
 var osm_Button = L.easyButton({
@@ -1062,31 +1066,54 @@ myLayer_Button.button.style.transitionDuration = '.3s';
 myLayer_Button.button.style.backgroundColor = 'black';
 
 //Button for filtering by attribute
+var filterIsOn = false
 var filter_Button = L.easyButton({
     id: 'filter',
     position: 'topright',
     states: [{
-        icon: iconGPS,
+        icon: iconFILTER,
         stateName: 'check-mark',
         onClick: function(btn, map) {
-          document.getElementById("deleteAllVertexs").style.display = "none";
-          document.getElementById("deleteLastVertex").style.display = "none";
-          document.getElementById("goBack2").style.display = "none";
 
-          document.getElementById("deleteLastVertexLine").style.display = "none";
-          document.getElementById("deleteAllVertexsLine").style.display = "none";
-          document.getElementById("completeFeature").style.display = "none";
+          if(filterIsOn == false){
+            filterIsOn = true
 
-          // document.getElementById("share-download").style.display = "initial";
-          // document.getElementById("share-download").style.opacity = "0.35"; //to disable button until user adds attributes, either with audio or text
-          // document.getElementById("share-download").disabled = true;
-          // document.getElementById("Cancel").style.display = "initial";
-          document.getElementById("applyFilter").style.display = "initial";
-          document.getElementById("classification").style.display = "initial";
-          document.getElementById("emoji").style.display = "initial";
+            filter_Button.button.style.backgroundColor = 'green'
 
+            document.getElementById("tutorial").style.display = "none";
+            document.getElementById("polygon").style.display = "none";
+            document.getElementById("polyline").style.display = "none";
+            document.getElementById("point").style.display = "none";
 
-            }
+            // document.getElementById("share-download").style.display = "initial";
+            // document.getElementById("share-download").style.opacity = "0.35"; //to disable button until user adds attributes, either with audio or text
+            // document.getElementById("share-download").disabled = true;
+            // document.getElementById("Cancel").style.display = "initial";
+            document.getElementById("clearFilter").style.display = "initial";
+            document.getElementById("applyFilter").style.display = "initial";
+            document.getElementById("classification").style.display = "initial";
+            document.getElementById("emoji").style.display = "initial";
+        }else if(filterIsOn == true){
+            filterIsOn = false
+
+            filter_Button.button.style.backgroundColor = 'black'
+
+            document.getElementById("tutorial").style.display = "initial";
+            document.getElementById("polygon").style.display = "initial";
+            document.getElementById("polyline").style.display = "initial";
+            document.getElementById("point").style.display = "initial";
+
+            // document.getElementById("share-download").style.display = "initial";
+            // document.getElementById("share-download").style.opacity = "0.35"; //to disable button until user adds attributes, either with audio or text
+            // document.getElementById("share-download").disabled = true;
+            // document.getElementById("Cancel").style.display = "initial";
+            document.getElementById("clearFilter").style.display = "none";
+            document.getElementById("applyFilter").style.display = "none";
+            document.getElementById("classification").style.display = "none";
+            document.getElementById("emoji").style.display = "none";
+        }
+
+      }
 
     }]
 }).addTo(map);
