@@ -1078,7 +1078,7 @@ var filter_Button = L.easyButton({
           if(filterIsOn == false){
             filterIsOn = true
 
-            filter_Button.button.style.backgroundColor = 'green'
+            filter_Button.button.style.backgroundColor = 'white'
 
             document.getElementById("tutorial").style.display = "none";
             document.getElementById("polygon").style.display = "none";
@@ -1122,6 +1122,22 @@ filter_Button.button.style.width = '50px';
 filter_Button.button.style.height = '50px';
 filter_Button.button.style.transitionDuration = '.3s';
 filter_Button.button.style.backgroundColor = 'black';
+
+//////////////////////////// actions for bottom-of-screen filtering buttons
+var boxContentFiltering;
+//script for apply filters
+document.getElementById("applyFilter").onclick = function(e) {
+
+boxContentFiltering = document.getElementById('emojionearea').value;
+console.log(boxContentFiltering)
+
+}
+
+//script for remove filters
+document.getElementById("clearFilter").onclick = function(e) {
+  document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
+}
+
 
 ////////////////////////////////   GNSS  //////////////////////////////////////
 var gpsIcon = L.icon({
