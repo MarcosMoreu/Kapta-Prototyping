@@ -1020,6 +1020,16 @@ var myLayer_Button = L.easyButton({
                 myLayer_Button.button.style.backgroundColor = 'white';
                 filter_Button.removeFrom(map)
 
+                // filter_Button.button.style.backgroundColor = 'black';
+                // document.getElementById("clearFilter").style.display = "none";
+                // document.getElementById("applyFilter").style.display = "none";
+                // document.getElementById("classification").style.display = "none";
+                // document.getElementById("emoji").style.display = "none";
+                // document.getElementById("tutorial").style.display = "initial";
+                // document.getElementById("polygon").style.display = "initial";
+                // document.getElementById("polyline").style.display = "initial";
+                // document.getElementById("point").style.display = "initial";
+
 
             } else if (whichLayerIsOn == 'deflated' && localStorageLayer == null) { // to avoid three click when localstorage is limited on first load
                 whichLayerIsOn = 'none'
@@ -1077,7 +1087,8 @@ var filter_Button = L.easyButton({
 
           if(filterIsOn == false){
             filterIsOn = true
-
+            myLayer_Button.button.style.opacity = '0.4';
+            myLayer_Button.button.disabled = true;
             filter_Button.button.style.backgroundColor = 'white'
 
             document.getElementById("tutorial").style.display = "none";
@@ -1095,6 +1106,10 @@ var filter_Button = L.easyButton({
             document.getElementById("emoji").style.display = "initial";
         }else if(filterIsOn == true){
             filterIsOn = false
+            myLayer_Button.button.style.opacity = '1';
+            myLayer_Button.button.disabled = false;
+            filter_Button.addTo(map)
+
 
             filter_Button.button.style.backgroundColor = 'black'
 
@@ -2120,6 +2135,7 @@ $("#emojionearea").emojioneArea({
 var boxContent;
 
 document.getElementById('Cancel').onclick = function(e) {
+    document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
     myLayer_Button.addTo(map)
     //to add filter button if carto layer on
     if(myLayer_Button.button.style.backgroundColor == 'black'){
