@@ -2375,6 +2375,18 @@ if (isIOS == false) {
 }
 
 document.getElementById('shareWorldButton').onclick = function(e) {
+  //first, we define the variables that store the attributes
+  propertiesGeoJSON = data.features[0].properties
+  landUses = propertiesGeoJSON.landUses;
+
+  //script to check if keyword is added in the attribute field
+  if(landUses[0] == ':' && landUses[1] == 'e' && landUses[2] == 'a' && landUses[3] == 'r' && landUses[4] == 't' && landUses[5] == 'h' ){
+
+    //to remove the keyword from the attribute field that is shown in the map
+    var landUsesEmojiWithKeyword = propertiesGeoJSON.landUsesEmoji;
+    var lengthLandUsesEmojiWithKeyword = landUsesEmojiWithKeyword.length
+    landUsesEmoji = landUsesEmojiWithKeyword.slice(2,lengthLandUsesEmojiWithKeyword);
+
     setTimeout(function() {
         document.getElementById('shareWorldButton').style.display = 'none';
         document.getElementById('DownloadButton').style.display = 'none';
@@ -2408,11 +2420,10 @@ document.getElementById('shareWorldButton').onclick = function(e) {
         document.getElementById("point").style.display = "initial";
 
         ////////////////////////////       CARTO - POST DATA      //////////////////////////////////////////
-        //first, we define the variables that store the attributes
-        propertiesGeoJSON = data.features[0].properties
+
         //to assign each attribute to a variable, which will be added as columns to the DB
-        landUses = propertiesGeoJSON.landUses;
-        landUsesEmoji = propertiesGeoJSON.landUsesEmoji;
+      //  landUses = propertiesGeoJSON.landUses;
+      //  landUsesEmoji = propertiesGeoJSON.landUsesEmoji;
         // include the firebase url (if audio has been recorded)
         if (finalUrlAudio != null) {
             var audioLinkText = ' 🔊 AUDIO';
@@ -2436,7 +2447,7 @@ document.getElementById('shareWorldButton').onclick = function(e) {
         randomID = propertiesGeoJSON.randomID;
         ////console.log(randomID)
 
-        //Call the setData() function!!!
+        //Call the setData() function!!! to post data to database
         setData();
 
         //finalLayer is added at the end as the properties are different depending on if share or download
@@ -2456,7 +2467,11 @@ document.getElementById('shareWorldButton').onclick = function(e) {
 
     featureSent = true;
 
-    return featureSent
+  }else{
+    alert("⛔ Please enter the keyword in the textbox to publish the data. During the testing phase, only users with the keyword can publish data. Please request the keyword using this form  XXXX");
+
+  }
+  return featureSent
 }
 
 document.getElementById('DownloadButton').onclick = function(e) {
