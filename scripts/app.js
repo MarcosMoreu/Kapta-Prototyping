@@ -782,7 +782,10 @@ var osm_Button = L.easyButton({
             map.options.minZoom = 2;
             osm_Button.removeFrom(map);
             planet_Button.addTo(map);
-            myLayer_Button.addTo(map) //keep this, other the button moves up
+            myLayer_Button.addTo(map) //keep this, otherwise the button moves up
+            filter_Button.addTo(map) //keep this, otherwise the button moves up
+            filter_Button.addTo(map)
+
 
             if (clickButtonCount == 10) {
                 offlineControlOSM.addTo(map);
@@ -817,7 +820,9 @@ var googleSat_Button = L.easyButton({
             map.options.minZoom = 2;
             googleSat_Button.removeFrom(map);
             osm_Button.addTo(map);
-            myLayer_Button.addTo(map)
+            myLayer_Button.addTo(map) //keep this, otherwise the button moves up
+            filter_Button.addTo(map) //keep this, otherwise the button moves up
+
 
             if (clickButtonCount == 15) {  //this is to download google tiles
                 offlineControlGoogle.addTo(map);
@@ -973,7 +978,8 @@ var planet_Button = L.easyButton({
             planet.addTo(map); // planet imagery goes after so it stays on top of sentinel data (sentinel is global, planet is not yet?)
             googleSat.removeFrom(map);
             osm.removeFrom(map);
-            myLayer_Button.addTo(map)
+            myLayer_Button.addTo(map) //keep this, otherwise the button moves up
+            filter_Button.addTo(map) //keep this, otherwise the button moves up
         }
     }]
 });
@@ -1008,6 +1014,8 @@ var myLayer_Button = L.easyButton({
                 }
                 whichLayerIsOn = 'localStorage'
                 myLayer_Button.button.style.backgroundColor = 'white';
+                filter_Button.removeFrom(map)
+
 
             } else if (whichLayerIsOn == 'deflated' && localStorageLayer == null) { // to avoid three click when localstorage is limited on first load
                 whichLayerIsOn = 'none'
@@ -1025,6 +1033,8 @@ var myLayer_Button = L.easyButton({
                     finalLayer.removeFrom(map)
                 }
                 myLayer_Button.button.style.backgroundColor = 'grey'
+                filter_Button.removeFrom(map)
+
 
             } else if (whichLayerIsOn == 'none') {
                 whichLayerIsOn = 'deflated'
@@ -1039,6 +1049,8 @@ var myLayer_Button = L.easyButton({
 
                 deflated.addTo(map)
                 myLayer_Button.button.style.backgroundColor = 'black'
+                filter_Button.addTo(map)
+
             }
         }
     }]
@@ -1048,6 +1060,41 @@ myLayer_Button.button.style.width = '50px';
 myLayer_Button.button.style.height = '50px';
 myLayer_Button.button.style.transitionDuration = '.3s';
 myLayer_Button.button.style.backgroundColor = 'black';
+
+//Button for filtering by attribute
+var filter_Button = L.easyButton({
+    id: 'filter',
+    position: 'topright',
+    states: [{
+        icon: iconGPS,
+        stateName: 'check-mark',
+        onClick: function(btn, map) {
+          document.getElementById("deleteAllVertexs").style.display = "none";
+          document.getElementById("deleteLastVertex").style.display = "none";
+          document.getElementById("goBack2").style.display = "none";
+
+          document.getElementById("deleteLastVertexLine").style.display = "none";
+          document.getElementById("deleteAllVertexsLine").style.display = "none";
+          document.getElementById("completeFeature").style.display = "none";
+
+          // document.getElementById("share-download").style.display = "initial";
+          // document.getElementById("share-download").style.opacity = "0.35"; //to disable button until user adds attributes, either with audio or text
+          // document.getElementById("share-download").disabled = true;
+          // document.getElementById("Cancel").style.display = "initial";
+          document.getElementById("applyFilter").style.display = "initial";
+          document.getElementById("classification").style.display = "initial";
+          document.getElementById("emoji").style.display = "initial";
+
+
+            }
+
+    }]
+}).addTo(map);
+
+filter_Button.button.style.width = '50px';
+filter_Button.button.style.height = '50px';
+filter_Button.button.style.transitionDuration = '.3s';
+filter_Button.button.style.backgroundColor = 'black';
 
 ////////////////////////////////   GNSS  //////////////////////////////////////
 var gpsIcon = L.icon({
@@ -1427,6 +1474,10 @@ document.getElementById("goBack2").onclick = function(e) {
 
     //to enable doubleclick zoom that is disabled while drawing
     map.doubleClickZoom.enable();
+    //to add filter button if carto layer on
+    if(myLayer_Button.button.style.backgroundColor == 'black'){
+      filter_Button.addTo(map)
+    }
 
     clickMapCount = 0;
     map.zoomOut(1); //decreases the zoom level when click
@@ -1467,6 +1518,8 @@ document.getElementById("goBack2").onclick = function(e) {
 var boxContent;
 var drawingPoint = false
 document.getElementById('point').onclick = function(e) {
+    filter_Button.removeFrom(map)
+
     if (isIOS == false) {
         recordedBlobs = null; //to empty recorded blobs from previous map in this session
     }
@@ -1490,6 +1543,8 @@ document.getElementById('point').onclick = function(e) {
 };
 
 document.getElementById('polyline').onclick = function(e) {
+    filter_Button.removeFrom(map)
+
     if (isIOS == false) {
         recordedBlobs = null; //to empty recorded blobs from previous map in this session
     }
@@ -1539,6 +1594,8 @@ document.getElementById('polyline').onclick = function(e) {
 };
 
 document.getElementById('polygon').onclick = function(e) {
+    filter_Button.removeFrom(map)
+
     if (isIOS == false) {
         recordedBlobs = null; //to empty recorded blobs from previous map in this session
     }
@@ -1711,6 +1768,7 @@ map.on('draw:deleted', function(e) {
 var typeOfFeature;
 map.on('draw:created', function(e) {
     myLayer_Button.removeFrom(map)
+    filter_Button.removeFrom(map)
     deflated.removeFrom(map)
     created = true;
     drawPolygon.disable();
@@ -2020,6 +2078,10 @@ var boxContent;
 
 document.getElementById('Cancel').onclick = function(e) {
     myLayer_Button.addTo(map)
+    //to add filter button if carto layer on
+    if(myLayer_Button.button.style.backgroundColor == 'black'){
+      filter_Button.addTo(map)
+    }
     featureType = 'initial';
     alreadyMovedUp = false;
     audioRecorded = false;
@@ -2468,7 +2530,7 @@ document.getElementById('shareWorldButton').onclick = function(e) {
     featureSent = true;
 
   }else{
-    alert("⛔ Please enter the keyword in the textbox to publish the data. During the testing phase, only users with the keyword can publish data. Please request the keyword using this form  XXXX");
+    alert("🔑 🛑 During the prototyping phase, a KEYWORD must be added in the textbox to publish the spatial data. You can request the KEYWORD using this form  XXXX");
 
   }
   return featureSent
