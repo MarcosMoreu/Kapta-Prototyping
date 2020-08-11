@@ -438,11 +438,25 @@ var clusters = L.markerClusterGroup({
 var cartoGeometries = null;
 var cartoIdFeatureSelected;
 
-var sqlQuery = "SELECT * FROM lumblu";
+//var sqlQuery = "SELECT * FROM lumblu WHERE landusesemoji LIKE 'ikweta 🌍'";
+//var sqlQuery = "SELECT * FROM lumblu WHERE CONTAINS(landusesemoji, 'test')";
+// var sqlQuery = "SELECT * FROM lumblu WHERE 'test' LIKE '%' || landusesemoji || '%' ";
+//var sqlQuery = "SELECT * FROM lumblu WHERE 't%' ~ landusesemoji ";
+var sqlQuery = "SELECT * FROM lumblu WHERE landusesemoji LIKE 'test'"
+
+
+
+var sqlQueryAll = "SELECT * FROM lumblu";
+//var sqlQueryFiltered = "SELECT * FROM lumblu WHERE landusesemoji='test'";
+var sqlQueryFiltered = "SELECT * FROM lumblu WHERE landusesemoji LIKE 'test'";
+
 var selectedFeature = null;
 var featureType = null;
 var cartoLoaded;
 var clickCountDelete;
+
+var filterIsOn = false
+
 // Get CARTO selection as GeoJSON and Add to Map
 
 var cartoGeoJSONLayer = function(data) {
@@ -465,6 +479,18 @@ var cartoGeoJSONLayer = function(data) {
             }
             /////////////////////////////
             layer.on('click', function(e) {
+
+              document.getElementById("clearFilter").style.display = "none";
+              document.getElementById("applyFilter").style.display = "none";
+              document.getElementById("filterByDate").style.display = "none";
+              document.getElementById("classification").style.display = "none";
+              document.getElementById("emoji").style.display = "none";
+              myLayer_Button.button.style.opacity = '0.4';
+              myLayer_Button.button.disabled = true;
+              filter_Button.button.style.opacity = '0.4';
+              filter_Button.button.disabled = true;
+              filter_Button.button.style.background = 'black'
+              filterIsOn = false
                 //console.log('geometry type' + e.target.feature.geometry.type)
                 if (!e.target.defaultOptions) { //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed. DefaultOptions is only in Points
                     var currentZoom = map.getZoom()
@@ -627,6 +653,11 @@ document.getElementById("backDeleteFeature").onclick = function() {
     map.scrollWheelZoom.enable();
     map.dragging.enable();
 
+    myLayer_Button.button.style.opacity = '1';
+    myLayer_Button.button.disabled = false
+    filter_Button.button.style.opacity = '1';
+    filter_Button.button.disabled = false
+
     if (selectedFeature.feature.geometry.type != 'Point') {
         selectedFeature.setStyle({
             color: '#AFFDA7'
@@ -692,6 +723,11 @@ document.getElementById("deleteFeature").onclick = function() {
     }
     return selectedFeature && clickCountDeleteButton && clickCountDelete
 }
+
+document.getElementById("commentFeature").onclick = function() {
+  alert('Under development');
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb, {
@@ -788,7 +824,6 @@ var osm_Button = L.easyButton({
             planet_Button.addTo(map);
             myLayer_Button.addTo(map) //keep this, otherwise the button moves up
             filter_Button.addTo(map) //keep this, otherwise the button moves up
-            filter_Button.addTo(map)
 
 
             if (clickButtonCount == 10) {
@@ -1018,7 +1053,8 @@ var myLayer_Button = L.easyButton({
                 }
                 whichLayerIsOn = 'localStorage'
                 myLayer_Button.button.style.backgroundColor = 'white';
-                filter_Button.removeFrom(map)
+                filter_Button.button.style.opacity = '0.4';
+                filter_Button.button.disabled = true;
 
                 // filter_Button.button.style.backgroundColor = 'black';
                 // document.getElementById("clearFilter").style.display = "none";
@@ -1047,7 +1083,8 @@ var myLayer_Button = L.easyButton({
                     finalLayer.removeFrom(map)
                 }
                 myLayer_Button.button.style.backgroundColor = 'grey'
-                filter_Button.removeFrom(map)
+                filter_Button.button.style.opacity = '0.4';
+                filter_Button.button.disabled = true;
 
 
             } else if (whichLayerIsOn == 'none') {
@@ -1063,7 +1100,8 @@ var myLayer_Button = L.easyButton({
 
                 deflated.addTo(map)
                 myLayer_Button.button.style.backgroundColor = 'black'
-                filter_Button.addTo(map)
+                filter_Button.button.style.opacity = '1';
+                filter_Button.button.disabled = false;
 
             }
         }
@@ -1076,7 +1114,6 @@ myLayer_Button.button.style.transitionDuration = '.3s';
 myLayer_Button.button.style.backgroundColor = 'black';
 
 //Button for filtering by attribute
-var filterIsOn = false
 var filter_Button = L.easyButton({
     id: 'filter',
     position: 'topright',
@@ -1102,14 +1139,15 @@ var filter_Button = L.easyButton({
             // document.getElementById("Cancel").style.display = "initial";
             document.getElementById("clearFilter").style.display = "initial";
             document.getElementById("applyFilter").style.display = "initial";
+            document.getElementById("filterByDate").style.display = "initial";
             document.getElementById("classification").style.display = "initial";
             document.getElementById("emoji").style.display = "initial";
         }else if(filterIsOn == true){
             filterIsOn = false
             myLayer_Button.button.style.opacity = '1';
             myLayer_Button.button.disabled = false;
-            filter_Button.addTo(map)
-
+            filter_Button.button.style.opacity = '1';
+            filter_Button.button.disabled = false;
 
             filter_Button.button.style.backgroundColor = 'black'
 
@@ -1124,6 +1162,7 @@ var filter_Button = L.easyButton({
             // document.getElementById("Cancel").style.display = "initial";
             document.getElementById("clearFilter").style.display = "none";
             document.getElementById("applyFilter").style.display = "none";
+            document.getElementById("filterByDate").style.display = "none";
             document.getElementById("classification").style.display = "none";
             document.getElementById("emoji").style.display = "none";
         }
@@ -1151,6 +1190,11 @@ console.log(boxContentFiltering)
 //script for remove filters
 document.getElementById("clearFilter").onclick = function(e) {
   document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
+  deflated.removeFrom(map)
+}
+
+document.getElementById("filterByDate").onclick = function(e) {
+  alert('Under development')
 }
 
 
@@ -1534,7 +1578,8 @@ document.getElementById("goBack2").onclick = function(e) {
     map.doubleClickZoom.enable();
     //to add filter button if carto layer on
     if(myLayer_Button.button.style.backgroundColor == 'black'){
-      filter_Button.addTo(map)
+      filter_Button.button.style.opacity = '1';
+      filter_Button.button.disabled = false;
     }
 
     clickMapCount = 0;
@@ -1576,7 +1621,8 @@ document.getElementById("goBack2").onclick = function(e) {
 var boxContent;
 var drawingPoint = false
 document.getElementById('point').onclick = function(e) {
-    filter_Button.removeFrom(map)
+    filter_Button.button.style.opacity = '0.4';
+    filter_Button.button.disabled = true;
 
     if (isIOS == false) {
         recordedBlobs = null; //to empty recorded blobs from previous map in this session
@@ -1601,7 +1647,8 @@ document.getElementById('point').onclick = function(e) {
 };
 
 document.getElementById('polyline').onclick = function(e) {
-    filter_Button.removeFrom(map)
+    filter_Button.button.style.opacity = '0.4';
+    filter_Button.button.disabled = true;
 
     if (isIOS == false) {
         recordedBlobs = null; //to empty recorded blobs from previous map in this session
@@ -1652,8 +1699,8 @@ document.getElementById('polyline').onclick = function(e) {
 };
 
 document.getElementById('polygon').onclick = function(e) {
-    filter_Button.removeFrom(map)
-
+      filter_Button.button.style.opacity = '0.4';
+      filter_Button.button.disabled = true;
     if (isIOS == false) {
         recordedBlobs = null; //to empty recorded blobs from previous map in this session
     }
@@ -1825,8 +1872,8 @@ map.on('draw:deleted', function(e) {
 
 var typeOfFeature;
 map.on('draw:created', function(e) {
-    myLayer_Button.removeFrom(map)
-    filter_Button.removeFrom(map)
+    myLayer_Button.button.style.opacity = '0.4';
+    myLayer_Button.button.disabled = true;
     deflated.removeFrom(map)
     created = true;
     drawPolygon.disable();
@@ -2136,10 +2183,12 @@ var boxContent;
 
 document.getElementById('Cancel').onclick = function(e) {
     document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
-    myLayer_Button.addTo(map)
+    myLayer_Button.button.style.opacity = '1';
+    myLayer_Button.button.disabled = false;
     //to add filter button if carto layer on
     if(myLayer_Button.button.style.backgroundColor == 'black'){
-      filter_Button.addTo(map)
+      filter_Button.button.style.opacity = '1';
+      filter_Button.button.disabled = false;
     }
     featureType = 'initial';
     alreadyMovedUp = false;
@@ -2581,7 +2630,15 @@ document.getElementById('shareWorldButton').onclick = function(e) {
         }).addTo(map);
 
     }, timeOfVideo);
-    myLayer_Button.addTo(map)
+
+    myLayer_Button.button.style.opacity = '1';
+    myLayer_Button.button.disabled = false
+    filter_Button.button.style.opacity = '1';
+    filter_Button.button.disabled = false;
+
+    document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
+
+
     if (cartoLoaded == true) {
         cartoGeometries.addTo(deflated)
     }
@@ -2589,7 +2646,7 @@ document.getElementById('shareWorldButton').onclick = function(e) {
     featureSent = true;
 
   }else{
-    alert("🔑 🛑 During the prototyping phase, a KEYWORD must be added in the textbox to publish the spatial data. You can request the KEYWORD using this form  XXXX");
+    alert("🔑 🛑 During the prototyping phase, a KEYWORD must be added in the textbox to publish the spatial data. Use the 'Quetionmark' button, then the 'Yellow' button to request the KEYWORD");
 
   }
   return featureSent
@@ -2635,7 +2692,14 @@ document.getElementById('DownloadButton').onclick = function(e) {
         //console.log(data);
 
         //finalLayer is added at the end as the properties are different depending on if share or download
-        myLayer_Button.addTo(map)
+        myLayer_Button.button.style.opacity = '1';
+        myLayer_Button.button.disabled = false
+        filter_Button.button.style.opacity = '1';
+        filter_Button.button.disabled = false;
+
+        document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
+
+
         finalLayer = L.geoJSON(data, {
             style: function(feature) {
                 return feature.properties && feature.properties.style;
