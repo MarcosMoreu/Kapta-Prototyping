@@ -228,19 +228,6 @@ if (lastPositionStoredLOCALLY != null) {
 
 // function to get coordinates and zoom level from URL, and then use the zoom and center variables to center the map if url != original
 var mappos = L.Permalink.getMapLocation();
-var getUrl = window.location.href
-// //console.log(getUrl)
-var getUrlLength = getUrl.length
-// //console.log(getUrlLength)
-var lastPositionUrl = getUrl[getUrlLength - 1]
-// //console.log(lastPositionUrl)
-var mySubString = getUrl.substring(
-    getUrl.lastIndexOf("#") + 1,
-    getUrl.lastIndexOf("z")
-);
-var mySubStringArray = mySubString.split(',');
-// //console.log(mySubString)
-// //console.log(mySubStringArray)
 
 //////////////////////////////to center map, depending on if location was stored, or if url has coordinates ////////////////////////////////
 
@@ -267,15 +254,29 @@ var mySubStringArray = mySubString.split(',');
 
 //////////////////////////////////////////////  MAP  //////////////////////////////////////////////////////
 
+//////////////////  center the map: check first if url with coordinates, if not, check if first load, then check if lastpositionstored.
+//script to check if url contains coordinates when loaded
+
+var urlCoordinates = window.location.href
+
+var urlContainsHash = urlCoordinates.includes('#')
+
+//to avoid panning outside this bounds
 var southWest = L.latLng(-70, -180);
 var northEast = L.latLng(80, 180);
 
-if (lastPositionStoredLOCALLY == null) {
-    //console.log('map centered as if NOT last position')
+if (urlContainsHash == true){
+    var keepOnlyLatLngZoom = urlCoordinates.split('#').pop();
+    var splittedLatLngZoom = keepOnlyLatLngZoom.split(',');
+    var urlLat = splittedLatLngZoom[0]
+    var urlLng = splittedLatLngZoom[1]
+    var urlZoomWithZ = splittedLatLngZoom[2]
+    var urlZoom = urlZoomWithZ.replace('z','')
+
     var map = L.map('map', {
         editable: true,
-        center: [0, 0], //global center
-        zoom: 0,
+        center: [urlLat, urlLng], //global center
+        zoom: urlZoom,
         minZoom: 2,
         maxZoom: 21,
         zoomControl: false,
@@ -283,22 +284,45 @@ if (lastPositionStoredLOCALLY == null) {
         maxBounds: L.latLngBounds(southWest, northEast)
 
     });
-} else {
-    //console.log('map centered as if YES last position')
+  //////////////////////
+}else{
 
-    var map = L.map('map', {
-        editable: true,
-        center: [lastPositionStoredLOCALLY[0], lastPositionStoredLOCALLY[1]],
-        // center: mappos.center,
-        // zoom: mappos.zoom,
-        zoom: 10, /////////what is the most appropriate???/
-        minZoom: 2,
-        maxZoom: 21,
-        zoomControl: false,
-        attributionControl: false,
-        maxBounds: L.latLngBounds(southWest, northEast)
-    });
+    if (lastPositionStoredLOCALLY == null) {
+        //console.log('map centered as if NOT last position')
+        var map = L.map('map', {
+            editable: true,
+            center: [0, 0], //global center
+            zoom: 0,
+            minZoom: 2,
+            maxZoom: 21,
+            zoomControl: false,
+            attributionControl: false,
+            maxBounds: L.latLngBounds(southWest, northEast)
+
+        });
+    } else {
+        //console.log('map centered as if YES last position')
+
+        var map = L.map('map', {
+            editable: true,
+            center: [lastPositionStoredLOCALLY[0], lastPositionStoredLOCALLY[1]],
+            // center: mappos.center,
+            // zoom: mappos.zoom,
+            zoom: 10, /////////what is the most appropriate???/
+            minZoom: 2,
+            maxZoom: 21,
+            zoomControl: false,
+            attributionControl: false,
+            maxBounds: L.latLngBounds(southWest, northEast)
+        });
+    }
+
 }
+
+
+
+
+
 L.Permalink.setup(map);
 ////console.log(map.getZoom())
 ////console.log(map.getCenter())
@@ -849,7 +873,7 @@ if (isIOS == true) {
     var iconGOOGLE = '<img src="images/google.png" width=40px; height=40px; style="margin-left:-1px"> ';
     var iconPLANET = '<img src="images/planet.png" width=40px; height=40px; style="margin-left:-1px"> ';
     var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; style="margin-left:-1px"> ';
-    var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; style="margin-left:-5px" > ';
+    var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; style="margin-left:-1px" > ';
 
 }
 
