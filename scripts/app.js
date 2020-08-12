@@ -573,6 +573,7 @@ var cartoGeoJSONLayer = function(data) {
 
                     //to activate deactivate button
                     document.getElementById("backDeleteFeature").style.display = "initial";
+                    document.getElementById("shareMessagingApp").style.display = "initial";
                     document.getElementById("deleteFeature").style.display = "initial";
                     document.getElementById("commentFeature").style.display = "initial";
 
@@ -680,12 +681,59 @@ document.getElementById("backDeleteFeature").onclick = function() {
     document.getElementById("point").style.display = "initial";
 
     document.getElementById("backDeleteFeature").style.display = "none";
+    document.getElementById("shareMessagingApp").style.display = "none";
     document.getElementById("commentFeature").style.display = "none";
 
     document.getElementById("deleteFeature").style.display = "none";
     document.getElementById("deleteFeature").style.backgroundColor = 'white'
 
     return selectedFeature && clickCountDeleteButton && cartoIdFeatureSelected
+}
+document.getElementById("shareMessagingApp").onclick = function() {
+  document.getElementById("backDeleteFeature").style.display = "none";
+  document.getElementById("shareMessagingApp").style.display = "none";
+  document.getElementById("commentFeature").style.display = "none";
+  document.getElementById("deleteFeature").style.display = "none";
+  document.getElementById("deleteFeature").style.backgroundColor = 'white'
+
+  document.getElementById("whatsApp").style.display = "initial";
+  document.getElementById("telegram").style.display = "initial";
+  document.getElementById("weChat").style.display = "initial";
+  document.getElementById("goBackMessagingApps").style.display = "initial";
+
+}
+
+document.getElementById("goBackMessagingApps").onclick = function() {
+  document.getElementById("whatsApp").style.display = "none";
+  document.getElementById("telegram").style.display = "none";
+  document.getElementById("weChat").style.display = "none";
+  document.getElementById("goBackMessagingApps").style.display = "none";
+
+  document.getElementById("backDeleteFeature").style.display = "initial";
+  document.getElementById("shareMessagingApp").style.display = "initial";
+  document.getElementById("commentFeature").style.display = "initial";
+  document.getElementById("deleteFeature").style.display = "initial";
+  document.getElementById("deleteFeature").style.backgroundColor = 'white'
+
+}
+
+document.getElementById("whatsApp").onclick = function() {
+  //alert('Under development. Available soon.');
+  //  window.location.href = "https://wa.me/whatsappphonenumber/?text=urlencodedtext";
+  window.location.href='https://wa.me/?text='+encodeURIComponent(window.location.href)
+}
+
+document.getElementById("telegram").onclick = function() {
+  //alert('Under development. Available soon.');
+  //  window.location.href = "https://wa.me/whatsappphonenumber/?text=urlencodedtext";
+  window.location.href='https://telegram.me/?text='+encodeURIComponent(window.location.href)
+}
+
+document.getElementById("weChat").onclick = function() {
+  alert('Under development. Available soon.');
+  //  window.location.href = "https://wa.me/whatsappphonenumber/?text=urlencodedtext";
+  //window.location.href='https://we.me/?text='+encodeURIComponent(window.location.href)
+
 }
 
 document.getElementById("deleteFeature").onclick = function() {
@@ -708,6 +756,7 @@ document.getElementById("deleteFeature").onclick = function() {
         document.getElementById("point").style.display = "initial";
 
         document.getElementById("backDeleteFeature").style.display = "none";
+        document.getElementById("shareMessagingApp").style.display = "none";
         document.getElementById("commentFeature").style.display = "none";
 
         document.getElementById("deleteFeature").style.display = "none";
@@ -725,7 +774,7 @@ document.getElementById("deleteFeature").onclick = function() {
 }
 
 document.getElementById("commentFeature").onclick = function() {
-  alert('Under development');
+  alert('Edit attribute functionality under development. Available soon.');
 }
 
 
@@ -1194,7 +1243,7 @@ document.getElementById("clearFilter").onclick = function(e) {
 }
 
 document.getElementById("filterByDate").onclick = function(e) {
-  alert('Under development')
+  alert('Filter by date functionality under development. Available soon.')
 }
 
 
