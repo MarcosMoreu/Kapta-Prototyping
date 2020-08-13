@@ -611,6 +611,7 @@ if (isOnline == true) {
           success:cartoGeoJSONLayer,
           url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
         })
+
         return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
     };
 }
@@ -1159,7 +1160,7 @@ var myLayer_Button = L.easyButton({
 
                  if (featureSent == true) { //to update the carto layer with recently created feature.
                    //to avoid reload, deflated is emptied>last element of the table (works fine in minor trafic) added to deflatet when getgeojson() is called>deflated added to the map
-                  cartoGeometries.removeFrom(deflated)
+                //  cartoGeometries.removeFrom(deflated)
                   sqlQuery = "SELECT * FROM lumblu ORDER BY cartodb_id DESC LIMIT 1"
                   getGeoJSON()
                   deflated.addTo(map)
@@ -1167,10 +1168,14 @@ var myLayer_Button = L.easyButton({
                    // location.reload(true); // set to true to force a hard reload
                    // getGeoJSON() //call the layer before reload so it is updated ( shouldn't be needed but...)
                     featureSent = false
-                }else{
+                }
+                else{
                   deflated.addTo(map)
 
                 }
+                // sqlQuery = "SELECT * FROM lumblu ORDER BY cartodb_id DESC LIMIT 1"
+                // getGeoJSON()
+              //  deflated.addTo(map)
 
                 myLayer_Button.button.style.backgroundColor = 'black'
                 filter_Button.button.style.opacity = '1';
@@ -1259,8 +1264,8 @@ document.getElementById("applyFilter").onclick = function(e) {
     //console.log(boxContentFiltering)
     //console.log(getboxContentFiltering())
     try {
-      cartoGeometries.removeFrom(deflated)
-    //  deflated.addTo(map)
+      deflated.clearLayers() // clearLayers instead of cartoGeometries, as this doesn't contain all geometries after 'sent'
+      //cartoGeometries.removeFrom(deflated)
     } catch (err) {
       console.log('error sql catched due to empty layer after filter applied')
     }
@@ -1276,8 +1281,8 @@ document.getElementById("clearFilter").onclick = function(e) {
   document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null;
 
   try {
-    cartoGeometries.removeFrom(deflated)
-  //  deflated.addTo(map)
+    deflated.clearLayers()  // clearLayers instead of cartoGeometries, as this doesn't contain all geometries after 'sent'
+  //  cartoGeometries.removeFrom(deflated)
   } catch (err) {
     console.log('error sql catched due to empty layer after filter applied  ')
 
@@ -2715,7 +2720,7 @@ document.getElementById('shareWorldButton').onclick = function(e) {
         //Call the setData() function!!! to post data to database
         setData();
 
-        //finalLayer is added at the end as the properties are different depending on if share or download
+      //  finalLayer is added at the end as the properties are different depending on if share or download
         finalLayer = L.geoJSON(data, {
             style: function(feature) {
                 return feature.properties && feature.properties.style;
@@ -2723,6 +2728,11 @@ document.getElementById('shareWorldButton').onclick = function(e) {
             color: '#0CACDF',
             onEachFeature: onEachFeature,
         }).addTo(map);
+
+        // sqlQuery = "SELECT * FROM lumblu ORDER BY cartodb_id DESC LIMIT 1"
+        // getGeoJSON()
+        // cartoGeometries.addTo(deflated)
+      //  deflated.addTo(map)
 
     }, timeOfVideo);
 
@@ -2732,11 +2742,12 @@ document.getElementById('shareWorldButton').onclick = function(e) {
     filter_Button.button.disabled = false;
 
     document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
-
-
-    if (cartoLoaded == true) {
-        cartoGeometries.addTo(deflated)
-    }
+    localStorageLayer.removeFrom(map)
+    deflated.addTo(map)
+    // if (cartoLoaded == true) {
+    //
+    //     cartoGeometries.addTo(deflated)
+    // }
 
     featureSent = true;
 
@@ -2789,8 +2800,8 @@ document.getElementById('DownloadButton').onclick = function(e) {
         //finalLayer is added at the end as the properties are different depending on if share or download
         myLayer_Button.button.style.opacity = '1';
         myLayer_Button.button.disabled = false
-        filter_Button.button.style.opacity = '1';
-        filter_Button.button.disabled = false;
+        filter_Button.button.style.opacity = '0.4';
+        filter_Button.button.disabled = true;
 
         document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
 
