@@ -319,10 +319,6 @@ if (urlContainsHash == true){
 
 }
 
-
-
-
-
 L.Permalink.setup(map);
 ////console.log(map.getZoom())
 ////console.log(map.getCenter())
@@ -461,19 +457,6 @@ var clusters = L.markerClusterGroup({
 // Add Data from CARTO using the SQL API. Declare Variables. Create Global Variable to hold CARTO points
 var cartoGeometries = null;
 var cartoIdFeatureSelected;
-
-//var sqlQuery = "SELECT * FROM lumblu WHERE landusesemoji LIKE 'ikweta 🌍'";
-//var sqlQuery = "SELECT * FROM lumblu WHERE CONTAINS(landusesemoji, 'test')";
-// var sqlQuery = "SELECT * FROM lumblu WHERE 'test' LIKE '%' || landusesemoji || '%' ";
-//var sqlQuery = "SELECT * FROM lumblu WHERE 't%' ~ landusesemoji ";
-var sqlQuery = "SELECT * FROM lumblu WHERE landusesemoji LIKE 'test'"
-
-
-
-var sqlQueryAll = "SELECT * FROM lumblu";
-//var sqlQueryFiltered = "SELECT * FROM lumblu WHERE landusesemoji='test'";
-var sqlQueryFiltered = "SELECT * FROM lumblu WHERE landusesemoji LIKE 'test'";
-
 var selectedFeature = null;
 var featureType = null;
 var cartoLoaded;
@@ -616,6 +599,7 @@ var cartoGeoJSONLayer = function(data) {
 if (isOnline == true) {
 
     function getGeoJSON() {
+      sqlQuery = "SELECT * FROM lumblu";
         $.getJSON({
           cache:false,
           success:cartoGeoJSONLayer,
@@ -754,7 +738,7 @@ document.getElementById("telegram").onclick = function() {
 }
 
 document.getElementById("weChat").onclick = function() {
-  alert('Under development. Available soon.');
+  alert('WeChat sharing option under development. Available soon.');
   //  window.location.href = "https://wa.me/whatsappphonenumber/?text=urlencodedtext";
   //window.location.href='https://we.me/?text='+encodeURIComponent(window.location.href)
 
@@ -1251,20 +1235,54 @@ filter_Button.button.style.transitionDuration = '.3s';
 filter_Button.button.style.backgroundColor = 'black';
 
 //////////////////////////// actions for bottom-of-screen filtering buttons
-var boxContentFiltering;
+
 //script for apply filters
 document.getElementById("applyFilter").onclick = function(e) {
 
 boxContentFiltering = document.getElementById('emojionearea').value;
-console.log(boxContentFiltering)
+//console.log(boxContentFiltering)
+//console.log(getboxContentFiltering())
+cartoGeometries.removeFrom(deflated)
 
+function getGeoJSON() {
+  var sqlQueryWithoutCondition = "SELECT * FROM lumblu WHERE landusesemoji LIKE '";
+  var sqlCondition = boxContentFiltering +"'";
+  var sqlQuery = sqlQueryWithoutCondition + sqlCondition
+
+    $.getJSON({
+      cache:false,
+      success:cartoGeoJSONLayer,
+      url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
+    })
+    return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
+};
+
+getGeoJSON()
+deflated.addTo(map)
 }
 
 //script for remove filters
 document.getElementById("clearFilter").onclick = function(e) {
-  document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
-  deflated.removeFrom(map)
-}
+  document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null;
+
+  cartoGeometries.removeFrom(deflated)
+
+  function getGeoJSON() {
+
+    var sqlQuery = "SELECT * FROM lumblu"
+
+      $.getJSON({
+        cache:false,
+        success:cartoGeoJSONLayer,
+        url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
+      })
+      return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
+  };
+
+  getGeoJSON()
+  deflated.addTo(map)
+
+};
 
 document.getElementById("filterByDate").onclick = function(e) {
   alert('Filter by date functionality under development. Available soon.')
