@@ -492,6 +492,12 @@ var cartoGeoJSONLayer = function(data) {
               document.getElementById("filterByDate").style.display = "none";
               document.getElementById("classification").style.display = "none";
               document.getElementById("emoji").style.display = "none";
+
+              document.getElementById("whatsApp").style.display = "none";
+              document.getElementById("telegram").style.display = "none";
+              document.getElementById("weChat").style.display = "none";
+              document.getElementById("goBackMessagingApps").style.display = "none";
+
               myLayer_Button.button.style.opacity = '0.4';
               myLayer_Button.button.disabled = true;
               filter_Button.button.style.opacity = '0.4';
@@ -704,6 +710,7 @@ document.getElementById("backDeleteFeature").onclick = function() {
     return selectedFeature && clickCountDeleteButton && cartoIdFeatureSelected
 }
 document.getElementById("shareMessagingApp").onclick = function() {
+
   document.getElementById("backDeleteFeature").style.display = "none";
   document.getElementById("shareMessagingApp").style.display = "none";
   document.getElementById("commentFeature").style.display = "none";
@@ -738,14 +745,12 @@ document.getElementById("whatsApp").onclick = function() {
 }
 
 document.getElementById("telegram").onclick = function() {
-  //alert('Under development. Available soon.');
-  //  window.location.href = "https://wa.me/whatsappphonenumber/?text=urlencodedtext";
-  window.location.href='https://telegram.me/?text='+encodeURIComponent(window.location.href)
+  alert('Telegram sharing option not available yet.');
+  //window.location.href='https://telegram.me/?text='+encodeURIComponent(window.location.href)
 }
 
 document.getElementById("weChat").onclick = function() {
-  alert('WeChat sharing option under development. Available soon.');
-  //  window.location.href = "https://wa.me/whatsappphonenumber/?text=urlencodedtext";
+  alert('WeChat sharing option not available yet.');
   //window.location.href='https://we.me/?text='+encodeURIComponent(window.location.href)
 
 }
@@ -936,6 +941,7 @@ var googleSat_Button = L.easyButton({
                 clickButtonCount = 0;
             } else {
                 googleSat.addTo(map);
+                wmsSentinel2.removeFrom(map);
                 planet.removeFrom(map);
                 osm.removeFrom(map);
             }
@@ -1017,7 +1023,7 @@ var planet_Button = L.easyButton({
                 maxZoom: 18,
                 maxNativeZoom: 20,
                 subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
-                attribution: 'Planet/Sentinel Imagery MAY 2020'
+                attribution: 'Planet/Sentinel Imagery MAY-JULY 2020'
             });
             var planetS17 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200410_074244_1018/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
                 maxZoom: 18,
@@ -1045,11 +1051,30 @@ var planet_Button = L.easyButton({
                 maxNativeZoom: 20,
                 subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
             });
+            ///////LJUBLJANA/////////////////
+            var planetS22 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200715_093554_1032/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            });
+            ///////VIENA/////////////////
+            var planetS23 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200730_093028_101b/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            });
+            ///////NOVI SAD/////////////////
+            var planetS24 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200730_091658_1040/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+                maxZoom: 18,
+                maxNativeZoom: 20,
+                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            });
 
-            planet = L.layerGroup([planetS6, planetS7, planetS8, planetS9, planetS10, planetS11, planetS12, planetS13, planetS14, planetS15, planetS16, planetS17, planetS18, planetS19, planetS20, planetS21]);
+
+            planet = L.layerGroup([planetS6, planetS7, planetS8, planetS9, planetS10, planetS11, planetS12, planetS13, planetS14, planetS15, planetS16, planetS17, planetS18, planetS19, planetS20, planetS21, planetS22, planetS23, planetS24]);
 
             ////////////////// Sentinel-hub (level 2 chosen as it allow any zoom level) ////////////////
-            var wmsSentinel2 = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelKey + "?REQUEST=GetMap&PREVIEW=2", {
+            wmsSentinel2 = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelKey + "?REQUEST=GetMap&PREVIEW=2", {
                 layers: 'P4',
                 // attribution: 'Sentinel 2 Imagery May 2020'
             });
@@ -1157,6 +1182,10 @@ var myLayer_Button = L.easyButton({
 
             } else if (whichLayerIsOn == 'none') {
                 whichLayerIsOn = 'deflated'
+                if (finalLayer != null) {
+                    finalLayer.removeFrom(map)
+                }
+
 
                  if (featureSent == true) { //to update the carto layer with recently created feature.
                    //to avoid reload, deflated is emptied>last element of the table (works fine in minor trafic) added to deflatet when getgeojson() is called>deflated added to the map
@@ -1191,6 +1220,7 @@ myLayer_Button.button.style.height = '50px';
 myLayer_Button.button.style.transitionDuration = '.3s';
 myLayer_Button.button.style.backgroundColor = 'black';
 
+var filterApplied;
 //Button for filtering by attribute
 var filter_Button = L.easyButton({
     id: 'filter',
@@ -1227,7 +1257,13 @@ var filter_Button = L.easyButton({
             filter_Button.button.style.opacity = '1';
             filter_Button.button.disabled = false;
 
-            filter_Button.button.style.backgroundColor = 'black'
+            if(filterApplied == true){
+              filter_Button.button.style.backgroundColor = 'green'
+
+            }else{
+              filter_Button.button.style.backgroundColor = 'black'
+
+            }
 
             document.getElementById("tutorial").style.display = "initial";
             document.getElementById("polygon").style.display = "initial";
@@ -1272,8 +1308,11 @@ document.getElementById("applyFilter").onclick = function(e) {
     var sqlQueryWithoutCondition = "SELECT * FROM lumblu WHERE landusesemoji LIKE '";
     var sqlCondition = boxContentFiltering +"'";
     sqlQuery = sqlQueryWithoutCondition + sqlCondition
-
     getGeoJSON()
+
+    filterApplied = true
+    return filterApplied
+
 }
 
 //script for remove filters
@@ -1290,11 +1329,13 @@ document.getElementById("clearFilter").onclick = function(e) {
   sqlQuery = "SELECT * FROM lumblu"
   getGeoJSON()
 //  deflated.addTo(map)
+  filterApplied = false
+  return filterApplied
 
 };
 
 document.getElementById("filterByDate").onclick = function(e) {
-  alert('Filter by date functionality under development. Available soon.')
+  alert('Filter by date functionality under development.')
 }
 
 
@@ -1975,6 +2016,7 @@ map.on('draw:created', function(e) {
     myLayer_Button.button.style.opacity = '0.4';
     myLayer_Button.button.disabled = true;
     deflated.removeFrom(map)
+    localStorageLayer.removeFrom(map)
     created = true;
     drawPolygon.disable();
     drawnItems.removeFrom(map); //remove the drawn item as yellow polygon appears
@@ -2285,6 +2327,7 @@ document.getElementById('Cancel').onclick = function(e) {
     document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
     myLayer_Button.button.style.opacity = '1';
     myLayer_Button.button.disabled = false;
+    myLayer_Button.button.style.backgroundColor = 'grey'
     //to add filter button if carto layer on
     if(myLayer_Button.button.style.backgroundColor == 'black'){
       filter_Button.button.style.opacity = '1';
@@ -2335,9 +2378,9 @@ document.getElementById('Cancel').onclick = function(e) {
     }, 200)
 
     tempLayer.clearLayers()
-    if (cartoLoaded == true) {
-        cartoGeometries.addTo(deflated)
-    }
+    // if (cartoLoaded == true) {
+    //     cartoGeometries.addTo(deflated)
+    // }
     return created & featureType;
 }
 
@@ -2752,7 +2795,7 @@ document.getElementById('shareWorldButton').onclick = function(e) {
     featureSent = true;
 
   }else{
-    alert("🔑 🛑 During the prototyping phase, a KEYWORD must be added in the textbox to publish the spatial data. Use the 'Quetionmark' button, then the 'Yellow' button to request the KEYWORD");
+    alert("🔑 🛑 During the prototyping phase, a KEYWORD must be added in the textbox to publish the spatial data. Click 'Download' and in the main screen click the 'Quetionmark' button. Then click the 'Yellow' button to request the KEYWORD. Thanks");
 
   }
   return featureSent
