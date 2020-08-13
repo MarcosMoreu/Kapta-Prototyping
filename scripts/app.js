@@ -670,7 +670,7 @@ document.getElementById("backDeleteFeature").onclick = function() {
     myLayer_Button.button.style.opacity = '1';
     myLayer_Button.button.disabled = false
     filter_Button.button.style.opacity = '1';
-    filter_Button.button.disabled = false
+    filter_Button.button.disabled = false;
 
     if (selectedFeature.feature.geometry.type != 'Point') {
         selectedFeature.setStyle({
@@ -763,16 +763,21 @@ document.getElementById("deleteFeature").onclick = function() {
         clickCountDeleteButton = 0
         //console.log('feature deleted')
 
-        // document.getElementById("tutorial").style.display = "initial";
-        // document.getElementById("polygon").style.display = "initial";
-        // document.getElementById("polyline").style.display = "initial";
-        // document.getElementById("point").style.display = "initial";
-        //
-        // document.getElementById("backDeleteFeature").style.display = "none";
-        // document.getElementById("shareMessagingApp").style.display = "none";
-        // document.getElementById("commentFeature").style.display = "none";
-        //
-        // document.getElementById("deleteFeature").style.display = "none";
+        myLayer_Button.button.style.opacity = '1';
+        myLayer_Button.button.disabled = false
+        filter_Button.button.style.opacity = '1';
+        filter_Button.button.disabled = false;
+
+        document.getElementById("tutorial").style.display = "initial";
+        document.getElementById("polygon").style.display = "initial";
+        document.getElementById("polyline").style.display = "initial";
+        document.getElementById("point").style.display = "initial";
+
+        document.getElementById("backDeleteFeature").style.display = "none";
+        document.getElementById("shareMessagingApp").style.display = "none";
+        document.getElementById("commentFeature").style.display = "none";
+
+        document.getElementById("deleteFeature").style.display = "none";
         document.getElementById("deleteFeature").style.backgroundColor = 'white'
         //  document.getElementById("deleteFeature").style.borderColor = 'white'
 
@@ -1151,19 +1156,22 @@ var myLayer_Button = L.easyButton({
 
             } else if (whichLayerIsOn == 'none') {
                 whichLayerIsOn = 'deflated'
-                //deflated = null;
-                //console.log('finished is   ' + finished)
-                //  getGeoJSON()
-                if (featureSent == true) { //to update the carto layer with recently created feature
+
+                 if (featureSent == true) { //to update the carto layer with recently created feature.
+                   //to avoid reload, deflated is emptied>last element of the table (works fine in minor trafic) added to deflatet when getgeojson() is called>deflated added to the map
                   cartoGeometries.removeFrom(deflated)
-                  sqlQuery = "SELECT * FROM lumblu"
+                  sqlQuery = "SELECT * FROM lumblu ORDER BY cartodb_id DESC LIMIT 1"
                   getGeoJSON()
-                  //  location.reload(true); // set to true to force a hard reload
-                //    getGeoJSON() //call the layer before reload so it is updated ( shouldn't be needed but...)
+                  deflated.addTo(map)
+
+                   // location.reload(true); // set to true to force a hard reload
+                   // getGeoJSON() //call the layer before reload so it is updated ( shouldn't be needed but...)
                     featureSent = false
+                }else{
+                  deflated.addTo(map)
+
                 }
 
-                deflated.addTo(map)
                 myLayer_Button.button.style.backgroundColor = 'black'
                 filter_Button.button.style.opacity = '1';
                 filter_Button.button.disabled = false;
