@@ -591,15 +591,21 @@ var cartoGeoJSONLayer = function(data) {
                 }
             });
         }
-    }).addTo(deflated)
+    })
+
+    try{
+      cartoGeometries.addTo(deflated)
+    }catch(err){
+      console.log('error sql catched due to empty layer after filter applied')
+    }
     return cartoGeometries
 };
 
 
 if (isOnline == true) {
+    sqlQuery = "SELECT * FROM lumblu";
 
     function getGeoJSON() {
-      sqlQuery = "SELECT * FROM lumblu";
         $.getJSON({
           cache:false,
           success:cartoGeoJSONLayer,
@@ -1239,46 +1245,34 @@ filter_Button.button.style.backgroundColor = 'black';
 //script for apply filters
 document.getElementById("applyFilter").onclick = function(e) {
 
-boxContentFiltering = document.getElementById('emojionearea').value;
-//console.log(boxContentFiltering)
-//console.log(getboxContentFiltering())
-cartoGeometries.removeFrom(deflated)
+    boxContentFiltering = document.getElementById('emojionearea').value;
+    //console.log(boxContentFiltering)
+    //console.log(getboxContentFiltering())
+    try {
+      cartoGeometries.removeFrom(deflated)
+    //  deflated.addTo(map)
+    } catch (err) {
+      console.log('error sql catched due to empty layer after filter applied')
+    }
+    var sqlQueryWithoutCondition = "SELECT * FROM lumblu WHERE landusesemoji LIKE '";
+    var sqlCondition = boxContentFiltering +"'";
+    sqlQuery = sqlQueryWithoutCondition + sqlCondition
 
-function getGeoJSON() {
-  var sqlQueryWithoutCondition = "SELECT * FROM lumblu WHERE landusesemoji LIKE '";
-  var sqlCondition = boxContentFiltering +"'";
-  var sqlQuery = sqlQueryWithoutCondition + sqlCondition
-
-    $.getJSON({
-      cache:false,
-      success:cartoGeoJSONLayer,
-      url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
-    })
-    return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
-};
-
-getGeoJSON()
-deflated.addTo(map)
+    getGeoJSON()
 }
 
 //script for remove filters
 document.getElementById("clearFilter").onclick = function(e) {
   document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null;
 
-  cartoGeometries.removeFrom(deflated)
+  try {
+    cartoGeometries.removeFrom(deflated)
+  //  deflated.addTo(map)
+  } catch (err) {
+    console.log('error sql catched due to empty layer after filter applied  ')
 
-  function getGeoJSON() {
-
-    var sqlQuery = "SELECT * FROM lumblu"
-
-      $.getJSON({
-        cache:false,
-        success:cartoGeoJSONLayer,
-        url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
-      })
-      return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
-  };
-
+  }
+  sqlQuery = "SELECT * FROM lumblu"
   getGeoJSON()
   deflated.addTo(map)
 
