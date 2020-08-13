@@ -658,7 +658,6 @@ function setData() {
     //console.log("Feature has been submitted to the Proxy");
 };
 
-
 //to delete feature
 var initialScreen = true;
 var clickCountDeleteButton = 0;
@@ -764,16 +763,16 @@ document.getElementById("deleteFeature").onclick = function() {
         clickCountDeleteButton = 0
         //console.log('feature deleted')
 
-        document.getElementById("tutorial").style.display = "initial";
-        document.getElementById("polygon").style.display = "initial";
-        document.getElementById("polyline").style.display = "initial";
-        document.getElementById("point").style.display = "initial";
-
-        document.getElementById("backDeleteFeature").style.display = "none";
-        document.getElementById("shareMessagingApp").style.display = "none";
-        document.getElementById("commentFeature").style.display = "none";
-
-        document.getElementById("deleteFeature").style.display = "none";
+        // document.getElementById("tutorial").style.display = "initial";
+        // document.getElementById("polygon").style.display = "initial";
+        // document.getElementById("polyline").style.display = "initial";
+        // document.getElementById("point").style.display = "initial";
+        //
+        // document.getElementById("backDeleteFeature").style.display = "none";
+        // document.getElementById("shareMessagingApp").style.display = "none";
+        // document.getElementById("commentFeature").style.display = "none";
+        //
+        // document.getElementById("deleteFeature").style.display = "none";
         document.getElementById("deleteFeature").style.backgroundColor = 'white'
         //  document.getElementById("deleteFeature").style.borderColor = 'white'
 
@@ -1156,8 +1155,11 @@ var myLayer_Button = L.easyButton({
                 //console.log('finished is   ' + finished)
                 //  getGeoJSON()
                 if (featureSent == true) { //to update the carto layer with recently created feature
-                    location.reload(true); // set to true to force a hard reload
-                    getGeoJSON() //call the layer before reload so it is updated ( shouldn't be needed but...)
+                  cartoGeometries.removeFrom(deflated)
+                  sqlQuery = "SELECT * FROM lumblu"
+                  getGeoJSON()
+                  //  location.reload(true); // set to true to force a hard reload
+                //    getGeoJSON() //call the layer before reload so it is updated ( shouldn't be needed but...)
                     featureSent = false
                 }
 
@@ -1274,7 +1276,7 @@ document.getElementById("clearFilter").onclick = function(e) {
   }
   sqlQuery = "SELECT * FROM lumblu"
   getGeoJSON()
-  deflated.addTo(map)
+//  deflated.addTo(map)
 
 };
 
