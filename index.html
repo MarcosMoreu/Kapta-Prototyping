@@ -201,18 +201,28 @@
 
 
 <div id="modal" class='modal' >
-  <form id='pwForm' class="modal-content animate" style='margin-top:100px; width:200px'>
-    <div class="imgcontainer">
-      <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> -->
-      <img src="images/locked.png" alt="..." class="avatar" style='width: 70px; height:60px' >
+  <form id='pwForm' class="modal-content animate" style='margin-top:100px; width:200px; border-radius:50px'>
+
+    <img src="images/locked.png" alt="..." style='margin-left: calc(50% - 30px);margin-top:10px;width: 60px; height:70px' >
+
+    <div style='margin-top:10px; text-align:center;'>
+      <button id='loginInfo' class='button'style='outline:none;position:relative;margin-right:30px;margin-top:3px; margin-bottom:10px;width:50px ; height:50px; border: 1px solid ; border-color:black; border-radius:50px' >
+        <img src="images/questionmark.png" alt="..." style=' width:30px ; height:30px;' >
+      </button>
+      <button id='loginUnlock' class='button'style='outline:none; position:relative;margin-top:3px;margin-bottom:10px;width:50px ; height:50px; border: 1px solid ; border-color:black; border-radius:50px' >
+        <img src="images/key.png" alt="..." style=' width:30px ; height:30px;' >
+      </button>
+      <!-- <svg width="500" height="500"><line x1="0" y1="0" x2='50' y2="0" x3="150" y3='0' stroke="black"/></svg> -->
+
     </div>
     <div class="container" >
-      <input id='enteredPw' type="number" style='background-color: white;color:grey; text-align:center;letter-spacing: 10px;font-size:20px;'placeholder = "____" required>
-      <button id='login' class='button'style='outline:none;margin-left:calc(50% - 25px); width:50px ; height:50px; border: 2px solid ; border-color:#D3D2D2; border-radius:50px' >
+      <input id='enteredPw' type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        maxlength = '4' style='display:none;border-color:grey;background-color: white;color:grey; text-align:center;letter-spacing: 10px;font-size:20px;'placeholder = " ____" required>
+      <button id='login' class='button'style='display:none;outline:none;margin-left:calc(50% - 25px); width:50px ; height:50px; border: 1px solid ; border-color:white; border-radius:50px' >
         <img src="images/ThumbsUpGreen.png" alt="..." style=' width:30px ; height:30px;' >
       </button>
 
-      <p id='infoLoginText' style=' font-size:10px;color:grey;text-align:center; font-family:'Ubuntu''>  🚧 Basic password protection will be removed after the testing period.
+      <p id='infoLoginText' style=' display:none;font-size:10px;color:grey;text-align:center; font-family:'Ubuntu''>  🚧 Basic password protection will be removed after the testing period.<br>
         <a href="https://www.geog.ucl.ac.uk/research/research-centres/excites/contact-us" style='color:grey; text-decoration: underline'>Contact Us</a></p>
 
     </div>

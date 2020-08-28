@@ -156,11 +156,6 @@ input[type=number] {
 
 
 /* Center the image and position the close button */
-.imgcontainer {
-  text-align: center;
-  margin-top:10px;
-  position: relative;
-}
 
 .container {
   margin-left:10px;
