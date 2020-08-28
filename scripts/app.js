@@ -174,6 +174,48 @@ var tilesDb = {
     }
 };
 
+/// function to request pw on first load or if incorrect of second... load
+var requestPw = function(){
+      var pocPw = '1111' //! 🙈 if you are looking at this line, please keep in mind that this very basic security measure is only to prevent, during the testing period,
+      // unintended submission of open land data by users with limited technological skills
+
+      setTimeout(function(){
+        document.getElementById('modal').style.display='block';
+      },1000)
+
+      var checkPw = setInterval(function(){
+        var pwPlaceholder = document.getElementById('enteredPw').value
+
+        if(pwPlaceholder.length == 4){
+          document.getElementById('login').disabled = false
+          document.getElementById('login').style.opacity='1';
+        }
+        if(pwPlaceholder.length != 4){
+          document.getElementById('login').style.opacity='0.3';
+         document.getElementById('login').disabled = true
+        }
+      },200)
+
+      document.getElementById('login').onclick = function(){
+        var pwPlaceholder = document.getElementById('enteredPw').value
+        if(pwPlaceholder == pocPw){
+
+          clearInterval(checkPw)
+          document.getElementById('enteredPw').style.backgroundColor = '#39F70F'
+          setTimeout(function(){
+            document.getElementById('modal').style.display='none';
+            document.getElementById('pwForm').style.display='none';
+          },300)
+          localStorage.setItem('pwCorrect', true);
+        }else{
+          document.getElementById('enteredPw').style.backgroundColor = 'red'
+          setTimeout(function(){
+            document.getElementById('enteredPw').style.backgroundColor = 'white'
+          },300)
+        }
+      }
+    }
+
 ////////////////////////////////////////////////////////      first load         /////////////////////////////////////////////////////////////////////////
 var isFirstTime; //var to store if the site is visited for the first time
 //var oneMapCompleted; // to know if in this session this is the first map or not
@@ -184,9 +226,15 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
         // Set visited flag in local storage
         localStorage.setItem('visited', true);
         isFirstTime = true;
-        //console.log('isFirstTime  '+ isFirstTime)
+        /////////////////////    password protection for first time /////////////////
+      requestPw()
+
     } else {
         isFirstTime = false;
+        //condition to ensure that if in first load pw was incorrect, pw is requested until correct
+        if(!localStorage.getItem('pwCorrect')){
+          requestPw()
+        }
         //console.log('isFirstTime  '+ isFirstTime)
     }
     return isFirstTime;
@@ -2868,3 +2916,5 @@ document.getElementById('DownloadButton').onclick = function(e) {
     return finished
 }
 // end
+
+//////////////////////    MODAL    /////////////////////

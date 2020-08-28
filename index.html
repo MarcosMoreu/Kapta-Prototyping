@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-<html lang='en'>
+<html lang='en' >
 
 <head>
 
@@ -39,8 +39,11 @@
 
 </head>
 
-<body>
+<body >
+  <!-- <button id='login' style="width:auto;">Login</button> -->
 
+
+<!-- <INPUT id="txtChar" onkeypress="return isNumberKey(event)" type="number" name="txtChar"> -->
   <h1 id='showAreaHa' style='z-index:2;position:absolute;left:75px;display:none;color:yellow;font-size:19px' ></h1>
   <h2 id='showAreaAcres' style='z-index:2;position:absolute;left:75px;top:25px;display:none;color:yellow;font-size:19px' ></h2>
   <h3 id='showLength' style='z-index:2;position:absolute;left:75px;display:none;color:yellow;font-size:19px;font-family:'Ubuntu'' > </h3>
@@ -90,6 +93,7 @@
   </button>
 
 </div>
+
 
 <div align='center' style='z-index:2; position:relative; margin-top:-90px; '>
   <button id='goBack2' class='button'aria-label = 'goBack2' style='display:none;border: 2px solid #9C1F04; background-color:#9C1F04'>
@@ -193,6 +197,26 @@
   <button id="sendFirebase" style='display:none;width:0px;height:0px'>Upload</button>
   <p id="uploading" style='display:none'></p>
   <progress value="0" max="100" id="progress" style='display:none'></progress>
+</div>
+
+
+<div id="modal" class='modal' >
+  <form id='pwForm' class="modal-content animate" style='margin-top:100px; width:200px'>
+    <div class="imgcontainer">
+      <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> -->
+      <img src="images/locked.png" alt="..." class="avatar" style='width: 70px; height:60px' >
+    </div>
+    <div class="container" >
+      <input id='enteredPw' type="number" style='background-color: white;color:grey; text-align:center;letter-spacing: 10px;font-size:20px;'placeholder = "____" required>
+      <button id='login' class='button'style='outline:none;margin-left:calc(50% - 25px); width:50px ; height:50px; border: 2px solid ; border-color:#D3D2D2; border-radius:50px' >
+        <img src="images/ThumbsUpGreen.png" alt="..." style=' width:30px ; height:30px;' >
+      </button>
+
+      <p id='infoLoginText' style=' font-size:10px;color:grey;text-align:center; font-family:'Ubuntu''>  🚧 Basic password protection will be removed after the testing period.
+        <a href="https://www.geog.ucl.ac.uk/research/research-centres/excites/contact-us" style='color:grey; text-decoration: underline'>Contact Us</a></p>
+
+    </div>
+  </form>
 </div>
 
 <script src="scripts/lib/leaflet/leaflet-src.js"></script>
