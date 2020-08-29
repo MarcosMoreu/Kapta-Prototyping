@@ -231,8 +231,8 @@ document.getElementById('loginUnlock').onclick = function(e){
 
 ////////////////////    login  input    ///////////
 var requestPw = function(){
-      var pocPw = '1111' //! 🙈 if you are looking at this line, please keep in mind that this very basic security measure is only to prevent, during the testing period,
-      // unintended submission of open land data by users with limited technological skills
+      var pocPw = '2030' //! 🖐️ if you are looking at this line, please keep in mind that this very basic security measure is 'only' to prevent, during the testing period,
+      // unintended submission by users who have not been informed of the impacts of open land data, both positive and negatives.
 
       setTimeout(function(){
         document.getElementById('modal').style.display='block';
@@ -615,7 +615,20 @@ var cartoGeoJSONLayer = function(data) {
                 //console.log('geometry type' + e.target.feature.geometry.type)
                 if (!e.target.defaultOptions) { //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed. DefaultOptions is only in Points
                     var currentZoom = map.getZoom()
-                    map.setView(e.target.getLatLng(), currentZoom + 2);
+                    //map.setView(e.target.getLatLng(), currentZoom + 2);
+                    console.log(e.target.feature.properties.areapolygon)
+                    console.log(e.target)
+
+                    if(e.target.feature.properties.areapolygon != null){
+                      var geometryString = e.target.feature.properties.geometrystring
+                      console.log(geometryString)
+                       // var geometryStringJSON = JSON.parse(geometryString)
+                       var geometryStringGeoJSON = L.geoJSON(JSON.parse(geometryString))
+                       console.log(geometryStringGeoJSON)
+
+                       map.fitBounds(geometryStringGeoJSON.getBounds());
+                      //map.setView(geometryString, currentZoom + 8);
+                    }
                 } else {
                     if (selectedFeature) {
                         try {
@@ -630,6 +643,7 @@ var cartoGeoJSONLayer = function(data) {
                                 color: '#AFFDA7'
                             })
                         }
+
                     }
                     document.getElementById("deleteFeature").style.opacity = "1";
                     document.getElementById("deleteFeature").disabled = false;
@@ -654,6 +668,9 @@ var cartoGeoJSONLayer = function(data) {
                                 color: '#AFFDA7'
                             })
                         }
+                        if (selectedFeature.feature.geometry.type == 'Polygon') {
+                          random_Button.removeFrom(map)
+                        }
                     })
                     map.on('moveend', function(e) {
                         try {
@@ -671,6 +688,10 @@ var cartoGeoJSONLayer = function(data) {
                             selectedFeature.setStyle({
                                 color: '#AFFDA7'
                             })
+                        }
+                        if (selectedFeature.feature.geometry.type == 'Polygon') {
+                          random_Button.removeFrom(map)
+
                         }
                     })
 
@@ -697,7 +718,10 @@ var cartoGeoJSONLayer = function(data) {
                     document.getElementById("shareMessagingApp").style.display = "initial";
                     document.getElementById("deleteFeature").style.display = "initial";
                     document.getElementById("commentFeature").style.display = "initial";
+                    if (selectedFeature.feature.geometry.type == 'Polygon') {
 
+                      random_Button.addTo(map)
+                    }
                     document.getElementById("tutorial").style.display = "none";
                     document.getElementById("polygon").style.display = "none";
                     document.getElementById("polyline").style.display = "none";
@@ -762,9 +786,9 @@ function setData() {
         var dataGeometryString = JSON.stringify(dataGeometry)
         //console.log(dataGeometryString)
 
-        var sql = "INSERT INTO lumblu (the_geom, datetime, randomid, landuses, landusesemoji, audioavailable, areapolygon, lengthline, timespent, distance) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
+        var sql = "INSERT INTO lumblu (the_geom, datetime, randomid, landuses, landusesemoji, audioavailable, areapolygon, lengthline, timespent, distance, geometrystring) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
         var sql2 = dataGeometryString;
-        var sql3 = "'),4326),'" + dateTime + "','" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + audioAvailable + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "')";
+        var sql3 = "'),4326),'" + dateTime + "','" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + audioAvailable + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "')";
         var pURL = sql + sql2 + sql3;
     }
 
@@ -974,6 +998,8 @@ if (isIOS == true) {
     var iconPLANET = '<img src="images/planet.png" width=40px; height=40px; style="margin-left:-5px" > ';
     var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; style="margin-left:-5px" > ';
     var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; style="margin-left:-5px" > ';
+    var iconRANDOM = '<img src="images/gps.png" width=40px; height=40px; style="margin-left:-5px" > ';
+
 
 } else {
     var iconGPS = '<img src="images/gps.png" width=40px; height=40px; style="margin-left:-1px" > ';
@@ -982,6 +1008,8 @@ if (isIOS == true) {
     var iconPLANET = '<img src="images/planet.png" width=40px; height=40px; style="margin-left:-1px"> ';
     var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; style="margin-left:-1px"> ';
     var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; style="margin-left:-1px" > ';
+    var iconRANDOM = '<img src="images/gps.png" width=40px; height=40px; style="margin-left:-1px" > ';
+
 
 }
 
@@ -1398,6 +1426,24 @@ filter_Button.button.style.width = '50px';
 filter_Button.button.style.height = '50px';
 filter_Button.button.style.transitionDuration = '.3s';
 filter_Button.button.style.backgroundColor = 'black';
+
+//Button for RANDOM SUGGESTION
+var random_Button = L.easyButton({
+    id: 'random',
+    position: 'topright',
+    states: [{
+        icon: iconRANDOM,
+        stateName: 'check-mark',
+        onClick: function(btn, map) {
+          alert('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
+      }
+    }]
+})//.addTo(map);
+
+random_Button.button.style.width = '50px';
+random_Button.button.style.height = '50px';
+random_Button.button.style.transitionDuration = '.3s';
+random_Button.button.style.backgroundColor = 'black';
 
 //////////////////////////// actions for bottom-of-screen filtering buttons
 
@@ -2700,7 +2746,8 @@ document.getElementById('share-download').onclick = function(e) {
         'dateTime': dateTime,
         'timeSpendSeconds': totalTimeSpent,
         'dist_m_Participant_Feature': distanceObfTrunc,
-        'randomID': randomID
+        'randomID': randomID,
+        'geometrystring':data.toString()
     };
     //  adding the properties to the geoJSON file:
     data.features[0].properties = propertiesGeoJSON;

@@ -153,7 +153,16 @@ input[type=number] {
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
 /* Center the image and position the close button */
 
