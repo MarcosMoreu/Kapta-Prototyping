@@ -621,13 +621,15 @@ var cartoGeoJSONLayer = function(data) {
 
                     if(e.target.feature.properties.areapolygon != null){
                       var geometryString = e.target.feature.properties.geometrystring
-                      console.log(geometryString)
-                       // var geometryStringJSON = JSON.parse(geometryString)
-                       var geometryStringGeoJSON = L.geoJSON(JSON.parse(geometryString))
-                       console.log(geometryStringGeoJSON)
+                      var geometryStringGeoJSON = L.geoJSON(JSON.parse(geometryString))
 
-                       map.fitBounds(geometryStringGeoJSON.getBounds());
-                      //map.setView(geometryString, currentZoom + 8);
+                      map.fitBounds(geometryStringGeoJSON.getBounds());
+                    }
+                    if(e.target.feature.properties.lengthline != null){
+                      var geometryString = e.target.feature.properties.geometrystring
+                      var geometryStringGeoJSON = L.geoJSON(JSON.parse(geometryString))
+
+                      map.fitBounds(geometryStringGeoJSON.getBounds());
                     }
                 } else {
                     if (selectedFeature) {
@@ -668,8 +670,12 @@ var cartoGeoJSONLayer = function(data) {
                                 color: '#AFFDA7'
                             })
                         }
-                        if (selectedFeature.feature.geometry.type == 'Polygon') {
-                          random_Button.removeFrom(map)
+                        try {
+                          if (selectedFeature.feature.geometry.type == 'Polygon') {
+                            random_Button.removeFrom(map)
+                          }
+                        } catch (e) {
+                            //console.log('disable error catched')
                         }
                     })
                     map.on('moveend', function(e) {
@@ -689,9 +695,12 @@ var cartoGeoJSONLayer = function(data) {
                                 color: '#AFFDA7'
                             })
                         }
-                        if (selectedFeature.feature.geometry.type == 'Polygon') {
-                          random_Button.removeFrom(map)
-
+                        try {
+                          if (selectedFeature.feature.geometry.type == 'Polygon') {
+                            random_Button.removeFrom(map)
+                          }
+                        } catch (e) {
+                            //console.log('disable error catched')
                         }
                     })
 
@@ -2962,7 +2971,10 @@ document.getElementById('shareWorldButton').onclick = function(e) {
     alert("🔑 🛑 During the prototyping phase, a KEYWORD must be added in the textbox to publish the spatial data. Click 'Download' and in the main screen click the 'Quetionmark' button. Then click the 'Yellow' button to request the KEYWORD. Thanks");
 
   }
-  return featureSent
+  finalAreaHa2Decimals = null
+  finalLength2Decimals = null
+  //totalTimeSpent = 0
+  return featureSent &&  finalAreaHa2Decimals &&  finalLength2Decimals //&& totalTimeSpent
 }
 
 document.getElementById('DownloadButton').onclick = function(e) {
