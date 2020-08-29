@@ -174,48 +174,6 @@ var tilesDb = {
     }
 };
 
-/// function to request pw on first load or if incorrect of second... load
-// var requestPw = function(){
-//       var pocPw = '1111' //! 🙈 if you are looking at this line, please keep in mind that this very basic security measure is only to prevent, during the testing period,
-//       // unintended submission of open land data by users with limited technological skills
-//
-//       setTimeout(function(){
-//         document.getElementById('modal').style.display='block';
-//         document.getElementById('enteredPw').click()
-//       },1000)
-//
-//       var checkPw = setInterval(function(){
-//         var pwPlaceholder = document.getElementById('enteredPw').value
-//
-//         if(pwPlaceholder.length == 4){
-//           document.getElementById('login').disabled = false
-//           document.getElementById('login').style.opacity='1';
-//         }
-//         if(pwPlaceholder.length < 4){
-//           document.getElementById('login').style.opacity='0.3';
-//          document.getElementById('login').disabled = true
-//         }
-//       },200)
-//
-//       document.getElementById('login').onclick = function(){
-//         var pwPlaceholder = document.getElementById('enteredPw').value
-//         if(pwPlaceholder == pocPw){
-//
-//           clearInterval(checkPw)
-//           document.getElementById('enteredPw').style.backgroundColor = '#39F70F'
-//           setTimeout(function(){
-//             document.getElementById('modal').style.display='none';
-//             document.getElementById('pwForm').style.display='none';
-//           },300)
-//           localStorage.setItem('pwCorrect', true);
-//         }else{
-//           document.getElementById('enteredPw').style.backgroundColor = 'red'
-//           setTimeout(function(){
-//             document.getElementById('enteredPw').style.backgroundColor = 'white'
-//           },300)
-//         }
-//       }
-//     }
 //////////////////////////login initial modal  //////////////
 
 document.getElementById('loginInfo').onclick = function(){
@@ -615,10 +573,14 @@ var cartoGeoJSONLayer = function(data) {
                 //console.log('geometry type' + e.target.feature.geometry.type)
                 if (!e.target.defaultOptions) { //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed. DefaultOptions is only in Points
                     var currentZoom = map.getZoom()
-                    //map.setView(e.target.getLatLng(), currentZoom + 2);
-                    console.log(e.target.feature.properties.areapolygon)
-                    console.log(e.target)
-
+                    // console.log(e.target.feature.properties.areapolygon)
+                    // console.log(e.target)
+                    // if(e.target.feature.properties.areapolygon == null && e.target.feature.properties.lengthline == null){
+                    //   var geometryString = e.target.feature.properties.geometrystring
+                    //   var geometryStringGeoJSON = L.geoJSON(JSON.parse(geometryString))
+                    //   map.zoomIn(5)
+                    //   //map.setView(geometryStringGeoJSON,4);
+                    // }
                     if(e.target.feature.properties.areapolygon != null){
                       var geometryString = e.target.feature.properties.geometrystring
                       var geometryStringGeoJSON = L.geoJSON(JSON.parse(geometryString))
@@ -1546,9 +1508,9 @@ var circleLT250Added = false
 var circleGT250Added = false
 
 
-
 var refreshGPSbutton = setInterval(function() { ///////////////////////////////////////// function to keep searching for gps position
-//  if(localStorage.getItem('pwCorrect')){}
+  if(localStorage.getItem('pwCorrect')){
+
     try {
         navigator.geolocation.watchPosition(findBuffer);
     } catch (err) {
@@ -1615,6 +1577,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
         }
     }
     return currentLocation & circleLT250Added & circleGT250Added & circleLT250 & circleGT250;
+  }
 }, 1000)
 
 
