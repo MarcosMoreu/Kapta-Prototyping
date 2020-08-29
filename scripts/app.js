@@ -848,13 +848,15 @@ document.getElementById("whatsApp").onclick = function() {
 }
 
 document.getElementById("telegram").onclick = function() {
-  alert('🚧 Telegram sharing option not available yet.');
-  //window.location.href='https://telegram.me/?text='+encodeURIComponent(window.location.href)
+//  alert('🚧 Telegram sharing option not available yet.');
+  window.location.href='https://telegram.me/?text='+encodeURIComponent(window.location.href)
 }
 
 document.getElementById("weChat").onclick = function() {
-  alert('🚧 WeChat sharing option not available yet.');
-  //window.location.href='https://we.me/?text='+encodeURIComponent(window.location.href)
+  //alert('🚧 WeChat sharing option not available yet.');
+  // window.location.href='weixin://dl/?text='+encodeURIComponent(window.location.href)
+  // window.location.href='weixin://'
+  window.location.href='weixin://?text='+encodeURIComponent(window.location.href)
 
 }
 
@@ -1632,6 +1634,15 @@ gps_Button.button.style.height = '50px';
 gps_Button.button.style.transitionDuration = '.3s';
 gps_Button.button.style.backgroundColor = 'white';
 gps_Button.addTo(map);
+
+// var optionsMinimap = {
+//   land:'red',
+//   water:'#3333FF',
+//   marker:'#000000',
+//   topojsonSrc: 'scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/world.json'
+// }
+//
+// var miniMap = new L.Control.GlobeMiniMap(optionsMinimap).addTo(map);
 
 var rose = L.control.rose('rose', {
     position: 'topleft',

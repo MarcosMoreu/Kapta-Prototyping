@@ -7,6 +7,8 @@
 
   <script async src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
   <script async src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
 
   <meta charset="UTF-8" >
   <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
@@ -35,7 +37,8 @@
   <!-- <link rel="stylesheet" href="lib/leaflet/plugins/Leaflet.Basemaps-master/L.Control.Basemaps.css" /> -->
   <link async rel="stylesheet" href="scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/MarkerCluster.css" >
   <link async rel="stylesheet" href="scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css" >
-  <link rel="text/html" href="pages/tutorial.html"  >
+  <link rel="text/html" href="pages/tutorial.html">
+  <!-- <link async rel="stylesheet" type="text/json" href="scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/world.json" > -->
 
 </head>
 
@@ -58,8 +61,8 @@
   <button id='tutorial' class='button' aria-label = 'goBack1' style='z-index:3; position:relative;' >
     <img  src="images/questionmark.png" alt="..." style='width:30px ; height:30px'>
   </button>
-  <button id='polygon' class='button' aria-label = 'polygon' style='z-index:3; position:relative'>
-    <img src="images/drawPolygon.png" alt="..." style='width:30px ; height:30px;'>
+  <button id='polygon' class='button' aria-label = 'polygon' style='z-index:3; position:relative;'>
+    <img src="images/drawPolygon.png" alt="..." style='width:30px ; height:30px;margin-left:-2px'>
   </button>
   <button id='polyline' class='button' aria-label = 'polyline' style='z-index:3; position:relative'>
     <img src="images/line.png" alt="..." style='width:30px ; height:30px'>
@@ -187,7 +190,7 @@
   </button>
   <button id='DownloadButton' class='buttonShare' aria-label = 'DownloadButton' style='display:none;position:absolute;bottom:calc(25% - 100px);color:grey;font-size:19px;font-family:'Ubuntu' '>
     <a id='Download'>
-        <img  src="images/devicedownload.png" loading="lazy" alt="..." style=' width:120px ; height:120px;'></img>
+        <img  src="images/devicedownload.png" loading="lazy" alt="..." style=' width:130px ; height:120px; margin-left:-5px; margin-bottom:5px'></img>
     </a>
   </button>
 
@@ -270,6 +273,11 @@
 <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/EditToolbar.js"></script>
 <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Edit.js"></script>
 <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Delete.js"></script>
+<script src="scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/Control.GlobeMiniMap.js"></script>
+
+
+
+
 
 <script src=".env/publicApiKeys.js"></script>
 <script src="scripts/app.js"></script>
