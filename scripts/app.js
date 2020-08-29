@@ -180,11 +180,12 @@ document.getElementById('loginInfo').onclick = function(){
   window.location.href = 'pages/tutorial.html';
 }
 document.getElementById('loginUnlock').onclick = function(e){
-  e.preventDefault()
+  e.preventDefault() //to avoid reload
+
   document.getElementById('loginUnlock').style.backgroundColor = '#D5D6D5'
   document.getElementById('enteredPw').style.display = 'initial';
+  document.getElementById('enteredPw').focus() //to open keyboard!!!
   document.getElementById('login').style.display = 'initial';
-
 }
 
 ////////////////////    login  input    ///////////
@@ -227,6 +228,8 @@ var requestPw = function(){
           localStorage.setItem('pwCorrect', true);
         }else{
           document.getElementById('enteredPw').style.backgroundColor = 'red'
+          document.getElementById('enteredPw').focus() //to maintain keyboard if pw wrong
+
           setTimeout(function(){
             document.getElementById('enteredPw').style.backgroundColor = 'white'
           },300)
@@ -854,8 +857,8 @@ document.getElementById("telegram").onclick = function() {
 
 document.getElementById("weChat").onclick = function() {
   //alert('🚧 WeChat sharing option not available yet.');
-  // window.location.href='weixin://dl/?text='+encodeURIComponent(window.location.href)
-  // window.location.href='weixin://'
+
+  // window.location.href='weixin://'  // to launch the app without url copied
   window.location.href='weixin://?text='+encodeURIComponent(window.location.href)
 
 }
