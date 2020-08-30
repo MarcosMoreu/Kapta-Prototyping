@@ -600,8 +600,17 @@ var cartoGeoJSONLayer = function(data) {
                     if (selectedFeature) {
                         try {
                             selectedFeature.editing.disable();
-                            document.getElementById("deleteFeature").style.opacity = "0.35";
-                            document.getElementById("deleteFeature").disabled = true;
+                            document.getElementById("tutorial").style.display = "initial";
+                            document.getElementById("polygon").style.display = "initial";
+                            document.getElementById("polyline").style.display = "initial";
+                            document.getElementById("point").style.display = "initial";
+
+                            document.getElementById("backDeleteFeature").style.display = "none";
+                            document.getElementById("shareMessagingApp").style.display = "none";
+                            document.getElementById("commentFeature").style.display = "none";
+
+                            document.getElementById("deleteFeature").style.display = "none";
+                            document.getElementById("deleteFeature").style.backgroundColor = 'white'
                         } catch (e) {
                             //console.log('disable error catched')
                         }
@@ -612,8 +621,17 @@ var cartoGeoJSONLayer = function(data) {
                         }
 
                     }
-                    document.getElementById("deleteFeature").style.opacity = "1";
-                    document.getElementById("deleteFeature").disabled = false;
+                    document.getElementById("tutorial").style.display = "none";
+                    document.getElementById("polygon").style.display = "none";
+                    document.getElementById("polyline").style.display = "none";
+                    document.getElementById("point").style.display = "none";
+
+                    document.getElementById("backDeleteFeature").style.display = "initial";
+                    document.getElementById("shareMessagingApp").style.display = "initial";
+                    document.getElementById("commentFeature").style.display = "initial";
+
+                    document.getElementById("deleteFeature").style.display = "initial";
+                    document.getElementById("deleteFeature").style.backgroundColor = 'white'
 
                     selectedFeature = e.target;
 
@@ -627,9 +645,17 @@ var cartoGeoJSONLayer = function(data) {
                         }
                         clickCountDeleteButton = 0
                         map.closePopup();
-                        document.getElementById("deleteFeature").style.opacity = "0.35";
+                        document.getElementById("tutorial").style.display = "initial";
+                        document.getElementById("polygon").style.display = "initial";
+                        document.getElementById("polyline").style.display = "initial";
+                        document.getElementById("point").style.display = "initial";
+
+                        document.getElementById("backDeleteFeature").style.display = "none";
+                        document.getElementById("shareMessagingApp").style.display = "none";
+                        document.getElementById("commentFeature").style.display = "none";
+
+                        document.getElementById("deleteFeature").style.display = "none";
                         document.getElementById("deleteFeature").style.backgroundColor = 'white'
-                        document.getElementById("deleteFeature").disabled = true;
                         if (selectedFeature && selectedFeature.feature.geometry.type != 'Point') { //to avoid zoomend later, we need to check if !selectedFeature
                             selectedFeature.setStyle({
                                 color: '#AFFDA7'
@@ -652,9 +678,17 @@ var cartoGeoJSONLayer = function(data) {
                         }
                         clickCountDeleteButton = 0
                         map.closePopup();
-                        document.getElementById("deleteFeature").style.opacity = "0.35";
+                        document.getElementById("tutorial").style.display = "initial";
+                        document.getElementById("polygon").style.display = "initial";
+                        document.getElementById("polyline").style.display = "initial";
+                        document.getElementById("point").style.display = "initial";
+
+                        document.getElementById("backDeleteFeature").style.display = "none";
+                        document.getElementById("shareMessagingApp").style.display = "none";
+                        document.getElementById("commentFeature").style.display = "none";
+
+                        document.getElementById("deleteFeature").style.display = "none";
                         document.getElementById("deleteFeature").style.backgroundColor = 'white'
-                        document.getElementById("deleteFeature").disabled = true;
                         if (selectedFeature && selectedFeature.feature.geometry.type != 'Point') { //to avoid zoomend later, we need to check if !selectedFeature
                             selectedFeature.setStyle({
                                 color: '#AFFDA7'
