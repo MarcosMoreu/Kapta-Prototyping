@@ -576,6 +576,7 @@ var cartoGeoJSONLayer = function(data) {
                 //console.log('geometry type' + e.target.feature.geometry.type)
                 if (!e.target.defaultOptions) { //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed. DefaultOptions is only in Points
                     var currentZoom = map.getZoom()
+                    console.log(e.target.defaultOptions)
                     // console.log(e.target.feature.properties.areapolygon)
                     // console.log(e.target)
                     // if(e.target.feature.properties.areapolygon == null && e.target.feature.properties.lengthline == null){
@@ -597,7 +598,15 @@ var cartoGeoJSONLayer = function(data) {
                       map.fitBounds(geometryStringGeoJSON.getBounds());
                     }
                 } else {
+                  console.log('this is a point')
+                  var geometryString = e.target.feature.properties.geometrystring
+                  var geometryStringGeoJSON = L.geoJSON(JSON.parse(geometryString))
+                  // map.fitBounds(geometryStringGeoJSON.getBounds());
+                  var coord = e.target.feature.geometry.coordinates;
+                  var latLng = L.GeoJSON.coordsToLatLng(coord);
+                  map.setView(latLng, 15);
                     if (selectedFeature) {
+
                         try {
                             selectedFeature.editing.disable();
                             document.getElementById("tutorial").style.display = "initial";
@@ -615,6 +624,7 @@ var cartoGeoJSONLayer = function(data) {
                             //console.log('disable error catched')
                         }
                         if (selectedFeature.feature.geometry.type != 'Point') {
+
                             selectedFeature.setStyle({
                                 color: '#AFFDA7'
                             })
