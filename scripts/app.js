@@ -392,6 +392,20 @@ L.Permalink.setup(map);
 ////console.log(map.getZoom())
 ////console.log(map.getCenter())
 
+////////////////  globe minimap    /////////////
+var optionsMinimap = {
+  position:'topcenter', // this functionality works because of the plugin 'leaflet-control-topcenter'
+  land:'red',
+  // width:200,
+  // height:200,
+  water:'#3333FF',
+  marker:'#000000',
+  topojsonSrc: 'scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/world.json'
+}
+
+var miniMap = new L.Control.GlobeMiniMap(optionsMinimap)//.addTo(map);
+////////////////////////////////////
+
 map.addControl(L.control.attribution({
     position: 'bottomright',
     prefix: 'Leaflet'
@@ -580,6 +594,7 @@ var cartoGeoJSONLayer = function(data) {
                   var currentZoom = map.getZoom()
                   var geometryString = e.target.feature.properties.geometrystring
                   var geometryStringGeoJSON = L.geoJSON(JSON.parse(geometryString))
+                  console.log(geometryStringGeoJSON)
 
                   map.fitBounds(geometryStringGeoJSON.getBounds());
               }
@@ -602,28 +617,34 @@ var cartoGeoJSONLayer = function(data) {
 
                        document.getElementById("backDeleteFeature").style.display = "initial";
                        document.getElementById("shareMessagingApp").style.display = "initial";
-                       document.getElementById("commentFeature").style.display = "initial";
-                       document.getElementById("deleteFeature").style.display = "initial";
-                       document.getElementById("deleteFeature").style.backgroundColor = 'white';
+                       document.getElementById("editDelete").style.display = "initial";
+                       document.getElementById("randomSuggestion").style.display = "initial";
+                       miniMap.addTo(map)
+
+                       // document.getElementById("deleteFeature").style.display = "initial";
+                       // document.getElementById("deleteFeature").style.backgroundColor = 'white';
                        document.getElementById("tutorial").style.display = "none";
                        document.getElementById("polygon").style.display = "none";
                        document.getElementById("polyline").style.display = "none";
                        document.getElementById("point").style.display = "none";
-                       random_Button.addTo(map)
+                      // random_Button.addTo(map)
                        selectedFeature.setStyle({color: '#F70573'})
                      }
                      //condition below is at is is to avoid deflated symbol to show as selected after polygon/line have been selected
                      if (selectedFeature.feature.geometry.type == 'Point' && map.getZoom() >= 15 && e.target.feature.properties.areapolygon == null && e.target.feature.properties.lengthline == null) {
                          document.getElementById("backDeleteFeature").style.display = "initial";
                          document.getElementById("shareMessagingApp").style.display = "initial";
-                         document.getElementById("commentFeature").style.display = "initial";
-                         document.getElementById("deleteFeature").style.display = "initial";
-                         document.getElementById("deleteFeature").style.backgroundColor = 'white';
+                         document.getElementById("editDelete").style.display = "initial";
+                         document.getElementById("randomSuggestion").style.display = "initial";
+                         miniMap.addTo(map)
+
+                         // document.getElementById("deleteFeature").style.display = "initial";
+                         // document.getElementById("deleteFeature").style.backgroundColor = 'white';
                          document.getElementById("tutorial").style.display = "none";
                          document.getElementById("polygon").style.display = "none";
                          document.getElementById("polyline").style.display = "none";
                          document.getElementById("point").style.display = "none";
-                         random_Button.addTo(map)
+                        // random_Button.addTo(map)
                          selectedFeature.editing.enable();
                     }
 
@@ -736,7 +757,7 @@ document.getElementById("backDeleteFeature").onclick = function() {
     map.doubleClickZoom.enable();
     map.scrollWheelZoom.enable();
     map.dragging.enable();
-    random_Button.removeFrom(map)
+  //  random_Button.removeFrom(map)
     myLayer_Button.button.style.opacity = '1';
     myLayer_Button.button.disabled = false
     filter_Button.button.style.opacity = '1';
@@ -764,10 +785,13 @@ document.getElementById("backDeleteFeature").onclick = function() {
 
     document.getElementById("backDeleteFeature").style.display = "none";
     document.getElementById("shareMessagingApp").style.display = "none";
-    document.getElementById("commentFeature").style.display = "none";
+    document.getElementById("editDelete").style.display = "none";
+    document.getElementById("randomSuggestion").style.display = "none";
+    document.getElementById("deleteFeature").style.display = 'none';
+    document.getElementById("deleteFeature").style.backgroundColor = 'white';
+    document.getElementById("commentFeature").style.display = 'none';
+    miniMap.remove() //removeFrom(map) is not used anymore
 
-    document.getElementById("deleteFeature").style.display = "none";
-    document.getElementById("deleteFeature").style.backgroundColor = 'white'
 
     return selectedFeature && clickCountDeleteButton && cartoIdFeatureSelected
 }
@@ -775,9 +799,8 @@ document.getElementById("shareMessagingApp").onclick = function() {
 
   document.getElementById("backDeleteFeature").style.display = "none";
   document.getElementById("shareMessagingApp").style.display = "none";
-  document.getElementById("commentFeature").style.display = "none";
-  document.getElementById("deleteFeature").style.display = "none";
-  document.getElementById("deleteFeature").style.backgroundColor = 'white'
+  document.getElementById("editDelete").style.display = "none";
+  document.getElementById("randomSuggestion").style.display = "none";
 
   document.getElementById("whatsApp").style.display = "initial";
   document.getElementById("telegram").style.display = "initial";
@@ -794,9 +817,8 @@ document.getElementById("goBackMessagingApps").onclick = function() {
 
   document.getElementById("backDeleteFeature").style.display = "initial";
   document.getElementById("shareMessagingApp").style.display = "initial";
-  document.getElementById("commentFeature").style.display = "initial";
-  document.getElementById("deleteFeature").style.display = "initial";
-  document.getElementById("deleteFeature").style.backgroundColor = 'white'
+  document.getElementById("editDelete").style.display = "initial";
+  document.getElementById("randomSuggestion").style.display = "initial";
 
 }
 
@@ -816,6 +838,46 @@ document.getElementById("weChat").onclick = function() {
 
   // window.location.href='weixin://'  // to launch the app without url copied
   window.location.href='weixin://?text='+encodeURIComponent(window.location.href)
+
+}
+document.getElementById("editDelete").onclick = function() {
+  document.getElementById("deleteFeature").style.display = 'initial';
+  document.getElementById("commentFeature").style.display = 'initial';
+
+  document.getElementById("shareMessagingApp").style.display = 'none';
+  document.getElementById("editDelete").style.display = 'none'
+  document.getElementById("randomSuggestion").style.display = 'none'
+}
+
+document.getElementById("randomSuggestion").onclick = function() {
+
+  var maxValueDeflated = deflated._layers.length
+  var minValueDeflated = (deflated._layers.length) - 10
+  //var randomNumberRanged = Math.trunc(Math.random() * (maxValueDeflated - minValueDeflated) + minValueDeflated);
+  var randomNumberRanged = Math.trunc(Math.random() * (4 - 1) + 1);
+  var someNeutralPoints = [[51.477965,-0.001467],[35.968004,-5.600281],[0.000365,37.070532],[13.597167,-88.837874]] //Prime meridian,Estrecho,Kenya ecuator,volcan ss
+  var pointSelected = someNeutralPoints[randomNumberRanged]
+  console.log(pointSelected)
+  //console.log(deflated._layers[randomNumberRanged])
+  //var randomFeature = deflated._layers[randomNumberRanged]//without   .feature.geometry;
+//  map.fitBounds(randomFeature.getBounds());
+//
+  map.setView(pointSelected,15)
+
+  //to maintain button and minimap, otherwise is removed
+  document.getElementById("backDeleteFeature").style.display = "initial";
+  document.getElementById("shareMessagingApp").style.display = "initial";
+  document.getElementById("editDelete").style.display = "initial";
+  document.getElementById("randomSuggestion").style.display = "initial";
+  miniMap.addTo(map)
+
+  // document.getElementById("deleteFeature").style.display = "initial";
+  // document.getElementById("deleteFeature").style.backgroundColor = 'white';
+  document.getElementById("tutorial").style.display = "none";
+  document.getElementById("polygon").style.display = "none";
+  document.getElementById("polyline").style.display = "none";
+  document.getElementById("point").style.display = "none";
+//alert('under development')
 
 }
 
@@ -842,6 +904,7 @@ document.getElementById("deleteFeature").onclick = function() {
         document.getElementById("polygon").style.display = "initial";
         document.getElementById("polyline").style.display = "initial";
         document.getElementById("point").style.display = "initial";
+        miniMap.remove()
 
         document.getElementById("backDeleteFeature").style.display = "none";
         document.getElementById("shareMessagingApp").style.display = "none";
@@ -1358,24 +1421,24 @@ filter_Button.button.style.width = '50px';
 filter_Button.button.style.height = '50px';
 filter_Button.button.style.transitionDuration = '.3s';
 filter_Button.button.style.backgroundColor = 'black';
-
-//Button for RANDOM SUGGESTION
-var random_Button = L.easyButton({
-    id: 'random',
-    position: 'topright',
-    states: [{
-        icon: iconRANDOM,
-        stateName: 'check-mark',
-        onClick: function(btn, map) {
-          alert('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
-      }
-    }]
-})//.addTo(map);
-
-random_Button.button.style.width = '50px';
-random_Button.button.style.height = '50px';
-random_Button.button.style.transitionDuration = '.3s';
-random_Button.button.style.backgroundColor = 'black';
+//
+// //Button for RANDOM SUGGESTION
+// var random_Button = L.easyButton({
+//     id: 'random',
+//     position: 'topright',
+//     states: [{
+//         icon: iconRANDOM,
+//         stateName: 'check-mark',
+//         onClick: function(btn, map) {
+//           alert('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
+//       }
+//     }]
+// })//.addTo(map);
+//
+// random_Button.button.style.width = '50px';
+// random_Button.button.style.height = '50px';
+// random_Button.button.style.transitionDuration = '.3s';
+// random_Button.button.style.backgroundColor = 'black';
 
 //////////////////////////// actions for bottom-of-screen filtering buttons
 
@@ -1594,15 +1657,6 @@ gps_Button.button.style.height = '50px';
 gps_Button.button.style.transitionDuration = '.3s';
 gps_Button.button.style.backgroundColor = 'white';
 gps_Button.addTo(map);
-
-// var optionsMinimap = {
-//   land:'red',
-//   water:'#3333FF',
-//   marker:'#000000',
-//   topojsonSrc: 'scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/world.json'
-// }
-//
-// var miniMap = new L.Control.GlobeMiniMap(optionsMinimap).addTo(map);
 
 var rose = L.control.rose('rose', {
     position: 'topleft',

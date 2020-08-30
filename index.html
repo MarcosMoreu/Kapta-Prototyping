@@ -32,6 +32,8 @@
   <link async rel="stylesheet" href="scripts/emojionearea-master/dist/emojionearea.css">
   <link rel="stylesheet" href="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.css"  >
   <link rel="stylesheet" href="scripts/lib/leaflet/plugins/L.Control.Rose-master/dist/L.Control.Rose.css" />
+  <link rel="stylesheet" href='scripts/lib/leaflet/plugins/leaflet-control-topcenter-master/src/leaflet-control-topcenter.css' />
+
 
   <link async rel="stylesheet" type="text/css" href="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/leaflet.draw.css"  >
   <!-- <link rel="stylesheet" href="lib/leaflet/plugins/Leaflet.Basemaps-master/L.Control.Basemaps.css" /> -->
@@ -76,6 +78,14 @@
   <button id='shareMessagingApp' class='buttonDelete'  aria-label = 'point' style='display:none;z-index:3; position:relative;border-color:#F70573'>
     <img src="images/shareMessagingApps.png" alt="..." style='width:30px ; height:30px'>
   </button>
+
+  <button id='editDelete' class='buttonDelete'  aria-label = 'point' style='display:none;z-index:3; position:relative;border-color:#F70573'>
+    <img src="images/editDelete.png" alt="..." style='width:30px ; height:30px'>
+  </button>
+  <button id='randomSuggestion' class='buttonDelete'  aria-label = 'point' style='display:none;z-index:3; position:relative;border-color:#F70573'>
+    <img src="images/random.png" alt="..." style='width:30px ; height:30px'>
+  </button>
+
   <button id='commentFeature' class='buttonDelete'  aria-label = 'point' style='display:none;z-index:3; position:relative;border-color:#F70573'>
     <img src="images/commentFeature.png" alt="..." style='width:30px ; height:30px'>
   </button>
@@ -273,7 +283,9 @@
 <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/EditToolbar.js"></script>
 <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Edit.js"></script>
 <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Delete.js"></script>
+<script src="scripts/lib/leaflet/plugins/leaflet-control-topcenter-master/src/leaflet-control-topcenter.js"></script>
 <script src="scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/Control.GlobeMiniMap.js"></script>
+
 
 
 <script src=".env/publicApiKeys.js"></script>
