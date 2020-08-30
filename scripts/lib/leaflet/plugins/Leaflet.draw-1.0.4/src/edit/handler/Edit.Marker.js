@@ -19,6 +19,8 @@ L.Edit.Marker = L.Handler.extend({
 		marker.dragging.enable();
 		marker.on('dragend', this._onDragEnd, marker);
 		this._toggleMarkerHighlight();
+		marker.dragging.disable();// ! to disable dragging, after enable to allow selection
+
 	},
 
 	// @method removeHooks(): void
