@@ -14,23 +14,23 @@
 
 	L.Control.GlobeMiniMap = L.Control.extend({
 		options: {
-			position: 'topleft',
-			width: 82,
-			height: 82,
-			land: "red",
-			water: "rgba(0, 0, 0, 0.3)",
-			marker: "#CC0000",
-			topojsonSrc: 'world.json'
+			// position: 'topleft',
+			// width: 82,
+			// height: 82,
+			// land: "red",
+			// water: "rgba(0, 0, 0, 0.3)",
+			// marker: "#CC0000",
+			// topojsonSrc: 'world.json'
 		},
 
 		//layer is the map layer to be shown in the minimap
 		initialize: function (options) {
 			L.Util.setOptions(this, options);
-			console.log(this.options);
+			//console.log(this.options);
 		},
 
 		onAdd: function (map) {
-			console.log('onAdd()');
+			//console.log('onAdd()');
 
 			this._mainMap = map;
 
@@ -54,7 +54,7 @@
 		},
 
 		addTo: function (map) {
-			console.log('addTo()');
+			//console.log('addTo()');
 			L.Control.prototype.addTo.call(this, map);
 			this.initCanvas();
 
@@ -82,8 +82,8 @@
 		    .clipAngle(90);
 
 		  var canvas = d3.select('.leaflet-control-minimap').append("canvas")
-		    .attr("width", 400)
-		    .attr("height", 400)
+		    .attr("width", 82) //canvas modified (400) to avoid pan/zoom disable in that part of screen
+		    .attr("height", 82)
 
 
 		  this.c = canvas.node().getContext("2d");
@@ -104,7 +104,7 @@
 		},
 
 		transitionMap: function (p) {
-			console.log('transtionMap');
+			//console.log('transtionMap');
 			var that = this;
 			var c = that.c;
 			var path = that.path;
@@ -129,7 +129,7 @@
 		},
 
 		_onMainMapMoved: function (e) {
-			console.log('mainmapmoved');
+			//console.log('mainmapmoved');
 			if (!this._miniMapMoving) {
 				this._mainMapMoving = true;
 

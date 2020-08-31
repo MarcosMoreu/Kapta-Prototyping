@@ -395,11 +395,13 @@ L.Permalink.setup(map);
 ////////////////  globe minimap    /////////////
 var optionsMinimap = {
   position:'topcenter', // this functionality works because of the plugin 'leaflet-control-topcenter'
-  land:'red',
-  // width:200,
-  // height:200,
-  water:'#3333FF',
-  marker:'#000000',
+  width:82,
+  height:82,
+  land:'black',
+  water:'#3B96DD',
+  // land:'#AE6D02', //blue
+  // water:'#026FFA', //brown
+  marker:'white',
   topojsonSrc: 'scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/world.json'
 }
 
@@ -850,6 +852,14 @@ document.getElementById("editDelete").onclick = function() {
 }
 
 document.getElementById("randomSuggestion").onclick = function() {
+  document.getElementById("randomSuggestion").style.backgroundColor = 'yellow'
+  setTimeout(function(){
+    document.getElementById("randomSuggestion").style.backgroundColor = '#3B96DD'
+  },500)
+  document.getElementById('imageryAlert').style.display = 'initial'
+  setTimeout(function(){
+    document.getElementById('imageryAlert').style.display = 'none'
+  },8000)
 
   var maxValueDeflated = deflated._layers.length
   var minValueDeflated = (deflated._layers.length) - 10
@@ -870,6 +880,11 @@ document.getElementById("randomSuggestion").onclick = function() {
   document.getElementById("editDelete").style.display = "initial";
   document.getElementById("randomSuggestion").style.display = "initial";
   miniMap.addTo(map)
+  myLayer_Button.button.style.opacity = '0.4';
+  myLayer_Button.button.disabled = true;
+  filter_Button.button.style.opacity = '0.4';
+  filter_Button.button.disabled = true;
+  filter_Button.button.style.background = 'black'
 
   // document.getElementById("deleteFeature").style.display = "initial";
   // document.getElementById("deleteFeature").style.backgroundColor = 'white';
@@ -1216,24 +1231,24 @@ var planet_Button = L.easyButton({
             map.options.minZoom = 2;
 
             //to add the imagery alert for requesting better imagery (in various languages - check translation) ....
-            if (browserLanguage[0] == 'e' && browserLanguage[1] == 'n') { //english
-                document.getElementById("imageryAlert").innerHTML = 'After mapping, use the textbox to request better recent or past  imagery';
-            }
-            if (browserLanguage[0] == 'e' && browserLanguage[1] == 's') { //spanish
-                document.getElementById("imageryAlert").innerHTML = 'Después de mappear, utiliza la casilla de texto para solicitar mejores imágenes, recientes o pasadas';
-            }
-            if (browserLanguage[0] == 'p' && browserLanguage[1] == 't') { //portuguese
-                document.getElementById("imageryAlert").innerHTML = 'Após o mapeamento, use a caixa de texto para solicitar melhores imagens recentes ou passadas';
-            }
-            if (browserLanguage[0] == 'f' && browserLanguage[1] == 'r') { //french
-                document.getElementById("imageryAlert").innerHTML = 'Après le mappage, utilisez la zone de texte pour demander de meilleures images récentes ou passées';
-            }
-            if (browserLanguage == 'sw') { //swahili
-                document.getElementById("imageryAlert").innerHTML = 'Baada ya uchoraji wa ramani, tumia kisanduku cha maandishi kuuliza picha bora za hivi karibuni au za zamani';
-            }
-            if (created == false) {
-              //  document.getElementById('imageryAlert').style.display = 'initial'  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            }
+            // if (browserLanguage[0] == 'e' && browserLanguage[1] == 'n') { //english
+            //     document.getElementById("imageryAlert").innerHTML = 'After mapping, use the textbox to request better recent or past  imagery';
+            // }
+            // if (browserLanguage[0] == 'e' && browserLanguage[1] == 's') { //spanish
+            //     document.getElementById("imageryAlert").innerHTML = 'Después de mappear, utiliza la casilla de texto para solicitar mejores imágenes, recientes o pasadas';
+            // }
+            // if (browserLanguage[0] == 'p' && browserLanguage[1] == 't') { //portuguese
+            //     document.getElementById("imageryAlert").innerHTML = 'Após o mapeamento, use a caixa de texto para solicitar melhores imagens recentes ou passadas';
+            // }
+            // if (browserLanguage[0] == 'f' && browserLanguage[1] == 'r') { //french
+            //     document.getElementById("imageryAlert").innerHTML = 'Après le mappage, utilisez la zone de texte pour demander de meilleures images récentes ou passées';
+            // }
+            // if (browserLanguage == 'sw') { //swahili
+            //     document.getElementById("imageryAlert").innerHTML = 'Baada ya uchoraji wa ramani, tumia kisanduku cha maandishi kuuliza picha bora za hivi karibuni au za zamani';
+            // }
+            // if (created == false) {
+            //   //  document.getElementById('imageryAlert').style.display = 'initial'  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // }
 
             planet_Button.removeFrom(map);
             googleSat_Button.addTo(map);
