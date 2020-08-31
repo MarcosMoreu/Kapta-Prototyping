@@ -1498,8 +1498,28 @@ document.getElementById("clearFilter").onclick = function(e) {
 
 };
 
+var dateFilterValue; //to apply this value qhen applyFilter is clicked
 document.getElementById("filterByDate").onclick = function(e) {
-  alert('🚧 Filter by date functionality under development.')
+  var img =  document.getElementById("imgFilterByDate")
+    if (img.src.match("dateAll")) { //all (infiinite)
+      img.src = 'images/dateYear.png'
+      dateFilterValue = 'Year'
+    }else if (img.src.match("dateYear")) { //1 year
+      img.src = 'images/dateMonth.png'
+      dateFilterValue = 'Month'
+    }else if (img.src.match("dateMonth")) { //1 month
+      img.src = 'images/dateWeek.png'
+      dateFilterValue = 'Week'
+    }else if (img.src.match("dateWeek")) { //1 week
+      img.src = 'images/dateDay.png'
+      dateFilterValue = 'Day'
+    }else if (img.src.match("dateDay")) { // 1 day
+      img.src = 'images/dateAll.png'
+      dateFilterValue = 'All'
+    }
+console.log(dateFilterValue)
+  // alert('🚧 Filter by date functionality under development.')
+  return dateFilterValue
 }
 
 
