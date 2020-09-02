@@ -1245,11 +1245,14 @@ document.getElementById("deleteFeature").onclick = function() {
         planet_Button.removeFrom(map);
         myLayer_Button.addTo(map);
         filter_Button.addTo(map);
-        
+
         myLayer_Button.button.style.opacity = '1';
         myLayer_Button.button.disabled = false
         filter_Button.button.style.opacity = '1';
         filter_Button.button.disabled = false;
+
+        gps_Button.button.style.opacity = '1';
+        gps_Button.button.disabled = false;
 
         document.getElementById("tutorial").style.display = "initial";
         document.getElementById("polygon").style.display = "initial";
