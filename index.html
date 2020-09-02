@@ -7,8 +7,6 @@
 
   <script async src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
   <script async src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
 
   <meta charset="UTF-8" >
   <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
@@ -34,7 +32,6 @@
   <link rel="stylesheet" href="scripts/lib/leaflet/plugins/L.Control.Rose-master/dist/L.Control.Rose.css" />
   <!-- <link rel="stylesheet" href='scripts/lib/leaflet/plugins/leaflet-control-topcenter-master/src/leaflet-control-topcenter.css' /> -->
 
-
   <link async rel="stylesheet" type="text/css" href="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/leaflet.draw.css"  >
   <!-- <link rel="stylesheet" href="lib/leaflet/plugins/Leaflet.Basemaps-master/L.Control.Basemaps.css" /> -->
   <link async rel="stylesheet" href="scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/MarkerCluster.css" >
@@ -45,8 +42,6 @@
 </head>
 
 <body >
-  <!-- <button id='login' style="width:auto;">Login</button> -->
-
 
 <!-- <INPUT id="txtChar" onkeypress="return isNumberKey(event)" type="number" name="txtChar"> -->
   <h1 id='showAreaHa' style='z-index:2;position:absolute;left:75px;display:none;color:yellow;font-size:19px' ></h1>
@@ -65,54 +60,45 @@
 </div>
 
 <div align='center' style='z-index:2; position:relative; margin-top:-90px'  >
-
   <button id='tutorial' class='button' aria-label = 'goBack1' style='z-index:3; position:relative;' >
-    <img  src="images/questionmark.png" alt="..." style='width:30px ; height:30px'>
+    <img  src="images/questionmark.png"  alt="..." style='width:30px ; height:30px'>
   </button>
   <button id='polygon' class='button' aria-label = 'polygon' style='z-index:3; position:relative;'>
-    <img src="images/drawPolygon.png" alt="..." style='width:30px ; height:30px;margin-left:-2px'>
+    <img src="images/drawPolygon.png"  alt="..." style='width:30px ; height:30px;margin-left:-2px'>
   </button>
   <button id='polyline' class='button' aria-label = 'polyline' style='z-index:3; position:relative'>
-    <img src="images/line.png" alt="..." style='width:30px ; height:30px'>
+    <img src="images/line.png"  alt="..." style='width:30px ; height:30px'>
   </button>
   <button id='point' class='button'  aria-label = 'point' style='z-index:3; position:relative'>
-    <img src="images/point.png" alt="..." style='width:30px ; height:30px'>
+    <img src="images/point.png"  alt="..." style='width:30px ; height:30px'>
   </button>
   <button id='backDeleteFeature' class='buttonDelete'  aria-label = 'backDeleteFeature' style='display:none;z-index:3; position:relative; '>
-    <img src="images/backButton.png" alt="..." style='width:30px ; height:30px'>
+    <img src="images/backButton.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
   </button>
   <button id='deleteFeature' class='buttonDelete'  aria-label = 'deleteFeature' style='display:none;z-index:3;position:relative;border-color:white'>
-    <img id='imageDeleteFeature' src="images/binpre.png" alt="..." style='width:30px ; height:30px'>
+    <img id='imageDeleteFeature' src="images/binpre.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
   </button>
-  <!-- <button id='editDelete' class='buttonDelete'  aria-label = 'point' style='display:none;z-index:3; position:relative;border-color:#F70573'>
-    <img src="images/editDelete.png" alt="..." style='width:30px ; height:30px'>
-  </button> -->
+
   <button id='shareMessagingApp' class='buttonDelete'  aria-label = 'shareMessagingApp' style='display:none;z-index:3; position:relative;border-color:white;'>
-    <img src="images/shareMessagingApps.png" alt="..." style='width:30px ; height:30px'>
+    <img src="images/shareMessagingApps.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
   </button>
 
   <button id='randomSuggestion' class='buttonDelete'  aria-label = 'randomSuggestion' style='display:none;z-index:3; position:relative;border-color:#3B96DD;background-color:#3B96DD'>
-    <img src="images/random.png" alt="..." style='width:35px ; height:30px; margin-left:2px;'>
+    <img src="images/random.png" loading="lazy" alt="..." style='width:35px ; height:30px; margin-left:2px;'>
   </button>
-
-  <!-- <button id='commentFeature' class='buttonDelete'  aria-label = 'point' style='display:none;z-index:3; position:relative;border-color:#F70573'>
-    <img src="images/commentFeature.png" alt="..." style='width:30px ; height:30px'>
-  </button> -->
-
 
   <button id='goBackMessagingApps' class='buttonDelete'  aria-label = 'goBackMessagingApps' style='display:none;z-index:3;'>
-    <img src="images/backButton.png" alt="..." style='width:30px ; height:30px'>
+    <img src="images/backButton.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
   </button>
   <button id='whatsApp' class='buttonDelete'  aria-label = 'whatsApp' style='display:none;z-index:3; position:relative;'>
-    <img src="images/whatsapp.png" alt="..." style='width:30px ; height:30px'>
+    <img src="images/whatsapp.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
   </button>
   <button id='telegram' class='buttonDelete'  aria-label = 'telegram' style='display:none;z-index:3;position:relative;'>
-    <img src="images/telegram.png" alt="..." style='width:30px ; height:30px'>
+    <img src="images/telegram.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
   </button>
   <button id='weChat' class='buttonDelete'  aria-label = 'weChat' style='display:none;z-index:3;position:relative;'>
-    <img src="images/wechat.png" alt="..." style='width:30px ; height:30px'>
+    <img src="images/wechat.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
   </button>
-
 </div>
 
 
@@ -135,7 +121,6 @@
   <button id='completeFeature' class='button' aria-label = 'deleteAllVertexsLine'style='display:none'>
     <img src="images/ThumbsUpGreen.png" loading="lazy" alt="..." style='width:30px ; height:30px;'>
   </button>
-
 </div>
 
 <div id='classification'  style='display:none; vertical-align:top;z-index:2; position:relative; margin-top:-90px;'>
@@ -146,7 +131,7 @@
     <img src="images/backButton.png" loading="lazy" alt="..." style='margin-left:2px; width:30px ; height:30px'>
   </button>
   <button id='filterByDate' class='button' aria-label = 'clearFilter' style='display:none;border-radius:15px'>
-    <img id='imgFilterByDate' src="images/dateAll.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
+    <img id='imgFilterByDate' loading="lazy" src="images/dateAll.png" loading="lazy" alt="..." style='width:30px ; height:30px'>
   </button>
   <div id='emoji' class="span6"  >
     <div id='span6' class="span6" style='vertical-align:middle;display:inline-block; position:flex; height:50px;'>
@@ -213,7 +198,6 @@
         <img  src="images/devicedownload.png" loading="lazy" alt="..." style=' width:130px ; height:120px; margin-left:-5px; margin-bottom:5px'></img>
     </a>
   </button>
-
 </div>
 
 <div>
@@ -221,7 +205,6 @@
   <p id="uploading" style='display:none'></p>
   <progress value="0" max="100" id="progress" style='display:none'></progress>
 </div>
-
 
 <div id="modal" class='modal' >
   <form id='pwForm' class="modal-content animate" style='margin-top:100px; width:200px; border-radius:50px'>
@@ -235,56 +218,33 @@
       <button id='loginUnlock' class='button'style='outline:none; position:relative;margin-top:3px;margin-bottom:10px;width:50px ; height:50px; border: 1px solid ; border-color:black; border-radius:50px' >
         <img src="images/key.png" alt="..." style=' width:30px ; height:30px;' >
       </button>
-      <!-- <svg width="500" height="500"><line x1="0" y1="0" x2='50' y2="0" x3="150" y3='0' stroke="black"/></svg> -->
 
     </div>
     <div class="container" >
       <input id='enteredPw' type="number" novalidate value='Validate'oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = '4'
         style='display:none;border-color:grey;background-color: white;color:grey; text-align:center;letter-spacing: 10px;font-size:20px;'placeholder = " ----" required >
       <button id='login' class='button'style='display:none;outline:none;margin-left:calc(50% - 25px); width:50px ; height:50px; border: 1px solid ; border-color:white; border-radius:50px' >
-        <img src="images/ThumbsUpGreen.png" alt="..." style=' width:30px ; height:30px;' >
+        <img src="images/ThumbsUpGreen.png" loading="lazy" alt="..." style=' width:30px ; height:30px;' >
       </button>
-<!--
-      <p id='infoLoginText' style=' display:none;font-size:10px;color:grey;text-align:center; font-family:'Ubuntu''>  🚧 Basic password protection will be removed after the testing period.<br>
-        <a href="https://www.geog.ucl.ac.uk/research/research-centres/excites/contact-us" style='color:grey; text-decoration: underline'>Contact Us</a></p> -->
-
     </div>
   </form>
 </div>
 
-<!-- <form id="popup-form">
-  <label for="input-speed">:</label>
-  <input id="input-speed" class="popup-input" type="number" />
-  <table class="popup-table">
-    <tr class="popup-table-row">
-      <th class="popup-table-header">Arc numer:</th>
-      <td id="value-arc" class="popup-table-data"></td>
-    </tr>
-    <tr class="popup-table-row">
-      <th class="popup-table-header">Current speed:</th>
-      <td id="value-speed" class="popup-table-data"></td>
-    </tr>
-  </table>
-  <button id="button-submit" type="button">Save Changes</button>
-</form>'; -->
-
-
 <div id="popup" align:center style='max-width:150px'>
   <button id='deleteInPopUp' disabled class='popupButton' style='display:none;position:relative;left:calc(50% - 30px);text-align:center;height:30px;width:50px; font-size:10px;outline:none;background-color:white;border: 2px solid white;border-radius:5px;opacity:0.3'>
-    <img id='imageDeleteInPopup' src="images/bin.png" alt="..." style='border-radius:5px;border: 1px solid black;background:white;width:25px ; height:25px'>
+    <img id='imageDeleteInPopup' loading="lazy" src="images/bin.png" alt="..." style='border-radius:5px;border: 1px solid black;background:white;width:25px ; height:25px'>
   </button>
   <button id='popupAreaLength' class='popupButton' disabled style='display:none;position:relative;margin-left:-5px;text-align:center;height:30px;width:150px; font-size:10px;outline:none;background-color:white; border: 2px solid white;border-radius:5px'>  </button>
   <!-- <button id='commentPopup' class='popupButton' style='display:none;text-align:center;width:150px;height:fit-content;margin-left:-5px; font-size:15px;outline:none;background-color:#ECECEC;  border: 2px solid white;border-radius:15px'> -->
   <button id='commentPopup' class='popupButton' style='display:none;text-align:center;width:150px;padding:7px 5px;height:fit-content;margin-left:-5px; font-size:15px;outline:none;background-color:#ECECEC; border: 0px solid white;border-radius: 0 15px 15px 15px'>
   </button>
   <button id='editDeletePopup' class='popupButton' style='display:none;position:relative;left:calc(50% - 30px);text-align:center;margin-top:10px;height:45px;width:45px; font-size:40px;outline:none;background-color:white;border: 1px solid black;border-radius:30px'>
-    <img id='commentFeature' src="images/commentFeature.png" alt="..." style='margin-bottom:3px;background:white;width:25px ; height:25px'>
+    <img id='commentFeature' loading="lazy" src="images/commentFeature.png" alt="..." style='margin-bottom:3px;background:white;width:25px ; height:25px'>
   </button>
   <button id='toCommentPopup' class='popupButton' disabled style='display:none;text-align:center;width:150px;padding:5px 5px;height:fit-content;margin-left:-5px; margin-top:5px; font-size:12px;outline:none;background-color:#BADFFE; border: 0px solid white;border-radius: 15px 0 15px 15px'>
      🚧 N.B. The functionality to add and delete attributes/comments is under development. The functionality to edit the geometry will be considered </button>
 
 </div>';
-
 
 <script src="scripts/lib/leaflet/leaflet-src.js"></script>
 <script src="scripts/lib/jquery-3.4.1.min.js"></script>
@@ -328,6 +288,8 @@
 <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Edit.js"></script>
 <script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Delete.js"></script>
 <!-- <script src="scripts/lib/leaflet/plugins/leaflet-control-topcenter-master/src/leaflet-control-topcenter.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
 <script src="scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/Control.GlobeMiniMap.js"></script>
 
 
