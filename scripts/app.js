@@ -541,7 +541,7 @@ var clusters = L.markerClusterGroup({
 
 
 // Add Data from CARTO using the SQL API. Declare Variables. Create Global Variable to hold CARTO points
-var cartoGeometries = null;
+//var cartoGeometries = null;
 var cartoIdFeatureSelected;
 var selectedFeature = null;
 var featureType = null;
@@ -553,14 +553,23 @@ var selectedFeature
 
 var template = document.getElementById('popup')
 
-var cartoGeoJSONLayer = function(data) {
-    cartoLoaded = true;
-    cartoGeometries = L.geoJson(data, {
+// var cartoGeoJSONLayer = function(data) {
+//     cartoLoaded = true;
+var cartoGeometries = L.geoJson(pointsSapelli, {
         cache:false,
         color: '#AFFDA7',
         //icon: markerIconLocalStorage,
         onEachFeature: function(feature, layer) {
             var audioAvailable = feature.properties.audioavailable
+
+            // var pointsSap = L.geoJson(pointsSapelli,{
+            // iconUrl: 'images/whiteDot.png',
+            //   color:'#03FAFC',
+            //   opacity: 5,
+            //   fillOpacity: 0.2,
+            //   weight:2
+            // })//.addTo(map);
+            // pointsSap.addTo(deflated)
 
             if (feature.geometry.type == 'Point') {
               // document.getElementById('popupAreaLength').style.display = 'none'
@@ -594,6 +603,57 @@ var cartoGeoJSONLayer = function(data) {
 
             /////////////////////////////
           layer.on('click', function(e) {
+
+            document.getElementById('imageIconSapPopup').style.display = 'initial';
+            if(e.target.feature.properties.attribute == 'obj1'){
+              document.getElementById('imageIconSapPopup').src = 'images/key.png'
+            }
+            if(e.target.feature.properties.attribute == 'obj2'){
+              document.getElementById('imageIconSapPopup').src = 'images/bin.png'
+
+            }
+            if(e.target.feature.properties.attribute == 'obj3'){
+              document.getElementById('imageIconSapPopup').src = 'images/cancel.png'
+
+            }
+            if(e.target.feature.properties.attribute == 'obj4'){
+              document.getElementById('imageIconSapPopup').src = 'images/line.png'
+
+            }
+            if(e.target.feature.properties.attribute == 'obj5'){
+              document.getElementById('imageIconSapPopup').src = 'images/key.png'
+
+            }
+            if(e.target.feature.properties.attribute == 'obj6'){
+              document.getElementById('imageIconSapPopup').src = 'images/man.png'
+
+            }
+            if(e.target.feature.properties.attribute == 'obj7'){
+              document.getElementById('imageIconSapPopup').src = 'images/key.png'
+
+            }
+            if(e.target.feature.properties.attribute == 'obj8'){
+              document.getElementById('imageIconSapPopup').src = 'images/key.png'
+
+            }
+            if(e.target.feature.properties.attribute == 'obj9'){
+              document.getElementById('imageIconSapPopup').src = 'images/key.png'
+
+            }
+            if(e.target.feature.properties.attribute == 'obj10'){
+              document.getElementById('imageIconSapPopup').src = 'images/key.png'
+
+            }
+            if(e.target.feature.properties.attribute == 'obj11'){
+              document.getElementById('imageIconSapPopup').src = 'images/key.png'
+
+            }
+            if(e.target.feature.properties.attribute == 'obj12'){
+              document.getElementById('imageIconSapPopup').src = 'images/key.png'
+
+            }
+
+
 
               document.getElementById("clearFilter").style.display = "none";
               document.getElementById("applyFilter").style.display = "none";
@@ -786,37 +846,38 @@ var cartoGeoJSONLayer = function(data) {
     })//...l.geojson
 
   try {
-    cartoGeometries.addTo(deflated)
+    cartoGeometries.addTo(deflated)           /////////////wwwwwwwwwwwwwwwwwwww
   }catch(err){
     console.log('error sql catched due to empty layer after filter applied')
   }
-  return cartoGeometries
-};//...CARTO layer
+//  return cartoGeometries
+//};//...CARTO layer
 
 
-if (isOnline == true) {
-    sqlQuery = "SELECT * FROM lumblu";
 
-    function getGeoJSON() {
-        $.getJSON({
-          cache:false,
-          success:cartoGeoJSONLayer,
-          url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
-        })
-
-        return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
-    };
-}
-
-//console.log('cartoIdFeatureSelected  ' + cartoIdFeatureSelected)
-//to only load carto layer once the credentials have been loaded from the server xhr2
-var findCartoCredential = setInterval(function() {
-    if (isOnline == true && cartousername != null) {
-        clearInterval(findCartoCredential);
-        getGeoJSON();
-    }
-    return cartousername
-}, 100)
+// if (isOnline == true) {
+//     sqlQuery = "SELECT * FROM lumblu";
+//
+//     function getGeoJSON() {
+//         $.getJSON({
+//           cache:false,
+//           success:cartoGeoJSONLayer,
+//            url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
+//         })
+//
+//         return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
+//     };
+// }
+//
+// //console.log('cartoIdFeatureSelected  ' + cartoIdFeatureSelected)
+// //to only load carto layer once the credentials have been loaded from the server xhr2
+// var findCartoCredential = setInterval(function() {
+//     if (isOnline == true && cartousername != null) {
+//         clearInterval(findCartoCredential);
+//         getGeoJSON();
+//     }
+//     return cartousername
+// }, 100)
 
 // Send data to  PHP using a jQuery Post method
 var submitToProxy = function(q) {
@@ -874,7 +935,7 @@ document.getElementById("backDeleteFeature").onclick = function() {
     googleSat_Button.removeFrom(map);
     planet_Button.removeFrom(map);
     myLayer_Button.addTo(map);
-    filter_Button.addTo(map);
+  //  filter_Button.addTo(map);
     miniMap.remove();
 
     gps_Button.button.style.opacity = '1';
@@ -1140,7 +1201,7 @@ document.getElementById('backEditDelete').onclick = function(){
   googleSat_Button.removeFrom(map);
   planet_Button.removeFrom(map);
   myLayer_Button.addTo(map);
-  filter_Button.addTo(map);
+  //filter_Button.addTo(map);
 
   map.closePopup();
   miniMap.remove()
@@ -1244,7 +1305,7 @@ document.getElementById("deleteFeature").onclick = function() {
         googleSat_Button.removeFrom(map);
         planet_Button.removeFrom(map);
         myLayer_Button.addTo(map);
-        filter_Button.addTo(map);
+      //  filter_Button.addTo(map);
 
         myLayer_Button.button.style.opacity = '1';
         myLayer_Button.button.disabled = false
@@ -1281,7 +1342,7 @@ document.getElementById("deleteFeature").onclick = function() {
         selectedFeature = null
 
         //we call the setData() function here to delete from cartodb
-        setData()
+      //  setData()
     }
     return selectedFeature && clickCountDeleteButton && clickCountDelete
 }
@@ -1433,7 +1494,7 @@ var osm_Button = L.easyButton({
             planet_Button.addTo(map);
             myLayer_Button.addTo(map) //keep this, otherwise the button moves up
             if(isOnline == true){
-            filter_Button.addTo(map);
+          //  filter_Button.addTo(map);
             }
 
 
@@ -1472,7 +1533,7 @@ var googleSat_Button = L.easyButton({
             osm_Button.addTo(map);
             myLayer_Button.addTo(map) //keep this, otherwise the button moves up
             if(isOnline == true){
-            filter_Button.addTo(map);
+          //  filter_Button.addTo(map);
             }
 
             if (clickButtonCount == 15) {  //this is to download google tiles
@@ -1651,7 +1712,7 @@ var planet_Button = L.easyButton({
             osm.removeFrom(map);
             myLayer_Button.addTo(map) //keep this, otherwise the button moves up
             if(isOnline == true){
-            filter_Button.addTo(map);
+          //  filter_Button.addTo(map);
             }        }
     }]
 });
@@ -1676,15 +1737,10 @@ var myLayer_Button = L.easyButton({
         onClick: function(btn, map) {
             //  deflated.removeFrom(map)
             // whichLayerIsOn = 'deflated'
-            if (whichLayerIsOn == 'deflated' && localStorageLayer != null) {
+            if (whichLayerIsOn == 'deflated') {
                 deflated.removeFrom(map)
-                if (localStorageLayer != null) {
-                    localStorageLayer.addTo(map)
-                }
-                if (finalLayer != null) {
-                    finalLayer.addTo(map)
-                }
-                whichLayerIsOn = 'localStorage'
+
+                whichLayerIsOn = 'none'
                 myLayer_Button.button.style.backgroundColor = 'white';
                 filter_Button.button.style.opacity = '0.4';
                 filter_Button.button.disabled = true;
@@ -1700,57 +1756,59 @@ var myLayer_Button = L.easyButton({
                 // document.getElementById("point").style.display = "initial";
 
 
-            } else if (whichLayerIsOn == 'deflated' && localStorageLayer == null) { // to avoid three click when localstorage is limited on first load
-                whichLayerIsOn = 'none'
-                deflated.removeFrom(map)
-
-                myLayer_Button.button.style.backgroundColor = 'grey'
-
-            } else if (whichLayerIsOn == 'localStorage') {
-                if (localStorageLayer != null) {
-                    localStorageLayer.removeFrom(map)
-                }
-                whichLayerIsOn = 'none'
-                //  localStorageLayer.addTo(map)
-                if (finalLayer != null) {
-                    finalLayer.removeFrom(map)
-                }
-                myLayer_Button.button.style.backgroundColor = 'grey'
-                filter_Button.button.style.opacity = '0.4';
-                filter_Button.button.disabled = true;
-
-
-            } else if (whichLayerIsOn == 'none') {
+            } else if (whichLayerIsOn == 'none') { // to avoid three click when localstorage is limited on first load
                 whichLayerIsOn = 'deflated'
-                if (finalLayer != null) {
-                    finalLayer.removeFrom(map)
-                }
-
-
-                 if (featureSent == true) { //to update the carto layer with recently created feature.
-                   //to avoid reload, deflated is emptied>last element of the table (works fine in minor trafic) added to deflatet when getgeojson() is called>deflated added to the map
-                //  cartoGeometries.removeFrom(deflated)
-                  sqlQuery = "SELECT * FROM lumblu ORDER BY cartodb_id DESC LIMIT 1"
-                  getGeoJSON()
-                  deflated.addTo(map)
-
-                   // location.reload(true); // set to true to force a hard reload
-                   // getGeoJSON() //call the layer before reload so it is updated ( shouldn't be needed but...)
-                    featureSent = false
-                }
-                else{
-                  deflated.addTo(map)
-
-                }
-                // sqlQuery = "SELECT * FROM lumblu ORDER BY cartodb_id DESC LIMIT 1"
-                // getGeoJSON()
-              //  deflated.addTo(map)
+                deflated.addTo(map)
 
                 myLayer_Button.button.style.backgroundColor = 'black'
-                filter_Button.button.style.opacity = '1';
-                filter_Button.button.disabled = false;
-
             }
+
+            // } else if (whichLayerIsOn == 'localStorage') {
+            //     if (localStorageLayer != null) {
+            //         localStorageLayer.removeFrom(map)
+            //     }
+            //     whichLayerIsOn = 'none'
+            //     //  localStorageLayer.addTo(map)
+            //     if (finalLayer != null) {
+            //         finalLayer.removeFrom(map)
+            //     }
+            //     myLayer_Button.button.style.backgroundColor = 'grey'
+            //     filter_Button.button.style.opacity = '0.4';
+            //     filter_Button.button.disabled = true;
+
+
+            // } else if (whichLayerIsOn == 'none') {
+            //     whichLayerIsOn = 'deflated'
+            //     if (finalLayer != null) {
+            //         finalLayer.removeFrom(map)
+            //     }
+            //
+            //
+            //      if (featureSent == true) { //to update the carto layer with recently created feature.
+            //        //to avoid reload, deflated is emptied>last element of the table (works fine in minor trafic) added to deflatet when getgeojson() is called>deflated added to the map
+            //     //  cartoGeometries.removeFrom(deflated)
+            //       sqlQuery = "SELECT * FROM lumblu ORDER BY cartodb_id DESC LIMIT 1"
+            //       getGeoJSON()
+            //       deflated.addTo(map)
+            //
+            //        // location.reload(true); // set to true to force a hard reload
+            //        // getGeoJSON() //call the layer before reload so it is updated ( shouldn't be needed but...)
+            //         featureSent = false
+            //     }
+            //     else{
+            //       deflated.addTo(map)
+            //
+            //     }
+            //     // sqlQuery = "SELECT * FROM lumblu ORDER BY cartodb_id DESC LIMIT 1"
+            //     // getGeoJSON()
+            //   //  deflated.addTo(map)
+            //
+            //     myLayer_Button.button.style.backgroundColor = 'black'
+            //     filter_Button.button.style.opacity = '1';
+            //     filter_Button.button.disabled = false;
+            //
+            // }
+            return whichLayerIsOn
         }
     }]
 }).addTo(map); //always on as there will always be features in the map, even when first load
@@ -1828,10 +1886,10 @@ var filter_Button = L.easyButton({
       }
 
     }]
-}).addTo(map);
+})//.addTo(map);
 
 if(isOnline == true){
-filter_Button.addTo(map);
+//filter_Button.addTo(map);
 }
 
 filter_Button.button.style.width = '50px';
@@ -2081,7 +2139,7 @@ var gps_Button = L.easyButton({
                   googleSat_Button.removeFrom(map);
                   planet_Button.removeFrom(map);
                   myLayer_Button.addTo(map);
-                  filter_Button.addTo(map);
+                //  filter_Button.addTo(map);
                 },2000)
 
 
@@ -2129,6 +2187,7 @@ var rose = L.control.rose('rose', {
     opacity: 1
 });
 rose.addTo(map)
+
 
 /////////////// messages for tileS download   (NOT USED CURRENTLY)     /////////
 // googleSat.on('offline:save-start', function(data) {
@@ -3408,7 +3467,7 @@ document.getElementById('shareWorldButton').onclick = function(e) {
         ////console.log(randomID)
 
         //Call the setData() function!!! to post data to database
-        setData();
+        //setData();
 
       //  finalLayer is added at the end as the properties are different depending on if share or download
         finalLayer = L.geoJSON(data, {
@@ -3428,7 +3487,7 @@ document.getElementById('shareWorldButton').onclick = function(e) {
 
       osm_Button.addTo(map)
       myLayer_Button.addTo(map);
-      filter_Button.addTo(map);
+    //  filter_Button.addTo(map);
       myLayer_Button.button.style.opacity = '1';
       myLayer_Button.button.disabled = false
       filter_Button.button.style.opacity = '1';

@@ -467,20 +467,26 @@ svg.leaflet-image-layer.leaflet-interactive path {
 /* popup */
 /* @width: 'Math.round( screen.width * @{0.3})'; */
 .leaflet-popup {
+	/* background-color: #ffffff; */
 	position: absolute;
 	text-align: center;
 	margin-bottom: 20px;
-	max-width:180px; /* to avoid that when popup goes up the popup is covered by easybuttons*/
+	max-width:80px; /* to avoid that when popup goes up the popup is covered by easybuttons*/
 	}
 .leaflet-popup-content-wrapper {
-	padding: 1px;
+background-color: white;
+	padding: 10px;
 	text-align: left;
-	border-radius: 12px;
+	border-radius: 60px;
 	min-height:51px; /* to make the pop up higher even when it is empty*/
 
 	}
 .leaflet-popup-content {
-	margin: 13px 19px;
+	/* text-align: center; */
+
+	/* margin: 13px 19px; */
+	margin-left:7px;
+
 	line-height: 1.4;
 	font-size:17px; /*to set the font size inside the pop up*/
 
@@ -504,9 +510,9 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 	}
 .leaflet-popup-tip {
-	width: 17px;
-	height: 17px;
-	padding: 1px;
+	width: 1px;
+	height: 1px;
+	padding: 0px;
 
 	margin: -10px auto 0;
 
@@ -517,7 +523,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	}
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
-	background: white;
+	/* background: red; */
 	color: #333;
 	box-shadow: 0 3px 14px rgba(0,0,0,0.4);
 	}

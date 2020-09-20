@@ -59,7 +59,7 @@
     <div id="rose" style='margin-bottom:75px; margin-left:-8px'> </div>
 </div>
 
-<div align='center' style='z-index:2; position:relative; margin-top:-90px'  >
+<div align='center' style='display:none;z-index:2; position:relative; margin-top:-90px'  >
   <button id='tutorial' class='button' aria-label = 'goBack1' style='z-index:3; position:relative;' >
     <img  src="images/questionmark.png"  alt="..." style='width:30px ; height:30px'>
   </button>
@@ -230,12 +230,15 @@
   </form>
 </div>
 
-<div id="popup" align:center style='max-width:150px'>
+<div id="popup" align:center style='max-width:80px; '>
+
+  <!-- <button id='iconSapPopup' disabled class='popupButton' style='display:none;position:relative;left:calc(50% - 35px);text-align:center;height:60px;width:60px;outline:none;border-radius:5px;opacity:1'> -->
+    <img id='imageIconSapPopup' loading="lazy" alt="..." style='width:45px ; height:45px'>
+
   <button id='deleteInPopUp' disabled class='popupButton' style='display:none;position:relative;left:calc(50% - 30px);text-align:center;height:30px;width:50px; font-size:10px;outline:none;background-color:white;border: 2px solid white;border-radius:5px;opacity:0.3'>
     <img id='imageDeleteInPopup' loading="lazy" src="images/bin.png" alt="..." style='border-radius:5px;border: 1px solid black;background:white;width:25px ; height:25px'>
   </button>
   <button id='popupAreaLength' class='popupButton' disabled style='display:none;position:relative;margin-left:-5px;text-align:center;height:30px;width:150px; font-size:10px;outline:none;background-color:white; border: 2px solid white;border-radius:5px'>  </button>
-  <!-- <button id='commentPopup' class='popupButton' style='display:none;text-align:center;width:150px;height:fit-content;margin-left:-5px; font-size:15px;outline:none;background-color:#ECECEC;  border: 2px solid white;border-radius:15px'> -->
   <button id='commentPopup' class='popupButton' style='display:none;text-align:center;width:150px;padding:7px 5px;height:fit-content;margin-left:-5px; font-size:15px;outline:none;background-color:#ECECEC; border: 0px solid white;border-radius: 0 15px 15px 15px'>
   </button>
   <button id='editDeletePopup' class='popupButton' style='display:none;position:relative;left:calc(50% - 30px);text-align:center;margin-top:10px;height:45px;width:45px; font-size:40px;outline:none;background-color:white;border: 1px solid black;border-radius:30px'>
@@ -292,6 +295,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
 <script src="scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/Control.GlobeMiniMap.js"></script>
 
+<script src="layers/pointsSapelli.geojson" type='text/javascript'></script>
 
 
 <script src=".env/publicApiKeys.js"></script>
