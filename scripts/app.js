@@ -673,13 +673,13 @@ var cartoGeometries = L.geoJson(pointsSapelli, {
               // filter_Button.button.style.background = 'black'
               // filterIsOn = false
 
-              myLayer_Button.removeFrom(map);
-              filter_Button.removeFrom(map);
-              googleSat_Button.removeFrom(map);
-              osm_Button.removeFrom(map);
-              planet_Button.removeFrom(map);
+              // myLayer_Button.removeFrom(map);
+              // filter_Button.removeFrom(map);
+              // googleSat_Button.removeFrom(map);
+              // osm_Button.removeFrom(map);
+              // planet_Button.removeFrom(map);
 
-              miniMap.addTo(map);
+            //  miniMap.addTo(map);
 
               //default option is used to check if the target is not deflated (i.e. a marker). Parenteses IMPORTANT!
               if (!e.target.defaultOptions && e.target.feature.properties.areapolygon != 'Point' && e.target.feature.properties.lengthline != 'Point') { //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed. DefaultOptions is only in Points
@@ -1536,7 +1536,7 @@ var googleSat_Button = L.easyButton({
           //  filter_Button.addTo(map);
             }
 
-            if (clickButtonCount == 15) {  //this is to download google tiles
+            if (clickButtonCount == 1) {  //this is to download google tiles
                 offlineControlGoogle.addTo(map);
                 clickButtonCount = 0;
             } else {
@@ -2181,13 +2181,26 @@ gps_Button.button.style.backgroundColor = 'white';
 gps_Button.addTo(map);
 
 var rose = L.control.rose('rose', {
+    id:'rose',
     position: 'topleft',
     icon: 'nautical',
     iSize: 'medium',
     opacity: 1
 });
 rose.addTo(map)
+document.getElementById('rose').style.marginBottom = '5px' // to avoid extra margin, visible when offline buttons appear
+var clicksRose = 0
+document.getElementById('rose').onclick = function(e){
+    clicksRose += 1;
+    console.log(clicksRose)
+  if(clicksRose == 15){
+    offlineControlGoogle.addTo(map);
+    offlineControlOSM.addTo(map);
+    clicksRose = 0;
+  }
 
+  return clicksRose
+}
 
 /////////////// messages for tileS download   (NOT USED CURRENTLY)     /////////
 // googleSat.on('offline:save-start', function(data) {
