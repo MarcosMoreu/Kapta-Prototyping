@@ -368,6 +368,7 @@ if (urlContainsHash == true){
             maxZoom: 21,
             zoomControl: false,
             attributionControl: false,
+            //drawControl:true,
             maxBounds: L.latLngBounds(southWest, northEast)
 
         });
@@ -385,6 +386,7 @@ if (urlContainsHash == true){
             maxZoom: 21,
             zoomControl: false,
             attributionControl: false,
+            //drawControl:true,
             maxBounds: L.latLngBounds(southWest, northEast)
         });
     }
