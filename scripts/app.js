@@ -846,9 +846,9 @@ function setData() {
         var dataGeometryString = JSON.stringify(dataGeometry)
         //console.log(dataGeometryString)
 
-        var sql = "INSERT INTO lumblu (the_geom, datetime, randomid, landuses, landusesemoji, audioavailable, areapolygon, lengthline, timespent, distance, geometrystring) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
+        var sql = "INSERT INTO lumblu (the_geom, datetime, randomid, landuses, landusesemoji, audioavailable, areapolygon, lengthline, timespent, distance, geometrystring, screensize) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
         var sql2 = dataGeometryString;
-        var sql3 = "'),4326),'" + dateTime + "','" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + audioAvailable + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "')";
+        var sql3 = "'),4326),'" + dateTime + "','" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + audioAvailable + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "')";
         var pURL = sql + sql2 + sql3;
     }
 
@@ -2793,8 +2793,10 @@ var windowHeight = window.innerHeight;
 var screenwidth = screen.width
 var screenwithWithMargins = screenwidth * 0.3
 var screenheight = screen.height
-//console.log('screenheight ' + screenheight)
-//console.log('screenwidth ' + screenwidth)
+var screensize = 'W'+ screenwidth + ' x ' + 'H' + screenheight
+console.log('screenheight ' + screenheight)
+console.log('screenwidth ' + screenwidth)
+console.log(screensize)
 
 var alreadyMovedUp = false;
 var moveMaptoTop = function() {
@@ -3257,7 +3259,8 @@ document.getElementById('share-download').onclick = function(e) {
         'timeSpendSeconds': totalTimeSpent,
         'dist_m_Participant_Feature': distanceObfTrunc,
         'randomID': randomID,
-        'geometrystring':data.toString()
+        'geometrystring':data.toString(),
+        'screensize':screensize
     };
     //  adding the properties to the geoJSON file:
     data.features[0].properties = propertiesGeoJSON;
