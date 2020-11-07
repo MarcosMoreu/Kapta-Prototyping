@@ -344,6 +344,7 @@ if (urlContainsHash == true){
 
     var map = L.map('map', {
         editable: true,
+
         center: [urlLat, urlLng], //global center
         zoom: urlZoom,
         minZoom: 2,
@@ -359,6 +360,7 @@ if (urlContainsHash == true){
     if (lastPositionStoredLOCALLY == null) {
         //console.log('map centered as if NOT last position')
         var map = L.map('map', {
+          //  rotate:true,
             editable: true,
             center: [0, 0], //global center
             zoom: 0,
@@ -373,6 +375,7 @@ if (urlContainsHash == true){
         //console.log('map centered as if YES last position')
 
         var map = L.map('map', {
+          //  rotate:true,
             editable: true,
             center: [lastPositionStoredLOCALLY[0], lastPositionStoredLOCALLY[1]],
             // center: mappos.center,
@@ -1480,8 +1483,8 @@ var googleSat_Button = L.easyButton({
                 clickButtonCount = 0;
             } else {
                 googleSat.addTo(map);
-                wmsSentinel2.removeFrom(map);
-                planet.removeFrom(map);
+                planetScopeMonthlyMosaic.removeFrom(map);
+                //planet.removeFrom(map);
                 osm.removeFrom(map);
             }
             return clickButtonCount;
@@ -1503,6 +1506,8 @@ var planet_Button = L.easyButton({
         stateName: 'check-mark',
         onClick: function(btn, map) {
             /////////////////////// to load planet tiles manually  /////////////
+
+          {
             var planetS6 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200411_104056_53_105e/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
                 maxZoom: 18,
                 maxNativeZoom: 20,
@@ -1608,15 +1613,21 @@ var planet_Button = L.easyButton({
                 maxNativeZoom: 20,
                 subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
             });
-
-
-            planet = L.layerGroup([planetS6, planetS7, planetS8, planetS9, planetS10, planetS11, planetS12, planetS13, planetS14, planetS15, planetS16, planetS17, planetS18, planetS19, planetS20, planetS21, planetS22, planetS23, planetS24]);
+          } //Planet individual tiles
+          {
+        //  planet = L.layerGroup([planetS6, planetS7, planetS8, planetS9, planetS10, planetS11, planetS12, planetS13, planetS14, planetS15, planetS16, planetS17, planetS18, planetS19, planetS20, planetS21, planetS22, planetS23, planetS24]);
 
             ////////////////// Sentinel-hub (level 2 chosen as it allow any zoom level) ////////////////
-            wmsSentinel2 = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelKey + "?REQUEST=GetMap&PREVIEW=2", {
-                layers: 'P4',
-                // attribution: 'Sentinel 2 Imagery May 2020'
-            });
+            // wmsSentinel2 = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelKey + "?REQUEST=GetMap&PREVIEW=2", {
+            //     layers: 'P4',
+            //     // attribution: 'Sentinel 2 Imagery May 2020'
+            // });
+
+          //  wmsSentinel2 = L.tileLayer.wms('https://tiles0.planet.com/basemaps/v1/planet-tiles/global_monthly_2016_05_mosaic/gmap/0/0/0.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a')
+          } // Sentinel Basemap
+          planetScopeMonthlyMosaic = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_09_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+            attribution: 'PlanetScope Imagery  Sept 2020'
+            })
 
             clickButtonCount = 0;
             //to avoid black tiles as sentinel API does not serves tiles above 10 (or perhaps yes), then zoom back to 10 again
@@ -1645,8 +1656,8 @@ var planet_Button = L.easyButton({
 
             planet_Button.removeFrom(map);
             googleSat_Button.addTo(map);
-            wmsSentinel2.addTo(map);
-            planet.addTo(map); // planet imagery goes after so it stays on top of sentinel data (sentinel is global, planet is not yet?)
+            planetScopeMonthlyMosaic.addTo(map);
+          //  planet.addTo(map); // planet imagery goes after so it stays on top of sentinel data (sentinel is global, planet is not yet?)
             googleSat.removeFrom(map);
             osm.removeFrom(map);
             myLayer_Button.addTo(map) //keep this, otherwise the button moves up
@@ -2129,6 +2140,21 @@ var rose = L.control.rose('rose', {
     opacity: 1
 });
 rose.addTo(map)
+
+document.getElementById('rose').style.marginBottom = '5px' // to avoid extra margin, visible when offline buttons appear
+// script to show the download tiles buttons
+var clicksRose = 0
+document.getElementById('rose').onclick = function(e){
+    clicksRose += 1;
+    console.log(clicksRose)
+  if(clicksRose == 7){
+    offlineControlGoogle.addTo(map);
+    offlineControlOSM.addTo(map);
+    clicksRose = 0;
+  }
+
+  return clicksRose
+}
 
 /////////////// messages for tileS download   (NOT USED CURRENTLY)     /////////
 // googleSat.on('offline:save-start', function(data) {
