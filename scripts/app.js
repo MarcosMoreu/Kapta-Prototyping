@@ -1,6 +1,6 @@
 
 var planetKey;
-var sentinelKey;
+//var sentinelKey;
 var firebaseKey;
 var firebaseConfig;
 var cartousername;
@@ -797,6 +797,7 @@ var cartoGeoJSONLayer = function(data) {
   }
   return cartoGeometries
 };//...CARTO layer
+
 
 
 if (isOnline == true) {
