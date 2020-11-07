@@ -3486,8 +3486,8 @@ document.getElementById('shareWorldButton').onclick = function(e) {
     // }
     finalAreaHa2Decimals = null
     finalLength2Decimals = null
-    //totalTimeSpent = 0
-    return featureSent &&  finalAreaHa2Decimals &&  finalLength2Decimals //&& totalTimeSpent
+    timeStart = new Date(); // to reset time start in case more contributions in this session
+    return featureSent &&  finalAreaHa2Decimals &&  finalLength2Decimals && timeStart
   }else {
     alert('🛑 You are offline')
   }
