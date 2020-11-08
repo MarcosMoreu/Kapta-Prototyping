@@ -36,6 +36,7 @@ var isIOS = /iPad|iPhone|iPod|Mac OS X/.test(navigator.userAgent) && !window.MSS
 
 var isOnline = navigator.onLine
 var isOnlineGlobal = isOnline
+
 // //console.log('isChrome  '+ isChrome)
 //console.log(navigator.onLine)
 //console.log(navigator.appVersion)
@@ -1165,7 +1166,9 @@ document.getElementById('backEditDelete').onclick = function(){
   filter_Button.addTo(map);
 
   map.closePopup();
-  miniMap.remove()
+  try{
+    miniMap.remove()
+  }catch(e){}
 
   // map.click.enable();
   map.dragging.enable();
@@ -1369,8 +1372,8 @@ var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={
 
 var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', tilesDb, {
     minZoom: 2,
-    maxZoom: 21,
-    maxNativeZoom: 21,
+    maxZoom: 19,
+    maxNativeZoom: 19,
     // subdomains:['mt0','mt1','mt2','mt3'],
     attribution: 'OpenStreetMap Contributors'
 
@@ -1390,7 +1393,7 @@ var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
         }
     },
     minZoom: 0,
-    maxZoom: 19
+    maxZoom: 21
 });
 var offlineControlOSM = L.control.offline(osm, tilesDb, {
     saveButtonHtml: '<img src="images/download.png" width=15px ; height=15px>',
@@ -1407,7 +1410,7 @@ var offlineControlOSM = L.control.offline(osm, tilesDb, {
         }
     },
     minZoom: 0,
-    maxZoom: 19
+    maxZoom: 21
 });
 
 var clickButtonCount = 0;
@@ -1443,26 +1446,28 @@ var osm_Button = L.easyButton({
         //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn, map) {
-            clickButtonCount += 1;
+            //clickButtonCount += 1;
             document.getElementById('imageryAlert').style.display = 'none'
+
+            mapCurrentZoom = map.getZoom();
+           console.log('zoom1', mapCurrentZoom)
+            if(mapCurrentZoom >19){
+              map.setZoom(19)//because OSM does not provide tiles beyond zoom 19
+              mapCurrentZoom = map.getZoom();
+            console.log('zoom2', mapCurrentZoom)
+            }
+
 
             map.options.maxZoom = 19; //Set max zoom level as OSM does not serve tiles with 20+ zoom levels
             map.options.minZoom = 2;
             osm_Button.removeFrom(map);
             planet_Button.addTo(map);
             myLayer_Button.addTo(map) //keep this, otherwise the button moves up
-            if(isOnline == true){
             filter_Button.addTo(map);
-            }
+            googleSat.removeFrom(map);
+            osm.addTo(map);
 
 
-            if (clickButtonCount == 10) {
-                offlineControlOSM.addTo(map);
-                clickButtonCount = 0;
-            } else {
-                osm.addTo(map);
-                googleSat.removeFrom(map);
-            }
             return clickButtonCount;
         }
     }]
@@ -1483,7 +1488,7 @@ var googleSat_Button = L.easyButton({
         icon: iconGOOGLE,
         //stateName: 'check-mark',
         onClick: function(btn, map) {
-            clickButtonCount += 1;
+            //clickButtonCount += 1;
             document.getElementById('imageryAlert').style.display = 'none'
             map.options.maxZoom = 21; // set the max zoom level to 21 for google imagery
             map.options.minZoom = 2;
@@ -1494,15 +1499,11 @@ var googleSat_Button = L.easyButton({
             filter_Button.addTo(map);
             }
 
-            if (clickButtonCount == 15) {  //this is to download google tiles
-                offlineControlGoogle.addTo(map);
-                clickButtonCount = 0;
-            } else {
-                googleSat.addTo(map);
-                planetScopeMonthlyMosaic.removeFrom(map);
-                //planet.removeFrom(map);
-                osm.removeFrom(map);
-            }
+            googleSat.addTo(map);
+            planetScopeMonthlyMosaic.removeFrom(map);
+            //planet.removeFrom(map);
+            osm.removeFrom(map);
+
             return clickButtonCount;
         }
     }]
@@ -1524,111 +1525,111 @@ var planet_Button = L.easyButton({
             /////////////////////// to load planet tiles manually  /////////////
 
 
-            var planetS6 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200411_104056_53_105e/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
-            });
-            var planetS7 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200411_104054_50_105e/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
-            });
-            ////CAMEROON//////////////////////
-            var planetS8 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200402_080331_1043/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
-            });
-            var planetS9 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200402_080330_1043/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
-            });
-            var planetS10 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200402_080329_1043/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
-            });
-            /////NAIROBI/////////////////////////////
-            var planetS11 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200306_073616_1011/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
-            });
-            var planetS12 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200306_073615_1011/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
-            });
-            ///////TSUMKWE////////////////////////
-            var planetS13 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200416_083425_1018/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
-            });
-            ///////f spain////////////////////////
-            var planetS14 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200403_105241_78_1064/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
-            });
-            var planetS15 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200403_105239_76_1064/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
-            });
-            //////ITEN kenya///////////////
-            var planetS16 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200410_083657_42_1065/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
-                attribution: 'Planet/Sentinel Imagery MAY-JULY 2020'
-            });
-            var planetS17 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200410_074244_1018/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
-            });
-            var planetS18 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200410_074243_1018/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
-            });
-            ///////LONDON/////////////////
-            var planetS19 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200411_104513_103d/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
-            });
-            var planetS20 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200411_104512_103d/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
-            });
-            var planetS21 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200411_104511_103d/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
-            });
-            ///////LJUBLJANA/////////////////
-            var planetS22 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200715_093554_1032/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
-            });
-            ///////VIENA/////////////////
-            var planetS23 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200730_093028_101b/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
-            });
-            ///////NOVI SAD/////////////////
-            var planetS24 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200730_091658_1040/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
-                maxZoom: 18,
-                maxNativeZoom: 20,
-                subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
-            });
+            // var planetS6 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200411_104056_53_105e/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+            //     maxZoom: 18,
+            //     maxNativeZoom: 20,
+            //     subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            // });
+            // var planetS7 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200411_104054_50_105e/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+            //     maxZoom: 18,
+            //     maxNativeZoom: 20,
+            //     subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            // });
+            // ////CAMEROON//////////////////////
+            // var planetS8 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200402_080331_1043/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+            //     maxZoom: 18,
+            //     maxNativeZoom: 20,
+            //     subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            // });
+            // var planetS9 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200402_080330_1043/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+            //     maxZoom: 18,
+            //     maxNativeZoom: 20,
+            //     subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            // });
+            // var planetS10 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200402_080329_1043/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+            //     maxZoom: 18,
+            //     maxNativeZoom: 20,
+            //     subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            // });
+            // /////NAIROBI/////////////////////////////
+            // var planetS11 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200306_073616_1011/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+            //     maxZoom: 18,
+            //     maxNativeZoom: 20,
+            //     subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            // });
+            // var planetS12 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200306_073615_1011/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+            //     maxZoom: 18,
+            //     maxNativeZoom: 20,
+            //     subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            // });
+            // ///////TSUMKWE////////////////////////
+            // var planetS13 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200416_083425_1018/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+            //     maxZoom: 18,
+            //     maxNativeZoom: 20,
+            //     subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            // });
+            // ///////f spain////////////////////////
+            // var planetS14 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200403_105241_78_1064/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+            //     maxZoom: 18,
+            //     maxNativeZoom: 20,
+            //     subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            // });
+            // var planetS15 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200403_105239_76_1064/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+            //     maxZoom: 18,
+            //     maxNativeZoom: 20,
+            //     subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            // });
+            // //////ITEN kenya///////////////
+            // var planetS16 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200410_083657_42_1065/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+            //     maxZoom: 18,
+            //     maxNativeZoom: 20,
+            //     subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            //     attribution: 'Planet/Sentinel Imagery MAY-JULY 2020'
+            // });
+            // var planetS17 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200410_074244_1018/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+            //     maxZoom: 18,
+            //     maxNativeZoom: 20,
+            //     subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            // });
+            // var planetS18 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200410_074243_1018/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+            //     maxZoom: 18,
+            //     maxNativeZoom: 20,
+            //     subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            // });
+            // ///////LONDON/////////////////
+            // var planetS19 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200411_104513_103d/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+            //     maxZoom: 18,
+            //     maxNativeZoom: 20,
+            //     subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            // });
+            // var planetS20 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200411_104512_103d/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+            //     maxZoom: 18,
+            //     maxNativeZoom: 20,
+            //     subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            // });
+            // var planetS21 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200411_104511_103d/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+            //     maxZoom: 18,
+            //     maxNativeZoom: 20,
+            //     subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            // });
+            // ///////LJUBLJANA/////////////////
+            // var planetS22 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200715_093554_1032/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+            //     maxZoom: 18,
+            //     maxNativeZoom: 20,
+            //     subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            // });
+            // ///////VIENA/////////////////
+            // var planetS23 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200730_093028_101b/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+            //     maxZoom: 18,
+            //     maxNativeZoom: 20,
+            //     subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            // });
+            // ///////NOVI SAD/////////////////
+            // var planetS24 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200730_091658_1040/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
+            //     maxZoom: 18,
+            //     maxNativeZoom: 20,
+            //     subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
+            // });
 
             //  planet = L.layerGroup([planetS6, planetS7, planetS8, planetS9, planetS10, planetS11, planetS12, planetS13, planetS14, planetS15, planetS16, planetS17, planetS18, planetS19, planetS20, planetS21, planetS22, planetS23, planetS24]);
 
@@ -1646,31 +1647,19 @@ var planet_Button = L.easyButton({
 
             clickButtonCount = 0;
             //to avoid black tiles as sentinel API does not serves tiles above 10 (or perhaps yes), then zoom back to 10 again
-            map.options.maxZoom = 18; //no need for more zoom levels as 'low' resolution
+            map.options.maxZoom = 17; //no need for more zoom levels as 'low' resolution
             map.options.minZoom = 2;
-
-            //to add the imagery alert for requesting better imagery (in various languages - check translation) ....
-            // if (browserLanguage[0] == 'e' && browserLanguage[1] == 'n') { //english
-            //     document.getElementById("imageryAlert").innerHTML = 'After mapping, use the textbox to request better recent or past  imagery';
-            // }
-            // if (browserLanguage[0] == 'e' && browserLanguage[1] == 's') { //spanish
-            //     document.getElementById("imageryAlert").innerHTML = 'Después de mappear, utiliza la casilla de texto para solicitar mejores imágenes, recientes o pasadas';
-            // }
-            // if (browserLanguage[0] == 'p' && browserLanguage[1] == 't') { //portuguese
-            //     document.getElementById("imageryAlert").innerHTML = 'Após o mapeamento, use a caixa de texto para solicitar melhores imagens recentes ou passadas';
-            // }
-            // if (browserLanguage[0] == 'f' && browserLanguage[1] == 'r') { //french
-            //     document.getElementById("imageryAlert").innerHTML = 'Après le mappage, utilisez la zone de texte pour demander de meilleures images récentes ou passées';
-            // }
-            // if (browserLanguage == 'sw') { //swahili
-            //     document.getElementById("imageryAlert").innerHTML = 'Baada ya uchoraji wa ramani, tumia kisanduku cha maandishi kuuliza picha bora za hivi karibuni au za zamani';
-            // }
-            // if (created == false) {
-            //   //  document.getElementById('imageryAlert').style.display = 'initial'  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            // }
 
             planet_Button.removeFrom(map);
             googleSat_Button.addTo(map);
+            //to zoom out if previous map zoom is higher than 17
+            mapCurrentZoom = map.getZoom();
+            console.log('zoom1', mapCurrentZoom)
+            if(mapCurrentZoom >17){
+              map.setZoom(17)//because OSM does not provide tiles beyond zoom 19
+              mapCurrentZoom = map.getZoom();
+            console.log('zoom2', mapCurrentZoom)
+            }
             planetScopeMonthlyMosaic.addTo(map);
           //  planet.addTo(map); // planet imagery goes after so it stays on top of sentinel data (sentinel is global, planet is not yet?)
             googleSat.removeFrom(map);
@@ -1853,14 +1842,18 @@ var filter_Button = L.easyButton({
     }]
 }).addTo(map);
 
-if(isOnline == true){
-filter_Button.addTo(map);
-}
+
 
 filter_Button.button.style.width = '50px';
 filter_Button.button.style.height = '50px';
 filter_Button.button.style.transitionDuration = '.3s';
 filter_Button.button.style.backgroundColor = 'black';
+filter_Button.addTo(map);
+if(isOnline == false){
+  filter_Button.button.style.opacity = '0.4';
+  filter_Button.button.disabled = true;
+}
+
 //
 // //Button for RANDOM SUGGESTION
 // var random_Button = L.easyButton({
@@ -2080,8 +2073,6 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
         gps_Button.button.style.backgroundColor = 'red';
         document.getElementById('gps').innerHTML = '<img src="images/gpsOff.png" width=40px; height=40px; style="margin-left:-1px" > '
 
-        console.log('red')
-
         try {
             navigator.geolocation.watchPosition(findBuffer);
         } catch (err) {
@@ -2113,10 +2104,14 @@ var gps_Button = L.easyButton({
               planet_Button.removeFrom(map);
               myLayer_Button.removeFrom(map);
               filter_Button.removeFrom(map);
-              miniMap.addTo(map)
+              try{
+                miniMap.addTo(map)
+              }catch(e){}
 
                 setTimeout(function(){
-                  miniMap.remove()
+                  try{
+                    miniMap.remove()
+                  }catch(e){}
                   osm_Button.addTo(map);
                   googleSat_Button.removeFrom(map);
                   planet_Button.removeFrom(map);
