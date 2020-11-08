@@ -842,7 +842,9 @@ var postSuccess = function(){
     setTimeout(function(){
       document.getElementById('myLayerButton').click()
       document.getElementById('myLayerButton').click()
-      document.getElementById('myLayerButton').click()
+      if(localStorageLayer != null){  // because first time app is used mylayer_button has only two positions (local storage is empty)
+        document.getElementById('myLayerButton').click()
+      }
     },1000) //this needs to be improved, i.e. carto layer is shown when it's ready
   }
 }
@@ -3064,11 +3066,6 @@ document.getElementById('Cancel').onclick = function(e) {
     gps_Button.button.style.opacity = '1';
     gps_Button.button.disabled = false;
 
-    //to add filter button if carto layer on
-    if(myLayer_Button.button.style.backgroundColor == 'black'){
-      filter_Button.button.style.opacity = '1';
-      filter_Button.button.disabled = false;
-    }
     featureType = 'initial';
     alreadyMovedUp = false;
     audioRecorded = false;
@@ -3114,10 +3111,34 @@ document.getElementById('Cancel').onclick = function(e) {
     }, 200)
 
     tempLayer.clearLayers()
-    // if (cartoLoaded == true) {
-    //     cartoGeometries.addTo(deflated)
-    // }
-    return created & featureType;
+
+
+  //to load the layer that was there before creating the geometry (2 clicks if localstorage empty, 3 if not). Not best approach but works...:)
+    if(myLayer_Button.button.style.backgroundColor == 'black'){
+      filter_Button.button.style.opacity = '1';
+      filter_Button.button.disabled = false;
+      document.getElementById('myLayerButton').click()
+      document.getElementById('myLayerButton').click()
+      if(localStorageLayer != null){  // because first time app is used mylayer_button has only two positions (local storage is empty)
+        document.getElementById('myLayerButton').click()
+      }
+    }
+    if(myLayer_Button.button.style.backgroundColor == 'white'){
+      document.getElementById('myLayerButton').click()
+      document.getElementById('myLayerButton').click()
+      if(localStorageLayer != null){  // because first time app is used mylayer_button has only two positions (local storage is empty)
+        document.getElementById('myLayerButton').click()
+      }
+    }
+    if(myLayer_Button.button.style.backgroundColor == 'grey'){
+      document.getElementById('myLayerButton').click()
+      document.getElementById('myLayerButton').click()
+      if(localStorageLayer != null){  // because first time app is used mylayer_button has only two positions (local storage is empty)
+        document.getElementById('myLayerButton').click()
+      }
+    }
+
+  return created & featureType;
 }
 
 ///////////////////////////////////////////   FIREBASE CODE   ///////////////////////////////////////////////////////////////
