@@ -704,6 +704,10 @@ var cartoGeoJSONLayer = function(data) {
                       // miniMap.addTo(map);
                        gps_Button.button.style.opacity = '0.4';
                        gps_Button.button.disabled = true;
+                       myLayer_Button.button.style.opacity = '0.4';
+                       myLayer_Button.button.disabled = true;
+                       filter_Button.button.style.opacity = '0.4';
+                       filter_Button.button.disabled = true;
 
                        // document.getElementById("deleteFeature").style.display = "initial";
                        // document.getElementById("deleteFeature").style.backgroundColor = 'white';
@@ -745,6 +749,10 @@ var cartoGeoJSONLayer = function(data) {
                         // miniMap.addTo(map)
                          gps_Button.button.style.opacity = '0.4';
                          gps_Button.button.disabled = true;
+                         myLayer_Button.button.style.opacity = '0.4';
+                         myLayer_Button.button.disabled = true;
+                         filter_Button.button.style.opacity = '0.4';
+                         filter_Button.button.disabled = true;
 
                          // document.getElementById("deleteFeature").style.display = "initial";
                          // document.getElementById("deleteFeature").style.backgroundColor = 'white';
@@ -902,6 +910,10 @@ document.getElementById("backDeleteFeature").onclick = function() {
 
     gps_Button.button.style.opacity = '1';
     gps_Button.button.disabled = false;
+    myLayer_Button.button.style.opacity = '1';
+    myLayer_Button.button.disabled = false;
+    filter_Button.button.style.opacity = '1';
+    filter_Button.button.disabled = false;
 
     try { //sometimes this fails
       if (selectedFeature.feature.geometry.type != 'Point') {
