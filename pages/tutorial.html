@@ -27,15 +27,21 @@
   <script>Cognito.load("forms", { id: "2" });</script>
 </div>
 
+<div id='drop' >
+  <button id='dropDown' class='buttonsFirstLastScreenTop' style='display:none;position: absolute;left: 25px;top:25px;height:30px;border:none; background:black;border-radius: 5px;'>
+    <img id='imageDropDown' src="../images/burger.png" loading="lazy" style='width:22px ; height:17px;'>
+  </button>
+</div>
+
 <div id='customise' >
-  <button id='cutomiseButton' class='buttonsFirstLastScreenTop' style='display:none;position: absolute;left: 25px;top:25px;height:30px;border:none; background:yellow;border-radius: 5px;'>
-    <img src="../images/customise.png" loading="lazy" style='width:16px ; height:17px;'>
+  <button id='cutomiseButton' class='buttonsFirstLastScreenTop' style='display:none;position: absolute;left: 85px;top:25px;height:30px;border:none; background:black;border-radius: 5px;color:grey;text-decoration: underline;font-size:10; font-family: Ubuntu;'>
+    Request
   </button>
 </div>
 
 <div id='info' >
-  <button id='infoButton' class='buttonsFirstLastScreenTop' style='display:none;position: absolute;right: 25px;top:25px;height:30px;border:none; background:grey;border-radius: 5px;'>
-    <img src="../images/info.png" loading="lazy" style='width:15px ; height:15px;'>
+  <button id='infoButton' class='buttonsFirstLastScreenTop' style='display:none;position: absolute;left: 170px;top:25px;height:30px;border:none; background:black;border-radius: 5px;color:grey;text-decoration: underline;font-size:10; font-family: Ubuntu;'>
+    About
   </button>
 </div>
 
@@ -176,10 +182,31 @@ transform: scale(0.6);
 </style>
 
 <script>
+var dropDownOpen = false;
 document.getElementById('startMapping').onclick = function(e){
    setTimeout(function(){
      location.href='../index.html';
    },100)
+  }
+
+document.getElementById('dropDown').onclick = function(e){
+
+    if(dropDownOpen == false){
+      document.getElementById('infoButton').style.display = "initial";
+      document.getElementById('cutomiseButton').style.display = "initial";
+      document.getElementById('dropDown').style.backgroundColor = 'grey';
+      document.getElementById('imageDropDown').src = '../images/burgerBlack.png';
+      dropDownOpen = true
+    }else{
+      document.getElementById('infoButton').style.display = "none";
+      document.getElementById('cutomiseButton').style.display = "none";
+      document.getElementById('dropDown').style.backgroundColor = 'black';
+      document.getElementById('imageDropDown').src = '../images/burger.png';
+
+      dropDownOpen = false
+    }
+
+    return dropDownOpen
   }
 
   document.getElementById('cutomiseButton').onclick = function(e){
@@ -187,6 +214,8 @@ document.getElementById('startMapping').onclick = function(e){
        document.getElementById("infoGoBackButton").style.display = "initial";
        document.getElementById("cognitoForm").style.display = "initial";
        document.body.style.overflow = 'visible';
+       document.getElementById('dropDown').style.display = "none";
+       document.getElementById('cutomiseButton').style.display = "none";
       document.getElementById('infoButton').style.display = "none";
       document.getElementById('cutomiseButton').style.display = "none";
       document.getElementById("youtube").style.display = "none";
@@ -214,6 +243,7 @@ document.getElementById('infoButton').onclick = function(e){
      document.getElementById("infoGoBackButton").style.display = "initial";
      document.getElementById("infoCont").style.display = "initial";
 
+     document.getElementById('dropDown').style.display = "none";
      document.getElementById('cutomiseButton').style.display = "none";
     document.getElementById("youtube").style.display = "none";
     document.getElementById("startMapping").style.display = "none";
@@ -243,6 +273,7 @@ document.getElementById('infoGoBackButton').onclick = function(e){
 
      document.body.style.overflow = 'hidden';
 
+     document.getElementById("infoButton").style.display = "none";
      document.getElementById('cutomiseButton').style.display = "none";
      document.getElementById("spanish").style.display = "none";
      document.getElementById("english").style.display = "none";
@@ -258,12 +289,15 @@ document.getElementById('infoGoBackButton').onclick = function(e){
      document.getElementById("textSwahili").style.display = "none";
      document.getElementById("textJuhoansi").style.display = "none";
 
-     document.getElementById('cutomiseButton').style.display = "initial";
-     document.getElementById("infoButton").style.display = "initial";
+     document.getElementById('dropDown').style.backgroundColor = 'black';
+     document.getElementById('imageDropDown').src = '../images/burger.png';
+     document.getElementById('dropDown').style.display = "initial";
+     dropDownOpen = false
      document.getElementById("youtube").style.display = "initial";
      document.getElementById("startMapping").style.display = "initial";
 
    },100)
+   return dropDownOpen
   }
 
 document.getElementById('youtube').onclick = function(e){
@@ -271,6 +305,9 @@ document.getElementById('youtube').onclick = function(e){
      document.getElementById("textEnglish").style.display = "initial";
      document.getElementById("infoGoBackButton").style.display = "initial";
 
+     document.getElementById('dropDown').style.display = "none";
+     document.getElementById('dropDown').style.backgroundColor = 'black';
+     dropDownOpen = false
      document.getElementById("infoButton").style.display = "none";
       document.getElementById("youtube").style.display = "none";
       document.getElementById('cutomiseButton').style.display = "none";
@@ -294,13 +331,15 @@ document.getElementById('youtube').onclick = function(e){
     // document.getElementById("other1").style.display = "initial";
 
    },100)
+   return dropDownOpen
+
   }
 
 document.getElementById('english').onclick = function(e){
    setTimeout(function(){
-    document.getElementById("infoButton").style.display = "initial";
+    document.getElementById("dropDown").style.display = "initial";
      document.getElementById("youtube").style.display = "initial";
-     document.getElementById('cutomiseButton').style.display = "initial";
+     //document.getElementById('cutomiseButton').style.display = "initial";
 
     document.getElementById("spanish").style.display = "none";
     document.getElementById("english").style.display = "none";
