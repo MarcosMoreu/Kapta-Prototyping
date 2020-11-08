@@ -619,13 +619,13 @@ var cartoGeoJSONLayer = function(data) {
               // filter_Button.button.style.background = 'black'
               // filterIsOn = false
 
-              myLayer_Button.removeFrom(map);
-              filter_Button.removeFrom(map);
-              googleSat_Button.removeFrom(map);
-              osm_Button.removeFrom(map);
-              planet_Button.removeFrom(map);
-
-              miniMap.addTo(map);
+              // myLayer_Button.removeFrom(map);
+              // filter_Button.removeFrom(map);
+              // googleSat_Button.removeFrom(map);
+              // osm_Button.removeFrom(map);
+              // planet_Button.removeFrom(map);
+              //
+              // miniMap.addTo(map);
 
               //default option is used to check if the target is not deflated (i.e. a marker). Parenteses IMPORTANT!
               if (!e.target.defaultOptions && e.target.feature.properties.areapolygon != 'Point' && e.target.feature.properties.lengthline != 'Point') { //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed. DefaultOptions is only in Points
@@ -701,7 +701,7 @@ var cartoGeoJSONLayer = function(data) {
                        document.getElementById("deleteFeature").style.opacity = "1";
                        document.getElementById("deleteFeature").disabled = false;
                        document.getElementById("randomSuggestion").style.display = "initial";
-                       miniMap.addTo(map);
+                      // miniMap.addTo(map);
                        gps_Button.button.style.opacity = '0.4';
                        gps_Button.button.disabled = true;
 
@@ -742,7 +742,7 @@ var cartoGeoJSONLayer = function(data) {
                          document.getElementById("deleteFeature").style.opacity = "1";
                          document.getElementById("deleteFeature").disabled = false;
                          document.getElementById("randomSuggestion").style.display = "initial";
-                         miniMap.addTo(map)
+                        // miniMap.addTo(map)
                          gps_Button.button.style.opacity = '0.4';
                          gps_Button.button.disabled = true;
 
@@ -828,14 +828,14 @@ var findCartoCredential = setInterval(function() {
 
 //function to activate carto layer once feature has been submitted successfully. It's fired when the share-world button is clicked
 var postSuccess = function(){
-  if(pURL[0] == 'I'){
+  if(pURL[0] == 'I'){ // to refer to Insert (I), not Delete!
     console.log('success post')
 
     setTimeout(function(){
       document.getElementById('myLayerButton').click()
       document.getElementById('myLayerButton').click()
       document.getElementById('myLayerButton').click()
-    },1500) //this needs to be improved, i.e. carto layer is shown when it's ready
+    },1000) //this needs to be improved, i.e. carto layer is shown when it's ready
   }
 }
 
@@ -1224,12 +1224,30 @@ document.getElementById("randomSuggestion").onclick = function() {
   // filter_Button.button.style.opacity = '0.4';
   // filter_Button.button.disabled = true;
   // filter_Button.button.style.background = 'black'
+
   miniMap.addTo(map)
   osm_Button.removeFrom(map);
   googleSat_Button.removeFrom(map);
   planet_Button.removeFrom(map);
   myLayer_Button.removeFrom(map);
   filter_Button.removeFrom(map);
+
+  setTimeout(function(){
+    console.log(basemapOn)
+    miniMap.remove()
+
+      if(basemapOn == 'googleSat'){
+        osm_Button.addTo(map);
+      }
+      if(basemapOn == 'osm'){
+        planet_Button.addTo(map);
+      }
+      if(basemapOn == 'planet'){
+        googleSat_Button.addTo(map);
+      }
+      myLayer_Button.addTo(map);
+      filter_Button.addTo(map);
+  },3000)
 
   // document.getElementById("deleteFeature").style.display = "initial";
   // document.getElementById("deleteFeature").style.backgroundColor = 'white';
@@ -1434,7 +1452,7 @@ if (isIOS == true) {
     var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; style="margin-left:-1px" > ';
     var iconRANDOM = '<img src="images/gps.png" width=40px; height=40px; style="margin-left:-1px" > ';
 }
-
+var basemapOn = 'googleSat'
 var osm_Button = L.easyButton({
     id: 'osm',
     class: 'easyButton',
@@ -1467,8 +1485,8 @@ var osm_Button = L.easyButton({
             googleSat.removeFrom(map);
             osm.addTo(map);
 
-
-            return clickButtonCount;
+            basemapOn = 'osm'
+            return basemapOn;
         }
     }]
 });
@@ -1503,8 +1521,9 @@ var googleSat_Button = L.easyButton({
             planetScopeMonthlyMosaic.removeFrom(map);
             //planet.removeFrom(map);
             osm.removeFrom(map);
+            basemapOn = 'googleSat'
 
-            return clickButtonCount;
+            return basemapOn;
         }
     }]
 });
@@ -1667,7 +1686,10 @@ var planet_Button = L.easyButton({
             myLayer_Button.addTo(map) //keep this, otherwise the button moves up
             if(isOnline == true){
             filter_Button.addTo(map);
-            }        }
+            }
+            basemapOn = 'planet'
+          return basemapOn
+        }
     }]
 });
 
