@@ -10,12 +10,12 @@ header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, 
 session_cache_limiter('nocache');
 $cache_limiter = session_cache_limiter();
 
-function goProxy($dataURL)
+function goProxy($queryURL)
 {
 	$baseURL = 'http://marcosmoreu.carto.com/api/v2/sql?';
 	$cartoapi = '&api_key=4e895e6976be4482c0908dabbf81b26b3c96b270';
 
-	$url = $baseURL.'q='.urlencode($dataURL).$cartoapi;
+	$url = $baseURL.'q='.urlencode($queryURL).$cartoapi;
 
 	$result = file_get_contents ($url);
 	return $result;

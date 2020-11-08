@@ -801,7 +801,7 @@ var cartoGeoJSONLayer = function(data) {
 
 
 if (isOnline == true) {
-    sqlQuery = "SELECT * FROM lumblu";
+
 
     function getGeoJSON() {
         $.getJSON({
@@ -809,7 +809,6 @@ if (isOnline == true) {
           success:cartoGeoJSONLayer,
           url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
         })
-
         return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
     };
 }
@@ -818,11 +817,26 @@ if (isOnline == true) {
 //to only load carto layer once the credentials have been loaded from the server xhr2
 var findCartoCredential = setInterval(function() {
     if (isOnline == true && cartousername != null) {
+      sqlQuery = "SELECT cartodb_id, the_geom, datetime, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring FROM lumblu";
+
         clearInterval(findCartoCredential);
         getGeoJSON();
     }
     return cartousername
 }, 100)
+
+//function to activate carto layer once feature has been submitted successfully. It's fired when the share-world button is clicked
+var postSuccess = function(){
+  if(pURL[0] == 'I'){
+    console.log('success post')
+
+    setTimeout(function(){
+      document.getElementById('myLayerButton').click()
+      document.getElementById('myLayerButton').click()
+      document.getElementById('myLayerButton').click()
+    },1500) //this needs to be improved, i.e. carto layer is shown when it's ready
+  }
+}
 
 // Send data to  PHP using a jQuery Post method
 var submitToProxy = function(q) {
@@ -830,15 +844,16 @@ var submitToProxy = function(q) {
         qurl: q,
         // geojson:data,
         cache: false,
-        timeStamp: new Date().getTime()
-    }, function(data) {
+        timeStamp: new Date().getTime(),
+        success:postSuccess()
     });
 };
+var pURL
 //this function is called both when feature is deleted or feature is created and sent.
 function setData() {
     //console.log("setdata function called");
     if (cartoIdFeatureSelected != null && created == false) { //TO DELETE THE SELECTED FEATURE FROM THE CARTO DB
-        var pURL = "DELETE FROM lumblu WHERE cartodb_id='" + cartoIdFeatureSelected + "'";
+        pURL = "DELETE FROM lumblu WHERE cartodb_id='" + cartoIdFeatureSelected + "'";
         cartoIdFeatureSelected = null
     } else { //TO INSERT THE CREATED FEATURE INTO THE CARTO DB
         dataGeometry = data.features[0].geometry
@@ -849,12 +864,13 @@ function setData() {
         var sql = "INSERT INTO lumblu (the_geom, datetime, randomid, landuses, landusesemoji, audioavailable, areapolygon, lengthline, timespent, distance, geometrystring, screensize) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
         var sql2 = dataGeometryString;
         var sql3 = "'),4326),'" + dateTime + "','" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + audioAvailable + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "')";
-        var pURL = sql + sql2 + sql3;
+        pURL = sql + sql2 + sql3;
     }
 
     ////console.log(pURL)
     submitToProxy(pURL);
     //console.log("Feature has been submitted to the Proxy");
+    return pURL
 };
 
 //to delete feature
@@ -1406,7 +1422,6 @@ if (isIOS == true) {
     var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; style="margin-left:-5px" > ';
     var iconRANDOM = '<img src="images/gps.png" width=40px; height=40px; style="margin-left:-5px" > ';
 
-
 } else {
     var iconGPS = '<img src="images/gps.png" width=40px; height=40px; style="margin-left:-1px" > ';
     var iconOSM = '<img src="images/osm.png" width=40px; height=40px; style="margin-left:-1px" > ';
@@ -1415,8 +1430,6 @@ if (isIOS == true) {
     var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; style="margin-left:-1px"> ';
     var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; style="margin-left:-1px" > ';
     var iconRANDOM = '<img src="images/gps.png" width=40px; height=40px; style="margin-left:-1px" > ';
-
-
 }
 
 var osm_Button = L.easyButton({
@@ -1510,7 +1523,7 @@ var planet_Button = L.easyButton({
         onClick: function(btn, map) {
             /////////////////////// to load planet tiles manually  /////////////
 
-          {
+
             var planetS6 = L.tileLayer("https://{s}.planet.com/data/v1/PSScene4Band/20200411_104056_53_105e/{z}/{x}/{y}.png?api_key=" + planetKey + "", {
                 maxZoom: 18,
                 maxNativeZoom: 20,
@@ -1616,9 +1629,8 @@ var planet_Button = L.easyButton({
                 maxNativeZoom: 20,
                 subdomains: ['tiles0', 'tiles1', 'tiles2', 'tiles3'],
             });
-          } //Planet individual tiles
-          {
-        //  planet = L.layerGroup([planetS6, planetS7, planetS8, planetS9, planetS10, planetS11, planetS12, planetS13, planetS14, planetS15, planetS16, planetS17, planetS18, planetS19, planetS20, planetS21, planetS22, planetS23, planetS24]);
+
+            //  planet = L.layerGroup([planetS6, planetS7, planetS8, planetS9, planetS10, planetS11, planetS12, planetS13, planetS14, planetS15, planetS16, planetS17, planetS18, planetS19, planetS20, planetS21, planetS22, planetS23, planetS24]);
 
             ////////////////// Sentinel-hub (level 2 chosen as it allow any zoom level) ////////////////
             // wmsSentinel2 = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelKey + "?REQUEST=GetMap&PREVIEW=2", {
@@ -1627,7 +1639,7 @@ var planet_Button = L.easyButton({
             // });
 
           //  wmsSentinel2 = L.tileLayer.wms('https://tiles0.planet.com/basemaps/v1/planet-tiles/global_monthly_2016_05_mosaic/gmap/0/0/0.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a')
-          } // Sentinel Basemap
+
           planetScopeMonthlyMosaic = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_09_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
             attribution: 'PlanetScope Imagery  Sept 2020'
             })
@@ -1688,6 +1700,7 @@ var myLayer_Button = L.easyButton({
         //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn, map) {
+
             //  deflated.removeFrom(map)
             // whichLayerIsOn = 'deflated'
             if (whichLayerIsOn == 'deflated' && localStorageLayer != null) {
@@ -1744,7 +1757,7 @@ var myLayer_Button = L.easyButton({
                  if (featureSent == true) { //to update the carto layer with recently created feature.
                    //to avoid reload, deflated is emptied>last element of the table (works fine in minor trafic) added to deflatet when getgeojson() is called>deflated added to the map
                 //  cartoGeometries.removeFrom(deflated)
-                  sqlQuery = "SELECT * FROM lumblu ORDER BY cartodb_id DESC LIMIT 1"
+                  sqlQuery = "SELECT cartodb_id, the_geom, datetime, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring FROM lumblu ORDER BY cartodb_id DESC LIMIT 1"
                   getGeoJSON()
                   deflated.addTo(map)
 
@@ -1756,10 +1769,6 @@ var myLayer_Button = L.easyButton({
                   deflated.addTo(map)
 
                 }
-                // sqlQuery = "SELECT * FROM lumblu ORDER BY cartodb_id DESC LIMIT 1"
-                // getGeoJSON()
-              //  deflated.addTo(map)
-
                 myLayer_Button.button.style.backgroundColor = 'black'
                 filter_Button.button.style.opacity = '1';
                 filter_Button.button.disabled = false;
@@ -1890,7 +1899,7 @@ document.getElementById("applyFilter").onclick = function(e) {
     } catch (err) {
       console.log('error sql catched due to empty layer after filter applied')
     }
-    var sqlQueryWithoutCondition = "SELECT * FROM lumblu WHERE landusesemoji LIKE '";
+    var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, datetime, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring FROM lumblu WHERE landusesemoji LIKE '";
     var sqlCondition = boxContentFiltering +"'";
     sqlQuery = sqlQueryWithoutCondition + sqlCondition
     getGeoJSON()
@@ -1911,7 +1920,7 @@ document.getElementById("clearFilter").onclick = function(e) {
     console.log('error sql catched due to empty layer after filter applied  ')
 
   }
-  sqlQuery = "SELECT * FROM lumblu"
+  sqlQuery = "SELECT cartodb_id, the_geom, datetime, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring FROM lumblu"
   getGeoJSON()
 //  deflated.addTo(map)
   filterApplied = false
@@ -2007,7 +2016,15 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
         locationFound = true
         //once the position has been found, we stop checking if the user deactivates again (the position will be recorded anyway)
         if (accuracy <= 50) {
+
             gps_Button.button.style.backgroundColor = 'green';
+            //to change the icon of the Easybutton based on accuracy... (first gif then static image)
+            document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" width=40px; height=40px; style="margin-left:-1px" > '
+
+            var gpsIconIntermitent = setTimeout(function() {
+              document.getElementById('gps').innerHTML = '<img src="images/gps.png" width=40px; height=40px; style="margin-left:-1px" > '
+            },6400) // time required for three repetitions of the gif
+
             clearInterval(refreshGPSbutton) //stop searching once accuracy <50
             L.marker(currentLocation, {
                 icon: gpsIcon,
@@ -2015,7 +2032,9 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
             }).addTo(map);
 
         } else if (accuracy > 50 && accuracy <= 250) {
+
             gps_Button.button.style.backgroundColor = 'yellow';
+            document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" width=40px; height=40px; style="margin-left:-1px" > '
             //if accuracy >50, keep searching
             try {
                 navigator.geolocation.watchPosition(findBuffer);
@@ -2036,7 +2055,10 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
             }
 
         } else if (accuracy > 250) {
+
             gps_Button.button.style.backgroundColor = 'orange';
+            document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" width=40px; height=40px; style="margin-left:-1px" > '
+
             try {
                 navigator.geolocation.watchPosition(findBuffer);
                 ////console.log(currentLocation[0])
@@ -2056,6 +2078,10 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
         }
     } else {
         gps_Button.button.style.backgroundColor = 'red';
+        document.getElementById('gps').innerHTML = '<img src="images/gpsOff.png" width=40px; height=40px; style="margin-left:-1px" > '
+
+        console.log('red')
+
         try {
             navigator.geolocation.watchPosition(findBuffer);
         } catch (err) {
@@ -2100,12 +2126,15 @@ var gps_Button = L.easyButton({
 
 
                 if (accuracy <= 50) {
-                    gps_Button.button.style.backgroundColor = 'green';
+                  //  gps_Button.button.style.backgroundColor = 'green';
+                  //  gps_Button.button.src = 'images/gpsSearching.gif';
                     map.setView(currentLocation, 15);
                     //console.log(currentLocation)
 
                 } else if (accuracy > 50 && accuracy <= 250) {
-                    gps_Button.button.style.backgroundColor = 'yellow';
+                  //  gps_Button.button.style.backgroundColor = 'yellow';
+                //    gps_Button.button.src = 'images/gpsSearching.gif';
+
                     //set view based on circle radius
                     circleLT250.addTo(map);
                     map.fitBounds(circleLT250.getBounds());
@@ -2114,7 +2143,9 @@ var gps_Button = L.easyButton({
                     }, 200);
 
                 } else if (accuracy > 250) {
-                    gps_Button.button.style.backgroundColor = 'orange';
+                  //  gps_Button.button.style.backgroundColor = 'orange';
+                  //  gps_Button.button.src = 'images/gpsSearching.gif';
+
                     //  setTimeout(function(){circleGT250.addTo(map)}, 200);
                     circleGT250.addTo(map); //the layer must be added before the getbounds is fired, then the layer is removed
                     map.fitBounds(circleGT250.getBounds());
@@ -2124,7 +2155,13 @@ var gps_Button = L.easyButton({
                 }
             }
             if (currentLocation[0] == null) {
-                gps_Button.button.style.backgroundColor = 'red';
+                //gps_Button.button.style.backgroundColor = 'red';
+                document.getElementById('gps').src = 'images/gpsOff.png'
+                try{
+                  navigator.geolocation.watchPosition(findBuffer);
+                }catch(e){}
+
+
             }
         }
     }]
@@ -2134,6 +2171,7 @@ gps_Button.button.style.width = '50px';
 gps_Button.button.style.height = '50px';
 gps_Button.button.style.transitionDuration = '.3s';
 gps_Button.button.style.backgroundColor = 'white';
+
 gps_Button.addTo(map);
 
 var rose = L.control.rose('rose', {
@@ -3361,6 +3399,10 @@ if (isIOS == false) {
 } else {
     timeOfVideo = 3400
 }
+if (isOnline == false){ // to disable send button if offline
+  document.getElementById('shareWorldButton').style.opacity = '0.2';
+  document.getElementById('shareWorldButton').disabled = 'true';
+}
 
 document.getElementById('shareWorldButton').onclick = function(e) {
   //first, we define the variables that store the attributes
@@ -3442,19 +3484,14 @@ document.getElementById('shareWorldButton').onclick = function(e) {
         //Call the setData() function!!! to post data to database
         setData();
 
-      //  finalLayer is added at the end as the properties are different depending on if share or download
-        finalLayer = L.geoJSON(data, {
-            style: function(feature) {
-                return feature.properties && feature.properties.style;
-            },
-            color: '#0CACDF',
-            onEachFeature: onEachFeature,
-        }).addTo(map);
-
-        // sqlQuery = "SELECT * FROM lumblu ORDER BY cartodb_id DESC LIMIT 1"
-        // getGeoJSON()
-        // cartoGeometries.addTo(deflated)
-      //  deflated.addTo(map)
+      //  finalLayer is added at the end as the properties are different depending on if share or download. Note that even if addto(map) is disable, still added!!
+        // finalLayer = L.geoJSON(data, {
+        //     style: function(feature) {
+        //         return feature.properties && feature.properties.style;
+        //     },
+        //     color: '#0CACDF',
+        //     onEachFeature: onEachFeature,
+        // })//.addTo(map);
 
     }, timeOfVideo);
 
@@ -3472,7 +3509,7 @@ document.getElementById('shareWorldButton').onclick = function(e) {
       try{
         localStorageLayer.removeFrom(map)
       }catch(err){}
-      deflated.addTo(map)
+      //deflated.addTo(map)
       // if (cartoLoaded == true) {
       //
       //     cartoGeometries.addTo(deflated)
@@ -3487,6 +3524,8 @@ document.getElementById('shareWorldButton').onclick = function(e) {
     finalAreaHa2Decimals = null
     finalLength2Decimals = null
     timeStart = new Date(); // to reset time start in case more contributions in this session
+
+
     return featureSent &&  finalAreaHa2Decimals &&  finalLength2Decimals && timeStart
   }else {
     alert('🛑 You are offline')
