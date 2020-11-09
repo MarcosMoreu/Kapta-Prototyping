@@ -37,6 +37,30 @@ var isIOS = /iPad|iPhone|iPod|Mac OS X/.test(navigator.userAgent) && !window.MSS
 var isOnline = navigator.onLine
 var isOnlineGlobal = isOnline
 
+//to check if offline so some elements can be disabled
+var checkIfOffline = setInterval(function() {
+  isOnline = navigator.onLine
+  if(isOnline == false){
+    document.getElementById('shareWorldButton').style.opacity = '0.2';
+    document.getElementById('shareWorldButton').disabled = 'true';
+    filter_Button.button.style.opacity = '0.4';
+    filter_Button.button.disabled = true;
+    filter_Button.button.style.opacity = '0.4';
+    filter_Button.button.disabled = true;
+    myLayer_Button.button.style.backgroundColor = 'grey';
+
+    deflated.removeFrom(map)
+    console.log('isonline= ', isOnline)
+    //clearInterval(checkIfOffline)
+    inOnline = false
+  }else{
+    isOnline = true
+    //console.log('isonline= ', isOnline)
+
+  }
+ return isOnline
+},3000)
+
 // //console.log('isChrome  '+ isChrome)
 //console.log(navigator.onLine)
 //console.log(navigator.appVersion)
@@ -558,8 +582,13 @@ var filterIsOn = false
 var selectedFeature
 
 var template = document.getElementById('popup')
+var getTotalFeaturesInDB
 
 var cartoGeoJSONLayer = function(data) {
+    getTotalFeaturesInDB = data.features.length
+  //  console.log('cartolayer',data)
+    //console.log('cartolayersize ',getTotalFeaturesInDB)
+
     cartoLoaded = true;
     cartoGeometries = L.geoJson(data, {
         cache:false,
@@ -774,7 +803,7 @@ var cartoGeoJSONLayer = function(data) {
                           clickCountDeleteButton = 0
                           map.closePopup();
                           if(selectedFeature && selectedFeature != null){ //second condition to avoid click when backDeletefeature... not best solution but works
-                          document.getElementById("backDeleteFeature").click()
+                          document.getElementById("backDeleteFeature").click() // !!!!!!!!
                           }
 
                       })
@@ -787,7 +816,7 @@ var cartoGeoJSONLayer = function(data) {
                           map.closePopup();
 
                           if(selectedFeature && selectedFeature != null){ //second condition to avoid click when backDeletefeature... not best solution but works
-                            document.getElementById("backDeleteFeature").click()
+                            document.getElementById("backDeleteFeature").click() //!!!!!!!!
                           }
                       })
 
@@ -804,7 +833,7 @@ var cartoGeoJSONLayer = function(data) {
   }catch(err){
     console.log('error sql catched due to empty layer after filter applied')
   }
-  return cartoGeometries
+  return cartoGeometries && getTotalFeaturesInDB
 };//...CARTO layer
 
 
@@ -837,16 +866,30 @@ var findCartoCredential = setInterval(function() {
 //function to activate carto layer once feature has been submitted successfully. It's fired when the share-world button is clicked
 var postSuccess = function(){
   if(pURL[0] == 'I'){ // to refer to Insert (I), not Delete!
-    console.log('success post')
 
-    setTimeout(function(){
-      document.getElementById('myLayerButton').click()
-      document.getElementById('myLayerButton').click()
-      if(localStorageLayer != null){  // because first time app is used mylayer_button has only two positions (local storage is empty)
-        document.getElementById('myLayerButton').click()
-      }
-    },1000) //this needs to be improved, i.e. carto layer is shown when it's ready
-  }
+      //interval to check if #rows in carto layers after sent has incremented compared to when carto layer is loaded initially
+      var intervalCheckAndAddNewDeflated = setInterval(function(){
+          //function  to check number of items in cartodb after GET request
+            var getTotalFeaturesInDBAfterSent;
+            var countRowsInDB = function(data){
+              getTotalFeaturesInDBAfterSent = data.rows[0].count //to count the number of rows in the array returned
+
+              if(getTotalFeaturesInDBAfterSent != getTotalFeaturesInDB){ //if it's equal then we refresh (click layers button) until is different, then query SELECT last
+                document.getElementById('myLayerButton').click()
+                document.getElementById('myLayerButton').click()
+                if(localStorageLayer != null){document.getElementById('myLayerButton').click()}   // because first time app is used mylayer_button has only two positions (local storage is empty)
+              clearInterval(intervalCheckAndAddNewDeflated)
+              }
+            }
+            //request to check when feature has reached the DB
+            $.get({
+              cache:false,
+              success:countRowsInDB,// if success the function above is called
+              url:"https://" + cartousername + ".cartodb.com/api/v2/sql?q=" + "SELECT COUNT(cartodb_id) FROM lumblu" + cartoapiSELECT
+            })
+
+       },500)
+   }
 }
 
 // Send data to  PHP using a jQuery Post method
@@ -916,6 +959,7 @@ document.getElementById("backDeleteFeature").onclick = function() {
     myLayer_Button.button.disabled = false;
     filter_Button.button.style.opacity = '1';
     filter_Button.button.disabled = false;
+    filter_Button.button.style.backgroundColor = 'black';
 
     try { //sometimes this fails
       if (selectedFeature.feature.geometry.type != 'Point') {
@@ -1741,17 +1785,6 @@ var myLayer_Button = L.easyButton({
                 filter_Button.button.style.opacity = '0.4';
                 filter_Button.button.disabled = true;
 
-                // filter_Button.button.style.backgroundColor = 'black';
-                // document.getElementById("clearFilter").style.display = "none";
-                // document.getElementById("applyFilter").style.display = "none";
-                // document.getElementById("classification").style.display = "none";
-                // document.getElementById("emoji").style.display = "none";
-                // document.getElementById("tutorial").style.display = "initial";
-                // document.getElementById("polygon").style.display = "initial";
-                // document.getElementById("polyline").style.display = "initial";
-                // document.getElementById("point").style.display = "initial";
-
-
             } else if (whichLayerIsOn == 'deflated' && localStorageLayer == null) { // to avoid three click when localstorage is limited on first load
                 whichLayerIsOn = 'none'
                 deflated.removeFrom(map)
@@ -1771,34 +1804,30 @@ var myLayer_Button = L.easyButton({
                 filter_Button.button.style.opacity = '0.4';
                 filter_Button.button.disabled = true;
 
-
             } else if (whichLayerIsOn == 'none') {
                 whichLayerIsOn = 'deflated'
                 if (finalLayer != null) {
                     finalLayer.removeFrom(map)
                 }
+                if(isOnline == false){
+                  myLayer_Button.button.style.backgroundColor = 'white'
+                  filter_Button.button.style.opacity = '0.4';
+                  filter_Button.button.disabled = true;
+                  }else{
+                    deflated.addTo(map);
+                    myLayer_Button.button.style.backgroundColor = 'black'
+                    filter_Button.button.style.opacity = '1';
+                    filter_Button.button.disabled = false;
+                  }
 
+               if (featureSent == true) { //to update the carto layer with recently created feature. This is fired after DB update has been checked
 
-                 if (featureSent == true) { //to update the carto layer with recently created feature.
-                   //to avoid reload, deflated is emptied>last element of the table (works fine in minor trafic) added to deflatet when getgeojson() is called>deflated added to the map
-                //  cartoGeometries.removeFrom(deflated)
                   sqlQuery = "SELECT cartodb_id, the_geom, datetime, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring FROM lumblu ORDER BY cartodb_id DESC LIMIT 1"
                   getGeoJSON()
-                  deflated.addTo(map)
-
-                   // location.reload(true); // set to true to force a hard reload
-                   // getGeoJSON() //call the layer before reload so it is updated ( shouldn't be needed but...)
-                    featureSent = false
-                }
-                else{
-                  deflated.addTo(map)
-
-                }
-                myLayer_Button.button.style.backgroundColor = 'black'
-                filter_Button.button.style.opacity = '1';
-                filter_Button.button.disabled = false;
-
+                  featureSent = false
+              }
             }
+          return featureSent
         }
     }]
 }).addTo(map); //always on as there will always be features in the map, even when first load
@@ -2219,7 +2248,7 @@ var clicksRose = 0
 document.getElementById('rose').onclick = function(e){
     clicksRose += 1;
     console.log(clicksRose)
-  if(clicksRose == 7){
+  if(clicksRose == 10){
     offlineControlGoogle.addTo(map);
     offlineControlOSM.addTo(map);
     clicksRose = 0;
@@ -3452,6 +3481,7 @@ if (isIOS == false) {
 if (isOnline == false){ // to disable send button if offline
   document.getElementById('shareWorldButton').style.opacity = '0.2';
   document.getElementById('shareWorldButton').disabled = 'true';
+
 }
 
 document.getElementById('shareWorldButton').onclick = function(e) {

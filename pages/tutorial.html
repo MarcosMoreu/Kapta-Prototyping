@@ -28,25 +28,25 @@
 </div>
 
 <div id='drop' >
-  <button id='dropDown' class='buttonsFirstLastScreenTop' style='display:none;position: absolute;left: 25px;top:25px;height:30px;border:none; background:black;border-radius: 5px;'>
-    <img id='imageDropDown' src="../images/burger.png" loading="lazy" style='width:22px ; height:17px;'>
+  <button id='dropDown' class='buttonsDropDown' style='display:none;outline:none;position: absolute;left: 25px;top:25px;height:30px;border:none; background:black;border-radius: 5px;'>
+    <img id='imageDropDown' src="../images/burger.png" loading="lazy" style='width:22px ; height:17px;margin-top:2px'>
   </button>
 </div>
 
 <div id='customise' >
-  <button id='cutomiseButton' class='buttonsFirstLastScreenTop' style='display:none;position: absolute;left: 85px;top:25px;height:30px;border:none; background:black;border-radius: 5px;color:grey;text-decoration: underline;font-size:10; font-family: Ubuntu;'>
+  <button id='cutomiseButton' class='buttonsDropDown' style='display:none;outline:none;position: absolute;left: 85px;top:25px;height:30px;border:none; background:black;border-radius: 5px;color:grey;text-decoration: underline;font-size:10; font-family: Ubuntu;'>
     Request
   </button>
 </div>
 
 <div id='info' >
-  <button id='infoButton' class='buttonsFirstLastScreenTop' style='display:none;position: absolute;left: 170px;top:25px;height:30px;border:none; background:black;border-radius: 5px;color:grey;text-decoration: underline;font-size:10; font-family: Ubuntu;'>
+  <button id='infoButton' class='buttonsDropDown' style='display:none;outline:none;position: absolute;left: 170px;top:25px;height:30px;border:none; background:black;border-radius: 5px;color:grey;text-decoration: underline;font-size:10; font-family: Ubuntu;'>
     About
   </button>
 </div>
 
 <div id='infoGoBack' >
-  <button id='infoGoBackButton' class='buttonsFirstLastScreenTop' style='display:none;position: absolute;right: calc(50% - 50px);top:25px;height:30px;width:100px;border:none; background:white;border-radius: 5px;'>
+  <button id='infoGoBackButton' class='buttonsGoBack' style='display:none;position: absolute;right: calc(50% - 50px);top:25px;height:30px;width:100px;border:none; background:grey;border-radius: 5px;'>
     <img src="../images/infoGoBack.png" loading="lazy" style='width:15px ; height:15px;margin-top:2px'>
   </button>
 </div>
@@ -165,20 +165,20 @@ transform: scale(0.6);
   /* Lowering the shadow */
 }
 
-.buttonsFirstLastScreenTop {
+.buttonsGoBack {
   outline:none; /* to avoid yellow border when button is clicked*/
   /* cursor: pointer; */
   transition: 0.4s;
   /* box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24); */
 }
 
-.buttonsFirstLastScreenTop:active {
+.buttonsGoBack:active {
 
   transform: translateY(8px);
   transform: scale(0.6);
   outline:none; /* to avoid yellow border when button is clicked*/
-
 }
+
 </style>
 
 <script>
