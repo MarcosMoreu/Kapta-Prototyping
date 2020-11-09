@@ -662,7 +662,7 @@ var cartoGeoJSONLayer = function(data) {
                   var currentZoom = map.getZoom()
                   var geometryString = e.target.feature.properties.geometrystring
                   var geometryStringGeoJSON = L.geoJSON(JSON.parse(geometryString))
-                  console.log(geometryStringGeoJSON)
+                //  console.log(geometryStringGeoJSON)
 
                   map.fitBounds(geometryStringGeoJSON.getBounds());
               }
@@ -836,11 +836,7 @@ var cartoGeoJSONLayer = function(data) {
   return cartoGeometries && getTotalFeaturesInDB
 };//...CARTO layer
 
-
-
 if (isOnline == true) {
-
-
     function getGeoJSON() {
         $.getJSON({
           cache:false,
@@ -1386,54 +1382,6 @@ document.getElementById("deleteFeature").onclick = function() {
     }
     return selectedFeature && clickCountDeleteButton && clickCountDelete
 }
-
-// document.getElementById("deleteFeature").onclick = function() {
-//
-//     map.touchZoom.enable();
-//     map.doubleClickZoom.enable();
-//     map.scrollWheelZoom.enable();
-//     map.dragging.enable();
-//
-//     if (clickCountDeleteButton == 0) {
-//         document.getElementById("deleteFeature").style.backgroundColor = '#F70573';
-//         clickCountDeleteButton = 1
-//     } else {
-//         clickCountDeleteButton = 0
-//         //console.log('feature deleted')
-//
-//         myLayer_Button.button.style.opacity = '1';
-//         myLayer_Button.button.disabled = false
-//         filter_Button.button.style.opacity = '1';
-//         filter_Button.button.disabled = false;
-//
-//         document.getElementById("tutorial").style.display = "initial";
-//         document.getElementById("polygon").style.display = "initial";
-//         document.getElementById("polyline").style.display = "initial";
-//         document.getElementById("point").style.display = "initial";
-//         miniMap.remove()
-//
-//         document.getElementById("backDeleteFeature").style.display = "none";
-//         document.getElementById("shareMessagingApp").style.display = "none";
-//         document.getElementById("commentFeature").style.display = "none";
-//
-//         document.getElementById("deleteFeature").style.display = "none";
-//         document.getElementById("deleteFeature").style.backgroundColor = 'white'
-//         //  document.getElementById("deleteFeature").style.borderColor = 'white'
-//
-//         //to remove feature from geoJSON
-//         deflated.removeLayer(selectedFeature)
-//         selectedFeature = null
-//
-//         //we call the setData() function here to delete from cartodb
-//         setData()
-//     }
-//     return selectedFeature && clickCountDeleteButton && clickCountDelete
-// }
-
-  // document.getElementById("commentFeature").onclick = function() {
-  //   alert('🚧 Edit attribute functionality under development. Available soon.');
-  // }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb, {
@@ -3014,12 +2962,9 @@ function stopAudioAutomatically() {
     }
 }
 
-//console.log(isOnlineGlobal)
-
+var audioButtonClicked = false
 document.getElementById('record').onclick = function(e) {
-    //console.log('clicked manual' + new Date)
-    //console.log(created)
-
+    audioButtonClicked = true
     if (recording == false) {
         document.getElementById('voiceGif').play()
         this.style.backgroundColor = 'yellow';
@@ -3062,7 +3007,7 @@ document.getElementById('record').onclick = function(e) {
     document.getElementById('gum').style.display = 'none';
     document.getElementById('recorded').style.display = 'none';
     document.getElementById('echoCancellation').style.display = 'none';
-    return audioRecorded
+    return audioRecorded && audioButtonClicked
 }
 
 document.getElementById('activatePlay').onclick = function(e) {
@@ -3098,6 +3043,7 @@ document.getElementById('Cancel').onclick = function(e) {
     featureType = 'initial';
     alreadyMovedUp = false;
     audioRecorded = false;
+    audioButtonClicked = false;
     typeOfFeature = null; //to refresh the var
 
     clearInterval(refreshPopup)
@@ -3186,10 +3132,7 @@ if (isIOS == false) {
         for (let i = 1; i < filesLength; i++) { //there will be only 2 files
             //create a storage reference
 
-            //console.log(files[i])
-            //console.log(typeof files[i])
             storage = firebase.storage().ref(files[i].name);
-            //console.log(storage)
             //upload file
             var upload = storage.put(files[i]);
             //update progress bar
@@ -3202,23 +3145,37 @@ if (isIOS == false) {
                     document.getElementById("progress").value = percentage;
                     //console.log(percentage)
                     finalPercentage[i] = percentage
+                    console.log('percentage',percentage)
 
-                    return finalPercentage
+                    return finalPercentage && percentage
                 },
             );
         }
 
-        setTimeout(function() {
             //to send also the geojson file to firebase, then activate this line !!!!!!!!!!
 
             if (recordedBlobs != null) {
-                firebase.storage().ref(files[1].name).getDownloadURL().then(function(url) {
-                    finalUrlAudio = url;
-                    //console.log(url);
-                    return finalUrlAudio
-                })
+              var checkPercentage = setInterval(function(){ // geturl is only fired when percentage is 100
+                if(percentage == 100){
+                  clearInterval(checkPercentage)
+                  //setTimeout(function() {
+                    firebase.storage().ref(files[1].name).getDownloadURL().then(function(url) {
+                        var checkIfAudiotransmitted = setInterval(function(){ //setData() function to send to DB is only fired when the url from firebase is ready
+                          if(url != null){
+                              finalUrlAudio = url;
+                              clearInterval(checkIfAudiotransmitted)
+                              var audioLinkText = ' 🔊 AUDIO';
+                              // var clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
+                              var clickableFinalUrlAudio = finalUrlAudio
+                              audioAvailable = clickableFinalUrlAudio;
+                              setData() //post request when url is available
+                            return finalUrlAudio
+                          }
+                        },50)
+                      })
+                }
+              },50)
             }
-        }, 1000);
     };
 }
 
@@ -3498,6 +3455,7 @@ document.getElementById('shareWorldButton').onclick = function(e) {
     // landUsesEmoji = landUsesEmojiWithKeyword.slice(2,lengthLandUsesEmojiWithKeyword);
 
   if(isOnline == true){
+
     setTimeout(function() {
         document.getElementById('shareWorldButton').style.display = 'none';
         document.getElementById('DownloadButton').style.display = 'none';
@@ -3507,7 +3465,28 @@ document.getElementById('shareWorldButton').onclick = function(e) {
         document.body.style.backgroundColor = "white";
 
         //to fire click event of upload button !!
-        document.getElementById("sendFirebase").click();
+        ////////////////////////////       CARTO - POST DATA      //////////////////////////////////////////
+        //first, we define the variables that store the attributes
+        propertiesGeoJSON = data.features[0].properties
+        //to assign each attribute to a variable, which will be added as columns to the DB
+        landUses = propertiesGeoJSON.landUses;
+        landUsesEmoji = propertiesGeoJSON.landUsesEmoji;
+        areaPolygon = propertiesGeoJSON.areaPolygon;
+        lengthLine = propertiesGeoJSON.lengthLine;
+        dateTime = propertiesGeoJSON.dateTime;
+        timeSpendSeconds = propertiesGeoJSON.timeSpendSeconds;
+        dist_m_Participant_Feature = propertiesGeoJSON.dist_m_Participant_Feature;
+        randomID = propertiesGeoJSON.randomID;
+
+        // include the firebase url (if audio has been recorded)
+        console.log('audioButtonClicked',audioButtonClicked)
+        if (audioButtonClicked == true) {
+          document.getElementById("sendFirebase").click();
+          console.log('sendfirebase clicked')
+        } else { //to not show audio icon when no audio available
+            audioAvailable = '.'
+            setData(); //Call the setDdata() function!!! to post data to database. If audio is available, set data is called in sendfirebase function
+        }
     }, 200)
 
     setTimeout(function() {
@@ -3529,49 +3508,6 @@ document.getElementById('shareWorldButton').onclick = function(e) {
         document.getElementById("polygon").style.display = "initial";
         document.getElementById("polyline").style.display = "initial";
         document.getElementById("point").style.display = "initial";
-
-        ////////////////////////////       CARTO - POST DATA      //////////////////////////////////////////
-        //first, we define the variables that store the attributes
-        propertiesGeoJSON = data.features[0].properties
-        //to assign each attribute to a variable, which will be added as columns to the DB
-       landUses = propertiesGeoJSON.landUses;
-       landUsesEmoji = propertiesGeoJSON.landUsesEmoji;
-        // include the firebase url (if audio has been recorded)
-        if (finalUrlAudio != null) {
-            var audioLinkText = ' 🔊 AUDIO';
-            // var clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
-            var clickableFinalUrlAudio = finalUrlAudio
-
-            audioAvailable = clickableFinalUrlAudio;
-        } else { //to not show audio icon when no audio available
-            audioAvailable = '.'
-        }
-
-        ////console.log(audioAvailable)
-        areaPolygon = propertiesGeoJSON.areaPolygon;
-        ////console.log(areaPolygon)
-        lengthLine = propertiesGeoJSON.lengthLine;
-        ////console.log(lengthLine)
-        dateTime = propertiesGeoJSON.dateTime;
-        ////console.log(dateTime)
-        timeSpendSeconds = propertiesGeoJSON.timeSpendSeconds;
-        ////console.log(timeSpendSeconds)
-        dist_m_Participant_Feature = propertiesGeoJSON.dist_m_Participant_Feature;
-        ////console.log(dist_m_Participant_Feature)
-        randomID = propertiesGeoJSON.randomID;
-        ////console.log(randomID)
-
-        //Call the setData() function!!! to post data to database
-        setData();
-
-      //  finalLayer is added at the end as the properties are different depending on if share or download. Note that even if addto(map) is disable, still added!!
-        // finalLayer = L.geoJSON(data, {
-        //     style: function(feature) {
-        //         return feature.properties && feature.properties.style;
-        //     },
-        //     color: '#0CACDF',
-        //     onEachFeature: onEachFeature,
-        // })//.addTo(map);
 
     }, timeOfVideo);
 
