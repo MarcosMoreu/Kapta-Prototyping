@@ -26,22 +26,30 @@
   <link rel="apple-touch-icon" sizes="167x167" href="apple-touch-icon.png">
 
   <link rel="stylesheet" type="text/css" href="styles/app.css"  >
-  <link async rel="stylesheet" type="text/css" href="scripts/lib/leaflet/leaflet.css" >
-  <link async rel="stylesheet" href="scripts/emojionearea-master/dist/emojionearea.css">
-  <link rel="stylesheet" href="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.css"  >
-  <link rel="stylesheet" href="scripts/lib/leaflet/plugins/L.Control.Rose-master/dist/L.Control.Rose.css" />
-  <!-- <link rel="stylesheet" href='scripts/lib/leaflet/plugins/leaflet-control-topcenter-master/src/leaflet-control-topcenter.css' /> -->
-
-  <link async rel="stylesheet" type="text/css" href="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/leaflet.draw.css"  >
-  <!-- <link rel="stylesheet" href="lib/leaflet/plugins/Leaflet.Basemaps-master/L.Control.Basemaps.css" /> -->
-  <link async rel="stylesheet" href="scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/MarkerCluster.css" >
-  <link async rel="stylesheet" href="scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css" >
   <link rel="text/html" href="pages/tutorial.html">
-  <!-- <link async rel="stylesheet" type="text/json" href="scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/world.json" > -->
+  <link rel="stylesheet" type="text/css" href="scripts/lib/leaflet/leaflet.css" id='leaflet-css' as='style'  >
+  <link  rel="stylesheet" href="scripts/emojionearea-master/dist/emojionearea.css" id='emojionearea-css' as='style' >
+  <link rel="stylesheet" href="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.css" id='easybutton-css' as='style' >
+  <link rel="stylesheet" href="scripts/lib/leaflet/plugins/L.Control.Rose-master/dist/L.Control.Rose.css" id=rose-css as='style' >
+  <link  rel="stylesheet" type="text/css" href="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/leaflet.draw.css"  id='draw-css' as='style' >
+  <link  rel="stylesheet" href="scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/MarkerCluster.css" id='cluster-css' as='style' >
+  <link  rel="stylesheet" href="scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css" id='clusterDefault-css' as='style' >
+
+
+
+  <!-- <link rel="stylesheet" type="text/css" href="styles/app.css"  >
+  <link rel="stylesheet" type="text/css" href="scripts/lib/leaflet/leaflet.css" id='leaflet-css' as='style'  >
+  <link  rel="preload" href="scripts/emojionearea-master/dist/emojionearea.css" id='emojionearea-css' as='style' disabled>
+  <link rel="preload" href="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.css" id='easybutton-css' as='style' disabled>
+  <link rel="preload" href="scripts/lib/leaflet/plugins/L.Control.Rose-master/dist/L.Control.Rose.css" id=rose-css as='style' disabled>
+  <link  rel="preload" type="text/css" href="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/leaflet.draw.css"  id='draw-css' as='style' disabled>
+  <link  rel="preload" href="scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/MarkerCluster.css" id='cluster-css' as='style' disabled>
+  <link  rel="preload" href="scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css" id='clusterDefault-css' as='style' disabled>
+  <link rel="text/html" href="pages/tutorial.html"> -->
 
 </head>
 
-<body >
+<body style='background-color:black' >
 
 <!-- <INPUT id="txtChar" onkeypress="return isNumberKey(event)" type="number" name="txtChar"> -->
   <h1 id='showAreaHa' style='z-index:2;position:absolute;left:75px;display:none;color:yellow;font-size:19px' ></h1>
@@ -60,16 +68,16 @@
 </div>
 
 <div align='center' style='z-index:2; position:relative; margin-top:-90px'  >
-  <button id='tutorial' class='button' aria-label = 'goBack1' style='z-index:3; position:relative;' >
+  <button id='tutorial' class='button' aria-label = 'goBack1' style='display:none;z-index:3; position:relative;' >
     <img  src="images/questionmark.png"  alt="..." style='width:30px ; height:30px'>
   </button>
-  <button id='polygon' class='button' aria-label = 'polygon' style='z-index:3; position:relative;'>
+  <button id='polygon' class='button' aria-label = 'polygon' style='display:none;z-index:3; position:relative;'>
     <img src="images/drawPolygon.png"  alt="..." style='width:30px ; height:30px;margin-left:-2px'>
   </button>
-  <button id='polyline' class='button' aria-label = 'polyline' style='z-index:3; position:relative'>
+  <button id='polyline' class='button' aria-label = 'polyline' style='display:none;z-index:3; position:relative'>
     <img src="images/line.png"  alt="..." style='width:30px ; height:30px'>
   </button>
-  <button id='point' class='button'  aria-label = 'point' style='z-index:3; position:relative'>
+  <button id='point' class='button'  aria-label = 'point' style='display:none;z-index:3; position:relative'>
     <img src="images/point.png"  alt="..." style='width:30px ; height:30px'>
   </button>
   <button id='backDeleteFeature' class='buttonDelete'  aria-label = 'backDeleteFeature' style='display:none;z-index:3; position:relative; '>
@@ -209,7 +217,7 @@
 <div id="modal" class='modal' >
   <form id='pwForm' class="modal-content animate" style='margin-top:100px; width:200px; border-radius:50px'>
 
-    <img src="images/locked.png" alt="..." style='margin-left: calc(50% - 30px);margin-top:10px;width: 60px; height:70px' >
+    <img src="images/locked.png" alt="..." style='margin-left: calc(50% - 30px);margin-top:10px;width: 60px; height:74px' >
 
     <div style='margin-top:10px; text-align:center;'>
       <button id='loginInfo' class='button'style='outline:none;position:relative;margin-right:30px;margin-top:3px; margin-bottom:10px;width:50px ; height:50px; border: 1px solid ; border-color:black; border-radius:50px' >
@@ -247,51 +255,50 @@
 </div>';
 
 <script src="scripts/lib/leaflet/leaflet-src.js"></script>
-<script src="scripts/lib/jquery-3.4.1.min.js"></script>
+<script src="scripts/lib/jquery-3.5.1.min.js"></script>
 <script src="scripts/lib/leaflet/plugins/leaflet.Permalink-master/leaflet.permalink.js"></script>
 <script src="scripts/emojionearea-master/dist/emojionearea.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.draw.js"></script>
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.Draw.Event.js"></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.draw.js" defer></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.Draw.Event.js" defer></script>
 
 <script src="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.js"></script>
 <script src="scripts/lib/leaflet/plugins/localForage-master/dist/localforage.js"></script>
-<script src="scripts/lib/leaflet/plugins/leaflet-offline-master/dist/leaflet-offline.js"></script>
+<script src="scripts/lib/leaflet/plugins/leaflet-offline-master/dist/leaflet-offline.min.js"></script>
 <script src="scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/leaflet.markercluster-src.js"></script>
 <script src="scripts/lib/leaflet/plugins/Leaflet.Deflate-master/dist/L.Deflate.js"></script>
 <script src="scripts/lib/leaflet/plugins/L.Control.Rose-master/dist/L.Control.Rose.js"></script>
 
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.Poly.js"></script>
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.SimpleShape.js"></script>
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.Marker.js"></script>
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Feature.js"></script>
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Polyline.js"></script>
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Polygon.js"></script>
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Marker.js"></script>
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/TouchEvents.js"></script>
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/LatLngUtil.js"></script>
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/GeometryUtil.js"></script>
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/LineUtil.Intersect.js"></script>
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/Polyline.Intersect.js"></script>
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/Polygon.Intersect.js"></script>
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Control.Draw.js"></script>
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Tooltip.js"></script>
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Toolbar.js"></script>
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/DrawToolbar.js"></script>
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/EditToolbar.js"></script>
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Edit.js"></script>
-<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Delete.js"></script>
-<!-- <script src="scripts/lib/leaflet/plugins/leaflet-control-topcenter-master/src/leaflet-control-topcenter.js"></script> -->
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.Poly.js" defer></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.SimpleShape.js"defer></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.Marker.js"defer></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Feature.js"defer></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Polyline.js"defer></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Polygon.js"defer></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Marker.js"defer></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/TouchEvents.js"defer></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/LatLngUtil.js"defer></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/GeometryUtil.js"defer></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/LineUtil.Intersect.js"defer></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/Polyline.Intersect.js"defer></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/Polygon.Intersect.js"defer></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Control.Draw.js"defer></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Tooltip.js"defer></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Toolbar.js"defer></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/DrawToolbar.js"defer></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/EditToolbar.js"defer></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Edit.js"defer></script>
+<script src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Delete.js"defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
 <script src="scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/Control.GlobeMiniMap.js"></script>
 
 
-
+<!-- <script src="scripts/lib/leaflet/plugins/leaflet-control-topcenter-master/src/leaflet-control-topcenter.js"></script> -->
 <script src=".env/publicApiKeys.js"></script>
-<script src="scripts/app.js"></script>
-<script src="scripts/audio.js"></script>
+<script  src="scripts/app.js"></script>
+<script src="scripts/audio.js" defer></script>
 <script src="sw.js"></script>
 
 </body>

@@ -1,4 +1,3 @@
-
 var planetKey;
 //var sentinelKey;
 var firebaseKey;
@@ -262,11 +261,14 @@ var requestPw = function(){
       }
     }
 
+
+
 ////////////////////////////////////////////////////////      first load         /////////////////////////////////////////////////////////////////////////
 var isFirstTime; //var to store if the site is visited for the first time
 //var oneMapCompleted; // to know if in this session this is the first map or not
 
 var firstLoad = function() { //fucntion to determine if the site is visited for first time
+  //$.getScript("lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.Draw.Event.js")
     // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
     if (typeof window.localStorage !== "undefined" && !localStorage.getItem('visited')) {
         // Set visited flag in local storage
@@ -287,6 +289,24 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
 }
 window.onload = firstLoad;
 firstLoad();
+
+// setTimeout(function(){
+//   // document.querySelector("#leaflet-css").removeAttribute('disabled');
+//   document.querySelector("#emojionearea-css").removeAttribute('disabled');
+//   document.querySelector("#easybutton-css").removeAttribute('disabled');
+//   document.querySelector("#rose-css").removeAttribute('disabled');
+//   document.querySelector("#draw-css").removeAttribute('disabled');
+//   document.querySelector("#cluster-css").removeAttribute('disabled');
+//   document.querySelector("#clusterDefault-css").removeAttribute('disabled');
+//
+//
+// },0)
+
+//global timeout
+setTimeout(function(){
+
+
+
 
 //to alert user to use chrome browser (not working yet)
 // var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
@@ -2840,9 +2860,6 @@ var screenwidth = screen.width
 var screenwithWithMargins = screenwidth * 0.3
 var screenheight = screen.height
 var screensize = 'W'+ screenwidth + ' x ' + 'H' + screenheight
-console.log('screenheight ' + screenheight)
-console.log('screenwidth ' + screenwidth)
-console.log(screensize)
 
 var alreadyMovedUp = false;
 var moveMaptoTop = function() {
@@ -3145,7 +3162,6 @@ if (isIOS == false) {
                     document.getElementById("progress").value = percentage;
                     //console.log(percentage)
                     finalPercentage[i] = percentage
-                    console.log('percentage',percentage)
 
                     return finalPercentage && percentage
                 },
@@ -3479,10 +3495,8 @@ document.getElementById('shareWorldButton').onclick = function(e) {
         randomID = propertiesGeoJSON.randomID;
 
         // include the firebase url (if audio has been recorded)
-        console.log('audioButtonClicked',audioButtonClicked)
         if (audioButtonClicked == true) {
           document.getElementById("sendFirebase").click();
-          console.log('sendfirebase clicked')
         } else { //to not show audio icon when no audio available
             audioAvailable = '.'
             setData(); //Call the setDdata() function!!! to post data to database. If audio is available, set data is called in sendfirebase function
@@ -3611,5 +3625,9 @@ document.getElementById('DownloadButton').onclick = function(e) {
     return finished
 }
 // end
+
+},3000)
+
+
 
 //////////////////////    MODAL    /////////////////////
