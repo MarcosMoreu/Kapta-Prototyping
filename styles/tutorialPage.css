@@ -1,0 +1,77 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    overflow:hidden;
+    height: 100%;
+    width: 100%;
+}
+/* html,body {
+
+    overflow: hidden;
+} */
+
+.btn-group button {
+padding: 20px 20px; /* Some padding
+/* cursor: pointer; /* Pointer/hand icon TO AVOID BACKGROUND HIGHLIGHT WHEN CLICK MUST BE INNACTIVE */
+/* text-align: center; */
+text-decoration: none;
+position:relative;
+text-align:center;
+transition: 0.4s;
+/* margin-left:auto;
+margin-right:auto; */
+/* left: 50%; */
+/* width: 200px; */
+
+outline:none; /* to avoid yellow border when button is clicked*/
+/* cursor: pointer; */
+}
+.btn-group button:active{
+outline:none;
+transform: translateY(8px);
+transform: scale(0.6);
+
+}
+
+.buttonsFirstLastScreen {
+  background-color: white; /* Green */
+  text-align: center;
+  text-decoration: none;
+  display: inline;
+  width: 200px;
+  position: fixed;
+  left: 50%;
+  margin-left: -100px;
+  outline:none; /* to avoid yellow border when button is clicked*/
+  /* cursor: pointer; */
+  transition: 0.4s;
+  /* box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24); */
+}
+
+.buttonsFirstLastScreen:active {
+  /* border:2px solid yellow; */
+  /* background-color: grey; */
+  /* box-shadow: 0 5px white; */
+  transform: translateY(8px);
+  transform: scale(0.6);
+  outline:none; /* to avoid yellow border when button is clicked*/
+
+  /* Scaling button to 0.98 to its original size */
+  /* box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); */
+  /* Lowering the shadow */
+}
+
+.buttonsGoBack {
+  outline:none; /* to avoid yellow border when button is clicked*/
+  /* cursor: pointer; */
+  transition: 0.4s;
+  /* box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24); */
+}
+
+.buttonsGoBack:active {
+
+  transform: translateY(8px);
+  transform: scale(0.6);
+  outline:none; /* to avoid yellow border when button is clicked*/
+}
