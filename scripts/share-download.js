@@ -136,7 +136,7 @@ document.getElementById('share-download').onclick = function(e) {
         document.getElementById('activatePlay').style.display = 'none';
         document.getElementById('showAreaHa').style.display = 'none';
         document.getElementById('showAreaAcres').style.display = 'none'
-        document.getElementById('showLength').style.display = 'none'
+        // document.getElementById('showLength').style.display = 'none'
         document.getElementById('emoji').style.display = 'none';
         document.getElementById('shareWorldButton').style.display = 'initial';
         document.getElementById('DownloadButton').style.display = 'initial';
@@ -282,9 +282,10 @@ document.getElementById('shareWorldButton').onclick = function(e) {
         document.getElementById("polyline").style.display = "initial";
         document.getElementById("point").style.display = "initial";
 
-        document.getElementById("alertSent").style.display = 'initial'
+        document.getElementById("Alert").innerHTML = '🚧 If the feature is not appearing, please reload the page'
+        document.getElementById("Alert").style.display = 'initial'
         setTimeout(function(){
-          document.getElementById("alertSent").style.display = 'none'
+          document.getElementById("Alert").style.display = 'none'
         }, 5000)
 
     }, timeOfVideo);

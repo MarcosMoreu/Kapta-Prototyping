@@ -266,9 +266,10 @@ document.getElementById("randomSuggestion").onclick = function() {
     document.getElementById("randomSuggestion").style.borderColor = '#3B96DD'
 
   },500)
-  document.getElementById('imageryAlert').style.display = 'initial'
+  document.getElementById('Alert').innerHTML = '🚧 Under development. Now, popular locations are shown randomly'
+  document.getElementById('Alert').style.display = 'initial'
   setTimeout(function(){
-    document.getElementById('imageryAlert').style.display = 'none'
+    document.getElementById('Alert').style.display = 'none'
   },10000)
 
   var maxValueDeflated = deflated._layers.length

@@ -1,3 +1,5 @@
+//the map is initialised if not first load or when key is clicked
+
 
 document.getElementById('loginInfo').onclick = function(){
   window.location.href = 'pages/tutorial.html';
@@ -11,7 +13,7 @@ document.getElementById('loginKey').onclick = function(e){
   document.getElementById('login').style.display = 'initial';
   initialiseMap() //map initialised but not shown
 
- console.log(loaded)
+ //console.log(loaded)
 //return loaded
 }
 
@@ -20,22 +22,7 @@ setTimeout(function(){
   document.getElementById('loginInfo').disabled = false
   document.getElementById('loginKey').style.opacity = '1'
   document.getElementById('loginKey').disabled = false
-},2500)
-
-
-
-
-// var checkLoaded = setInterval(function(){
-//   if(loaded == true){
-//     console.log('map has been initialised')
-//       initialiseMap() //map initialised but not shown
-//
-//     clearInterval(checkLoaded)
-//
-//   }
-//   return loaded
-// },500)
-
+},2100)
 
 
 var firstLoad = function() { //fucntion to determine if the site is visited for first time
@@ -57,31 +44,14 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
         //   })
         requestPw()
 
-    } else {
+    }else if(!localStorage.getItem('pwCorrect')){  //condition to ensure that if in first load pw was incorrect, pw is requested until correct !!!!!!!!!!!!!!!!!!!!!!!
+
+        console.log('!localStorage.getItem(pwCorrect')
+        requestPw()
+    }else {
       console.log('recognised not first time')
       initialiseMap() //map initialised AND LOADED (no modal)
-      // document.getElementById("map").style.display = "initial";
-      // document.getElementById("tutorial").style.display = "initial";
-      // document.getElementById("polygon").style.display = "initial";
-      // document.getElementById("polyline").style.display = "initial";
-      // document.getElementById("point").style.display = "initial";
-      // document.getElementById("map").style.display = "block";
-      // //addLeafletAttribute()
-      // osm_Button.addTo(map);
-      // myLayer_Button.addTo(map); //always on as there will always be features in the map, even when first load
-      // filter_Button.addTo(map);
-      // googleSat.addTo(map)
-      // scale.addTo(map)
-      // startSearchingLocation()
-
-
         isFirstTime = false;
-        //condition to ensure that if in first load pw was incorrect, pw is requested until correct !!!!!!!!!!!!!!!!!!!!!!!
-        if(!localStorage.getItem('pwCorrect')){
-          console.log('!localStorage.getItem(pwCorrect')
-          requestPw()
-        }
-        //console.log('isFirstTime  '+ isFirstTime)
     }
     return isFirstTime;
 }
@@ -97,61 +67,97 @@ var initialiseMap = function(){
   document.getElementById("cluster-css").disabled = false
   document.getElementById("clusterDefault-css").disabled = false
   // $.getScript( "scripts/app.js" , function(){console.log('script gotten')});
-  function getGeoJSON() {
-      $.getJSON({
-        cache:false,
-        success:cartoGeoJSONLayer,
-        url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
+  var findCartoCredential = setInterval(function() {
+      if (isOnline == true && cartousername != null) {
+        sqlQuery = "SELECT cartodb_id, the_geom, datetime, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring FROM lumblu";
+
+          clearInterval(findCartoCredential);
+          function getGeoJSON() {
+              $.getJSON({
+                cache:false,
+                success:cartoGeoJSONLayer,
+                url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
+              })
+              return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
+          };
+          getGeoJSON();
+      }
+      return cartousername
+  }, 100)
+
+      $.when(
+
+          $.getScript({
+            cache:true,
+            url:'scripts/lib/d3.min.js',
+             success: console.log('d3 fetched')
+          }),
+          $.getScript({
+            cache:true,
+            url:'scripts/lib/topojson.min.js'
+          }),
+          $.getScript({
+            cache:true,
+            url:'scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/Control.GlobeMiniMap.js'
+          }),
+      $.Deferred(function( deferred ){
+          $( deferred.resolve );
       })
-      return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
-  };
+    ).done(function(){
+      console.log('all script loaded')
+      //place your code here, the scripts are all loaded
+      document.getElementById("map").style.display = "initial";
+      document.getElementById("tutorial").style.display = "initial";
+      document.getElementById("polygon").style.display = "initial";
+      document.getElementById("polyline").style.display = "initial";
+      document.getElementById("point").style.display = "initial";
+      document.getElementById("map").style.display = "block";
+      //addLeafletAttribute()
+      osm_Button.addTo(map);
+      myLayer_Button.addTo(map); //always on as there will always be features in the map, even when first load
+      filter_Button.addTo(map);
+      googleSat.addTo(map)
+      scale.addTo(map)
+      gps_Button.addTo(map);
+      var rose = L.control.rose('rose', {
+          position: 'topleft',
+          icon: 'nautical',
+          iSize: 'medium',
+          opacity: 1
+      }).addTo(map)
+      document.getElementById('rose').style.marginBottom = '5px' // to avoid extra margin, visible when offline buttons appear
+      //rose.addTo(map)
+      startSearchingLocation()
+      deflated.addTo(map) // to initialize //////////////////////!!!!!!!!
+      function preload(arrayOfImages) {
+        $(arrayOfImages).each(function(){
+            $('<img/>')[0].src = this;
+            // Alternatively you could use:
+            // (new Image()).src = this;
+        });
+      }
+        // Usage:
+
+        preload([
+            'images/drawPolygon.png','images/line.png','images/point.png',
+            'images/applyFilter.png','images/arrowLeft.png', 'images/arrowRight.png', 'images/backButton.png','images/bin.png','images/binOriginal.png','images/binpost.png',
+            'images/binpre.png','images/burger.png','images/burgerBlack.png','images/cancel.png','images/clearFilter.png','images/commentFeature.png',
+            'images/customise.png','images/dateAll.png','images/dateDay.png','images/dateMonth.png','images/dateWeek.png','images/dateYear.png','images/deleteAllVertex.png',
+            'images/deleteLastVertex.png','images/devicedownload.png','images/download.png','images/editDelete.png','images/filterIcon.png',
+            'images/france.png','images/google.png','images/gps.png','images/gpsOff.png','images/gpsSearching.gif','images/gpsSearchingIOS.gif',
+            'images/info.png','images/infoGoBack.png','images/kenya.png','images/key.png','images/lineDeleteAll.png','images/lineDeleteVertex.png',
+            'images/locked.png','images/man.png','images/marker-icon.png','images/marker-icon-2x.png','images/marker-icon-cian.png','images/markerLine.png',
+            'images/markerLocalStorage.png','images/markerPolygon.png','images/myLayer.png','images/namibia.png','images/nautical.svg','images/osm.png',
+            'images/other.png','images/other1.png','images/planet.png','images/play.png','images/PlusSign.png','images/portugal.png',
+            'images/questionmark.png','images/random.png','images/record.png','images/shareMessagingApps.png','images/shareworld.png','images/spain.png',
+            'images/telegram.png','images/ThumbsUpGreen.png','images/uk.png','images/wechat.png','images/whatsapp.png','images/youtube.png',
+            console.log('images preloaded')
+        ]);
 
 
-
-  $.when(
-
-      $.getScript({
-        cache:true,
-        url:'scripts/lib/d3.min.js',
-         success: console.log('d3 fetched')
-      }),
-      $.getScript({
-        cache:true,
-        url:'scripts/lib/topojson.min.js'
-      }),
-      $.getScript({
-        cache:true,
-        url:'scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/Control.GlobeMiniMap.js'
-      }),
-  $.Deferred(function( deferred ){
-      $( deferred.resolve );
-  })
-).done(function(){
-  console.log('all script loaded')
-  //place your code here, the scripts are all loaded
-  document.getElementById("map").style.display = "initial";
-  document.getElementById("tutorial").style.display = "initial";
-  document.getElementById("polygon").style.display = "initial";
-  document.getElementById("polyline").style.display = "initial";
-  document.getElementById("point").style.display = "initial";
-  document.getElementById("map").style.display = "block";
-  //addLeafletAttribute()
-  osm_Button.addTo(map);
-  myLayer_Button.addTo(map); //always on as there will always be features in the map, even when first load
-  filter_Button.addTo(map);
-  googleSat.addTo(map)
-  scale.addTo(map)
-  gps_Button.addTo(map);
-  rose.addTo(map)
-
-  startSearchingLocation()
-
-
-  // document.getElementById('rose').style.marginBottom = '5px' // to avoid extra margin, visible when offline buttons appear
-  deflated.addTo(map) // to initialize //////////////////////!!!!!!!!
-  done = true
-  return done
-});
+      done = true
+      return done
+    });
 }
 var loaded
 
@@ -188,22 +194,50 @@ var requestPw = function(){
           console.log('done',done)
           // if(done==true){clearInterval(checkDone)}
 
-              if(pwPlaceholder == pocPw && done == true){
+              if(pwPlaceholder == pocPw && done == true){  //map loads after this
                 console.log('both')
 
                 clearInterval(checkPw)
                 clearInterval(checkDone)
-                // loadElements()
-                //runJSDownload()
                 document.getElementById('enteredPw').style.backgroundColor = '#39F70F'
-                setTimeout(function(){
-                    if(done == true){
-                      document.getElementById('modal').style.display='none';
-                      document.getElementById('pwForm').style.display='none';
-                    }
-                },1000)
+                document.getElementById('login').style.display = 'none'
+                document.getElementById('loginInfo').style.opacity = '0.4'
+                document.getElementById('loginInfo').disabled = true
+                document.getElementById('loginKey').style.opacity = '0.4'
+                document.getElementById('loginKey').disabled = true
+                var i = 0;
+                    function move() {
+                      if (i == 0) {
+                        i = 1;
+                        var elem = document.getElementById("myBar");
+                        var width = 1;
+                        var id = setInterval(frame, 35);
+                        function frame() {
+                          if (width >= 100) {
+                            clearInterval(id);
+                            i = 0;
+                            document.getElementById('modal').style.display='none';
+                            document.getElementById('pwForm').style.display='none';
+                            localStorage.setItem('pwCorrect', true);
 
-                localStorage.setItem('pwCorrect', true);
+                          } else {
+                            width++;
+                            elem.style.width = width + "%";
+                          }
+                        }
+                      }
+                    }
+                document.getElementById('myProgress').style.display = 'initial'
+
+                move()
+
+                // setTimeout(function(){
+                //     document.getElementById('modal').style.display='none';
+                //     document.getElementById('pwForm').style.display='none';
+                //
+                // },30000)
+                //
+                // localStorage.setItem('pwCorrect', true);
 
               }else if(pwPlaceholder == pocPw && done ==false){
                 console.log('one')
@@ -224,60 +258,3 @@ var requestPw = function(){
 
     }//login
 }//requesPW
-////////////////////////// login initial modal  ///////////////
-
-//if(localStorage.getItem('pwCorrect')){
-      // console.log('not first visit')
-      // initialiseMap() //map initialised AND loaded because pwcorrect found in LS
-      // // //place your code here, the scripts are all loaded
-  // document.getElementById("map").style.display = "initial";
-  // document.getElementById("tutorial").style.display = "initial";
-  // document.getElementById("polygon").style.display = "initial";
-  // document.getElementById("polyline").style.display = "initial";
-  // document.getElementById("point").style.display = "initial";
-  // document.getElementById("map").style.display = "block";
-  // //addLeafletAttribute()
-  // osm_Button.addTo(map);
-  // myLayer_Button.addTo(map); //always on as there will always be features in the map, even when first load
-  // filter_Button.addTo(map);
-  // googleSat.addTo(map)
-  // scale.addTo(map)
-  // startSearchingLocation()
-
-
-// }else{
-// ////////////////////    login  input    ///////////
-// // var checkDone = setInterval(function(){
-// //   console.log('done',done)
-// //   if(done==true){clearInterval(checkDone)}
-// //   return done
-// //   })
-// requestPw()
-//
-//
-// document.getElementById('loginInfo').onclick = function(){
-//   window.location.href = 'pages/tutorial.html';
-// }
-// document.getElementById('loginKey').onclick = function(e){
-//   e.preventDefault() //to avoid reload
-//   //runJSselectFeature()
-//   document.getElementById('loginKey').style.backgroundColor = '#D5D6D5'
-//   document.getElementById('enteredPw').style.display = 'initial';
-//   document.getElementById('enteredPw').focus() //to open keyboard!!!
-//   document.getElementById('login').style.display = 'initial';
-//   loaded = true
-//   console.log(loaded)
-// return loaded
-// }
-//
-// var checkLoaded = setInterval(function(){
-//   if(loaded == true){
-//     console.log('map has been initialised')
-//       initialiseMap() //map initialised but not shown
-//
-//     clearInterval(checkLoaded)
-//
-//   }
-//   return loaded
-// },500)
-// }

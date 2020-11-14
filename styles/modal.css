@@ -41,8 +41,8 @@
 
 /* Add Zoom Animation */
 .animate {
-  -webkit-animation: animatezoom 2.5s;
-  animation: animatezoom 2.5s
+  -webkit-animation: animatezoom 2s;
+  animation: animatezoom 2s
 }
 
 @-webkit-keyframes animatezoom {
@@ -64,4 +64,46 @@
   .cancelbtn {
      width: 100%;
   }
+}
+/* Full-width input fields */
+input[type=number] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Center the image and position the close button */
+
+.container {
+  margin-left:10px;
+  margin-right:10px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+#myProgress {
+  width: 100%;
+  background-color: red;
+}
+
+#myBar {
+  width: 1%;
+  height: 15px;
+  background-color: #39F70F;
 }

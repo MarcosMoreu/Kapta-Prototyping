@@ -5,8 +5,7 @@
 
 <head>
 
-  <script async src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
-  <script async src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+
 
   <meta charset="UTF-8" >
   <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
@@ -55,15 +54,14 @@
 <!-- <INPUT id="txtChar" onkeypress="return isNumberKey(event)" type="number" name="txtChar"> -->
   <h1 id='showAreaHa' style='z-index:2;position:absolute;left:75px;display:none;color:yellow;font-size:19px' ></h1>
   <h2 id='showAreaAcres' style='z-index:2;position:absolute;left:75px;top:25px;display:none;color:yellow;font-size:19px' ></h2>
-  <h3 id='showLength' style='z-index:2;position:absolute;left:75px;display:none;color:yellow;font-size:19px;font-family:'Ubuntu'' > </h3>
-  <h4 id='imageryAlert' align = 'center' style='z-index:2;position:absolute;left:80px;top:20px;display:none;color:yellow;font-size:15px; width:calc(100% - 180px)'>
-    🚧 For demonstration purposes only. The algorithm to connect land users based on spectral signature, attribute information, region,… will be developed, if appropriate (artificial intelligence ethics and safety) </h4>
-  <h5 id='alertFilterDate' align = 'center' style='z-index:2;position:absolute;left:80px;top:100px;display:none;color:yellow;font-size:16px; width:calc(100% - 160px)'>
+  <!-- <h3 id='showLength' style='z-index:2;position:absolute;left:75px;display:none;color:yellow;font-size:19px;font-family:'Ubuntu'' > </h3> -->
+  <h3 id='Alert' align = 'center' style='z-index:2;position:absolute;left:80px;top:20px;display:none;color:yellow;font-size:15px; width:calc(100% - 180px)'></h4>
+  <!-- <h5 id='alertFilterDate' align = 'center' style='z-index:2;position:absolute;left:80px;top:100px;display:none;color:yellow;font-size:16px; width:calc(100% - 160px)'>
     🚧 Filter by date functionality is under development </h5>
   <h6 id='alertApplyFilter' align = 'center' style='z-index:2;position:absolute;left:80px;top:100px;display:none;color:yellow;font-size:16px; width:calc(100% - 160px)'>
     🚧 Apply filters functionality to be improved (only exact attribute matches at the moment...) </h6>
   <h7 id='alertSent' align = 'center' style='z-index:2;position:absolute;left:80px;top:100px;display:none;color:yellow;font-size:16px; width:calc(100% - 160px)'>
-    🚧 If the feature is not appearing, please reload the page </h7>
+    🚧 If the feature is not appearing, please reload the page </h7> -->
 
 <body style='background-color:black'>
 
@@ -88,10 +86,16 @@
       <input id='enteredPw'  type="number" novalidate value='Validate'oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = '4'
         style='display:none;border-color:grey;background-color: white;color:grey; text-align:center;letter-spacing: 10px;font-size:20px;'placeholder = " ----" required >
       <!-- <img id='gifLoading' src="images/questionmark.png"  alt="..." style=' display:none;width:30px ; height:30px;' > -->
-    </button>
       <button id='login' class='button'style='display:none;outline:none;margin-left:calc(50% - 25px); margin-bottom:10px;width:50px ; height:50px; border: 1px solid ; border-color:white; border-radius:50px' >
         <img src="images/ThumbsUpGreen.png"  alt="..." style=' width:30px ; height:30px;' >
       </button>
+
+      <div id="myProgress" style='display:none;'>
+        <div id="myBar" style='margin-top: 20px; margin-bottom:20px;height:20px; width:30px; border-radius:10px'></div>
+      </div>
+      <br>
+      <!-- <button onclick="move()">Click Me</button>  -->
+
     </div>
   </form>
 </div>
@@ -105,13 +109,13 @@
     <img  src="images/questionmark.png"  alt="..." style='width:30px ; height:30px'>
   </button>
   <button id='polygon' class='button' aria-label = 'polygon' style='display:none;z-index:3; position:relative;'>
-    <img src="images/drawPolygon.png"  alt="..." style='width:30px ; height:30px;margin-left:-2px'>
+    <img src="images/drawPolygon.png"  loading='lazy' alt="..." style='width:30px ; height:30px;margin-left:-2px'>
   </button>
   <button id='polyline' class='button' aria-label = 'polyline' style='display:none;z-index:3; position:relative'>
-    <img src="images/line.png"  alt="..." style='width:30px ; height:30px'>
+    <img src="images/line.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
   </button>
   <button id='point' class='button'  aria-label = 'point' style='display:none;z-index:3; position:relative'>
-    <img src="images/point.png"  alt="..." style='width:30px ; height:30px'>
+    <img src="images/point.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
   </button>
   <button id='backDeleteFeature' class='buttonDelete'  aria-label = 'backDeleteFeature' style='display:none;z-index:3; position:relative; '>
     <img src="images/backButton.png"  loading='lazy' alt="..." style='width:30px ; height:30px'>
@@ -307,7 +311,7 @@
 
 
 <!-- <script src="scripts/lib/leaflet/plugins/leaflet-control-topcenter-master/src/leaflet-control-topcenter.js"></script> -->
-<script  src="scripts/modal.js"></script>
+<script async src="scripts/modal.js"></script>
 
 <script defer src="scripts/app.js"></script>
 
@@ -322,10 +326,12 @@
 <script  defer src="scripts/audioButton.js"></script>
 <script defer src="scripts/share-download.js"></script>
 
+<script defer src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
 <script defer src="scripts/firebaseAudioURL.js"></script>
 <script  defer src="scripts/audio.js"></script>
 
-<script src="sw.js"></script>
+<script defer src="sw.js"></script>
 
 </body>
 

@@ -147,7 +147,7 @@ document.getElementById('point').onclick = function(e) {
     currentZoom = map.getZoom();
     drawMarker.enable();
     setTimeout(function() {
-        document.getElementById('imageryAlert').style.display = 'none'
+        // document.getElementById('imageryAlert').style.display = 'none'
         document.getElementById("tutorial").style.display = "none";
         document.getElementById("polygon").style.display = "none";
         document.getElementById("polyline").style.display = "none";
@@ -201,7 +201,7 @@ document.getElementById('polyline').onclick = function(e) {
     drawPolyline.enable();
 
     setTimeout(function() {
-        document.getElementById('imageryAlert').style.display = 'none';
+        // document.getElementById('imageryAlert').style.display = 'none';
         document.getElementById("tutorial").style.display = "none";
         document.getElementById("polygon").style.display = "none";
         document.getElementById("polyline").style.display = "none";
@@ -254,7 +254,7 @@ document.getElementById('polygon').onclick = function(e) {
     drawPolygon.enable();
 
     setTimeout(function() {
-        document.getElementById('imageryAlert').style.display = 'none'
+        // document.getElementById('imageryAlert').style.display = 'none'
 
         document.getElementById("tutorial").style.display = "none";
         document.getElementById("polygon").style.display = "none";
@@ -456,7 +456,7 @@ map.on('draw:created', function(e) {
         finalLength2Decimals = finalLength.toFixed(2) + ' ' + 'meters'
         //to show the final length on the top
         // document.getElementById('showLength').style.display = 'initial';
-        document.getElementById("showLength").innerHTML = finalLength2Decimals;
+        //document.getElementById("showLength").innerHTML = finalLength2Decimals;
     }
     if (featureType == 'point') {
         //console.log('featuretype    ' + featureType)
@@ -571,7 +571,7 @@ document.getElementById('Cancel').onclick = function(e) {
 
         document.getElementById('showAreaHa').style.display = 'none';
         document.getElementById('showAreaAcres').style.display = 'none';
-        document.getElementById('showLength').style.display = 'none';
+        // document.getElementById('showLength').style.display = 'none';
         document.getElementById('share-download').style.display = 'none';
     }, 200)
 

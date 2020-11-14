@@ -145,37 +145,3 @@ height:20px;  /*  to set the size of  both the emoji in the text box and the pop
 }
 
 a, a:visited, a:hover, a:active {color:grey;text-decoration:none}  /* Selected link   */
-
-
-
-/* Full-width input fields */
-input[type=number] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
-
-/* Center the image and position the close button */
-
-.container {
-  margin-left:10px;
-  margin-right:10px;
-}
-
-span.psw {
-  float: right;
-  padding-top: 16px;
-}

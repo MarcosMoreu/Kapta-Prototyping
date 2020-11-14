@@ -6,9 +6,10 @@
 
 //script for apply filters
 document.getElementById("applyFilter").onclick = function(e) {
-  document.getElementById("alertApplyFilter").style.display = 'initial'
+  document.getElementById('Alert').innerHTML = '🚧 Apply filters functionality to be improved (only exact attribute matches at the moment...)'
+  document.getElementById("Alert").style.display = 'initial'
   setTimeout(function(){
-    document.getElementById("alertApplyFilter").style.display = 'none'
+    document.getElementById("Alert").style.display = 'none'
   }, 5000)
 
 
@@ -57,10 +58,11 @@ document.getElementById("filterByDate").onclick = function(e) {
       img.src = 'images/dateYear.png'
       dateFilterValue = 'Year'
       //alert while on development
-      document.getElementById('alertFilterDate').style.display = 'initial'
+      document.getElementById('Alert').innerHTML = '🚧 Filter by date functionality is under development'
+      document.getElementById("Alert").style.display = 'initial'
       setTimeout(function(){
-        document.getElementById('alertFilterDate').style.display = 'none'
-      },5000)
+        document.getElementById("Alert").style.display = 'none'
+      }, 5000)
 
     }else if (img.src.match("dateYear")) { //1 year
       img.src = 'images/dateMonth.png'
