@@ -1,10 +1,10 @@
 
-var files = [];
-var filesLength;
-var storage;
-var percentage
-var finalPercentage = []
-var finalUrlAudio
+// var files = [];
+// var filesLength;
+// var storage;
+// var percentage
+// var finalPercentage = []
+// var finalUrlAudio
 
 /////sendFirebase script that will be fire when 'Download' is clicked.
 if (isIOS == false) {

@@ -1,12 +1,13 @@
+
 ////////////////////////////////////////////      Download     /////////////////////////////////////////////////////////////////////////////////////////////
-var convertedData;
-var data;
-var dataGeometry;
-var dataGeometry;
-var blob;
-var dateTimeRandomID;
-var timeFinish;
-var diffTimes;
+// var convertedData;
+// var data;
+// var dataGeometry;
+// var dataGeometry;
+// var blob;
+// var dateTimeRandomID;
+// var timeFinish;
+// var diffTimes;
 
 //var runJSDownload = function(){
 
@@ -281,6 +282,11 @@ document.getElementById('shareWorldButton').onclick = function(e) {
         document.getElementById("polyline").style.display = "initial";
         document.getElementById("point").style.display = "initial";
 
+        document.getElementById("alertSent").style.display = 'initial'
+        setTimeout(function(){
+          document.getElementById("alertSent").style.display = 'none'
+        }, 5000)
+
     }, timeOfVideo);
 
       osm_Button.addTo(map)
@@ -382,5 +388,6 @@ document.getElementById('DownloadButton').onclick = function(e) {
 
     return finished
 }
+
 // end
 //}//run JS download code

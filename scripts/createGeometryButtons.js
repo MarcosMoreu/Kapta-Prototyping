@@ -1,4 +1,3 @@
-
 //////////////////////////     LEAFLET DRAW    ///////////////////////////////////////////////
 var drawnItems = new L.FeatureGroup();
 map.addLayer(drawnItems);

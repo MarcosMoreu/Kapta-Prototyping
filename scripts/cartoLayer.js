@@ -1,3 +1,4 @@
+
 var cartoGeoJSONLayer = function(data) {
     getTotalFeaturesInDB = data.features.length
   //  console.log('cartolayer',data)

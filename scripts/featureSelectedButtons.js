@@ -1,6 +1,6 @@
 //to delete feature
-var initialScreen = true;
-var clickCountDeleteButton = 0;
+// var initialScreen = true;
+// var clickCountDeleteButton = 0;
 
 //var runJSselectFeature = function(){
 document.getElementById("backDeleteFeature").onclick = function() {
@@ -24,7 +24,8 @@ document.getElementById("backDeleteFeature").onclick = function() {
     planet_Button.removeFrom(map);
     myLayer_Button.addTo(map);
     filter_Button.addTo(map);
-    miniMap.remove();
+    //removeMiniMap()
+    //miniMap.remove();
 
     gps_Button.button.style.opacity = '1';
     gps_Button.button.disabled = false;
@@ -68,7 +69,8 @@ document.getElementById("backDeleteFeature").onclick = function() {
     document.getElementById("randomSuggestion").style.display = "none";
 
     // document.getElementById("commentFeature").style.display = 'none';
-    miniMap.remove() //removeFrom(map) is not used anymore
+    //removeMiniMap()
+    //miniMap.remove() //removeFrom(map) is not used anymore
 
 
     return selectedFeature && clickCountDeleteButton && cartoIdFeatureSelected
@@ -236,7 +238,8 @@ document.getElementById('backEditDelete').onclick = function(){
 
   map.closePopup();
   try{
-    miniMap.remove()
+    //removeMiniMap()
+    //miniMap.remove()
   }catch(e){}
 
   // map.click.enable();
@@ -294,7 +297,8 @@ document.getElementById("randomSuggestion").onclick = function() {
   // filter_Button.button.disabled = true;
   // filter_Button.button.style.background = 'black'
 
-  miniMap.addTo(map)
+addMiniMap()
+  // miniMap.addTo(map)
   osm_Button.removeFrom(map);
   googleSat_Button.removeFrom(map);
   planet_Button.removeFrom(map);
@@ -303,7 +307,8 @@ document.getElementById("randomSuggestion").onclick = function() {
 
   setTimeout(function(){
     console.log(basemapOn)
-    miniMap.remove()
+      //removeMiniMap()
+    //miniMap.remove()
 
       if(basemapOn == 'googleSat'){
         osm_Button.addTo(map);
@@ -316,7 +321,7 @@ document.getElementById("randomSuggestion").onclick = function() {
       }
       myLayer_Button.addTo(map);
       filter_Button.addTo(map);
-  },3000)
+  },2500)
 
   // document.getElementById("deleteFeature").style.display = "initial";
   // document.getElementById("deleteFeature").style.backgroundColor = 'white';
@@ -370,7 +375,8 @@ document.getElementById("deleteFeature").onclick = function() {
         document.getElementById("polygon").style.display = "initial";
         document.getElementById("polyline").style.display = "initial";
         document.getElementById("point").style.display = "initial";
-        miniMap.remove()
+        //removeMiniMap()
+        //miniMap.remove()
 
         document.getElementById("backDeleteFeature").style.display = "none";
         document.getElementById("deleteFeature").style.display = "none";

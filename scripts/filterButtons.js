@@ -1,5 +1,7 @@
 
 
+
+
 //////////////////////////// actions for bottom-of-screen filtering buttons
 
 //script for apply filters
@@ -48,7 +50,7 @@ document.getElementById("clearFilter").onclick = function(e) {
 
 };
 
-var dateFilterValue; //to apply this value when applyFilter is clicked
+// var dateFilterValue; //to apply this value when applyFilter is clicked
 document.getElementById("filterByDate").onclick = function(e) {
   var img =  document.getElementById("imgFilterByDate")
     if (img.src.match("dateAll")) { //all (infiinite)

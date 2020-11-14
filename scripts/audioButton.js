@@ -1,5 +1,4 @@
 ////////////////////////////         audio          ///////////////////////////////
-
 document.getElementById('noAudioIOS').onclick = function(e) {
 
     if (browserLanguage[0] == 'e' && browserLanguage[1] == 'n') { //english
@@ -44,7 +43,7 @@ function stopAudioAutomatically() {
     }
 }
 
-var audioButtonClicked = false
+// var audioButtonClicked = false
 document.getElementById('record').onclick = function(e) {
     audioButtonClicked = true
     if (recording == false) {
