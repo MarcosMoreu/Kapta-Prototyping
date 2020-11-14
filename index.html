@@ -11,11 +11,11 @@
   <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-  <title>Prototype</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
   <meta name="theme-color" content="#000000"/>
   <meta name="description" content="A mapping Prototype"/>
-
+  <title>Prototype</title>
+  <link rel="canonical" href="https://openchangedetectionmap.org"/>
   <link rel="manifest" href="manifest.json">
   <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
   <link rel="shortcut icon" href="images/icons/icon-96x96.png">
@@ -26,7 +26,7 @@
 
   <link rel="stylesheet" type="text/css" href="styles/modal.css" >
   <link rel="text/html" href="pages/tutorial.html">
-  <link rel="stylesheet" type="text/css" href="styles/app.css" id='app-css' as='style'>
+  <link rel="stylesheet" type="text/css" href="styles/app.css" id='app-css' as='style' disabled>
   <link rel="stylesheet" type="text/css" href="scripts/lib/leaflet/leaflet.css" id='leaflet-css' as='style' disabled >
   <link  rel="stylesheet" href="scripts/emojionearea-master/dist/emojionearea.css" id='emojionearea-css' as='style' disabled>
   <link rel="stylesheet" href="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.css" id='easybutton-css' as='style' disabled>
@@ -56,12 +56,7 @@
   <h2 id='showAreaAcres' style='z-index:2;position:absolute;left:75px;top:25px;display:none;color:yellow;font-size:19px' ></h2>
   <!-- <h3 id='showLength' style='z-index:2;position:absolute;left:75px;display:none;color:yellow;font-size:19px;font-family:'Ubuntu'' > </h3> -->
   <h3 id='Alert' align = 'center' style='z-index:2;position:absolute;left:80px;top:20px;display:none;color:yellow;font-size:15px; width:calc(100% - 180px)'></h4>
-  <!-- <h5 id='alertFilterDate' align = 'center' style='z-index:2;position:absolute;left:80px;top:100px;display:none;color:yellow;font-size:16px; width:calc(100% - 160px)'>
-    🚧 Filter by date functionality is under development </h5>
-  <h6 id='alertApplyFilter' align = 'center' style='z-index:2;position:absolute;left:80px;top:100px;display:none;color:yellow;font-size:16px; width:calc(100% - 160px)'>
-    🚧 Apply filters functionality to be improved (only exact attribute matches at the moment...) </h6>
-  <h7 id='alertSent' align = 'center' style='z-index:2;position:absolute;left:80px;top:100px;display:none;color:yellow;font-size:16px; width:calc(100% - 160px)'>
-    🚧 If the feature is not appearing, please reload the page </h7> -->
+
 
 <body style='background-color:black'>
 
@@ -93,12 +88,15 @@
       <div id="myProgress" style='display:none;'>
         <div id="myBar" style='margin-top: 20px; margin-bottom:20px;height:20px; width:30px; border-radius:10px'></div>
       </div>
-      <br>
-      <!-- <button onclick="move()">Click Me</button>  -->
 
+
+      <div id='textPwScreen' align='center' style='margin-bottom:20px;left:50%;width:100%; color:grey;font-size:12px;font-family:'Ubuntu''>
+      <p>This is a mapping prototype with a <b>temporary</b> password protection.</p>
+      </div>
     </div>
   </form>
 </div>
+
 
 <div id="map" style='height:100%; z-index:1; position:relative;'>
     <div id="rose" style='margin-bottom:80px; margin-left:-8px'> </div>
@@ -267,7 +265,7 @@
 
 </div>';
 
-
+<script src="sw.js"></script>
 
 <!-- <script src="scripts/initial.js"></script> -->
 
@@ -331,7 +329,7 @@
 <script defer src="scripts/firebaseAudioURL.js"></script>
 <script  defer src="scripts/audio.js"></script>
 
-<script defer src="sw.js"></script>
+
 
 </body>
 

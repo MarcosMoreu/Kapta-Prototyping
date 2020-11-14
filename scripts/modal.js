@@ -6,6 +6,9 @@ document.getElementById('loginInfo').onclick = function(){
 }
 document.getElementById('loginKey').onclick = function(e){
   e.preventDefault() //to avoid reload
+
+  document.getElementById('textPwScreen').style.display = 'none';
+
   //runJSselectFeature()
   document.getElementById('loginKey').style.backgroundColor = '#D5D6D5'
   document.getElementById('enteredPw').style.display = 'initial';
@@ -131,7 +134,10 @@ var initialiseMap = function(){
       deflated.addTo(map) // to initialize //////////////////////!!!!!!!!
       function preload(arrayOfImages) {
         $(arrayOfImages).each(function(){
-            $('<img/>')[0].src = this;
+            try{
+                $('<img/>')[0].src = this;
+            }catch(e){console.log('image failed to preload')}
+
             // Alternatively you could use:
             // (new Image()).src = this;
         });
@@ -151,8 +157,29 @@ var initialiseMap = function(){
             'images/other.png','images/other1.png','images/planet.png','images/play.png','images/PlusSign.png','images/portugal.png',
             'images/questionmark.png','images/random.png','images/record.png','images/shareMessagingApps.png','images/shareworld.png','images/spain.png',
             'images/telegram.png','images/ThumbsUpGreen.png','images/uk.png','images/wechat.png','images/whatsapp.png','images/youtube.png',
-            console.log('images preloaded')
+            // console.log('images preloaded')
         ]);
+      // var images = new Array()
+      //       function preload() {
+      //         for (i = 0; i < preload.arguments.length; i++) {
+      //           images[i] = new Image()
+      //           images[i].src = preload.arguments[i]
+      //         }
+      //       }
+      //       preload(
+      //               'images/drawPolygon.png','images/line.png','images/point.png',
+      //               'images/applyFilter.png','images/arrowLeft.png', 'images/arrowRight.png', 'images/backButton.png','images/bin.png','images/binOriginal.png','images/binpost.png',
+      //               'images/binpre.png','images/burger.png','images/burgerBlack.png','images/cancel.png','images/clearFilter.png','images/commentFeature.png',
+      //               'images/customise.png','images/dateAll.png','images/dateDay.png','images/dateMonth.png','images/dateWeek.png','images/dateYear.png','images/deleteAllVertex.png',
+      //               'images/deleteLastVertex.png','images/devicedownload.png','images/download.png','images/editDelete.png','images/filterIcon.png',
+      //               'images/france.png','images/google.png','images/gps.png','images/gpsOff.png','images/gpsSearching.gif','images/gpsSearchingIOS.gif',
+      //               'images/info.png','images/infoGoBack.png','images/kenya.png','images/key.png','images/lineDeleteAll.png','images/lineDeleteVertex.png',
+      //               'images/locked.png','images/man.png','images/marker-icon.png','images/marker-icon-2x.png','images/marker-icon-cian.png','images/markerLine.png',
+      //               'images/markerLocalStorage.png','images/markerPolygon.png','images/myLayer.png','images/namibia.png','images/nautical.svg','images/osm.png',
+      //               'images/other.png','images/other1.png','images/planet.png','images/play.png','images/PlusSign.png','images/portugal.png',
+      //               'images/questionmark.png','images/random.png','images/record.png','images/shareMessagingApps.png','images/shareworld.png','images/spain.png',
+      //               'images/telegram.png','images/ThumbsUpGreen.png','images/uk.png','images/wechat.png','images/whatsapp.png','images/youtube.png',
+      //       )
 
 
       done = true
@@ -200,49 +227,51 @@ var requestPw = function(){
                 clearInterval(checkPw)
                 clearInterval(checkDone)
                 document.getElementById('enteredPw').style.backgroundColor = '#39F70F'
-                document.getElementById('login').style.display = 'none'
-                document.getElementById('loginInfo').style.opacity = '0.4'
-                document.getElementById('loginInfo').disabled = true
-                document.getElementById('loginKey').style.opacity = '0.4'
-                document.getElementById('loginKey').disabled = true
-                var i = 0;
-                    function move() {
-                      if (i == 0) {
-                        i = 1;
-                        var elem = document.getElementById("myBar");
-                        var width = 1;
-                        var id = setInterval(frame, 35);
-                        function frame() {
-                          if (width >= 100) {
-                            clearInterval(id);
-                            i = 0;
-                            document.getElementById('modal').style.display='none';
-                            document.getElementById('pwForm').style.display='none';
-                            localStorage.setItem('pwCorrect', true);
-
-                          } else {
-                            width++;
-                            elem.style.width = width + "%";
-                          }
-                        }
-                      }
-                    }
-                document.getElementById('myProgress').style.display = 'initial'
-
-                move()
-
-                // setTimeout(function(){
-                //     document.getElementById('modal').style.display='none';
-                //     document.getElementById('pwForm').style.display='none';
+                // document.getElementById('login').style.display = 'none'
+                // document.getElementById('loginInfo').style.opacity = '0.4'
+                // document.getElementById('loginInfo').disabled = true
+                // document.getElementById('loginKey').style.opacity = '0.4'
+                // document.getElementById('loginKey').disabled = true
+                // var i = 0;
+                //     function move() {
+                //       if (i == 0) {
+                //         i = 1;
+                //         var elem = document.getElementById("myBar");
+                //         var width = 1;
+                //         var id = setInterval(frame, 35);
+                //         function frame() {
+                //           if (width >= 100) {
+                //             clearInterval(id);
+                //             i = 0;
+                //             document.getElementById('modal').style.display='none';
+                //             document.getElementById('pwForm').style.display='none';
+                //             localStorage.setItem('pwCorrect', true);
                 //
-                // },30000)
+                //           } else {
+                //             width++;
+                //             elem.style.width = width + "%";
+                //           }
+                //         }
+                //       }
+                //     }
+                // document.getElementById('myProgress').style.display = 'initial'
+                //
+                // move()
+                // document.getElementById('enteredPw').style.backgroundColor = 'green'
+
+                setTimeout(function(){
+                    document.getElementById('modal').style.display='none';
+                    document.getElementById('pwForm').style.display='none';
+                    localStorage.setItem('pwCorrect', true);
+
+                },1000)
                 //
                 // localStorage.setItem('pwCorrect', true);
-
-              }else if(pwPlaceholder == pocPw && done ==false){
-                console.log('one')
-
-                document.getElementById('enteredPw').style.backgroundColor = '#39F70F'  /////////////////////////////////////////////////////gif here???
+              //
+              // }else if(pwPlaceholder == pocPw && done ==false){
+              //   console.log('one')
+              //
+              //   document.getElementById('enteredPw').style.backgroundColor = '#39F70F'  /////////////////////////////////////////////////////gif here???
 
               }else{
                 console.log('none')

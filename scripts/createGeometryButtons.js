@@ -4,6 +4,19 @@ map.addLayer(drawnItems);
 var editableLayers = new L.FeatureGroup();
 map.addLayer(editableLayers);
 
+var emojiRequest = function(){
+  $("#emojionearea").emojioneArea({
+      pickerPosition: "top",
+      filtersPosition: "bottom",
+      tones: false,
+      autocomplete: false,
+      inline: false, //text box resizes with text input
+      hidePickerOnBlur: false,
+      search: false,
+      placeholder: "..."
+  });
+}
+
 var editableLayers = new L.FeatureGroup();
 var options = {
     position: 'topright',
@@ -138,6 +151,8 @@ document.getElementById('point').onclick = function(e) {
     gps_Button.button.style.opacity = '0.4';
     gps_Button.button.disabled = true;
 
+    emojiRequest()
+
     if (isIOS == false) {
         recordedBlobs = null; //to empty recorded blobs from previous map in this session
     }
@@ -165,6 +180,8 @@ document.getElementById('polyline').onclick = function(e) {
     filter_Button.button.disabled = true;
     gps_Button.button.style.opacity = '0.4';
     gps_Button.button.disabled = true;
+
+    emojiRequest()
 
     if (isIOS == false) {
         recordedBlobs = null; //to empty recorded blobs from previous map in this session
@@ -219,6 +236,9 @@ document.getElementById('polygon').onclick = function(e) {
       filter_Button.button.disabled = true;
       gps_Button.button.style.opacity = '0.4';
       gps_Button.button.disabled = true;
+
+      emojiRequest()
+
     if (isIOS == false) {
         recordedBlobs = null; //to empty recorded blobs from previous map in this session
     }
@@ -398,7 +418,7 @@ map.on('draw:created', function(e) {
       drawnItems.removeFrom(map); //remove the drawn item as yellow polygon appears
     }catch(err){}
 
-
+    //8888888 this is fetched onload instead, to avoid loading time
     created = true;
     drawPolygon.disable();
 
@@ -509,16 +529,7 @@ map.on('draw:created', function(e) {
 
 });
 
-$("#emojionearea").emojioneArea({
-    pickerPosition: "top",
-    filtersPosition: "bottom",
-    tones: false,
-    autocomplete: false,
-    inline: false, //text box resizes with text input
-    hidePickerOnBlur: false,
-    search: false,
-    placeholder: "..."
-});
+
 var boxContent;
 
 document.getElementById('Cancel').onclick = function(e) {

@@ -298,13 +298,14 @@ document.getElementById("randomSuggestion").onclick = function() {
   // filter_Button.button.disabled = true;
   // filter_Button.button.style.background = 'black'
 
-addMiniMap()
+
   // miniMap.addTo(map)
   osm_Button.removeFrom(map);
   googleSat_Button.removeFrom(map);
   planet_Button.removeFrom(map);
   myLayer_Button.removeFrom(map);
   filter_Button.removeFrom(map);
+  addMiniMap()
 
   setTimeout(function(){
     console.log(basemapOn)

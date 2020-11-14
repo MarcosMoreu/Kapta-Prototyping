@@ -1,3 +1,22 @@
+html,body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    overflow:hidden;
+    font-family:Ubuntu;
+}
+h1,h2,h3,h4,h5{
+  font-family:Ubuntu;
+}
+
+map {
+    position:relative;
+    margin-bottom:100;
+    width: 100%;
+}
+
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */

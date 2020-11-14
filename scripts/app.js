@@ -90,7 +90,7 @@ var checkIfOffline = setInterval(function() {
     filter_Button.button.disabled = true;
     filter_Button.button.style.opacity = '0.4';
     filter_Button.button.disabled = true;
-    myLayer_Button.button.style.backgroundColor = 'grey';
+    myLayer_Button.button.style.backgroundColor = '#43ACF0';
 
     deflated.removeFrom(map)
     console.log('isonline= ', isOnline)
@@ -413,23 +413,24 @@ L.Permalink.setup(map);
 var miniMap
 var addMiniMap = function(){ //the three request must be in the same function!!!!
       $.getScript({
-        cache:true,
+       cache:true,
+        url:'scripts/lib/d3.min.js'
+      }),
+      $.getScript({
+         cache:true,
         url:'scripts/lib/topojson.min.js'
       }),
       $.getScript({
         cache:true,
-        url:'scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/Control.GlobeMiniMap.js'
-      }),
-      $.getScript({
-        cache:true,
-        url:'scripts/lib/d3.min.js',
+        url:'scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/Control.GlobeMiniMap.js',
         success: function(){
             miniMap = new L.Control.GlobeMiniMap(optionsMinimap)//.addTo(map);
+
             miniMap.addTo(map)
 
             setTimeout(function(){
               miniMap.remove()
-            },2300)
+            },2200)
         }
       })
 }
@@ -677,18 +678,18 @@ var clickButtonCount = 0;
 //to set the position of icon in leaflet easybutton based on OS - ios does not center the image. Not optimal...
 if (isIOS == true) {
     var iconGPS = '<img src="images/gps.png" width=40px; height=40px; loading="lazy"style="margin-left:-5px" > ';
-    var iconOSM = '<img src="images/osm.png" width=40px; height=40px; loading="lazy"style="margin-left:-6px" > ';
+    var iconOSM = '<img src="images/osm.png" width=35px; height=35px; loading="lazy"style="margin-left:-6px" > ';
     var iconGOOGLE = '<img src="images/google.png" width=40px; height=40px; loading="lazy"style="margin-left:-6px" > ';
-    var iconPLANET = '<img src="images/planet.png" width=40px; height=40px; loading="lazy" style="margin-left:-6px" > ';
+    var iconPLANET = '<img src="images/google.png" width=35px; height=35px; loading="lazy" style="margin-left:-6px;margin-top:2px" > ';
     var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; loading="lazy"style="margin-left:-6px" > ';
     var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; loading="lazy"style="margin-left:-6px" > ';
     var iconRANDOM = '<img src="images/gps.png" width=40px; height=40px; loading="lazy" style="margin-left:-6px" > ';
 
 } else {
     var iconGPS = '<img src="images/gps.png" width=40px; height=40px; loading="lazy" style="margin-left:-1px" > ';
-    var iconOSM = '<img src="images/osm.png" width=40px; height=40px; loading="lazy" style="margin-left:-1px" > ';
+    var iconOSM = '<img src="images/osm.png" width=40px; height=40px; loading="lazy" style="margin-left:0px;margin-top:2px" > ';
     var iconGOOGLE = '<img src="images/google.png" width=40px; height=40px; loading="lazy" style="margin-left:-1px"> ';
-    var iconPLANET = '<img src="images/planet.png" width=40px; height=40px; loading="lazy" style="margin-left:-1px"> ';
+    var iconPLANET = '<img src="images/google.png" width=35px; height=35px; loading="lazy" style="margin-left:-1px;margin-top:2px"> ';
     var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; loading="lazy" style="margin-left:-1px"> ';
     var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; loading="lazy" style="margin-left:-1px" > ';
     var iconRANDOM = '<img src="images/gps.png" width=40px; height=40px; loading="lazy" style="margin-left:-1px" > ';
@@ -847,7 +848,7 @@ var myLayer_Button = L.easyButton({
                     finalLayer.addTo(map)
                 }
                 whichLayerIsOn = 'localStorage'
-                myLayer_Button.button.style.backgroundColor = 'white';
+                myLayer_Button.button.style.backgroundColor = '#43ACF0';
                 filter_Button.button.style.opacity = '0.4';
                 filter_Button.button.disabled = true;
 
@@ -855,7 +856,7 @@ var myLayer_Button = L.easyButton({
                 whichLayerIsOn = 'none'
                 deflated.removeFrom(map)
 
-                myLayer_Button.button.style.backgroundColor = 'grey'
+                myLayer_Button.button.style.backgroundColor = 'white'
 
             } else if (whichLayerIsOn == 'localStorage') {
                 if (localStorageLayer != null) {
@@ -866,7 +867,7 @@ var myLayer_Button = L.easyButton({
                 if (finalLayer != null) {
                     finalLayer.removeFrom(map)
                 }
-                myLayer_Button.button.style.backgroundColor = 'grey'
+                myLayer_Button.button.style.backgroundColor = 'white'
                 filter_Button.button.style.opacity = '0.4';
                 filter_Button.button.disabled = true;
 
@@ -876,7 +877,7 @@ var myLayer_Button = L.easyButton({
                     finalLayer.removeFrom(map)
                 }
                 if(isOnline == false){
-                  myLayer_Button.button.style.backgroundColor = 'white'
+                  myLayer_Button.button.style.backgroundColor = '#43ACF0'
                   filter_Button.button.style.opacity = '0.4';
                   filter_Button.button.disabled = true;
                   }else{
