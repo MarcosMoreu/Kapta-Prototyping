@@ -79,20 +79,24 @@
     </div>
     <div class="container" >
       <input id='enteredPw'  type="number" novalidate value='Validate'oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = '4'
-        style='display:none;border-color:grey;background-color: white;color:grey; text-align:center;letter-spacing: 10px;font-size:20px;'placeholder = " ----" required >
+        style='display:none;margin-left:4px;border-color:grey;background-color: white;color:grey; text-align:center;letter-spacing: 10px;font-size:20px;'placeholder = " ----" required >
       <!-- <img id='gifLoading' src="images/questionmark.png"  alt="..." style=' display:none;width:30px ; height:30px;' > -->
       <button id='login' class='button'style='display:none;outline:none;margin-left:calc(50% - 25px); margin-bottom:10px;width:50px ; height:50px; border: 1px solid ; border-color:white; border-radius:50px' >
         <img src="images/ThumbsUpGreen.png"  alt="..." style=' width:30px ; height:30px;' >
       </button>
 
-      <div id="myProgress" style='display:none;'>
+      <!-- <div id="myProgress" style='display:none;'>
         <div id="myBar" style='margin-top: 20px; margin-bottom:20px;height:20px; width:30px; border-radius:10px'></div>
-      </div>
+      </div> -->
 
 
+      <!-- <div id='textPwScreen' align='center' style='margin-bottom:20px;left:50%;width:100%; color:grey;font-size:12px;font-family:'Ubuntu''>
+      <p>This is a mapping prototype with a <b>basic, temporary</b> password protection.</p>
+      </div> -->
       <div id='textPwScreen' align='center' style='margin-bottom:20px;left:50%;width:100%; color:grey;font-size:12px;font-family:'Ubuntu''>
-      <p>This is a mapping prototype with a <b>temporary</b> password protection.</p>
+      <p>This is a mapping prototype with a <b>basic and temporary</b> password protection.</p>
       </div>
+
     </div>
   </form>
 </div>

@@ -86,7 +86,7 @@ map {
 }
 /* Full-width input fields */
 input[type=number] {
-  width: 100%;
+  width: 95%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -116,7 +116,7 @@ span.psw {
   padding-top: 16px;
 }
 
-#myProgress {
+/* #myProgress {
   width: 100%;
   background-color: red;
 }
@@ -125,4 +125,4 @@ span.psw {
   width: 1%;
   height: 15px;
   background-color: #39F70F;
-}
+} */

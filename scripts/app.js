@@ -855,7 +855,8 @@ var myLayer_Button = L.easyButton({
             } else if (whichLayerIsOn == 'deflated' && localStorageLayer == null) { // to avoid three click when localstorage is limited on first load
                 whichLayerIsOn = 'none'
                 deflated.removeFrom(map)
-
+                filter_Button.button.style.opacity = '0.4';
+                filter_Button.button.disabled = true;
                 myLayer_Button.button.style.backgroundColor = 'white'
 
             } else if (whichLayerIsOn == 'localStorage') {
@@ -913,6 +914,7 @@ var filter_Button = L.easyButton({
         icon: iconFILTER,
         stateName: 'check-mark',
         onClick: function(btn, map) {
+          emojiRequest()
 
           if(filterIsOn == false){
             filterIsOn = true
@@ -1156,27 +1158,27 @@ var gps_Button = L.easyButton({
             }
             if (currentLocation[0] != null) {
 
-              googleSat_Button.removeFrom(map);
-              osm_Button.removeFrom(map);
-              planet_Button.removeFrom(map);
-              myLayer_Button.removeFrom(map);
-              filter_Button.removeFrom(map);
-              try{
-                addMiniMap()
-                //miniMap.addTo(map)
-              }catch(e){}
-
-                setTimeout(function(){
-                  try{
-                    //removeMiniMap()
-                    //miniMap.remove()
-                  }catch(e){}
-                  osm_Button.addTo(map);
-                  googleSat_Button.removeFrom(map);
-                  planet_Button.removeFrom(map);
-                  myLayer_Button.addTo(map);
-                  filter_Button.addTo(map);
-                },2500)
+              // googleSat_Button.removeFrom(map);
+              // osm_Button.removeFrom(map);
+              // planet_Button.removeFrom(map);
+              // myLayer_Button.removeFrom(map);
+              // filter_Button.removeFrom(map);
+              // try{
+              //   addMiniMap()
+              //   //miniMap.addTo(map)
+              // }catch(e){}
+              //
+              //   setTimeout(function(){
+              //     try{
+              //       //removeMiniMap()
+              //       //miniMap.remove()
+              //     }catch(e){}
+              //     osm_Button.addTo(map);
+              //     googleSat_Button.removeFrom(map);
+              //     planet_Button.removeFrom(map);
+              //     myLayer_Button.addTo(map);
+              //     filter_Button.addTo(map);
+              //   },2500)
 
 
                 if (accuracy <= 50) {

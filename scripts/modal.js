@@ -1,5 +1,11 @@
 //the map is initialised if not first load or when key is clicked
 
+setTimeout(function(){
+  document.getElementById('loginInfo').style.opacity = '1'
+  document.getElementById('loginInfo').disabled = false
+  document.getElementById('loginKey').style.opacity = '1'
+  document.getElementById('loginKey').disabled = false
+},2100)
 
 document.getElementById('loginInfo').onclick = function(){
   window.location.href = 'pages/tutorial.html';
@@ -20,12 +26,7 @@ document.getElementById('loginKey').onclick = function(e){
 //return loaded
 }
 
-setTimeout(function(){
-  document.getElementById('loginInfo').style.opacity = '1'
-  document.getElementById('loginInfo').disabled = false
-  document.getElementById('loginKey').style.opacity = '1'
-  document.getElementById('loginKey').disabled = false
-},2100)
+
 
 
 var firstLoad = function() { //fucntion to determine if the site is visited for first time
@@ -46,6 +47,7 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
         //   return done
         //   })
         requestPw()
+        
 
     }else if(!localStorage.getItem('pwCorrect')){  //condition to ensure that if in first load pw was incorrect, pw is requested until correct !!!!!!!!!!!!!!!!!!!!!!!
 
@@ -129,6 +131,7 @@ var initialiseMap = function(){
           opacity: 1
       }).addTo(map)
       document.getElementById('rose').style.marginBottom = '5px' // to avoid extra margin, visible when offline buttons appear
+      emojiRequest()
       //rose.addTo(map)
       startSearchingLocation()
       deflated.addTo(map) // to initialize //////////////////////!!!!!!!!
