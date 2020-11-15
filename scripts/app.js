@@ -676,23 +676,42 @@ var offlineControlOSM = L.control.offline(osm, tilesDb, {
 var clickButtonCount = 0;
 
 //to set the position of icon in leaflet easybutton based on OS - ios does not center the image. Not optimal...
+// if (isIOS == true) {
+//     var iconGPS = '<img src="images/gps.png" width=40px; height=40px; loading="lazy"style="margin-left:-5px" > ';
+//     var iconOSM = '<img src="images/osm.png" width=35px; height=35px; loading="lazy"style="margin-left:-6px" > ';
+//     var iconGOOGLE = '<img src="images/google.png" width=40px; height=40px; loading="lazy"style="margin-left:-6px" > ';
+//     var iconPLANET = '<img src="images/google.png" width=35px; height=35px; loading="lazy" style="margin-left:-6px;margin-top:2px" > ';
+//     var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; loading="lazy"style="margin-left:-6px" > ';
+//     var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; loading="lazy"style="margin-left:-6px" > ';
+//     var iconRANDOM = '<img src="images/gps.png" width=40px; height=40px; loading="lazy" style="margin-left:-6px" > ';
+//
+// } else {
+//     var iconGPS = '<img src="images/gps.png" width=40px; height=40px; loading="lazy" style="margin-left:-1px" > ';
+//     var iconOSM = '<img src="images/osm.png" width=40px; height=40px; loading="lazy" style="margin-left:0px;margin-top:2px" > ';
+//     var iconGOOGLE = '<img src="images/google.png" width=40px; height=40px; loading="lazy" style="margin-left:-1px"> ';
+//     var iconPLANET = '<img src="images/google.png" width=35px; height=35px; loading="lazy" style="margin-left:-1px;margin-top:2px"> ';
+//     var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; loading="lazy" style="margin-left:-1px"> ';
+//     var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; loading="lazy" style="margin-left:-1px" > ';
+//     var iconRANDOM = '<img src="images/gps.png" width=40px; height=40px; loading="lazy" style="margin-left:-1px" > ';
+// }
+
 if (isIOS == true) {
-    var iconGPS = '<img src="images/gps.png" width=40px; height=40px; loading="lazy"style="margin-left:-5px" > ';
-    var iconOSM = '<img src="images/osm.png" width=35px; height=35px; loading="lazy"style="margin-left:-6px" > ';
-    var iconGOOGLE = '<img src="images/google.png" width=40px; height=40px; loading="lazy"style="margin-left:-6px" > ';
-    var iconPLANET = '<img src="images/google.png" width=35px; height=35px; loading="lazy" style="margin-left:-6px;margin-top:2px" > ';
-    var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; loading="lazy"style="margin-left:-6px" > ';
-    var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; loading="lazy"style="margin-left:-6px" > ';
-    var iconRANDOM = '<img src="images/gps.png" width=40px; height=40px; loading="lazy" style="margin-left:-6px" > ';
+    var iconGPS = '<img src="images/gpsOff.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
+    var iconOSM = '<img src="images/osm.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-top:2px" > ';
+    var iconGOOGLE = '<img src="images/google.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
+    var iconPLANET = '<img src="images/google.png" width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-top:2px" > ';
+    var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px" > ';
+    var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
+    var iconRANDOM = '<img src="images/gps.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
 
 } else {
-    var iconGPS = '<img src="images/gps.png" width=40px; height=40px; loading="lazy" style="margin-left:-1px" > ';
-    var iconOSM = '<img src="images/osm.png" width=40px; height=40px; loading="lazy" style="margin-left:0px;margin-top:2px" > ';
-    var iconGOOGLE = '<img src="images/google.png" width=40px; height=40px; loading="lazy" style="margin-left:-1px"> ';
-    var iconPLANET = '<img src="images/google.png" width=35px; height=35px; loading="lazy" style="margin-left:-1px;margin-top:2px"> ';
-    var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; loading="lazy" style="margin-left:-1px"> ';
-    var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; loading="lazy" style="margin-left:-1px" > ';
-    var iconRANDOM = '<img src="images/gps.png" width=40px; height=40px; loading="lazy" style="margin-left:-1px" > ';
+    var iconGPS = '<img src="images/gpsOff.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;"> ';
+    var iconOSM = '<img src="images/osm.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-top:2px" > ';
+    var iconGOOGLE = '<img src="images/google.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%"> ';
+    var iconPLANET = '<img src="images/google.png" width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-top:2px"> ';
+    var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px" > ';
+    var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
+    var iconRANDOM = '<img src="images/gps.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
 }
 var basemapOn = 'googleSat'
 var osm_Button = L.easyButton({
@@ -1055,16 +1074,16 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
             //to change the icon of the Easybutton based on accuracy... (first gif then static image)
 
             if (isIOS == true) {
-              document.getElementById('gps').innerHTML = '<img src="images/gpsSearchingIOS.gif" width=40px; height=40px; style="margin-left:-5px" > '
+              document.getElementById('gps').innerHTML = '<img src="images/gpsSearchingIOS.gif" text-align="center" width=40px; height=40px;" > '
             }else{
-              document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" width=40px; height=40px; style="margin-left:-1px" > '
+              document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" width=40px; height=40px;" > '
             }
 
             var gpsIconIntermitent = setTimeout(function() {
               if (isIOS == true) {
-                document.getElementById('gps').innerHTML = '<img src="images/gps.png" width=40px; height=40px; style="margin-left:-5px" > '
+                document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" width=40px; height=40px; " > '
               }else{
-                document.getElementById('gps').innerHTML = '<img src="images/gps.png" width=40px; height=40px; style="margin-left:-1px" > '
+                document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" width=40px; height=40px; " > '
               }
             },6400) // time required for three repetitions of the gif
 
@@ -1078,9 +1097,9 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
 
             gps_Button.button.style.backgroundColor = 'yellow';
             if (isIOS == true) {
-              document.getElementById('gps').innerHTML = '<img src="images/gpsSearchingIOS.gif" width=40px; height=40px; style="margin-left:-5px" > '
+              document.getElementById('gps').innerHTML = '<img src="images/gpsSearchingIOS.gif" text-align="center" width=40px; height=40px;" > '
             }else{
-              document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" width=40px; height=40px; style="margin-left:-1px" > '
+              document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" width=40px; height=40px; " > '
             }            //if accuracy >50, keep searching
             try {
                 navigator.geolocation.watchPosition(findBuffer);
@@ -1104,9 +1123,9 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
 
             gps_Button.button.style.backgroundColor = 'orange';
             if (isIOS == true) {
-              document.getElementById('gps').innerHTML = '<img src="images/gpsSearchingIOS.gif" width=40px; height=40px; style="margin-left:-5px" > '
+              document.getElementById('gps').innerHTML = '<img src="images/gpsSearchingIOS.gif" text-align="center" width=40px; height=40px; " > '
             }else{
-              document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" width=40px; height=40px; style="margin-left:-1px" > '
+              document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" width=40px; height=40px; " > '
             }
             try {
                 navigator.geolocation.watchPosition(findBuffer);
@@ -1128,9 +1147,9 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
     } else {
         gps_Button.button.style.backgroundColor = 'red';
         if (isIOS == true) {
-          document.getElementById('gps').innerHTML = '<img src="images/gpsOff.png" width=40px; height=40px; style="margin-left:-5px" > '
+          document.getElementById('gps').innerHTML = '<img src="images/gpsOff.png" text-align="center" width=40px; height=40px; > '
         }else{
-          document.getElementById('gps').innerHTML = '<img src="images/gpsOff.png" width=40px; height=40px; style="margin-left:-1px" > '
+          document.getElementById('gps').innerHTML = '<img src="images/gpsOff.png" text-align="center" width=40px; height=40px; > '
         }
         try {
             navigator.geolocation.watchPosition(findBuffer);
@@ -1226,7 +1245,7 @@ var gps_Button = L.easyButton({
 gps_Button.button.style.width = '50px';
 gps_Button.button.style.height = '50px';
 gps_Button.button.style.transitionDuration = '.3s';
-gps_Button.button.style.backgroundColor = 'white';
+gps_Button.button.style.backgroundColor = 'red';
 //gps_Button.addTo(map);
 
 

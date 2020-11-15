@@ -12,8 +12,15 @@ document.getElementById('loginInfo').onclick = function(){
 }
 document.getElementById('loginKey').onclick = function(e){
   e.preventDefault() //to avoid reload
+  document.getElementById('loginKey').disabled = true
+  document.getElementById('loginKey').style.display = 'none'
+  document.getElementById('loginInfo').style.display = 'none'
+  // setTimeout(function(){
+  //   document.getElementById('loginKey').style.opacity = '1'
+  //   document.getElementById('loginInfo').style.opacity = '1'
+  // },100)
 
-  document.getElementById('textPwScreen').style.display = 'none';
+  // document.getElementById('textPwScreen').style.display = 'initial';
 
   //runJSselectFeature()
   document.getElementById('loginKey').style.backgroundColor = '#D5D6D5'
@@ -47,7 +54,7 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
         //   return done
         //   })
         requestPw()
-        
+
 
     }else if(!localStorage.getItem('pwCorrect')){  //condition to ensure that if in first load pw was incorrect, pw is requested until correct !!!!!!!!!!!!!!!!!!!!!!!
 
@@ -148,7 +155,7 @@ var initialiseMap = function(){
         // Usage:
 
         preload([
-            'images/drawPolygon.png','images/line.png','images/point.png',
+            'images/ThumbsUpGreen.png','images/drawPolygon.png','images/line.png','images/point.png',
             'images/applyFilter.png','images/arrowLeft.png', 'images/arrowRight.png', 'images/backButton.png','images/bin.png','images/binOriginal.png','images/binpost.png',
             'images/binpre.png','images/burger.png','images/burgerBlack.png','images/cancel.png','images/clearFilter.png','images/commentFeature.png',
             'images/customise.png','images/dateAll.png','images/dateDay.png','images/dateMonth.png','images/dateWeek.png','images/dateYear.png','images/deleteAllVertex.png',
@@ -159,7 +166,7 @@ var initialiseMap = function(){
             'images/markerLocalStorage.png','images/markerPolygon.png','images/myLayer.png','images/namibia.png','images/nautical.svg','images/osm.png',
             'images/other.png','images/other1.png','images/planet.png','images/play.png','images/PlusSign.png','images/portugal.png',
             'images/questionmark.png','images/random.png','images/record.png','images/shareMessagingApps.png','images/shareworld.png','images/spain.png',
-            'images/telegram.png','images/ThumbsUpGreen.png','images/uk.png','images/wechat.png','images/whatsapp.png','images/youtube.png',
+            'images/telegram.png','images/uk.png','images/wechat.png','images/whatsapp.png','images/youtube.png',
             // console.log('images preloaded')
         ]);
       // var images = new Array()
