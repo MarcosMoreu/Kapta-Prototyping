@@ -924,7 +924,9 @@ myLayer_Button.button.style.height = '50px';
 myLayer_Button.button.style.transitionDuration = '.3s';
 myLayer_Button.button.style.backgroundColor = 'black';
 //myLayer_Button.addTo(map); //always on as there will always be features in the map, even when first load
-var filterApplied;
+var filterApplied = false;
+var alertAlreadyShown = false
+var startCheckAttrDateContent
 //Button for filtering by attribute
 var filter_Button = L.easyButton({
     id: 'filter',
@@ -935,7 +937,11 @@ var filter_Button = L.easyButton({
         onClick: function(btn, map) {
           emojiRequest()
 
+
           if(filterIsOn == false){
+            startCheckAttrDateContent = setInterval(checkAttrDateContent,300)
+
+
             filterIsOn = true
             myLayer_Button.button.style.opacity = '0.4';
             myLayer_Button.button.disabled = true;
@@ -948,30 +954,49 @@ var filter_Button = L.easyButton({
             document.getElementById("polyline").style.display = "none";
             document.getElementById("point").style.display = "none";
 
-            // document.getElementById("share-download").style.display = "initial";
-            // document.getElementById("share-download").style.opacity = "0.35"; //to disable button until user adds attributes, either with audio or text
-            // document.getElementById("share-download").disabled = true;
-            // document.getElementById("Cancel").style.display = "initial";
+            if(filterApplied == true){
+              document.getElementById("clearFilter").style.opacity = '1'
+              document.getElementById("clearFilter").disabled = false
+            }else{
+              document.getElementById("clearFilter").style.opacity = '0.4'
+              document.getElementById("clearFilter").disabled = true
+            }
             document.getElementById("clearFilter").style.display = "initial";
             document.getElementById("applyFilter").style.display = "initial";
+            document.getElementById("applyFilter").style.opacity = '0.4'
+            document.getElementById("applyFilter").disabled = true
             document.getElementById("filterByDate").style.display = "initial";
             document.getElementById("classification").style.display = "initial";
             document.getElementById("emoji").style.display = "initial";
             document.getElementById("emoji").disabled = false;
             document.getElementById("emoji").style.opacity = '1';
-        }else if(filterIsOn == true){
+
+            if(alertAlreadyShown == false){
+
+              document.getElementById("Alert").style.fontSize = "16px";
+              document.getElementById('Alert').innerHTML = 'Filter by attribute only filters exact matches. 🚧 To be improved '
+              document.getElementById("Alert").style.display = 'initial'
+            setTimeout(function(){
+              document.getElementById("Alert").style.display = 'none'
+            },5000)
+            alertAlreadyShown = true
+            }
+
+        }else{
+            clearInterval(startCheckAttrDateContent)
+
             filterIsOn = false
             myLayer_Button.button.style.opacity = '1';
             myLayer_Button.button.disabled = false;
             filter_Button.button.style.opacity = '1';
             filter_Button.button.disabled = false;
 
-            if(filterApplied == true){
+            if(filterApplied == true){ //to avoid that if dilterby date is all, color is not green
               filter_Button.button.style.backgroundColor = 'green'
 
             }else{
               filter_Button.button.style.backgroundColor = 'black'
-
+              document.getElementById("Alert").style.display = 'none'
             }
 
             document.getElementById("tutorial").style.display = "initial";
@@ -979,10 +1004,6 @@ var filter_Button = L.easyButton({
             document.getElementById("polyline").style.display = "initial";
             document.getElementById("point").style.display = "initial";
 
-            // document.getElementById("share-download").style.display = "initial";
-            // document.getElementById("share-download").style.opacity = "0.35"; //to disable button until user adds attributes, either with audio or text
-            // document.getElementById("share-download").disabled = true;
-            // document.getElementById("Cancel").style.display = "initial";
             document.getElementById("clearFilter").style.display = "none";
             document.getElementById("applyFilter").style.display = "none";
             document.getElementById("filterByDate").style.display = "none";
@@ -990,12 +1011,27 @@ var filter_Button = L.easyButton({
             document.getElementById("emoji").style.display = "none";
         }
 
+        return alertAlreadyShown && filterIsOn
       }
 
     }]
 })
 
 
+var checkAttrDateContent = function(){
+
+  boxContentFiltering = document.getElementsByClassName('emojionearea-editor')[0].innerHTML
+  var img =  document.getElementById("imgFilterByDate")
+
+      if(!(img.src.match("dateAll")) || boxContentFiltering.length != 0){
+        document.getElementById("applyFilter").style.opacity = '1'
+        document.getElementById("applyFilter").disabled = false
+
+      }else{
+        document.getElementById("applyFilter").style.opacity = '0.4'
+        document.getElementById("applyFilter").disabled = true
+      }
+}
 
 filter_Button.button.style.width = '50px';
 filter_Button.button.style.height = '50px';
@@ -1055,7 +1091,7 @@ function findBuffer(position) {
 // if(isFirstTime == true || pageLoaded == true){
 var startSearchingLocation = function(){
 var refreshGPSbutton = setInterval(function() { ///////////////////////////////////////// function to keep searching for gps position
-  console.log('refreshgpsbutton')
+  //console.log('refreshgpsbutton')
   if(localStorage.getItem('pwCorrect')){
 
     try {
