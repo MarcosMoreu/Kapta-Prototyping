@@ -9,8 +9,7 @@ var period = 3650 // by default, all features
 var datePeriodAgoReplaceComaInvert = '2010-1-1'
 //script for apply filters
 document.getElementById("applyFilter").onclick = function(e) {
-  // document.getElementById("applyFilter").style.opacity = '0.4'
-  // document.getElementById("applyFilter").disabled = true
+
   document.getElementById("clearFilter").style.opacity = '1'
   document.getElementById("clearFilter").disabled = false
   // boxContentFiltering = document.getElementById('emojionearea').value;

@@ -429,7 +429,10 @@ var addMiniMap = function(){ //the three request must be in the same function!!!
             miniMap.addTo(map)
 
             setTimeout(function(){
+              // filter_Button.button.style.opacity = '0.4'; //this is to avoid loading filter menu while feature selected buttons are still active
+              // filter_Button.button.disabled = true;
               miniMap.remove()
+
             },2200)
         }
       })
@@ -936,11 +939,17 @@ var filter_Button = L.easyButton({
         stateName: 'check-mark',
         onClick: function(btn, map) {
           emojiRequest()
-
+          document.getElementById("backDeleteFeature").style.display = "none";
+          document.getElementById("deleteFeature").style.display = 'none';
+          document.getElementById("goBackMessagingApps").style.display = "none";
+          document.getElementById("whatsApp").style.display = "none";
+          document.getElementById("telegram").style.display = 'none';
+          document.getElementById("weChat").style.display = "none";
+          document.getElementById("shareMessagingApp").style.display = "none";
+          document.getElementById("randomSuggestion").style.display = "none";
 
           if(filterIsOn == false){
             startCheckAttrDateContent = setInterval(checkAttrDateContent,300)
-
 
             filterIsOn = true
             myLayer_Button.button.style.opacity = '0.4';
@@ -973,7 +982,7 @@ var filter_Button = L.easyButton({
 
             if(alertAlreadyShown == false){
 
-              document.getElementById("Alert").style.fontSize = "16px";
+              document.getElementById("Alert").style.fontSize = "15px";
               document.getElementById('Alert').innerHTML = 'Filter by attribute only filters exact matches. 🚧 To be improved '
               document.getElementById("Alert").style.display = 'initial'
             setTimeout(function(){

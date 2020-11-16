@@ -59,7 +59,12 @@ document.getElementById("backDeleteFeature").onclick = function() {
     document.getElementById("deleteFeature").style.display = 'none';
     document.getElementById("deleteFeature").style.backgroundColor = 'white';
     document.getElementById("deleteFeature").style.borderColor = 'white';
-    document.getElementById("imageDeleteFeature").src = 'images/binpre.png'
+    document.getElementById("imageDeleteFeature").src = 'images/binpre.png';
+
+    document.getElementById("goBackMessagingApps").style.display = "none";
+    document.getElementById("whatsApp").style.display = "none";
+    document.getElementById("telegram").style.display = 'none';
+    document.getElementById("weChat").style.display = "none";
 
     document.getElementById("shareMessagingApp").style.opacity = '1';
     document.getElementById("shareMessagingApp").disabled = false;
@@ -71,7 +76,6 @@ document.getElementById("backDeleteFeature").onclick = function() {
     // document.getElementById("commentFeature").style.display = 'none';
     //removeMiniMap()
     //miniMap.remove() //removeFrom(map) is not used anymore
-
 
     return selectedFeature && clickCountDeleteButton && cartoIdFeatureSelected
 }
@@ -266,11 +270,12 @@ document.getElementById("randomSuggestion").onclick = function() {
     document.getElementById("randomSuggestion").style.borderColor = '#3B96DD'
 
   },500)
+  document.getElementById("Alert").style.fontSize = "15px";
   document.getElementById('Alert').innerHTML = '🚧 Under development. Now, popular locations are shown randomly'
   document.getElementById('Alert').style.display = 'initial'
   setTimeout(function(){
     document.getElementById('Alert').style.display = 'none'
-  },10000)
+  },5000)
 
   var maxValueDeflated = deflated._layers.length
   var minValueDeflated = (deflated._layers.length) - 10

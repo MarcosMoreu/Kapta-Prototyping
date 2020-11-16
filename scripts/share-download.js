@@ -282,7 +282,8 @@ document.getElementById('shareWorldButton').onclick = function(e) {
         document.getElementById("polyline").style.display = "initial";
         document.getElementById("point").style.display = "initial";
 
-        document.getElementById("Alert").innerHTML = '🚧 If the feature is not appearing, please reload the page'
+        document.getElementById("Alert").style.fontSize = "15px";
+        document.getElementById("Alert").innerHTML = '🚧 If the feature is not appearing after few seconds, please toggle layer or reload page'
         document.getElementById("Alert").style.display = 'initial'
         setTimeout(function(){
           document.getElementById("Alert").style.display = 'none'
