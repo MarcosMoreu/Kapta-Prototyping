@@ -660,7 +660,6 @@ var osm_Button = L.easyButton({
         onClick: function(btn, map) {
             //clickButtonCount += 1;
             // document.getElementById('imageryAlert').style.display = 'none'
-            getGeoJSONRandom()
             mapCurrentZoom = map.getZoom();
            console.log('zoom1', mapCurrentZoom)
             if(mapCurrentZoom >19){
@@ -844,7 +843,7 @@ var myLayer_Button = L.easyButton({
 
                if (featureSent == true) { //to update the carto layer with recently created feature. This is fired after DB update has been checked
 
-                  sqlQuery = "SELECT cartodb_id, the_geom, datetime, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring FROM lumblu ORDER BY cartodb_id DESC LIMIT 1"
+                  sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu ORDER BY cartodb_id DESC LIMIT 1"
                   getGeoJSON()
                   featureSent = false
               }
@@ -1360,9 +1359,9 @@ function setData() {
         var dataGeometryString = JSON.stringify(dataGeometry)
         //console.log(dataGeometryString)
 
-        var sql = "INSERT INTO lumblu (the_geom, datetime, randomid, landuses, landusesemoji, audioavailable, areapolygon, lengthline, timespent, distance, geometrystring, screensize) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
+        var sql = "INSERT INTO lumblu (the_geom, randomid, landuses, landusesemoji, audioavailable, areapolygon, lengthline, timespent, distance, geometrystring, screensize, date) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
         var sql2 = dataGeometryString;
-        var sql3 = "'),4326),'" + dateTime + "','" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + audioAvailable + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "')";
+        var sql3 = "'),4326),'" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + audioAvailable + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "','" + dateTime + "')";
         pURL = sql + sql2 + sql3;
     }
 

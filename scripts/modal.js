@@ -81,7 +81,7 @@ var initialiseMap = function(){
   // $.getScript( "scripts/app.js" , function(){console.log('script gotten')});
   var findCartoCredential = setInterval(function() {
       if (isOnline == true && cartousername != null) {
-        sqlQuery = "SELECT cartodb_id, the_geom, datetime, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring FROM lumblu";
+        sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu";
 
           clearInterval(findCartoCredential);
           function getGeoJSON() {
@@ -97,7 +97,7 @@ var initialiseMap = function(){
           //funtion to get geojson with 🌐 to be used in random suggestion
           function getGeoJSONRandom(){ ///RANDOM!!!!!!!!!!!!!!!
 
-            var sqlQueryRandom = "SELECT cartodb_id, the_geom, datetime, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring FROM lumblu WHERE LEFT(landusesemoji,1)='🌐'";
+            var sqlQueryRandom = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE LEFT(landusesemoji,1)='🌐'";
             $.getJSON({
               cache:false,
               success:randomLayer,

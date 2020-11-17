@@ -27,9 +27,9 @@ document.getElementById('share-download').onclick = function(e) {
     var randomID = Math.round(randomNumber);
     //here the datetime
     var timeEnd = new Date();
-    var date = timeEnd.getFullYear() + ' ' + (timeEnd.getMonth() + 1) + ' ' + timeEnd.getDate();
-    var time = timeEnd.getHours() + " " + timeEnd.getMinutes() + " " + timeEnd.getSeconds();
-    var dateTime = date + ' - ' + time;
+    var date = timeEnd.getFullYear() + '-' + (timeEnd.getMonth() + 1) + '-' + timeEnd.getDate();
+    var time = timeEnd.getHours() + ":" + timeEnd.getMinutes() + ":" + timeEnd.getSeconds();
+    var dateTime = date + 'T' + time + 'Z';
 
     ////////////////////// get time spend on mapping (in seconds)///////////////////////////////////////
     var res = Math.abs(timeStart - timeEnd) / 1000;

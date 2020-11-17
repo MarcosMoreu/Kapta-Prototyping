@@ -94,7 +94,7 @@ document.getElementById("clearFilter").onclick = function(e) {
           console.log('error sql catched due to empty layer after filter applied  ')
 
         }
-        sqlQuery = "SELECT cartodb_id, the_geom, datetime, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring FROM lumblu"
+        sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu"
         getGeoJSON()
    }
 //  deflated.addTo(map)
