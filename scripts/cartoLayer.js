@@ -44,6 +44,7 @@ var cartoGeoJSONLayer = function(data) {
 
             /////////////////////////////
           layer.on('click', function(e) {
+            
 
               document.getElementById("clearFilter").style.display = "none";
               document.getElementById("applyFilter").style.display = "none";

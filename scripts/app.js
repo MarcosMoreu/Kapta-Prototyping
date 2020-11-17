@@ -1,3 +1,5 @@
+
+
 // var pageLoaded = false
 var isIOS = /iPad|iPhone|iPod|Mac OS X/.test(navigator.userAgent) && !window.MSStream; // Mac OS X correct???
 var isOnline = navigator.onLine
@@ -229,78 +231,6 @@ var tilesDb = {
     }
 };
 
-
-
-
-
-// ////////////////////////// login initial modal  ///////////////
-//
-// document.getElementById('loginInfo').onclick = function(){
-//   window.location.href = 'pages/tutorial.html';
-// }
-// document.getElementById('loginKey').onclick = function(e){
-//   e.preventDefault() //to avoid reload
-//   //runJSselectFeature()
-//   document.getElementById('loginKey').style.backgroundColor = '#D5D6D5'
-//   document.getElementById('enteredPw').style.display = 'initial';
-//   document.getElementById('enteredPw').focus() //to open keyboard!!!
-//   document.getElementById('login').style.display = 'initial';
-// }
-//
-// ////////////////////    login  input    ///////////
-// var requestPw = function(){
-//       var pocPw = '2030' //! 🖐️🖐️🖐️ if you are looking at this line, please keep in mind that this very basic security measure is 'only' to prevent, during the testing period,
-//       // unintended submission by users who have not been informed of the impacts of open land data, both positive and negatives. Thanks ;)
-//
-//       setTimeout(function(){
-//         document.getElementById('modal').style.display='block';
-//         // document.getElementById('enteredPw').click()
-//       },100)
-//
-//       var checkPw = setInterval(function(){
-//         var pwPlaceholder = document.getElementById('enteredPw').value
-//
-//         if(pwPlaceholder.length == 4){
-//           document.getElementById('login').style.borderColor= 'grey'
-//           document.getElementById('login').disabled = false
-//           document.getElementById('login').style.opacity='1';
-//         }
-//         if(pwPlaceholder.length < 4){
-//           document.getElementById('login').style.borderColor= 'white'
-//           document.getElementById('login').style.opacity='0.3';
-//          document.getElementById('login').disabled = true
-//         }
-//       },200)
-//
-//       document.getElementById('login').onclick = function(e){
-//         e.preventDefault() // to avoid page reload on first load!
-//
-//         var pwPlaceholder = document.getElementById('enteredPw').value
-//         if(pwPlaceholder == pocPw){
-//
-//           clearInterval(checkPw)
-//           //loadElements()
-//           //runJSDownload()
-//           document.getElementById('enteredPw').style.backgroundColor = '#39F70F'
-//           setTimeout(function(){
-//             document.getElementById('modal').style.display='none';
-//             document.getElementById('pwForm').style.display='none';
-//           },300)
-//           localStorage.setItem('pwCorrect', true);
-//         }else{
-//           document.getElementById('enteredPw').style.backgroundColor = 'red'
-//           document.getElementById('enteredPw').focus() //to maintain keyboard if pw wrong
-//
-//           setTimeout(function(){
-//             document.getElementById('enteredPw').style.backgroundColor = 'white'
-//           },300)
-//         }
-//       }
-//     }
-
-
-
-
 /////////////////////////////////////////////////////////adding map elements///////////////////////////////////////////////////
 
 //to identify last postion, which was stored in localstorage
@@ -433,7 +363,7 @@ var addMiniMap = function(){ //the three request must be in the same function!!!
               // filter_Button.button.disabled = true;
               miniMap.remove()
 
-            },2200)
+            },1800)
         }
       })
 }
@@ -730,7 +660,7 @@ var osm_Button = L.easyButton({
         onClick: function(btn, map) {
             //clickButtonCount += 1;
             // document.getElementById('imageryAlert').style.display = 'none'
-
+            getGeoJSONRandom()
             mapCurrentZoom = map.getZoom();
            console.log('zoom1', mapCurrentZoom)
             if(mapCurrentZoom >19){
@@ -770,6 +700,8 @@ var googleSat_Button = L.easyButton({
         icon: iconGOOGLE,
         //stateName: 'check-mark',
         onClick: function(btn, map) {
+
+
             //clickButtonCount += 1;
             // document.getElementById('imageryAlert').style.display = 'none'
             map.options.maxZoom = 21; // set the max zoom level to 21 for google imagery

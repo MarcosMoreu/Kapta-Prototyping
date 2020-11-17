@@ -31,7 +31,7 @@ document.getElementById("applyFilter").onclick = function(e) {
           } catch (err) {
             console.log('error sql catched due to empty layer after filter applied')
           }
-         var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, datetime, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE date>'";
+         var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE date>'";
          var sqlCondition = datePeriodAgoReplaceComaInvert +"'";
          sqlQuery = sqlQueryWithoutCondition + sqlCondition
          getGeoJSON()
@@ -51,7 +51,7 @@ document.getElementById("applyFilter").onclick = function(e) {
           } catch (err) {
             console.log('error sql catched due to empty layer after filter applied')
           }
-         var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, datetime, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring FROM lumblu WHERE landusesemoji LIKE '";
+         var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE landusesemoji LIKE '";
          var sqlCondition = boxContentFiltering +"'"+" AND date>'"+datePeriodAgoReplaceComaInvert +"'";
          sqlQuery = sqlQueryWithoutCondition + sqlCondition
          getGeoJSON()

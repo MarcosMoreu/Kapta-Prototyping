@@ -5,7 +5,7 @@ setTimeout(function(){
   document.getElementById('loginInfo').disabled = false
   document.getElementById('loginKey').style.opacity = '1'
   document.getElementById('loginKey').disabled = false
-},2100)
+},1900)
 
 document.getElementById('loginInfo').onclick = function(){
   window.location.href = 'pages/tutorial.html';
@@ -93,6 +93,18 @@ var initialiseMap = function(){
               return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
           };
           getGeoJSON();
+
+          //funtion to get geojson with 🌐 to be used in random suggestion
+          function getGeoJSONRandom(){ ///RANDOM!!!!!!!!!!!!!!!
+
+            var sqlQueryRandom = "SELECT cartodb_id, the_geom, datetime, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring FROM lumblu WHERE LEFT(landusesemoji,1)='🌐'";
+            $.getJSON({
+              cache:false,
+              success:randomLayer,
+              url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQueryRandom + cartoapiSELECT
+            })
+          }
+          getGeoJSONRandom()
       }
       return cartousername
   }, 100)

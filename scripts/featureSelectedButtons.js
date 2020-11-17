@@ -239,6 +239,10 @@ document.getElementById('backEditDelete').onclick = function(){
   planet_Button.removeFrom(map);
   myLayer_Button.addTo(map);
   filter_Button.addTo(map);
+  myLayer_Button.button.style.opacity = '1';
+  myLayer_Button.button.disabled = false;
+  filter_Button.button.style.opacity = '1';
+  filter_Button.button.disabled = false;
 
   map.closePopup();
   try{
@@ -257,10 +261,17 @@ document.getElementById('backEditDelete').onclick = function(){
   return selectedFeature && clickCountDeleteButton
 }
 
+var randomFeature
+var featureCollForRandom
+var randomLayer = function(data) { //function to get layer from carto with 🌐
+  featureCollForRandom = data
 
+ return featureCollForRandom
+}
 document.getElementById("randomSuggestion").onclick = function() {
   document.getElementById("randomSuggestion").style.backgroundColor = 'yellow'
   document.getElementById("randomSuggestion").style.borderColor = 'yellow'
+  document.getElementById("randomSuggestion").disabled = true
   document.getElementById("deleteFeature").style.opacity = "0.4";
   document.getElementById("deleteFeature").disabled = true;
   document.getElementById("imageDeleteFeature").src = 'images/binpre.png'
@@ -268,8 +279,10 @@ document.getElementById("randomSuggestion").onclick = function() {
   setTimeout(function(){
     document.getElementById("randomSuggestion").style.backgroundColor = '#3B96DD'
     document.getElementById("randomSuggestion").style.borderColor = '#3B96DD'
+    document.getElementById("randomSuggestion").disabled = false
 
-  },500)
+
+  },1800)
   document.getElementById("Alert").style.fontSize = "15px";
   document.getElementById('Alert').innerHTML = '🚧 Under development. Now, popular locations are shown randomly'
   document.getElementById('Alert').style.display = 'initial'
@@ -279,17 +292,25 @@ document.getElementById("randomSuggestion").onclick = function() {
 
   var maxValueDeflated = deflated._layers.length
   var minValueDeflated = (deflated._layers.length) - 10
-  //var randomNumberRanged = Math.trunc(Math.random() * (maxValueDeflated - minValueDeflated) + minValueDeflated);
-  var randomNumberRanged = Math.trunc(Math.random() * 11);
 
-  var someNeutralPoints = [[51.477965,-0.001467],[-0.000215,37.070231],[13.597167,-88.837874],[35.956888,-5.604401],[41.511377,-0.001191],[78.236011,15.491409],[27.988129,86.924973],[34.391822,132.452095],[46.234107,6.055736],[0.010986,-0.003605],[-30.31276,149.565484]] //Prime meridian1,Estrecho1,Kenyaecuator1,volcan ss1,hiroshima1, everest1, cern1,greenwichspain1,global seed1,nullisland1, australia observatory...
-  var pointSelected = someNeutralPoints[randomNumberRanged]
-  console.log(pointSelected)
-  //console.log(deflated._layers[randomNumberRanged])
-  //var randomFeature = deflated._layers[randomNumberRanged]//without   .feature.geometry;
-//  map.fitBounds(randomFeature.getBounds());
-//
-  map.setView(pointSelected,15)
+  //to
+  var lengthArray = featureCollForRandom.features.length
+  var randomNumberRanged = Math.trunc(Math.random() * lengthArray-1);
+
+
+  var randomFeatureLngLat = featureCollForRandom.features[randomNumberRanged].geometry.coordinates
+
+  if(randomFeatureLngLat.length == 2){
+    randomFeature = [randomFeatureLngLat[1],randomFeatureLngLat[0]] //to convert to latlng
+    map.setView(randomFeature,15)
+  }else{
+    var randomFeatureFirstPoint = randomFeatureLngLat[0][0]
+    randomFeature = [randomFeatureFirstPoint[1],randomFeatureFirstPoint[0]]
+     map.setView(randomFeature,15)
+ }
+
+
+
 
   //to maintain button and minimap, otherwise is removed
   document.getElementById("backDeleteFeature").style.display = "initial";
@@ -328,7 +349,7 @@ document.getElementById("randomSuggestion").onclick = function() {
       }
       myLayer_Button.addTo(map);
       filter_Button.addTo(map);
-  },2500)
+  },1900)
 
   // document.getElementById("deleteFeature").style.display = "initial";
   // document.getElementById("deleteFeature").style.backgroundColor = 'white';
