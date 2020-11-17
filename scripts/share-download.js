@@ -291,9 +291,9 @@ document.getElementById('shareWorldButton').onclick = function(e) {
 
     }, timeOfVideo);
 
-      osm_Button.addTo(map)
-      myLayer_Button.addTo(map);
-      filter_Button.addTo(map);
+      //osm_Button.addTo(map)
+      // myLayer_Button.addTo(map);
+      // filter_Button.addTo(map);
       myLayer_Button.button.style.opacity = '1';
       myLayer_Button.button.disabled = false
       filter_Button.button.style.opacity = '1';
@@ -368,6 +368,8 @@ document.getElementById('DownloadButton').onclick = function(e) {
         //console.log(data);
 
         //finalLayer is added at the end as the properties are different depending on if share or download
+        // myLayer_Button.addTo(map);
+        // filter_Button.addTo(map);
         myLayer_Button.button.style.opacity = '1';
         myLayer_Button.button.disabled = false;
         myLayer_Button.button.style.backgroundColor = '#43ACF0';

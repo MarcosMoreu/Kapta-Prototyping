@@ -7,7 +7,7 @@
   "background_color": "#ffffff",
   "display": "standalone",
   "orientation": "portrait",
-  "start_url": "https://amappingprototype.xyz/",
+  "start_url": "../index.html",
   "prefer_related_applications": false,
     "icons": [
     {

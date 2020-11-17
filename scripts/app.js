@@ -632,12 +632,12 @@ var clickButtonCount = 0;
 // }
 
 if (isIOS == true) {
-    var iconGPS = '<img src="images/gpsOff.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
-    var iconOSM = '<img src="images/osm.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-top:2px" > ';
-    var iconGOOGLE = '<img src="images/google.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
-    var iconPLANET = '<img src="images/google.png" width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-top:2px" > ';
-    var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px" > ';
-    var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px;margin-bottom:2px" > ';
+    var iconGPS = '<img src="images/gpsOff.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%; margin-left:-5px" > ';
+    var iconOSM = '<img src="images/osm.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-top:2px; margin-left:-5px" > ';
+    var iconGOOGLE = '<img src="images/google.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-5px" > ';
+    var iconPLANET = '<img src="images/google.png" width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-top:2px;margin-left:-3px" > ';
+    var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > ';
+    var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px;margin-bottom:2px" > ';
     var iconRANDOM = '<img src="images/gps.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
 
 } else {
@@ -690,7 +690,8 @@ var osm_Button = L.easyButton({
 
 osm_Button.button.style.width = '50px';
 osm_Button.button.style.height = '50px';
-//osm_Button.button.style.backgroundColor = 'none';
+osm_Button.button.style.transitionDuration = '.3s';
+osm_Button.button.style.backgroundColor = 'black';
 //osm_Button.button.style.transitionDuration = '.3s';
 //osm_Button.addTo(map);
 
@@ -777,6 +778,8 @@ var planet_Button = L.easyButton({
 planet_Button.button.style.width = '50px';
 planet_Button.button.style.height = '50px';
 planet_Button.button.style.transitionDuration = '.3s';
+planet_Button.button.style.backgroundColor = 'black';
+
 
 var myLayerIsOn = true;
 
@@ -1056,14 +1059,14 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
             //to change the icon of the Easybutton based on accuracy... (first gif then static image)
 
             if (isIOS == true) {
-              document.getElementById('gps').innerHTML = '<img src="images/gpsSearchingIOS.gif" text-align="center" width=40px; height=40px;" > '
+              document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px" > '
             }else{
               document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" width=40px; height=40px;" > '
             }
 
             var gpsIconIntermitent = setTimeout(function() {
               if (isIOS == true) {
-                document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" width=40px; height=40px; " > '
+                document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px" " > '
               }else{
                 document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" width=40px; height=40px; " > '
               }
@@ -1079,7 +1082,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
 
             gps_Button.button.style.backgroundColor = 'yellow';
             if (isIOS == true) {
-              document.getElementById('gps').innerHTML = '<img src="images/gpsSearchingIOS.gif" text-align="center" width=40px; height=40px;" > '
+              document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px"" > '
             }else{
               document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" width=40px; height=40px; " > '
             }            //if accuracy >50, keep searching
@@ -1105,7 +1108,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
 
             gps_Button.button.style.backgroundColor = 'orange';
             if (isIOS == true) {
-              document.getElementById('gps').innerHTML = '<img src="images/gpsSearchingIOS.gif" text-align="center" width=40px; height=40px; " > '
+              document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px" " > '
             }else{
               document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" width=40px; height=40px; " > '
             }
@@ -1129,7 +1132,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
     } else {
         gps_Button.button.style.backgroundColor = 'red';
         if (isIOS == true) {
-          document.getElementById('gps').innerHTML = '<img src="images/gpsOff.png" text-align="center" width=40px; height=40px; > '
+          document.getElementById('gps').innerHTML = '<img src="images/gpsOff.png" text-align="center" width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px" > '
         }else{
           document.getElementById('gps').innerHTML = '<img src="images/gpsOff.png" text-align="center" width=40px; height=40px; > '
         }

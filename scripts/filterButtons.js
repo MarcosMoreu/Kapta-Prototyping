@@ -106,6 +106,10 @@ document.getElementById("clearFilter").onclick = function(e) {
 // var dateFilterValue; //to apply this value when applyFilter is clicked
 document.getElementById("filterByDate").onclick = function(e) {
 
+    if(isIOS == true){
+      alert('🚧 Filter by date functionality not available yet for iOS')
+    }else{
+
       var calcDatePeriodAgo = function(period){
         var d = new Date();
         //console.log('Today is: ' + d.toLocaleString());
@@ -156,6 +160,6 @@ document.getElementById("filterByDate").onclick = function(e) {
         datePeriodAgoReplaceComaInvert = datePeriodAgoReplaceComa.split("-").reverse().join("-");
         // date = date.split("-").reverse().join("-");
         //console.log('datePeriodAgoReplaceComaInvert ' + datePeriodAgoReplaceComaInvert);
-
+      }
   return dateFilterValue & period && filterApplied && datePeriodAgoReplaceComaInvert
 }
