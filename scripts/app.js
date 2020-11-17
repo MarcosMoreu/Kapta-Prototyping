@@ -440,6 +440,7 @@ function isJson(str) {
     }
     return true;
 }
+function fetchFromLocalStorage(){
 if (isFirstTime == false & localStorage.key(0) != null) {
 
     //  loop for going through all geoJSON stored in the localStorage
@@ -456,21 +457,19 @@ if (isFirstTime == false & localStorage.key(0) != null) {
         //    //console.log(itemFetched)
             var getItemToJSON = JSON.parse(itemFetched);
         //    //console.log(isJson(getItemToJSON))
-        //    //console.log(getItemToJSON)
+         console.log(getItemToJSON)
             isJson(getItemToJSON)
             //add each json to an array-------------------------
             groupGeoJSON[i] = getItemToJSON
         //    //console.log(isJson(groupGeoJSON))
-        //    //console.log(groupGeoJSON)
+        console.log(groupGeoJSON)
         } else {
             groupGeoJSON[i] = {}; // this is to avoid error when an array element is not a JSON
         }
     }
+ }
 }
-//console.log('local storage accessed')
-//console.log(groupGeoJSON)
-//console.log(typeof groupGeoJSON)
-//console.log(isJson(groupGeoJSON))
+
 
 //conditions to catch error in case no geojson and also to avoid error when adding to map an empty layer if is first time
 //var myLayerIsOn = true;
@@ -485,8 +484,10 @@ var markerIconLocalStorage = new L.icon({
     //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
+var localStorageLayer
+var localStorageToGeoJSON = function(){
 if (isJson(groupGeoJSON) == false && isFirstTime == false) {
-    var localStorageLayer = L.geoJSON(groupGeoJSON, {
+    localStorageLayer = L.geoJSON(groupGeoJSON, {
         style: function(feature) {
             //myLayerIsOn = true;
             //console.log(myLayerIsOn)
@@ -504,6 +505,8 @@ if (isJson(groupGeoJSON) == false && isFirstTime == false) {
         onEachFeature: onEachFeatureAudioLocalStorage,
         autopan: false
     }) //.addTo(map)
+}
+return localStorageLayer
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -789,7 +792,10 @@ var myLayer_Button = L.easyButton({
         //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn, map) {
-
+          console.log('which layer is on', whichLayerIsOn)
+          console.log('localStorageLayer', localStorageLayer)
+            console.log(localStorage)
+            console.log(groupGeoJSON)
             //  deflated.removeFrom(map)
             // whichLayerIsOn = 'deflated'
             if (whichLayerIsOn == 'deflated' && localStorageLayer != null) {

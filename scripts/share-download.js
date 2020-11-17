@@ -156,7 +156,7 @@ document.getElementById('share-download').onclick = function(e) {
 
     var tempName = randomID // each polygon must have a different name!!!
     var layerToLocalStorage = localStorage.setItem(tempName, dataStringified);
-    //console.log(dataStringified);
+    console.log(layerToLocalStorage);
     //console.log(dataStringified.geometry)
     //console.log(data.geometry)
     myLayerIsOn = true;
@@ -369,15 +369,17 @@ document.getElementById('DownloadButton').onclick = function(e) {
 
         //finalLayer is added at the end as the properties are different depending on if share or download
         myLayer_Button.button.style.opacity = '1';
-        myLayer_Button.button.disabled = false
+        myLayer_Button.button.disabled = false;
+        myLayer_Button.button.style.backgroundColor = '#43ACF0';
+
         filter_Button.button.style.opacity = '0.4';
         filter_Button.button.disabled = true;
         gps_Button.button.style.opacity = '1';
         gps_Button.button.disabled = false;
 
         document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
-
-
+        whichLayerIsOn = 'localStorage'
+        console.log('localstoragelayer',localStorageLayer)
         finalLayer = L.geoJSON(data, {
             style: function(feature) {
                 return feature.properties && feature.properties.style;
@@ -388,7 +390,7 @@ document.getElementById('DownloadButton').onclick = function(e) {
 
     }, timeOfVideo - 300);
 
-    return finished
+    return finished && whichLayerIsOn
 }
 
 // end

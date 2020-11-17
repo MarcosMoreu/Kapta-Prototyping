@@ -64,6 +64,11 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
       console.log('recognised not first time')
       initialiseMap() //map initialised AND LOADED (no modal)
         isFirstTime = false;
+        try{
+          fetchFromLocalStorage()
+          localStorageToGeoJSON()
+        }catch(e){}
+
     }
     return isFirstTime;
 }

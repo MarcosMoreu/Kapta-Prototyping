@@ -1,15 +1,18 @@
 var dropDownOpen = false;
+var isOnline = navigator.onLine
+
 document.getElementById('startMapping').onclick = function(e){
    setTimeout(function(){
      location.href='../index.html';
    },100)
   }
-
 document.getElementById('dropDown').onclick = function(e){
 
     if(dropDownOpen == false){
       document.getElementById('infoButton').style.display = "initial";
-      document.getElementById('cutomiseButton').style.display = "initial";
+      if(isOnline == true){
+        document.getElementById('cutomiseButton').style.display = "initial";
+      }
       document.getElementById('dropDown').style.backgroundColor = 'grey';
       document.getElementById('imageDropDown').src = '../images/burgerBlack.png';
       dropDownOpen = true

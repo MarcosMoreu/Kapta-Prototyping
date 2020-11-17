@@ -284,7 +284,7 @@ document.getElementById("randomSuggestion").onclick = function() {
 
   },1800)
   document.getElementById("Alert").style.fontSize = "15px";
-  document.getElementById('Alert').innerHTML = '🚧 Under development. Now, popular locations are shown randomly'
+  document.getElementById('Alert').innerHTML = '🚧 Under development. At the moment, contributions that start with 🌐 are shown randomly'
   document.getElementById('Alert').style.display = 'initial'
   setTimeout(function(){
     document.getElementById('Alert').style.display = 'none'
