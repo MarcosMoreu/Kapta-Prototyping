@@ -37,14 +37,14 @@ document.getElementById('loginKey').onclick = function(e){
 
 
 var firstLoad = function() { //fucntion to determine if the site is visited for first time
-  console.log('isfirstload??')
+  // console.log('isfirstload??')
   //$.getScript("lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.Draw.Event.js")
     // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
     if (typeof window.localStorage !== "undefined" && !localStorage.getItem('visited')) {
         // Set visited flag in local storage
         localStorage.setItem('visited', true);
         isFirstTime = true;
-        console.log('stored in local sotrage')
+        // console.log('stored in local sotrage')
         /////////////////////    password protection for first time /////////////////
 
         ////////////////////    login  input    ///////////
@@ -58,10 +58,10 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
 
     }else if(!localStorage.getItem('pwCorrect')){  //condition to ensure that if in first load pw was incorrect, pw is requested until correct !!!!!!!!!!!!!!!!!!!!!!!
 
-        console.log('!localStorage.getItem(pwCorrect')
+        // console.log('!localStorage.getItem(pwCorrect')
         requestPw()
     }else {
-      console.log('recognised not first time')
+      // console.log('recognised not first time')
       initialiseMap() //map initialised AND LOADED (no modal)
         isFirstTime = false;
         try{
@@ -119,7 +119,7 @@ var initialiseMap = function(){
           $.getScript({
             cache:true,
             url:'scripts/lib/d3.min.js',
-             success: console.log('d3 fetched')
+             // success: console.log('d3 fetched')
           }),
           $.getScript({
             cache:true,
@@ -133,7 +133,7 @@ var initialiseMap = function(){
           $( deferred.resolve );
       })
     ).done(function(){
-      console.log('all script loaded')
+      // console.log('all script loaded')
       //place your code here, the scripts are all loaded
       document.getElementById("map").style.display = "initial";
       document.getElementById("tutorial").style.display = "initial";
@@ -245,11 +245,11 @@ var requestPw = function(){
         var checkDone = setInterval(function(){
             return done
           },200)
-          console.log('done',done)
+          // console.log('done',done)
           // if(done==true){clearInterval(checkDone)}
 
               if(pwPlaceholder == pocPw && done == true){  //map loads after this
-                console.log('both')
+                // console.log('both')
 
                 clearInterval(checkPw)
                 clearInterval(checkDone)
@@ -301,7 +301,7 @@ var requestPw = function(){
               //   document.getElementById('enteredPw').style.backgroundColor = '#39F70F'  /////////////////////////////////////////////////////gif here???
 
               }else{
-                console.log('none')
+                // console.log('none')
 
                 document.getElementById('enteredPw').style.backgroundColor = 'red'
                 document.getElementById('enteredPw').focus() //to maintain keyboard if pw wrong

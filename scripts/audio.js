@@ -60,7 +60,7 @@ downloadButton.addEventListener('click', () => {
 /////////catch error in case recordedBlobs ==null
 try{
   const blob = new Blob(recordedBlobs, {type: 'video/webm'});
-console.log(blob)
+// console.log(blob)
   const url = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.style.display = 'none';
@@ -80,9 +80,9 @@ catch(err){ //////////////////////////////////
 
 
 function handleSourceOpen(event) {
-  console.log('MediaSource opened');
+  // console.log('MediaSource opened');
   sourceBuffer = mediaSource.addSourceBuffer('video/webm; codecs="vp8"');
-  console.log('Source buffer: ', sourceBuffer);
+  // console.log('Source buffer: ', sourceBuffer);
 }
 
 function handleDataAvailable(event) {
@@ -120,30 +120,30 @@ function startRecording() {
     return;
   }
 
-  console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
+  // console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
 recording = true;
 recordedVideo.pause()
   //recordButton.textContent = 'Stop Recording';
   playButton.disabled = true;
   downloadButton.disabled = true;
   mediaRecorder.onstop = (event) => {
-    console.log('Recorder stopped: ', event);
+    // console.log('Recorder stopped: ', event);
   };
   mediaRecorder.ondataavailable = handleDataAvailable;
   mediaRecorder.start(10); // collect 10ms of data
-  console.log('MediaRecorder started', mediaRecorder);
+  // console.log('MediaRecorder started', mediaRecorder);
 
   return recording;
 }
 
 function stopRecording() {
   mediaRecorder.stop();
-  console.log('Recorded Blobs: ', recordedBlobs);
+  // console.log('Recorded Blobs: ', recordedBlobs);
 }
 
 function handleSuccess(stream) {
   recordButton.disabled = false;
-  console.log('getUserMedia() got stream:', stream);
+  // console.log('getUserMedia() got stream:', stream);
   window.stream = stream;
 
   const gumVideo = document.querySelector('video#gum');
@@ -167,7 +167,7 @@ document.querySelector('button#enableRecording').addEventListener('click', async
     audio: true,
     video: false /////////////////////////////////////////////////////////////////////////////////!!!!!
   };
-  console.log('Using media constraints:', constraints);
+  // console.log('Using media constraints:', constraints);
   await init(constraints);
 
   document.getElementById("record").click(); //added so no need to click button twice

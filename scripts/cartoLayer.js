@@ -44,7 +44,7 @@ var cartoGeoJSONLayer = function(data) {
 
             /////////////////////////////
           layer.on('click', function(e) {
-            
+
 
               document.getElementById("clearFilter").style.display = "none";
               document.getElementById("applyFilter").style.display = "none";
@@ -247,7 +247,7 @@ var cartoGeoJSONLayer = function(data) {
   try {
     cartoGeometries.addTo(deflated)
   }catch(err){
-    console.log('error sql catched due to empty layer after filter applied')
+    // console.log('error sql catched due to empty layer after filter applied')
   }
   return cartoGeometries && getTotalFeaturesInDB
 };//...CARTO layer

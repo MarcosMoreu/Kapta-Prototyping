@@ -14,22 +14,22 @@ document.getElementById("applyFilter").onclick = function(e) {
   document.getElementById("clearFilter").disabled = false
   // boxContentFiltering = document.getElementById('emojionearea').value;
   boxContentFiltering = document.getElementsByClassName('emojionearea-editor')[0].innerHTML  // use this instead of .value!!!
-  console.log('box',boxContentFiltering)
+  // console.log('box',boxContentFiltering)
 
     if(boxContentFiltering ==='' && period == 3650){
       filterApplied = false
-      console.log('do nothing')
+      // console.log('do nothing')
     }
 
     else if(boxContentFiltering ==='' && period != 3650){
       filterApplied = true
-      console.log('do only date')
+      // console.log('do only date')
 
           try {
             deflated.clearLayers() // clearLayers instead of cartoGeometries, as this doesn't contain all geometries after 'sent'
             //cartoGeometries.removeFrom(deflated)
           } catch (err) {
-            console.log('error sql catched due to empty layer after filter applied')
+            // console.log('error sql catched due to empty layer after filter applied')
           }
          var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE date>'";
          var sqlCondition = datePeriodAgoReplaceComaInvert +"'";
@@ -43,13 +43,13 @@ document.getElementById("applyFilter").onclick = function(e) {
 
     }else{
       filterApplied = true
-      console.log('do both')
+      // console.log('do both')
 
           try {
             deflated.clearLayers() // clearLayers instead of cartoGeometries, as this doesn't contain all geometries after 'sent'
             //cartoGeometries.removeFrom(deflated)
           } catch (err) {
-            console.log('error sql catched due to empty layer after filter applied')
+            // console.log('error sql catched due to empty layer after filter applied')
           }
          var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE landusesemoji LIKE '";
          var sqlCondition = boxContentFiltering +"'"+" AND date>'"+datePeriodAgoReplaceComaInvert +"'";
@@ -65,7 +65,7 @@ document.getElementById("applyFilter").onclick = function(e) {
          document.getElementById("Alert").style.display = 'initial'
     }
 
-    console.log('filter applied ', filterApplied)
+    // console.log('filter applied ', filterApplied)
     return filterApplied && boxContentFiltering
 
 }
@@ -91,7 +91,7 @@ document.getElementById("clearFilter").onclick = function(e) {
           deflated.clearLayers()  // clearLayers instead of cartoGeometries, as this doesn't contain all geometries after 'sent'
         //  cartoGeometries.removeFrom(deflated)
         } catch (err) {
-          console.log('error sql catched due to empty layer after filter applied  ')
+          // console.log('error sql catched due to empty layer after filter applied  ')
 
         }
         sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu"

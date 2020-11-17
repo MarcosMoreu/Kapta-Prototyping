@@ -334,7 +334,7 @@ document.getElementById("randomSuggestion").onclick = function() {
   addMiniMap()
 
   setTimeout(function(){
-    console.log(basemapOn)
+    // console.log(basemapOn)
       //removeMiniMap()
     //miniMap.remove()
 

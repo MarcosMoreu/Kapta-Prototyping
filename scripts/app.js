@@ -95,7 +95,7 @@ var checkIfOffline = setInterval(function() {
     myLayer_Button.button.style.backgroundColor = '#43ACF0';
 
     deflated.removeFrom(map)
-    console.log('isonline= ', isOnline)
+    // console.log('isonline= ', isOnline)
     //clearInterval(checkIfOffline)
     inOnline = false
   }else{
@@ -331,7 +331,7 @@ L.Permalink.setup(map);
   }
 // var initialiseMinimap = function(){
  //var miniMap = new L.Control.GlobeMiniMap(optionsMinimap)//.addTo(map);
-  console.log('minimap initialised')
+  // console.log('minimap initialised')
   //miniMap.addTo(map)
 
  //return miniMap
@@ -457,12 +457,12 @@ if (isFirstTime == false & localStorage.key(0) != null) {
         //    //console.log(itemFetched)
             var getItemToJSON = JSON.parse(itemFetched);
         //    //console.log(isJson(getItemToJSON))
-         console.log(getItemToJSON)
+         // console.log(getItemToJSON)
             isJson(getItemToJSON)
             //add each json to an array-------------------------
             groupGeoJSON[i] = getItemToJSON
         //    //console.log(isJson(groupGeoJSON))
-        console.log(groupGeoJSON)
+        // console.log(groupGeoJSON)
         } else {
             groupGeoJSON[i] = {}; // this is to avoid error when an array element is not a JSON
         }
@@ -664,11 +664,11 @@ var osm_Button = L.easyButton({
             //clickButtonCount += 1;
             // document.getElementById('imageryAlert').style.display = 'none'
             mapCurrentZoom = map.getZoom();
-           console.log('zoom1', mapCurrentZoom)
+           // console.log('zoom1', mapCurrentZoom)
             if(mapCurrentZoom >19){
               map.setZoom(19)//because OSM does not provide tiles beyond zoom 19
               mapCurrentZoom = map.getZoom();
-            console.log('zoom2', mapCurrentZoom)
+            // console.log('zoom2', mapCurrentZoom)
             }
 
 
@@ -741,8 +741,8 @@ var planet_Button = L.easyButton({
         onClick: function(btn, map) {
             /////////////////////// to load planet tiles manually  /////////////
 
-          planetScopeMonthlyMosaic = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_09_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-            attribution: 'Leaflet | PlanetScope Imagery  Sept 2020'
+          planetScopeMonthlyMosaic = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_10_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+            attribution: 'Leaflet | PlanetScope Imagery  Oct 2020'
             })
 
             clickButtonCount = 0;
@@ -754,11 +754,11 @@ var planet_Button = L.easyButton({
             googleSat_Button.addTo(map);
             //to zoom out if previous map zoom is higher than 17
             mapCurrentZoom = map.getZoom();
-            console.log('zoom1', mapCurrentZoom)
+            // console.log('zoom1', mapCurrentZoom)
             if(mapCurrentZoom >17){
               map.setZoom(17)//because OSM does not provide tiles beyond zoom 19
               mapCurrentZoom = map.getZoom();
-            console.log('zoom2', mapCurrentZoom)
+            // console.log('zoom2', mapCurrentZoom)
             }
             // googleSat.removeFrom(map);
             osm.removeFrom(map);
@@ -792,10 +792,10 @@ var myLayer_Button = L.easyButton({
         //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn, map) {
-          console.log('which layer is on', whichLayerIsOn)
-          console.log('localStorageLayer', localStorageLayer)
-            console.log(localStorage)
-            console.log(groupGeoJSON)
+          // console.log('which layer is on', whichLayerIsOn)
+          // console.log('localStorageLayer', localStorageLayer)
+            // console.log(localStorage)
+            // console.log(groupGeoJSON)
             //  deflated.removeFrom(map)
             // whichLayerIsOn = 'deflated'
             if (whichLayerIsOn == 'deflated' && localStorageLayer != null) {
@@ -1244,7 +1244,7 @@ document.getElementById('rose').style.marginBottom = '5px' // to avoid extra mar
 var clicksRose = 0
 document.getElementById('rose').onclick = function(e){
     clicksRose += 1;
-    console.log(clicksRose)
+    // console.log(clicksRose)
   if(clicksRose == 10){
     offlineControlGoogle.addTo(map);
     offlineControlOSM.addTo(map);

@@ -156,7 +156,7 @@ document.getElementById('share-download').onclick = function(e) {
 
     var tempName = randomID // each polygon must have a different name!!!
     var layerToLocalStorage = localStorage.setItem(tempName, dataStringified);
-    console.log(layerToLocalStorage);
+    // console.log(layerToLocalStorage);
     //console.log(dataStringified.geometry)
     //console.log(data.geometry)
     myLayerIsOn = true;
@@ -379,7 +379,7 @@ document.getElementById('DownloadButton').onclick = function(e) {
 
         document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
         whichLayerIsOn = 'localStorage'
-        console.log('localstoragelayer',localStorageLayer)
+        // console.log('localstoragelayer',localStorageLayer)
         finalLayer = L.geoJSON(data, {
             style: function(feature) {
                 return feature.properties && feature.properties.style;
