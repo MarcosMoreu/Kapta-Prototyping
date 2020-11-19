@@ -136,6 +136,11 @@ document.getElementById("editDeletePopup").onclick = function() {
   document.getElementById("deleteFeature").style.display = "none";
   document.getElementById("randomSuggestion").style.display = "none";
 
+  document.getElementById("goBackMessagingApps").style.display = "none";
+  document.getElementById("whatsApp").style.display = "none";
+  document.getElementById("telegram").style.display = "none";
+  document.getElementById("weChat").style.display = "none";
+
   gps_Button.button.style.opacity = '0.4';
   gps_Button.button.disabled = true;
 
