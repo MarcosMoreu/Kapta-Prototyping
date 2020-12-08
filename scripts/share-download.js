@@ -11,6 +11,59 @@
 
 //var runJSDownload = function(){
 
+var hideButtons = function(){
+  // drawnItems.clearLayers();
+  // tempLayer.clearLayers()
+  //   document.getElementById("map").style.height = "0px";
+    document.getElementById("Cancel").style.display = "none";
+    // document.getElementById('shareMessagingAppsDirect').style.display = 'none';
+    document.getElementById("share-download").style.display = "none";
+    document.getElementById('noAudioIOS').style.display = 'none';
+    document.getElementById("record").style.display = "none";
+    document.getElementById('enableRecording').style.display = 'none';
+    document.getElementById("play").style.display = "none";
+    document.getElementById('voice').style.display = 'none';
+    document.getElementById('voice').style.opacity = '0';
+    document.getElementById('activatePlay').style.display = 'none';
+    document.getElementById('showAreaHa').style.display = 'none';
+    document.getElementById('showAreaAcres').style.display = 'none'
+    // document.getElementById('showLength').style.display = 'none'
+    document.getElementById('emoji').style.display = 'none';
+}
+
+var showButtons = function(){
+  // drawnItems.clearLayers();
+  // tempLayer.clearLayers()
+  //   document.getElementById("map").style.height = "0px";
+    // document.getElementById("Cancel").style.display = "initial";
+    // // document.getElementById('shareMessagingAppsDirect').style.display = 'initial';
+    // document.getElementById("share-download").style.display = "initial";
+    // document.getElementById('noAudioIOS').style.display = 'initial';
+    // document.getElementById("record").style.display = "initial";
+    // document.getElementById('enableRecording').style.display = 'initial';
+    // document.getElementById("play").style.display = "initial";
+    // document.getElementById('voice').style.display = 'initial';
+    // document.getElementById('voice').style.opacity = '0';
+    // document.getElementById('activatePlay').style.display = 'initial';
+    // document.getElementById('showAreaHa').style.display = 'initial';
+    // document.getElementById('showAreaAcres').style.display = 'initial'
+    // // document.getElementById('showLength').style.display = 'initial'
+    // document.getElementById('emoji').style.display = 'initial';
+
+    document.getElementById("share-download").style.display = "initial";
+    document.getElementById("Cancel").style.display = "initial";
+    document.getElementById("classification").style.display = "initial";
+    document.getElementById("emoji").style.display = "initial";
+    // document.getElementById('Sent').currentTime = 0;
+    document.getElementById('voice').style.display = 'none';
+    document.getElementById('voice').style.opacity = '0';
+    if (isIOS == false) {
+        document.getElementById('enableRecording').style.display = 'initial';
+    } else {
+        document.getElementById('noAudioIOS').style.display = 'initial';
+    }
+}
+
 document.getElementById('share-download').onclick = function(e) {
     sameSession = true;
     alreadyMovedUp = false;
@@ -107,6 +160,18 @@ document.getElementById('share-download').onclick = function(e) {
         'geometrystring':data.toString(),
         'screensize':screensize
     };
+    var propertiesGeoJSONURL = {
+
+        'landUsesEmoji': boxContent,
+        'areaPolygon': finalAreaHa2Decimals,
+        'lengthLine': finalLength2Decimals,
+        'dateTime': dateTime,
+        'timeSpendSeconds': totalTimeSpent,
+        'dist_m_Participant_Feature': distanceObfTrunc,
+        'randomID': randomID,
+        'geometrystring':data.toString(),
+        'screensize':screensize
+    };
     //  adding the properties to the geoJSON file:
     data.features[0].properties = propertiesGeoJSON;
 
@@ -122,27 +187,32 @@ document.getElementById('share-download').onclick = function(e) {
 
     //defining the final screen
     setTimeout(function() {
-        drawnItems.clearLayers();
-        tempLayer.clearLayers()
-        document.getElementById("map").style.height = "0px";
-        document.getElementById("Cancel").style.display = "none";
-        document.getElementById("share-download").style.display = "none";
-        document.getElementById('noAudioIOS').style.display = 'none';
-        document.getElementById("record").style.display = "none";
-        document.getElementById('enableRecording').style.display = 'none';
-        document.getElementById("play").style.display = "none";
-        document.getElementById('voice').style.display = 'none';
-        document.getElementById('voice').style.opacity = '0';
-        document.getElementById('activatePlay').style.display = 'none';
-        document.getElementById('showAreaHa').style.display = 'none';
-        document.getElementById('showAreaAcres').style.display = 'none'
-        // document.getElementById('showLength').style.display = 'none'
-        document.getElementById('emoji').style.display = 'none';
+      hideButtons()
+      // drawnItems.clearLayers();
+      // tempLayer.clearLayers()
+      // //   document.getElementById("map").style.height = "0px";
+      //   document.getElementById("").style.display = "none";
+      //   document.getElementById("share-download").style.display = "none";
+      //   document.getElementById('noAudioIOS').style.display = 'none';
+      //   document.getElementById("record").style.display = "none";
+      //   document.getElementById('enableRecording').style.display = 'none';
+      //   document.getElementById("play").style.display = "none";
+      //   document.getElementById('voice').style.display = 'none';
+      //   document.getElementById('voice').style.opacity = '0';
+      //   document.getElementById('activatePlay').style.display = 'none';
+      //   document.getElementById('showAreaHa').style.display = 'none';
+      //   document.getElementById('showAreaAcres').style.display = 'none'
+      //   // document.getElementById('showLength').style.display = 'none'
+      //   document.getElementById('emoji').style.display = 'none';
+      //  document.getElementById("Cancel").style.display = "initial";
+
+        document.getElementById('goBackClassification').style.display = 'initial';
+        document.getElementById('shareMessagingAppsDirect').style.display = 'initial';
         document.getElementById('shareWorldButton').style.display = 'initial';
         document.getElementById('DownloadButton').style.display = 'initial';
         document.getElementById('Download').style.display = 'initial';
 
-        document.body.style.backgroundColor = "black";
+        // document.body.style.backgroundColor = "black";
     }, 200)
     if(isIOS == false){
       recordedVideo.pause();
@@ -216,7 +286,54 @@ if (isOnline == false){ // to disable send button if offline
 
 }
 
+document.getElementById('goBackClassification').onclick = function(e){
+  document.getElementById('goBackClassification').style.display = 'none';
+  document.getElementById('shareMessagingAppsDirect').style.display = 'none';
+  document.getElementById('shareWorldButton').style.display = 'none';
+  document.getElementById('DownloadButton').style.display = 'none';
+showButtons()
+}
+
+document.getElementById('shareMessagingAppsDirect').onclick = function(e){
+  document.getElementById('goBackClassification').style.display = 'none';
+  document.getElementById('shareMessagingAppsDirect').style.display = 'none';
+  document.getElementById('shareWorldButton').style.display = 'none';
+  document.getElementById('DownloadButton').style.display = 'none';
+  document.getElementById('Cancel').style.display = 'none';
+
+  document.getElementById("goBackShareMessagingAppsDirect").style.display = 'initial';
+  document.getElementById("whatsApp").style.display = 'initial';
+  document.getElementById("telegram").style.display = 'initial';
+  document.getElementById("weChat").style.display = "initial";
+  // document.getElementById("shareMessagingApp").style.display = "initial";
+
+}
+document.getElementById('goBackShareMessagingAppsDirect').onclick = function(e){
+  document.getElementById("goBackShareMessagingAppsDirect").style.display = 'none';
+  document.getElementById("whatsApp").style.display = 'none';
+  document.getElementById("telegram").style.display = 'none';
+  document.getElementById("weChat").style.display = "none";
+  // document.getElementById("shareMessagingApp").style.display = "none";
+
+  document.getElementById('goBackClassification').style.display = 'initial';
+  document.getElementById('shareMessagingAppsDirect').style.display = 'initial';
+  document.getElementById('shareWorldButton').style.display = 'initial';
+  document.getElementById('DownloadButton').style.display = 'initial';
+  // document.getElementById('Cancel').style.display = 'initial';
+}
+
+
+
 document.getElementById('shareWorldButton').onclick = function(e) {
+  hideButtons()
+  document.getElementById('goBackClassification').style.display = 'none';
+  document.getElementById('shareMessagingAppsDirect').style.display = 'none';
+  drawnItems.clearLayers();
+  tempLayer.clearLayers()
+  document.getElementById("map").style.height = "0px";
+
+  // drawnItems.clearLayers();
+  // tempLayer.clearLayers()
   //first, we define the variables that store the attributes
   // propertiesGeoJSON = data.features[0].properties
   // landUses = propertiesGeoJSON.landUses;
@@ -329,6 +446,13 @@ document.getElementById('shareWorldButton').onclick = function(e) {
 }
 
 document.getElementById('DownloadButton').onclick = function(e) {
+  hideButtons()
+  document.getElementById('goBackClassification').style.display = 'none';
+  document.getElementById('shareMessagingAppsDirect').style.display = 'none';
+
+    drawnItems.clearLayers();
+    tempLayer.clearLayers()
+    document.getElementById("map").style.height = "0px";
     document.getElementById('downloadedVideo').play();
     document.getElementById("downloadedVideo").controls = false;
 
