@@ -24,6 +24,9 @@ var initialScreen = true;
 var clickCountDeleteButton = 0;
 
 var convertedData;
+var convertedDataShareDirect;
+var shareGeomDirect = false;
+var propertiesGeoJSONURL;
 var data;
 var dataGeometry;
 var dataGeometry;

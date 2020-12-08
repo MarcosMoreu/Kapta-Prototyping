@@ -112,19 +112,30 @@ document.getElementById("goBackMessagingApps").onclick = function() {
 document.getElementById("whatsApp").onclick = function() {
   //alert('Under development. Available soon.');
   //  window.location.href = "https://wa.me/whatsappphonenumber/?text=urlencodedtext";
-  window.location.href='https://wa.me/?text='+encodeURIComponent(window.location.href)
+  if(shareGeomDirect == false){
+    window.location.href='https://wa.me/?text='+encodeURIComponent(window.location.href)
+  }else{
+
+  }
 }
 
 document.getElementById("telegram").onclick = function() {
 //  alert('🚧 Telegram sharing option not available yet.');
-  window.location.href='https://telegram.me/?text='+encodeURIComponent(window.location.href)
+  if(shareGeomDirect == false){
+    window.location.href='https://telegram.me/?text='+encodeURIComponent(window.location.href)
+  }else{
+
+  }
 }
 
 document.getElementById("weChat").onclick = function() {
   //alert('🚧 WeChat sharing option not available yet.');
-
+  if(shareGeomDirect == false){
+    window.location.href='weixin://?text='+encodeURIComponent(window.location.href)
+  }else{
+    
+  }
   // window.location.href='weixin://'  // to launch the app without url copied
-  window.location.href='weixin://?text='+encodeURIComponent(window.location.href)
 
 }
 document.getElementById("editDeletePopup").onclick = function() {

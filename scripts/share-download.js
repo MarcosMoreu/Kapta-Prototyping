@@ -32,23 +32,6 @@ var hideButtons = function(){
 }
 
 var showButtons = function(){
-  // drawnItems.clearLayers();
-  // tempLayer.clearLayers()
-  //   document.getElementById("map").style.height = "0px";
-    // document.getElementById("Cancel").style.display = "initial";
-    // // document.getElementById('shareMessagingAppsDirect').style.display = 'initial';
-    // document.getElementById("share-download").style.display = "initial";
-    // document.getElementById('noAudioIOS').style.display = 'initial';
-    // document.getElementById("record").style.display = "initial";
-    // document.getElementById('enableRecording').style.display = 'initial';
-    // document.getElementById("play").style.display = "initial";
-    // document.getElementById('voice').style.display = 'initial';
-    // document.getElementById('voice').style.opacity = '0';
-    // document.getElementById('activatePlay').style.display = 'initial';
-    // document.getElementById('showAreaHa').style.display = 'initial';
-    // document.getElementById('showAreaAcres').style.display = 'initial'
-    // // document.getElementById('showLength').style.display = 'initial'
-    // document.getElementById('emoji').style.display = 'initial';
 
     document.getElementById("share-download").style.display = "initial";
     document.getElementById("Cancel").style.display = "initial";
@@ -64,7 +47,18 @@ var showButtons = function(){
     }
 }
 
+var encodeGeoJSON = function(data,properties){
+  data.features[0].properties = properties;
+  convertedDataShareDirect = encodeURIComponent(JSON.stringify(data));
+  // convertedDataShareDirect = JSON.stringify(data);
+
+  shareGeomDirect = true
+
+  return convertedDataShareDirect && shareGeomDirect
+}
+
 document.getElementById('share-download').onclick = function(e) {
+
     sameSession = true;
     alreadyMovedUp = false;
     audioRecorded = false;
@@ -160,17 +154,11 @@ document.getElementById('share-download').onclick = function(e) {
         'geometrystring':data.toString(),
         'screensize':screensize
     };
-    var propertiesGeoJSONURL = {
+    propertiesGeoJSONURL = {
 
         'landUsesEmoji': boxContent,
         'areaPolygon': finalAreaHa2Decimals,
         'lengthLine': finalLength2Decimals,
-        'dateTime': dateTime,
-        'timeSpendSeconds': totalTimeSpent,
-        'dist_m_Participant_Feature': distanceObfTrunc,
-        'randomID': randomID,
-        'geometrystring':data.toString(),
-        'screensize':screensize
     };
     //  adding the properties to the geoJSON file:
     data.features[0].properties = propertiesGeoJSON;
@@ -188,23 +176,6 @@ document.getElementById('share-download').onclick = function(e) {
     //defining the final screen
     setTimeout(function() {
       hideButtons()
-      // drawnItems.clearLayers();
-      // tempLayer.clearLayers()
-      // //   document.getElementById("map").style.height = "0px";
-      //   document.getElementById("").style.display = "none";
-      //   document.getElementById("share-download").style.display = "none";
-      //   document.getElementById('noAudioIOS').style.display = 'none';
-      //   document.getElementById("record").style.display = "none";
-      //   document.getElementById('enableRecording').style.display = 'none';
-      //   document.getElementById("play").style.display = "none";
-      //   document.getElementById('voice').style.display = 'none';
-      //   document.getElementById('voice').style.opacity = '0';
-      //   document.getElementById('activatePlay').style.display = 'none';
-      //   document.getElementById('showAreaHa').style.display = 'none';
-      //   document.getElementById('showAreaAcres').style.display = 'none'
-      //   // document.getElementById('showLength').style.display = 'none'
-      //   document.getElementById('emoji').style.display = 'none';
-      //  document.getElementById("Cancel").style.display = "initial";
 
         document.getElementById('goBackClassification').style.display = 'initial';
         document.getElementById('shareMessagingAppsDirect').style.display = 'initial';
@@ -267,7 +238,12 @@ document.getElementById('share-download').onclick = function(e) {
         filesLength = 1
         created = false; // redundant (to ensure that when DELETE is clicked the sql query is the delete one, not the last Insert query)
     }
-
+      encodeGeoJSON(data,propertiesGeoJSONURL)
+      console.log(convertedDataShareDirect)
+      // var parsedJSON = JSON.parse(convertedDataShareDirect)
+      var parsedJSONdecoded = decodeURIComponent(convertedDataShareDirect);
+      var parsedJSON = JSON.parse(parsedJSONdecoded)
+      console.log(parsedJSON)
     return created && data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType //&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
 }
 //console.log(finalLayer)
