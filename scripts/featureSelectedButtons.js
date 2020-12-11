@@ -90,7 +90,8 @@ document.getElementById("shareMessagingApp").onclick = function() {
   document.getElementById("telegram").style.display = "initial";
   document.getElementById("weChat").style.display = "initial";
   document.getElementById("goBackMessagingApps").style.display = "initial";
-
+  shareURL = 'coords'
+  return shareURL
 }
 
 document.getElementById("goBackMessagingApps").onclick = function() {
@@ -112,28 +113,31 @@ document.getElementById("goBackMessagingApps").onclick = function() {
 document.getElementById("whatsApp").onclick = function() {
   //alert('Under development. Available soon.');
   //  window.location.href = "https://wa.me/whatsappphonenumber/?text=urlencodedtext";
-  if(shareGeomDirect == false){
+  if(shareURL == 'coords'){
     window.location.href='https://wa.me/?text='+encodeURIComponent(window.location.href)
-  }else{
+  }else if(shareURL == 'encodedGeoJSON'){
+    window.location.href='https://wa.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ mappos.center.lat + ',' + mappos.center.lng + ',' + mappos.zoom + 'z')
 
   }
 }
 
 document.getElementById("telegram").onclick = function() {
 //  alert('🚧 Telegram sharing option not available yet.');
-  if(shareGeomDirect == false){
+  if(shareURL == 'coords'){
     window.location.href='https://telegram.me/?text='+encodeURIComponent(window.location.href)
-  }else{
+  }else if(shareURL == 'encodedGeoJSON'){
+    window.location.href='https://telegram.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ mappos.center.lat + ',' + mappos.center.lng + ',' + mappos.zoom + 'z')
 
   }
 }
 
 document.getElementById("weChat").onclick = function() {
   //alert('🚧 WeChat sharing option not available yet.');
-  if(shareGeomDirect == false){
+  if(shareURL == 'coords'){
     window.location.href='weixin://?text='+encodeURIComponent(window.location.href)
-  }else{
-    
+  }else if(shareURL == 'encodedGeoJSON'){
+    window.location.href='weixin://?text='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ mappos.center.lat + ',' + mappos.center.lng + ',' + mappos.zoom + 'z')
+
   }
   // window.location.href='weixin://'  // to launch the app without url copied
 

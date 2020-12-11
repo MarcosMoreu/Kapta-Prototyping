@@ -240,11 +240,12 @@ document.getElementById('share-download').onclick = function(e) {
     }
       encodeGeoJSON(data,propertiesGeoJSONURL)
       console.log(convertedDataShareDirect)
+      console.log(mappos)
       // var parsedJSON = JSON.parse(convertedDataShareDirect)
       var parsedJSONdecoded = decodeURIComponent(convertedDataShareDirect);
       var parsedJSON = JSON.parse(parsedJSONdecoded)
       console.log(parsedJSON)
-    return created && data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType //&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
+    return created && data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType && convertedDataShareDirect //&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
 }
 //console.log(finalLayer)
 
@@ -281,8 +282,10 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
   document.getElementById("whatsApp").style.display = 'initial';
   document.getElementById("telegram").style.display = 'initial';
   document.getElementById("weChat").style.display = "initial";
-  // document.getElementById("shareMessagingApp").style.display = "initial";
 
+  shareURL = 'encodedGeoJSON'
+  // document.getElementById("shareMessagingApp").style.display = "initial";
+  return shareURL
 }
 document.getElementById('goBackShareMessagingAppsDirect').onclick = function(e){
   document.getElementById("goBackShareMessagingAppsDirect").style.display = 'none';

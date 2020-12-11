@@ -23,6 +23,7 @@ var finalUrlAudio;
 var initialScreen = true;
 var clickCountDeleteButton = 0;
 
+var shareURL;
 var convertedData;
 var convertedDataShareDirect;
 var shareGeomDirect = false;
