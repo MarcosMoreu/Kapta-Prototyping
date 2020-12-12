@@ -241,10 +241,9 @@ document.getElementById('share-download').onclick = function(e) {
       encodeGeoJSON(data,propertiesGeoJSONURL)
       console.log(convertedDataShareDirect)
       console.log(mappos)
-      // var parsedJSON = JSON.parse(convertedDataShareDirect)
-      var parsedJSONdecoded = decodeURIComponent(convertedDataShareDirect);
-      var parsedJSON = JSON.parse(parsedJSONdecoded)
-      console.log(parsedJSON)
+      // var parsedJSONdecoded = decodeURIComponent(convertedDataShareDirect);
+      // var parsedJSON = JSON.parse(parsedJSONdecoded)
+      // console.log(parsedJSON)
     return created && data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType && convertedDataShareDirect //&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
 }
 //console.log(finalLayer)

@@ -84,36 +84,6 @@ var initialiseMap = function(){
   document.getElementById("cluster-css").disabled = false
   document.getElementById("clusterDefault-css").disabled = false
   // $.getScript( "scripts/app.js" , function(){console.log('script gotten')});
-  var findCartoCredential = setInterval(function() {
-      if (isOnline == true && cartousername != null) {
-        sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu";
-
-          clearInterval(findCartoCredential);
-          function getGeoJSON() {
-              $.getJSON({
-                cache:false,
-                success:cartoGeoJSONLayer,
-                url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
-              })
-              return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
-          };
-          // getGeoJSON(); //////////////!!!!!!!!!!!!!!!!!!!!!
-
-          //funtion to get geojson with 🌐 to be used in random suggestion
-          function getGeoJSONRandom(){ ///RANDOM!!!!!!!!!!!!!!!
-
-            var sqlQueryRandom = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE LEFT(landusesemoji,1)='🌐'";
-            $.getJSON({
-              cache:false,
-              success:randomLayer,
-              url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQueryRandom + cartoapiSELECT
-            })
-          }
-          // getGeoJSONRandom() ////////////////!!!!!!!!!!!!!!!
-      }
-      return cartousername
-  }, 100)
-
       $.when(
 
           $.getScript({
@@ -254,6 +224,37 @@ var requestPw = function(){
                 clearInterval(checkPw)
                 clearInterval(checkDone)
                 document.getElementById('enteredPw').style.backgroundColor = '#39F70F'
+
+                var findCartoCredential = setInterval(function() {
+                    if (isOnline == true && cartousername != null) {
+                      sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu";
+
+                        clearInterval(findCartoCredential);
+                        function getGeoJSON() {
+                            $.getJSON({
+                              cache:false,
+                              success:cartoGeoJSONLayer,
+                              url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
+                            })
+                            return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
+                        };
+                        //getGeoJSON(); //////////////!!!!!!!!!!!!!!!!!!!!!
+
+                        //funtion to get geojson with 🌐 to be used in random suggestion
+                        function getGeoJSONRandom(){ ///RANDOM!!!!!!!!!!!!!!!
+
+                          var sqlQueryRandom = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE LEFT(landusesemoji,1)='🌐'";
+                          $.getJSON({
+                            cache:false,
+                            success:randomLayer,
+                            url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQueryRandom + cartoapiSELECT
+                          })
+                        }
+                         //getGeoJSONRandom() ////////////////!!!!!!!!!!!!!!!
+                    }
+                    return cartousername
+                }, 100)
+
                 // document.getElementById('login').style.display = 'none'
                 // document.getElementById('loginInfo').style.opacity = '0.4'
                 // document.getElementById('loginInfo').disabled = true
