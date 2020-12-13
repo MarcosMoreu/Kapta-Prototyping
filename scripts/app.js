@@ -138,9 +138,6 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker
         .register('./sw.js')
         .then(function(registration) {
-            //console.log('Service Worker Registered');
-            //console.log('sw has been updated')
-
 
             registration.update() //to update the sw and caches if version has changed
             //console.log('sw has been updated')
@@ -281,21 +278,18 @@ var storeURLGeoJSON = function(data){
   return randomIDtest
 }
 
-
-
 //////////////////  center the map: check first if url with coordinates, if not, check if first load, then check if lastpositionstored.
 //script to check if url contains coordinates when loaded
 
 // var url = window.location.href
 var url = 'https://amappingprototype.xyz/?%7B%22type%22%3A%22FeatureCollection%22%2C%22features%22%3A%5B%7B%22type%22%3A%22Feature%22%2C%22properties%22%3A%7B%22randomID%22%3A1111%2C%22landUsesEmoji%22%3A%22test%22%2C%22areaPolygon%22%3A%222489831968.72%20hectares%22%2C%22lengthLine%22%3A%22Polygon%22%7D%2C%22geometry%22%3A%7B%22type%22%3A%22Polygon%22%2C%22coordinates%22%3A%5B%5B%5B-4.21875%2C-13.923404%5D%2C%5B16.875%2C-40.713956%5D%2C%5B66.09375%2C-40.713956%5D%2C%5B63.28125%2C4.214943%5D%2C%5B-4.21875%2C-13.923404%5D%5D%5D%7D%7D%5D%7D/#-15.11455,40.95703,3z'
 console.log(url)
-var urlContainsHash = url.includes('#')
-var urlContainsGeoJSON = url.includes('?')
+var urlContainsHash = url.includes('/#')
+var urlContainsGeoJSON = url.includes('/?')
 
 //to avoid panning outside this bounds
 var southWest = L.latLng(-70, -180);
 var northEast = L.latLng(80, 180);
-
 
 if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains geojson (and coords)
   //to set mapview
@@ -316,7 +310,7 @@ if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains 
         attributionControl: false,
         maxBounds: L.latLngBounds(southWest, northEast)
     });
-    //to extract geoJSON from the url
+    /////////////to extract geoJSON from the url
 
     var removeHttps = url.split('?').pop();
     var removeCoords = removeHttps.split('/');
@@ -331,19 +325,8 @@ if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains 
     storeURLGeoJSON(parsedJSON)
     setTimeout(function accessLocalStorage(){
           fetchFromLocalStorage()
-          localStorageToGeoJSON()
           console.log('after fetch and convert',localStorageLayer)
-
-          //localStorageLayer.addTo(map)
-
-    },300)
-    // setTimeout(function(){
-    //   document.getElementById('myLayerButton').click()
-    // },1000)
-
-
-
-    //to add the geojson
+    },300) // really don't know why this timeout, but keep it for now
 
 }else if (urlContainsHash == true){  // if only coords are in the url
     var keepOnlyLatLngZoom = url.split('#').pop();
@@ -381,7 +364,6 @@ if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains 
 
         });
     } else {
-
         var map = L.map('map', {
             editable: true,
             center: [lastPositionStoredLOCALLY[0], lastPositionStoredLOCALLY[1]],
@@ -394,10 +376,7 @@ if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains 
             maxBounds: L.latLngBounds(southWest, northEast)
         });
     }
-
 }
-
-
 
 L.Permalink.setup(map);
 
@@ -442,15 +421,11 @@ var addMiniMap = function(){ //the three request must be in the same function!!!
       })
 }
 
-
-
 ////////////////////////////////////
   map.addControl(L.control.attribution({
       position: 'bottomright',
       prefix: ''
   }));
-
-
 
 var scale = L.control.scale({
     maxWidth: 100,
@@ -514,8 +489,38 @@ geoJSONLocalforageDB.length().then(function(numberOfKeys) {
     console.log(err);
 });
 
+// function to convert all geojsons in localforage into a layer. The function is called from fetchFromLocalStorage() [below]
+var localStorageLayer
+var localStorageToGeoJSON = function(){
+  console.log(groupGeoJSON)
 
+    if (isJson(groupGeoJSON) == false && isFirstTime == false) {
+        localStorageLayer = L.geoJSON(groupGeoJSON, {
+            style: function(feature) {
+                //myLayerIsOn = true;
+                //console.log(myLayerIsOn)
+                return feature.properties && feature.properties.style;
+            },
+            pointToLayer: function(feature, latlng) {
 
+                return L.marker(latlng, {
+                    icon: markerIconLocalStorage,
+                    draggable:false
+                });
+            },
+            color: '#33FFFF',
+            //  icon: markerIconLocalStorage,
+            onEachFeature: onEachFeatureAudioLocalStorage,
+            autopan: false
+        }) //.addTo(map)
+        console.log('localStorageLayer', localStorageLayer)
+
+    }
+return localStorageLayer
+}
+
+// function to fetch all geojson files from the IndexedDB-localforage-geoJSONsDB. Localforage is async, so promises are uses. After loop ends, localStorageToGeoJSON() [above] is called
+var completedCount = 0 // to call localStorageToGeoJSON() when loop ends
 function fetchFromLocalStorage(){
   if (isFirstTime == false && geoJSONLocalforageDB.key(0) != null) {
 
@@ -533,24 +538,19 @@ function fetchFromLocalStorage(){
                     //add each json to an array-------------------------
                   //  groupGeoJSON[i] = getItemToJSON
                   groupGeoJSON.push(getItemToJSON)
-                    console.log(getItemToJSON)
-
+                  completedCount += 1;
                   console.log(groupGeoJSON)
-                  console.log(groupGeoJSON[i])
 
-                } else {
-                    groupGeoJSON[i] = {}; // this is to avoid error when an array element is not a JSON
+                  //call localStorageToGeoJSON() when loop ends
+                  if (completedCount == keys.length){
+                    localStorageToGeoJSON()
+                  }
                 }
-
             });
-
           })(keys[i]);
-        //return groupGeoJSON
       }
     });
    }
- console.log(groupGeoJSON)
- // return groupGeoJSON
 }
 
 //conditions to catch error in case no geojson and also to avoid error when adding to map an empty layer if is first time
@@ -565,33 +565,6 @@ var markerIconLocalStorage = new L.icon({
     //shadowAnchor: [4, 62],  // the same for the shadow
     //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
-
-var localStorageLayer
-var localStorageToGeoJSON = function(){
-if (isJson(groupGeoJSON) == false && isFirstTime == false) {
-    localStorageLayer = L.geoJSON(groupGeoJSON, {
-        style: function(feature) {
-            //myLayerIsOn = true;
-            //console.log(myLayerIsOn)
-            return feature.properties && feature.properties.style;
-        },
-        pointToLayer: function(feature, latlng) {
-
-            return L.marker(latlng, {
-                icon: markerIconLocalStorage,
-                draggable:false
-            });
-        },
-        color: '#33FFFF',
-        //  icon: markerIconLocalStorage,
-        onEachFeature: onEachFeatureAudioLocalStorage,
-        autopan: false
-    }) //.addTo(map)
-    console.log('localStorageLayer', localStorageLayer)
-
-}
-return localStorageLayer
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb, {
