@@ -254,22 +254,15 @@ var mappos = L.Permalink.getMapLocation();
 //////////////////////////////////////////////  MAP  //////////////////////////////////////////////////////
 var randomIDtest
 var geoJSONLocalforageDB
+//this function will be called only if geojson is found in url
 var storeURLGeoJSON = function(data){
-
-  // var randomNumber = Math.random();
-  // randomNumber = randomNumber * 10000;
-  // var randomID = 'geoJSON_'+ Math.round(randomNumber);
-  console.log(data)
   var randomID = data.features[0].properties.randomID
-  console.log('randomID', randomID)
-
   geoJSONLocalforageDB = localforage.createInstance({ //to create a separate DB in IndexedDB, so geojsons are not mixed with TilesDB
   name: "geoJSONs"
   });
   var parsedJSONStringified = JSON.stringify(data)
 
   geoJSONLocalforageDB.setItem(randomID, parsedJSONStringified).then(function(value){
-    console.log('item has been set')
   }).catch(function(err) {
     console.error(err);
   });
@@ -283,6 +276,7 @@ var storeURLGeoJSON = function(data){
 
 // var url = window.location.href
 var url = 'https://amappingprototype.xyz/?%7B%22type%22%3A%22FeatureCollection%22%2C%22features%22%3A%5B%7B%22type%22%3A%22Feature%22%2C%22properties%22%3A%7B%22randomID%22%3A1111%2C%22landUsesEmoji%22%3A%22test%22%2C%22areaPolygon%22%3A%222489831968.72%20hectares%22%2C%22lengthLine%22%3A%22Polygon%22%7D%2C%22geometry%22%3A%7B%22type%22%3A%22Polygon%22%2C%22coordinates%22%3A%5B%5B%5B-4.21875%2C-13.923404%5D%2C%5B16.875%2C-40.713956%5D%2C%5B66.09375%2C-40.713956%5D%2C%5B63.28125%2C4.214943%5D%2C%5B-4.21875%2C-13.923404%5D%5D%5D%7D%7D%5D%7D/#-15.11455,40.95703,3z'
+// var url = 'https://amappingprototype.xyz/'
 console.log(url)
 var urlContainsHash = url.includes('/#')
 var urlContainsGeoJSON = url.includes('/?')
@@ -327,6 +321,9 @@ if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains 
           fetchFromLocalStorage()
           console.log('after fetch and convert',localStorageLayer)
     },300) // really don't know why this timeout, but keep it for now
+    setTimeout(function changeToLocalStorageLayer(){
+        document.getElementById('myLayerButton').click()
+    },1000) // really don't know why this timeout, but keep it for now
 
 }else if (urlContainsHash == true){  // if only coords are in the url
     var keepOnlyLatLngZoom = url.split('#').pop();
@@ -347,6 +344,13 @@ if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains 
         maxBounds: L.latLngBounds(southWest, northEast)
 
     });
+    geoJSONLocalforageDB = localforage.createInstance({ //to create a separate DB in IndexedDB, so geojsons are not mixed with TilesDB
+    name: "geoJSONs"
+    });
+    setTimeout(function accessLocalStorage(){
+          fetchFromLocalStorage()
+          console.log('after fetch and convert',localStorageLayer)
+    },300) // really don't know why this timeout, but keep it for now
   //////////////////////
 }else{
 
@@ -376,6 +380,13 @@ if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains 
             maxBounds: L.latLngBounds(southWest, northEast)
         });
     }
+    geoJSONLocalforageDB = localforage.createInstance({ //to create a separate DB in IndexedDB, so geojsons are not mixed with TilesDB
+    name: "geoJSONs"
+    });
+    setTimeout(function accessLocalStorage(){
+          fetchFromLocalStorage()
+          console.log('after fetch and convert',localStorageLayer)
+    },300) // really don't know why this timeout, but keep it for now
 }
 
 L.Permalink.setup(map);
@@ -477,9 +488,7 @@ function isJson(str) {
     }
     return true;
 }
-// console.log(localforage.length)
 var numberOfKeysGlobal
-// var input
 
 geoJSONLocalforageDB.length().then(function(numberOfKeys) {
     // Outputs the length of the database.
@@ -492,7 +501,7 @@ geoJSONLocalforageDB.length().then(function(numberOfKeys) {
 // function to convert all geojsons in localforage into a layer. The function is called from fetchFromLocalStorage() [below]
 var localStorageLayer
 var localStorageToGeoJSON = function(){
-  console.log(groupGeoJSON)
+  //console.log(groupGeoJSON)
 
     if (isJson(groupGeoJSON) == false && isFirstTime == false) {
         localStorageLayer = L.geoJSON(groupGeoJSON, {
@@ -513,7 +522,7 @@ var localStorageToGeoJSON = function(){
             onEachFeature: onEachFeatureAudioLocalStorage,
             autopan: false
         }) //.addTo(map)
-        console.log('localStorageLayer', localStorageLayer)
+        //console.log('localStorageLayer', localStorageLayer)
 
     }
 return localStorageLayer
