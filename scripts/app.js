@@ -255,12 +255,39 @@ if (lastPositionStoredLOCALLY != null) {
 var mappos = L.Permalink.getMapLocation();
 
 //////////////////////////////////////////////  MAP  //////////////////////////////////////////////////////
+var randomIDtest
+var geoJSONLocalforageDB
+var storeURLGeoJSON = function(data){
+
+  // var randomNumber = Math.random();
+  // randomNumber = randomNumber * 10000;
+  // var randomID = 'geoJSON_'+ Math.round(randomNumber);
+  console.log(data)
+  var randomID = data.features[0].properties.randomID
+  console.log('randomID', randomID)
+
+  geoJSONLocalforageDB = localforage.createInstance({ //to create a separate DB in IndexedDB, so geojsons are not mixed with TilesDB
+  name: "geoJSONs"
+  });
+  var parsedJSONStringified = JSON.stringify(data)
+
+  geoJSONLocalforageDB.setItem(randomID, parsedJSONStringified).then(function(value){
+    console.log('item has been set')
+  }).catch(function(err) {
+    console.error(err);
+  });
+  randomIDtest = randomID
+
+  return randomIDtest
+}
+
+
 
 //////////////////  center the map: check first if url with coordinates, if not, check if first load, then check if lastpositionstored.
 //script to check if url contains coordinates when loaded
 
 // var url = window.location.href
-var url = 'https://amappingprototype.xyz/?%7B%22type%22%3A%22FeatureCollection%22%2C%22features%22%3A%5B%7B%22type%22%3A%22Feature%22%2C%22properties%22%3A%7B%22landUsesEmoji%22%3A%22fsfdd%22%2C%22areaPolygon%22%3A%22187186.95%20hectares%22%2C%22lengthLine%22%3A%22Polygon%22%7D%2C%22geometry%22%3A%7B%22type%22%3A%22Polygon%22%2C%22coordinates%22%3A%5B%5B%5B24.071045%2C-54.727792%5D%2C%5B24.367676%2C-55.001251%5D%2C%5B24.97467%2C-55.026448%5D%2C%5B25.076294%2C-54.654769%5D%2C%5B24.071045%2C-54.727792%5D%5D%5D%7D%7D%5D%7D/#-54.77297,24.55994,9z'
+var url = 'https://amappingprototype.xyz/?%7B%22type%22%3A%22FeatureCollection%22%2C%22features%22%3A%5B%7B%22type%22%3A%22Feature%22%2C%22properties%22%3A%7B%22randomID%22%3A1111%2C%22landUsesEmoji%22%3A%22test%22%2C%22areaPolygon%22%3A%222489831968.72%20hectares%22%2C%22lengthLine%22%3A%22Polygon%22%7D%2C%22geometry%22%3A%7B%22type%22%3A%22Polygon%22%2C%22coordinates%22%3A%5B%5B%5B-4.21875%2C-13.923404%5D%2C%5B16.875%2C-40.713956%5D%2C%5B66.09375%2C-40.713956%5D%2C%5B63.28125%2C4.214943%5D%2C%5B-4.21875%2C-13.923404%5D%5D%5D%7D%7D%5D%7D/#-15.11455,40.95703,3z'
 console.log(url)
 var urlContainsHash = url.includes('#')
 var urlContainsGeoJSON = url.includes('?')
@@ -296,8 +323,26 @@ if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains 
     var keepGeoJSONOnly = removeCoords[0]
     var parsedJSONdecoded = decodeURIComponent(keepGeoJSONOnly);
     var parsedJSON = JSON.parse(parsedJSONdecoded)
-    console.log(parsedJSON)
+    // var parsedJSONStringified = JSON.stringify(parsedJSON)
     console.log(keepGeoJSONOnly)
+    console.log(parsedJSON)
+    // console.log(parsedJSONStringified)
+
+    storeURLGeoJSON(parsedJSON)
+    setTimeout(function accessLocalStorage(){
+          fetchFromLocalStorage()
+          localStorageToGeoJSON()
+          console.log('after fetch and convert',localStorageLayer)
+
+          //localStorageLayer.addTo(map)
+
+    },300)
+    // setTimeout(function(){
+    //   document.getElementById('myLayerButton').click()
+    // },1000)
+
+
+
     //to add the geojson
 
 }else if (urlContainsHash == true){  // if only coords are in the url
@@ -368,17 +413,7 @@ L.Permalink.setup(map);
     marker:'white',
     topojsonSrc: 'scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/world.json'
   }
-// var initialiseMinimap = function(){
- //var miniMap = new L.Control.GlobeMiniMap(optionsMinimap)//.addTo(map);
-  // console.log('minimap initialised')
-  //miniMap.addTo(map)
 
- //return miniMap
-// }
-// initialiseMinimap()
-// var checkMiniMap = setInterval(function(){
-//   console.log('minimap', initialiseMinimap())
-// },2000)
 var miniMap
 var addMiniMap = function(){ //the three request must be in the same function!!!!
       $.getScript({
@@ -406,19 +441,7 @@ var addMiniMap = function(){ //the three request must be in the same function!!!
         }
       })
 }
-// var removeMiniMap = function(){
-//       $.getScript({
-//         cache:true,
-//         url:'scripts/lib/d3.min.js',
-//         success: function(){
-//           // var  miniMap = new L.Control.GlobeMiniMap(optionsMinimap)//.addTo(map);
-//             miniMap.remove()
-//             //return miniMap
-//         }
-//       })
-//     // var  miniMap = new L.Control.GlobeMiniMap(optionsMinimap)//.addTo(map);
-//     //   miniMap.removeFrom(map)
-// }
+
 
 
 ////////////////////////////////////
@@ -479,36 +502,56 @@ function isJson(str) {
     }
     return true;
 }
+// console.log(localforage.length)
+var numberOfKeysGlobal
+// var input
+
+geoJSONLocalforageDB.length().then(function(numberOfKeys) {
+    // Outputs the length of the database.
+    console.log(numberOfKeys);
+    numberOfKeysGlobal = numberOfKeys
+}).catch(function(err) {
+    console.log(err);
+});
+
+
+
 function fetchFromLocalStorage(){
-if (isFirstTime == false & localStorage.key(0) != null) {
+  if (isFirstTime == false && geoJSONLocalforageDB.key(0) != null) {
 
-    //  loop for going through all geoJSON stored in the localStorage
-    for (var i = 0, len = localStorage.length; i < len - 1; i++) { //len-2  to avoid a error of geojson object not recognised. last element is [true]...
-        var key = localStorage.key(i);
-        var value = localStorage[key];
-        var itemFetched = localStorage.getItem(key);
-        //    //console.log(i+ '____' + key + " => " + value +'__'+ '__ccc__'+itemFetched);
-        //call catch function
-        isJson(itemFetched);
-        // //console.log(isJson(itemFetched))
-        if (isJson(itemFetched) == true) {
-          //  //console.log(isJson(itemFetched))
-        //    //console.log(itemFetched)
-            var getItemToJSON = JSON.parse(itemFetched);
-        //    //console.log(isJson(getItemToJSON))
-         // console.log(getItemToJSON)
-            isJson(getItemToJSON)
-            //add each json to an array-------------------------
-            groupGeoJSON[i] = getItemToJSON
-        //    //console.log(isJson(groupGeoJSON))
-        // console.log(groupGeoJSON)
-        } else {
-            groupGeoJSON[i] = {}; // this is to avoid error when an array element is not a JSON
-        }
-    }
- }
+    geoJSONLocalforageDB.keys(function(err, keys) {
+      for (var i = 0; i < keys.length; i++) {
+
+          (function(key) {
+            geoJSONLocalforageDB.getItem(key).then(function (value) {
+                // console.log(key, value);
+                isJson(value);
+                if (isJson(value) == true) {
+                  // console.log(isJson('this is geojson',value))
+                    var getItemToJSON = JSON.parse(value);
+                    isJson(getItemToJSON)
+                    //add each json to an array-------------------------
+                  //  groupGeoJSON[i] = getItemToJSON
+                  groupGeoJSON.push(getItemToJSON)
+                    console.log(getItemToJSON)
+
+                  console.log(groupGeoJSON)
+                  console.log(groupGeoJSON[i])
+
+                } else {
+                    groupGeoJSON[i] = {}; // this is to avoid error when an array element is not a JSON
+                }
+
+            });
+
+          })(keys[i]);
+        //return groupGeoJSON
+      }
+    });
+   }
+ console.log(groupGeoJSON)
+ // return groupGeoJSON
 }
-
 
 //conditions to catch error in case no geojson and also to avoid error when adding to map an empty layer if is first time
 //var myLayerIsOn = true;
@@ -544,6 +587,8 @@ if (isJson(groupGeoJSON) == false && isFirstTime == false) {
         onEachFeature: onEachFeatureAudioLocalStorage,
         autopan: false
     }) //.addTo(map)
+    console.log('localStorageLayer', localStorageLayer)
+
 }
 return localStorageLayer
 }
@@ -843,6 +888,7 @@ var myLayer_Button = L.easyButton({
             if (whichLayerIsOn == 'deflated' && localStorageLayer != null) {
                 deflated.removeFrom(map)
                 if (localStorageLayer != null) {
+                  console.log('local storage is not null')
                     localStorageLayer.addTo(map)
                 }
                 if (finalLayer != null) {

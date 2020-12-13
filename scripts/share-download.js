@@ -155,7 +155,7 @@ document.getElementById('share-download').onclick = function(e) {
         'screensize':screensize
     };
     propertiesGeoJSONURL = {
-
+        'randomID': randomID,
         'landUsesEmoji': boxContent,
         'areaPolygon': finalAreaHa2Decimals,
         'lengthLine': finalLength2Decimals,
@@ -194,9 +194,10 @@ document.getElementById('share-download').onclick = function(e) {
 
     //adding layers to localstorage
     var dataStringified = JSON.stringify(data);
+    console.log(dataStringified)
 
     var tempName = randomID // each polygon must have a different name!!!
-    var layerToLocalStorage = localStorage.setItem(tempName, dataStringified);
+    var layerToLocalStorage = geoJSONLocalforageDB.setItem(tempName, dataStringified);
     // console.log(layerToLocalStorage);
     //console.log(dataStringified.geometry)
     //console.log(data.geometry)
