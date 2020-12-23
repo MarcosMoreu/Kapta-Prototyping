@@ -178,7 +178,7 @@ var initialiseMap = function(){
         // Usage:
 
         preload([
-            'images/ThumbsUpGreen.png','images/drawPolygon.png','images/line.png','images/point.png',
+            'images/ThumbsUpGreen.png','images/checkingPw.gif','images/drawPolygon.png','images/line.png','images/point.png',
             'images/applyFilter.png','images/arrowLeft.png', 'images/arrowRight.png', 'images/backButton.png','images/bin.png','images/binOriginal.png','images/binpost.png',
             'images/binpre.png','images/burger.png','images/burgerBlack.png','images/cancel.png','images/clearFilter.png','images/commentFeature.png',
             'images/customise.png','images/dateAll.png','images/dateDay.png','images/dateMonth.png','images/dateWeek.png','images/dateYear.png','images/deleteAllVertex.png',
@@ -246,6 +246,9 @@ var requestPw = function(){
       // document.getElementById('login').onclick = function(e){
       document.getElementById('login').addEventListener('click',e =>{
         authentication = 'checking' //to avoid failed being stored, if first time fails. Number of fails is limited by Firebase!!!
+        clearInterval(checkPw)
+        document.getElementById('loginIcon').src = 'images/checkingPw.gif'
+        document.getElementById('login').style.borderColor= 'white'
 
         e.preventDefault() // to avoid page reload on first load!
         var pwPlaceholder = document.getElementById('enteredPw').value
@@ -304,14 +307,21 @@ var requestPw = function(){
               else if(authentication == 'failed'){
                 clearInterval(checkDoneAndFirebasePW)
 
+
                  console.log('none')
 
                 document.getElementById('enteredPw').style.backgroundColor = 'red'
                 document.getElementById('enteredPw').focus() //to maintain keyboard if pw wrong
 
                 setTimeout(function(){
+                  //requestPw()
                   document.getElementById('enteredPw').style.backgroundColor = 'white'
-                },1000)
+                  document.getElementById('loginIcon').src = 'images/ThumbsUpGreen.png'
+                  document.getElementById('login').style.borderColor= 'grey'
+                  // document.getElementById('login').style.borderColor = 'red'
+
+
+                },500)
               }
 
             }
