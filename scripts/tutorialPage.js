@@ -10,8 +10,12 @@ document.getElementById('dropDown').onclick = function(e){
 
     if(dropDownOpen == false){
       document.getElementById('infoButton').style.display = "initial";
+      document.getElementById('iconsButton').style.display = "initial";
+
       if(isOnline == true){
         document.getElementById('cutomiseButton').style.display = "initial";
+        document.getElementById('iconsButton').style.display = "initial";
+
       }
       document.getElementById('dropDown').style.backgroundColor = 'grey';
       document.getElementById('imageDropDown').src = '../images/burgerBlack.png';
@@ -19,6 +23,7 @@ document.getElementById('dropDown').onclick = function(e){
     }else{
       document.getElementById('infoButton').style.display = "none";
       document.getElementById('cutomiseButton').style.display = "none";
+      document.getElementById('iconsButton').style.display = "none";
       document.getElementById('dropDown').style.backgroundColor = 'black';
       document.getElementById('imageDropDown').src = '../images/burger.png';
 
@@ -36,10 +41,10 @@ document.getElementById('dropDown').onclick = function(e){
        document.getElementById('dropDown').style.display = "none";
        document.getElementById('cutomiseButton').style.display = "none";
       document.getElementById('infoButton').style.display = "none";
+      document.getElementById("iconsButton").style.display = "none";
       document.getElementById('cutomiseButton').style.display = "none";
       document.getElementById("youtube").style.display = "none";
       document.getElementById("startMapping").style.display = "none";
-      document.getElementById("infoButton").style.display = "none";
       document.getElementById("spanish").style.display = "none";
       document.getElementById("english").style.display = "none";
       document.getElementById("french").style.display = "none";
@@ -67,6 +72,36 @@ document.getElementById('infoButton').onclick = function(e){
     document.getElementById("youtube").style.display = "none";
     document.getElementById("startMapping").style.display = "none";
     document.getElementById("infoButton").style.display = "none";
+    document.getElementById("iconsButton").style.display = "none";
+
+    document.getElementById("spanish").style.display = "none";
+    document.getElementById("english").style.display = "none";
+    document.getElementById("french").style.display = "none";
+    document.getElementById("portuguese").style.display = "none";
+    document.getElementById("swahili").style.display = "none";
+    document.getElementById("juhoansi").style.display = "none";
+    document.getElementById("other1").style.display = "none";
+    document.getElementById("textEnglish").style.display = "none";
+    document.getElementById("textSpanish").style.display = "none";
+    document.getElementById("textFrench").style.display = "none";
+    document.getElementById("textPortuguese").style.display = "none";
+    document.getElementById("textSwahili").style.display = "none";
+    document.getElementById("textJuhoansi").style.display = "none";
+
+   },100)
+  }
+document.getElementById('iconsButton').onclick = function(e){
+   setTimeout(function(){
+     document.getElementById("infoGoBackButton").style.display = "initial";
+     document.getElementById("iconsCont").style.display = "initial";
+
+     document.getElementById('dropDown').style.display = "none";
+     document.getElementById('cutomiseButton').style.display = "none";
+    document.getElementById("youtube").style.display = "none";
+    document.getElementById("startMapping").style.display = "none";
+    document.getElementById("infoButton").style.display = "none";
+    document.getElementById("iconsButton").style.display = "none";
+
     document.getElementById("spanish").style.display = "none";
     document.getElementById("english").style.display = "none";
     document.getElementById("french").style.display = "none";
@@ -88,11 +123,13 @@ document.getElementById('infoGoBackButton').onclick = function(e){
    setTimeout(function(){
      document.getElementById("infoGoBackButton").style.display = "none";
      document.getElementById("infoCont").style.display = "none";
+     document.getElementById("iconsCont").style.display = "none";
      document.getElementById("cognitoForm").style.display = "none";
 
      document.body.style.overflow = 'hidden';
 
      document.getElementById("infoButton").style.display = "none";
+     document.getElementById("iconsButton").style.display = "none";
      document.getElementById('cutomiseButton').style.display = "none";
      document.getElementById("spanish").style.display = "none";
      document.getElementById("english").style.display = "none";
@@ -128,6 +165,7 @@ document.getElementById('youtube').onclick = function(e){
      document.getElementById('dropDown').style.backgroundColor = 'black';
      dropDownOpen = false
      document.getElementById("infoButton").style.display = "none";
+     document.getElementById("iconsButton").style.display = "none";
       document.getElementById("youtube").style.display = "none";
       document.getElementById('cutomiseButton').style.display = "none";
       document.getElementById('startMapping').style.display = "none";

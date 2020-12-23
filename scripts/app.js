@@ -1391,7 +1391,14 @@ var clicksRose = 0
 document.getElementById('rose').onclick = function(e){
     clicksRose += 1;
     // console.log(clicksRose)
-  if(clicksRose == 10){
+    //this is to avoid zoom in with doubleClick if rose is clicked too quickly
+    map.doubleClickZoom.disable();
+    setTimeout(function(){
+      map.doubleClickZoom.enable();
+
+    },200)
+
+      if(clicksRose == 10){
     offlineControlGoogle.addTo(map);
     offlineControlOSM.addTo(map);
     clicksRose = 0;
