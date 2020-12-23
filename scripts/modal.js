@@ -29,6 +29,7 @@ document.getElementById('loginKey').onclick = function(e){
   document.getElementById('login').style.display = 'initial';
   initialiseMap() //map initialised but not shown
 
+
  //console.log(loaded)
 //return loaded
 }
@@ -62,7 +63,9 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
         requestPw()
     }else {
       // console.log('recognised not first time')
+
       initialiseMap() //map initialised AND LOADED (no modal)
+      requestCartoData()
         isFirstTime = false;
         try{
         //  fetchFromLocalStorage()
@@ -74,6 +77,38 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
 }
 window.onload = firstLoad;  /// to launch the root function XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXS
 var done = false
+
+var requestCartoData = function() {
+    if (isOnline == true && cartousername != null) {
+      sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu";
+
+        clearInterval(requestCartoData);
+        function getGeoJSON() {
+            $.getJSON({
+              cache:false,
+              success:cartoGeoJSONLayer,
+              url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
+            })
+            return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
+        };
+        getGeoJSON(); //////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        //funtion to get geojson with 🌐 to be used in random suggestion
+        function getGeoJSONRandom(){ ///RANDOM!!!!!!!!!!!!!!!
+
+          var sqlQueryRandom = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE LEFT(landusesemoji,1)='🌐'";
+          $.getJSON({
+            cache:false,
+            success:randomLayer,
+            url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQueryRandom + cartoapiSELECT
+          })
+        }
+         getGeoJSONRandom() ////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    }
+    return cartousername
+}
+
+
 var initialiseMap = function(){
   document.getElementById("app-css").disabled = false
   document.getElementById("slider-css").disabled = false
@@ -255,35 +290,7 @@ var requestPw = function(){
                 clearInterval(checkDoneAndFirebasePW)
                 document.getElementById('enteredPw').style.backgroundColor = '#39F70F'
 
-                var findCartoCredential = setInterval(function() {
-                    if (isOnline == true && cartousername != null) {
-                      sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu";
-
-                        clearInterval(findCartoCredential);
-                        function getGeoJSON() {
-                            $.getJSON({
-                              cache:false,
-                              success:cartoGeoJSONLayer,
-                              url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
-                            })
-                            return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
-                        };
-                        //getGeoJSON(); //////////////!!!!!!!!!!!!!!!!!!!!!
-
-                        //funtion to get geojson with 🌐 to be used in random suggestion
-                        function getGeoJSONRandom(){ ///RANDOM!!!!!!!!!!!!!!!
-
-                          var sqlQueryRandom = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE LEFT(landusesemoji,1)='🌐'";
-                          $.getJSON({
-                            cache:false,
-                            success:randomLayer,
-                            url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQueryRandom + cartoapiSELECT
-                          })
-                        }
-                         //getGeoJSONRandom() ////////////////!!!!!!!!!!!!!!!
-                    }
-                    return cartousername
-                }, 100)
+                requestCartoData()
 
                 setTimeout(function(){
                     document.getElementById('modal').style.display='none';

@@ -77,6 +77,7 @@ document.getElementById('share-download').onclick = function(e) {
     var date = timeEnd.getFullYear() + '-' + (timeEnd.getMonth() + 1) + '-' + timeEnd.getDate();
     var time = timeEnd.getHours() + ":" + timeEnd.getMinutes() + ":" + timeEnd.getSeconds();
     var dateTime = date + 'T' + time + 'Z';
+    console.log(dateTime)
 
     ////////////////////// get time spend on mapping (in seconds)///////////////////////////////////////
     var res = Math.abs(timeStart - timeEnd) / 1000;
@@ -140,7 +141,7 @@ document.getElementById('share-download').onclick = function(e) {
     } else {
         audioAvailable = false
     }
-    var propertiesGeoJSON = {
+    propertiesGeoJSON = {
         // 'geometryCenter':geometryCenter,
         'landUses': boxContentToString,
         'landUsesEmoji': boxContent,
@@ -239,13 +240,13 @@ document.getElementById('share-download').onclick = function(e) {
         filesLength = 1
         created = false; // redundant (to ensure that when DELETE is clicked the sql query is the delete one, not the last Insert query)
     }
-      encodeGeoJSON(data,propertiesGeoJSONURL)
+      // encodeGeoJSON(data,propertiesGeoJSONURL)
       console.log(convertedDataShareDirect)
       console.log(mappos)
       // var parsedJSONdecoded = decodeURIComponent(convertedDataShareDirect);
       // var parsedJSON = JSON.parse(parsedJSONdecoded)
       // console.log(parsedJSON)
-    return created && data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType && convertedDataShareDirect //&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
+    return created && data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType && convertedDataShareDirect && propertiesGeoJSON//&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
 }
 //console.log(finalLayer)
 
@@ -272,6 +273,8 @@ showButtons()
 }
 
 document.getElementById('shareMessagingAppsDirect').onclick = function(e){
+  encodeGeoJSON(data,propertiesGeoJSONURL)
+
   document.getElementById('goBackClassification').style.display = 'none';
   document.getElementById('shareMessagingAppsDirect').style.display = 'none';
   document.getElementById('shareWorldButton').style.display = 'none';
@@ -310,6 +313,8 @@ document.getElementById('shareWorldButton').onclick = function(e) {
   drawnItems.clearLayers();
   tempLayer.clearLayers()
   document.getElementById("map").style.height = "0px";
+  encodeGeoJSON(data,propertiesGeoJSON)
+
 
   // drawnItems.clearLayers();
   // tempLayer.clearLayers()
@@ -349,6 +354,7 @@ document.getElementById('shareWorldButton').onclick = function(e) {
         dist_m_Participant_Feature = propertiesGeoJSON.dist_m_Participant_Feature;
         randomID = propertiesGeoJSON.randomID;
 
+        console.log(propertiesGeoJSON)
         // include the firebase url (if audio has been recorded)
         if (isIOS == false && audioButtonClicked == true) {
           document.getElementById("sendFirebase").click();

@@ -27,6 +27,7 @@ var shareURL;
 var convertedData;
 var convertedDataShareDirect;
 var shareGeomDirect = false;
+var propertiesGeoJSON
 var propertiesGeoJSONURL;
 var data;
 var dataGeometry;
@@ -274,8 +275,8 @@ var storeURLGeoJSON = function(data){
 //////////////////  center the map: check first if url with coordinates, if not, check if first load, then check if lastpositionstored.
 //script to check if url contains coordinates when loaded
 
-// var url = window.location.href
-var url = 'https://amappingprototype.xyz/?%7B%22type%22%3A%22FeatureCollection%22%2C%22features%22%3A%5B%7B%22type%22%3A%22Feature%22%2C%22properties%22%3A%7B%22randomID%22%3A1111%2C%22landUsesEmoji%22%3A%22test%22%2C%22areaPolygon%22%3A%222489831968.72%20hectares%22%2C%22lengthLine%22%3A%22Polygon%22%7D%2C%22geometry%22%3A%7B%22type%22%3A%22Polygon%22%2C%22coordinates%22%3A%5B%5B%5B-4.21875%2C-13.923404%5D%2C%5B16.875%2C-40.713956%5D%2C%5B66.09375%2C-40.713956%5D%2C%5B63.28125%2C4.214943%5D%2C%5B-4.21875%2C-13.923404%5D%5D%5D%7D%7D%5D%7D/#-15.11455,40.95703,3z'
+var url = window.location.href
+// var url = 'https://amappingprototype.xyz/?%7B%22type%22%3A%22FeatureCollection%22%2C%22features%22%3A%5B%7B%22type%22%3A%22Feature%22%2C%22properties%22%3A%7B%22randomID%22%3A1111%2C%22landUsesEmoji%22%3A%22test%22%2C%22areaPolygon%22%3A%222489831968.72%20hectares%22%2C%22lengthLine%22%3A%22Polygon%22%7D%2C%22geometry%22%3A%7B%22type%22%3A%22Polygon%22%2C%22coordinates%22%3A%5B%5B%5B-4.21875%2C-13.923404%5D%2C%5B16.875%2C-40.713956%5D%2C%5B66.09375%2C-40.713956%5D%2C%5B63.28125%2C4.214943%5D%2C%5B-4.21875%2C-13.923404%5D%5D%5D%7D%7D%5D%7D/#-15.11455,40.95703,3z'
 // var url = 'https://amappingprototype.xyz/'
 console.log(url)
 var urlContainsHash = url.includes('/#')
@@ -478,7 +479,7 @@ var deflated = L.deflate({
     markerType: L.marker,
     markerOptions: customDeflateMarkers
 })
-//deflated.addTo(map) // to initialize //////////////////////!!!!!!!!
+deflated.addTo(map) // to initialize //////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 function isJson(str) {
     try {
@@ -771,6 +772,8 @@ var googleSat_Button = L.easyButton({
         //stateName: 'check-mark',
         onClick: function(btn, map) {
           document.getElementById('myRange').style.display = 'none'
+          document.getElementById("Alert").style.display = 'none'
+
           clearInterval(checkSliderPosition)
 
             //clickButtonCount += 1;
@@ -850,6 +853,7 @@ planet_Button.button.style.transitionDuration = '.3s';
 planet_Button.button.style.backgroundColor = 'black';
 
 //imagery Slider
+
 var planetScopeMonthlyMosaicSept = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_09_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
   attribution: 'Leaflet | PlanetScope Imagery  September 2020'
   })
@@ -865,8 +869,8 @@ var planetScopeMonthlyMosaicJun = L.tileLayer.wms('https://tiles.planet.com/base
 var planetScopeMonthlyMosaicMay = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_05_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
   attribution: 'Leaflet | PlanetScope Imagery  May 2020'
   })
-var planetScopeMonthlyMosaicApril = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_04_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-  attribution: 'Leaflet | PlanetScope Imagery  April 2020'
+var planetScopeMonthlyMosaicDec2019 = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2019_12_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+  attribution: 'Leaflet | PlanetScope Imagery  Dec 2019'
   })
 
   var slider = document.getElementById("myRange");
@@ -875,6 +879,10 @@ var planetScopeMonthlyMosaicApril = L.tileLayer.wms('https://tiles.planet.com/ba
   var removeAllimagery = function(){
     planetScopeMonthlyMosaicSept.removeFrom(map)
     planetScopeMonthlyMosaicAug.removeFrom(map)
+    planetScopeMonthlyMosaicJul.removeFrom(map)
+    planetScopeMonthlyMosaicJun.removeFrom(map)
+    planetScopeMonthlyMosaicMay.removeFrom(map)
+    planetScopeMonthlyMosaicDec2019.removeFrom(map)
     planetScopeMonthlyMosaic.removeFrom(map)
   }
 var checkSliderPosition = function() { ///////////////////////////////////////// function to keep searching for gps position
@@ -887,39 +895,77 @@ var checkSliderPosition = function() { /////////////////////////////////////////
     output.innerHTML = this.value;
 
       switch (true) {
-          case (x ==100):
+          case (output.innerHTML > 87):
+              this.value = 100
               removeAllimagery()
               planetScopeMonthlyMosaic.addTo(map)
+              console.log(output.innerHTML)
+              document.getElementById("Alert").style.fontSize = "15px";
+              document.getElementById('Alert').innerHTML = '<br>10/2020 '
+              document.getElementById("Alert").style.display = 'initial'
+
               break
-          case (90 <= x < 100):
+          case (output.innerHTML == 1):
+              this.value == 1
               removeAllimagery()
-              planetScopeMonthlyMosaicSept.addTo(map)
+              planetScopeMonthlyMosaicDec2019.addTo(map)
+              console.log(output.innerHTML)
+              document.getElementById("Alert").style.fontSize = "15px";
+              document.getElementById('Alert').innerHTML = '<br>12/2019 '
+              document.getElementById("Alert").style.display = 'initial'
               break
-          case (80 <= x < 90):
+          case (output.innerHTML < 10):
+              this.value = 5 // this is to locate the circle in a specific position
+              removeAllimagery()
+              planetScopeMonthlyMosaicMay.addTo(map)
+              console.log(output.innerHTML)
+              document.getElementById("Alert").style.fontSize = "15px";
+              document.getElementById('Alert').innerHTML = '<br>5/2020 '
+              document.getElementById("Alert").style.display = 'initial'
+              break
+          case (output.innerHTML < 25):
+              this.value = 17
+              removeAllimagery()
+              planetScopeMonthlyMosaicJun.addTo(map)
+              console.log(output.innerHTML)
+              document.getElementById("Alert").style.fontSize = "15px";
+              document.getElementById('Alert').innerHTML = '<br>6/2020 '
+              document.getElementById("Alert").style.display = 'initial'
+              break
+          case (output.innerHTML < 50):
+              this.value = 37
+              removeAllimagery()
+              planetScopeMonthlyMosaicJul.addTo(map)
+              console.log(output.innerHTML)
+              document.getElementById("Alert").style.fontSize = "15px";
+              document.getElementById('Alert').innerHTML = '<br>7/2020 '
+              document.getElementById("Alert").style.display = 'initial'
+              break
+          case (output.innerHTML < 75):
+              this.value = 62
               removeAllimagery()
               planetScopeMonthlyMosaicAug.addTo(map)
+              console.log(output.innerHTML)
+              document.getElementById("Alert").style.fontSize = "15px";
+              document.getElementById('Alert').innerHTML = '<br>8/2020 '
+              document.getElementById("Alert").style.display = 'initial'
+              break
+          case (output.innerHTML < 87):
+              this.value = 87
+              removeAllimagery()
+              planetScopeMonthlyMosaicSept.addTo(map)
+              console.log(output.innerHTML)
+              document.getElementById("Alert").style.fontSize = "15px";
+              document.getElementById('Alert').innerHTML = '<br>9/2020 '
+              document.getElementById("Alert").style.display = 'initial'
               break
           default:
               removeAllimagery()
               planetScopeMonthlyMosaic.addTo(map)
+              console.log(output.innerHTML)
               break
       }
     }
-
-  //
-  //   output.innerHTML = this.value;
-  //   console.log(output.innerHTML)
-  //   if(output.innerHTML == 100){
-  //     removeAllimagery()
-  //     planetScopeMonthlyMosaic.addTo(map)
-  //   }if(90 <= output.innerHTML < 100){
-  //     removeAllimagery()
-  //     planetScopeMonthlyMosaicSept.addTo(map)
-  //   }if(output.innerHTML < 90){
-  //     removeAllimagery()
-  //     planetScopeMonthlyMosaicAug.addTo(map)
-  //   }
-  // }
 
 }
 
@@ -1441,30 +1487,6 @@ function getGeoJSON() {
     })
     return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
 };
-
-// if (isOnline == true) {
-//
-// }
-
-//console.log('cartoIdFeatureSelected  ' + cartoIdFeatureSelected)
-//to only load carto layer once the credentials have been loaded from the server xhr2
-// var findCartoCredential = setInterval(function() {
-//     if (isOnline == true && cartousername != null) {
-//       sqlQuery = "SELECT cartodb_id, the_geom, datetime, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring FROM lumblu";
-//
-//         clearInterval(findCartoCredential);
-//         function getGeoJSON() {
-//             $.getJSON({
-//               cache:false,
-//               success:cartoGeoJSONLayer,
-//               url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
-//             })
-//             return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
-//         };
-//         getGeoJSON();
-//     }
-//     return cartousername
-// }, 100)
 
 //function to activate carto layer once feature has been submitted successfully. It's fired when the share-world button is clicked
 var postSuccess = function(){
