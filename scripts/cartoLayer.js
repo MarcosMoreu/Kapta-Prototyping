@@ -98,71 +98,81 @@ var cartoGeoJSONLayer = function(data) {
                   selectedFeature = e.target;
                   // selectedFeature.editing.enable();
 
-                     if (selectedFeature.feature.geometry.type != 'Point') {
-                       //to populate the area/length field in the popup
-                        if(selectedFeature.feature.geometry.type == 'Polygon'){
-                          document.getElementById('popupAreaLength').style.display = 'initial'
-                          document.getElementById('popupAreaLength').textContent = feature.properties.areapolygon
+                   if (selectedFeature.feature.geometry.type != 'Point') {
+                     //to populate the area/length field in the popup
+                      if(selectedFeature.feature.geometry.type == 'Polygon'){
+                        document.getElementById('popupAreaLength').style.display = 'initial'
+                        document.getElementById('popupAreaLength').textContent = feature.properties.areapolygon
 
-                            if(selectedFeature.feature.properties.audioavailable !='.'){
-                              document.getElementById('commentPopup').disabled = false
-                              document.getElementById('commentPopup').onclick = function(){
-                                window.location.href = feature.properties.audioavailable
-                                document.getElementById('commentPopup').disabled = true
-                              }
-                              document.getElementById('commentPopup').style.display = 'initial';
-                              document.getElementById('commentPopup').textContent = '🔊' + ' ' + feature.properties.landusesemoji
-                            }else{
-                              document.getElementById('commentPopup').style.display = 'initial';
-                              document.getElementById('commentPopup').textContent = feature.properties.landusesemoji
+                          if(selectedFeature.feature.properties.audioavailable !='.'){
+                            document.getElementById('commentPopup').disabled = false
+                            document.getElementById('commentPopup').onclick = function(){
+
+                              var audioUrl = feature.properties.audioavailable
+                              var audioControls = document.getElementById('audioControls')
+                              audioControls.src = audioUrl
+                              document.getElementById('audioControls').style.display = 'initial'
+
                             }
+                            document.getElementById('commentPopup').style.display = 'initial';
+                            document.getElementById('commentPopup').textContent = '🔊' + ' ' + feature.properties.landusesemoji
+                          }else{
+                            document.getElementById('audioControls').style.display = 'none'
+                            document.getElementById('commentPopup').style.display = 'initial';
+                            document.getElementById('commentPopup').textContent = feature.properties.landusesemoji
+
+                          }
 
 
-                        }else{ //it a line
-                           // document.getElementById('popupAreaLength').style.display = 'initial'
-                           // document.getElementById('popupAreaLength').textContent = '〰️'
-                           document.getElementById('popupAreaLength').style.display = 'none'
+                      }else{ //it a line
+                         // document.getElementById('popupAreaLength').style.display = 'initial'
+                         // document.getElementById('popupAreaLength').textContent = '〰️'
+                         document.getElementById('popupAreaLength').style.display = 'none'
 
 
-                           if(selectedFeature.feature.properties.audioavailable !='.'){
-                             document.getElementById('commentPopup').disabled = false
-                             document.getElementById('commentPopup').onclick = function(){
-                               window.location.href = feature.properties.audioavailable
-                               document.getElementById('commentPopup').disabled = true
-                             }
-                             document.getElementById('commentPopup').style.display = 'initial';
-                             document.getElementById('commentPopup').textContent = '🔊' + ' ' + feature.properties.landusesemoji
-                           }else{
-                             document.getElementById('commentPopup').style.display = 'initial';
-                             document.getElementById('commentPopup').textContent = feature.properties.landusesemoji
+                         if(selectedFeature.feature.properties.audioavailable !='.'){
+                           document.getElementById('commentPopup').disabled = false
+                           document.getElementById('commentPopup').onclick = function(){
+                             // document.getElementById('commentPopup').disabled = true
+                             var audioUrl = feature.properties.audioavailable
+                             var audioControls = document.getElementById('audioControls')
+                             audioControls.src = audioUrl
+                             document.getElementById('audioControls').style.display = 'initial'
                            }
-                        }
+                           document.getElementById('commentPopup').style.display = 'initial';
+                           document.getElementById('commentPopup').textContent = '🔊' + ' ' + feature.properties.landusesemoji
+                         }else{
+                           document.getElementById('audioControls').style.display = 'none'
+                           document.getElementById('commentPopup').style.display = 'initial';
+                           document.getElementById('commentPopup').textContent = feature.properties.landusesemoji
+                         }
+                      }
 
-                      document.getElementById('editDeletePopup').style.display = 'initial'
+                    document.getElementById('editDeletePopup').style.display = 'initial'
 
-                       document.getElementById("backDeleteFeature").style.display = "initial";
-                       document.getElementById("shareMessagingApp").style.display = "initial";
-                       document.getElementById("deleteFeature").style.display = "initial";
-                       document.getElementById("deleteFeature").style.opacity = "1";
-                       document.getElementById("deleteFeature").disabled = false;
-                       document.getElementById("randomSuggestion").style.display = "initial";
-                      // miniMap.addTo(map);
-                       gps_Button.button.style.opacity = '0.4';
-                       gps_Button.button.disabled = true;
-                       myLayer_Button.button.style.opacity = '0.4';
-                       myLayer_Button.button.disabled = true;
-                       filter_Button.button.style.opacity = '0.4';
-                       filter_Button.button.disabled = true;
+                     document.getElementById("backDeleteFeature").style.display = "initial";
+                     document.getElementById("shareMessagingApp").style.display = "initial";
+                     document.getElementById("deleteFeature").style.display = "initial";
+                     document.getElementById("deleteFeature").style.opacity = "1";
+                     document.getElementById("deleteFeature").disabled = false;
+                     document.getElementById("randomSuggestion").style.display = "initial";
+                    // miniMap.addTo(map);
+                     gps_Button.button.style.opacity = '0.4';
+                     gps_Button.button.disabled = true;
+                     myLayer_Button.button.style.opacity = '0.4';
+                     myLayer_Button.button.disabled = true;
+                     filter_Button.button.style.opacity = '0.4';
+                     filter_Button.button.disabled = true;
 
-                       // document.getElementById("deleteFeature").style.display = "initial";
-                       // document.getElementById("deleteFeature").style.backgroundColor = 'white';
-                       document.getElementById("tutorial").style.display = "none";
-                       document.getElementById("polygon").style.display = "none";
-                       document.getElementById("polyline").style.display = "none";
-                       document.getElementById("point").style.display = "none";
-                      // random_Button.addTo(map)
-                       selectedFeature.setStyle({color: '#F70573'})
-                     }
+                     // document.getElementById("deleteFeature").style.display = "initial";
+                     // document.getElementById("deleteFeature").style.backgroundColor = 'white';
+                     document.getElementById("tutorial").style.display = "none";
+                     document.getElementById("polygon").style.display = "none";
+                     document.getElementById("polyline").style.display = "none";
+                     document.getElementById("point").style.display = "none";
+                    // random_Button.addTo(map)
+                     selectedFeature.setStyle({color: '#F70573'})
+                   }
                      //condition below is at is is to avoid deflated symbol to show as selected after polygon/line have been selected
                      if (selectedFeature.feature.geometry.type == 'Point' && map.getZoom() >= 15 && e.target.feature.properties.areapolygon == 'Point' && e.target.feature.properties.lengthline == 'Point') {
                          // document.getElementById('popupAreaLength').style.display = 'initial'
@@ -173,12 +183,17 @@ var cartoGeoJSONLayer = function(data) {
                          if(selectedFeature.feature.properties.audioavailable !='.'){
                            document.getElementById('commentPopup').disabled = false
                            document.getElementById('commentPopup').onclick = function(){
-                             window.location.href = feature.properties.audioavailable
-                             document.getElementById('commentPopup').disabled = true
+                             // document.getElementById('commentPopup').disabled = true
+                             var audioUrl = feature.properties.audioavailable
+                             var audioControls = document.getElementById('audioControls')
+                             audioControls.src = audioUrl
+                             document.getElementById('audioControls').style.display = 'initial'
+
                            }
                            document.getElementById('commentPopup').style.display = 'initial';
                            document.getElementById('commentPopup').textContent = '🔊' + ' ' + feature.properties.landusesemoji
                          }else{
+                           document.getElementById('audioControls').style.display = 'none'
                            document.getElementById('commentPopup').style.display = 'initial';
                            document.getElementById('commentPopup').textContent = feature.properties.landusesemoji
                          }
