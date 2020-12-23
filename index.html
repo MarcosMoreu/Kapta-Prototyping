@@ -26,6 +26,7 @@
   <link rel="stylesheet" type="text/css" href="styles/modal.css" >
   <link rel="text/html" href="pages/tutorial.html">
   <link rel="stylesheet" type="text/css" href="styles/app.css" id='app-css' as='style' disabled>
+  <link rel="stylesheet" type="text/css" href="styles/slider.css" id='slider-css' as='style'disabled>
   <link rel="stylesheet" type="text/css" href="scripts/lib/leaflet/leaflet.css" id='leaflet-css' as='style' disabled >
   <link  rel="stylesheet" href="scripts/emojionearea-master/dist/emojionearea.css" id='emojionearea-css' as='style' disabled>
   <link rel="stylesheet" href="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.css" id='easybutton-css' as='style' disabled>
@@ -291,6 +292,11 @@
 
 </div>';
 
+<div class="slidecontainer">
+  <input type="range" min="1" max="100" value="50" class="slider" id="myRange" style='display:none;margin-top:20px;width:calc(100% - 200px);margin-left:calc(100px);position:absolute;z-index:2;top:10px'>
+  <p>Value: <span id="demo"></span></p>
+</div>
+
 <script src="sw.js"></script>
 
 <!-- <script src="scripts/initial.js"></script> -->
@@ -350,8 +356,9 @@
 <script  defer src="scripts/audioButton.js"></script>
 <script defer src="scripts/share-download.js"></script>
 
-<script defer src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
-<script defer src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.2.1/firebase-storage.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
 <script defer src="scripts/firebaseAudioURL.js"></script>
 <script  defer src="scripts/audio.js"></script>
 

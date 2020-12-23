@@ -121,7 +121,7 @@ var findFirebaseCredentials = setInterval(function() {
     if (isOnline == true & firebaseKey != null) {
         try {
             firebase.initializeApp(firebaseConfig);
-          //  //console.log('Firebase initialized')
+          console.log('Firebase initialized')
             clearInterval(findFirebaseCredentials)
         } catch (e) {
           //console.log('firebase not initialized!!')
@@ -285,7 +285,7 @@ var urlContainsGeoJSON = url.includes('/?')
 var southWest = L.latLng(-70, -180);
 var northEast = L.latLng(80, 180);
 
-if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains geojson (and coords)
+if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getItem('pwCorrect')){  // if url contains geojson (and coords)
   //to set mapview
     var keepOnlyLatLngZoom = url.split('#').pop();
     var splittedLatLngZoom = keepOnlyLatLngZoom.split(',');
@@ -727,6 +727,7 @@ var osm_Button = L.easyButton({
         //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn, map) {
+
             //clickButtonCount += 1;
             // document.getElementById('imageryAlert').style.display = 'none'
             mapCurrentZoom = map.getZoom();
@@ -769,7 +770,8 @@ var googleSat_Button = L.easyButton({
         icon: iconGOOGLE,
         //stateName: 'check-mark',
         onClick: function(btn, map) {
-
+          document.getElementById('myRange').style.display = 'none'
+          clearInterval(checkSliderPosition)
 
             //clickButtonCount += 1;
             // document.getElementById('imageryAlert').style.display = 'none'
@@ -807,7 +809,8 @@ var planet_Button = L.easyButton({
         stateName: 'check-mark',
         onClick: function(btn, map) {
             /////////////////////// to load planet tiles manually  /////////////
-
+            document.getElementById('myRange').style.display = 'initial'
+            setInterval(checkSliderPosition,200)
           planetScopeMonthlyMosaic = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_10_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
             attribution: 'Leaflet | PlanetScope Imagery  Oct 2020'
             })
@@ -846,6 +849,79 @@ planet_Button.button.style.height = '50px';
 planet_Button.button.style.transitionDuration = '.3s';
 planet_Button.button.style.backgroundColor = 'black';
 
+//imagery Slider
+var planetScopeMonthlyMosaicSept = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_09_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+  attribution: 'Leaflet | PlanetScope Imagery  September 2020'
+  })
+var planetScopeMonthlyMosaicAug = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_08_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+  attribution: 'Leaflet | PlanetScope Imagery  August 2020'
+  })
+var planetScopeMonthlyMosaicJul = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_07_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+  attribution: 'Leaflet | PlanetScope Imagery  July 2020'
+  })
+var planetScopeMonthlyMosaicJun = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_06_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+  attribution: 'Leaflet | PlanetScope Imagery  June 2020'
+  })
+var planetScopeMonthlyMosaicMay = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_05_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+  attribution: 'Leaflet | PlanetScope Imagery  May 2020'
+  })
+var planetScopeMonthlyMosaicApril = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_04_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+  attribution: 'Leaflet | PlanetScope Imagery  April 2020'
+  })
+
+  var slider = document.getElementById("myRange");
+  var output = document.getElementById("demo");
+  slider.value = 100; // Display the default slider value
+  var removeAllimagery = function(){
+    planetScopeMonthlyMosaicSept.removeFrom(map)
+    planetScopeMonthlyMosaicAug.removeFrom(map)
+    planetScopeMonthlyMosaic.removeFrom(map)
+  }
+var checkSliderPosition = function() { ///////////////////////////////////////// function to keep searching for gps position
+  output.innerHTML = this.value;
+   console.log(output.innerHTML)
+
+  // Update the current slider value (each time you drag the slider handle)
+  var x = output.innerHTML
+  slider.oninput = function() {
+    output.innerHTML = this.value;
+
+      switch (true) {
+          case (x ==100):
+              removeAllimagery()
+              planetScopeMonthlyMosaic.addTo(map)
+              break
+          case (90 <= x < 100):
+              removeAllimagery()
+              planetScopeMonthlyMosaicSept.addTo(map)
+              break
+          case (80 <= x < 90):
+              removeAllimagery()
+              planetScopeMonthlyMosaicAug.addTo(map)
+              break
+          default:
+              removeAllimagery()
+              planetScopeMonthlyMosaic.addTo(map)
+              break
+      }
+    }
+
+  //
+  //   output.innerHTML = this.value;
+  //   console.log(output.innerHTML)
+  //   if(output.innerHTML == 100){
+  //     removeAllimagery()
+  //     planetScopeMonthlyMosaic.addTo(map)
+  //   }if(90 <= output.innerHTML < 100){
+  //     removeAllimagery()
+  //     planetScopeMonthlyMosaicSept.addTo(map)
+  //   }if(output.innerHTML < 90){
+  //     removeAllimagery()
+  //     planetScopeMonthlyMosaicAug.addTo(map)
+  //   }
+  // }
+
+}
 
 var myLayerIsOn = true;
 

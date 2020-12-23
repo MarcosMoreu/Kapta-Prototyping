@@ -76,6 +76,7 @@ window.onload = firstLoad;  /// to launch the root function XXXXXXXXXXXXXXXXXXXX
 var done = false
 var initialiseMap = function(){
   document.getElementById("app-css").disabled = false
+  document.getElementById("slider-css").disabled = false
   document.getElementById("leaflet-css").disabled = false
   document.getElementById("emojionearea-css").disabled = false
   document.getElementById("easybutton-css").disabled = false
@@ -184,10 +185,8 @@ var initialiseMap = function(){
     });
 }
 var loaded
-
+var authentication
 var requestPw = function(){
-      var pocPw = '2030' //! 🖐️🖐️🖐️ if you are looking at this line, please keep in mind that this very basic security measure is 'only' to prevent, during the testing period,
-      // unintended submission by users who have not been informed of the impacts of open land data, both positive and negatives. Thanks ;)
 
       //setTimeout(function(){
         document.getElementById('modal').style.display='block';
@@ -209,20 +208,51 @@ var requestPw = function(){
         }
       },200)
 
-      document.getElementById('login').onclick = function(e){
+      // document.getElementById('login').onclick = function(e){
+      document.getElementById('login').addEventListener('click',e =>{
+        authentication = 'checking' //to avoid failed being stored, if first time fails. Number of fails is limited by Firebase!!!
+
         e.preventDefault() // to avoid page reload on first load!
         var pwPlaceholder = document.getElementById('enteredPw').value
-        var checkDone = setInterval(function(){
-            return done
-          },200)
-          // console.log('done',done)
-          // if(done==true){clearInterval(checkDone)}
 
-              if(pwPlaceholder == pocPw && done == true){  //map loads after this
-                // console.log('both')
+        var checkDoneAndFirebasePW = setInterval(function(){
+
+              openAppPwSuccesful()
+            return done && authentication
+          },50)
+
+          var randomEmailId = Math.floor(Math.random() * 10);  // this is to prevent the situation where multiple users fail the login with the same account and it bolcks
+          var email = 'any'+ randomEmailId + '@any.com' //I've added 10 different email address in Firebase (0-9) with same Pw
+          console.log(randomEmailId)
+
+          var password = '00' + pwPlaceholder // 00 is added as Firebase only allows for a minimum of 6 digits pws
+
+          firebase.auth().signInWithEmailAndPassword(email, password)
+            .then((user) =>{
+              console.log('success',user)
+              authentication = 'successful'
+
+            })
+            .catch((e) => {
+              authentication = 'failed'
+              var errorCode = e.code;
+              var errorMessage = e.message;
+              console.log(errorMessage)
+              console.log(errorCode)
+
+
+            })
+
+          // const promise = firebase.auth().signInWithEmailAndPassword(email,password);
+          //
+          // promise.catch(e => console.log(e.message));
+          //   //console.log(promise)
+        var openAppPwSuccesful = function(){
+              if(authentication == 'successful' && done == true){  //map loads after this
+                 console.log('both')
 
                 clearInterval(checkPw)
-                clearInterval(checkDone)
+                clearInterval(checkDoneAndFirebasePW)
                 document.getElementById('enteredPw').style.backgroundColor = '#39F70F'
 
                 var findCartoCredential = setInterval(function() {
@@ -255,63 +285,30 @@ var requestPw = function(){
                     return cartousername
                 }, 100)
 
-                // document.getElementById('login').style.display = 'none'
-                // document.getElementById('loginInfo').style.opacity = '0.4'
-                // document.getElementById('loginInfo').disabled = true
-                // document.getElementById('loginKey').style.opacity = '0.4'
-                // document.getElementById('loginKey').disabled = true
-                // var i = 0;
-                //     function move() {
-                //       if (i == 0) {
-                //         i = 1;
-                //         var elem = document.getElementById("myBar");
-                //         var width = 1;
-                //         var id = setInterval(frame, 35);
-                //         function frame() {
-                //           if (width >= 100) {
-                //             clearInterval(id);
-                //             i = 0;
-                //             document.getElementById('modal').style.display='none';
-                //             document.getElementById('pwForm').style.display='none';
-                //             localStorage.setItem('pwCorrect', true);
-                //
-                //           } else {
-                //             width++;
-                //             elem.style.width = width + "%";
-                //           }
-                //         }
-                //       }
-                //     }
-                // document.getElementById('myProgress').style.display = 'initial'
-                //
-                // move()
-                // document.getElementById('enteredPw').style.backgroundColor = 'green'
-
                 setTimeout(function(){
                     document.getElementById('modal').style.display='none';
                     document.getElementById('pwForm').style.display='none';
                     localStorage.setItem('pwCorrect', true);
 
                 },1000)
-                //
-                // localStorage.setItem('pwCorrect', true);
-              //
-              // }else if(pwPlaceholder == pocPw && done ==false){
-              //   console.log('one')
-              //
-              //   document.getElementById('enteredPw').style.backgroundColor = '#39F70F'  /////////////////////////////////////////////////////gif here???
 
-              }else{
-                // console.log('none')
+
+              }
+              else if(authentication == 'failed'){
+                clearInterval(checkDoneAndFirebasePW)
+
+                 console.log('none')
 
                 document.getElementById('enteredPw').style.backgroundColor = 'red'
                 document.getElementById('enteredPw').focus() //to maintain keyboard if pw wrong
 
                 setTimeout(function(){
                   document.getElementById('enteredPw').style.backgroundColor = 'white'
-                },300)
+                },1000)
               }
+
+            }
         // return loaded
 
-    }//login
+    })//login
 }//requesPW
