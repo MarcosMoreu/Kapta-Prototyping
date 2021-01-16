@@ -63,6 +63,7 @@ var mapCurrentCenter;
 var refreshPopup;
 var refreshPopupComment;
 var editButtonClicked = false;
+var audioComment = '.'
 
 
 // // add location via browser geolocation
@@ -1542,8 +1543,11 @@ function setData() {
         var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
         var emojioneareaeditor0 = emojioneareaeditor[0]
         var contentInTextbox = emojioneareaeditor0.innerHTML
+
         // pURL = "UPDATE lumblu SET commentone = 'anothertest' WHERE cartodb_id='" + cartoIdFeatureSelected + "'";
-        pURL = "UPDATE lumblu SET commentone='" + contentInTextbox + "' WHERE cartodb_id='" + cartoIdFeatureSelected + "'";
+        // pURL = "UPDATE lumblu SET commentone='" + contentInTextbox + "' WHERE cartodb_id='" + cartoIdFeatureSelected + "'";
+        pURL = "UPDATE lumblu SET commentone='" + contentInTextbox + "', commentoneaudioavailable='" + audioComment + "' WHERE cartodb_id='" + cartoIdFeatureSelected + "'";
+
 
 
         console.log(pURL)

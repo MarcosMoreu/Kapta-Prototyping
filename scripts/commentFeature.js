@@ -1,5 +1,8 @@
 
 document.getElementById("editDeletePopup").onclick = function() {
+  document.getElementById("toCommentPopup").innerHTML = '...'
+
+
 
   document.getElementById("editDeletePopup").style.display = "none";
 
@@ -79,7 +82,9 @@ document.getElementById("editDeletePopup").onclick = function() {
 document.getElementById('backEditDelete').onclick = function(){
 
   clearInterval(refreshPopupComment)
-  document.getElementById("toCommentPopup").innerHTML = '...'
+  //document.getElementById("toCommentPopup").innerHTML = '...'
+  document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
+
 
   document.getElementById("deleteFeature").style.backgroundColor = 'white';
   document.getElementById("deleteFeature").style.borderColor = 'white';

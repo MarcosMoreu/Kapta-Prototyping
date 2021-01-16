@@ -60,7 +60,7 @@ downloadButton.addEventListener('click', () => {
 /////////catch error in case recordedBlobs ==null
 try{
   const blob = new Blob(recordedBlobs, {type: 'video/webm'});
-// console.log(blob)
+ // console.log(blob)
   const url = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.style.display = 'none';
