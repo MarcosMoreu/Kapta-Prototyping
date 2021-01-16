@@ -55,7 +55,7 @@ document.getElementById("editDeletePopup").onclick = function() {
   })
 
   refreshPopupComment = setInterval(function() {
-    console.log('refreshingpopcomment')
+    //console.log('refreshingpopcomment')
       var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
       var emojioneareaeditor0 = emojioneareaeditor[0]
       var emojioneareaeditor0innerHTML = emojioneareaeditor0.innerHTML /////////////////////////////////////////////11111111111111111111111ddddddddddddddddddddddddddddddESTE!!!
@@ -66,13 +66,13 @@ document.getElementById("editDeletePopup").onclick = function() {
           // }
       } else {
 
-        console.log('innerhtml is not null')
+      //  console.log('innerhtml is not null')
           document.getElementById("shareWorldButtonComment").style.opacity = "1"; //to disable button until user adds attributes, either with audio or text
           document.getElementById("shareWorldButtonComment").disabled = false;
           //to update blue box as emojitext updates
           document.getElementById("toCommentPopup").innerHTML = emojioneareaeditor0innerHTML;
       }
-  }, 1000) // time frequency to refresh the content in the comment popup
+  }, 300) // time frequency to refresh the content in the comment popup
   editButtonClicked = true
   console.log(editButtonClicked)
 
@@ -173,7 +173,56 @@ document.getElementById('backEditDelete').onclick = function(){
   console.log(editButtonClicked)
   return selectedFeature && clickCountDeleteButton && editButtonClicked
 }
-
+var updatedFeatureToAdd
 document.getElementById('shareWorldButtonComment').onclick = function(){
-  setData()
+   setData()
+   var commentAdded = document.getElementById("toCommentPopup").innerHTML
+   //console.log(commentAdded)
+  // document.getElementById('shareWorldButtonComment').src = 'images/gpsOff.png';
+  clearInterval(refreshPopupComment)
+  //document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
+  document.getElementById('shareWorldButtonComment').style.backgroundColor = 'green'
+  document.getElementById('shareWorldButtonComment').style.borderColor = 'green'
+
+
+  setTimeout(function(){
+    document.getElementById('shareWorldButtonComment').style.backgroundColor = 'white'
+    document.getElementById('shareWorldButtonComment').style.borderColor = 'white'
+    // document.getElementById('toCommentPopup').style.display = 'none';
+    // document.getElementById('backEditDelete').style.display = 'none';
+    // document.getElementById("classification").style.display = "none";
+    // document.getElementById("emoji").style.display = "none";
+    // document.getElementById('noAudioIOS').style.display = 'none';
+    // document.getElementById('shareWorldButtonComment').style.display = 'none';
+    // document.getElementById('backDeleteFeature').style.display = 'initial';
+    // document.getElementById('deleteFeature').style.display = 'initial';
+    // document.getElementById('shareMessagingApp').style.display = 'initial';
+    // document.getElementById("randomSuggestion").style.display = "initial";
+    // document.getElementById("backDeleteFeature").click() // !!!!!!!!
+    //document.getElementById("backEditDelete").click() // !!!!!!!!
+// deflated.removeFrom(map)
+// deflated.removeLayer(selectedFeature)
+// updatedFeatureToAdd.addTo(deflated)
+ // deflated.addLayer(updatedFeatureToAdd)
+//getGeoJSON()
+// deflated.addTo(map)
+      var updatedFeature = function(data) { //function to get layer from carto with 🌐
+       //  updatedFeatureToAdd = data
+         console.log(data)
+       // return updatedFeatureToAdd
+       deflated.removeLayer(selectedFeature)
+       cartoGeoJSONLayer(data)
+       cartoGeometries.addTo(deflated)
+      }
+      function getUpdatedFeature(){ ///RANDOM!!!!!!!!!!!!!!!
+
+        var sqlQueryRandom = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date, commentone, commentoneaudioavailable FROM lumblu WHERE commentone='" + commentAdded + "'"
+        $.getJSON({
+          cache:false,
+          success:updatedFeature,
+          url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQueryRandom + cartoapiSELECT
+        })
+      }
+       getUpdatedFeature() ////////////////!!!!
+},3000)
 }
