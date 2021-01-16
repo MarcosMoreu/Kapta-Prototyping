@@ -62,6 +62,7 @@ var mapCurrentZoom;
 var mapCurrentCenter;
 var refreshPopup;
 var refreshPopupComment;
+var editButtonClicked = false;
 
 
 // // add location via browser geolocation
@@ -1532,10 +1533,22 @@ var pURL
 //this function is called both when feature is deleted or feature is created and sent.
 function setData() {
     //console.log("setdata function called");
-    if (cartoIdFeatureSelected != null && created == false) { //TO DELETE THE SELECTED FEATURE FROM THE CARTO DB
+    if (cartoIdFeatureSelected != null && created == false && editButtonClicked == false) { //TO DELETE THE SELECTED FEATURE FROM THE CARTO DB
         pURL = "DELETE FROM lumblu WHERE cartodb_id='" + cartoIdFeatureSelected + "'";
         cartoIdFeatureSelected = null
-    } else { //TO INSERT THE CREATED FEATURE INTO THE CARTO DB
+        console.log(pURL)
+
+    }else if (cartoIdFeatureSelected != null && created == false && editButtonClicked == true){ //TO INSERT COMMENT IN EXISTING FEATURE
+        var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
+        var emojioneareaeditor0 = emojioneareaeditor[0]
+        var contentInTextbox = emojioneareaeditor0.innerHTML
+        // pURL = "UPDATE lumblu SET commentone = 'anothertest' WHERE cartodb_id='" + cartoIdFeatureSelected + "'";
+        pURL = "UPDATE lumblu SET commentone='" + contentInTextbox + "' WHERE cartodb_id='" + cartoIdFeatureSelected + "'";
+
+
+        console.log(pURL)
+    }
+    else { //TO INSERT THE CREATED FEATURE INTO THE CARTO DB
         dataGeometry = data.features[0].geometry
         //console.log(dataGeometry)
         var dataGeometryString = JSON.stringify(dataGeometry)
@@ -1545,6 +1558,8 @@ function setData() {
         var sql2 = dataGeometryString;
         var sql3 = "'),4326),'" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + audioAvailable + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "','" + dateTime + "')";
         pURL = sql + sql2 + sql3;
+        console.log(pURL)
+
     }
 
     ////console.log(pURL)

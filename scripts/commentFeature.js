@@ -70,6 +70,10 @@ document.getElementById("editDeletePopup").onclick = function() {
           document.getElementById("toCommentPopup").innerHTML = emojioneareaeditor0innerHTML;
       }
   }, 1000) // time frequency to refresh the content in the comment popup
+  editButtonClicked = true
+  console.log(editButtonClicked)
+
+  return editButtonClicked
 }
 
 document.getElementById('backEditDelete').onclick = function(){
@@ -160,26 +164,11 @@ document.getElementById('backEditDelete').onclick = function(){
 
 
   selectedFeature = null;
-  return selectedFeature && clickCountDeleteButton
+  editButtonClicked = false
+  console.log(editButtonClicked)
+  return selectedFeature && clickCountDeleteButton && editButtonClicked
 }
 
-document.getElementById('backEditDelete').onclick = function(){
-
-  document.getElementById("classification").style.display = "none";
-  document.getElementById("emoji").style.display = "none";
-  document.getElementById("emoji").disabled = false;
-  document.getElementById("emoji").opacity = '1';
-  document.getElementById('noAudioIOS').style.display = 'none';
-  document.getElementById('noAudioIOS').disabled = false;
-  document.getElementById('noAudioIOS').opacity = '1';
-  document.getElementById('shareWorldButtonComment').style.display = 'none';
-  document.getElementById('shareWorldButtonComment').disabled = false;
-  document.getElementById('shareWorldButtonComment').opacity = '1';
-  document.getElementById('deleteFeature').style.display = 'none';
-
-  document.getElementById("tutorial").style.display = "initial";
-  document.getElementById("polygon").style.display = "initial";
-  document.getElementById("polyline").style.display = "initial";
-  document.getElementById("point").style.display = "initial";
-
+document.getElementById('shareWorldButtonComment').onclick = function(){
+  setData()
 }
