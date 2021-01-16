@@ -1698,7 +1698,7 @@ var startCheckingText = function() {
                 document.getElementById("share-download").style.opacity = "1"; //to disable button until user adds attributes, either with audio or text
                 document.getElementById("share-download").disabled = false;
             }
-        }, 500) // time frequency to refresh the content in the popup
+        }, 300) // time frequency to refresh the content in the popup
     }
 
     tempLayer = L.geoJSON(data, {

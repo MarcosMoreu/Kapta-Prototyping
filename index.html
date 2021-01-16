@@ -55,7 +55,7 @@
   <h1 id='showAreaHa' style='z-index:2;position:absolute;left:75px;display:none;color:yellow;font-size:19px' ></h1>
   <h2 id='showAreaAcres' style='z-index:2;position:absolute;left:75px;top:25px;display:none;color:yellow;font-size:19px' ></h2>
   <!-- <h3 id='showLength' style='z-index:2;position:absolute;left:75px;display:none;color:yellow;font-size:19px;font-family:'Ubuntu'' > </h3> -->
-  <h3 id='Alert' align = 'center' style='z-index:2;position:absolute;left:80px;top:20px;display:none;color:yellow;font-size:15px; width:calc(100% - 180px)'></h4>
+  <h3 id='Alert' align = 'center' style='z-index:2;position:absolute;left:80px;top:20px;display:none;color:yellow;font-size:15px; width:calc(100% - 180px)'></h3>
 
 
 <body style='background-color:black'>
@@ -101,6 +101,8 @@
 
     </div>
   </form>
+  <p id='AlertModalIOS' align = 'center' style='z-index:0;display:none;position:absolute;left:calc(50% - 100px);bottom:100px;color:yellow;font-size:15px; width:200px'>If possible, please test the prototype in non-iOS devices </p>
+
 </div>
 
 
@@ -221,7 +223,9 @@
   <button id='share-download' class='button' aria-label = 'share-download' style='display:none;margin-left:0px'>
     <img src="images/ThumbsUpGreen.png"  loading='lazy' alt="..." style='margin-left:2px; width:30px ; height:30px'>
   </button>
-
+  <button id="shareWorldButtonComment" class='button' aria-label = 'shareWorldButtonComment' style='display:none'>
+    <img src="images/shareworld.png" loading='lazy'  alt="..." style='margin-left:2px; width:30px ; height:30px; '>
+  </button>
 
   <button id='filterByDate' class='button' aria-label = 'clearFilter' style='display:none;border-radius:15px'>
     <img id='imgFilterByDate'   src="images/dateAll.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
@@ -288,8 +292,9 @@
   <button id='editDeletePopup' class='popupButton' style='display:none;position:relative;left:calc(50% - 30px);text-align:center;margin-top:10px;height:45px;width:45px; font-size:40px;outline:none;background-color:white;border: 1px solid black;border-radius:30px'>
     <img id='commentFeature'   src="images/commentFeature.png" loading='lazy' alt="..." style='margin-bottom:3px;background:white;width:25px ; height:25px'>
   </button>
-  <button id='toCommentPopup' class='popupButton' disabled style='display:none;text-align:center;width:150px;padding:5px 5px;height:fit-content;margin-left:-5px; margin-top:5px; font-size:12px;outline:none;background-color:#BADFFE; border: 0px solid white;border-radius: 15px 0 15px 15px'>
-     🚧 N.B. The functionality to add and delete attributes/comments is under development. </button>
+  <button id='toCommentPopup' class='popupButton' type='button' disabled style='display:none;text-align:center;width:150px;padding:5px 5px;height:fit-content;margin-left:-5px; margin-top:5px; font-size:12px;outline:none;background-color:#BADFFE; border: 0px solid white;border-radius: 15px 0 15px 15px'>
+     🚧
+  </button>
      <audio controls controlslist="nodownload" controlslist="novolume" class='audioPlayer' id='audioControls' style = 'position:absolute;width:150%;left:-25%;margin-top:100px;display:none' >
      </audio>
 </div>
@@ -353,6 +358,7 @@
 <script  src="scripts/easyButtonsLeftSide.js"></script> -->
 <script defer src="scripts/createGeometryButtons.js"></script>
 <script defer  src="scripts/featureSelectedButtons.js"></script>
+<script defer  src="scripts/commentFeature.js"></script>
 <script  defer src="scripts/filterButtons.js"></script>
 <script defer src="scripts/cartoLayer.js"></script>
 <script  defer src="scripts/audioButton.js"></script>

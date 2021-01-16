@@ -5,6 +5,9 @@ setTimeout(function(){
   document.getElementById('loginInfo').disabled = false
   document.getElementById('loginKey').style.opacity = '1'
   document.getElementById('loginKey').disabled = false
+  if(isIOS == true){
+    document.getElementById('AlertModalIOS').style.display = 'initial'
+  }
 },1900)
 
 document.getElementById('loginInfo').onclick = function(){
@@ -299,6 +302,8 @@ var requestPw = function(){
                     document.getElementById('modal').style.display='none';
                     document.getElementById('pwForm').style.display='none';
                     localStorage.setItem('pwCorrect', true);
+                    document.getElementById('AlertModalIOS').style.display = 'none'
+
 
                 },1000)
 

@@ -405,8 +405,9 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 .leaflet-container .leaflet-control-attribution {
 	background: #fff;
-	background: rgba(255, 255, 255, 0.7);
+	background: rgba(255, 255, 255, 0);
 	margin: 0;
+	color:white;
 	}
 .leaflet-control-attribution,
 .leaflet-control-scale-line {
@@ -430,18 +431,18 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	margin-bottom: 5px;
 	}
 .leaflet-control-scale-line {
-	border: 2px solid #777;
-	border-top: none;
+	border: 0px solid black;     /*to modify color of lines in scale bar */
+	/* border-top: none; */
 	line-height: 1.1;
-	padding: 2px 5px 1px;
-	font-size: 11px;
+	padding: 1px 1px 1px;
+	font-size: 13px;
 	white-space: nowrap;
 	overflow: hidden;
 	-moz-box-sizing: border-box;
 	     box-sizing: border-box;
 
 	background: #fff;
-	background: rgba(255, 255, 255, 0.5);
+	background: rgba(255, 255, 255, 0.7);  /*to modify color and transparency of background */
 	}
 .leaflet-control-scale-line:not(:first-child) {
 	border-top: 2px solid #777;
