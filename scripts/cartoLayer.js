@@ -116,13 +116,34 @@ var cartoGeoJSONLayer = function(data) {
                             }
                             document.getElementById('commentPopup').style.display = 'initial';
                             document.getElementById('commentPopup').textContent = '🔊' + ' ' + feature.properties.landusesemoji
-                          }else{
+
+                            }else{
                             document.getElementById('audioControls').style.display = 'none'
                             document.getElementById('commentPopup').style.display = 'initial';
                             document.getElementById('commentPopup').textContent = feature.properties.landusesemoji
-
                           }
 
+                          //to add bluebox if comment Available
+                          if(selectedFeature.feature.properties.commentone != null){
+                            if(selectedFeature.feature.properties.commentoneaudioavailable !='.'){
+                              document.getElementById('toCommentPopup').disabled = false
+                              document.getElementById('toCommentPopup').onclick = function(){
+
+                                var audioUrl = feature.properties.commentoneaudioavailable
+                                var audioControls = document.getElementById('audioControls')
+                                audioControls.src = audioUrl
+                                document.getElementById('audioControls').style.display = 'initial'
+
+                              }
+                              document.getElementById('toCommentPopup').style.display = 'initial';
+                              document.getElementById('toCommentPopup').textContent = '🔊' + ' ' + feature.properties.commentone
+
+                              }else{
+                              document.getElementById('audioControls').style.display = 'none'
+                              document.getElementById('toCommentPopup').style.display = 'initial';
+                              document.getElementById('toCommentPopup').textContent = feature.properties.commentone
+                           }
+                         }
 
                       }else{ //it a line
                          // document.getElementById('popupAreaLength').style.display = 'initial'
@@ -146,6 +167,26 @@ var cartoGeoJSONLayer = function(data) {
                            document.getElementById('commentPopup').style.display = 'initial';
                            document.getElementById('commentPopup').textContent = feature.properties.landusesemoji
                          }
+                         if(selectedFeature.feature.properties.commentone != null){
+                           if(selectedFeature.feature.properties.commentoneaudioavailable !='.'){
+                             document.getElementById('toCommentPopup').disabled = false
+                             document.getElementById('toCommentPopup').onclick = function(){
+
+                               var audioUrl = feature.properties.commentoneaudioavailable
+                               var audioControls = document.getElementById('audioControls')
+                               audioControls.src = audioUrl
+                               document.getElementById('audioControls').style.display = 'initial'
+
+                             }
+                             document.getElementById('toCommentPopup').style.display = 'initial';
+                             document.getElementById('toCommentPopup').textContent = '🔊' + ' ' + feature.properties.commentone
+
+                             }else{
+                             document.getElementById('audioControls').style.display = 'none'
+                             document.getElementById('toCommentPopup').style.display = 'initial';
+                             document.getElementById('toCommentPopup').textContent = feature.properties.commentone
+                          }
+                        }
                       }
 
                     document.getElementById('editDeletePopup').style.display = 'initial'
@@ -197,6 +238,26 @@ var cartoGeoJSONLayer = function(data) {
                            document.getElementById('commentPopup').style.display = 'initial';
                            document.getElementById('commentPopup').textContent = feature.properties.landusesemoji
                          }
+                         if(selectedFeature.feature.properties.commentone != null){
+                           if(selectedFeature.feature.properties.commentoneaudioavailable !='.'){
+                             document.getElementById('toCommentPopup').disabled = false
+                             document.getElementById('toCommentPopup').onclick = function(){
+
+                               var audioUrl = feature.properties.commentoneaudioavailable
+                               var audioControls = document.getElementById('audioControls')
+                               audioControls.src = audioUrl
+                               document.getElementById('audioControls').style.display = 'initial'
+
+                             }
+                             document.getElementById('toCommentPopup').style.display = 'initial';
+                             document.getElementById('toCommentPopup').textContent = '🔊' + ' ' + feature.properties.commentone
+
+                             }else{
+                             document.getElementById('audioControls').style.display = 'none'
+                             document.getElementById('toCommentPopup').style.display = 'initial';
+                             document.getElementById('toCommentPopup').textContent = feature.properties.commentone
+                          }
+                        }
 
                          document.getElementById('editDeletePopup').style.display = 'initial'
 

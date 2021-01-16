@@ -61,6 +61,7 @@ var mapCurrentBounds;
 var mapCurrentZoom;
 var mapCurrentCenter;
 var refreshPopup;
+var refreshPopupComment;
 
 
 // // add location via browser geolocation
@@ -1041,7 +1042,7 @@ var myLayer_Button = L.easyButton({
 
                if (featureSent == true) { //to update the carto layer with recently created feature. This is fired after DB update has been checked
 
-                  sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu ORDER BY cartodb_id DESC LIMIT 1"
+                  sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date, commentone, commentoneaudioavailable FROM lumblu ORDER BY cartodb_id DESC LIMIT 1"
                   getGeoJSON()
                   featureSent = false
               }
