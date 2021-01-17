@@ -1,10 +1,13 @@
 
+var cartoDbIdOfFeatureToEdit
 document.getElementById("editDeletePopup").onclick = function() {
   document.getElementById("toCommentPopup").innerHTML = '...'
-
+console.log(selectedFeature.feature.properties.cartodb_id)
+  cartoDbIdOfFeatureToEdit = selectedFeature.feature.properties.cartodb_id
 
 
   document.getElementById("editDeletePopup").style.display = "none";
+  document.getElementById("activatePlay").style.display = "none";
 
   document.getElementById("backDeleteFeature").style.display = "none";
   document.getElementById("shareMessagingApp").style.display = "none";
@@ -35,6 +38,8 @@ document.getElementById("editDeletePopup").onclick = function() {
   // document.getElementById('share-download').disabled = true;
   // document.getElementById('share-download').style.opacity = '0.4';
   document.getElementById('shareWorldButtonComment').style.display = 'initial';
+  document.getElementById("shareWorldButtonComment").style.opacity = "0.35";
+  document.getElementById("shareWorldButtonComment").disabled = true;
 
 
   try{
@@ -62,10 +67,13 @@ document.getElementById("editDeletePopup").onclick = function() {
       var emojioneareaeditor0 = emojioneareaeditor[0]
       var emojioneareaeditor0innerHTML = emojioneareaeditor0.innerHTML /////////////////////////////////////////////11111111111111111111111ddddddddddddddddddddddddddddddESTE!!!
       if (emojioneareaeditor0innerHTML.length == 0) { //to show '...' while the textbox is empty of characters (both letter and emojis)
-          // if (audioRecorded == false) {
-          //     document.getElementById("shareWorldButtonComment").style.opacity = "0.35"; //to disable button until user adds attributes, either with audio or text
-          //     document.getElementById("shareWorldButtonComment").disabled = true;
-          // }
+          if (audioRecorded == false) {
+              document.getElementById("shareWorldButtonComment").style.opacity = "0.35"; //to disable button until user adds attributes, either with audio or text
+              document.getElementById("shareWorldButtonComment").disabled = true;
+          }else{
+            document.getElementById("shareWorldButtonComment").style.opacity = "1"; //to disable button until user adds attributes, either with audio or text
+            document.getElementById("shareWorldButtonComment").disabled = false;
+          }
       } else {
 
       //  console.log('innerhtml is not null')
@@ -78,7 +86,7 @@ document.getElementById("editDeletePopup").onclick = function() {
   editButtonClicked = true
   console.log(editButtonClicked)
 
-  return editButtonClicked
+  return editButtonClicked && cartoDbIdOfFeatureToEdit
 }
 
 document.getElementById('backEditDelete').onclick = function(){
@@ -109,6 +117,7 @@ document.getElementById('backEditDelete').onclick = function(){
 
   }catch(e){}
   document.getElementById('backEditDelete').style.display = 'none';
+  audioRecorded = false;
 
   gps_Button.button.style.opacity = '1';
   gps_Button.button.disabled = false;
@@ -124,6 +133,12 @@ document.getElementById('backEditDelete').onclick = function(){
   document.getElementById('shareWorldButtonComment').disabled = false;
   document.getElementById('shareWorldButtonComment').opacity = '1';
   document.getElementById('deleteFeature').style.display = 'none';
+  document.getElementById("enableRecording").style.display = "none";
+  document.getElementById("record").style.display = "none";
+
+  document.getElementById("activatePlay").style.display = "none";
+
+
 
   document.getElementById("tutorial").style.display = "initial";
   document.getElementById("polygon").style.display = "initial";
@@ -251,7 +266,7 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
       }
       function getUpdatedFeature(){ ///RANDOM!!!!!!!!!!!!!!!
 
-        var sqlQueryRandom = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date, commentone, commentoneaudioavailable FROM lumblu WHERE commentone='" + commentAdded + "'"
+        var sqlQueryRandom = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date, commentone, commentoneaudioavailable FROM lumblu WHERE cartodb_id='" + cartoDbIdOfFeatureToEdit + "'"
         $.getJSON({
           cache:false,
           success:updatedFeature,
