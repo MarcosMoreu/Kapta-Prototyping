@@ -51,9 +51,57 @@ document.getElementById("applyFilter").onclick = function(e) {
           } catch (err) {
             // console.log('error sql catched due to empty layer after filter applied')
           }
-         var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE landusesemoji LIKE '";
-         var sqlCondition = boxContentFiltering +"'"+" AND date>'"+datePeriodAgoReplaceComaInvert +"'";
+         // var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE landusesemoji LIKE '";
+         // var sqlCondition = boxContentFiltering +"'"+" AND date>'"+datePeriodAgoReplaceComaInvert +"'";
+         // sqlQuery = sqlQueryWithoutCondition + sqlCondition
+///////////
+         // var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE landusesemoji LIKE '";
+         // var sqlCondition = boxContentFiltering +"'"+ "OR landusesemoji LIKE '" + boxContentFiltering +"_' AND date>'"+datePeriodAgoReplaceComaInvert +"'";
+         // sqlQuery = sqlQueryWithoutCondition + sqlCondition
+/////////
+         // var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE landusesemoji ";
+         // var sqlCondition =
+         //  "LIKE '" + boxContentFiltering +"'" //exact value
+         //
+         //
+         //  + " OR landusesemoji LIKE '" + boxContentFiltering +"_'"
+         //  +" AND date>'"+datePeriodAgoReplaceComaInvert +"'";
+         // sqlQuery = sqlQueryWithoutCondition + sqlCondition
+//////////////////
+         // var sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE landusesemoji LIKE '%test%'";
+//////////////
+         // var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE landusesemoji ";
+         // var sqlCondition =
+         //  "ILIKE '" + boxContentFiltering +"'" //exact value
+         //
+         //
+         //  + " OR landusesemoji ILIKE '" + boxContentFiltering +"_'" //words introduced plus ONE extra character
+         //  + " OR landusesemoji ILIKE '" + boxContentFiltering +"__'" //words introduced plus TWO extra character
+         //  + " OR landusesemoji ILIKE '" + boxContentFiltering +"___'" //words introduced plus THREE extra character
+         //  + " OR landusesemoji ILIKE " + "'%" + boxContentFiltering +"%'" //xxxxxxxx%%%%%%%%%%%
+         //
+         //  +" AND (date>'"+datePeriodAgoReplaceComaInvert +"')";
+         // sqlQuery = sqlQueryWithoutCondition + sqlCondition
+///////////
+          // sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE landusesemoji ILIKE 'd' OR landusesemoji ILIKE 'd_' OR landusesemoji ILIKE 'd__' OR landusesemoji ILIKE 'd___' OR landusesemoji ILIKE '/%meridiano%/' AND (date>'2010-1-1')"
+
+
+
+         var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE landusesemoji ";
+         var sqlCondition =
+          "ILIKE '" + boxContentFiltering +"'" //exact value
+
+
+          + " OR landusesemoji ILIKE '" + boxContentFiltering +"_'" //words introduced plus ONE extra character
+          + " OR landusesemoji ILIKE '" + boxContentFiltering +"__'" //words introduced plus TWO extra character
+          + " OR landusesemoji ILIKE '" + boxContentFiltering +"___'" //words introduced plus THREE extra character
+          + " OR landusesemoji ILIKE " + "'%" + boxContentFiltering +"%'" //xxxxxxxx%%%%%%%%%%%
+
+          +" AND (date>'"+datePeriodAgoReplaceComaInvert +"')";
          sqlQuery = sqlQueryWithoutCondition + sqlCondition
+
+         console.log(sqlQuery)
+
          getGeoJSON()
           if(period == 3650){
             var loadInfoDateFilter = boxContentFiltering
