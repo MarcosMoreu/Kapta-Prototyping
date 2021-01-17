@@ -1552,7 +1552,7 @@ function setData() {
         // pURL = "UPDATE lumblu SET commentone = 'anothertest' WHERE cartodb_id='" + cartoIdFeatureSelected + "'";
         // pURL = "UPDATE lumblu SET commentone='" + contentInTextbox + "' WHERE cartodb_id='" + cartoIdFeatureSelected + "'";
         pURL = "UPDATE lumblu SET commentone='" + contentInTextbox + "', commentoneaudioavailable='" + audioComment + "' WHERE cartodb_id='" + cartoIdFeatureSelected + "'";
-
+        editButtonClicked = false
 
 
         console.log(pURL)
@@ -1562,10 +1562,10 @@ function setData() {
         //console.log(dataGeometry)
         var dataGeometryString = JSON.stringify(dataGeometry)
         //console.log(dataGeometryString)
-
-        var sql = "INSERT INTO lumblu (the_geom, randomid, landuses, landusesemoji, audioavailable, areapolygon, lengthline, timespent, distance, geometrystring, screensize, date) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
+        var commentAudioDefault = '.'
+        var sql = "INSERT INTO lumblu (the_geom, randomid, landuses, landusesemoji, audioavailable, areapolygon, lengthline, timespent, distance, geometrystring, screensize, date, commentoneaudioavailable) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
         var sql2 = dataGeometryString;
-        var sql3 = "'),4326),'" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + audioAvailable + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "','" + dateTime + "')";
+        var sql3 = "'),4326),'" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + audioAvailable + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "','" + dateTime + "','" + commentAudioDefault + "')";
         pURL = sql + sql2 + sql3;
         console.log(pURL)
 
@@ -1574,7 +1574,7 @@ function setData() {
     ////console.log(pURL)
     submitToProxy(pURL);
     //console.log("Feature has been submitted to the Proxy");
-    return pURL
+    return pURL && editButtonClicked
 };
 
 //cartoGeoJSONLayer()

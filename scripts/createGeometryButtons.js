@@ -288,35 +288,37 @@ document.getElementById('polygon').onclick = function(e) {
     }, 200);
     return featureType;
 };
+    document.getElementById('map').onclick = function(e) {
+      try{ //to catch the error when gobackred is clicked
 
-document.getElementById('map').onclick = function(e) {
-    if (created == false) { // to avoid the script to seach for _markers.length when the feature still has not been created
+        if (created == false) { // to avoid the script to seach for _markers.length when the feature still has not been created
 
-        if (featureType == 'polyline' && drawPolyline._markers.length > 0) { //add condition to allow user complete shape if vertext >=2. var from DRAW plugin
-            //console.log(drawPolyline._markers.length)
-            document.getElementById("deleteLastVertexLine").style.opacity = "1";
-            document.getElementById("deleteLastVertexLine").disabled = false;
+            if (featureType == 'polyline' && drawPolyline._markers.length > 0) { //add condition to allow user complete shape if vertext >=2. var from DRAW plugin
+                //console.log(drawPolyline._markers.length)
+                document.getElementById("deleteLastVertexLine").style.opacity = "1";
+                document.getElementById("deleteLastVertexLine").disabled = false;
+            }
+            if (featureType == 'polyline' && drawPolyline._markers.length > 1) {
+                document.getElementById("deleteAllVertexsLine").style.opacity = "1";
+                document.getElementById("deleteAllVertexsLine").disabled = false;
+                document.getElementById("completeFeature").style.opacity = "1";
+                document.getElementById("completeFeature").disabled = false;
+            }
+            if (featureType == 'polygon' && drawPolygon._markers.length > 0) { // polygon vertex >=3
+                document.getElementById("deleteLastVertex").style.opacity = "1";
+                document.getElementById("deleteLastVertex").disabled = false;
+            }
+            if (featureType == 'polygon' && drawPolygon._markers.length > 1) {
+                document.getElementById("deleteAllVertexs").style.opacity = "1";
+                document.getElementById("deleteAllVertexs").disabled = false;
+            }
+            if (featureType == 'polygon' && drawPolygon._markers.length > 2) {
+                document.getElementById("completeFeature").style.opacity = "1";
+                document.getElementById("completeFeature").disabled = false;
+            }
         }
-        if (featureType == 'polyline' && drawPolyline._markers.length > 1) {
-            document.getElementById("deleteAllVertexsLine").style.opacity = "1";
-            document.getElementById("deleteAllVertexsLine").disabled = false;
-            document.getElementById("completeFeature").style.opacity = "1";
-            document.getElementById("completeFeature").disabled = false;
-        }
-        if (featureType == 'polygon' && drawPolygon._markers.length > 0) { // polygon vertex >=3
-            document.getElementById("deleteLastVertex").style.opacity = "1";
-            document.getElementById("deleteLastVertex").disabled = false;
-        }
-        if (featureType == 'polygon' && drawPolygon._markers.length > 1) {
-            document.getElementById("deleteAllVertexs").style.opacity = "1";
-            document.getElementById("deleteAllVertexs").disabled = false;
-        }
-        if (featureType == 'polygon' && drawPolygon._markers.length > 2) {
-            document.getElementById("completeFeature").style.opacity = "1";
-            document.getElementById("completeFeature").disabled = false;
-        }
+      }catch(err){}
     }
-}
 
 ///////////////////////////       delete vertexs      //////////////////////////////////
 

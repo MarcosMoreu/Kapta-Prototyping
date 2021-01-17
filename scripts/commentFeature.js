@@ -1,6 +1,7 @@
 
 var cartoDbIdOfFeatureToEdit
 document.getElementById("editDeletePopup").onclick = function() {
+
   document.getElementById("toCommentPopup").innerHTML = '...'
 console.log(selectedFeature.feature.properties.cartodb_id)
   cartoDbIdOfFeatureToEdit = selectedFeature.feature.properties.cartodb_id
@@ -27,7 +28,11 @@ console.log(selectedFeature.feature.properties.cartodb_id)
   document.getElementById('backEditDelete').style.display = 'initial';
   document.getElementById("classification").style.display = "initial";
   document.getElementById("emoji").style.display = "initial";
-  document.getElementById("enableRecording").style.display = "initial";
+  if(isIOS == false){
+    document.getElementById("enableRecording").style.display = "initial";
+  }else{
+    document.getElementById("noAudioIOS").style.display = "initial";
+  }
 
   // document.getElementById("emoji").disabled = true;
   // document.getElementById("emoji").style.opacity = '0.4';
@@ -127,8 +132,6 @@ document.getElementById('backEditDelete').onclick = function(){
   document.getElementById("emoji").disabled = false;
   document.getElementById("emoji").opacity = '1';
   document.getElementById('noAudioIOS').style.display = 'none';
-  document.getElementById('noAudioIOS').disabled = false;
-  document.getElementById('noAudioIOS').opacity = '1';
   document.getElementById('shareWorldButtonComment').style.display = 'none';
   document.getElementById('shareWorldButtonComment').disabled = false;
   document.getElementById('shareWorldButtonComment').opacity = '1';
@@ -194,64 +197,103 @@ var updatedFeatureToAdd
 
 
 document.getElementById('shareWorldButtonComment').onclick = function(){
-  if (isIOS == false && recordedBlobs != null) {
-      blob = new Blob(recordedBlobs, {
-          type: 'audio/webm'
-      });
-      console.log(blob)
-  }
+    //script for audio recording
+      if (recordedBlobs != null) {
+          blob = new Blob(recordedBlobs, {
+              type: 'audio/webm'
+          });
+          // console.log(blob)
+      }
 
-  var nameAudio = 'audio' + ' ' + 'dateTimeRandomID'
-  var audioBlob = blob;
-  function blobToFile(theBlob, fileName) {
-      theBlob.lastModifiedDate = new Date();
-      theBlob.name = fileName;
-      return theBlob;
-  }
-  if (isIOS == false && recordedBlobs != null) {
-      audioBlobFile = blobToFile(audioBlob, nameAudio);
-      console.log(audioBlobFile)
-  }
-  // files = [audioBlobFile]
-  dataFile = 0 // to avoid problem in firebase, we just submit a 2d array, with geometry null (0)
-  files = [dataFile, audioBlobFile]
-  filesLength = 2
-  console.log(files)
+      var nameAudio = 'audio' + ' ' + 'dateTimeRandomID'
+      var audioBlob = blob;
+      function blobToFile(theBlob, fileName) {
+          theBlob.lastModifiedDate = new Date();
+          theBlob.name = fileName;
+          return theBlob;
+      }
+      if (recordedBlobs != null) {
+          audioBlobFile = blobToFile(audioBlob, nameAudio);
+          // console.log(audioBlobFile)
+          dataFile = 0 // to avoid problem in firebase, we just submit a 2d array, with geometry null (0)
+          files = [dataFile, audioBlobFile]
+          filesLength = 2
+          // console.log(files)
+      }
 
+      if (audioButtonClicked == true) {
+        console.log('audio clicked')
+        document.getElementById("sendFirebase").click();
+      } else { //to not show audio icon when no audio available
+        console.log('audio NOT clicked')
 
-  if (isIOS == false && audioButtonClicked == true) {
-    console.log('audio clicked')
-    document.getElementById("sendFirebase").click();
-  } else { //to not show audio icon when no audio available
-    console.log('audio NOT clicked')
-
-      audioAvailable = '.'
-      setData(); //Call the setDdata() function!!! to post data to database. If audio is available, set data is called in sendfirebase function
-  }
-
+          audioAvailable = '.'
+          setData(); //Call the setDdata() function!!! to post data to database. If audio is available, set data is called in sendfirebase function
+      }
+    // end of script for audio recording
 
    var commentAdded = document.getElementById("toCommentPopup").innerHTML
    //console.log(commentAdded)
   // document.getElementById('shareWorldButtonComment').src = 'images/gpsOff.png';
   clearInterval(refreshPopupComment)
   //document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
-  document.getElementById('shareWorldButtonComment').style.backgroundColor = 'green'
-  document.getElementById('shareWorldButtonComment').style.borderColor = 'green'
+  // document.getElementById('shareWorldButtonComment').style.backgroundColor = 'green'
+  // document.getElementById('shareWorldButtonComment').style.borderColor = 'green'
+  document.getElementById("activatePlay").style.display = "none";
+  document.getElementById("shareWorldButtonComment").style.display = "none";
+  document.getElementById("sentConfirmation").style.display = "initial";
+  // document.getElementById('sentConfirmation').style.opacity = '1';
+  document.getElementById('sentConfirmation').disabled = true;
 
+  // document.getElementById("shareWorldButtonComment").src = 'images/applyFilter.png';
+  // document.getElementById("shareWorldButtonComment").style.backgroundColor = '#39F70F'
+  // document.getElementById("shareWorldButtonComment").style.borderColor = '#39F70F'
+  // document.getElementById('shareWorldButtonComment').style.opacity = '0.75';
+  // document.getElementById('shareWorldButtonComment').disabled = true;
 
+  // document.getElementById('backEditDelete').style.opacity = '0.35';
+  // document.getElementById("classification").style.opacity = "0.35";
+  // document.getElementById("emoji").style.opacity = "0.35";
+  // document.getElementById('noAudioIOS').style.opacity = '0.35';
+  // document.getElementById('enableRecording').style.opacity = '0.35';
+  // document.getElementById('record').style.opacity = '0.35';
+  document.getElementById('backEditDelete').disabled = true;
+  document.getElementById("classification").disabled = true;
+  document.getElementById("emoji").disabled = true;
+  document.getElementById('noAudioIOS').disabled = true;
+  document.getElementById('enableRecording').disabled = true;
+  document.getElementById('record').disabled = true;
+
+  //first we close the popup, then we load the new screen -  the comment should now be updated in the carto layer
   setTimeout(function(){
-    document.getElementById('shareWorldButtonComment').style.backgroundColor = 'white'
-    document.getElementById('shareWorldButtonComment').style.borderColor = 'white'
+  map.closePopup();
+  },2000)
+  setTimeout(function(){
     // document.getElementById('toCommentPopup').style.display = 'none';
-    // document.getElementById('backEditDelete').style.display = 'none';
-    // document.getElementById("classification").style.display = "none";
-    // document.getElementById("emoji").style.display = "none";
-    // document.getElementById('noAudioIOS').style.display = 'none';
-    // document.getElementById('shareWorldButtonComment').style.display = 'none';
-    // document.getElementById('backDeleteFeature').style.display = 'initial';
-    // document.getElementById('deleteFeature').style.display = 'initial';
-    // document.getElementById('shareMessagingApp').style.display = 'initial';
-    // document.getElementById("randomSuggestion").style.display = "initial";
+    document.getElementById("sentConfirmation").style.display = "none";
+    document.getElementById('backEditDelete').style.display = 'none';
+    document.getElementById("classification").style.display = "none";
+    document.getElementById("emoji").style.display = "none";
+    document.getElementById('noAudioIOS').style.display = 'none';
+    document.getElementById('enableRecording').style.display = 'none';
+    document.getElementById('record').style.display = 'none';
+    document.getElementById('backEditDelete').style.opacity = '1';
+    document.getElementById("classification").style.opacity = "1";
+    document.getElementById("emoji").style.opacity = "1";
+    document.getElementById('noAudioIOS').style.opacity = '1';
+    document.getElementById('enableRecording').style.opacity = '1';
+    document.getElementById('record').style.opacity = '1';
+    document.getElementById('backEditDelete').disabled = false;
+    document.getElementById("classification").disabled = false;
+    document.getElementById("emoji").disabled = false;
+    document.getElementById('noAudioIOS').disabled = false;
+    document.getElementById('enableRecording').disabled = false;
+    document.getElementById('record').disabled = false;
+
+    document.getElementById('backDeleteFeature').style.display = 'initial';
+    document.getElementById('deleteFeature').style.display = 'initial';
+    document.getElementById('shareMessagingApp').style.display = 'initial';
+    document.getElementById("randomSuggestion").style.display = "initial";
     // document.getElementById("backDeleteFeature").click() // !!!!!!!!
     //document.getElementById("backEditDelete").click() // !!!!!!!!
 
