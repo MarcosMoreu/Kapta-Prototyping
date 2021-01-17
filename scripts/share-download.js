@@ -171,7 +171,7 @@ document.getElementById('share-download').onclick = function(e) {
         blob = new Blob(recordedBlobs, {
             type: 'audio/webm'
         });
-        //console.log(blob)
+        console.log(blob)
     }
 
     //defining the final screen
@@ -221,7 +221,7 @@ document.getElementById('share-download').onclick = function(e) {
 
     if (isIOS == false && recordedBlobs != null) {
         audioBlobFile = blobToFile(audioBlob, nameAudio);
-        //console.log(audioBlobFile)
+        console.log(audioBlobFile)
     }
 
     //console.log(document.getElementsByClassName('emojibtn'))
@@ -242,7 +242,7 @@ document.getElementById('share-download').onclick = function(e) {
     }
       // encodeGeoJSON(data,propertiesGeoJSONURL)
       console.log(convertedDataShareDirect)
-      console.log(mappos)
+      console.log(files)
       // var parsedJSONdecoded = decodeURIComponent(convertedDataShareDirect);
       // var parsedJSON = JSON.parse(parsedJSONdecoded)
       // console.log(parsedJSON)

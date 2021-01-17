@@ -24,11 +24,13 @@ document.getElementById("editDeletePopup").onclick = function() {
   document.getElementById('backEditDelete').style.display = 'initial';
   document.getElementById("classification").style.display = "initial";
   document.getElementById("emoji").style.display = "initial";
+  document.getElementById("enableRecording").style.display = "initial";
+
   // document.getElementById("emoji").disabled = true;
   // document.getElementById("emoji").style.opacity = '0.4';
-  document.getElementById('noAudioIOS').style.display = 'initial';
-  document.getElementById('noAudioIOS').disabled = true;
-  document.getElementById('noAudioIOS').style.opacity = '0.4';
+  // document.getElementById('noAudioIOS').style.display = 'initial';
+  // document.getElementById('noAudioIOS').disabled = true;
+  // document.getElementById('noAudioIOS').style.opacity = '0.4';
   // document.getElementById('share-download').style.display = 'initial';
   // document.getElementById('share-download').disabled = true;
   // document.getElementById('share-download').style.opacity = '0.4';
@@ -174,8 +176,45 @@ document.getElementById('backEditDelete').onclick = function(){
   return selectedFeature && clickCountDeleteButton && editButtonClicked
 }
 var updatedFeatureToAdd
+
+
 document.getElementById('shareWorldButtonComment').onclick = function(){
-   setData()
+  if (isIOS == false && recordedBlobs != null) {
+      blob = new Blob(recordedBlobs, {
+          type: 'audio/webm'
+      });
+      console.log(blob)
+  }
+
+  var nameAudio = 'audio' + ' ' + 'dateTimeRandomID'
+  var audioBlob = blob;
+  function blobToFile(theBlob, fileName) {
+      theBlob.lastModifiedDate = new Date();
+      theBlob.name = fileName;
+      return theBlob;
+  }
+  if (isIOS == false && recordedBlobs != null) {
+      audioBlobFile = blobToFile(audioBlob, nameAudio);
+      console.log(audioBlobFile)
+  }
+  // files = [audioBlobFile]
+  dataFile = 0 // to avoid problem in firebase, we just submit a 2d array, with geometry null (0)
+  files = [dataFile, audioBlobFile]
+  filesLength = 2
+  console.log(files)
+
+
+  if (isIOS == false && audioButtonClicked == true) {
+    console.log('audio clicked')
+    document.getElementById("sendFirebase").click();
+  } else { //to not show audio icon when no audio available
+    console.log('audio NOT clicked')
+
+      audioAvailable = '.'
+      setData(); //Call the setDdata() function!!! to post data to database. If audio is available, set data is called in sendfirebase function
+  }
+
+
    var commentAdded = document.getElementById("toCommentPopup").innerHTML
    //console.log(commentAdded)
   // document.getElementById('shareWorldButtonComment').src = 'images/gpsOff.png';
@@ -200,12 +239,8 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
     // document.getElementById("randomSuggestion").style.display = "initial";
     // document.getElementById("backDeleteFeature").click() // !!!!!!!!
     //document.getElementById("backEditDelete").click() // !!!!!!!!
-// deflated.removeFrom(map)
-// deflated.removeLayer(selectedFeature)
-// updatedFeatureToAdd.addTo(deflated)
- // deflated.addLayer(updatedFeatureToAdd)
-//getGeoJSON()
-// deflated.addTo(map)
+
+    //Script to update the feature with the new comment: request feature in DB that matches the comment> on success call function to remove old feature from deflated then add the requested feature to deflated
       var updatedFeature = function(data) { //function to get layer from carto with 🌐
        //  updatedFeatureToAdd = data
          console.log(data)

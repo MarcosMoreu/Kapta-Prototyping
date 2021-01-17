@@ -1540,6 +1540,11 @@ function setData() {
         console.log(pURL)
 
     }else if (cartoIdFeatureSelected != null && created == false && editButtonClicked == true){ //TO INSERT COMMENT IN EXISTING FEATURE
+      console.log('set data called')
+      console.log(contentInTextbox)
+      console.log(audioComment)
+
+
         var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
         var emojioneareaeditor0 = emojioneareaeditor[0]
         var contentInTextbox = emojioneareaeditor0.innerHTML
