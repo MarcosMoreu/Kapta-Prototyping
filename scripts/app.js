@@ -986,7 +986,7 @@ var myLayer_Button = L.easyButton({
         //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn, map) {
-          // console.log('which layer is on', whichLayerIsOn)
+                    // console.log('which layer is on', whichLayerIsOn)
           // console.log('localStorageLayer', localStorageLayer)
             // console.log(localStorage)
             // console.log(groupGeoJSON)
@@ -1059,6 +1059,7 @@ myLayer_Button.button.style.height = '50px';
 myLayer_Button.button.style.transitionDuration = '.3s';
 myLayer_Button.button.style.backgroundColor = 'black';
 //myLayer_Button.addTo(map); //always on as there will always be features in the map, even when first load
+
 var filterApplied = false;
 var alertAlreadyShown = false
 var startCheckAttrDateContent
@@ -1435,7 +1436,7 @@ var rose = L.control.rose('rose', {
 })//.addTo(map)
 document.getElementById('rose').style.marginBottom = '5px' // to avoid extra margin, visible when offline buttons appear
 
-// script to show the download tiles buttons
+// script to show the download tiles buttons (10clicks) and/or reload cartolayer (5clicks)
 var clicksRose = 0
 document.getElementById('rose').onclick = function(e){
     clicksRose += 1;
@@ -1447,11 +1448,29 @@ document.getElementById('rose').onclick = function(e){
 
     },200)
 
-      if(clicksRose == 10){
-    offlineControlGoogle.addTo(map);
-    offlineControlOSM.addTo(map);
-    clicksRose = 0;
-  }
+      if(clicksRose == 5){ //this is to refresh the carto layer
+        document.getElementById("Alert").style.fontSize = "20px";
+        document.getElementById('Alert').innerHTML = '<br>⌛'
+        document.getElementById("Alert").style.display = 'initial'
+        setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
+          if(clicksRose < 8){ //this is to check that the user actually want to click 5 times, not 10
+            document.getElementById("Alert").style.display = 'none'
+            console.log('refreshed')
+            deflated.removeLayer(cartoGeometries)
+            getGeoJSON()
+          clicksRose = 0;
+        }
+        },2000)
+      }
+      if(clicksRose == 10){ //this is to show the download tiles buttons
+        clicksRose = 0;
+        offlineControlGoogle.addTo(map);
+        offlineControlOSM.addTo(map);
+      }
+
+      setTimeout(function(){ //this is to refresh click counts, so they don't accumulate
+        clicksRose = 0;
+      },20000)
 
   return clicksRose
 }
