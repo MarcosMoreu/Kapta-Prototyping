@@ -307,6 +307,7 @@ var cartoGeoJSONLayer = function(data) {
 
                       })
                       map.on('moveend', function(e) {
+                        if(editButtonClicked == false){  // this condition is to prevent this when commenting the cartolayer, like with creating the geometry with drawnitems
                           try {
                             deflated.editing.disable();
                           } catch (e) {}
@@ -317,6 +318,7 @@ var cartoGeoJSONLayer = function(data) {
                           if(selectedFeature && selectedFeature != null){ //second condition to avoid click when backDeletefeature... not best solution but works
                             document.getElementById("backDeleteFeature").click() //!!!!!!!!
                           }
+                        }
                       })
 
                       //to store the cartoID of the future selected

@@ -65,27 +65,36 @@ console.log(selectedFeature.feature.properties.cartodb_id)
       document.getElementById('toCommentPopup').style.display = 'none';
     }catch(e){}
   })
-
   refreshPopupComment = setInterval(function() {
     //console.log('refreshingpopcomment')
+
       var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
       var emojioneareaeditor0 = emojioneareaeditor[0]
       var emojioneareaeditor0innerHTML = emojioneareaeditor0.innerHTML /////////////////////////////////////////////11111111111111111111111ddddddddddddddddddddddddddddddESTE!!!
       if (emojioneareaeditor0innerHTML.length == 0) { //to show '...' while the textbox is empty of characters (both letter and emojis)
+
           if (audioRecorded == false) {
               document.getElementById("shareWorldButtonComment").style.opacity = "0.35"; //to disable button until user adds attributes, either with audio or text
               document.getElementById("shareWorldButtonComment").disabled = true;
           }else{
             document.getElementById("shareWorldButtonComment").style.opacity = "1"; //to disable button until user adds attributes, either with audio or text
             document.getElementById("shareWorldButtonComment").disabled = false;
-          }
-      } else {
+            document.getElementById("toCommentPopup").innerHTML = '🔊' + emojioneareaeditor0innerHTML;
 
+          }
+      }else {
+          if (audioRecorded == false) {
       //  console.log('innerhtml is not null')
           document.getElementById("shareWorldButtonComment").style.opacity = "1"; //to disable button until user adds attributes, either with audio or text
           document.getElementById("shareWorldButtonComment").disabled = false;
           //to update blue box as emojitext updates
           document.getElementById("toCommentPopup").innerHTML = emojioneareaeditor0innerHTML;
+        }else{
+          document.getElementById("shareWorldButtonComment").style.opacity = "1"; //to disable button until user adds attributes, either with audio or text
+          document.getElementById("shareWorldButtonComment").disabled = false;
+          //to update blue box as emojitext updates
+          document.getElementById("toCommentPopup").innerHTML = '🔊' + emojioneareaeditor0innerHTML;
+        }
       }
   }, 300) // time frequency to refresh the content in the comment popup
   editButtonClicked = true
@@ -195,7 +204,6 @@ document.getElementById('backEditDelete').onclick = function(){
 }
 var updatedFeatureToAdd
 
-
 document.getElementById('shareWorldButtonComment').onclick = function(){
     //script for audio recording
       if (recordedBlobs != null) {
@@ -294,6 +302,7 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
     document.getElementById('deleteFeature').style.display = 'initial';
     document.getElementById('shareMessagingApp').style.display = 'initial';
     document.getElementById("randomSuggestion").style.display = "initial";
+
     // document.getElementById("backDeleteFeature").click() // !!!!!!!!
     //document.getElementById("backEditDelete").click() // !!!!!!!!
 
@@ -317,4 +326,6 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
       }
        getUpdatedFeature() ////////////////!!!!
 },3000)
+  editButtonClicked = true
+  return editButtonClicked
 }
