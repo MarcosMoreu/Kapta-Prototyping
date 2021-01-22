@@ -95,10 +95,15 @@ document.getElementById("applyFilter").onclick = function(e) {
           + " OR landusesemoji ILIKE '" + boxContentFiltering +"_'" //words introduced plus ONE extra character
           + " OR landusesemoji ILIKE '" + boxContentFiltering +"__'" //words introduced plus TWO extra character
           + " OR landusesemoji ILIKE '" + boxContentFiltering +"___'" //words introduced plus THREE extra character
-          + " OR landusesemoji ILIKE " + "'%" + boxContentFiltering +"%'" //xxxxxxxx%%%%%%%%%%%
+          // + " OR landusesemoji ILIKE " + "'%" + boxContentFiltering +"%'" //xxxxxxxx%%%%%%%%%%%
+          + " OR landusesemoji ILIKE '%" + boxContentFiltering +"'" //xxxxxxxx%%%%%%%%%%%
+
 
           +" AND (date>'"+datePeriodAgoReplaceComaInvert +"')";
-         sqlQuery = sqlQueryWithoutCondition + sqlCondition
+         var sqlQueryEncoded = sqlQueryWithoutCondition + sqlCondition
+         // sqlQuery = decodeURIComponent(sqlQueryEncoded)
+         sqlQuery = encodeURIComponent(sqlQueryEncoded)
+
 
          console.log(sqlQuery)
 

@@ -272,8 +272,27 @@ document.getElementById('goBackClassification').onclick = function(e){
 showButtons()
 }
 
+var mapposLat = mappos.center.lat
+var mapposLng = mappos.center.lng
+var mapposZoom = mappos.zoom
+
+var urlX
+var keepOnlyLatLngZoomX
+var splittedLatLngZoomX
+var urlLatX
+var urlLngX
+var urlZoomWithZX
+var urlZoomX
 document.getElementById('shareMessagingAppsDirect').onclick = function(e){
   encodeGeoJSON(data,propertiesGeoJSONURL)
+    urlX = window.location.href
+    keepOnlyLatLngZoomX = urlX.split('#').pop();
+    splittedLatLngZoomX = keepOnlyLatLngZoomX.split(',');
+    urlLatX = splittedLatLngZoomX[0]
+    urlLngX = splittedLatLngZoomX[1]
+    urlZoomWithZX = splittedLatLngZoomX[2]
+    urlZoomX = urlZoomWithZX.replace('z','')
+
 
   document.getElementById('goBackClassification').style.display = 'none';
   document.getElementById('shareMessagingAppsDirect').style.display = 'none';
@@ -288,7 +307,7 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
 
   shareURL = 'encodedGeoJSON'
   // document.getElementById("shareMessagingApp").style.display = "initial";
-  return shareURL
+  return shareURL && mapposLat  && mapposLng && mapposZoom && urlX && urlLatX && urlLngX && urlZoomX
 }
 document.getElementById('goBackShareMessagingAppsDirect').onclick = function(e){
   document.getElementById("goBackShareMessagingAppsDirect").style.display = 'none';

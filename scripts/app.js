@@ -254,6 +254,7 @@ if (lastPositionStoredLOCALLY != null) {
 
 // function to get coordinates and zoom level from URL, and then use the zoom and center variables to center the map if url != original
 var mappos = L.Permalink.getMapLocation();
+console.log(mappos.center.lat)
 
 //////////////////////////////////////////////  MAP  //////////////////////////////////////////////////////
 var randomIDtest
