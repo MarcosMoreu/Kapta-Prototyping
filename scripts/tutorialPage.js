@@ -34,6 +34,7 @@ document.getElementById('dropDown').onclick = function(e){
   }
 
   document.getElementById('cutomiseButton').onclick = function(e){
+
      setTimeout(function(){
        document.getElementById("infoGoBackButton").style.display = "initial";
        document.getElementById("cognitoForm").style.display = "initial";
@@ -45,19 +46,30 @@ document.getElementById('dropDown').onclick = function(e){
       document.getElementById('cutomiseButton').style.display = "none";
       document.getElementById("youtube").style.display = "none";
       document.getElementById("startMapping").style.display = "none";
-      document.getElementById("spanish").style.display = "none";
+      //document.getElementById("spanish").style.display = "none";
+
       document.getElementById("english").style.display = "none";
-      document.getElementById("french").style.display = "none";
-      document.getElementById("portuguese").style.display = "none";
-      document.getElementById("swahili").style.display = "none";
-      document.getElementById("juhoansi").style.display = "none";
+      //document.getElementById("french").style.display = "none";
+
+      //document.getElementById("portuguese").style.display = "none";
+
+      //document.getElementById("swahili").style.display = "none";
+
+      //document.getElementById("juhoansi").style.display = "none";
+
       document.getElementById("other1").style.display = "none";
+
       document.getElementById("textEnglish").style.display = "none";
-      document.getElementById("textSpanish").style.display = "none";
-      document.getElementById("textFrench").style.display = "none";
-      document.getElementById("textPortuguese").style.display = "none";
-      document.getElementById("textSwahili").style.display = "none";
-      document.getElementById("textJuhoansi").style.display = "none";
+      //document.getElementById("textSpanish").style.display = "none";
+
+      //document.getElementById("textFrench").style.display = "none";
+
+      //document.getElementById("textPortuguese").style.display = "none";
+
+      //document.getElementById("textSwahili").style.display = "none";
+
+      //document.getElementById("textJuhoansi").style.display = "none";
+
 
      },100)
     }
@@ -74,19 +86,30 @@ document.getElementById('infoButton').onclick = function(e){
     document.getElementById("infoButton").style.display = "none";
     document.getElementById("iconsButton").style.display = "none";
 
-    document.getElementById("spanish").style.display = "none";
+    //document.getElementById("spanish").style.display = "none";
+
     document.getElementById("english").style.display = "none";
-    document.getElementById("french").style.display = "none";
-    document.getElementById("portuguese").style.display = "none";
-    document.getElementById("swahili").style.display = "none";
-    document.getElementById("juhoansi").style.display = "none";
+    //document.getElementById("french").style.display = "none";
+
+    //document.getElementById("portuguese").style.display = "none";
+
+    //document.getElementById("swahili").style.display = "none";
+
+    //document.getElementById("juhoansi").style.display = "none";
+
     document.getElementById("other1").style.display = "none";
+
     document.getElementById("textEnglish").style.display = "none";
-    document.getElementById("textSpanish").style.display = "none";
-    document.getElementById("textFrench").style.display = "none";
-    document.getElementById("textPortuguese").style.display = "none";
-    document.getElementById("textSwahili").style.display = "none";
-    document.getElementById("textJuhoansi").style.display = "none";
+    //document.getElementById("textSpanish").style.display = "none";
+
+    //document.getElementById("textFrench").style.display = "none";
+
+    //document.getElementById("textPortuguese").style.display = "none";
+
+    //document.getElementById("textSwahili").style.display = "none";
+
+    //document.getElementById("textJuhoansi").style.display = "none";
+
 
    },100)
   }
@@ -102,19 +125,30 @@ document.getElementById('iconsButton').onclick = function(e){
     document.getElementById("infoButton").style.display = "none";
     document.getElementById("iconsButton").style.display = "none";
 
-    document.getElementById("spanish").style.display = "none";
+    //document.getElementById("spanish").style.display = "none";
+
     document.getElementById("english").style.display = "none";
-    document.getElementById("french").style.display = "none";
-    document.getElementById("portuguese").style.display = "none";
-    document.getElementById("swahili").style.display = "none";
-    document.getElementById("juhoansi").style.display = "none";
+    //document.getElementById("french").style.display = "none";
+
+    //document.getElementById("portuguese").style.display = "none";
+
+    //document.getElementById("swahili").style.display = "none";
+
+    //document.getElementById("juhoansi").style.display = "none";
+
     document.getElementById("other1").style.display = "none";
+
     document.getElementById("textEnglish").style.display = "none";
-    document.getElementById("textSpanish").style.display = "none";
-    document.getElementById("textFrench").style.display = "none";
-    document.getElementById("textPortuguese").style.display = "none";
-    document.getElementById("textSwahili").style.display = "none";
-    document.getElementById("textJuhoansi").style.display = "none";
+    //document.getElementById("textSpanish").style.display = "none";
+
+    //document.getElementById("textFrench").style.display = "none";
+
+    //document.getElementById("textPortuguese").style.display = "none";
+
+    //document.getElementById("textSwahili").style.display = "none";
+
+    //document.getElementById("textJuhoansi").style.display = "none";
+
 
    },100)
   }
@@ -131,19 +165,30 @@ document.getElementById('infoGoBackButton').onclick = function(e){
      document.getElementById("infoButton").style.display = "none";
      document.getElementById("iconsButton").style.display = "none";
      document.getElementById('cutomiseButton').style.display = "none";
-     document.getElementById("spanish").style.display = "none";
+     //document.getElementById("spanish").style.display = "none";
+
      document.getElementById("english").style.display = "none";
-     document.getElementById("french").style.display = "none";
-     document.getElementById("portuguese").style.display = "none";
-     document.getElementById("swahili").style.display = "none";
-     document.getElementById("juhoansi").style.display = "none";
+     //document.getElementById("french").style.display = "none";
+
+     //document.getElementById("portuguese").style.display = "none";
+
+     //document.getElementById("swahili").style.display = "none";
+
+     //document.getElementById("juhoansi").style.display = "none";
+
      document.getElementById("other1").style.display = "none";
+
      document.getElementById("textEnglish").style.display = "none";
-     document.getElementById("textSpanish").style.display = "none";
-     document.getElementById("textFrench").style.display = "none";
-     document.getElementById("textPortuguese").style.display = "none";
-     document.getElementById("textSwahili").style.display = "none";
-     document.getElementById("textJuhoansi").style.display = "none";
+     //document.getElementById("textSpanish").style.display = "none";
+
+     //document.getElementById("textFrench").style.display = "none";
+
+     //document.getElementById("textPortuguese").style.display = "none";
+
+     //document.getElementById("textSwahili").style.display = "none";
+
+     //document.getElementById("textJuhoansi").style.display = "none";
+
 
      document.getElementById('dropDown').style.backgroundColor = 'black';
      document.getElementById('imageDropDown').src = '../images/burger.png';
@@ -193,33 +238,54 @@ document.getElementById('youtube').onclick = function(e){
   }
 
 document.getElementById('english').onclick = function(e){
+
    setTimeout(function(){
     document.getElementById("dropDown").style.display = "initial";
      document.getElementById("youtube").style.display = "initial";
      //document.getElementById('cutomiseButton').style.display = "initial";
+    //document.getElementById("spanish").style.display = "none";
 
-    document.getElementById("spanish").style.display = "none";
     document.getElementById("english").style.display = "none";
-    document.getElementById("french").style.display = "none";
-    document.getElementById("portuguese").style.display = "none";
-    document.getElementById("swahili").style.display = "none";
-    document.getElementById("juhoansi").style.display = "none";
+    //document.getElementById("french").style.display = "none";
+    //document.getElementById("portuguese").style.display = "none";
+    //document.getElementById("swahili").style.display = "none";
+    //document.getElementById("juhoansi").style.display = "none";
     document.getElementById("other1").style.display = "none";
+    document.getElementById("other1UnderDev").style.display = "none";
+
 
   },100)
 
-  }
+    //this is to load Cognito form 2 sec after UK is clicked, so page load fast - user won't need cognito after few secs
+    setTimeout(function(){
+      Cognito.load("forms", { id: "2" })
+    },2000)
+}
+document.getElementById('other1').onclick = function(e){
+  document.getElementById("other1").style.display = "none";
+  document.getElementById("other1UnderDev").style.display = "initial";
+
+
+}
+
+
 // document.getElementById('spanish').onclick = function(e){
 //    setTimeout(function(){
 //      document.getElementById("textSpanish").style.display = "initial";
 //
-//      document.getElementById("spanish").style.display = "none";
+//      //document.getElementById("spanish").style.display = "none";
+
 //      document.getElementById("english").style.display = "none";
-//      document.getElementById("french").style.display = "none";
-//      document.getElementById("portuguese").style.display = "none";
-//      document.getElementById("swahili").style.display = "none";
-//      document.getElementById("juhoansi").style.display = "none";
+//      //document.getElementById("french").style.display = "none";
+
+//      //document.getElementById("portuguese").style.display = "none";
+
+//      //document.getElementById("swahili").style.display = "none";
+
+//      //document.getElementById("juhoansi").style.display = "none";
+
 //      document.getElementById("other1").style.display = "none";
+
 //   },100)
 // }
 //
@@ -227,13 +293,19 @@ document.getElementById('english').onclick = function(e){
 //    setTimeout(function(){
 //      document.getElementById("textFrench").style.display = "initial";
 //
-//      document.getElementById("spanish").style.display = "none";
+//      //document.getElementById("spanish").style.display = "none";
+
 //      document.getElementById("english").style.display = "none";
-//      document.getElementById("french").style.display = "none";
-//      document.getElementById("portuguese").style.display = "none";
-//      document.getElementById("swahili").style.display = "none";
-//      document.getElementById("juhoansi").style.display = "none";
+//      //document.getElementById("french").style.display = "none";
+
+//      //document.getElementById("portuguese").style.display = "none";
+
+//      //document.getElementById("swahili").style.display = "none";
+
+//      //document.getElementById("juhoansi").style.display = "none";
+
 //      document.getElementById("other1").style.display = "none";
+
 //   },100)
 //
 //   }
@@ -241,13 +313,19 @@ document.getElementById('english').onclick = function(e){
 //    setTimeout(function(){
 //      document.getElementById("textPortuguese").style.display = "initial";
 //
-//      document.getElementById("spanish").style.display = "none";
+//      //document.getElementById("spanish").style.display = "none";
+
 //      document.getElementById("english").style.display = "none";
-//      document.getElementById("french").style.display = "none";
-//      document.getElementById("portuguese").style.display = "none";
-//      document.getElementById("swahili").style.display = "none";
-//      document.getElementById("juhoansi").style.display = "none";
+//      //document.getElementById("french").style.display = "none";
+
+//      //document.getElementById("portuguese").style.display = "none";
+
+//      //document.getElementById("swahili").style.display = "none";
+
+//      //document.getElementById("juhoansi").style.display = "none";
+
 //      document.getElementById("other1").style.display = "none";
+
 //   },100)
 // }
 //
@@ -255,13 +333,19 @@ document.getElementById('english').onclick = function(e){
 //    setTimeout(function(){
 //      document.getElementById("textSwahili").style.display = "initial";
 //
-//      document.getElementById("spanish").style.display = "none";
+//      //document.getElementById("spanish").style.display = "none";
+
 //      document.getElementById("english").style.display = "none";
-//      document.getElementById("french").style.display = "none";
-//      document.getElementById("portuguese").style.display = "none";
-//      document.getElementById("swahili").style.display = "none";
-//      document.getElementById("juhoansi").style.display = "none";
+//      //document.getElementById("french").style.display = "none";
+
+//      //document.getElementById("portuguese").style.display = "none";
+
+//      //document.getElementById("swahili").style.display = "none";
+
+//      //document.getElementById("juhoansi").style.display = "none";
+
 //      document.getElementById("other1").style.display = "none";
+
 //   },100)
 //
 //   }
@@ -269,12 +353,18 @@ document.getElementById('english').onclick = function(e){
 //    setTimeout(function(){
 //      document.getElementById("textJuhoansi").style.display = "initial";
 //
-//      document.getElementById("spanish").style.display = "none";
+//      //document.getElementById("spanish").style.display = "none";
+
 //      document.getElementById("english").style.display = "none";
-//      document.getElementById("french").style.display = "none";
-//      document.getElementById("portuguese").style.display = "none";
-//      document.getElementById("swahili").style.display = "none";
-//      document.getElementById("juhoansi").style.display = "none";
+//      //document.getElementById("french").style.display = "none";
+
+//      //document.getElementById("portuguese").style.display = "none";
+
+//      //document.getElementById("swahili").style.display = "none";
+
+//      //document.getElementById("juhoansi").style.display = "none";
+
 //      document.getElementById("other1").style.display = "none";
+
 //   },100)
 // }

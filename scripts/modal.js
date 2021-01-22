@@ -192,7 +192,8 @@ var initialiseMap = function(){
             'images/markerLocalStorage.png','images/markerPolygon.png','images/myLayer.png','images/namibia.png','images/nautical.svg','images/osm.png',
             'images/other.png','images/other1.png','images/planet.png','images/play.png','images/PlusSign.png','images/portugal.png',
             'images/questionmark.png','images/random.png','images/record.png','images/shareMessagingApps.png','images/shareworld.png','images/spain.png',
-            'images/telegram.png','images/uk.png','images/wechat.png','images/whatsapp.png','images/youtube.png',
+            'images/telegram.png','images/uk.png','images/other1.png','images/wechat.png','images/whatsapp.png','images/youtube.png',
+            'images/commentSent.gif','images/shareMessagingAppsYellow.png','images/sendComment.png',
             // console.log('images preloaded')
         ]);
       // var images = new Array()
@@ -290,6 +291,7 @@ var requestPw = function(){
           //   //console.log(promise)
         var openAppPwSuccesful = function(){
               if(authentication == 'successful' && done == true){  //map loads after this
+                document.getElementById('login').disabled = true // to avoid that user clicks twice while waiting, in which case carto layer would load twice
                  console.log('both')
 
                 clearInterval(checkPw)
