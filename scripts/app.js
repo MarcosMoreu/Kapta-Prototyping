@@ -1084,7 +1084,7 @@ var filter_Button = L.easyButton({
 
           if(filterIsOn == false){
             startCheckAttrDateContent = setInterval(checkAttrDateContent,300)
-
+            console.log('filterisonfalse')
             filterIsOn = true
             myLayer_Button.button.style.opacity = '0.4';
             myLayer_Button.button.disabled = true;
@@ -1098,6 +1098,8 @@ var filter_Button = L.easyButton({
             document.getElementById("point").style.display = "none";
 
             if(filterApplied == true){
+              console.log('filterisonfalse')
+
               document.getElementById("clearFilter").style.opacity = '1'
               document.getElementById("clearFilter").disabled = false
             }else{
@@ -1127,6 +1129,7 @@ var filter_Button = L.easyButton({
 
         }else{
             clearInterval(startCheckAttrDateContent)
+            console.log('filterisontrue')
 
             filterIsOn = false
             myLayer_Button.button.style.opacity = '1';

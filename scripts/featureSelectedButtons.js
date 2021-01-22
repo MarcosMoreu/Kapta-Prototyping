@@ -77,7 +77,19 @@ document.getElementById("backDeleteFeature").onclick = function() {
     //removeMiniMap()
     //miniMap.remove() //removeFrom(map) is not used anymore
 
-    return selectedFeature && clickCountDeleteButton && cartoIdFeatureSelected
+    //to ensure filter button remains green if filter applied
+    if(filterApplied == true){ //to avoid that if dilterby date is all, color is not green
+      filter_Button.button.style.backgroundColor = 'green'
+      filterIsOn = false
+
+
+    }else{
+      filter_Button.button.style.backgroundColor = 'black'
+      document.getElementById("Alert").style.display = 'none'
+    }
+
+    return selectedFeature && clickCountDeleteButton && cartoIdFeatureSelected && filterIsOn
+
 }
 document.getElementById("shareMessagingApp").onclick = function() {
 

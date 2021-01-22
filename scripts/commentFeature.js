@@ -200,7 +200,19 @@ document.getElementById('backEditDelete').onclick = function(){
   selectedFeature = null;
   editButtonClicked = false
   console.log(editButtonClicked)
-  return selectedFeature && clickCountDeleteButton && editButtonClicked
+
+  //to ensure filter button remains green if filter applied
+  if(filterApplied == true){ //to avoid that if dilterby date is all, color is not green
+    filter_Button.button.style.backgroundColor = 'green'
+    filterIsOn = false
+
+
+  }else{
+    filter_Button.button.style.backgroundColor = 'black'
+    document.getElementById("Alert").style.display = 'none'
+  }
+
+  return selectedFeature && clickCountDeleteButton && editButtonClicked && filterIsOn
 }
 var updatedFeatureToAdd
 
@@ -327,5 +339,16 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
        getUpdatedFeature() ////////////////!!!!
 },3000)
   editButtonClicked = true
-  return editButtonClicked
+
+  //to ensure filter button remains green if filter applied
+  if(filterApplied == true){ //to avoid that if dilterby date is all, color is not green
+    filter_Button.button.style.backgroundColor = 'green'
+    filterIsOn = false
+
+  }else{
+    filter_Button.button.style.backgroundColor = 'black'
+    document.getElementById("Alert").style.display = 'none'
+  }
+
+  return editButtonClicked && filterIsOn
 }
