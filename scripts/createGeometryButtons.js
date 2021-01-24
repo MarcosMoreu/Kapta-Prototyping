@@ -97,6 +97,8 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
 var clickMapCount = 0;
 var clickDelVertCount = 0;
 document.getElementById("goBack2").onclick = function(e) {
+  document.getElementById("Alert").style.display = 'none'
+
       gps_Button.button.style.opacity = '1';
       gps_Button.button.disabled = false;
     //to enable doubleclick zoom that is disabled while drawing
@@ -412,6 +414,8 @@ map.on('draw:deleted', function(e) {
 
 var typeOfFeature;
 map.on('draw:created', function(e) {
+  document.getElementById("Alert").style.display = 'none'
+
     myLayer_Button.button.style.opacity = '0.4';
     myLayer_Button.button.disabled = true;
     try {
@@ -535,6 +539,8 @@ map.on('draw:created', function(e) {
 var boxContent;
 
 document.getElementById('Cancel').onclick = function(e) {
+  document.getElementById("Alert").style.display = 'none'
+
     document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
     myLayer_Button.button.style.opacity = '1';
     myLayer_Button.button.disabled = false;

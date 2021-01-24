@@ -634,6 +634,29 @@ var offlineControlOSM = L.control.offline(osm, tilesDb, {
     maxZoom: 21
 });
 
+var planetScopeMonthlyMosaic = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_12_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+  attribution: 'Leaflet | PlanetScope Imagery  Dec 2020'
+  })
+
+  var planetScopeMonthlyMosaicDec = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_12_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+    attribution: 'Leaflet | PlanetScope Imagery  December 2020'
+    })
+  var planetScopeMonthlyMosaicNov = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_11_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+    attribution: 'Leaflet | PlanetScope Imagery  November 2020'
+    })
+  var planetScopeMonthlyMosaicOct = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_10_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+    attribution: 'Leaflet | PlanetScope Imagery  October 2020'
+    })
+  var planetScopeMonthlyMosaicSept = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_09_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+    attribution: 'Leaflet | PlanetScope Imagery  September 2020'
+    })
+  var planetScopeMonthlyMosaicDec2019 = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2019_12_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+    attribution: 'Leaflet | PlanetScope Imagery  December 2019'
+    })
+  var planetScopeMonthlyMosaicJan2019 = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2019_01_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+    attribution: 'Leaflet | PlanetScope Imagery  January 2019'
+    })
+
 // ///////////// messages for tileS download   (NOT USED CURRENTLY)     /////////
 // googleSat.on('offline:save-start', function(data) {
 //     //console.log('Saving ' + data.nTilesToSave + ' tiles.');
@@ -721,6 +744,115 @@ if (isIOS == true) {
     var iconRANDOM = '<img src="images/gps.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
 }
 var basemapOn = 'googleSat'
+
+//to show the clock when map loads for first time
+document.getElementById("Alert").style.fontSize = "25px";
+document.getElementById('Alert').innerHTML = '⌛'
+document.getElementById("Alert").style.display = 'initial'
+// to show the clock while tiles are loading when zoom in/out, not only when toggling the basemap
+//everytime the user zoomIn/Out or pan, the clock is shown, and only disapear when tiles are loaded
+
+
+// map.on('zoomend', function(){
+//   console.log("map zoomed in/out")
+//   document.getElementById("Alert").style.fontSize = "25px";
+//   document.getElementById('Alert').innerHTML = '⌛'
+//   document.getElementById("Alert").style.display = 'initial'
+// })
+// map.on('moveend', function(){
+//   console.log("map panned")
+//   document.getElementById("Alert").style.fontSize = "25px";
+//   document.getElementById('Alert').innerHTML = '⌛'
+//   document.getElementById("Alert").style.display = 'initial'
+// })
+
+//we use tileloadstart here instead of moveend zoomend as on(load) is only when not in cache. so clock is shown everytime there is a new request
+// var osmloaded = false
+// var intervalOsm
+// osm.on("loading",function() {
+//   intervalOsm = setInterval(function(){
+//     if(osmloaded == false){
+//       console.log("tile requestedddddddddddd") //time to avoid showing the clock for miliseconds if map loads fast
+//       document.getElementById("Alert").style.fontSize = "25px";
+//       document.getElementById('Alert').innerHTML = '⌛'
+//       document.getElementById("Alert").style.display = 'initial'
+//       osmloaded = false
+//     }
+//   },600)
+//   return osmloaded
+// });
+// googleSat.on("loading",function() {
+//     console.log("tile requested")
+//     document.getElementById("Alert").style.fontSize = "25px";
+//     document.getElementById('Alert').innerHTML = '⌛'
+//     document.getElementById("Alert").style.display = 'initial'
+// });
+// planetScopeMonthlyMosaic.on("loading",function() {
+//     console.log("tile requested")
+//     document.getElementById("Alert").style.fontSize = "25px";
+//     document.getElementById('Alert').innerHTML = '⌛'
+//     document.getElementById("Alert").style.display = 'initial'
+// });
+
+
+osm.on("load",function() {
+  console.log("all visible osm tiles have been loaded")
+  // clearInterval(intervalOsm)
+  document.getElementById("Alert").style.display = 'none'
+  // osmloaded = true
+  // return osmloaded
+});
+googleSat.on("load",function() {
+ console.log("all visible google tiles have been loaded")
+ document.getElementById("Alert").style.display = 'none'
+});
+planetScopeMonthlyMosaic.on("load",function() {
+  console.log("all visible planet tiles have been loaded")
+  document.getElementById("Alert").style.display = 'none'
+});
+
+// demo.on('click',function(){
+//   document.getElementById("Alert").style.fontSize = "15px";
+//   document.getElementById('Alert').innerHTML = '⌛'
+//   document.getElementById("Alert").style.display = 'initial';
+// })
+
+planetScopeMonthlyMosaicDec.on("load",function() {
+  console.log("all visible planet tiles have been loaded")
+  document.getElementById("Alert").style.fontSize = "15px";
+  document.getElementById('Alert').innerHTML = '<br>12/2020 '
+  document.getElementById("Alert").style.display = 'initial'});
+planetScopeMonthlyMosaicNov.on("load",function() {
+  console.log("all visible planet tiles have been loaded")
+  document.getElementById("Alert").style.fontSize = "15px";
+  document.getElementById('Alert').innerHTML = '<br>11/2020 '
+  document.getElementById("Alert").style.display = 'initial'
+});
+planetScopeMonthlyMosaicOct.on("load",function() {
+  console.log("all visible planet tiles have been loaded")
+  document.getElementById("Alert").style.fontSize = "15px";
+  document.getElementById('Alert').innerHTML = '<br>10/2020 '
+  document.getElementById("Alert").style.display = 'initial'
+});
+planetScopeMonthlyMosaicSept.on("load",function() {
+  console.log("all visible planet tiles have been loaded")
+  document.getElementById("Alert").style.fontSize = "15px";
+  document.getElementById('Alert').innerHTML = '<br>9/2020 '
+  document.getElementById("Alert").style.display = 'initial'
+});
+planetScopeMonthlyMosaicDec2019.on("load",function() {
+  console.log("all visible planet tiles have been loaded")
+  document.getElementById("Alert").style.fontSize = "15px";
+  document.getElementById('Alert').innerHTML = '<br>12/2019 '
+  document.getElementById("Alert").style.display = 'initial'
+});
+planetScopeMonthlyMosaicJan2019.on("load",function() {
+  console.log("all visible planet tiles have been loaded")
+  document.getElementById("Alert").style.fontSize = "15px";
+  document.getElementById('Alert').innerHTML = '<br>1/2019 '
+  document.getElementById("Alert").style.display = 'initial'
+});
+
 var osm_Button = L.easyButton({
     id: 'osm',
     class: 'easyButton',
@@ -732,7 +864,9 @@ var osm_Button = L.easyButton({
         //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn, map) {
-
+          document.getElementById("Alert").style.fontSize = "25px";
+          document.getElementById('Alert').innerHTML = '⌛'
+          document.getElementById("Alert").style.display = 'initial'
             //clickButtonCount += 1;
             // document.getElementById('imageryAlert').style.display = 'none'
             mapCurrentZoom = map.getZoom();
@@ -743,15 +877,25 @@ var osm_Button = L.easyButton({
             // console.log('zoom2', mapCurrentZoom)
             }
 
-
+            googleSat.removeFrom(map);
             map.options.maxZoom = 19; //Set max zoom level as OSM does not serve tiles with 20+ zoom levels
             map.options.minZoom = 2;
             osm_Button.removeFrom(map);
             planet_Button.addTo(map);
             myLayer_Button.addTo(map) //keep this, otherwise the button moves up
             filter_Button.addTo(map);
-            googleSat.removeFrom(map);
-            osm.addTo(map);
+            try{
+              osm.addTo(map);
+
+              osm.on("load",function() {
+
+                console.log("all visible osm tiles have been loaded")
+                document.getElementById("Alert").style.display = 'none'
+
+               });
+
+            }catch{console.log('error loading osm tiles')}
+
 
             basemapOn = 'osm'
             return basemapOn;
@@ -775,10 +919,15 @@ var googleSat_Button = L.easyButton({
         icon: iconGOOGLE,
         //stateName: 'check-mark',
         onClick: function(btn, map) {
+
           document.getElementById('myRange').style.display = 'none'
           document.getElementById("Alert").style.display = 'none'
 
           clearInterval(checkSliderPosition)
+
+          document.getElementById("Alert").style.fontSize = "25px";
+          document.getElementById('Alert').innerHTML = '⌛'
+          document.getElementById("Alert").style.display = 'initial'
 
             //clickButtonCount += 1;
             // document.getElementById('imageryAlert').style.display = 'none'
@@ -791,15 +940,24 @@ var googleSat_Button = L.easyButton({
             filter_Button.addTo(map);
             }
 
-            removeAllimagery()
 
+            try{
+              removeAllimagery()
+              googleSat.addTo(map);
+              osm.removeFrom(map);
 
+              googleSat.on("load",function() {
 
-            googleSat.addTo(map);
+                console.log("all visible google tiles have been loaded")
+                document.getElementById("Alert").style.display = 'none'
 
-            //planet.removeFrom(map);
-            osm.removeFrom(map);
+             });
+
+            }catch{console.log('error loading google tiles')}
+
             basemapOn = 'googleSat'
+
+
 
             return basemapOn;
         }
@@ -821,12 +979,15 @@ var planet_Button = L.easyButton({
         icon: iconPLANET,
         stateName: 'check-mark',
         onClick: function(btn, map) {
+          document.getElementById("Alert").style.fontSize = "25px";
+          document.getElementById('Alert').innerHTML = '⌛'
+          document.getElementById("Alert").style.display = 'initial'
+          // document.getElementById("loading").style.display = 'initial'
+
+
             /////////////////////// to load planet tiles manually  /////////////
             document.getElementById('myRange').style.display = 'initial'
             setInterval(checkSliderPosition,200)
-          planetScopeMonthlyMosaic = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_12_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-            attribution: 'Leaflet | PlanetScope Imagery  Dec 2020'
-            })
 
             clickButtonCount = 0;
             //to avoid black tiles as sentinel API does not serves tiles above 10 (or perhaps yes), then zoom back to 10 again
@@ -845,7 +1006,17 @@ var planet_Button = L.easyButton({
             }
             // googleSat.removeFrom(map);
             osm.removeFrom(map);
-            planetScopeMonthlyMosaic.addTo(map);
+            try{
+              planetScopeMonthlyMosaic.addTo(map);
+              planetScopeMonthlyMosaic.on("load",function() {
+
+                console.log("all visible planet tiles have been loaded")
+                document.getElementById("Alert").style.display = 'none'
+
+               });
+
+            }catch{console.log('error loading planet tiles')}
+
           //  planet.addTo(map); // planet imagery goes after so it stays on top of sentinel data (sentinel is global, planet is not yet?)
             myLayer_Button.addTo(map) //keep this, otherwise the button moves up
             if(isOnline == true){
@@ -862,26 +1033,10 @@ planet_Button.button.style.height = '50px';
 planet_Button.button.style.transitionDuration = '.3s';
 planet_Button.button.style.backgroundColor = 'black';
 
+
+
 //imagery Slider
 
-var planetScopeMonthlyMosaicDec = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_12_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-  attribution: 'Leaflet | PlanetScope Imagery  December 2020'
-  })
-var planetScopeMonthlyMosaicNov = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_11_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-  attribution: 'Leaflet | PlanetScope Imagery  November 2020'
-  })
-var planetScopeMonthlyMosaicOct = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_10_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-  attribution: 'Leaflet | PlanetScope Imagery  October 2020'
-  })
-var planetScopeMonthlyMosaicSept = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_09_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-  attribution: 'Leaflet | PlanetScope Imagery  September 2020'
-  })
-var planetScopeMonthlyMosaicDec2019 = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2019_12_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-  attribution: 'Leaflet | PlanetScope Imagery  December 2019'
-  })
-var planetScopeMonthlyMosaicJan2019 = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2019_01_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-  attribution: 'Leaflet | PlanetScope Imagery  January 2019'
-  })
 
   var slider = document.getElementById("myRange");
   var output = document.getElementById("demo");
@@ -918,9 +1073,9 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               removeAllimagery()
               planetScopeMonthlyMosaic.addTo(map)
               console.log(output.innerHTML)
-              document.getElementById("Alert").style.fontSize = "15px";
-              document.getElementById('Alert').innerHTML = '<br>10/2020 '
-              document.getElementById("Alert").style.display = 'initial'
+              document.getElementById("Alert").style.fontSize = "25px";
+              document.getElementById('Alert').innerHTML = '<br>⌛'
+              // document.getElementById("Alert").style.display = 'none'
 
               break
           case (output.innerHTML == 1):
@@ -928,54 +1083,66 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               removeAllimagery()
               planetScopeMonthlyMosaicJan2019.addTo(map)
               console.log(output.innerHTML)
-              document.getElementById("Alert").style.fontSize = "15px";
-              document.getElementById('Alert').innerHTML = '<br>1/2019 '
-              document.getElementById("Alert").style.display = 'initial'
+              // document.getElementById("Alert").style.fontSize = "15px";
+              // document.getElementById('Alert').innerHTML = '<br>1/2019 '
+              document.getElementById("Alert").style.fontSize = "25px";
+              document.getElementById('Alert').innerHTML = '<br>⌛'
+              // document.getElementById("Alert").style.display = 'none'
               break
           case (output.innerHTML < 10):
               this.value = 5 // this is to locate the circle in a specific position
               removeAllimagery()
               planetScopeMonthlyMosaicDec2019.addTo(map)
               console.log(output.innerHTML)
-              document.getElementById("Alert").style.fontSize = "15px";
-              document.getElementById('Alert').innerHTML = '<br>12/2019 '
-              document.getElementById("Alert").style.display = 'initial'
+              // document.getElementById("Alert").style.fontSize = "15px";
+              // document.getElementById('Alert').innerHTML = '<br>12/2019 '
+              document.getElementById("Alert").style.fontSize = "25px";
+              document.getElementById('Alert').innerHTML = '<br>⌛'
+              // document.getElementById("Alert").style.display = 'none'
               break
           case (output.innerHTML < 25):
               this.value = 17
               removeAllimagery()
               planetScopeMonthlyMosaicSept.addTo(map)
               console.log(output.innerHTML)
-              document.getElementById("Alert").style.fontSize = "15px";
-              document.getElementById('Alert').innerHTML = '<br>9/2020 '
-              document.getElementById("Alert").style.display = 'initial'
+              // document.getElementById("Alert").style.fontSize = "15px";
+              // document.getElementById('Alert').innerHTML = '<br>9/2020 '
+              document.getElementById("Alert").style.fontSize = "25px";
+              document.getElementById('Alert').innerHTML = '<br>⌛'
+              // document.getElementById("Alert").style.display = 'none'
               break
           case (output.innerHTML < 50):
               this.value = 37
               removeAllimagery()
               planetScopeMonthlyMosaicOct.addTo(map)
               console.log(output.innerHTML)
-              document.getElementById("Alert").style.fontSize = "15px";
-              document.getElementById('Alert').innerHTML = '<br>10/2020 '
-              document.getElementById("Alert").style.display = 'initial'
+              // document.getElementById("Alert").style.fontSize = "15px";
+              // document.getElementById('Alert').innerHTML = '<br>10/2020 '
+              document.getElementById("Alert").style.fontSize = "25px";
+              document.getElementById('Alert').innerHTML = '<br>⌛'
+              // document.getElementById("Alert").style.display = 'none'
               break
           case (output.innerHTML < 75):
               this.value = 62
               removeAllimagery()
               planetScopeMonthlyMosaicNov.addTo(map)
               console.log(output.innerHTML)
-              document.getElementById("Alert").style.fontSize = "15px";
-              document.getElementById('Alert').innerHTML = '<br>11/2020 '
-              document.getElementById("Alert").style.display = 'initial'
+              // document.getElementById("Alert").style.fontSize = "15px";
+              // document.getElementById('Alert').innerHTML = '<br>11/2020 '
+              document.getElementById("Alert").style.fontSize = "25px";
+              document.getElementById('Alert').innerHTML = '<br>⌛'
+              // document.getElementById("Alert").style.display = 'none'
               break
           case (output.innerHTML < 87):
               this.value = 87
               removeAllimagery()
               planetScopeMonthlyMosaicDec.addTo(map)
               console.log(output.innerHTML)
-              document.getElementById("Alert").style.fontSize = "15px";
-              document.getElementById('Alert').innerHTML = '<br>12/2020 '
-              document.getElementById("Alert").style.display = 'initial'
+              // document.getElementById("Alert").style.fontSize = "15px";
+              // document.getElementById('Alert').innerHTML = '<br>12/2020 '
+              document.getElementById("Alert").style.fontSize = "25px";
+              document.getElementById('Alert').innerHTML = '<br>⌛'
+              // document.getElementById("Alert").style.display = 'none'
               break
           default:
               removeAllimagery()
