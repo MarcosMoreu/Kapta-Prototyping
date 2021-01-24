@@ -790,7 +790,11 @@ var googleSat_Button = L.easyButton({
             if(isOnline == true){
             filter_Button.addTo(map);
             }
-            planetScopeMonthlyMosaic.removeFrom(map);
+
+            removeAllimagery()
+
+
+
             googleSat.addTo(map);
 
             //planet.removeFrom(map);
@@ -807,6 +811,8 @@ googleSat_Button.button.style.height = '50px';
 googleSat_Button.button.style.transitionDuration = '.3s';
 googleSat_Button.button.style.backgroundColor = 'black';
 
+// var month = new Date().getMonth()
+
 var planet_Button = L.easyButton({
     id: 'planet',
     class: 'easyButton',
@@ -818,8 +824,8 @@ var planet_Button = L.easyButton({
             /////////////////////// to load planet tiles manually  /////////////
             document.getElementById('myRange').style.display = 'initial'
             setInterval(checkSliderPosition,200)
-          planetScopeMonthlyMosaic = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_10_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-            attribution: 'Leaflet | PlanetScope Imagery  Oct 2020'
+          planetScopeMonthlyMosaic = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_12_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+            attribution: 'Leaflet | PlanetScope Imagery  Dec 2020'
             })
 
             clickButtonCount = 0;
@@ -858,36 +864,44 @@ planet_Button.button.style.backgroundColor = 'black';
 
 //imagery Slider
 
+var planetScopeMonthlyMosaicDec = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_12_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+  attribution: 'Leaflet | PlanetScope Imagery  December 2020'
+  })
+var planetScopeMonthlyMosaicNov = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_11_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+  attribution: 'Leaflet | PlanetScope Imagery  November 2020'
+  })
+var planetScopeMonthlyMosaicOct = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_10_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+  attribution: 'Leaflet | PlanetScope Imagery  October 2020'
+  })
 var planetScopeMonthlyMosaicSept = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_09_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
   attribution: 'Leaflet | PlanetScope Imagery  September 2020'
   })
-var planetScopeMonthlyMosaicAug = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_08_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-  attribution: 'Leaflet | PlanetScope Imagery  August 2020'
-  })
-var planetScopeMonthlyMosaicJul = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_07_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-  attribution: 'Leaflet | PlanetScope Imagery  July 2020'
-  })
-var planetScopeMonthlyMosaicJun = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_06_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-  attribution: 'Leaflet | PlanetScope Imagery  June 2020'
-  })
-var planetScopeMonthlyMosaicMay = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_05_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-  attribution: 'Leaflet | PlanetScope Imagery  May 2020'
-  })
 var planetScopeMonthlyMosaicDec2019 = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2019_12_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-  attribution: 'Leaflet | PlanetScope Imagery  Dec 2019'
+  attribution: 'Leaflet | PlanetScope Imagery  December 2019'
+  })
+var planetScopeMonthlyMosaicJan2019 = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2019_01_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+  attribution: 'Leaflet | PlanetScope Imagery  January 2019'
   })
 
   var slider = document.getElementById("myRange");
   var output = document.getElementById("demo");
   slider.value = 100; // Display the default slider value
   var removeAllimagery = function(){
-    planetScopeMonthlyMosaicSept.removeFrom(map)
-    planetScopeMonthlyMosaicAug.removeFrom(map)
-    planetScopeMonthlyMosaicJul.removeFrom(map)
-    planetScopeMonthlyMosaicJun.removeFrom(map)
-    planetScopeMonthlyMosaicMay.removeFrom(map)
-    planetScopeMonthlyMosaicDec2019.removeFrom(map)
-    planetScopeMonthlyMosaic.removeFrom(map)
+    planetScopeMonthlyMosaic.removeFrom(map);
+    planetScopeMonthlyMosaicDec.removeFrom(map);
+    planetScopeMonthlyMosaicNov.removeFrom(map);
+    planetScopeMonthlyMosaicOct.removeFrom(map);
+    planetScopeMonthlyMosaicSept.removeFrom(map);
+    planetScopeMonthlyMosaicDec2019.removeFrom(map);
+    planetScopeMonthlyMosaicJan2019.removeFrom(map);
+    //
+    // planetScopeMonthlyMosaicSept.removeFrom(map)
+    // planetScopeMonthlyMosaicAug.removeFrom(map)
+    // planetScopeMonthlyMosaicJul.removeFrom(map)
+    // planetScopeMonthlyMosaicJun.removeFrom(map)
+    // planetScopeMonthlyMosaicMay.removeFrom(map)
+    // planetScopeMonthlyMosaicDec2019.removeFrom(map)
+    // planetScopeMonthlyMosaic.removeFrom(map)
   }
 var checkSliderPosition = function() { ///////////////////////////////////////// function to keep searching for gps position
   output.innerHTML = this.value;
@@ -912,55 +926,55 @@ var checkSliderPosition = function() { /////////////////////////////////////////
           case (output.innerHTML == 1):
               this.value == 1
               removeAllimagery()
+              planetScopeMonthlyMosaicJan2019.addTo(map)
+              console.log(output.innerHTML)
+              document.getElementById("Alert").style.fontSize = "15px";
+              document.getElementById('Alert').innerHTML = '<br>1/2019 '
+              document.getElementById("Alert").style.display = 'initial'
+              break
+          case (output.innerHTML < 10):
+              this.value = 5 // this is to locate the circle in a specific position
+              removeAllimagery()
               planetScopeMonthlyMosaicDec2019.addTo(map)
               console.log(output.innerHTML)
               document.getElementById("Alert").style.fontSize = "15px";
               document.getElementById('Alert').innerHTML = '<br>12/2019 '
               document.getElementById("Alert").style.display = 'initial'
               break
-          case (output.innerHTML < 10):
-              this.value = 5 // this is to locate the circle in a specific position
-              removeAllimagery()
-              planetScopeMonthlyMosaicMay.addTo(map)
-              console.log(output.innerHTML)
-              document.getElementById("Alert").style.fontSize = "15px";
-              document.getElementById('Alert').innerHTML = '<br>5/2020 '
-              document.getElementById("Alert").style.display = 'initial'
-              break
           case (output.innerHTML < 25):
               this.value = 17
-              removeAllimagery()
-              planetScopeMonthlyMosaicJun.addTo(map)
-              console.log(output.innerHTML)
-              document.getElementById("Alert").style.fontSize = "15px";
-              document.getElementById('Alert').innerHTML = '<br>6/2020 '
-              document.getElementById("Alert").style.display = 'initial'
-              break
-          case (output.innerHTML < 50):
-              this.value = 37
-              removeAllimagery()
-              planetScopeMonthlyMosaicJul.addTo(map)
-              console.log(output.innerHTML)
-              document.getElementById("Alert").style.fontSize = "15px";
-              document.getElementById('Alert').innerHTML = '<br>7/2020 '
-              document.getElementById("Alert").style.display = 'initial'
-              break
-          case (output.innerHTML < 75):
-              this.value = 62
-              removeAllimagery()
-              planetScopeMonthlyMosaicAug.addTo(map)
-              console.log(output.innerHTML)
-              document.getElementById("Alert").style.fontSize = "15px";
-              document.getElementById('Alert').innerHTML = '<br>8/2020 '
-              document.getElementById("Alert").style.display = 'initial'
-              break
-          case (output.innerHTML < 87):
-              this.value = 87
               removeAllimagery()
               planetScopeMonthlyMosaicSept.addTo(map)
               console.log(output.innerHTML)
               document.getElementById("Alert").style.fontSize = "15px";
               document.getElementById('Alert').innerHTML = '<br>9/2020 '
+              document.getElementById("Alert").style.display = 'initial'
+              break
+          case (output.innerHTML < 50):
+              this.value = 37
+              removeAllimagery()
+              planetScopeMonthlyMosaicOct.addTo(map)
+              console.log(output.innerHTML)
+              document.getElementById("Alert").style.fontSize = "15px";
+              document.getElementById('Alert').innerHTML = '<br>10/2020 '
+              document.getElementById("Alert").style.display = 'initial'
+              break
+          case (output.innerHTML < 75):
+              this.value = 62
+              removeAllimagery()
+              planetScopeMonthlyMosaicNov.addTo(map)
+              console.log(output.innerHTML)
+              document.getElementById("Alert").style.fontSize = "15px";
+              document.getElementById('Alert').innerHTML = '<br>11/2020 '
+              document.getElementById("Alert").style.display = 'initial'
+              break
+          case (output.innerHTML < 87):
+              this.value = 87
+              removeAllimagery()
+              planetScopeMonthlyMosaicDec.addTo(map)
+              console.log(output.innerHTML)
+              document.getElementById("Alert").style.fontSize = "15px";
+              document.getElementById('Alert').innerHTML = '<br>12/2020 '
               document.getElementById("Alert").style.display = 'initial'
               break
           default:

@@ -1,5 +1,8 @@
 var dropDownOpen = false;
 var isOnline = navigator.onLine
+var browserLanguage = navigator.language
+
+document.getElementById('english').src = "https://raw.githubusercontent.com/hjnilsson/country-flags/master/png100px/ad.png"
 
 document.getElementById('startMapping').onclick = function(e){
    setTimeout(function(){
@@ -252,6 +255,8 @@ document.getElementById('english').onclick = function(e){
     //document.getElementById("juhoansi").style.display = "none";
     document.getElementById("other1").style.display = "none";
     document.getElementById("other1UnderDev").style.display = "none";
+    document.getElementById("AlertTranslate").style.display = "none";
+
 
 
   },100)
@@ -262,10 +267,27 @@ document.getElementById('english').onclick = function(e){
     },2000)
 }
 document.getElementById('other1').onclick = function(e){
-  document.getElementById("other1").style.display = "none";
-  document.getElementById("other1UnderDev").style.display = "initial";
+   document.getElementById('imageother1').style.marginLeft = '-4px'
+   document.getElementById('imageother1').src = '../images/underConstruction.png'
+   document.getElementById("AlertTranslate").style.display = "initial";
+  // console.log(browserLanguage)
+  // // console.log(lang)
+  //
+  // if(browserLanguage[0] == e && browserLanguage[1] == n){
+  //   document.getElementById('imageother1').src = 'https://raw.githubusercontent.com/hjnilsson/country-flags/master/png100px/' + browserLanguage + '.png'
+  //
+  // browserLanguage = 'al'
+  // // document.getElementById('other1').src = 'https://raw.githubusercontent.com/hjnilsson/country-flags/master/png100px/ad.png'
+  // document.getElementById('imageother1').src = 'https://raw.githubusercontent.com/hjnilsson/country-flags/master/png100px/' + browserLanguage + '.png'
+  // // doc[[0] == e && browserLanguage[1] == n]{
+  // ment.getElementById("other1").style.display = "none";
+
+  // document.getElementById("other1UnderDev").style.display = "initial";
+  // document.getElementById("other1").style.display = "none";
 
 
+
+//}
 }
 
 
