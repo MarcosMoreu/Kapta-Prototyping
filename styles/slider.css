@@ -26,8 +26,8 @@
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;
-  width: 25px; /* Set a specific slider handle width */
-  height: 25px; /* Slider handle height */
+  width: 20px; /* Set a specific slider handle width */
+  height: 20px; /* Slider handle height */
   background: blue; /* Green background */
   cursor: pointer; /* Cursor on hover */
   border-radius: 15px;
@@ -35,8 +35,8 @@
 }
 
 .slider::-moz-range-thumb {
-  width: 25px; /* Set a specific slider handle width */
-  height: 25px; /* Slider handle height */
+  width: 20px; /* Set a specific slider handle width */
+  height: 20px; /* Slider handle height */
   background: blue; /* Green background */
   cursor: pointer; /* Cursor on hover */
   border-radius: 15px;

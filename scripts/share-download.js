@@ -423,6 +423,8 @@ document.getElementById('shareWorldButton').onclick = function(e) {
       gps_Button.button.disabled = false;
 
       document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
+      document.body.style.color = "white"; //cheating here, this is to hide a f** 'undefined' that appear on top of the video. Anyway, solved
+
       try{
         localStorageLayer.removeFrom(map)
       }catch(err){}
@@ -469,6 +471,7 @@ document.getElementById('DownloadButton').onclick = function(e) {
     document.getElementById('Download').setAttribute('download', dateTimeRandomID);
 
     document.body.style.backgroundColor = "white";
+    document.body.style.color = "white"; //cheating here, this is to hide a f** 'undefined' that appear on top of the video. Anyway, solved
 
     ////////////////////////  TRANSMISSION ////////////////////////////////////////
     finished = true;

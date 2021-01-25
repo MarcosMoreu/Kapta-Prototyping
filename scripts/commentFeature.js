@@ -289,7 +289,7 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
     document.getElementById("shareWorldButtonComment").style.backgroundColor = "#39F70F";
     document.getElementById("shareWorldButtonComment").style.borderColor = "#39F70F";
 
-  },1800)
+  },2000)
 
   //first we close the popup, then we load the new screen -  the comment should now be updated in the carto layer
   setTimeout(function(){
@@ -321,9 +321,20 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
     document.getElementById('deleteFeature').style.display = 'initial';
     document.getElementById('shareMessagingApp').style.display = 'initial';
     document.getElementById("randomSuggestion").style.display = "initial";
-    document.getElementById("shareWorldButtonComment").src = "images/sendComment.png";
+
+    document.getElementById("shareWorldButtonCommentImage").src = "images/sendComment.png";
     document.getElementById("shareWorldButtonComment").style.backgroundColor = "white";
+    document.getElementById("shareWorldButtonComment").style.borderColor = "white";
     document.getElementById('shareWorldButtonComment').disabled = false;
+    document.getElementById('shareWorldButtonComment').opacity = '1';
+    document.getElementById('shareWorldButtonComment').style.display = 'none';
+
+    document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null; // to empty the box for next features, if any
+    map.dragging.enable();
+    map.touchZoom.enable();
+    map.doubleClickZoom.enable();
+    map.scrollWheelZoom.enable();
+
 
 
 

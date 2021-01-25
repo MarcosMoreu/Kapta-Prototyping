@@ -3,7 +3,7 @@
 
 // Set a name for the current cache. Note that when version is changed, the pwa only updates autmotically after reloading!
 //Note that for automatic update, at one change need to be made in the app.js file (or in other files...)
-var version = 'v11.3';
+var version = 'v13';
 //console.log(version)
 
 // Default files to always cache
@@ -11,6 +11,7 @@ var offlineFundamentals = [
   "index.html",
   "pages/tutorial.html",
   "styles/app.css",
+  "scripts/modal.js",
   "scripts/app.js"
 ];
 
