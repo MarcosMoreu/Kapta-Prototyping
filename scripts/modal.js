@@ -296,7 +296,7 @@ var requestPw = function(){
 
                 clearInterval(checkPw)
                 clearInterval(checkDoneAndFirebasePW)
-                document.getElementById('enteredPw').style.backgroundColor = '#39F70F'
+                document.getElementById('enteredPw').style.backgroundColor = '#39F70F' //green color
 
                 requestCartoData()
 

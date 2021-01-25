@@ -260,10 +260,11 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
   // document.getElementById('shareWorldButtonComment').style.backgroundColor = 'green'
   // document.getElementById('shareWorldButtonComment').style.borderColor = 'green'
   document.getElementById("activatePlay").style.display = "none";
-  document.getElementById("shareWorldButtonComment").style.display = "none";
-  document.getElementById("sentConfirmation").style.display = "initial";
+  document.getElementById("shareWorldButtonCommentImage").src = "images/checkingPw.gif";
+
+  // document.getElementById("sentConfirmation").style.display = "initial";
   // document.getElementById('sentConfirmation').style.opacity = '1';
-  document.getElementById('sentConfirmation').disabled = true;
+  document.getElementById('shareWorldButtonComment').disabled = true;
 
   // document.getElementById("shareWorldButtonComment").src = 'images/applyFilter.png';
   // document.getElementById("shareWorldButtonComment").style.backgroundColor = '#39F70F'
@@ -284,13 +285,19 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
   document.getElementById('enableRecording').disabled = true;
   document.getElementById('record').disabled = true;
 
+  setTimeout(function(){
+    document.getElementById("shareWorldButtonComment").style.backgroundColor = "#39F70F";
+    document.getElementById("shareWorldButtonComment").style.borderColor = "#39F70F";
+
+  },1800)
+
   //first we close the popup, then we load the new screen -  the comment should now be updated in the carto layer
   setTimeout(function(){
   map.closePopup();
   },2000)
   setTimeout(function(){
     // document.getElementById('toCommentPopup').style.display = 'none';
-    document.getElementById("sentConfirmation").style.display = "none";
+    // document.getElementById("sentConfirmation").style.display = "none";
     document.getElementById('backEditDelete').style.display = 'none';
     document.getElementById("classification").style.display = "none";
     document.getElementById("emoji").style.display = "none";
@@ -314,6 +321,12 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
     document.getElementById('deleteFeature').style.display = 'initial';
     document.getElementById('shareMessagingApp').style.display = 'initial';
     document.getElementById("randomSuggestion").style.display = "initial";
+    document.getElementById("shareWorldButtonComment").src = "images/sendComment.png";
+    document.getElementById("shareWorldButtonComment").style.backgroundColor = "white";
+    document.getElementById('shareWorldButtonComment').disabled = false;
+
+
+
 
     // document.getElementById("backDeleteFeature").click() // !!!!!!!!
     //document.getElementById("backEditDelete").click() // !!!!!!!!

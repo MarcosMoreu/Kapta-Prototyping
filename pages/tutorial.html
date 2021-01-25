@@ -25,7 +25,7 @@
 <body>
 
 <div class="cognito" id='cognitoForm' disabled style='display:none; margin-top:200px; margin-left:30px;margin-right:30px'>
-  <script src="https://www.cognitoforms.com/s/EB26QD5cT0Cz2sSzqKJF5w"></script>
+  <script defer src="https://www.cognitoforms.com/s/EB26QD5cT0Cz2sSzqKJF5w"></script>
   <!-- <script defer >Cognito.load("forms", { id: "2" });</script> -->
 </div>
 
@@ -73,19 +73,28 @@
   <button id='youtube' class='buttonsFirstLastScreen' align='center' style='display:none;bottom:60%; height:100px; border:none; background:black'>
     <img src="../images/youtube.png" loading="lazy" style='width:125px ; height:80px'>
   </button>
+  <!-- <iframe id='youtubeVideo' width="300px" height='300px' allowfullscreen style='position:absolute;top:calc(50% - 150px);left:calc(50% - 150px); display:none; border:grey'
+    src="https://www.youtube.com/embed/watch?v=IgQc7GQ1m_Y&controls=1&loop=1">
+  </iframe> -->
+
+  <iframe id='youtubeVideo' width="300px" height='300px'style='position:absolute;top:calc(50% - 150px);left:calc(50% - 150px); display:none; border:grey'
+    src="https://www.youtube.com/embed/IgQc7GQ1m_Y" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+  </iframe>
+
   <button id='startMapping' class='buttonsFirstLastScreen' align='center' style='bottom:12%; height:100px; border:none; background:none;'>
     <img src="../images/arrowRight.png" style='width:50px ; height:50px'>
   </button>
 </div>
 
 <div>
-  <text id='textEnglish' class='buttonsFirstLastScreen' style='display:none;color:white; bottom:50%; background:black' > Video tutorial under development.</text>
+  <!-- <text id='textEnglish' class='buttonsFirstLastScreen' style='display:none;color:white; bottom:50%; background:black' > Video tutorial under development.</text> -->
   <!-- <text id='textSpanish' class='buttonsFirstLastScreen' style='display:none;color:white; bottom:50%; background:black' > El vídeo tutorial todavía no está disponible. </text>
   <text id='textFrench' class='buttonsFirstLastScreen' style='display:none;color:white; bottom:50%; background:black' > La vidéo du tutoriel n'est pas encore disponible.</text>
   <text id='textPortuguese' class='buttonsFirstLastScreen' style='display:none;color:white; bottom:50%; background:black' > O vídeo tutorial ainda não está disponível. </text>
   <text id='textSwahili' class='buttonsFirstLastScreen' style='display:none;color:white; bottom:50%;background:black' > Video ya mafunzo bado haijapatikana.</text>
   <text id='textJuhoansi' class='buttonsFirstLastScreen' style='display:none;color:white; bottom:50%; background:black' > *translate to Ju|'hoansi... </text> -->
 </div>
+<!-- src="https://www.youtube.com/embed/tgbNymZ7vqY?&controls=1&loop=1"> -->
 
 
 <div class='btn-group' style='position:absolute;text-align:center;display:inline-block;width:100%;bottom:55%;'>

@@ -62,7 +62,7 @@ document.getElementById('dropDown').onclick = function(e){
 
       document.getElementById("other1").style.display = "none";
 
-      document.getElementById("textEnglish").style.display = "none";
+      // document.getElementById("textEnglish").style.display = "none";
       //document.getElementById("textSpanish").style.display = "none";
 
       //document.getElementById("textFrench").style.display = "none";
@@ -102,7 +102,7 @@ document.getElementById('infoButton').onclick = function(e){
 
     document.getElementById("other1").style.display = "none";
 
-    document.getElementById("textEnglish").style.display = "none";
+    // document.getElementById("textEnglish").style.display = "none";
     //document.getElementById("textSpanish").style.display = "none";
 
     //document.getElementById("textFrench").style.display = "none";
@@ -141,7 +141,7 @@ document.getElementById('iconsButton').onclick = function(e){
 
     document.getElementById("other1").style.display = "none";
 
-    document.getElementById("textEnglish").style.display = "none";
+    // document.getElementById("textEnglish").style.display = "none";
     //document.getElementById("textSpanish").style.display = "none";
 
     //document.getElementById("textFrench").style.display = "none";
@@ -162,6 +162,8 @@ document.getElementById('infoGoBackButton').onclick = function(e){
      document.getElementById("infoCont").style.display = "none";
      document.getElementById("iconsCont").style.display = "none";
      document.getElementById("cognitoForm").style.display = "none";
+     document.getElementById("youtubeVideo").style.display = "none";
+
 
      document.body.style.overflow = 'hidden';
 
@@ -181,7 +183,7 @@ document.getElementById('infoGoBackButton').onclick = function(e){
 
      document.getElementById("other1").style.display = "none";
 
-     document.getElementById("textEnglish").style.display = "none";
+     // document.getElementById("textEnglish").style.display = "none";
      //document.getElementById("textSpanish").style.display = "none";
 
      //document.getElementById("textFrench").style.display = "none";
@@ -206,8 +208,10 @@ document.getElementById('infoGoBackButton').onclick = function(e){
 
 document.getElementById('youtube').onclick = function(e){
    setTimeout(function(){
-     document.getElementById("textEnglish").style.display = "initial";
+     // document.getElementById("textEnglish").style.display = "initial";
      document.getElementById("infoGoBackButton").style.display = "initial";
+     document.getElementById("youtubeVideo").style.display = "initial";
+
 
      document.getElementById('dropDown').style.display = "none";
      document.getElementById('dropDown').style.backgroundColor = 'black';
