@@ -4,24 +4,29 @@
 
 //////////////////////////// actions for bottom-of-screen filtering buttons
 var boxContentFiltering
+var boxContentFilteringEncoded
 var filterApplied = false
 var period = 3650 // by default, all features
 var datePeriodAgoReplaceComaInvert = '2010-1-1'
 //script for apply filters
 document.getElementById("applyFilter").onclick = function(e) {
-
+  boxContent = document.getElementById('emojionearea').value;
+  var boxContentToShortname = emojione.toShort(boxContent)
+  console.log(boxContentToShortname)
   document.getElementById("clearFilter").style.opacity = '1'
   document.getElementById("clearFilter").disabled = false
-  // boxContentFiltering = document.getElementById('emojionearea').value;
-  boxContentFiltering = document.getElementsByClassName('emojionearea-editor')[0].innerHTML  // use this instead of .value!!!
-  // console.log('box',boxContentFiltering)
 
-    if(boxContentFiltering ==='' && period == 3650){
+  // boxContentFiltering = document.getElementsByClassName('emojionearea-editor')[0].innerHTML  // use this instead of .value!!!
+  boxContentFiltering = document.getElementById('emojionearea').value; // we use value instead because innerhtml takes emojis as images, which is a problem for the sql query
+  boxContentFilteringEncoded = emojione.toShort(boxContentFiltering)
+  console.log('box',boxContentFilteringEncoded)
+
+    if(boxContentFilteringEncoded ==='' && period == 3650){
       filterApplied = false
       // console.log('do nothing')
     }
 
-    else if(boxContentFiltering ==='' && period != 3650){
+    else if(boxContentFilteringEncoded ==='' && period != 3650){
       filterApplied = true
       // console.log('do only date')
 
@@ -51,67 +56,26 @@ document.getElementById("applyFilter").onclick = function(e) {
           } catch (err) {
             // console.log('error sql catched due to empty layer after filter applied')
           }
-         // var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE landusesemoji LIKE '";
-         // var sqlCondition = boxContentFiltering +"'"+" AND date>'"+datePeriodAgoReplaceComaInvert +"'";
-         // sqlQuery = sqlQueryWithoutCondition + sqlCondition
-///////////
-         // var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE landusesemoji LIKE '";
-         // var sqlCondition = boxContentFiltering +"'"+ "OR landusesemoji LIKE '" + boxContentFiltering +"_' AND date>'"+datePeriodAgoReplaceComaInvert +"'";
-         // sqlQuery = sqlQueryWithoutCondition + sqlCondition
-/////////
-         // var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE landusesemoji ";
-         // var sqlCondition =
-         //  "LIKE '" + boxContentFiltering +"'" //exact value
-         //
-         //
-         //  + " OR landusesemoji LIKE '" + boxContentFiltering +"_'"
-         //  +" AND date>'"+datePeriodAgoReplaceComaInvert +"'";
-         // sqlQuery = sqlQueryWithoutCondition + sqlCondition
-//////////////////
-         // var sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE landusesemoji LIKE '%test%'";
-//////////////
-         // var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE landusesemoji ";
-         // var sqlCondition =
-         //  "ILIKE '" + boxContentFiltering +"'" //exact value
-         //
-         //
-         //  + " OR landusesemoji ILIKE '" + boxContentFiltering +"_'" //words introduced plus ONE extra character
-         //  + " OR landusesemoji ILIKE '" + boxContentFiltering +"__'" //words introduced plus TWO extra character
-         //  + " OR landusesemoji ILIKE '" + boxContentFiltering +"___'" //words introduced plus THREE extra character
-         //  + " OR landusesemoji ILIKE " + "'%" + boxContentFiltering +"%'" //xxxxxxxx%%%%%%%%%%%
-         //
-         //  +" AND (date>'"+datePeriodAgoReplaceComaInvert +"')";
-         // sqlQuery = sqlQueryWithoutCondition + sqlCondition
-///////////
-          // sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE landusesemoji ILIKE 'd' OR landusesemoji ILIKE 'd_' OR landusesemoji ILIKE 'd__' OR landusesemoji ILIKE 'd___' OR landusesemoji ILIKE '/%meridiano%/' AND (date>'2010-1-1')"
 
 
 
-         var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE landusesemoji ";
+         var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE landuses ";
          var sqlCondition =
-          "ILIKE '" + boxContentFiltering +"'" //exact value
+          "ILIKE '" + boxContentFilteringEncoded +"'" //exact value
 
-
-          + " OR landusesemoji ILIKE '" + boxContentFiltering +"_'" //words introduced plus ONE extra character
-          + " OR landusesemoji ILIKE '" + boxContentFiltering +"__'" //words introduced plus TWO extra character
-          + " OR landusesemoji ILIKE '" + boxContentFiltering +"___'" //words introduced plus THREE extra character
-          // + " OR landusesemoji ILIKE " + "'%" + boxContentFiltering +"%'" //xxxxxxxx%%%%%%%%%%%
-          + " OR landusesemoji ILIKE '%" + boxContentFiltering +"'" //xxxxxxxx%%%%%%%%%%%
-
+          + " OR landuses ILIKE N'%" + boxContentFilteringEncoded +"%'" //xxxxxxxx%%%%%%%%%%%
 
           +" AND (date>'"+datePeriodAgoReplaceComaInvert +"')";
          var sqlQueryEncoded = sqlQueryWithoutCondition + sqlCondition
-         // sqlQuery = decodeURIComponent(sqlQueryEncoded)
+         console.log(sqlQueryEncoded)
          sqlQuery = encodeURIComponent(sqlQueryEncoded)
-
-
          console.log(sqlQuery)
 
          getGeoJSON()
           if(period == 3650){
-            var loadInfoDateFilter = boxContentFiltering
+            var loadInfoDateFilter = boxContentFiltering // not encoded here as we want the emoji displayed in the alert
           }else{
-            var loadInfoDateFilter = period + ' ☀️🌙 </br>'+ boxContentFiltering
+            var loadInfoDateFilter = period + ' ☀️🌙 </br>'+ boxContentFiltering // not encoded here as we want the emoji displayed in the alert
           }
          document.getElementById("Alert").style.fontSize = "18px";
          document.getElementById("Alert").innerHTML = loadInfoDateFilter
@@ -119,7 +83,7 @@ document.getElementById("applyFilter").onclick = function(e) {
     }
 
     // console.log('filter applied ', filterApplied)
-    return filterApplied && boxContentFiltering
+    return filterApplied && boxContentFilteringEncoded
 
 }
 
@@ -130,7 +94,8 @@ document.getElementById("clearFilter").onclick = function(e) {
   document.getElementById("clearFilter").style.opacity = '0.4'
   document.getElementById("clearFilter").disabled = true
   document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null;
-  boxContentFiltering = null
+  document.getElementById('emojionearea').value = null
+  boxContentFilteringEncoded = null
   // document.getElementById('emojionearea').value = null
   var img =  document.getElementById("imgFilterByDate")
   img.src = 'images/dateAll.png'
@@ -152,7 +117,7 @@ document.getElementById("clearFilter").onclick = function(e) {
    }
 //  deflated.addTo(map)
   filterApplied = false
-  return filterApplied && boxContentFiltering && period
+  return filterApplied && boxContentFilteringEncoded && period
 
 };
 
@@ -175,7 +140,7 @@ document.getElementById("filterByDate").onclick = function(e) {
             img.src = 'images/dateDay.png'
             dateFilterValue = 'Day'
             period = 1
-            var loadInfoDateFilter = boxContentFiltering
+            var loadInfoDateFilter = boxContentFilteringEncoded
             // document.getElementById("Alert").style.fontSize = "18px";
             // document.getElementById("Alert").innerHTML = ' ☀️🌙'
             document.getElementById("Alert").style.display = 'none'

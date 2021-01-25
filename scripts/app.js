@@ -1985,7 +1985,7 @@ function onEachFeatureAudioLocalStorage(feature, layer) { // function duplicated
         var audioAvailable = feature.properties.audioAvailable;
         //conditions to avoid showing audio link if no audio has been recorded
         if (audioAvailable == true) {
-            var popupContent = feature.properties.landUsesEmoji + '</br>' + '</br>' + '🔊 AUDIO';
+            var popupContent = feature.properties.landUsesEmoji + '</br>' + '</br>' + '🔊 🚧';
         } else {
             var popupContent = feature.properties.landUsesEmoji
         }
