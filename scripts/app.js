@@ -1297,16 +1297,16 @@ var filter_Button = L.easyButton({
             document.getElementById("emoji").disabled = false;
             document.getElementById("emoji").style.opacity = '1';
 
-            if(alertAlreadyShown == false){
-
-              document.getElementById("Alert").style.fontSize = "15px";
-              document.getElementById('Alert').innerHTML = 'Filter by attribute only filters exact matches. 🚧 To be improved '
-              document.getElementById("Alert").style.display = 'initial'
-            setTimeout(function(){
-              document.getElementById("Alert").style.display = 'none'
-            },5000)
-            alertAlreadyShown = true
-            }
+            // if(alertAlreadyShown == false){
+            //
+            //   document.getElementById("Alert").style.fontSize = "15px";
+            //   document.getElementById('Alert').innerHTML = 'Filter by attribute only filters exact matches. 🚧 To be improved '
+            //   document.getElementById("Alert").style.display = 'initial'
+            // setTimeout(function(){
+            //   document.getElementById("Alert").style.display = 'none'
+            // },5000)
+            // alertAlreadyShown = true
+            // }
 
         }else{
             clearInterval(startCheckAttrDateContent)
@@ -1707,9 +1707,29 @@ var postSuccess = function(){
               getTotalFeaturesInDBAfterSent = data.rows[0].count //to count the number of rows in the array returned
 
               if(getTotalFeaturesInDBAfterSent != getTotalFeaturesInDB){ //if it's equal then we refresh (click layers button) until is different, then query SELECT last
-                document.getElementById('myLayerButton').click()
-                document.getElementById('myLayerButton').click()
-                if(localStorageLayer != null){document.getElementById('myLayerButton').click()}   // because first time app is used mylayer_button has only two positions (local storage is empty)
+                //script to load the carto layer after sent, depending on which layer is on and if local storage or not
+                if(localStorageLayer == null){
+                    if(whichLayerIsOn == 'deflated'){
+                      document.getElementById('myLayerButton').click()
+                      document.getElementById('myLayerButton').click()
+                    }else if(whichLayerIsOn == 'none'){
+                      document.getElementById('myLayerButton').click() // because first time app is used mylayer_button has only two positions (local storage is empty)
+                    }
+                }
+
+                if(localStorageLayer != null){
+                  if(whichLayerIsOn == 'deflated'){
+                    document.getElementById('myLayerButton').click()
+                    document.getElementById('myLayerButton').click()
+                    document.getElementById('myLayerButton').click()
+
+                  }else if(whichLayerIsOn == 'localStorage'){
+                    document.getElementById('myLayerButton').click()
+                    document.getElementById('myLayerButton').click()
+                  }else if(whichLayerIsOn == 'none')
+                  document.getElementById('myLayerButton').click()
+
+                }
               clearInterval(intervalCheckAndAddNewDeflated)
               }
             }
@@ -1720,7 +1740,7 @@ var postSuccess = function(){
               url:"https://" + cartousername + ".cartodb.com/api/v2/sql?q=" + "SELECT COUNT(cartodb_id) FROM lumblu" + cartoapiSELECT
             })
 
-       },1000)
+       },500)
    }
 }
 
