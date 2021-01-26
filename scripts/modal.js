@@ -191,7 +191,7 @@ var initialiseMap = function(){
             'images/locked.png','images/man.png','images/marker-icon.png','images/marker-icon-2x.png','images/marker-icon-cian.png','images/markerLine.png',
             'images/markerLocalStorage.png','images/markerPolygon.png','images/myLayer.png','images/namibia.png','images/nautical.svg','images/osm.png',
             'images/other.png','images/other1.png','images/planet.png','images/play.png','images/PlusSign.png','images/portugal.png',
-            'images/questionmark.png','images/random.png','images/record.png','images/shareMessagingApps.png','images/shareworld.png','images/spain.png',
+            'images/questionmark.png','images/random.png','images/record.png','images/shareMessagingApps.png','images/shareworld.png','images/shareworldConfirm.png',
             'images/telegram.png','images/uk.png','images/other1.png','images/underConstruction.png','images/wechat.png','images/whatsapp.png','images/youtube.png',
             'images/commentSent.gif','images/shareMessagingAppsYellow.png','images/sendComment.png',
             // console.log('images preloaded')

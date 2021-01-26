@@ -10,6 +10,7 @@
 // var diffTimes;
 
 //var runJSDownload = function(){
+var clickCountSendButton = 0
 
 var hideButtons = function(){
   // drawnItems.clearLayers();
@@ -269,6 +270,12 @@ document.getElementById('goBackClassification').onclick = function(e){
   document.getElementById('shareMessagingAppsDirect').style.display = 'none';
   document.getElementById('shareWorldButton').style.display = 'none';
   document.getElementById('DownloadButton').style.display = 'none';
+  document.getElementById("shareWorldButtonImage").src = 'images/shareworld.png'
+  document.getElementById("shareWorldButton").style.backgroundColor = 'white'
+  document.getElementById("shareWorldButton").style.borderColor = 'white'
+  clickCountSendButton = 0
+
+
 showButtons()
 }
 
@@ -299,11 +306,16 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
   document.getElementById('shareWorldButton').style.display = 'none';
   document.getElementById('DownloadButton').style.display = 'none';
   document.getElementById('Cancel').style.display = 'none';
+  document.getElementById("shareWorldButtonImage").src = 'images/shareworld.png'
+  document.getElementById("shareWorldButton").style.backgroundColor = 'white'
+  document.getElementById("shareWorldButton").style.borderColor = 'white'
+  clickCountSendButton = 0 //!!!!!!!!!!!
 
   document.getElementById("goBackShareMessagingAppsDirect").style.display = 'initial';
   document.getElementById("whatsApp").style.display = 'initial';
   document.getElementById("telegram").style.display = 'initial';
   document.getElementById("weChat").style.display = "initial";
+
 
   shareURL = 'encodedGeoJSON'
   // document.getElementById("shareMessagingApp").style.display = "initial";
@@ -324,131 +336,153 @@ document.getElementById('goBackShareMessagingAppsDirect').onclick = function(e){
 }
 
 
-
 document.getElementById('shareWorldButton').onclick = function(e) {
-  hideButtons()
-  document.getElementById('goBackClassification').style.display = 'none';
-  document.getElementById('shareMessagingAppsDirect').style.display = 'none';
-  drawnItems.clearLayers();
-  tempLayer.clearLayers()
-  document.getElementById("map").style.height = "0px";
-  encodeGeoJSON(data,propertiesGeoJSON)
 
 
-  // drawnItems.clearLayers();
-  // tempLayer.clearLayers()
-  //first, we define the variables that store the attributes
-  // propertiesGeoJSON = data.features[0].properties
-  // landUses = propertiesGeoJSON.landUses;
+  if (clickCountSendButton == 0) {
+      document.getElementById("shareWorldButtonImage").src = 'images/shareworldConfirm.png'
+      document.getElementById("shareWorldButton").style.backgroundColor = 'yellow'
+      document.getElementById("shareWorldButton").style.borderColor = 'black'
 
-  //script to check if keyword is added in the attribute field
-  // if(landUses[0] == ':' && landUses[1] == 'e' && landUses[2] == 'a' && landUses[3] == 'r' && landUses[4] == 't' && landUses[5] == 'h' ){
-    //
-    // //to remove the keyword from the attribute field that is shown in the map
-    // var landUsesEmojiWithKeyword = propertiesGeoJSON.landUsesEmoji;
-    // var lengthLandUsesEmojiWithKeyword = landUsesEmojiWithKeyword.length
-    // landUsesEmoji = landUsesEmojiWithKeyword.slice(2,lengthLandUsesEmojiWithKeyword);
+      // document.getElementById("imageDeleteFeature").src = 'images/binpost.png';
+      // document.getElementById("shareMessagingApp").style.opacity = '0.4';
+      // document.getElementById("shareMessagingApp").disabled = true;
+      // document.getElementById("randomSuggestion").style.opacity = '0.4';
+      // document.getElementById("randomSuggestion").disabled = true;
 
-  if(isOnline == true){
+      clickCountSendButton = 1
+  } else {
 
-    setTimeout(function() {
-        document.getElementById('shareWorldButton').style.display = 'none';
-        document.getElementById('DownloadButton').style.display = 'none';
-        document.getElementById('Sent').style.display = 'initial';
-        document.getElementById('sentVideo').play();
-        document.getElementById("sentVideo").controls = false;
-        document.body.style.backgroundColor = "white";
+        hideButtons()
+        document.getElementById('goBackClassification').style.display = 'none';
+        document.getElementById('shareMessagingAppsDirect').style.display = 'none';
+        drawnItems.clearLayers();
+        tempLayer.clearLayers()
+        document.getElementById("map").style.height = "0px";
+        encodeGeoJSON(data,propertiesGeoJSON)
 
-        //to fire click event of upload button !!
-        ////////////////////////////       CARTO - POST DATA      //////////////////////////////////////////
+
+        // drawnItems.clearLayers();
+        // tempLayer.clearLayers()
         //first, we define the variables that store the attributes
-        propertiesGeoJSON = data.features[0].properties
-        //to assign each attribute to a variable, which will be added as columns to the DB
-        landUses = propertiesGeoJSON.landUses;
-        landUsesEmoji = propertiesGeoJSON.landUsesEmoji;
-        areaPolygon = propertiesGeoJSON.areaPolygon;
-        lengthLine = propertiesGeoJSON.lengthLine;
-        dateTime = propertiesGeoJSON.dateTime;
-        timeSpendSeconds = propertiesGeoJSON.timeSpendSeconds;
-        dist_m_Participant_Feature = propertiesGeoJSON.dist_m_Participant_Feature;
-        randomID = propertiesGeoJSON.randomID;
+        // propertiesGeoJSON = data.features[0].properties
+        // landUses = propertiesGeoJSON.landUses;
 
-        console.log(propertiesGeoJSON)
-        // include the firebase url (if audio has been recorded)
-        if (isIOS == false && audioButtonClicked == true) {
-          document.getElementById("sendFirebase").click();
-        } else { //to not show audio icon when no audio available
-            audioAvailable = '.'
-            setData(); //Call the setDdata() function!!! to post data to database. If audio is available, set data is called in sendfirebase function
+        //script to check if keyword is added in the attribute field
+        // if(landUses[0] == ':' && landUses[1] == 'e' && landUses[2] == 'a' && landUses[3] == 'r' && landUses[4] == 't' && landUses[5] == 'h' ){
+          //
+          // //to remove the keyword from the attribute field that is shown in the map
+          // var landUsesEmojiWithKeyword = propertiesGeoJSON.landUsesEmoji;
+          // var lengthLandUsesEmojiWithKeyword = landUsesEmojiWithKeyword.length
+          // landUsesEmoji = landUsesEmojiWithKeyword.slice(2,lengthLandUsesEmojiWithKeyword);
+
+        if(isOnline == true){
+
+          setTimeout(function() {
+              document.getElementById('shareWorldButton').style.display = 'none';
+              document.getElementById('DownloadButton').style.display = 'none';
+              document.getElementById('Sent').style.display = 'initial';
+              document.getElementById('sentVideo').play();
+              document.getElementById("sentVideo").controls = false;
+              document.body.style.backgroundColor = "white";
+
+              //to fire click event of upload button !!
+              ////////////////////////////       CARTO - POST DATA      //////////////////////////////////////////
+              //first, we define the variables that store the attributes
+              propertiesGeoJSON = data.features[0].properties
+              //to assign each attribute to a variable, which will be added as columns to the DB
+              landUses = propertiesGeoJSON.landUses;
+              landUsesEmoji = propertiesGeoJSON.landUsesEmoji;
+              areaPolygon = propertiesGeoJSON.areaPolygon;
+              lengthLine = propertiesGeoJSON.lengthLine;
+              dateTime = propertiesGeoJSON.dateTime;
+              timeSpendSeconds = propertiesGeoJSON.timeSpendSeconds;
+              dist_m_Participant_Feature = propertiesGeoJSON.dist_m_Participant_Feature;
+              randomID = propertiesGeoJSON.randomID;
+
+              console.log(propertiesGeoJSON)
+              // include the firebase url (if audio has been recorded)
+              if (isIOS == false && audioButtonClicked == true) {
+                document.getElementById("sendFirebase").click();
+              } else { //to not show audio icon when no audio available
+                  audioAvailable = '.'
+                  setData(); //Call the setDdata() function!!! to post data to database. If audio is available, set data is called in sendfirebase function
+              }
+          }, 200)
+
+          setTimeout(function() {
+              document.getElementById('Sent').style.display = 'none';
+              document.getElementById('uploading').style.display = 'none'
+              document.getElementById('progress').style.display = 'none'
+
+              document.getElementById("deleteAllVertexs").style.opacity = "0.35";
+              document.getElementById("deleteAllVertexs").disabled = true;
+              document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
+              document.getElementById("deleteAllVertexsLine").disabled = true;
+              document.getElementById("completeFeature").style.opacity = "0.35";
+              document.getElementById("completeFeature").disabled = true;
+
+              document.body.style.backgroundColor = "black";
+              document.body.style.color = "black"; //cheating here, this is to hide a f** 'undefined' that appear on top of the video. Anyway, solved
+
+              document.getElementById("map").style.height = "100%";
+              document.getElementById("tutorial").style.display = "initial";
+              document.getElementById("polygon").style.display = "initial";
+              document.getElementById("polyline").style.display = "initial";
+              document.getElementById("point").style.display = "initial";
+
+              document.getElementById("Alert").style.fontSize = "15px";
+              document.getElementById("Alert").innerHTML = '🚧 If the feature is not appearing after few seconds, please toggle layer or reload page'
+              document.getElementById("Alert").style.display = 'initial'
+              setTimeout(function(){
+                document.getElementById("Alert").style.display = 'none'
+              }, 5000)
+
+          }, timeOfVideo);
+
+            //osm_Button.addTo(map)
+            // myLayer_Button.addTo(map);
+            // filter_Button.addTo(map);
+            myLayer_Button.button.style.opacity = '1';
+            myLayer_Button.button.disabled = false
+            filter_Button.button.style.opacity = '1';
+            filter_Button.button.disabled = false;
+            gps_Button.button.style.opacity = '1';
+            gps_Button.button.disabled = false;
+
+            document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
+            document.body.style.color = "white"; //cheating here, this is to hide a f** 'undefined' that appear on top of the video. Anyway, solved
+            document.getElementById("shareWorldButtonImage").src = 'images/shareworld.png'
+            document.getElementById("shareWorldButton").style.backgroundColor = 'white'
+            document.getElementById("shareWorldButton").style.borderColor = 'white'
+            clickCountSendButton = 0
+
+            try{
+              localStorageLayer.removeFrom(map)
+            }catch(err){}
+            //deflated.addTo(map)
+            // if (cartoLoaded == true) {
+            //
+            //     cartoGeometries.addTo(deflated)
+            // }
+
+            featureSent = true;
+
+          // }else{
+          //   alert("🔑 🛑 During the prototyping phase, a KEYWORD must be added in the textbox to publish the spatial data. Click 'Download' and in the main screen click the 'Quetionmark' button. Then click the 'Yellow' button to request the KEYWORD. Thanks");
+          //
+          // }
+          finalAreaHa2Decimals = null
+          finalLength2Decimals = null
+          timeStart = new Date(); // to reset time start in case more contributions in this session
+
+
+          return featureSent &&  finalAreaHa2Decimals &&  finalLength2Decimals && timeStart
+        }else {
+          alert('🛑 You are offline')
         }
-    }, 200)
-
-    setTimeout(function() {
-        document.getElementById('Sent').style.display = 'none';
-        document.getElementById('uploading').style.display = 'none'
-        document.getElementById('progress').style.display = 'none'
-
-        document.getElementById("deleteAllVertexs").style.opacity = "0.35";
-        document.getElementById("deleteAllVertexs").disabled = true;
-        document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
-        document.getElementById("deleteAllVertexsLine").disabled = true;
-        document.getElementById("completeFeature").style.opacity = "0.35";
-        document.getElementById("completeFeature").disabled = true;
-
-        document.body.style.backgroundColor = "white";
-
-        document.getElementById("map").style.height = "100%";
-        document.getElementById("tutorial").style.display = "initial";
-        document.getElementById("polygon").style.display = "initial";
-        document.getElementById("polyline").style.display = "initial";
-        document.getElementById("point").style.display = "initial";
-
-        document.getElementById("Alert").style.fontSize = "15px";
-        document.getElementById("Alert").innerHTML = '🚧 If the feature is not appearing after few seconds, please toggle layer or reload page'
-        document.getElementById("Alert").style.display = 'initial'
-        setTimeout(function(){
-          document.getElementById("Alert").style.display = 'none'
-        }, 5000)
-
-    }, timeOfVideo);
-
-      //osm_Button.addTo(map)
-      // myLayer_Button.addTo(map);
-      // filter_Button.addTo(map);
-      myLayer_Button.button.style.opacity = '1';
-      myLayer_Button.button.disabled = false
-      filter_Button.button.style.opacity = '1';
-      filter_Button.button.disabled = false;
-      gps_Button.button.style.opacity = '1';
-      gps_Button.button.disabled = false;
-
-      document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
-      document.body.style.color = "white"; //cheating here, this is to hide a f** 'undefined' that appear on top of the video. Anyway, solved
-
-      try{
-        localStorageLayer.removeFrom(map)
-      }catch(err){}
-      //deflated.addTo(map)
-      // if (cartoLoaded == true) {
-      //
-      //     cartoGeometries.addTo(deflated)
-      // }
-
-      featureSent = true;
-
-    // }else{
-    //   alert("🔑 🛑 During the prototyping phase, a KEYWORD must be added in the textbox to publish the spatial data. Click 'Download' and in the main screen click the 'Quetionmark' button. Then click the 'Yellow' button to request the KEYWORD. Thanks");
-    //
-    // }
-    finalAreaHa2Decimals = null
-    finalLength2Decimals = null
-    timeStart = new Date(); // to reset time start in case more contributions in this session
-
-
-    return featureSent &&  finalAreaHa2Decimals &&  finalLength2Decimals && timeStart
-  }else {
-    alert('🛑 You are offline')
-  }
+    }
+  return clickCountSendButton
 }
 
 document.getElementById('DownloadButton').onclick = function(e) {
@@ -488,13 +522,20 @@ document.getElementById('DownloadButton').onclick = function(e) {
         document.getElementById("completeFeature").style.opacity = "0.35";
         document.getElementById("completeFeature").disabled = true;
 
-        document.body.style.backgroundColor = "white";
+        document.body.style.backgroundColor = "black";
+        document.body.style.color = "black"; //cheating here, this is to hide a f** 'undefined' that appear on top of the video. Anyway, solved
+
 
         document.getElementById("map").style.height = "100%";
         document.getElementById("tutorial").style.display = "initial";
         document.getElementById("polygon").style.display = "initial";
         document.getElementById("polyline").style.display = "initial";
         document.getElementById("point").style.display = "initial";
+        document.getElementById("shareWorldButtonImage").src = 'images/shareworld.png'
+        document.getElementById("shareWorldButton").style.backgroundColor = 'white'
+        document.getElementById("shareWorldButton").style.borderColor = 'white'
+        clickCountSendButton = 0 //!!!!!!!!!!!
+
 
         //console.log(data);
 
