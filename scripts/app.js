@@ -635,7 +635,7 @@ var offlineControlOSM = L.control.offline(osm, tilesDb, {
 });
 
 var planetScopeMonthlyMosaic = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_12_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-  attribution: 'Leaflet | PlanetScope Imagery  Jan 2020'
+  attribution: 'Leaflet | PlanetScope Imagery  Jan 2021'
   })
 
   var planetScopeMonthlyMosaicDec = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_12_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{

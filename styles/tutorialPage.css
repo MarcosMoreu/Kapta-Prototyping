@@ -33,7 +33,14 @@ transform: translateY(8px);
 transform: scale(0.6);
 
 }
-
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 .buttonsFirstLastScreen {
   background-color: white; /* Green */
   text-align: center;
@@ -46,6 +53,7 @@ transform: scale(0.6);
   outline:none; /* to avoid yellow border when button is clicked*/
   /* cursor: pointer; */
   transition: 0.4s;
+  animation:1s ease-out 0s 1 slideInFromRight;
   /* box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24); */
 }
 

@@ -5,6 +5,8 @@ var browserLanguage = navigator.language
 document.getElementById('english').src = "https://raw.githubusercontent.com/hjnilsson/country-flags/master/png100px/ad.png"
 
 document.getElementById('startMapping').onclick = function(e){
+  document.getElementById("startMapping").style.animation = "initial";
+
    setTimeout(function(){
      location.href='../index.html';
    },100)
@@ -249,6 +251,8 @@ document.getElementById('english').onclick = function(e){
    setTimeout(function(){
     document.getElementById("dropDown").style.display = "initial";
      document.getElementById("youtube").style.display = "initial";
+     document.getElementById("startMapping").style.animation = "none";
+
      //document.getElementById('cutomiseButton').style.display = "initial";
     //document.getElementById("spanish").style.display = "none";
 
