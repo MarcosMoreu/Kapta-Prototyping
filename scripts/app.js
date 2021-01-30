@@ -1,3 +1,4 @@
+console.log('app.js accessed')
 
 
 // var pageLoaded = false
@@ -285,12 +286,13 @@ var url = window.location.href
 console.log(url)
 var urlContainsHash = url.includes('/#')
 var urlContainsGeoJSON = url.includes('/?')
-
 //to avoid panning outside this bounds
 var southWest = L.latLng(-70, -180);
 var northEast = L.latLng(80, 180);
 
 if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getItem('pwCorrect')){  // if url contains geojson (and coords)
+  console.log('hash and geojson')
+
   //to set mapview
     var keepOnlyLatLngZoom = url.split('#').pop();
     var splittedLatLngZoom = keepOnlyLatLngZoom.split(',');
@@ -326,11 +328,14 @@ if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getIte
           fetchFromLocalStorage()
           console.log('after fetch and convert',localStorageLayer)
     },300) // really don't know why this timeout, but keep it for now
+
     setTimeout(function changeToLocalStorageLayer(){
         document.getElementById('myLayerButton').click()
-    },1000) // really don't know why this timeout, but keep it for now
+
+    },2000) // really don't know why this timeout, but keep it for now
 
 }else if (urlContainsHash == true){  // if only coords are in the url
+  console.log('onlyhash')
     var keepOnlyLatLngZoom = url.split('#').pop();
     var splittedLatLngZoom = keepOnlyLatLngZoom.split(',');
     var urlLat = splittedLatLngZoom[0]
@@ -358,6 +363,7 @@ if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getIte
     },300) // really don't know why this timeout, but keep it for now
   //////////////////////
 }else{
+  console.log('only map')
 
     if (lastPositionStoredLOCALLY == null) {
         var map = L.map('map', {
@@ -393,6 +399,16 @@ if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getIte
           console.log('after fetch and convert',localStorageLayer)
     },300) // really don't know why this timeout, but keep it for now
 }
+// // this function is to refresh PWA in case the first time it is loaded it contains url query string
+// if(isFirstTime == true && urlContainsGeoJSON == true){
+//   setTimeout(function refreshIfFirstLoadAndURLGeojson(){
+//         fetchFromLocalStorage()
+//         console.log('after fetch and convert',localStorageLayer)
+//   },)
+// }
+
+
+
 
 L.Permalink.setup(map);
 

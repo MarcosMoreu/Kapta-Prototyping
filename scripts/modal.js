@@ -293,6 +293,7 @@ var requestPw = function(){
               if(authentication == 'successful' && done == true){  //map loads after this
                 document.getElementById('login').disabled = true // to avoid that user clicks twice while waiting, in which case carto layer would load twice
                  console.log('both')
+                 localStorage.setItem('pwCorrect', true);
 
                 clearInterval(checkPw)
                 clearInterval(checkDoneAndFirebasePW)
@@ -303,12 +304,15 @@ var requestPw = function(){
                 setTimeout(function(){
                     document.getElementById('modal').style.display='none';
                     document.getElementById('pwForm').style.display='none';
-                    localStorage.setItem('pwCorrect', true);
                     document.getElementById('AlertModalIOS').style.display = 'none'
 
-
                 },1000)
-
+                //in case first load is with url geoJSON -- not the best approach ever, but it works.
+                if(urlContainsGeoJSON == true){
+                  setTimeout(function(){
+                  location.reload();
+                },1100)
+                }
 
               }
               else if(authentication == 'failed'){
