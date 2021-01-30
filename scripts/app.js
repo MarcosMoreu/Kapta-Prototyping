@@ -148,6 +148,7 @@ if ('serviceWorker' in navigator) {
             //console.log('sw has been updated')
             //to reload the page if sw version has changed. This is to provide the user the latest version without the need of reloading or clearing cache
             registration.onupdatefound = () => {
+              console.log('update found in SW')
                 const installingWorker = registration.installing;
                 installingWorker.onstatechange = () => {
                     if (installingWorker.state === 'installed' &&
