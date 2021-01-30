@@ -763,9 +763,11 @@ if (isIOS == true) {
 var basemapOn = 'googleSat'
 
 //to show the clock when map loads for first time
-document.getElementById("Alert").style.fontSize = "25px";
-document.getElementById('Alert').innerHTML = '⌛'
-document.getElementById("Alert").style.display = 'initial'
+// document.getElementById("Alert").style.fontSize = "25px";
+// document.getElementById('Alert').innerHTML = '⌛'
+// document.getElementById("Alert").style.display = 'initial'
+document.getElementById("MapLoading").style.display = 'initial'
+
 // to show the clock while tiles are loading when zoom in/out, not only when toggling the basemap
 //everytime the user zoomIn/Out or pan, the clock is shown, and only disapear when tiles are loaded
 
@@ -815,17 +817,26 @@ document.getElementById("Alert").style.display = 'initial'
 osm.on("load",function() {
   console.log("all visible osm tiles have been loaded")
   // clearInterval(intervalOsm)
-  document.getElementById("Alert").style.display = 'none'
+  // document.getElementById("Alert").style.display = 'none'
+  document.getElementById("MapLoading").style.display = 'none'
+
   // osmloaded = true
   // return osmloaded
 });
 googleSat.on("load",function() {
  console.log("all visible google tiles have been loaded")
- document.getElementById("Alert").style.display = 'none'
+ // document.getElementById("Alert").style.display = 'none'
+ document.getElementById("MapLoading").style.display = 'none'
 });
 planetScopeMonthlyMosaic.on("load",function() {
   console.log("all visible planet tiles have been loaded")
-  document.getElementById("Alert").style.display = 'none'
+  // document.getElementById("Alert").style.display = 'none'
+  document.getElementById("MapLoading").style.display = 'none'
+  document.getElementById("Alert").style.fontSize = "15px";
+  document.getElementById('Alert').innerHTML = '<br>🕑<br>☀️🌙'
+  document.getElementById("Alert").style.display = 'initial'
+
+
 });
 
 // demo.on('click',function(){
@@ -836,37 +847,49 @@ planetScopeMonthlyMosaic.on("load",function() {
 
 planetScopeMonthlyMosaicDec.on("load",function() {
   console.log("all visible planet tiles have been loaded")
+  document.getElementById("MapLoading").style.display = 'none'
+
   document.getElementById("Alert").style.fontSize = "15px";
-  document.getElementById('Alert').innerHTML = '<br>12/2020 '
+  document.getElementById('Alert').innerHTML = '<br>30<br>☀️🌙'
   document.getElementById("Alert").style.display = 'initial'});
 planetScopeMonthlyMosaicNov.on("load",function() {
   console.log("all visible planet tiles have been loaded")
+  document.getElementById("MapLoading").style.display = 'none'
+
   document.getElementById("Alert").style.fontSize = "15px";
-  document.getElementById('Alert').innerHTML = '<br>11/2020 '
+  document.getElementById('Alert').innerHTML = ' <br>60<br>☀️🌙'
   document.getElementById("Alert").style.display = 'initial'
 });
 planetScopeMonthlyMosaicOct.on("load",function() {
   console.log("all visible planet tiles have been loaded")
+  document.getElementById("MapLoading").style.display = 'none'
+
   document.getElementById("Alert").style.fontSize = "15px";
-  document.getElementById('Alert').innerHTML = '<br>10/2020 '
+  document.getElementById('Alert').innerHTML = ' <br>90<br>☀️🌙'
   document.getElementById("Alert").style.display = 'initial'
 });
 planetScopeMonthlyMosaicSept.on("load",function() {
   console.log("all visible planet tiles have been loaded")
+  document.getElementById("MapLoading").style.display = 'none'
+
   document.getElementById("Alert").style.fontSize = "15px";
-  document.getElementById('Alert').innerHTML = '<br>9/2020 '
+  document.getElementById('Alert').innerHTML = ' <br>120<br>☀️🌙'
   document.getElementById("Alert").style.display = 'initial'
 });
 planetScopeMonthlyMosaicDec2019.on("load",function() {
   console.log("all visible planet tiles have been loaded")
+  document.getElementById("MapLoading").style.display = 'none'
+
   document.getElementById("Alert").style.fontSize = "15px";
-  document.getElementById('Alert').innerHTML = '<br>12/2019 '
+  document.getElementById('Alert').innerHTML = '<br>150<br>☀️🌙'
   document.getElementById("Alert").style.display = 'initial'
 });
 planetScopeMonthlyMosaicJan2019.on("load",function() {
   console.log("all visible planet tiles have been loaded")
+  document.getElementById("MapLoading").style.display = 'none'
+
   document.getElementById("Alert").style.fontSize = "15px";
-  document.getElementById('Alert').innerHTML = '<br>1/2019 '
+  document.getElementById('Alert').innerHTML = '<br>365<br>☀️🌙'
   document.getElementById("Alert").style.display = 'initial'
 });
 
@@ -881,9 +904,11 @@ var osm_Button = L.easyButton({
         //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn, map) {
-          document.getElementById("Alert").style.fontSize = "25px";
-          document.getElementById('Alert').innerHTML = '⌛'
-          document.getElementById("Alert").style.display = 'initial'
+          // document.getElementById("Alert").style.fontSize = "25px";
+          // document.getElementById('Alert').innerHTML = '⌛'
+          // document.getElementById("Alert").style.display = 'initial'
+          document.getElementById("MapLoading").style.display = 'initial'
+
             //clickButtonCount += 1;
             // document.getElementById('imageryAlert').style.display = 'none'
             mapCurrentZoom = map.getZoom();
@@ -907,7 +932,8 @@ var osm_Button = L.easyButton({
               osm.on("load",function() {
 
                 console.log("all visible osm tiles have been loaded")
-                document.getElementById("Alert").style.display = 'none'
+                // document.getElementById("Alert").style.display = 'none'
+                document.getElementById("MapLoading").style.display = 'none'
 
                });
 
@@ -939,12 +965,15 @@ var googleSat_Button = L.easyButton({
 
           document.getElementById('myRange').style.display = 'none'
           document.getElementById("Alert").style.display = 'none'
+          document.getElementById("MapLoading").style.display = 'none'
 
           clearInterval(checkSliderPosition)
 
-          document.getElementById("Alert").style.fontSize = "25px";
-          document.getElementById('Alert').innerHTML = '⌛'
-          document.getElementById("Alert").style.display = 'initial'
+          // document.getElementById("Alert").style.fontSize = "25px";
+          // document.getElementById('Alert').innerHTML = '⌛'
+          // document.getElementById("Alert").style.display = 'initial'
+          document.getElementById("MapLoading").style.display = 'initial'
+
 
             //clickButtonCount += 1;
             // document.getElementById('imageryAlert').style.display = 'none'
@@ -966,7 +995,8 @@ var googleSat_Button = L.easyButton({
               googleSat.on("load",function() {
 
                 console.log("all visible google tiles have been loaded")
-                document.getElementById("Alert").style.display = 'none'
+                // document.getElementById("Alert").style.display = 'none'
+                document.getElementById("MapLoading").style.display = 'none'
 
              });
 
@@ -996,14 +1026,18 @@ var planet_Button = L.easyButton({
         icon: iconPLANET,
         stateName: 'check-mark',
         onClick: function(btn, map) {
-          document.getElementById("Alert").style.fontSize = "25px";
-          document.getElementById('Alert').innerHTML = '⌛'
-          document.getElementById("Alert").style.display = 'initial'
-          // document.getElementById("loading").style.display = 'initial'
+          // document.getElementById("Alert").style.fontSize = "25px";
+          // document.getElementById('Alert').innerHTML = '⌛'
+          // document.getElementById("Alert").style.display = 'initial'
+          document.getElementById("MapLoading").style.display = 'initial'
 
 
             /////////////////////// to load planet tiles manually  /////////////
             document.getElementById('myRange').style.display = 'initial'
+            document.getElementById("Alert").style.fontSize = "15px";
+            document.getElementById('Alert').innerHTML = '<br>🕑<br>☀️🌙'
+            document.getElementById("Alert").style.display = 'initial'
+
             setInterval(checkSliderPosition,200)
 
             clickButtonCount = 0;
@@ -1028,7 +1062,8 @@ var planet_Button = L.easyButton({
               planetScopeMonthlyMosaic.on("load",function() {
 
                 console.log("all visible planet tiles have been loaded")
-                document.getElementById("Alert").style.display = 'none'
+                // document.getElementById("Alert").style.display = 'none'
+                document.getElementById("MapLoading").style.display = 'none'
 
                });
 
@@ -1090,9 +1125,9 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               removeAllimagery()
               planetScopeMonthlyMosaic.addTo(map)
               console.log(output.innerHTML)
-              document.getElementById("Alert").style.fontSize = "25px";
-              document.getElementById('Alert').innerHTML = '<br>⌛'
-              // document.getElementById("Alert").style.display = 'none'
+              // document.getElementById("Alert").style.fontSize = "25px";
+              // document.getElementById('Alert').innerHTML = '<br>⌛'
+              document.getElementById("MapLoading").style.display = 'initial'
 
               break
           case (output.innerHTML == 1):
@@ -1102,9 +1137,9 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>1/2019 '
-              document.getElementById("Alert").style.fontSize = "25px";
-              document.getElementById('Alert').innerHTML = '<br>⌛'
-              // document.getElementById("Alert").style.display = 'none'
+              // document.getElementById("Alert").style.fontSize = "25px";
+              // document.getElementById('Alert').innerHTML = '<br>⌛'
+              document.getElementById("MapLoading").style.display = 'initial'
               break
           case (output.innerHTML < 10):
               this.value = 5 // this is to locate the circle in a specific position
@@ -1113,9 +1148,9 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>12/2019 '
-              document.getElementById("Alert").style.fontSize = "25px";
-              document.getElementById('Alert').innerHTML = '<br>⌛'
-              // document.getElementById("Alert").style.display = 'none'
+              // document.getElementById("Alert").style.fontSize = "25px";
+              // document.getElementById('Alert').innerHTML = '<br>⌛'
+              document.getElementById("MapLoading").style.display = 'initial'
               break
           case (output.innerHTML < 25):
               this.value = 17
@@ -1124,9 +1159,9 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>9/2020 '
-              document.getElementById("Alert").style.fontSize = "25px";
-              document.getElementById('Alert').innerHTML = '<br>⌛'
-              // document.getElementById("Alert").style.display = 'none'
+              // document.getElementById("Alert").style.fontSize = "25px";
+              // document.getElementById('Alert').innerHTML = '<br>⌛'
+              document.getElementById("MapLoading").style.display = 'initial'
               break
           case (output.innerHTML < 50):
               this.value = 37
@@ -1135,9 +1170,9 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>10/2020 '
-              document.getElementById("Alert").style.fontSize = "25px";
-              document.getElementById('Alert').innerHTML = '<br>⌛'
-              // document.getElementById("Alert").style.display = 'none'
+              // document.getElementById("Alert").style.fontSize = "25px";
+              // document.getElementById('Alert').innerHTML = '<br>⌛'
+              document.getElementById("MapLoading").style.display = 'initial'
               break
           case (output.innerHTML < 75):
               this.value = 62
@@ -1146,9 +1181,9 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>11/2020 '
-              document.getElementById("Alert").style.fontSize = "25px";
-              document.getElementById('Alert').innerHTML = '<br>⌛'
-              // document.getElementById("Alert").style.display = 'none'
+              // document.getElementById("Alert").style.fontSize = "25px";
+              // document.getElementById('Alert').innerHTML = '<br>⌛'
+              document.getElementById("MapLoading").style.display = 'initial'
               break
           case (output.innerHTML < 87):
               this.value = 87
@@ -1157,9 +1192,9 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>12/2020 '
-              document.getElementById("Alert").style.fontSize = "25px";
-              document.getElementById('Alert').innerHTML = '<br>⌛'
-              // document.getElementById("Alert").style.display = 'none'
+              // document.getElementById("Alert").style.fontSize = "25px";
+              // document.getElementById('Alert').innerHTML = '<br>⌛'
+              document.getElementById("MapLoading").style.display = 'initial'
               break
           default:
               removeAllimagery()
