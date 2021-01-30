@@ -1,5 +1,8 @@
 
 var cartoDbIdOfFeatureToEdit
+var toCheckIfAudio = document.getElementById("toCommentPopup").innerHTML[0]
+
+
 document.getElementById("editDeletePopup").onclick = function() {
 
   document.getElementById("toCommentPopup").innerHTML = '...'
@@ -104,7 +107,7 @@ console.log(selectedFeature.feature.properties.cartodb_id)
 }
 
 document.getElementById('backEditDelete').onclick = function(){
-
+  aFeatureIsSelected = false
   clearInterval(refreshPopupComment)
   //document.getElementById("toCommentPopup").innerHTML = '...'
   document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
@@ -131,7 +134,6 @@ document.getElementById('backEditDelete').onclick = function(){
 
   }catch(e){}
   document.getElementById('backEditDelete').style.display = 'none';
-  audioRecorded = false;
 
   gps_Button.button.style.opacity = '1';
   gps_Button.button.disabled = false;
@@ -195,7 +197,12 @@ document.getElementById('backEditDelete').onclick = function(){
   map.touchZoom.enable();
   map.doubleClickZoom.enable();
   map.scrollWheelZoom.enable();
-
+  if (isIOS == false) {
+      recordedVideo.pause();
+      recordedBlobs = null; // audio is removed if cancel is clicked
+      audioRecorded = false;
+      audioButtonClicked = false
+  }
 
   selectedFeature = null;
   editButtonClicked = false
@@ -212,13 +219,14 @@ document.getElementById('backEditDelete').onclick = function(){
     document.getElementById("Alert").style.display = 'none'
   }
 
-  return selectedFeature && clickCountDeleteButton && editButtonClicked && filterIsOn
+  return selectedFeature && clickCountDeleteButton && editButtonClicked && filterIsOn && audioRecorded && audioButtonClicked && aFeatureIsSelected
 }
 var updatedFeatureToAdd
 
 document.getElementById('shareWorldButtonComment').onclick = function(){
+    aFeatureIsSelected = false
     //script for audio recording
-      if (recordedBlobs != null) {
+      if (isIOS == false && recordedBlobs != null) {
           blob = new Blob(recordedBlobs, {
               type: 'audio/webm'
           });
@@ -232,7 +240,7 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
           theBlob.name = fileName;
           return theBlob;
       }
-      if (recordedBlobs != null) {
+      if (isIOS == false && recordedBlobs != null) {
           audioBlobFile = blobToFile(audioBlob, nameAudio);
           // console.log(audioBlobFile)
           dataFile = 0 // to avoid problem in firebase, we just submit a 2d array, with geometry null (0)
@@ -251,8 +259,8 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
           setData(); //Call the setDdata() function!!! to post data to database. If audio is available, set data is called in sendfirebase function
       }
     // end of script for audio recording
+    var commentAdded = document.getElementById("toCommentPopup").innerHTML
 
-   var commentAdded = document.getElementById("toCommentPopup").innerHTML
    //console.log(commentAdded)
   // document.getElementById('shareWorldButtonComment').src = 'images/gpsOff.png';
   clearInterval(refreshPopupComment)
@@ -361,6 +369,12 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
         })
       }
        getUpdatedFeature() ////////////////!!!!
+       if (isIOS == false) {
+           recordedVideo.pause();
+           recordedBlobs = null; // audio is removed if cancel is clicked
+           audioRecorded = false
+           audioButtonClicked = false
+       }
 },3000)
   editButtonClicked = true
 
@@ -374,5 +388,5 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
     document.getElementById("Alert").style.display = 'none'
   }
 
-  return editButtonClicked && filterIsOn
+  return editButtonClicked && filterIsOn && audioRecorded && audioButtonClicked && aFeatureIsSelected
 }

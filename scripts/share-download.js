@@ -431,9 +431,13 @@ document.getElementById('shareWorldButton').onclick = function(e) {
               document.getElementById("polyline").style.display = "initial";
               document.getElementById("point").style.display = "initial";
 
-              document.getElementById("Alert").style.fontSize = "15px";
-              document.getElementById("Alert").innerHTML = '🚧 If the feature is not appearing after few seconds, please toggle layer or reload page'
-              document.getElementById("Alert").style.display = 'initial'
+              // document.getElementById("Alert").style.fontSize = "15px";
+              // document.getElementById("Alert").innerHTML = '🚧 If the feature is not appearing after few seconds, please toggle layer or reload page'
+              // document.getElementById("Alert").style.display = 'initial'
+              if (isIOS == false) {
+                  recordedVideo.pause();
+                  recordedBlobs = null; // audio is removed if cancel is clicked
+              }
               setTimeout(function(){
                 document.getElementById("Alert").style.display = 'none'
               }, 5000)
@@ -552,6 +556,10 @@ document.getElementById('DownloadButton').onclick = function(e) {
         gps_Button.button.disabled = false;
 
         document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
+        if (isIOS == false) {
+            recordedVideo.pause();
+            recordedBlobs = null; // audio is removed if cancel is clicked
+        }
         whichLayerIsOn = 'localStorage'
         // console.log('localstoragelayer',localStorageLayer)
         finalLayer = L.geoJSON(data, {

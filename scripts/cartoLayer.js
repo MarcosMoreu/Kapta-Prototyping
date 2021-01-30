@@ -1,4 +1,4 @@
-
+var aFeatureIsSelected = false
 var cartoGeoJSONLayer = function(data) {
     getTotalFeaturesInDB = data.features.length
   //  console.log('cartolayer',data)
@@ -44,7 +44,11 @@ var cartoGeoJSONLayer = function(data) {
 
             /////////////////////////////
           layer.on('click', function(e) {
-
+              if(aFeatureIsSelected == true){
+                document.getElementById("backDeleteFeature").click() //!!!!!!!!
+                console.log('aFeatureIsSelected true')
+              }else{ // this if/else is to ensure that two features can not be selected at the same time
+              console.log('aFeatureIsSelected false')
 
               document.getElementById("clearFilter").style.display = "none";
               document.getElementById("applyFilter").style.display = "none";
@@ -94,6 +98,8 @@ var cartoGeoJSONLayer = function(data) {
                   layer.closePopup(feature.properties.landusesemoji + feature.properties.audioavailable); //to not open popup after second click
 
                }else {
+                 // selectedFeature.editing.disable();
+                 // selectedFeature.editing.enable();
 
                   selectedFeature = e.target;
                   // selectedFeature.editing.enable();
@@ -101,6 +107,8 @@ var cartoGeoJSONLayer = function(data) {
                    if (selectedFeature.feature.geometry.type != 'Point') {
                      //to populate the area/length field in the popup
                       if(selectedFeature.feature.geometry.type == 'Polygon'){
+                        aFeatureIsSelected = true
+
                         document.getElementById('popupAreaLength').style.display = 'initial'
                         document.getElementById('popupAreaLength').textContent = feature.properties.areapolygon
 
@@ -127,19 +135,22 @@ var cartoGeoJSONLayer = function(data) {
                           if(selectedFeature.feature.properties.commentone != null){
                             if(selectedFeature.feature.properties.commentoneaudioavailable !='.'){
                               document.getElementById('toCommentPopup').disabled = false
-                              document.getElementById('toCommentPopup').onclick = function(){
+                                document.getElementById('toCommentPopup').onclick = function(){
 
-                                var audioUrl = feature.properties.commentoneaudioavailable
-                                var audioControls = document.getElementById('audioControls')
-                                audioControls.src = audioUrl
-                                document.getElementById('audioControls').style.display = 'initial'
+                                  var audioUrl = feature.properties.commentoneaudioavailable
+                                  var audioControls = document.getElementById('audioControls')
+                                  audioControls.src = audioUrl
+                                  document.getElementById('audioControls').style.display = 'initial'
 
-                              }
+                                }
                               document.getElementById('toCommentPopup').style.display = 'initial';
                               document.getElementById('toCommentPopup').textContent = '🔊' + ' ' + feature.properties.commentone
 
                               }
                               else{
+                                document.getElementById('toCommentPopup').onclick = function(){
+                                  document.getElementById('audioControls').style.display = 'none'
+                                }
                               document.getElementById('audioControls').style.display = 'none'
                               document.getElementById('toCommentPopup').style.display = 'initial';
                               document.getElementById('toCommentPopup').textContent = feature.properties.commentone
@@ -149,6 +160,8 @@ var cartoGeoJSONLayer = function(data) {
                          }
 
                       }else{ //it a line
+                        aFeatureIsSelected = true
+
                          // document.getElementById('popupAreaLength').style.display = 'initial'
                          // document.getElementById('popupAreaLength').textContent = '〰️'
                          document.getElementById('popupAreaLength').style.display = 'none'
@@ -221,6 +234,8 @@ var cartoGeoJSONLayer = function(data) {
                    }
                      //condition below is at is is to avoid deflated symbol to show as selected after polygon/line have been selected
                      if (selectedFeature.feature.geometry.type == 'Point' && map.getZoom() >= 15 && e.target.feature.properties.areapolygon == 'Point' && e.target.feature.properties.lengthline == 'Point') {
+                       aFeatureIsSelected = true
+
                          // document.getElementById('popupAreaLength').style.display = 'initial'
                          // document.getElementById('popupAreaLength').style.height = '📍';
                          document.getElementById('popupAreaLength').style.display = 'none'
@@ -320,11 +335,28 @@ var cartoGeoJSONLayer = function(data) {
                           }
                         }
                       })
+                      map.on('click', function(e) {
+                        // cartoGeometries.color = 'red'
+                        if(editButtonClicked == false){  // this condition is to prevent this when commenting the cartolayer, like with creating the geometry with drawnitems
+                          try {
+                            deflated.editing.disable();
+                          } catch (e) {}
+
+                          clickCountDeleteButton = 0
+                          map.closePopup();
+
+                          if(selectedFeature && selectedFeature != null){ //second condition to avoid click when backDeletefeature... not best solution but works
+                            document.getElementById("backDeleteFeature").click() //!!!!!!!!
+                          }
+                        }
+                      })
 
                       //to store the cartoID of the future selected
                       cartoIdFeatureSelected = selectedFeature.feature.properties.cartodb_id
 
                 }//...else
+
+              }
             });//...layerclick
         }//...oneachfeature
     })//...l.geojson
@@ -334,5 +366,5 @@ var cartoGeoJSONLayer = function(data) {
   }catch(err){
     // console.log('error sql catched due to empty layer after filter applied')
   }
-  return cartoGeometries && getTotalFeaturesInDB
+  return cartoGeometries && getTotalFeaturesInDB && aFeatureIsSelected
 };//...CARTO layer

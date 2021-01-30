@@ -1758,8 +1758,9 @@ var pURL
 //this function is called both when feature is deleted or feature is created and sent.
 function setData() {
     //console.log("setdata function called");
-    if (cartoIdFeatureSelected != null && created == false && editButtonClicked == false) { //TO DELETE THE SELECTED FEATURE FROM THE CARTO DB
+    if (cartoIdFeatureSelected != null && created == false && clickCountDeleteButton == 1) { //TO DELETE THE SELECTED FEATURE FROM THE CARTO DB
         pURL = "DELETE FROM lumblu WHERE cartodb_id='" + cartoIdFeatureSelected + "'";
+        clickCountDeleteButton = 0
         cartoIdFeatureSelected = null
         console.log(pURL)
 
@@ -1767,11 +1768,15 @@ function setData() {
       console.log('set data called')
       console.log(contentInTextbox)
       console.log(audioComment)
+        if(audioRecorded == false){
+          audioComment = '.'
+        }
 
 
-        var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
-        var emojioneareaeditor0 = emojioneareaeditor[0]
-        var contentInTextbox = emojioneareaeditor0.innerHTML
+        // var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
+        // var emojioneareaeditor0 = emojioneareaeditor[0]
+        // var contentInTextbox = emojioneareaeditor0.innerHTML
+        var contentInTextbox = document.getElementById('emojionearea').value;
 
         // pURL = "UPDATE lumblu SET commentone = 'anothertest' WHERE cartodb_id='" + cartoIdFeatureSelected + "'";
         // pURL = "UPDATE lumblu SET commentone='" + contentInTextbox + "' WHERE cartodb_id='" + cartoIdFeatureSelected + "'";
@@ -1798,7 +1803,7 @@ function setData() {
     ////console.log(pURL)
     submitToProxy(pURL);
     //console.log("Feature has been submitted to the Proxy");
-    return pURL && editButtonClicked
+    return pURL && editButtonClicked && clickCountDeleteButton
 };
 
 //cartoGeoJSONLayer()

@@ -4,9 +4,12 @@
 
 //var runJSselectFeature = function(){
 document.getElementById("backDeleteFeature").onclick = function() {
+  aFeatureIsSelected = false
   try{
     document.getElementById("popupAreaLength").disabled = true;
     document.getElementById('commentPopup').disabled = true;
+    document.getElementById('audioControls').style.display = 'none'
+
   }catch(e){}
 
     map.touchZoom.enable();
@@ -88,7 +91,7 @@ document.getElementById("backDeleteFeature").onclick = function() {
       document.getElementById("Alert").style.display = 'none'
     }
 
-    return selectedFeature && clickCountDeleteButton && cartoIdFeatureSelected && filterIsOn
+    return selectedFeature && clickCountDeleteButton && cartoIdFeatureSelected && filterIsOn && aFeatureIsSelected
 
 }
 document.getElementById("shareMessagingApp").onclick = function() {
@@ -278,7 +281,8 @@ document.getElementById("deleteFeature").onclick = function() {
 
         clickCountDeleteButton = 1
     } else {
-        clickCountDeleteButton = 0
+        aFeatureIsSelected = false
+
         //console.log('feature deleted')
 
         osm_Button.addTo(map);
@@ -325,5 +329,5 @@ document.getElementById("deleteFeature").onclick = function() {
         //we call the setData() function here to delete from cartodb
         setData()
     }
-    return selectedFeature && clickCountDeleteButton && clickCountDelete
+    return selectedFeature && clickCountDeleteButton && clickCountDelete && aFeatureIsSelected
 }
