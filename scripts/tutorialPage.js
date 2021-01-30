@@ -8,7 +8,7 @@ document.getElementById('startMapping').onclick = function(e){
   document.getElementById("startMapping").style.animation = "initial";
 
    setTimeout(function(){
-     location.href='../index.html';
+     location.href='../';
    },100)
   }
 document.getElementById('dropDown').onclick = function(e){
