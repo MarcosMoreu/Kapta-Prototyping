@@ -382,6 +382,9 @@ document.getElementById('shareWorldButton').onclick = function(e) {
               document.getElementById('shareWorldButton').style.display = 'none';
               document.getElementById('DownloadButton').style.display = 'none';
               document.getElementById('Sent').style.display = 'initial';
+              document.getElementById('sentVideo').pause();
+              document.getElementById('sentVideo').currentTime = 0
+
               document.getElementById('sentVideo').play();
               document.getElementById("sentVideo").controls = false;
               document.body.style.backgroundColor = "white";
@@ -497,6 +500,8 @@ document.getElementById('DownloadButton').onclick = function(e) {
     drawnItems.clearLayers();
     tempLayer.clearLayers()
     document.getElementById("map").style.height = "0px";
+    document.getElementById('sentVideo').pause();
+    document.getElementById('sentVideo').currentTime = 0
     document.getElementById('downloadedVideo').play();
     document.getElementById("downloadedVideo").controls = false;
 

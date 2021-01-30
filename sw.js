@@ -3,16 +3,18 @@
 
 // Set a name for the current cache. Note that when version is changed, the pwa only updates autmotically after reloading!
 //Note that for automatic update, at one change need to be made in the app.js file (or in other files...)
-var version = 'v14.5';
+var version = 'v16.1';
 //console.log(version)
 
 // Default files to always cache
 var offlineFundamentals = [
   "index.html",
-  "pages/tutorial.html",
   "styles/app.css",
   "scripts/modal.js",
-  "scripts/app.js"
+  "scripts/app.js",
+  "pages/tutorial.html",
+  "scripts/tutorialPage.js",
+
 ];
 
 /* A version number is useful when updating the worker logic,
@@ -119,7 +121,9 @@ self.addEventListener("fetch", function(event) {
                  available to caches.match(event.request) calls, when looking
                  for cached responses.
               */
+            try{
               cache.put(event.request, cacheCopy);
+            } catch(e){console.log('error catched in sw')}
             })
             .then(function() {
               //console.log('WORKER: fetch response stored in cache.', event.request.url);

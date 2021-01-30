@@ -153,6 +153,7 @@ if ('serviceWorker' in navigator) {
                 installingWorker.onstatechange = () => {
                     if (installingWorker.state === 'installed' &&
                         navigator.serviceWorker.controller) {
+                          // $.get( "pages/tutorial.html")
                         // reload the page
                         location.reload();
                     }
@@ -835,8 +836,6 @@ planetScopeMonthlyMosaic.on("load",function() {
   document.getElementById("Alert").style.fontSize = "15px";
   document.getElementById('Alert').innerHTML = '<br>🕑<br>☀️🌙'
   document.getElementById("Alert").style.display = 'initial'
-
-
 });
 
 // demo.on('click',function(){
@@ -1685,12 +1684,12 @@ document.getElementById('rose').onclick = function(e){
 
     },200)
 
-      if(clicksRose == 5){ //this is to refresh the carto layer
-        document.getElementById("Alert").style.fontSize = "20px";
+      if(clicksRose == 3){ //this is to refresh the carto layer
+        document.getElementById("Alert").style.fontSize = "40px";
         document.getElementById('Alert').innerHTML = '<br>⌛'
         document.getElementById("Alert").style.display = 'initial'
         setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
-          if(clicksRose < 8){ //this is to check that the user actually want to click 5 times, not 10
+          if(clicksRose < 5){ //this is to check that the user actually want to click 5 times, not 10
             document.getElementById("Alert").style.display = 'none'
             console.log('refreshed')
             deflated.removeLayer(cartoGeometries)
