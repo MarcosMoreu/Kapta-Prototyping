@@ -1576,7 +1576,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
 }, 1000)
 }
 
-//console.log(currentLocation[0])
+//console.log(currentLocation[0]d)
 var gps_Button = L.easyButton({
     id: 'gps',
     position: 'topleft',
