@@ -181,7 +181,8 @@ var initialiseMap = function(){
         // Usage:
 
         preload([
-            'images/ThumbsUpGreen.png','images/checkingPw.gif','images/drawPolygon.png','images/line.png','images/point.png',
+            'images/ThumbsUpGreen.png','images/checkingPw.gif',
+            'images/drawPolygon.png','images/line.png','images/point.png',
             'images/applyFilter.png','images/arrowLeft.png', 'images/arrowRight.png', 'images/backButton.png','images/bin.png','images/binOriginal.png','images/binpost.png',
             'images/binpre.png','images/burger.png','images/burgerBlack.png','images/cancel.png','images/clearFilter.png','images/commentFeature.png',
             'images/customise.png','images/dateAll.png','images/dateDay.png','images/dateMonth.png','images/dateWeek.png','images/dateYear.png','images/deleteAllVertex.png',
@@ -193,7 +194,7 @@ var initialiseMap = function(){
             'images/other.png','images/other1.png','images/planet.png','images/play.png','images/PlusSign.png','images/portugal.png',
             'images/questionmark.png','images/random.png','images/record.png','images/shareMessagingApps.png','images/shareworld.png','images/shareworldConfirm.png',
             'images/telegram.png','images/uk.png','images/other1.png','images/underConstruction.png','images/wechat.png','images/whatsapp.png','images/youtube.png',
-            'images/commentSent.gif','images/shareMessagingAppsYellow.png','images/sendComment.png',
+            'images/shareMessagingAppsYellow.png','images/sendComment.png',
             // console.log('images preloaded')
         ]);
       // var images = new Array()
