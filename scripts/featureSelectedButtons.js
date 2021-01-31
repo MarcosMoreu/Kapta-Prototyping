@@ -141,10 +141,22 @@ document.getElementById("goBackMessagingApps").onclick = function() {
 
 
 document.getElementById("whatsApp").onclick = function() {
+  console.log(shareURL)
   //alert('Under development. Available soon.');
   //  window.location.href = "https://wa.me/whatsappphonenumber/?text=urlencodedtext";
   if(shareURL == 'coords'){
-    window.location.href='https://wa.me/?text='+encodeURIComponent(window.location.href)
+    if(url.includes('/?')){ // to avoid shareing geojson if url still contains geojson
+      function getSecondPart(str) {
+        return str.split('#')[1];
+      }
+      var urlAfterHash = getSecondPart(window.location.href)
+        window.location.href = 'https://wa.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
+
+      // console.log(window.location.href)
+
+    }else{
+      window.location.href='https://wa.me/?text='+encodeURIComponent(window.location.href)
+    }
   }else if(shareURL == 'encodedGeoJSON'){
     window.location.href='https://wa.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
 

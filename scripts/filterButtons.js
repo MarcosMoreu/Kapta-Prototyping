@@ -42,7 +42,7 @@ document.getElementById("applyFilter").onclick = function(e) {
          getGeoJSON()
 
          var loadInfoDateFilter = period + ' ☀️🌙 </br> ...'
-         document.getElementById("Alert").style.fontSize = "18px";
+         document.getElementById("Alert").style.fontSize = "20px";
          document.getElementById("Alert").innerHTML = loadInfoDateFilter
          document.getElementById("Alert").style.display = 'initial'
 
@@ -77,7 +77,7 @@ document.getElementById("applyFilter").onclick = function(e) {
           }else{
             var loadInfoDateFilter = period + ' ☀️🌙 </br>'+ boxContentFiltering // not encoded here as we want the emoji displayed in the alert
           }
-         document.getElementById("Alert").style.fontSize = "18px";
+         document.getElementById("Alert").style.fontSize = "20px";
          document.getElementById("Alert").innerHTML = loadInfoDateFilter
          document.getElementById("Alert").style.display = 'initial'
     }

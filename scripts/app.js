@@ -835,8 +835,8 @@ planetScopeMonthlyMosaic.on("load",function() {
   console.log("all visible planet tiles have been loaded")
   // document.getElementById("Alert").style.display = 'none'
   document.getElementById("MapLoading").style.display = 'none'
-  document.getElementById("Alert").style.fontSize = "15px";
-  document.getElementById('Alert').innerHTML = '<br>🕑<br>☀️🌙'
+  document.getElementById("Alert").style.fontSize = "20px";
+  document.getElementById('Alert').innerHTML = '🕑<br>☀️🌙'
   document.getElementById("Alert").style.display = 'initial'
 });
 
@@ -850,47 +850,47 @@ planetScopeMonthlyMosaicDec.on("load",function() {
   console.log("all visible planet tiles have been loaded")
   document.getElementById("MapLoading").style.display = 'none'
 
-  document.getElementById("Alert").style.fontSize = "15px";
-  document.getElementById('Alert').innerHTML = '<br>30<br>☀️🌙'
+  document.getElementById("Alert").style.fontSize = "20px";
+  document.getElementById('Alert').innerHTML = '30<br>☀️🌙'
   document.getElementById("Alert").style.display = 'initial'});
 planetScopeMonthlyMosaicNov.on("load",function() {
   console.log("all visible planet tiles have been loaded")
   document.getElementById("MapLoading").style.display = 'none'
 
-  document.getElementById("Alert").style.fontSize = "15px";
-  document.getElementById('Alert').innerHTML = ' <br>60<br>☀️🌙'
+  document.getElementById("Alert").style.fontSize = "20px";
+  document.getElementById('Alert').innerHTML = '60<br>☀️🌙'
   document.getElementById("Alert").style.display = 'initial'
 });
 planetScopeMonthlyMosaicOct.on("load",function() {
   console.log("all visible planet tiles have been loaded")
   document.getElementById("MapLoading").style.display = 'none'
 
-  document.getElementById("Alert").style.fontSize = "15px";
-  document.getElementById('Alert').innerHTML = ' <br>90<br>☀️🌙'
+  document.getElementById("Alert").style.fontSize = "20px";
+  document.getElementById('Alert').innerHTML = '90<br>☀️🌙'
   document.getElementById("Alert").style.display = 'initial'
 });
 planetScopeMonthlyMosaicSept.on("load",function() {
   console.log("all visible planet tiles have been loaded")
   document.getElementById("MapLoading").style.display = 'none'
 
-  document.getElementById("Alert").style.fontSize = "15px";
-  document.getElementById('Alert').innerHTML = ' <br>120<br>☀️🌙'
+  document.getElementById("Alert").style.fontSize = "20px";
+  document.getElementById('Alert').innerHTML = '120<br>☀️🌙'
   document.getElementById("Alert").style.display = 'initial'
 });
 planetScopeMonthlyMosaicDec2019.on("load",function() {
   console.log("all visible planet tiles have been loaded")
   document.getElementById("MapLoading").style.display = 'none'
 
-  document.getElementById("Alert").style.fontSize = "15px";
-  document.getElementById('Alert').innerHTML = '<br>150<br>☀️🌙'
+  document.getElementById("Alert").style.fontSize = "20px";
+  document.getElementById('Alert').innerHTML = '150<br>☀️🌙'
   document.getElementById("Alert").style.display = 'initial'
 });
 planetScopeMonthlyMosaicJan2019.on("load",function() {
   console.log("all visible planet tiles have been loaded")
   document.getElementById("MapLoading").style.display = 'none'
 
-  document.getElementById("Alert").style.fontSize = "15px";
-  document.getElementById('Alert').innerHTML = '<br>365<br>☀️🌙'
+  document.getElementById("Alert").style.fontSize = "20px";
+  document.getElementById('Alert').innerHTML = '365<br>☀️🌙'
   document.getElementById("Alert").style.display = 'initial'
 });
 
@@ -1035,8 +1035,8 @@ var planet_Button = L.easyButton({
 
             /////////////////////// to load planet tiles manually  /////////////
             document.getElementById('myRange').style.display = 'initial'
-            document.getElementById("Alert").style.fontSize = "15px";
-            document.getElementById('Alert').innerHTML = '<br>🕑<br>☀️🌙'
+            document.getElementById("Alert").style.fontSize = "20px";
+            document.getElementById('Alert').innerHTML = '🕑<br>☀️🌙'
             document.getElementById("Alert").style.display = 'initial'
 
             setInterval(checkSliderPosition,200)
