@@ -77,6 +77,8 @@ var circleGT250
 var circleLT250
 var circleLT250Added = false
 var circleGT250Added = false
+var cartoGeometriesInitial =null
+
 //var miniMap
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -1683,20 +1685,36 @@ document.getElementById('rose').onclick = function(e){
       map.doubleClickZoom.enable();
 
     },200)
+    console.log('deflated',deflated)
+    var toRemoveDeflated = deflated._layers
+    console.log('toremovedeflated',toRemoveDeflated)
 
-      if(clicksRose == 3){ //this is to refresh the carto layer
+      if(clicksRose == 5){ //this is to refresh the carto layer
         document.getElementById("Alert").style.fontSize = "40px";
         document.getElementById('Alert').innerHTML = '<br>⌛'
         document.getElementById("Alert").style.display = 'initial'
+
+
         setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
-          if(clicksRose < 5){ //this is to check that the user actually want to click 5 times, not 10
+          if(clicksRose < 8){ //this is to check that the user actually want to click 5 times, not 10
             document.getElementById("Alert").style.display = 'none'
             console.log('refreshed')
-            deflated.removeLayer(cartoGeometries)
+
+            for (i = 0; i < deflated._layers.length; i++) { // not the optimal solution, but couldn't find the way to empty deflated
+              try{ // because array not starts with 1,2,3
+                deflated.removeLayer(deflated._layers[i])
+                console.log('forr ',i)
+              }catch(e){}
+            }
+            //sqlquery specified below to avoid interferance with SELECT after INSERT
+            sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date, commentone, commentoneaudioavailable FROM lumblu"
             getGeoJSON()
+            // location.reload();
+
+
           clicksRose = 0;
         }
-        },2000)
+      },1000)
       }
       if(clicksRose == 10){ //this is to show the download tiles buttons
         clicksRose = 0;
@@ -1708,7 +1726,7 @@ document.getElementById('rose').onclick = function(e){
         clicksRose = 0;
       },20000)
 
-  return clicksRose
+  return clicksRose && sqlQuery
 }
 
 
@@ -1891,7 +1909,7 @@ document.getElementById("DownloadButton").style.display = "none";
 
 document.getElementById('record').style.display = 'none';
 document.getElementById('enableRecording').style.display = 'none';
-document.getElementById('activatePlay').style.opacity = '0';
+document.getElementById('activatePlay').style.opacity = '1';
 
 document.getElementById('storeAudio').style.display = 'none';
 document.getElementById('gum').style.display = 'none';

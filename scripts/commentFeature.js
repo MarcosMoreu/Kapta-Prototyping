@@ -53,6 +53,8 @@ console.log(selectedFeature.feature.properties.cartodb_id)
   try{
     document.getElementById("popupAreaLength").disabled = false;
     document.getElementById('commentPopup').disabled = false;
+    document.getElementById('audioControls').style.display = 'none'
+
   }catch(e){}
 
 

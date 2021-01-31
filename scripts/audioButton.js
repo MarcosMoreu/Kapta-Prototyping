@@ -50,7 +50,7 @@ document.getElementById('record').onclick = function(e) {
         document.getElementById('voiceGif').play()
         this.style.backgroundColor = 'yellow';
         this.style.borderColor = 'yellow';
-
+        console.log('activated play')
         document.getElementById('activatePlay').style.display = 'none';
         document.getElementById('storeAudio').style.opacity = '0.1';
         document.getElementById('emoji').style.display = 'none';
@@ -71,6 +71,7 @@ document.getElementById('record').onclick = function(e) {
         //to activate share-download button when audio is recorded
         document.getElementById("share-download").style.opacity = "1";
         document.getElementById("share-download").disabled = false;
+        console.log('stopped play')
 
         this.style.backgroundColor = 'white';
         document.getElementById('voiceGif').pause()

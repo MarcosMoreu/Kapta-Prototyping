@@ -366,10 +366,11 @@ var cartoGeoJSONLayer = function(data) {
             });//...layerclick
         }//...oneachfeature
     })//...l.geojson
-
+    // cartoGeometriesInitial = cartoGeometries
   try {
     cartoGeometries.addTo(deflated)
-  }catch(err){
+    console.log('cartogeometries',cartoGeometries)
+    }catch(err){
     // console.log('error sql catched due to empty layer after filter applied')
   }
   return cartoGeometries && getTotalFeaturesInDB && aFeatureIsSelected
