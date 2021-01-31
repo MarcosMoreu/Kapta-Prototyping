@@ -938,7 +938,9 @@ var osm_Button = L.easyButton({
 
                });
 
-            }catch{console.log('error loading osm tiles')}
+            }catch{
+              console.log('error loading osm tiles')
+            }
 
 
             basemapOn = 'osm'
@@ -983,9 +985,9 @@ var googleSat_Button = L.easyButton({
             googleSat_Button.removeFrom(map);
             osm_Button.addTo(map);
             myLayer_Button.addTo(map) //keep this, otherwise the button moves up
-            if(isOnline == true){
+            // if(isOnline == true){
             filter_Button.addTo(map);
-            }
+            // }
 
 
             try{
@@ -1001,7 +1003,9 @@ var googleSat_Button = L.easyButton({
 
              });
 
-            }catch{console.log('error loading google tiles')}
+            }catch{
+              console.log('error loading google tiles')
+            }
 
             basemapOn = 'googleSat'
 
@@ -1068,13 +1072,15 @@ var planet_Button = L.easyButton({
 
                });
 
-            }catch{console.log('error loading planet tiles')}
+            }catch{
+              console.log('error loading planet tiles')
+            }
 
           //  planet.addTo(map); // planet imagery goes after so it stays on top of sentinel data (sentinel is global, planet is not yet?)
             myLayer_Button.addTo(map) //keep this, otherwise the button moves up
-            if(isOnline == true){
+            // if(isOnline == true){
             filter_Button.addTo(map);
-            }
+            // }
             basemapOn = 'planet'
           return basemapOn
         }

@@ -172,7 +172,9 @@ var initialiseMap = function(){
         $(arrayOfImages).each(function(){
             try{
                 $('<img/>')[0].src = this;
-            }catch(e){console.log('image failed to preload')}
+            }catch(e){
+              console.log('image failed to preload')
+            }
 
             // Alternatively you could use:
             // (new Image()).src = this;
