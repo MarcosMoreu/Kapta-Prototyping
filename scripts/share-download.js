@@ -247,7 +247,7 @@ document.getElementById('share-download').onclick = function(e) {
       // var parsedJSONdecoded = decodeURIComponent(convertedDataShareDirect);
       // var parsedJSON = JSON.parse(parsedJSONdecoded)
       // console.log(parsedJSON)
-    return created && data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType && convertedDataShareDirect && propertiesGeoJSON//&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
+    return created && data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType && convertedDataShareDirect && propertiesGeoJSON //&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
 }
 //console.log(finalLayer)
 
@@ -492,6 +492,7 @@ document.getElementById('shareWorldButton').onclick = function(e) {
   return clickCountSendButton
 }
 
+var elementJustAddedToLocalStorage = false
 document.getElementById('DownloadButton').onclick = function(e) {
   hideButtons()
   document.getElementById('goBackClassification').style.display = 'none';
@@ -560,6 +561,8 @@ document.getElementById('DownloadButton').onclick = function(e) {
         gps_Button.button.style.opacity = '1';
         gps_Button.button.disabled = false;
 
+        elementJustAddedToLocalStorage = true
+
         document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
         if (isIOS == false) {
             recordedVideo.pause();
@@ -577,7 +580,7 @@ document.getElementById('DownloadButton').onclick = function(e) {
 
     }, timeOfVideo - 300);
 
-    return finished && whichLayerIsOn
+    return finished && whichLayerIsOn && localStorageLayer && elementJustAddedToLocalStorage
 }
 
 // end

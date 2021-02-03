@@ -166,9 +166,14 @@ document.getElementById("whatsApp").onclick = function() {
 document.getElementById("telegram").onclick = function() {
 //  alert('🚧 Telegram sharing option not available yet.');
   if(shareURL == 'coords'){
-    window.location.href='https://telegram.me/?text='+encodeURIComponent(window.location.href)
+    // window.location.href='https://telegram.me/?text='+encodeURIComponent(window.location.href)
+    // window.location.href='https://t.me/share/url?url=https://amappingprototype.xyz/&text='+encodeURIComponent(window.location.href)
+    window.location.href='https://t.me/share/url?url='+encodeURIComponent(window.location.href)
+
+
   }else if(shareURL == 'encodedGeoJSON'){
-    window.location.href='https://telegram.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+    // window.location.href='https://telegram.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+    window.location.href='https://t.me/share/url?url='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
 
   }
 }

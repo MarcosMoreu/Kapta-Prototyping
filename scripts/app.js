@@ -1,5 +1,5 @@
 console.log('app.js accessed')
-
+console.log(sentinelHubKey)
 
 // var pageLoaded = false
 var isIOS = /iPad|iPhone|iPod|Mac OS X/.test(navigator.userAgent) && !window.MSStream; // Mac OS X correct???
@@ -7,7 +7,7 @@ var isOnline = navigator.onLine
 var isOnlineGlobal = isOnline
 var browserLanguage = navigator.language
 var planetKey;
-//var sentinelKey;
+var sentinelHubKey;
 var firebaseKey;
 var firebaseConfig;
 var cartousername;
@@ -654,28 +654,46 @@ var offlineControlOSM = L.control.offline(osm, tilesDb, {
     maxZoom: 21
 });
 
-var planetScopeMonthlyMosaic = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_12_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-  attribution: 'Leaflet | PlanetScope Imagery  Jan 2021'
-  })
+var sentinelHubKey = '09235d3c-8c31-4b0e-abdf-213a9f622639';
 
-  var planetScopeMonthlyMosaicDec = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_12_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-    attribution: 'Leaflet | PlanetScope Imagery  December 2020'
+// a script to automate the update of these global mosaics is needed. At the moment, this needs to be done manually, both here to update the attributes and in the SentinelHub platfrom
+var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2021_01_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+  attribution: 'Leaflet | PlanetScope Imagery January 2021'
+  })
+  var planetScopeMonthlyMosaicLatestMinus4Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_08_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+    attribution: 'Leaflet | PlanetScope Imagery August 2020'
     })
-  var planetScopeMonthlyMosaicNov = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_11_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-    attribution: 'Leaflet | PlanetScope Imagery  November 2020'
+  var planetScopeMonthlyMosaicLatestMinus8Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_04_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+    attribution: 'Leaflet | PlanetScope Imagery April 2020'
     })
-  var planetScopeMonthlyMosaicOct = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_10_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-    attribution: 'Leaflet | PlanetScope Imagery  October 2020'
+  var planetScopeMonthlyMosaic1YearAgo = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_01_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+    attribution: 'Leaflet | PlanetScope Imagery  January 2020'
     })
-  var planetScopeMonthlyMosaicSept = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_09_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-    attribution: 'Leaflet | PlanetScope Imagery  September 2020'
-    })
-  var planetScopeMonthlyMosaicDec2019 = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2019_12_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-    attribution: 'Leaflet | PlanetScope Imagery  December 2019'
-    })
-  var planetScopeMonthlyMosaicJan2019 = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2019_01_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-    attribution: 'Leaflet | PlanetScope Imagery  January 2019'
-    })
+  var sentinelMosaicLatestMinus2Years = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelHubKey + "?REQUEST=GetMap&PREVIEW=2", {
+        layers: '2019SENTINEL2',
+        attribution: 'Leaflet | Sentinel 2 Imagery January 2019'
+    });
+  var sentinelMosaicLatestMinus3Years = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelHubKey + "?REQUEST=GetMap&PREVIEW=2", {
+        layers: '2018SENTINEL2',
+        attribution: 'Leaflet | Sentinel 2 Imagery January 2018'
+    });
+  var sentinelMosaicLatestMinus5Years = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelHubKey + "?REQUEST=GetMap&PREVIEW=2", {
+        layers: '2017SENTINEL2',
+        attribution: 'Leaflet | Sentinel 2 Imagery January 2017'
+    });
+
+  // var  sentinelMosaic6YearsAgo = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelHubKey + "?REQUEST=GetMap&PREVIEW=2", {
+  //       layers: '2020SENTINEL2',
+  //       attribution: 'Leaflet | Sentinel 2 Imagery January 2015'
+  //   });
+
+
+
+  // var  planetScopeMonthlyMosaic = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelHubKey + "?REQUEST=GetMap&PREVIEW=2", {
+  //       layers: '2020SENTINEL2',
+  //       attribution: 'Leaflet |Sentinel 2 Imagery May 2020'
+  //   });
+
 
 // ///////////// messages for tileS download   (NOT USED CURRENTLY)     /////////
 // googleSat.on('offline:save-start', function(data) {
@@ -831,7 +849,7 @@ googleSat.on("load",function() {
  // document.getElementById("Alert").style.display = 'none'
  document.getElementById("MapLoading").style.display = 'none'
 });
-planetScopeMonthlyMosaic.on("load",function() {
+planetScopeMonthlyMosaicLatest.on("load",function() {
   console.log("all visible planet tiles have been loaded")
   // document.getElementById("Alert").style.display = 'none'
   document.getElementById("MapLoading").style.display = 'none'
@@ -846,51 +864,51 @@ planetScopeMonthlyMosaic.on("load",function() {
 //   document.getElementById("Alert").style.display = 'initial';
 // })
 
-planetScopeMonthlyMosaicDec.on("load",function() {
-  console.log("all visible planet tiles have been loaded")
-  document.getElementById("MapLoading").style.display = 'none'
-
-  document.getElementById("Alert").style.fontSize = "20px";
-  document.getElementById('Alert').innerHTML = '30<br>☀️🌙'
-  document.getElementById("Alert").style.display = 'initial'});
-planetScopeMonthlyMosaicNov.on("load",function() {
-  console.log("all visible planet tiles have been loaded")
-  document.getElementById("MapLoading").style.display = 'none'
-
-  document.getElementById("Alert").style.fontSize = "20px";
-  document.getElementById('Alert').innerHTML = '60<br>☀️🌙'
-  document.getElementById("Alert").style.display = 'initial'
-});
-planetScopeMonthlyMosaicOct.on("load",function() {
-  console.log("all visible planet tiles have been loaded")
-  document.getElementById("MapLoading").style.display = 'none'
-
-  document.getElementById("Alert").style.fontSize = "20px";
-  document.getElementById('Alert').innerHTML = '90<br>☀️🌙'
-  document.getElementById("Alert").style.display = 'initial'
-});
-planetScopeMonthlyMosaicSept.on("load",function() {
+planetScopeMonthlyMosaicLatestMinus4Months.on("load",function() {
   console.log("all visible planet tiles have been loaded")
   document.getElementById("MapLoading").style.display = 'none'
 
   document.getElementById("Alert").style.fontSize = "20px";
   document.getElementById('Alert').innerHTML = '120<br>☀️🌙'
-  document.getElementById("Alert").style.display = 'initial'
-});
-planetScopeMonthlyMosaicDec2019.on("load",function() {
+  document.getElementById("Alert").style.display = 'initial'});
+planetScopeMonthlyMosaicLatestMinus8Months.on("load",function() {
   console.log("all visible planet tiles have been loaded")
   document.getElementById("MapLoading").style.display = 'none'
 
   document.getElementById("Alert").style.fontSize = "20px";
-  document.getElementById('Alert').innerHTML = '150<br>☀️🌙'
+  document.getElementById('Alert').innerHTML = '240<br>☀️🌙'
   document.getElementById("Alert").style.display = 'initial'
 });
-planetScopeMonthlyMosaicJan2019.on("load",function() {
+planetScopeMonthlyMosaic1YearAgo.on("load",function() {
   console.log("all visible planet tiles have been loaded")
   document.getElementById("MapLoading").style.display = 'none'
 
   document.getElementById("Alert").style.fontSize = "20px";
   document.getElementById('Alert').innerHTML = '365<br>☀️🌙'
+  document.getElementById("Alert").style.display = 'initial'
+});
+sentinelMosaicLatestMinus2Years.on("load",function() {
+  console.log("all visible planet tiles have been loaded")
+  document.getElementById("MapLoading").style.display = 'none'
+
+  document.getElementById("Alert").style.fontSize = "20px";
+  document.getElementById('Alert').innerHTML = '2<br>☀️🌎'
+  document.getElementById("Alert").style.display = 'initial'
+});
+sentinelMosaicLatestMinus3Years.on("load",function() {
+  console.log("all visible planet tiles have been loaded")
+  document.getElementById("MapLoading").style.display = 'none'
+
+  document.getElementById("Alert").style.fontSize = "20px";
+  document.getElementById('Alert').innerHTML = '3<br>☀️🌎'
+  document.getElementById("Alert").style.display = 'initial'
+});
+sentinelMosaicLatestMinus5Years.on("load",function() {
+  console.log("all visible planet tiles have been loaded")
+  document.getElementById("MapLoading").style.display = 'none'
+
+  document.getElementById("Alert").style.fontSize = "20px";
+  document.getElementById('Alert').innerHTML = '4<br>☀️🌎'
   document.getElementById("Alert").style.display = 'initial'
 });
 
@@ -1063,8 +1081,8 @@ var planet_Button = L.easyButton({
             // googleSat.removeFrom(map);
             osm.removeFrom(map);
             try{
-              planetScopeMonthlyMosaic.addTo(map);
-              planetScopeMonthlyMosaic.on("load",function() {
+              planetScopeMonthlyMosaicLatest.addTo(map);
+              planetScopeMonthlyMosaicLatest.on("load",function() {
 
                 console.log("all visible planet tiles have been loaded")
                 // document.getElementById("Alert").style.display = 'none'
@@ -1092,7 +1110,34 @@ planet_Button.button.style.height = '50px';
 planet_Button.button.style.transitionDuration = '.3s';
 planet_Button.button.style.backgroundColor = 'black';
 
-
+// var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2021_01_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+//   attribution: 'Leaflet | PlanetScope Imagery January 2021'
+//   })
+//   var planetScopeMonthlyMosaicLatestMinus4Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_08_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+//     attribution: 'Leaflet | PlanetScope Imagery August 2020'
+//     })
+//   var planetScopeMonthlyMosaicLatestMinus8Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_04_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+//     attribution: 'Leaflet | PlanetScope Imagery April 2020'
+//     })
+//   var planetScopeMonthlyMosaic1YearAgo = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_01_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+//     attribution: 'Leaflet | PlanetScope Imagery  January 2020'
+//     })
+//   var sentinelMosaicLatestMinus2Years = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelHubKey + "?REQUEST=GetMap&PREVIEW=2", {
+//         layers: '2019SENTINEL2',
+//         attribution: 'Leaflet | Sentinel 2 Imagery January 2019'
+//     });
+//   var sentinelMosaicLatestMinus3Years = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelHubKey + "?REQUEST=GetMap&PREVIEW=2", {
+//         layers: '2018SENTINEL2',
+//         attribution: 'Leaflet | Sentinel 2 Imagery January 2018'
+//     });
+//   var sentinelMosaicLatestMinus4Years = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelHubKey + "?REQUEST=GetMap&PREVIEW=2", {
+//         layers: '2017SENTINEL2',
+//         attribution: 'Leaflet | Sentinel 2 Imagery January 2017'
+//     });
+//   var sentinelMosaicLatestMinus5Years = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelHubKey + "?REQUEST=GetMap&PREVIEW=2", {
+//         layers: '2015LANDSAT',
+//         attribution: 'Leaflet | Landsat 2 Imagery January 2015'
+//     });
 
 //imagery Slider
 
@@ -1101,13 +1146,13 @@ planet_Button.button.style.backgroundColor = 'black';
   var output = document.getElementById("demo");
   slider.value = 100; // Display the default slider value
   var removeAllimagery = function(){
-    planetScopeMonthlyMosaic.removeFrom(map);
-    planetScopeMonthlyMosaicDec.removeFrom(map);
-    planetScopeMonthlyMosaicNov.removeFrom(map);
-    planetScopeMonthlyMosaicOct.removeFrom(map);
-    planetScopeMonthlyMosaicSept.removeFrom(map);
-    planetScopeMonthlyMosaicDec2019.removeFrom(map);
-    planetScopeMonthlyMosaicJan2019.removeFrom(map);
+    planetScopeMonthlyMosaicLatest.removeFrom(map);
+    planetScopeMonthlyMosaicLatestMinus4Months.removeFrom(map);
+    planetScopeMonthlyMosaicLatestMinus8Months.removeFrom(map);
+    planetScopeMonthlyMosaic1YearAgo.removeFrom(map);
+    sentinelMosaicLatestMinus2Years.removeFrom(map);
+    sentinelMosaicLatestMinus3Years.removeFrom(map);
+    sentinelMosaicLatestMinus5Years.removeFrom(map);
     //
     // planetScopeMonthlyMosaicSept.removeFrom(map)
     // planetScopeMonthlyMosaicAug.removeFrom(map)
@@ -1127,20 +1172,20 @@ var checkSliderPosition = function() { /////////////////////////////////////////
     output.innerHTML = this.value;
 
       switch (true) {
-          case (output.innerHTML > 87):
+          case (output.innerHTML > 85):
               this.value = 100
               removeAllimagery()
-              planetScopeMonthlyMosaic.addTo(map)
+              planetScopeMonthlyMosaicLatest.addTo(map)
               console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "25px";
               // document.getElementById('Alert').innerHTML = '<br>⌛'
               document.getElementById("MapLoading").style.display = 'initial'
 
               break
-          case (output.innerHTML == 1):
-              this.value == 1
+          case (output.innerHTML < 10):
+              this.value = 1
               removeAllimagery()
-              planetScopeMonthlyMosaicJan2019.addTo(map)
+              sentinelMosaicLatestMinus5Years.addTo(map)
               console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>1/2019 '
@@ -1148,10 +1193,10 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               // document.getElementById('Alert').innerHTML = '<br>⌛'
               document.getElementById("MapLoading").style.display = 'initial'
               break
-          case (output.innerHTML < 10):
-              this.value = 5 // this is to locate the circle in a specific position
+          case (output.innerHTML < 25):
+              this.value = 17 // this is to locate the circle in a specific position
               removeAllimagery()
-              planetScopeMonthlyMosaicDec2019.addTo(map)
+              sentinelMosaicLatestMinus3Years.addTo(map)
               console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>12/2019 '
@@ -1159,10 +1204,10 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               // document.getElementById('Alert').innerHTML = '<br>⌛'
               document.getElementById("MapLoading").style.display = 'initial'
               break
-          case (output.innerHTML < 25):
-              this.value = 17
+          case (output.innerHTML < 40):
+              this.value = 32
               removeAllimagery()
-              planetScopeMonthlyMosaicSept.addTo(map)
+              sentinelMosaicLatestMinus2Years.addTo(map)
               console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>9/2020 '
@@ -1170,10 +1215,10 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               // document.getElementById('Alert').innerHTML = '<br>⌛'
               document.getElementById("MapLoading").style.display = 'initial'
               break
-          case (output.innerHTML < 50):
-              this.value = 37
+          case (output.innerHTML < 55):
+              this.value = 47
               removeAllimagery()
-              planetScopeMonthlyMosaicOct.addTo(map)
+              planetScopeMonthlyMosaic1YearAgo.addTo(map)
               console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>10/2020 '
@@ -1181,10 +1226,10 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               // document.getElementById('Alert').innerHTML = '<br>⌛'
               document.getElementById("MapLoading").style.display = 'initial'
               break
-          case (output.innerHTML < 75):
+          case (output.innerHTML < 70):
               this.value = 62
               removeAllimagery()
-              planetScopeMonthlyMosaicNov.addTo(map)
+              planetScopeMonthlyMosaicLatestMinus8Months.addTo(map)
               console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>11/2020 '
@@ -1192,10 +1237,10 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               // document.getElementById('Alert').innerHTML = '<br>⌛'
               document.getElementById("MapLoading").style.display = 'initial'
               break
-          case (output.innerHTML < 87):
-              this.value = 87
+          case (output.innerHTML < 86):
+              this.value = 77
               removeAllimagery()
-              planetScopeMonthlyMosaicDec.addTo(map)
+              planetScopeMonthlyMosaicLatestMinus4Months.addTo(map)
               console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>12/2020 '
@@ -1205,7 +1250,7 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               break
           default:
               removeAllimagery()
-              planetScopeMonthlyMosaic.addTo(map)
+              planetScopeMonthlyMosaicLatest.addTo(map)
               console.log(output.innerHTML)
               break
       }
@@ -1233,7 +1278,7 @@ var myLayer_Button = L.easyButton({
             // console.log(groupGeoJSON)
             //  deflated.removeFrom(map)
             // whichLayerIsOn = 'deflated'
-            if (whichLayerIsOn == 'deflated' && localStorageLayer != null) {
+            if (whichLayerIsOn == 'deflated' && (localStorageLayer != null || elementJustAddedToLocalStorage ==true)) {
                 deflated.removeFrom(map)
                 if (localStorageLayer != null) {
                   console.log('local storage is not null')

@@ -1,3 +1,9 @@
+$(document).keypress(
+  function(event){
+    if (event.which == '13') {
+      event.preventDefault();
+    }
+});
 //the map is initialised if not first load or when key is clicked
 
 setTimeout(function(){
