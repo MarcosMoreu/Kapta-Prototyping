@@ -1,5 +1,3 @@
-console.log('app.js accessed')
-console.log(sentinelHubKey)
 
 // var pageLoaded = false
 var isIOS = /iPad|iPhone|iPod|Mac OS X/.test(navigator.userAgent) && !window.MSStream; // Mac OS X correct???
@@ -89,7 +87,7 @@ var isFirstTime; //var to store if the site is visited for the first time
 
 
 //firstLoad();
-//console.log('isIOS  ' + isIOS)
+////console.log('isIOS  ' + isIOS)
 
 // var isOnlineGlobal = isOnline
 
@@ -106,12 +104,12 @@ var checkIfOffline = setInterval(function() {
     myLayer_Button.button.style.backgroundColor = '#43ACF0';
 
     deflated.removeFrom(map)
-    // console.log('isonline= ', isOnline)
+    // //console.log('isonline= ', isOnline)
     //clearInterval(checkIfOffline)
     inOnline = false
   }else{
     isOnline = true
-    //console.log('isonline= ', isOnline)
+    ////console.log('isonline= ', isOnline)
 
   }
  return isOnline
@@ -128,10 +126,10 @@ var findFirebaseCredentials = setInterval(function() {
     if (isOnline == true & firebaseKey != null) {
         try {
             firebase.initializeApp(firebaseConfig);
-          console.log('Firebase initialized')
+          //console.log('Firebase initialized')
             clearInterval(findFirebaseCredentials)
         } catch (e) {
-          //console.log('firebase not initialized!!')
+          ////console.log('firebase not initialized!!')
         }
     }
 }, 500)
@@ -147,10 +145,10 @@ if ('serviceWorker' in navigator) {
         .then(function(registration) {
 
             registration.update() //to update the sw and caches if version has changed
-            //console.log('sw has been updated')
+            ////console.log('sw has been updated')
             //to reload the page if sw version has changed. This is to provide the user the latest version without the need of reloading or clearing cache
             registration.onupdatefound = () => {
-              console.log('update found in SW')
+              //console.log('update found in SW')
                 const installingWorker = registration.installing;
                 installingWorker.onstatechange = () => {
                     if (installingWorker.state === 'installed' &&
@@ -163,7 +161,7 @@ if ('serviceWorker' in navigator) {
             };
         })
         .catch(function(err) {
-            //console.log('Service Worker Failed to register', err);
+            ////console.log('Service Worker Failed to register', err);
         })
 }
 
@@ -249,17 +247,17 @@ var tilesDb = {
 // var sameSession = false; //to know if user has already mapped in this session
 
 lastPositionStoredLOCALLY = localStorage.getItem('lastPositionStoredLOCALLY')
-//console.log(lastPositionStoredLOCALLY)
+////console.log(lastPositionStoredLOCALLY)
 
 //to avoid error if no location was stored either because first load, not allowed, or cache cleared
 if (lastPositionStoredLOCALLY != null) {
     lastPositionStoredLOCALLY = lastPositionStoredLOCALLY.split(',') // to convert string to array
-    //console.log(lastPositionStoredLOCALLY[0])
+    ////console.log(lastPositionStoredLOCALLY[0])
 }
 
 // function to get coordinates and zoom level from URL, and then use the zoom and center variables to center the map if url != original
 var mappos = L.Permalink.getMapLocation();
-console.log(mappos.center.lat)
+//console.log(mappos.center.lat)
 
 //////////////////////////////////////////////  MAP  //////////////////////////////////////////////////////
 var randomIDtest
@@ -274,7 +272,7 @@ var storeURLGeoJSON = function(data){
 
   geoJSONLocalforageDB.setItem(randomID, parsedJSONStringified).then(function(value){
   }).catch(function(err) {
-    console.error(err);
+    //console.error(err);
   });
   randomIDtest = randomID
 
@@ -287,7 +285,7 @@ var storeURLGeoJSON = function(data){
 var url = window.location.href
 // var url = 'https://amappingprototype.xyz/?%7B%22type%22%3A%22FeatureCollection%22%2C%22features%22%3A%5B%7B%22type%22%3A%22Feature%22%2C%22properties%22%3A%7B%22randomID%22%3A1111%2C%22landUsesEmoji%22%3A%22test%22%2C%22areaPolygon%22%3A%222489831968.72%20hectares%22%2C%22lengthLine%22%3A%22Polygon%22%7D%2C%22geometry%22%3A%7B%22type%22%3A%22Polygon%22%2C%22coordinates%22%3A%5B%5B%5B-4.21875%2C-13.923404%5D%2C%5B16.875%2C-40.713956%5D%2C%5B66.09375%2C-40.713956%5D%2C%5B63.28125%2C4.214943%5D%2C%5B-4.21875%2C-13.923404%5D%5D%5D%7D%7D%5D%7D/#-15.11455,40.95703,3z'
 // var url = 'https://amappingprototype.xyz/'
-console.log(url)
+//console.log(url)
 var urlContainsHash = url.includes('#')
 var urlContainsGeoJSON = url.includes('/?')
 //to avoid panning outside this bounds
@@ -295,7 +293,7 @@ var southWest = L.latLng(-70, -180);
 var northEast = L.latLng(80, 180);
 
 if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getItem('pwCorrect')){  // if url contains geojson (and coords)
-  console.log('hash and geojson')
+  //console.log('hash and geojson')
 
   //to set mapview
     var keepOnlyLatLngZoom = url.split('#').pop();
@@ -323,14 +321,14 @@ if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getIte
     var parsedJSONdecoded = decodeURIComponent(keepGeoJSONOnly);
     var parsedJSON = JSON.parse(parsedJSONdecoded)
     // var parsedJSONStringified = JSON.stringify(parsedJSON)
-    console.log(keepGeoJSONOnly)
-    console.log(parsedJSON)
-    // console.log(parsedJSONStringified)
+    //console.log(keepGeoJSONOnly)
+    //console.log(parsedJSON)
+    // //console.log(parsedJSONStringified)
 
     storeURLGeoJSON(parsedJSON)
     setTimeout(function accessLocalStorage(){
           fetchFromLocalStorage()
-          console.log('after fetch and convert',localStorageLayer)
+          //console.log('after fetch and convert',localStorageLayer)
     },300) // really don't know why this timeout, but keep it for now
 
     setTimeout(function changeToLocalStorageLayer(){
@@ -339,7 +337,7 @@ if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getIte
     },2000) // really don't know why this timeout, but keep it for now
 
 }else if (urlContainsHash == true){  // if only coords are in the url
-  console.log('onlyhash')
+  //console.log('onlyhash')
     var keepOnlyLatLngZoom = url.split('#').pop();
     var splittedLatLngZoom = keepOnlyLatLngZoom.split(',');
     var urlLat = splittedLatLngZoom[0]
@@ -363,11 +361,11 @@ if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getIte
     });
     setTimeout(function accessLocalStorage(){
           fetchFromLocalStorage()
-          console.log('after fetch and convert',localStorageLayer)
+          //console.log('after fetch and convert',localStorageLayer)
     },300) // really don't know why this timeout, but keep it for now
   //////////////////////
 }else{
-  console.log('only map')
+  //console.log('only map')
 
     if (lastPositionStoredLOCALLY == null) {
         var map = L.map('map', {
@@ -400,14 +398,14 @@ if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getIte
     });
     setTimeout(function accessLocalStorage(){
           fetchFromLocalStorage()
-          console.log('after fetch and convert',localStorageLayer)
+          //console.log('after fetch and convert',localStorageLayer)
     },300) // really don't know why this timeout, but keep it for now
 }
 // // this function is to refresh PWA in case the first time it is loaded it contains url query string
 // if(isFirstTime == true && urlContainsGeoJSON == true){
 //   setTimeout(function refreshIfFirstLoadAndURLGeojson(){
 //         fetchFromLocalStorage()
-//         console.log('after fetch and convert',localStorageLayer)
+//         //console.log('after fetch and convert',localStorageLayer)
 //   },)
 // }
 
@@ -517,22 +515,22 @@ var numberOfKeysGlobal
 
 geoJSONLocalforageDB.length().then(function(numberOfKeys) {
     // Outputs the length of the database.
-    console.log(numberOfKeys);
+    //console.log(numberOfKeys);
     numberOfKeysGlobal = numberOfKeys
 }).catch(function(err) {
-    console.log(err);
+    //console.log(err);
 });
 
 // function to convert all geojsons in localforage into a layer. The function is called from fetchFromLocalStorage() [below]
 var localStorageLayer
 var localStorageToGeoJSON = function(){
-  //console.log(groupGeoJSON)
+  ////console.log(groupGeoJSON)
 
     if (isJson(groupGeoJSON) == false && isFirstTime == false) {
         localStorageLayer = L.geoJSON(groupGeoJSON, {
             style: function(feature) {
                 //myLayerIsOn = true;
-                //console.log(myLayerIsOn)
+                ////console.log(myLayerIsOn)
                 return feature.properties && feature.properties.style;
             },
             pointToLayer: function(feature, latlng) {
@@ -547,7 +545,7 @@ var localStorageToGeoJSON = function(){
             onEachFeature: onEachFeatureAudioLocalStorage,
             autopan: false
         }) //.addTo(map)
-        //console.log('localStorageLayer', localStorageLayer)
+        ////console.log('localStorageLayer', localStorageLayer)
 
     }
 return localStorageLayer
@@ -563,17 +561,17 @@ function fetchFromLocalStorage(){
 
           (function(key) {
             geoJSONLocalforageDB.getItem(key).then(function (value) {
-                // console.log(key, value);
+                // //console.log(key, value);
                 isJson(value);
                 if (isJson(value) == true) {
-                  // console.log(isJson('this is geojson',value))
+                  // //console.log(isJson('this is geojson',value))
                     var getItemToJSON = JSON.parse(value);
                     isJson(getItemToJSON)
                     //add each json to an array-------------------------
                   //  groupGeoJSON[i] = getItemToJSON
                   groupGeoJSON.push(getItemToJSON)
                   completedCount += 1;
-                  console.log(groupGeoJSON)
+                  //console.log(groupGeoJSON)
 
                   //call localStorageToGeoJSON() when loop ends
                   if (completedCount == keys.length){
@@ -608,7 +606,7 @@ var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={
     //transparent: false,
     //border: 'solid black 5px',
     subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-    attribution: 'Leaflet | Google Imagery'
+    attribution: 'Leaflet | Google'
 })//.addTo(map);
 
 var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', tilesDb, {
@@ -654,7 +652,7 @@ var offlineControlOSM = L.control.offline(osm, tilesDb, {
     maxZoom: 21
 });
 
-var sentinelHubKey = '09235d3c-8c31-4b0e-abdf-213a9f622639';
+var sentinelHubKey = '82b5a4e7-b887-40b2-949b-1b47a2aa9774';
 
 // a script to automate the update of these global mosaics is needed. At the moment, this needs to be done manually, both here to update the attributes and in the SentinelHub platfrom
 var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2021_01_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
@@ -697,22 +695,22 @@ var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/b
 
 // ///////////// messages for tileS download   (NOT USED CURRENTLY)     /////////
 // googleSat.on('offline:save-start', function(data) {
-//     //console.log('Saving ' + data.nTilesToSave + ' tiles.');
+//     ////console.log('Saving ' + data.nTilesToSave + ' tiles.');
 // });
 // googleSat.on('offline:save-end', function() {
 //     alert('All the tiles were saved.');
 // });
 // googleSat.on('offline:save-error', function(err) {
-//     //console.error('Error when saving tiles: ' + err);
+//     ////console.error('Error when saving tiles: ' + err);
 // });
 // googleSat.on('offline:remove-start', function() {
-//     //console.log('Removing tiles.');
+//     ////console.log('Removing tiles.');
 // });
 // googleSat.on('offline:remove-end', function() {
 //     alert('All the tiles were removed.');
 // });
 // googleSat.on('offline:remove-error', function(err) {
-//     //console.error('Error when removing tiles: ' + err);
+//     ////console.error('Error when removing tiles: ' + err);
 // });
 // googleSat.on('offline:below-min-zoom-error', function() {
 //     alert('Can not save tiles below minimum zoom level.');
@@ -720,22 +718,22 @@ var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/b
 // ////////////////
 //
 // osm.on('offline:save-start', function(data) {
-//     //console.log('Saving ' + data.nTilesToSave + ' tiles.');
+//     ////console.log('Saving ' + data.nTilesToSave + ' tiles.');
 // });
 // osm.on('offline:save-end', function() {
 //     alert('All the tiles were saved.');
 // });
 // osm.on('offline:save-error', function(err) {
-//     //console.error('Error when saving tiles: ' + err);
+//     ////console.error('Error when saving tiles: ' + err);
 // });
 // osm.on('offline:remove-start', function() {
-//     //console.log('Removing tiles.');
+//     ////console.log('Removing tiles.');
 // });
 // osm.on('offline:remove-end', function() {
 //     alert('All the tiles were removed.');
 // });
 // osm.on('offline:remove-error', function(err) {
-//     //console.error('Error when removing tiles: ' + err);
+//     ////console.error('Error when removing tiles: ' + err);
 // });
 // osm.on('offline:below-min-zoom-error', function() {
 //     alert('Can not save tiles below minimum zoom level.');
@@ -794,13 +792,13 @@ document.getElementById("MapLoading").style.display = 'initial'
 
 
 // map.on('zoomend', function(){
-//   console.log("map zoomed in/out")
+//   //console.log("map zoomed in/out")
 //   document.getElementById("Alert").style.fontSize = "25px";
 //   document.getElementById('Alert').innerHTML = '⌛'
 //   document.getElementById("Alert").style.display = 'initial'
 // })
 // map.on('moveend', function(){
-//   console.log("map panned")
+//   //console.log("map panned")
 //   document.getElementById("Alert").style.fontSize = "25px";
 //   document.getElementById('Alert').innerHTML = '⌛'
 //   document.getElementById("Alert").style.display = 'initial'
@@ -812,7 +810,7 @@ document.getElementById("MapLoading").style.display = 'initial'
 // osm.on("loading",function() {
 //   intervalOsm = setInterval(function(){
 //     if(osmloaded == false){
-//       console.log("tile requestedddddddddddd") //time to avoid showing the clock for miliseconds if map loads fast
+//       //console.log("tile requestedddddddddddd") //time to avoid showing the clock for miliseconds if map loads fast
 //       document.getElementById("Alert").style.fontSize = "25px";
 //       document.getElementById('Alert').innerHTML = '⌛'
 //       document.getElementById("Alert").style.display = 'initial'
@@ -822,13 +820,13 @@ document.getElementById("MapLoading").style.display = 'initial'
 //   return osmloaded
 // });
 // googleSat.on("loading",function() {
-//     console.log("tile requested")
+//     //console.log("tile requested")
 //     document.getElementById("Alert").style.fontSize = "25px";
 //     document.getElementById('Alert').innerHTML = '⌛'
 //     document.getElementById("Alert").style.display = 'initial'
 // });
 // planetScopeMonthlyMosaic.on("loading",function() {
-//     console.log("tile requested")
+//     //console.log("tile requested")
 //     document.getElementById("Alert").style.fontSize = "25px";
 //     document.getElementById('Alert').innerHTML = '⌛'
 //     document.getElementById("Alert").style.display = 'initial'
@@ -836,7 +834,7 @@ document.getElementById("MapLoading").style.display = 'initial'
 
 
 osm.on("load",function() {
-  console.log("all visible osm tiles have been loaded")
+  //console.log("all visible osm tiles have been loaded")
   // clearInterval(intervalOsm)
   // document.getElementById("Alert").style.display = 'none'
   document.getElementById("MapLoading").style.display = 'none'
@@ -845,12 +843,12 @@ osm.on("load",function() {
   // return osmloaded
 });
 googleSat.on("load",function() {
- console.log("all visible google tiles have been loaded")
+ //console.log("all visible google tiles have been loaded")
  // document.getElementById("Alert").style.display = 'none'
  document.getElementById("MapLoading").style.display = 'none'
 });
 planetScopeMonthlyMosaicLatest.on("load",function() {
-  console.log("all visible planet tiles have been loaded")
+  //console.log("all visible planet tiles have been loaded")
   // document.getElementById("Alert").style.display = 'none'
   document.getElementById("MapLoading").style.display = 'none'
   document.getElementById("Alert").style.fontSize = "20px";
@@ -865,14 +863,14 @@ planetScopeMonthlyMosaicLatest.on("load",function() {
 // })
 
 planetScopeMonthlyMosaicLatestMinus4Months.on("load",function() {
-  console.log("all visible planet tiles have been loaded")
+  //console.log("all visible planet tiles have been loaded")
   document.getElementById("MapLoading").style.display = 'none'
 
   document.getElementById("Alert").style.fontSize = "20px";
   document.getElementById('Alert').innerHTML = '120<br>☀️🌙'
   document.getElementById("Alert").style.display = 'initial'});
 planetScopeMonthlyMosaicLatestMinus8Months.on("load",function() {
-  console.log("all visible planet tiles have been loaded")
+  //console.log("all visible planet tiles have been loaded")
   document.getElementById("MapLoading").style.display = 'none'
 
   document.getElementById("Alert").style.fontSize = "20px";
@@ -880,7 +878,7 @@ planetScopeMonthlyMosaicLatestMinus8Months.on("load",function() {
   document.getElementById("Alert").style.display = 'initial'
 });
 planetScopeMonthlyMosaic1YearAgo.on("load",function() {
-  console.log("all visible planet tiles have been loaded")
+  //console.log("all visible planet tiles have been loaded")
   document.getElementById("MapLoading").style.display = 'none'
 
   document.getElementById("Alert").style.fontSize = "20px";
@@ -888,7 +886,7 @@ planetScopeMonthlyMosaic1YearAgo.on("load",function() {
   document.getElementById("Alert").style.display = 'initial'
 });
 sentinelMosaicLatestMinus2Years.on("load",function() {
-  console.log("all visible planet tiles have been loaded")
+  //console.log("all visible planet tiles have been loaded")
   document.getElementById("MapLoading").style.display = 'none'
 
   document.getElementById("Alert").style.fontSize = "20px";
@@ -896,7 +894,7 @@ sentinelMosaicLatestMinus2Years.on("load",function() {
   document.getElementById("Alert").style.display = 'initial'
 });
 sentinelMosaicLatestMinus3Years.on("load",function() {
-  console.log("all visible planet tiles have been loaded")
+  //console.log("all visible planet tiles have been loaded")
   document.getElementById("MapLoading").style.display = 'none'
 
   document.getElementById("Alert").style.fontSize = "20px";
@@ -904,7 +902,7 @@ sentinelMosaicLatestMinus3Years.on("load",function() {
   document.getElementById("Alert").style.display = 'initial'
 });
 sentinelMosaicLatestMinus5Years.on("load",function() {
-  console.log("all visible planet tiles have been loaded")
+  //console.log("all visible planet tiles have been loaded")
   document.getElementById("MapLoading").style.display = 'none'
 
   document.getElementById("Alert").style.fontSize = "20px";
@@ -931,11 +929,11 @@ var osm_Button = L.easyButton({
             //clickButtonCount += 1;
             // document.getElementById('imageryAlert').style.display = 'none'
             mapCurrentZoom = map.getZoom();
-           // console.log('zoom1', mapCurrentZoom)
+           // //console.log('zoom1', mapCurrentZoom)
             if(mapCurrentZoom >19){
               map.setZoom(19)//because OSM does not provide tiles beyond zoom 19
               mapCurrentZoom = map.getZoom();
-            // console.log('zoom2', mapCurrentZoom)
+            // //console.log('zoom2', mapCurrentZoom)
             }
 
             googleSat.removeFrom(map);
@@ -950,14 +948,14 @@ var osm_Button = L.easyButton({
 
               osm.on("load",function() {
 
-                console.log("all visible osm tiles have been loaded")
+                //console.log("all visible osm tiles have been loaded")
                 // document.getElementById("Alert").style.display = 'none'
                 document.getElementById("MapLoading").style.display = 'none'
 
                });
 
             }catch{
-              console.log('error loading osm tiles')
+              //console.log('error loading osm tiles')
             }
 
 
@@ -1015,14 +1013,14 @@ var googleSat_Button = L.easyButton({
 
               googleSat.on("load",function() {
 
-                console.log("all visible google tiles have been loaded")
+                //console.log("all visible google tiles have been loaded")
                 // document.getElementById("Alert").style.display = 'none'
                 document.getElementById("MapLoading").style.display = 'none'
 
              });
 
             }catch{
-              console.log('error loading google tiles')
+              //console.log('error loading google tiles')
             }
 
             basemapOn = 'googleSat'
@@ -1072,11 +1070,11 @@ var planet_Button = L.easyButton({
             googleSat_Button.addTo(map);
             //to zoom out if previous map zoom is higher than 17
             mapCurrentZoom = map.getZoom();
-            // console.log('zoom1', mapCurrentZoom)
+            // //console.log('zoom1', mapCurrentZoom)
             if(mapCurrentZoom >17){
               map.setZoom(17)//because OSM does not provide tiles beyond zoom 19
               mapCurrentZoom = map.getZoom();
-            // console.log('zoom2', mapCurrentZoom)
+            // //console.log('zoom2', mapCurrentZoom)
             }
             // googleSat.removeFrom(map);
             osm.removeFrom(map);
@@ -1084,14 +1082,14 @@ var planet_Button = L.easyButton({
               planetScopeMonthlyMosaicLatest.addTo(map);
               planetScopeMonthlyMosaicLatest.on("load",function() {
 
-                console.log("all visible planet tiles have been loaded")
+                //console.log("all visible planet tiles have been loaded")
                 // document.getElementById("Alert").style.display = 'none'
                 document.getElementById("MapLoading").style.display = 'none'
 
                });
 
             }catch{
-              console.log('error loading planet tiles')
+              //console.log('error loading planet tiles')
             }
 
           //  planet.addTo(map); // planet imagery goes after so it stays on top of sentinel data (sentinel is global, planet is not yet?)
@@ -1164,7 +1162,7 @@ planet_Button.button.style.backgroundColor = 'black';
   }
 var checkSliderPosition = function() { ///////////////////////////////////////// function to keep searching for gps position
   output.innerHTML = this.value;
-   console.log(output.innerHTML)
+   //console.log(output.innerHTML)
 
   // Update the current slider value (each time you drag the slider handle)
   var x = output.innerHTML
@@ -1176,7 +1174,7 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               this.value = 100
               removeAllimagery()
               planetScopeMonthlyMosaicLatest.addTo(map)
-              console.log(output.innerHTML)
+              //console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "25px";
               // document.getElementById('Alert').innerHTML = '<br>⌛'
               document.getElementById("MapLoading").style.display = 'initial'
@@ -1186,7 +1184,7 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               this.value = 1
               removeAllimagery()
               sentinelMosaicLatestMinus5Years.addTo(map)
-              console.log(output.innerHTML)
+              //console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>1/2019 '
               // document.getElementById("Alert").style.fontSize = "25px";
@@ -1197,7 +1195,7 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               this.value = 17 // this is to locate the circle in a specific position
               removeAllimagery()
               sentinelMosaicLatestMinus3Years.addTo(map)
-              console.log(output.innerHTML)
+              //console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>12/2019 '
               // document.getElementById("Alert").style.fontSize = "25px";
@@ -1208,7 +1206,7 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               this.value = 32
               removeAllimagery()
               sentinelMosaicLatestMinus2Years.addTo(map)
-              console.log(output.innerHTML)
+              //console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>9/2020 '
               // document.getElementById("Alert").style.fontSize = "25px";
@@ -1219,7 +1217,7 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               this.value = 47
               removeAllimagery()
               planetScopeMonthlyMosaic1YearAgo.addTo(map)
-              console.log(output.innerHTML)
+              //console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>10/2020 '
               // document.getElementById("Alert").style.fontSize = "25px";
@@ -1230,7 +1228,7 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               this.value = 62
               removeAllimagery()
               planetScopeMonthlyMosaicLatestMinus8Months.addTo(map)
-              console.log(output.innerHTML)
+              //console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>11/2020 '
               // document.getElementById("Alert").style.fontSize = "25px";
@@ -1241,7 +1239,7 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               this.value = 77
               removeAllimagery()
               planetScopeMonthlyMosaicLatestMinus4Months.addTo(map)
-              console.log(output.innerHTML)
+              //console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>12/2020 '
               // document.getElementById("Alert").style.fontSize = "25px";
@@ -1251,7 +1249,7 @@ var checkSliderPosition = function() { /////////////////////////////////////////
           default:
               removeAllimagery()
               planetScopeMonthlyMosaicLatest.addTo(map)
-              console.log(output.innerHTML)
+              //console.log(output.innerHTML)
               break
       }
     }
@@ -1272,16 +1270,16 @@ var myLayer_Button = L.easyButton({
         //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn, map) {
-                    // console.log('which layer is on', whichLayerIsOn)
-          // console.log('localStorageLayer', localStorageLayer)
-            // console.log(localStorage)
-            // console.log(groupGeoJSON)
+                    // //console.log('which layer is on', whichLayerIsOn)
+          // //console.log('localStorageLayer', localStorageLayer)
+            // //console.log(localStorage)
+            // //console.log(groupGeoJSON)
             //  deflated.removeFrom(map)
             // whichLayerIsOn = 'deflated'
             if (whichLayerIsOn == 'deflated' && (localStorageLayer != null || elementJustAddedToLocalStorage ==true)) {
                 deflated.removeFrom(map)
                 if (localStorageLayer != null) {
-                  console.log('local storage is not null')
+                  //console.log('local storage is not null')
                     localStorageLayer.addTo(map)
                 }
                 if (finalLayer != null) {
@@ -1369,7 +1367,7 @@ var filter_Button = L.easyButton({
 
           if(filterIsOn == false){
             startCheckAttrDateContent = setInterval(checkAttrDateContent,300)
-            console.log('filterisonfalse')
+            //console.log('filterisonfalse')
             filterIsOn = true
             myLayer_Button.button.style.opacity = '0.4';
             myLayer_Button.button.disabled = true;
@@ -1383,7 +1381,7 @@ var filter_Button = L.easyButton({
             document.getElementById("point").style.display = "none";
 
             if(filterApplied == true){
-              console.log('filterisonfalse')
+              //console.log('filterisonfalse')
 
               document.getElementById("clearFilter").style.opacity = '1'
               document.getElementById("clearFilter").disabled = false
@@ -1414,7 +1412,7 @@ var filter_Button = L.easyButton({
 
         }else{
             clearInterval(startCheckAttrDateContent)
-            console.log('filterisontrue')
+            //console.log('filterisontrue')
 
             filterIsOn = false
             myLayer_Button.button.style.opacity = '1';
@@ -1498,7 +1496,7 @@ function findBuffer(position) {
     var lat = position.coords.latitude;
     var lng = position.coords.longitude;
     accuracy = position.coords.accuracy;
-    //console.log(accuracy)
+    ////console.log(accuracy)
     if (markerAdded == false) {
         // L.marker([lat, lng],{icon:gpsIcon}).addTo(map);
         markerAdded = true;
@@ -1510,7 +1508,7 @@ function findBuffer(position) {
 
 //////////////////////////////////////activate gps///////////////////////////////////////////
 
-//console.log(currentLocation[0])
+////console.log(currentLocation[0])
 
 // var locationFound = false;
 // var audioRecorded = false;
@@ -1522,7 +1520,7 @@ function findBuffer(position) {
 // if(isFirstTime == true || pageLoaded == true){
 var startSearchingLocation = function(){
 var refreshGPSbutton = setInterval(function() { ///////////////////////////////////////// function to keep searching for gps position
-  //console.log('refreshgpsbutton')
+  ////console.log('refreshgpsbutton')
   if(localStorage.getItem('pwCorrect')){
 
     try {
@@ -1596,7 +1594,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
             }
             try {
                 navigator.geolocation.watchPosition(findBuffer);
-                ////console.log(currentLocation[0])
+                //////console.log(currentLocation[0])
             } catch (err) {
                 currentLocation == null;
             }
@@ -1629,7 +1627,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
 }, 1000)
 }
 
-//console.log(currentLocation[0]ddddddd)
+////console.log(currentLocation[0]ddddddd)
 var gps_Button = L.easyButton({
     id: 'gps',
     position: 'topleft',
@@ -1671,7 +1669,7 @@ var gps_Button = L.easyButton({
                   //  gps_Button.button.style.backgroundColor = 'green';
                   //  gps_Button.button.src = 'images/gpsSearching.gif';
                     map.setView(currentLocation, 15);
-                    //console.log(currentLocation)
+                    ////console.log(currentLocation)
 
                 } else if (accuracy > 50 && accuracy <= 250) {
                   //  gps_Button.button.style.backgroundColor = 'yellow';
@@ -1729,16 +1727,16 @@ document.getElementById('rose').style.marginBottom = '5px' // to avoid extra mar
 var clicksRose = 0
 document.getElementById('rose').onclick = function(e){
     clicksRose += 1;
-    // console.log(clicksRose)
+    // //console.log(clicksRose)
     //this is to avoid zoom in with doubleClick if rose is clicked too quickly
     map.doubleClickZoom.disable();
     setTimeout(function(){
       map.doubleClickZoom.enable();
 
     },200)
-    console.log('deflated',deflated)
+    //console.log('deflated',deflated)
     var toRemoveDeflated = deflated._layers
-    console.log('toremovedeflated',toRemoveDeflated)
+    //console.log('toremovedeflated',toRemoveDeflated)
 
       if(clicksRose == 5){ //this is to refresh the carto layer
         document.getElementById("Alert").style.fontSize = "40px";
@@ -1749,12 +1747,12 @@ document.getElementById('rose').onclick = function(e){
         setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
           if(clicksRose < 8){ //this is to check that the user actually want to click 5 times, not 10
             document.getElementById("Alert").style.display = 'none'
-            console.log('refreshed')
+            //console.log('refreshed')
 
             for (i = 0; i < deflated._layers.length; i++) { // not the optimal solution, but couldn't find the way to empty deflated
               try{ // because array not starts with 1,2,3
                 deflated.removeLayer(deflated._layers[i])
-                console.log('forr ',i)
+                //console.log('forr ',i)
               }catch(e){}
             }
             //sqlquery specified below to avoid interferance with SELECT after INSERT
@@ -1765,7 +1763,7 @@ document.getElementById('rose').onclick = function(e){
 
           clicksRose = 0;
         }
-      },1000)
+      },3000)
       }
       if(clicksRose == 10){ //this is to show the download tiles buttons
         clicksRose = 0;
@@ -1877,17 +1875,17 @@ var submitToProxy = function(q) {
 var pURL
 //this function is called both when feature is deleted or feature is created and sent.
 function setData() {
-    //console.log("setdata function called");
+    ////console.log("setdata function called");
     if (cartoIdFeatureSelected != null && created == false && clickCountDeleteButton == 1) { //TO DELETE THE SELECTED FEATURE FROM THE CARTO DB
         pURL = "DELETE FROM lumblu WHERE cartodb_id='" + cartoIdFeatureSelected + "'";
         clickCountDeleteButton = 0
         cartoIdFeatureSelected = null
-        console.log(pURL)
+        //console.log(pURL)
 
     }else if (cartoIdFeatureSelected != null && created == false && editButtonClicked == true){ //TO INSERT COMMENT IN EXISTING FEATURE
-      console.log('set data called')
-      console.log(contentInTextbox)
-      console.log(audioComment)
+      //console.log('set data called')
+      //console.log(contentInTextbox)
+      //console.log(audioComment)
         if(audioRecorded == false){
           audioComment = '.'
         }
@@ -1904,25 +1902,25 @@ function setData() {
         editButtonClicked = false
 
 
-        console.log(pURL)
+        //console.log(pURL)
     }
     else { //TO INSERT THE CREATED FEATURE INTO THE CARTO DB
         dataGeometry = data.features[0].geometry
-        //console.log(dataGeometry)
+        ////console.log(dataGeometry)
         var dataGeometryString = JSON.stringify(dataGeometry)
-        //console.log(dataGeometryString)
+        ////console.log(dataGeometryString)
         var commentAudioDefault = '.'
         var sql = "INSERT INTO lumblu (the_geom, randomid, landuses, landusesemoji, audioavailable, areapolygon, lengthline, timespent, distance, geometrystring, screensize, date, commentoneaudioavailable) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
         var sql2 = dataGeometryString;
         var sql3 = "'),4326),'" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + audioAvailable + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "','" + dateTime + "','" + commentAudioDefault + "')";
         pURL = sql + sql2 + sql3;
-        console.log(pURL)
+        //console.log(pURL)
 
     }
 
-    ////console.log(pURL)
+    //////console.log(pURL)
     submitToProxy(pURL);
-    //console.log("Feature has been submitted to the Proxy");
+    ////console.log("Feature has been submitted to the Proxy");
     return pURL && editButtonClicked && clickCountDeleteButton
 };
 
@@ -2044,22 +2042,22 @@ var startCheckingText = function() {
 
     function onEachFeatureConfirm(feature, layer) {
 
-        //console.log(document.getElementsByClassName('emojionearea-editor').innerText)
+        ////console.log(document.getElementsByClassName('emojionearea-editor').innerText)
         refreshPopup = setInterval(function() {
             //the problem with document.getElementById('emojionearea').value is that it only updates when the text box is not selected, which is as issue. TextContent methodworks
             //well, except that it does not capture emojis
             var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
-          //  //console.log(emojioneareaeditor)
+          //  ////console.log(emojioneareaeditor)
             var emojioneareaeditor0 = emojioneareaeditor[0]
-          //  //console.log(emojioneareaeditor0)
+          //  ////console.log(emojioneareaeditor0)
             var emojioneareaeditor0innerHTML = emojioneareaeditor0.innerHTML /////////////////////////////////////////////11111111111111111111111ddddddddddddddddddddddddddddddESTE!!!
-          //  //console.log(emojioneareaeditor0innerHTML)
+          //  ////console.log(emojioneareaeditor0innerHTML)
 
-        //    //console.log(emojioneareaeditor[0].textContent.lenght)
+        //    ////console.log(emojioneareaeditor[0].textContent.lenght)
             if (emojioneareaeditor0innerHTML.length == 0) { //to show '...' while the textbox is empty of characters (both letter and emojis)
                 layer.bindPopup(popupContent).addTo(map);
                 layer.bindPopup(popupContent).openPopup(); ///automatically shows the pop up!
-              //  //console.log('innerhtml is null')
+              //  ////console.log('innerhtml is null')
 
                 if (audioRecorded == false) {
                     document.getElementById("share-download").style.opacity = "0.35"; //to disable button until user adds attributes, either with audio or text
@@ -2068,7 +2066,7 @@ var startCheckingText = function() {
             } else {
                 layer.bindPopup(emojioneareaeditor0innerHTML).addTo(map);
                 layer.bindPopup(emojioneareaeditor0innerHTML).openPopup(); ///automatically shows the pop up!
-              //  //console.log('innerhtml is not null')
+              //  ////console.log('innerhtml is not null')
                 document.getElementById("share-download").style.opacity = "1"; //to disable button until user adds attributes, either with audio or text
                 document.getElementById("share-download").disabled = false;
             }
@@ -2089,7 +2087,7 @@ var startCheckingText = function() {
         onEachFeature: onEachFeatureConfirm,
 
     }).addTo(map);
-  //  //console.log(tempLayer)
+  //  ////console.log(tempLayer)
     return tempLayer && refreshPopup
 }
 
@@ -2125,7 +2123,7 @@ function onEachFeature(feature, layer) {
 function onEachFeatureAudioLocalStorage(feature, layer) { // function duplicated to avoid openpop() with local storage
     //timeout is used to wait 1000ms until the download link is ready
     setTimeout(function() {
-        //console.log('isonline' + ' ' + isOnline)
+        ////console.log('isonline' + ' ' + isOnline)
         var audioLinkText = '🔊 AUDIO'
         var audioAvailable = feature.properties.audioAvailable;
         //conditions to avoid showing audio link if no audio has been recorded

@@ -141,7 +141,7 @@ document.getElementById("goBackMessagingApps").onclick = function() {
 
 
 document.getElementById("whatsApp").onclick = function() {
-  console.log(shareURL)
+  //console.log(shareURL)
   //alert('Under development. Available soon.');
   //  window.location.href = "https://wa.me/whatsappphonenumber/?text=urlencodedtext";
   if(shareURL == 'coords'){
@@ -152,7 +152,7 @@ document.getElementById("whatsApp").onclick = function() {
       var urlAfterHash = getSecondPart(window.location.href)
         window.location.href = 'https://wa.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
 
-      // console.log(window.location.href)
+      // //console.log(window.location.href)
 
     }else{
       window.location.href='https://wa.me/?text='+encodeURIComponent(window.location.href)
@@ -264,7 +264,7 @@ document.getElementById("randomSuggestion").onclick = function() {
   addMiniMap()
 
   setTimeout(function(){
-    // console.log(basemapOn)
+    // //console.log(basemapOn)
       //removeMiniMap()
     //miniMap.remove()
 
@@ -314,7 +314,7 @@ document.getElementById("deleteFeature").onclick = function() {
     } else {
         aFeatureIsSelected = false
 
-        //console.log('feature deleted')
+        ////console.log('feature deleted')
 
         osm_Button.addTo(map);
         googleSat_Button.removeFrom(map);

@@ -179,7 +179,7 @@ var initialiseMap = function(){
             try{
                 $('<img/>')[0].src = this;
             }catch(e){
-              console.log('image failed to preload')
+              //console.log('image failed to preload')
             }
 
             // Alternatively you could use:
@@ -274,13 +274,13 @@ var requestPw = function(){
 
           var randomEmailId = Math.floor(Math.random() * 10);  // this is to prevent the situation where multiple users fail the login with the same account and it bolcks
           var email = 'any'+ randomEmailId + '@any.com' //I've added 10 different email address in Firebase (0-9) with same Pw
-          console.log(randomEmailId)
+          //console.log(randomEmailId)
 
           var password = '00' + pwPlaceholder // 00 is added as Firebase only allows for a minimum of 6 digits pws
 
           firebase.auth().signInWithEmailAndPassword(email, password)
             .then((user) =>{
-              console.log('success',user)
+              //console.log('success',user)
               authentication = 'successful'
 
             })
@@ -288,8 +288,8 @@ var requestPw = function(){
               authentication = 'failed'
               var errorCode = e.code;
               var errorMessage = e.message;
-              console.log(errorMessage)
-              console.log(errorCode)
+              //console.log(errorMessage)
+              //console.log(errorCode)
 
 
             })
@@ -301,7 +301,7 @@ var requestPw = function(){
         var openAppPwSuccesful = function(){
               if(authentication == 'successful' && done == true){  //map loads after this
                 document.getElementById('login').disabled = true // to avoid that user clicks twice while waiting, in which case carto layer would load twice
-                 console.log('both')
+                 //console.log('both')
                  localStorage.setItem('pwCorrect', true);
 
                 clearInterval(checkPw)
@@ -328,7 +328,7 @@ var requestPw = function(){
                 clearInterval(checkDoneAndFirebasePW)
 
 
-                 console.log('none')
+                // console.log('none')
 
                 document.getElementById('enteredPw').style.backgroundColor = 'red'
                 document.getElementById('enteredPw').focus() //to maintain keyboard if pw wrong

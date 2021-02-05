@@ -67,7 +67,7 @@ document.getElementById('share-download').onclick = function(e) {
     drawingPoint = false //to reset value for this session
     clearInterval(refreshPopup) //to stop searching for changes in the textbox
     var getUrl = window.location.href
-    //console.log(getUrl)
+    ////console.log(getUrl)
 
     //here we generate a random ID so when offline the downloaded file is not duplicated
     var randomNumber = Math.random();
@@ -78,7 +78,7 @@ document.getElementById('share-download').onclick = function(e) {
     var date = timeEnd.getFullYear() + '-' + (timeEnd.getMonth() + 1) + '-' + timeEnd.getDate();
     var time = timeEnd.getHours() + ":" + timeEnd.getMinutes() + ":" + timeEnd.getSeconds();
     var dateTime = date + 'T' + time + 'Z';
-    console.log(dateTime)
+    //console.log(dateTime)
 
     ////////////////////// get time spend on mapping (in seconds)///////////////////////////////////////
     var res = Math.abs(timeStart - timeEnd) / 1000;
@@ -86,7 +86,7 @@ document.getElementById('share-download').onclick = function(e) {
     var minutesToSeconds = minutes * 60
     var seconds = res % 60;
     var totalTimeSpent = seconds + minutesToSeconds
-    //console.log('secondsSpent' + totalTimeSpent)
+    ////console.log('secondsSpent' + totalTimeSpent)
 
     /////////////script to obfuscate user's currentLocation, in case user allow geolocation//////////////////
     if (currentLocation[0] != null) {
@@ -107,8 +107,8 @@ document.getElementById('share-download').onclick = function(e) {
     dateTimeRandomID.toString();
     data = drawnItems.toGeoJSON();
     dataGeometry = data.features[0].geometry
-    //console.log(data)
-    //console.log(dataGeometry)
+    ////console.log(data)
+    ////console.log(dataGeometry)
     //The coordinate reference system for all GeoJSON coordinates is a  geographic coordinate reference system, using the World Geodetic
     //System 1984 (WGS 84) [WGS84] datum, with longitude and latitude units of decimal degrees.
 
@@ -116,14 +116,14 @@ document.getElementById('share-download').onclick = function(e) {
     var allLandUses = [1]
     //land uses array filtered.
     var allLandUsesFiltered = allLandUses.filter(noNull => noNull != null);
-    //console.log(allLandUsesFiltered)
+    ////console.log(allLandUsesFiltered)
     var landUses = allLandUsesFiltered.toString();
     //to convert emojis from unicode to short name, before the data is transmitted
     //value of boxcontent is obtained again (was obtained in 'confirm'), in case user click on 'confirm' before filling in the box
     boxContent = document.getElementById('emojionearea').value;
     var boxContentToShortname = emojione.toShort(boxContent)
-    //console.log(boxContentToShortname)
-    //console.log(boxContent)
+    ////console.log(boxContentToShortname)
+    ////console.log(boxContent)
 
     var boxContentToString = boxContentToShortname.toString();
     //attributes added to Geojson file properties
@@ -172,7 +172,7 @@ document.getElementById('share-download').onclick = function(e) {
         blob = new Blob(recordedBlobs, {
             type: 'audio/webm'
         });
-        console.log(blob)
+        //console.log(blob)
     }
 
     //defining the final screen
@@ -196,13 +196,13 @@ document.getElementById('share-download').onclick = function(e) {
 
     //adding layers to localstorage
     var dataStringified = JSON.stringify(data);
-    console.log(dataStringified)
+    //console.log(dataStringified)
 
     var tempName = randomID // each polygon must have a different name!!!
     var layerToLocalStorage = geoJSONLocalforageDB.setItem(tempName, dataStringified);
-    // console.log(layerToLocalStorage);
-    //console.log(dataStringified.geometry)
-    //console.log(data.geometry)
+    // //console.log(layerToLocalStorage);
+    ////console.log(dataStringified.geometry)
+    ////console.log(data.geometry)
     myLayerIsOn = true;
     myLayer_Button.button.style.backgroundColor = 'black';
 
@@ -211,7 +211,7 @@ document.getElementById('share-download').onclick = function(e) {
     var nameGeoJSON = 'geojson' + ' ' + dateTimeRandomID
     var nameAudio = 'audio' + ' ' + dateTimeRandomID
     var audioBlob = blob; //to assign to a new variable the blob created in the audio.js
-    //console.log(audioBlob)
+    ////console.log(audioBlob)
 
     //to convert the audio blob into a file (webm)
     function blobToFile(theBlob, fileName) {
@@ -222,16 +222,16 @@ document.getElementById('share-download').onclick = function(e) {
 
     if (isIOS == false && recordedBlobs != null) {
         audioBlobFile = blobToFile(audioBlob, nameAudio);
-        console.log(audioBlobFile)
+        //console.log(audioBlobFile)
     }
 
-    //console.log(document.getElementsByClassName('emojibtn'))
+    ////console.log(document.getElementsByClassName('emojibtn'))
     featureType = null; //to avoid error of length not recognised when on map click
     //to convert geojson into File format
     dataFile = new File([dataStringified], nameGeoJSON, {
         type: "application/json",
     });
-    //console.log(dataFile)
+    ////console.log(dataFile)
     //to store both audio and geojson into an array, and also get the length of the array and pass this value ot the firebase loop
     if (isIOS == false && recordedBlobs != null) {
         files = [dataFile, audioBlobFile]
@@ -242,14 +242,14 @@ document.getElementById('share-download').onclick = function(e) {
         created = false; // redundant (to ensure that when DELETE is clicked the sql query is the delete one, not the last Insert query)
     }
       // encodeGeoJSON(data,propertiesGeoJSONURL)
-      console.log(convertedDataShareDirect)
-      console.log(files)
+      //console.log(convertedDataShareDirect)
+      //console.log(files)
       // var parsedJSONdecoded = decodeURIComponent(convertedDataShareDirect);
       // var parsedJSON = JSON.parse(parsedJSONdecoded)
-      // console.log(parsedJSON)
+      // //console.log(parsedJSON)
     return created && data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType && convertedDataShareDirect && propertiesGeoJSON //&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
 }
-//console.log(finalLayer)
+////console.log(finalLayer)
 
 /////////////////////////////////////////  screenS SHARE-DOWNLOAD  /////////////////////////////////////
 var timeOfVideo; //variable to define time of video based on OS. For some reason, is iOS takes longer to play
@@ -403,7 +403,7 @@ document.getElementById('shareWorldButton').onclick = function(e) {
               dist_m_Participant_Feature = propertiesGeoJSON.dist_m_Participant_Feature;
               randomID = propertiesGeoJSON.randomID;
 
-              console.log(propertiesGeoJSON)
+              //console.log(propertiesGeoJSON)
               // include the firebase url (if audio has been recorded)
               if (isIOS == false && audioButtonClicked == true) {
                 document.getElementById("sendFirebase").click();
@@ -488,6 +488,7 @@ document.getElementById('shareWorldButton').onclick = function(e) {
         }else {
           alert('🛑 You are offline')
         }
+
     }
   return clickCountSendButton
 }
@@ -547,7 +548,7 @@ document.getElementById('DownloadButton').onclick = function(e) {
         clickCountSendButton = 0 //!!!!!!!!!!!
 
 
-        //console.log(data);
+        ////console.log(data);
 
         //finalLayer is added at the end as the properties are different depending on if share or download
         // myLayer_Button.addTo(map);
@@ -569,7 +570,7 @@ document.getElementById('DownloadButton').onclick = function(e) {
             recordedBlobs = null; // audio is removed if cancel is clicked
         }
         whichLayerIsOn = 'localStorage'
-        // console.log('localstoragelayer',localStorageLayer)
+        // //console.log('localstoragelayer',localStorageLayer)
         finalLayer = L.geoJSON(data, {
             style: function(feature) {
                 return feature.properties && feature.properties.style;
