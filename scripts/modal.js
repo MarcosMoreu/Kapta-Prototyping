@@ -203,7 +203,6 @@ var initialiseMap = function(){
             'images/questionmark.png','images/random.png','images/record.png','images/shareMessagingApps.png','images/shareworld.png','images/shareworldConfirm.png',
             'images/telegram.png','images/uk.png','images/other1.png','images/underConstruction.png','images/wechat.png','images/whatsapp.png','images/youtube.png',
             'images/shareMessagingAppsYellow.png','images/sendComment.png',
-            // console.log('images preloaded')
         ]);
       // var images = new Array()
       //       function preload() {
