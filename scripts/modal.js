@@ -1,9 +1,4 @@
-$(document).keypress(
-  function(event){
-    if (event.which == '13') {
-      event.preventDefault();
-    }
-});
+
 //the map is initialised if not first load or when key is clicked
 
 setTimeout(function(){
@@ -24,6 +19,7 @@ document.getElementById('loginKey').onclick = function(e){
   document.getElementById('loginKey').disabled = true
   document.getElementById('loginKey').style.display = 'none'
   document.getElementById('loginInfo').style.display = 'none'
+
   // setTimeout(function(){
   //   document.getElementById('loginKey').style.opacity = '1'
   //   document.getElementById('loginInfo').style.opacity = '1'
@@ -38,6 +34,16 @@ document.getElementById('loginKey').onclick = function(e){
   document.getElementById('login').style.display = 'initial';
   initialiseMap() //map initialised but not shown
 
+  try{
+    $(document).keypress(
+      function(event){
+        if (event.which == '13') {
+          event.preventDefault();
+        }
+    });
+  }catch(e){
+    console.log('error disable enter key catched')
+  }
 
  //console.log(loaded)
 //return loaded

@@ -116,19 +116,25 @@ self.addEventListener("fetch", function(event) {
 
           caches
             // We open a cache to store the response for this request.
-            .open(version + 'pages')
+            .open(version)
             .then(function add(cache) {
               /* We store the response for this request. It'll later become
                  available to caches.match(event.request) calls, when looking
                  for cached responses.
               */
-            try{
-              cache.put(event.request, cacheCopy);
-            } catch(e){console.log('error catched in sw')}
+              // console.log('put cache successful',cache)
+              cache.put(event.request,cacheCopy);
+              // console.log('cache put')
+              self.addEventListener('error', function(e) {
+                console.log('error put cach catched');
+              });
+            // }catch(e){
+              // console.log('error catched in sw')
+            // }
             })
-            .then(function() {
-              //console.log('WORKER: fetch response stored in cache.', event.request.url);
-            });
+         // .then(function() {
+            //   //console.log('WORKER: fetch response stored in cache.', event.request.url);
+            // });
 
           // Return the response so that the promise is settled in fulfillment.
           return response;
