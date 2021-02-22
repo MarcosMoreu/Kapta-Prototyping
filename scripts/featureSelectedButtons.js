@@ -114,6 +114,7 @@ document.getElementById("shareMessagingApp").onclick = function() {
   document.getElementById("shareMessagingApp").style.display = "none";
   document.getElementById("deleteFeature").style.display = "none";
   document.getElementById("randomSuggestion").style.display = "none";
+  document.getElementById('weChatImage').src = 'images/wechat.png'
 
   document.getElementById("whatsApp").style.display = "initial";
   document.getElementById("telegram").style.display = "initial";
@@ -166,10 +167,18 @@ document.getElementById("whatsApp").onclick = function() {
 document.getElementById("telegram").onclick = function() {
 //  alert('🚧 Telegram sharing option not available yet.');
   if(shareURL == 'coords'){
-    // window.location.href='https://telegram.me/?text='+encodeURIComponent(window.location.href)
-    // window.location.href='https://t.me/share/url?url=https://amappingprototype.xyz/&text='+encodeURIComponent(window.location.href)
-    window.location.href='https://t.me/share/url?url='+encodeURIComponent(window.location.href)
+    if(url.includes('/?')){ // to avoid shareing geojson if url still contains geojson
+      function getSecondPart(str) {
+        return str.split('#')[1];
+      }
+      var urlAfterHash = getSecondPart(window.location.href)
+        window.location.href = 'https://t.me/share/url?url='+encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
 
+      // //console.log(window.location.href)
+
+    }else{
+      window.location.href='https://t.me/share/url?url='+encodeURIComponent(window.location.href)
+    }
 
   }else if(shareURL == 'encodedGeoJSON'){
     // window.location.href='https://telegram.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
@@ -181,14 +190,58 @@ document.getElementById("telegram").onclick = function() {
 document.getElementById("weChat").onclick = function() {
   //alert('🚧 WeChat sharing option not available yet.');
   if(shareURL == 'coords'){
-    window.location.href='weixin://?text='+encodeURIComponent(window.location.href)
+    if(url.includes('/?')){ // to avoid shareing geojson if url still contains geojson
+      function getSecondPart(str) {
+        return str.split('#')[1];
+      }
+      var urlAfterHash = getSecondPart(window.location.href)
+        window.location.href = 'weixin://?text='+encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
+
+      // //console.log(window.location.href)
+
+    }else{
+      window.location.href='weixin://?text='+encodeURIComponent(window.location.href)
+    }
   }else if(shareURL == 'encodedGeoJSON'){
-    window.location.href='weixin://?text='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+    // window.location.href='weixin://?text='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+    // window.location.href='sms:1234&body=hi'
+    window.location.href='sms:?body='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
 
   }
   // window.location.href='weixin://'  // to launch the app without url copied
 
 }
+
+
+
+// document.getElementById("telegram").onclick = function() {
+// //  alert('🚧 Telegram sharing option not available yet.');
+//   if(shareURL == 'coords'){
+//     // window.location.href='https://telegram.me/?text='+encodeURIComponent(window.location.href)
+//     // window.location.href='https://t.me/share/url?url=https://amappingprototype.xyz/&text='+encodeURIComponent(window.location.href)
+//     window.location.href='https://t.me/share/url?url='+encodeURIComponent(window.location.href)
+//
+//
+//   }else if(shareURL == 'encodedGeoJSON'){
+//     // window.location.href='https://telegram.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+//     window.location.href='https://t.me/share/url?url='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+//
+//   }
+// }
+//
+// document.getElementById("weChat").onclick = function() {
+//   //alert('🚧 WeChat sharing option not available yet.');
+//   if(shareURL == 'coords'){
+//     window.location.href='weixin://?text='+encodeURIComponent(window.location.href)
+//   }else if(shareURL == 'encodedGeoJSON'){
+//     // window.location.href='weixin://?text='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+//     // window.location.href='sms:1234&body=hi'
+//     window.location.href='sms:?body='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+//
+//   }
+//   // window.location.href='weixin://'  // to launch the app without url copied
+//
+// }
 
 
 var randomFeature

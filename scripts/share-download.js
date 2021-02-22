@@ -300,7 +300,6 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
     urlZoomWithZX = splittedLatLngZoomX[2]
     urlZoomX = urlZoomWithZX.replace('z','')
 
-
   document.getElementById('goBackClassification').style.display = 'none';
   document.getElementById('shareMessagingAppsDirect').style.display = 'none';
   document.getElementById('shareWorldButton').style.display = 'none';
@@ -310,7 +309,7 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
   document.getElementById("shareWorldButton").style.backgroundColor = 'white'
   document.getElementById("shareWorldButton").style.borderColor = 'white'
   clickCountSendButton = 0 //!!!!!!!!!!!
-
+  document.getElementById('weChatImage').src = 'images/sms.png'
   document.getElementById("goBackShareMessagingAppsDirect").style.display = 'initial';
   document.getElementById("whatsApp").style.display = 'initial';
   document.getElementById("telegram").style.display = 'initial';
