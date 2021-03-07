@@ -73,8 +73,8 @@
 
 
 <!-- <INPUT id="txtChar" onkeypress="return isNumberKey(event)" type="number" name="txtChar"> -->
-  <h1 id='showAreaHa' style='z-index:2;position:absolute;left:75px;display:none;color:yellow;font-size:19px' ></h1>
-  <h2 id='showAreaAcres' style='z-index:2;position:absolute;left:75px;top:25px;display:none;color:yellow;font-size:19px' ></h2>
+  <h1 id='showAreaHa' style='z-index:3;position:absolute;left:75px;display:none;color:yellow;font-size:19px' ></h1>
+  <h2 id='showAreaAcres' style='z-index:3;position:absolute;left:75px;top:25px;display:none;color:yellow;font-size:19px' ></h2>
   <!-- <h3 id='showLength' style='z-index:2;position:absolute;left:75px;display:none;color:yellow;font-size:19px;font-family:'Ubuntu'' > </h3> -->
   <h3 id='Alert' align = 'center' style='z-index:3;position:absolute;left:80px;top:25px;display:none;color:yellow;font-size:15px; width:calc(100% - 180px)'>
     <!-- <img id='loading' src="images/questionmark.png"  alt="..." style='display:none;width:30px ; height:30px;' > -->
@@ -98,10 +98,10 @@
     </div> -->
 
     <div style='margin-top:10px; text-align:center;'>
-      <button id='loginInfo' class='button' disabled style='opacity:0.3;outline:none;position:relative;margin-right:30px;margin-top:3px; margin-bottom:10px;width:50px ; height:50px; border: 1px solid ; border-color:black; border-radius:50px' >
+      <button id='loginInfo' class='button' disabled style='opacity:0.3;outline:none;position:relative;margin-right:30px;margin-top:3px; margin-bottom:10px;width:50px ; height:50px; border: 1px solid white; border-color:black; border-radius:50px' >
         <img src="images/questionmark.png"  alt="..." style=' width:30px ; height:30px;' >
       </button>
-      <button id='loginKey' class='button' disabled style='opacity:0.3;outline:none; position:relative;margin-top:3px;margin-bottom:10px;width:50px ; height:50px; border: 1px solid ; border-color:black; border-radius:50px' >
+      <button id='loginKey' class='button' disabled style='opacity:0.3;outline:none; position:relative;margin-top:3px;margin-bottom:10px;width:50px ; height:50px; border: 1px solid white; border-color:black; border-radius:50px' >
         <img src="images/key.png"  alt="..." style=' width:30px ; height:30px;' >
       </button>
 
@@ -110,7 +110,7 @@
       <input id='enteredPw'  type="number" novalidate value='Validate'oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = '4'
         style='display:none;margin-left:4px;border-color:grey;background-color: white;color:grey; text-align:center;letter-spacing: 10px;font-size:20px;'placeholder = " ----" required>
       <!-- <img id='gifLoading' src="images/questionmark.png"  alt="..." style=' display:none;width:30px ; height:30px;' > -->
-      <button id='login' class='button'style='display:none;outline:none;margin-left:calc(50% - 25px); margin-bottom:10px;width:50px ; height:50px; border: 1px solid ; border-color:white; border-radius:50px' >
+      <button id='login' class='button'style='display:none;outline:none;margin-left:calc(50% - 25px); margin-bottom:10px;width:50px ; height:50px; border: 1px solid white; border-color:white; border-radius:50px' >
         <img id = 'loginIcon' src="images/ThumbsUpGreen.png"  loading='lazy' alt="..." style=' width:30px ; height:30px;' >
       </button>
 
@@ -236,10 +236,10 @@
   <div id='voice' >
     <video id='voiceGif' preload='none' src="images/voice.webm" autoplay loop muted playsinline   alt="..." style='vertical-align:bottom;margin-bottom:-20px;top:-20px;height:80px; width:calc(100% - 195px);object-fit:cover'>
   </div>
-  <button id="enableRecording" class='button' aria-label = 'enableRecording'>
+  <button id="enableRecording" class='button' aria-label = 'enableRecording' style='margin-left:5px'>
     <img src="images/record.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
   </button>
-  <button id="record" class='button' aria-label = 'record'>
+  <button id="record" class='button' aria-label = 'record' style='margin-left:5px'>
     <img src="images/record.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
   </button>
   <button id='noAudioIOS' class='button' aria-label = 'Confirm' style='display:none;margin-left:0px'>
@@ -328,8 +328,8 @@
 </div>
 
 <div class="slidecontainer" >
-  <input type="range" min="1" max="100" value="50" class="slider" id="myRange" style='position:absolute;z-index:2;top:20px;display:none;margin-bottom:30px;width:calc(100% - 200px);margin-left:calc(100px)'>
-  <p><span id="demo">d</span></p>
+  <input type="range" min="1" max="100" value="50" class="slider" id="myRange" style='position:absolute;z-index:4;top:20px;display:none;margin-bottom:30px;width:calc(100% - 200px);margin-left:calc(100px)'>
+  <p><span id="demo"></span></p>
 </div>
 
 <script src="sw.js"></script>
