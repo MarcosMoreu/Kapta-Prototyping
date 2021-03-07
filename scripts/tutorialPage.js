@@ -272,7 +272,7 @@ document.getElementById('english').onclick = function(e){
     //this is to load Cognito form 2 sec after UK is clicked, so page load fast - user won't need cognito after few secs
     setTimeout(function(){
       Cognito.load("forms", { id: "2" })
-    },2000)
+    },700)
 }
 document.getElementById('other1').onclick = function(e){
    document.getElementById('imageother1').style.marginLeft = '-4px'
