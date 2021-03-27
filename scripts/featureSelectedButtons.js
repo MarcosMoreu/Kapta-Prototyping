@@ -163,7 +163,10 @@ document.getElementById("whatsApp").onclick = function() {
   }else if(shareURL == 'encodedGeoJSON'){
     // console.log(propertiesGeoJSONURL.landUsesEmoji)
     var attributes = propertiesGeoJSONURL.landUsesEmoji
-    window.location.href='https://wa.me/?text='+encodeURIComponent(attributes+ ' '+'👉'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+    var clickableText = 'click me'
+    var clickableTextHyperlinked = clickableText.link(convertedDataShareDirect)
+    window.location.href='https://wa.me/?text='+encodeURIComponent(attributes+ ' '+'👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+    // window.location.href='https://wa.me/?text='+encodeURIComponent(attributes+ ' '+'👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
 
   }
 }
@@ -190,7 +193,7 @@ document.getElementById("telegram").onclick = function() {
     // window.location.href='https://telegram.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
     var attributes = propertiesGeoJSONURL.landUsesEmoji
 
-    window.location.href='https://t.me/share/url?url='+encodeURIComponent(attributes+ ' '+'👉'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+    window.location.href='https://t.me/share/url?url='+encodeURIComponent(attributes+ ' '+'👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
 
   }
 }
@@ -216,7 +219,7 @@ document.getElementById("weChat").onclick = function() {
     // window.location.href='weixin://?text='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
     // window.location.href='sms:1234&body=hi'
     var attributes = propertiesGeoJSONURL.landUsesEmoji
-    window.location.href='sms:?body='+encodeURIComponent(attributes+ ' '+'👉'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+    window.location.href='sms:?body='+encodeURIComponent(attributes+ ' '+'👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
 
   }
   // window.location.href='weixin://'  // to launch the app without url copied

@@ -6,9 +6,13 @@ setTimeout(function(){
   document.getElementById('loginInfo').disabled = false
   document.getElementById('loginKey').style.opacity = '1'
   document.getElementById('loginKey').disabled = false
-  if(isIOS == true){
+  // if(isIOS == true){
+  //   document.getElementById('AlertModalIOS').style.display = 'initial'
+  // }
     document.getElementById('AlertModalIOS').style.display = 'initial'
-  }
+    document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
+
+
 },1900)
 
 document.getElementById('loginInfo').onclick = function(){
