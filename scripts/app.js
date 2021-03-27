@@ -304,7 +304,7 @@ if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getIte
     var urlZoom = urlZoomWithZ.replace('z','')
 
     var map = L.map('map', {
-        renderer: L.canvas({padding: 0.5, tolerance: 20}),
+        renderer: L.canvas({padding: 0.5, tolerance: 8}),
         editable: true,
         center: [urlLat, urlLng], //global center
         zoom: urlZoom,
@@ -347,7 +347,7 @@ if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getIte
     var urlZoom = urlZoomWithZ.replace('z','')
 
     var map = L.map('map', {
-        renderer: L.canvas({padding: 0.5, tolerance: 20}),
+        renderer: L.canvas({padding: 0.5, tolerance: 8}),
         editable: true,
         center: [urlLat, urlLng], //global center
         zoom: urlZoom,
@@ -371,7 +371,7 @@ if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getIte
 
     if (lastPositionStoredLOCALLY == null) {
         var map = L.map('map', {
-            renderer: L.canvas({padding: 0.5, tolerance: 20}),
+            renderer: L.canvas({padding: 0.5, tolerance: 8}),
             editable: true,
             center: [0, 0], //global center
             zoom: 0,
@@ -385,7 +385,7 @@ if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getIte
         });
     } else {
         var map = L.map('map', {
-            renderer: L.canvas({padding: 0.5, tolerance: 20}),
+            renderer: L.canvas({padding: 0.5, tolerance: 8}),
             editable: true,
             center: [lastPositionStoredLOCALLY[0], lastPositionStoredLOCALLY[1]],
             zoom: 10, /////////what is the most appropriate???/
