@@ -75,7 +75,8 @@ var circleGT250
 var circleLT250
 var circleLT250Added = false
 var circleGT250Added = false
-var cartoGeometriesInitial =null
+var cartoGeometriesInitial = null
+var elementJustAddedToLocalStorage
 
 //var miniMap
 
@@ -330,8 +331,9 @@ if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getIte
     setTimeout(function accessLocalStorage(){
           fetchFromLocalStorage()
           //console.log('after fetch and convert',localStorageLayer)
-    },300) // really don't know why this timeout, but keep it for now
+    },1500) // really don't know why this timeout, but keep it for now
 
+    elementJustAddedToLocalStorage = true
     setTimeout(function changeToLocalStorageLayer(){
         document.getElementById('myLayerButton').click()
 
@@ -559,6 +561,7 @@ return localStorageLayer
 var completedCount = 0 // to call localStorageToGeoJSON() when loop ends
 function fetchFromLocalStorage(){
   if (isFirstTime == false && geoJSONLocalforageDB.key(0) != null) {
+    console.log('fetching from local storage')
 
     geoJSONLocalforageDB.keys(function(err, keys) {
       for (var i = 0; i < keys.length; i++) {
