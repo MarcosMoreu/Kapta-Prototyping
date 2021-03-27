@@ -166,8 +166,8 @@ document.getElementById('share-download').onclick = function(e) {
     data.features[0].properties = propertiesGeoJSON;
 
     // Stringify the GeoJson
-    convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
-
+    convertedData = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
+    // console.log(convertedData)
     if (isIOS == false && recordedBlobs != null) {
         blob = new Blob(recordedBlobs, {
             type: 'audio/webm'
@@ -183,7 +183,7 @@ document.getElementById('share-download').onclick = function(e) {
         document.getElementById('shareMessagingAppsDirect').style.display = 'initial';
         document.getElementById('shareWorldButton').style.display = 'initial';
         document.getElementById('DownloadButton').style.display = 'initial';
-        document.getElementById('Download').style.display = 'initial';
+        // document.getElementById('Download').style.display = 'initial';
 
         // document.body.style.backgroundColor = "black";
     }, 200)
@@ -314,6 +314,12 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
   document.getElementById("whatsApp").style.display = 'initial';
   document.getElementById("telegram").style.display = 'initial';
   document.getElementById("weChat").style.display = "initial";
+  console.log(recordedBlobs)
+  if(recordedBlobs != null){
+    document.getElementById("Alert").style.fontSize = "30px";
+    document.getElementById('Alert').innerHTML = '<br> ⚠️ 🔇 📥'
+    document.getElementById("Alert").style.display = 'initial'
+  }
 
 
   shareURL = 'encodedGeoJSON'
@@ -321,6 +327,8 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
   return shareURL && mapposLat  && mapposLng && mapposZoom && urlX && urlLatX && urlLngX && urlZoomX
 }
 document.getElementById('goBackShareMessagingAppsDirect').onclick = function(e){
+  document.getElementById("Alert").style.display = 'none'
+
   document.getElementById("goBackShareMessagingAppsDirect").style.display = 'none';
   document.getElementById("whatsApp").style.display = 'none';
   document.getElementById("telegram").style.display = 'none';
@@ -510,9 +518,16 @@ document.getElementById('DownloadButton').onclick = function(e) {
     document.getElementById('DownloadButton').style.display = 'none';
 
     document.getElementById('Downloaded').style.display = 'initial';
-    //to download the geojson and webm files to the device's downloads folder
-    document.getElementById('Download').setAttribute('href', 'data:' + convertedData);
-    document.getElementById('Download').setAttribute('download', dateTimeRandomID);
+    //to download the geojson and webm files to the device's downloads folder. NOTE THAT AUDIO FILE DONWLOAD CODE IS IN AUDIO.JS FILE
+    // document.getElementById('Download').setAttribute('href', 'data:' + dataFile);
+    // console.log(dateTimeRandomID)
+    // console.log(convertedData)
+    var toDownloadGeoJSON = document.createElement('a');
+    toDownloadGeoJSON.setAttribute('href', convertedData);
+    toDownloadGeoJSON.setAttribute('download', dateTimeRandomID+'.geojson');
+    document.body.appendChild(toDownloadGeoJSON); // required for firefox
+    toDownloadGeoJSON.click();
+    toDownloadGeoJSON.remove();
 
     document.body.style.backgroundColor = "white";
     document.body.style.color = "white"; //cheating here, this is to hide a f** 'undefined' that appear on top of the video. Anyway, solved

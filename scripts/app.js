@@ -1956,7 +1956,7 @@ document.getElementById("completeFeature").style.display = "none";
 // document.getElementById("polyline").style.display = "initial";
 // document.getElementById("point").style.display = "initial";
 
-document.getElementById("Download").style.display = "none";
+// document.getElementById("Download").style.display = "none";
 document.getElementById("Cancel").style.display = "none";
 document.getElementById("DownloadButton").style.display = "none";
 

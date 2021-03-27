@@ -50,33 +50,47 @@ playButton.addEventListener('click', () => {
   recordedVideo.loop = false; /////////////////////////////added to avoid loop.
 });
 
+// funciton to download audio file, to be used both with 'Donwload button' and whatsapp,...
+var toDownloadAudioFile = function(){
+
+      var randomNumber = Math.random();
+      randomNumber = randomNumber*10000;
+      var randomID = Math.round(randomNumber);
+
+    /////////catch error in case recordedBlobs ==null
+    try{
+      const blob = new Blob(recordedBlobs, {type: 'video/webm'});
+     // console.log(blob)
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = dateTimeRandomID+'.webm';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      }, 100);
+    }
+    catch(err){ //////////////////////////////////
+      recordedBlobs==null
+    }
+    };
+
 const downloadButton = document.querySelector('button#DownloadButton');/////////////////////////////////change the download button
-downloadButton.addEventListener('click', () => {
-
-  var randomNumber = Math.random();
-  randomNumber = randomNumber*10000;
-  var randomID = Math.round(randomNumber);
-
-/////////catch error in case recordedBlobs ==null
-try{
-  const blob = new Blob(recordedBlobs, {type: 'video/webm'});
- // console.log(blob)
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.style.display = 'none';
-  a.href = url;
-  a.download = dateTimeRandomID+'.webm';
-  document.body.appendChild(a);
-  a.click();
-  setTimeout(() => {
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
-  }, 100);
-}
-catch(err){ //////////////////////////////////
-  recordedBlobs==null
-}
-});
+const downloadButtonWhatsApp = document.querySelector('button#whatsApp');
+const downloadButtonTelegram = document.querySelector('button#telegram');
+const downloadButtonSMS = document.querySelector('button#weChat');
+downloadButton.addEventListener('click', () => toDownloadAudioFile())
+downloadButtonWhatsApp.addEventListener('click', () => toDownloadAudioFile())
+downloadButtonTelegram.addEventListener('click', () => toDownloadAudioFile())
+downloadButtonSMS.addEventListener('click', () =>
+  {
+    if(shareURL == 'encodedGeoJSON'){
+      toDownloadAudioFile()
+    }
+  })
 
 
 function handleSourceOpen(event) {

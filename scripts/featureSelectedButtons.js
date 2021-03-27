@@ -142,6 +142,8 @@ document.getElementById("goBackMessagingApps").onclick = function() {
 
 
 document.getElementById("whatsApp").onclick = function() {
+  document.getElementById("Alert").style.display = 'none'
+
   //console.log(shareURL)
   //alert('Under development. Available soon.');
   //  window.location.href = "https://wa.me/whatsappphonenumber/?text=urlencodedtext";
@@ -167,6 +169,8 @@ document.getElementById("whatsApp").onclick = function() {
 }
 
 document.getElementById("telegram").onclick = function() {
+  document.getElementById("Alert").style.display = 'none'
+
 //  alert('🚧 Telegram sharing option not available yet.');
   if(shareURL == 'coords'){
     if(url.includes('/?')){ // to avoid shareing geojson if url still contains geojson
@@ -192,6 +196,8 @@ document.getElementById("telegram").onclick = function() {
 }
 
 document.getElementById("weChat").onclick = function() {
+  document.getElementById("Alert").style.display = 'none'
+
   //alert('🚧 WeChat sharing option not available yet.');
   if(shareURL == 'coords'){
     if(url.includes('/?')){ // to avoid shareing geojson if url still contains geojson
