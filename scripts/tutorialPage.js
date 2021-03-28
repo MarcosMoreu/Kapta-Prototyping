@@ -19,7 +19,7 @@ document.getElementById('dropDown').onclick = function(e){
 
       if(isOnline == true){
         document.getElementById('cutomiseButton').style.display = "initial";
-        document.getElementById('iconsButton').style.display = "initial";
+        // document.getElementById('iconsButton').style.display = "initial";
 
       }
       document.getElementById('dropDown').style.backgroundColor = 'grey';
@@ -209,39 +209,26 @@ document.getElementById('infoGoBackButton').onclick = function(e){
   }
 
 document.getElementById('youtube').onclick = function(e){
-   setTimeout(function(){
      // document.getElementById("textEnglish").style.display = "initial";
-     document.getElementById("infoGoBackButton").style.display = "initial";
+     if(isOnline == true){
+       setTimeout(function(){
+
+       document.getElementById('dropDown').style.display = "none";
+       document.getElementById('dropDown').style.backgroundColor = 'black';
+       dropDownOpen = false
+       document.getElementById("infoButton").style.display = "none";
+       document.getElementById("iconsButton").style.display = "none";
+        document.getElementById("youtube").style.display = "none";
+        document.getElementById('cutomiseButton').style.display = "none";
+        document.getElementById('startMapping').style.display = "none";
+        document.getElementById("infoGoBackButton").style.display = "initial";
      document.getElementById("youtubeVideo").style.display = "initial";
+      },1000)
+   }else{
+     document.getElementById('youtubeImage').src = '../images/youtubeOffline.png'
+   }
 
 
-     document.getElementById('dropDown').style.display = "none";
-     document.getElementById('dropDown').style.backgroundColor = 'black';
-     dropDownOpen = false
-     document.getElementById("infoButton").style.display = "none";
-     document.getElementById("iconsButton").style.display = "none";
-      document.getElementById("youtube").style.display = "none";
-      document.getElementById('cutomiseButton').style.display = "none";
-      document.getElementById('startMapping').style.display = "none";
-
-
-
-    // document.getElementById("infoButton").style.display = "none";
-    // document.getElementById('cutomiseButton').style.display = "none";
-    // document.getElementById("startMapping").style.display = "none";
-    //
-    // document.getElementById("infoGoBackButton").style.display = "initial";
-    //
-    // document.getElementById("youtube").style.display = "none";
-    // document.getElementById("spanish").style.display = "initial";
-    // document.getElementById("english").style.display = "initial";
-    // document.getElementById("french").style.display = "initial";
-    // document.getElementById("portuguese").style.display = "initial";
-    // document.getElementById("swahili").style.display = "initial";
-    // document.getElementById("juhoansi").style.display = "initial";
-    // document.getElementById("other1").style.display = "initial";
-
-   },100)
    return dropDownOpen
 
   }
