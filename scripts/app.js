@@ -1564,11 +1564,13 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
               }
             },6400) // time required for three repetitions of the gif
 
-            clearInterval(refreshGPSbutton) //stop searching once accuracy <50
-            L.marker(currentLocation, {
+            // clearInterval(refreshGPSbutton) //stop searching once accuracy <50
+            var position = L.marker(currentLocation, {
                 icon: gpsIcon,
                 draggable:false
-            }).addTo(map);
+            })
+            position.removeFrom(map)
+            position.addTo(map)
 
         } else if (accuracy > 50 && accuracy <= 250) {
 
@@ -2063,19 +2065,29 @@ document.getElementById("field").onclick = function(e) {
     document.getElementById('Alert').innerHTML = 'GPS OFF!'
     document.getElementById("Alert").style.display = 'initial'
     document.getElementById("field").style.background = 'red'
+    document.getElementById("field").style.borderColor = 'red'
+
     setTimeout(function(){
       document.getElementById("field").style.background = 'white'
-    },1000)
+      document.getElementById("field").style.borderColor = 'white'
+
+      document.getElementById("Alert").style.display = 'none'
+
+    },3000)
   }else if(accuracy > 50){
     // alert('Wait until the GPS symbol is green. This might take few seconds or minutes');
     document.getElementById("Alert").style.fontSize = "40px";
     document.getElementById('Alert').innerHTML = 'GPS</br>🟠⌛</br>🟡⌛</br>🟢👍'
     document.getElementById("Alert").style.display = 'initial'
     document.getElementById("field").style.background = 'orange'
+    document.getElementById("field").style.borderColor = 'orange'
+
 
     setTimeout(function(){
       document.getElementById("field").style.background = 'white'
-    },1000)
+      document.getElementById("field").style.borderColor = 'white'
+      document.getElementById("Alert").style.display = 'none'
+    },3000)
 
   }else{
     document.getElementById("Alert").style.display = 'none'

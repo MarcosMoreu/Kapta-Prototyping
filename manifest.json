@@ -1,7 +1,7 @@
 
 {
-  "name": "Prototype v4.4",
-  "short_name": "Prototype v4.4",
+  "name": "Prototype v4.6",
+  "short_name": "Prototype v4.6",
   "lang": "en-GB",
   "theme_color": "#000000",
   "background_color": "#000000",
@@ -35,16 +35,10 @@
       "purpose": "any maskable"
     },
     {
-      "src": "images/icons/icon-384x384.png",
-      "sizes": "384x384",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
       "src": "images/icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 
