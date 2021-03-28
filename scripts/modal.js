@@ -162,9 +162,13 @@ var initialiseMap = function(){
       //place your code here, the scripts are all loaded
       document.getElementById("map").style.display = "initial";
       document.getElementById("tutorial").style.display = "initial";
-      document.getElementById("polygon").style.display = "initial";
-      document.getElementById("polyline").style.display = "initial";
-      document.getElementById("point").style.display = "initial";
+      document.getElementById("armchair").style.display = "initial";
+      document.getElementById("field").style.display = "initial";
+      // document.getElementById("gobackArmchairField").style.display = "initial";
+
+      // document.getElementById("polygon").style.display = "initial";
+      // document.getElementById("polyline").style.display = "initial";
+      // document.getElementById("point").style.display = "initial";
       document.getElementById("map").style.display = "block";
       //addLeafletAttribute()
       osm_Button.addTo(map);
@@ -200,6 +204,7 @@ var initialiseMap = function(){
 
         preload([
             'images/ThumbsUpGreen.png','images/checkingPw.gif',
+            'images/armchair.png','images/field.png',
             'images/drawPolygon.png','images/line.png','images/point.png',
             'images/applyFilter.png','images/arrowLeft.png', 'images/arrowRight.png', 'images/backButton.png','images/bin.png','images/binOriginal.png','images/binpost.png',
             'images/binpre.png','images/burger.png','images/burgerBlack.png','images/cancel.png','images/clearFilter.png','images/commentFeature.png',

@@ -1,4 +1,8 @@
 //////////////////////////     LEAFLET DRAW    ///////////////////////////////////////////////
+var finalAreaHa2Decimals
+var finalAreaAcres2Decimals
+var finalLength2Decimals
+
 var drawnItems = new L.FeatureGroup();
 map.addLayer(drawnItems);
 var editableLayers = new L.FeatureGroup();
@@ -97,6 +101,9 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
 var clickMapCount = 0;
 var clickDelVertCount = 0;
 document.getElementById("goBack2").onclick = function(e) {
+  finalAreaHa2Decimals = null
+  finalAreaAcres2Decimals = null
+  finalLength2Decimals = null
   document.getElementById("Alert").style.display = 'none'
 
       gps_Button.button.style.opacity = '1';
@@ -114,9 +121,13 @@ document.getElementById("goBack2").onclick = function(e) {
     setTimeout(function() {
         document.getElementById("tutorial").style.display = "initial";
         document.getElementById("goBack2").style.display = "none";
-        document.getElementById("polygon").style.display = "initial";
-        document.getElementById("polyline").style.display = "initial";
-        document.getElementById("point").style.display = "initial";
+        // document.getElementById("polygon").style.display = "initial";
+        // document.getElementById("polyline").style.display = "initial";
+        // document.getElementById("point").style.display = "initial";
+        document.getElementById("armchair").style.display = "initial";
+        document.getElementById("field").style.display = "initial";
+        // document.getElementById("gobackArmchairField").style.display = "initial";
+
 
         document.getElementById("deleteLastVertex").style.display = "none";
         document.getElementById("deleteAllVertexs").style.display = "none";
@@ -148,6 +159,10 @@ document.getElementById("goBack2").onclick = function(e) {
 var boxContent;
 var drawingPoint = false
 document.getElementById('point').onclick = function(e) {
+  finalAreaHa2Decimals = null
+  finalAreaAcres2Decimals = null
+  finalLength2Decimals = null
+
     filter_Button.button.style.opacity = '0.4';
     filter_Button.button.disabled = true;
     gps_Button.button.style.opacity = '0.4';
@@ -169,7 +184,13 @@ document.getElementById('point').onclick = function(e) {
         document.getElementById("polygon").style.display = "none";
         document.getElementById("polyline").style.display = "none";
         document.getElementById("point").style.display = "none";
-        document.getElementById("goBack2").style.display = "initial";
+        document.getElementById("armchair").style.display = "none";
+        document.getElementById("field").style.display = "none";
+        document.getElementById("gobackArmchairField").style.display = "none";
+
+        if(field == false){
+          document.getElementById("goBack2").style.display = "initial";
+        }
 
     }, 200);
 
@@ -178,6 +199,11 @@ document.getElementById('point').onclick = function(e) {
 };
 
 document.getElementById('polyline').onclick = function(e) {
+
+  finalAreaHa2Decimals = null
+  finalAreaAcres2Decimals = null
+  finalLength2Decimals = null
+
     filter_Button.button.style.opacity = '0.4';
     filter_Button.button.disabled = true;
     gps_Button.button.style.opacity = '0.4';
@@ -225,6 +251,10 @@ document.getElementById('polyline').onclick = function(e) {
         document.getElementById("polygon").style.display = "none";
         document.getElementById("polyline").style.display = "none";
         document.getElementById("point").style.display = "none";
+        document.getElementById("armchair").style.display = "none";
+        document.getElementById("field").style.display = "none";
+        document.getElementById("gobackArmchairField").style.display = "none";
+
         document.getElementById("goBack2").style.display = "initial";
         document.getElementById("deleteLastVertexLine").style.display = "initial";
         document.getElementById("deleteAllVertexsLine").style.display = "initial";
@@ -234,6 +264,11 @@ document.getElementById('polyline').onclick = function(e) {
 };
 
 document.getElementById('polygon').onclick = function(e) {
+
+  finalAreaHa2Decimals = null
+  finalAreaAcres2Decimals = null
+  finalLength2Decimals = null
+
       filter_Button.button.style.opacity = '0.4';
       filter_Button.button.disabled = true;
       gps_Button.button.style.opacity = '0.4';
@@ -282,6 +317,10 @@ document.getElementById('polygon').onclick = function(e) {
         document.getElementById("polygon").style.display = "none";
         document.getElementById("polyline").style.display = "none";
         document.getElementById("point").style.display = "none";
+        document.getElementById("armchair").style.display = "none";
+        document.getElementById("field").style.display = "none";
+        document.getElementById("gobackArmchairField").style.display = "none";
+
 
         document.getElementById("goBack2").style.display = "initial";
         document.getElementById("deleteLastVertex").style.display = "initial";
@@ -402,9 +441,7 @@ document.getElementById('completeFeature').onclick = function(e) {
 
 var tempLayer;
 var data;
-var finalAreaHa2Decimals
-var finalAreaAcres2Decimals
-var finalLength2Decimals
+
 
 ////////////////////////////////////////  map events    /////////////////////////////////////////////////////////////////////////////
 map.on('draw:deleted', function(e) {
@@ -414,6 +451,9 @@ map.on('draw:deleted', function(e) {
 
 var typeOfFeature;
 map.on('draw:created', function(e) {
+  field = false
+  console.log(drawnItems)
+
   document.getElementById("Alert").style.display = 'none'
 
     myLayer_Button.button.style.opacity = '0.4';
@@ -467,7 +507,7 @@ map.on('draw:created', function(e) {
         var finalAreaHa = finalArea * 0.0001
         var finalAreaAcres = finalArea * 0.000247105
         //to remove decimals ....
-        finalAreaHa2Decimals = finalAreaHa.toFixed(2) + ' ' + 'hectares'
+        finalAreaHa2Decimals = finalAreaHa.toFixed(2) + ' ' + 'ha'
         finalAreaAcres2Decimals = finalAreaAcres.toFixed(2) + ' ' + 'acres'
         //to show the final area on the top
         document.getElementById('showAreaHa').style.display = 'initial';
@@ -531,7 +571,9 @@ map.on('draw:created', function(e) {
     //console.log(document.getElementsByClassName('emojionearea').value)
 
     startCheckingText() // to call the function to start checking the input text
-    return created & data && typeOfFeature;
+    console.log(data)
+
+    return created && data && typeOfFeature && field;
 
 });
 
@@ -571,12 +613,15 @@ document.getElementById('Cancel').onclick = function(e) {
     setTimeout(function() {
 
         document.getElementById("tutorial").style.display = "initial";
-        document.getElementById("polygon").style.display = "initial";
-        document.getElementById("polyline").style.display = "initial";
-        document.getElementById("point").style.display = "initial";
+        document.getElementById("armchair").style.display = "initial";
+        document.getElementById("field").style.display = "initial";
+        // document.getElementById("gobackArmchairField").style.display = "initial";
+        // document.getElementById("polygon").style.display = "initial";
+        // document.getElementById("polyline").style.display = "initial";
+        // document.getElementById("point").style.display = "initial";
         document.getElementById("Cancel").style.display = "none";
 
-        document.getElementById("Download").style.display = "none";
+        // document.getElementById("Download").style.display = "none";
         document.getElementById("DownloadButton").style.display = "none";
 
         document.getElementById('record').style.display = 'none';

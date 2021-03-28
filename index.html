@@ -145,6 +145,15 @@
   <button id='tutorial' class='button' aria-label = 'goBack1' style='display:none;z-index:3; position:relative;' >
     <img  src="images/questionmark.png"  alt="..." style='width:30px ; height:30px'>
   </button>
+  <button id='gobackArmchairField' class='button' aria-label = 'field' style='display:none;z-index:3; position:relative'>
+    <img src="images/backButton.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
+  </button>
+  <button id='armchair' class='button' aria-label = 'armchair' style='display:none;z-index:3; position:relative;'>
+    <img src="images/armchair.png"  loading='lazy' alt="..." style='width:30px ; height:30px;margin-left:-2px'>
+  </button>
+  <button id='field' class='button' aria-label = 'field' style='display:none;z-index:3; position:relative'>
+    <img src="images/field.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
+  </button>
   <button id='polygon' class='button' aria-label = 'polygon' style='display:none;z-index:3; position:relative;'>
     <img src="images/drawPolygon.png"  loading='lazy' alt="..." style='width:30px ; height:30px;margin-left:-2px'>
   </button>
@@ -316,7 +325,7 @@
   <button id='deleteInPopUp' disabled class='popupButton' style='display:none;position:relative;left:calc(50% - 30px);text-align:center;height:30px;width:50px; font-size:10px;outline:none;background-color:white;border: 2px solid white;border-radius:5px;opacity:0.3'>
     <img id='imageDeleteInPopup'   src="images/bin.png" loading='lazy' alt="..." style='border-radius:5px;border: 1px solid black;background:white;width:25px ; height:25px'>
   </button>
-  <button id='popupAreaLength' class='popupButton' disabled style='display:none;position:relative;margin-left:-5px;text-align:center;height:30px;width:150px; font-size:10px;outline:none;background-color:white; border: 2px solid white;border-radius:5px'>
+  <button id='popupAreaLength' class='popupButton' disabled style='display:none;position:relative;margin-left:-5px;text-align:center;height:30px;width:150px; font-size:14px;outline:none;background-color:white; border: 2px solid white;border-radius:5px'>
   </button>
   <!-- <button id='commentPopup' class='popupButton' style='display:none;text-align:center;width:150px;height:fit-content;margin-left:-5px; font-size:15px;outline:none;background-color:#ECECEC;  border: 2px solid white;border-radius:15px'> -->
   <button id='commentPopup' class='popupButton' style='display:none;text-align:center;width:150px;padding:7px 5px;height:fit-content;margin-left:-5px; font-size:15px;outline:none;background-color:#ECECEC; border: 0px solid white;border-radius: 0 15px 15px 15px'>
@@ -326,7 +335,7 @@
   <button id='toCommentPopup' class='popupButton' type='button' disabled style='display:none;text-align:center;width:150px;padding:5px 5px;height:fit-content;margin-left:-5px; margin-top:5px; font-size:15px;outline:none;background-color:#BADFFE; border: 0px solid white;border-radius: 15px 0 15px 15px'>
      ...
   </button>
-  <button id='editDeletePopup' class='popupButton' style='display:none;position:relative;left:calc(50% - 30px);text-align:center;margin-top:10px;height:45px;width:45px; font-size:40px;outline:none;background-color:white;border: 1px solid black;border-radius:30px'>
+  <button id='editDeletePopup' class='popupButton' style='display:none;position:relative;text-align:center;margin-top:10px;height:45px;width:45px; font-size:40px;outline:none;background-color:white;border: 1px solid black;border-radius:30px'>
     <img id='commentFeature'   src="images/commentFeature.png" loading='lazy' alt="..." style='margin-bottom:3px;width:25px ; height:25px'>
   </button>
      <audio controls controlslist="nodownload" controlslist="novolume" class='audioPlayer' id='audioControls' style = 'position:absolute;width:150%;left:-25%;margin-top:100px;display:none' >
@@ -396,6 +405,7 @@
 <script defer  src="scripts/commentFeature.js"></script>
 <script  defer src="scripts/filterButtons.js"></script>
 <script defer src="scripts/cartoLayer.js"></script>
+<!-- <script defer src="scripts/localStorage.js"></script> -->
 <script  defer src="scripts/audioButton.js"></script>
 <script defer src="scripts/share-download.js"></script>
 

@@ -157,9 +157,13 @@ document.getElementById('backEditDelete').onclick = function(){
 
 
   document.getElementById("tutorial").style.display = "initial";
-  document.getElementById("polygon").style.display = "initial";
-  document.getElementById("polyline").style.display = "initial";
-  document.getElementById("point").style.display = "initial";
+  // document.getElementById("polygon").style.display = "initial";
+  // document.getElementById("polyline").style.display = "initial";
+  // document.getElementById("point").style.display = "initial";
+  document.getElementById("armchair").style.display = "initial";
+  document.getElementById("field").style.display = "initial";
+  // document.getElementById("gobackArmchairField").style.display = "initial";
+
 
   try{
     document.getElementById("popupAreaLength").disabled = true;

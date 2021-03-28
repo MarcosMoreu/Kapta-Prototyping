@@ -437,9 +437,13 @@ document.getElementById('shareWorldButton').onclick = function(e) {
 
               document.getElementById("map").style.height = "100%";
               document.getElementById("tutorial").style.display = "initial";
-              document.getElementById("polygon").style.display = "initial";
-              document.getElementById("polyline").style.display = "initial";
-              document.getElementById("point").style.display = "initial";
+              // document.getElementById("polygon").style.display = "initial";
+              // document.getElementById("polyline").style.display = "initial";
+              // document.getElementById("point").style.display = "initial";
+              document.getElementById("armchair").style.display = "initial";
+              document.getElementById("field").style.display = "initial";
+              // document.getElementById("gobackArmchairField").style.display = "initial";
+
 
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById("Alert").innerHTML = '🚧 If the feature is not appearing after few seconds, please toggle layer or reload page'
@@ -553,9 +557,11 @@ document.getElementById('DownloadButton').onclick = function(e) {
 
         document.getElementById("map").style.height = "100%";
         document.getElementById("tutorial").style.display = "initial";
-        document.getElementById("polygon").style.display = "initial";
-        document.getElementById("polyline").style.display = "initial";
-        document.getElementById("point").style.display = "initial";
+        // document.getElementById("polygon").style.display = "initial";
+        // document.getElementById("polyline").style.display = "initial";
+        // document.getElementById("point").style.display = "initial";
+        document.getElementById("armchair").style.display = "initial";
+        document.getElementById("field").style.display = "initial";
         document.getElementById("shareWorldButtonImage").src = 'images/shareworld.png'
         document.getElementById("shareWorldButton").style.backgroundColor = 'white'
         document.getElementById("shareWorldButton").style.borderColor = 'white'

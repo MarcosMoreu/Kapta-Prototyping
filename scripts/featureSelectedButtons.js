@@ -56,9 +56,13 @@ document.getElementById("backDeleteFeature").onclick = function() {
     cartoIdFeatureSelected = null;
 
     document.getElementById("tutorial").style.display = "initial";
-    document.getElementById("polygon").style.display = "initial";
-    document.getElementById("polyline").style.display = "initial";
-    document.getElementById("point").style.display = "initial";
+    // document.getElementById("polygon").style.display = "initial";
+    // document.getElementById("polyline").style.display = "initial";
+    // document.getElementById("point").style.display = "initial";
+    document.getElementById("armchair").style.display = "initial";
+    document.getElementById("field").style.display = "initial";
+    // document.getElementById("gobackArmchairField").style.display = "initial";
+
 
     document.getElementById("backDeleteFeature").style.display = "none";
     document.getElementById("deleteFeature").style.display = 'none';
@@ -272,19 +276,24 @@ document.getElementById("randomSuggestion").onclick = function() {
   document.getElementById("deleteFeature").style.opacity = "0.4";
   document.getElementById("deleteFeature").disabled = true;
   document.getElementById("imageDeleteFeature").src = 'images/binpre.png'
+  scale.remove()
 
   setTimeout(function(){
     document.getElementById("randomSuggestion").style.backgroundColor = '#3B96DD'
     document.getElementById("randomSuggestion").style.borderColor = '#3B96DD'
     document.getElementById("randomSuggestion").disabled = false
 
-
   },1800)
   document.getElementById("Alert").style.fontSize = "15px";
   document.getElementById('Alert').innerHTML = '🚧 Under development. At the moment, contributions that start with 🌐 are shown randomly'
   document.getElementById('Alert').style.display = 'initial'
   setTimeout(function(){
+    scale.addTo(map)
+  },3000)
+  setTimeout(function(){
     document.getElementById('Alert').style.display = 'none'
+    scale.addTo(map)
+
   },5000)
 
   var maxValueDeflated = deflated._layers.length
@@ -354,6 +363,10 @@ document.getElementById("randomSuggestion").onclick = function() {
   document.getElementById("polygon").style.display = "none";
   document.getElementById("polyline").style.display = "none";
   document.getElementById("point").style.display = "none";
+  document.getElementById("armchair").style.display = "none";
+  document.getElementById("field").style.display = "none";
+  document.getElementById("gobackArmchairField").style.display = "none";
+
 //alert('under development')
 
 }

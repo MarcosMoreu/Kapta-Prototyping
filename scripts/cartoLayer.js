@@ -235,6 +235,10 @@ var cartoGeoJSONLayer = function(data) {
                      document.getElementById("polygon").style.display = "none";
                      document.getElementById("polyline").style.display = "none";
                      document.getElementById("point").style.display = "none";
+                     document.getElementById("armchair").style.display = "none";
+                     document.getElementById("field").style.display = "none";
+                     document.getElementById("gobackArmchairField").style.display = "none";
+
                     // random_Button.addTo(map)
                      selectedFeature.setStyle({color: '#F70573'})
                    }
@@ -309,6 +313,10 @@ var cartoGeoJSONLayer = function(data) {
                          document.getElementById("polygon").style.display = "none";
                          document.getElementById("polyline").style.display = "none";
                          document.getElementById("point").style.display = "none";
+                         document.getElementById("armchair").style.display = "none";
+                         document.getElementById("field").style.display = "none";
+                         document.getElementById("gobackArmchairField").style.display = "none";
+
                         // random_Button.addTo(map)
                          selectedFeature.editing.enable();
                     }

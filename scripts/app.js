@@ -557,6 +557,7 @@ var localStorageToGeoJSON = function(){
 return localStorageLayer
 }
 
+
 // function to fetch all geojson files from the IndexedDB-localforage-geoJSONsDB. Localforage is async, so promises are uses. After loop ends, localStorageToGeoJSON() [above] is called
 var completedCount = 0 // to call localStorageToGeoJSON() when loop ends
 function fetchFromLocalStorage(){
@@ -1386,6 +1387,8 @@ var filter_Button = L.easyButton({
             document.getElementById("polygon").style.display = "none";
             document.getElementById("polyline").style.display = "none";
             document.getElementById("point").style.display = "none";
+            document.getElementById("armchair").style.display = "none";
+            document.getElementById("field").style.display = "none";
 
             if(filterApplied == true){
               //console.log('filterisonfalse')
@@ -1436,9 +1439,11 @@ var filter_Button = L.easyButton({
             }
 
             document.getElementById("tutorial").style.display = "initial";
-            document.getElementById("polygon").style.display = "initial";
-            document.getElementById("polyline").style.display = "initial";
-            document.getElementById("point").style.display = "initial";
+            document.getElementById("armchair").style.display = "initial";
+            document.getElementById("field").style.display = "initial";
+            // document.getElementById("polygon").style.display = "initial";
+            // document.getElementById("polyline").style.display = "initial";
+            // document.getElementById("point").style.display = "initial";
 
             document.getElementById("clearFilter").style.display = "none";
             document.getElementById("applyFilter").style.display = "none";
@@ -2000,6 +2005,8 @@ document.getElementById("completeFeature").disabled = true;
 // var mapCurrentCenter;
 
 document.getElementById("tutorial").onclick = function(e) {
+  document.getElementById("Alert").style.display = 'none'
+
     mapCurrentBounds = map.getBounds();
     mapCurrentZoom = map.getZoom();
     mapCurrentCenter = map.getCenter();
@@ -2012,8 +2019,111 @@ document.getElementById("tutorial").onclick = function(e) {
         document.getElementById("polygon").style.display = "none";
         document.getElementById("polyline").style.display = "none";
         document.getElementById("point").style.display = "none";
+        document.getElementById("armchair").style.display = "none";
+        document.getElementById("field").style.display = "none";
+        document.getElementById("gobackArmchairField").style.display = "none";
+
     }, 200)
     return mapCurrentBounds & mapCurrentZoom & mapCurrentCenter
+}
+document.getElementById("gobackArmchairField").onclick = function(e) {
+  document.getElementById("tutorial").style.display = "initial";
+  document.getElementById("armchair").style.display = "initial";
+  document.getElementById("field").style.display = "initial";
+  document.getElementById("gobackArmchairField").style.display = "none";
+  document.getElementById("polygon").style.display = "none";
+  document.getElementById("polyline").style.display = "none";
+  document.getElementById("point").style.display = "none";
+
+}
+document.getElementById("armchair").onclick = function(e) {
+
+  document.getElementById("Alert").style.display = 'none'
+
+  document.getElementById("tutorial").style.display = "none";
+  document.getElementById("armchair").style.display = "none";
+  document.getElementById("field").style.display = "none";
+
+  document.getElementById("gobackArmchairField").style.display = "initial";
+  document.getElementById("polygon").style.display = "initial";
+  document.getElementById("polyline").style.display = "initial";
+  document.getElementById("point").style.display = "initial";
+
+}
+
+var field
+document.getElementById("field").onclick = function(e) {
+  console.log(currentLocation)
+  console.log(accuracy)
+
+
+  if(currentLocation[0] == null){
+    // alert('Turn on the GPS and wait until the GPS symbol is green. This might take few seconds or minutes');
+    document.getElementById("Alert").style.fontSize = "40px";
+    document.getElementById('Alert').innerHTML = 'GPS OFF!'
+    document.getElementById("Alert").style.display = 'initial'
+    document.getElementById("field").style.background = 'red'
+    setTimeout(function(){
+      document.getElementById("field").style.background = 'white'
+    },1000)
+  }else if(accuracy > 50){
+    // alert('Wait until the GPS symbol is green. This might take few seconds or minutes');
+    document.getElementById("Alert").style.fontSize = "40px";
+    document.getElementById('Alert').innerHTML = 'GPS</br>🟠⌛</br>🟡⌛</br>🟢👍'
+    document.getElementById("Alert").style.display = 'initial'
+    document.getElementById("field").style.background = 'orange'
+
+    setTimeout(function(){
+      document.getElementById("field").style.background = 'white'
+    },1000)
+
+  }else{
+    document.getElementById("Alert").style.display = 'none'
+
+
+    finalAreaHa2Decimals = null
+    finalAreaAcres2Decimals = null
+    finalLength2Decimals = null
+
+      filter_Button.button.style.opacity = '0.4';
+      filter_Button.button.disabled = true;
+      gps_Button.button.style.opacity = '0.4';
+      gps_Button.button.disabled = true;
+
+      emojiRequest()
+
+      if (isIOS == false) {
+          recordedBlobs = null; //to empty recorded blobs from previous map in this session
+      }
+
+      featureType = 'point';
+      map.doubleClickZoom.disable();
+      currentZoom = map.getZoom();
+      drawMarker.enable();
+
+          document.getElementById("tutorial").style.display = "none";
+          document.getElementById("polygon").style.display = "none";
+          document.getElementById("polyline").style.display = "none";
+          document.getElementById("point").style.display = "none";
+          document.getElementById("armchair").style.display = "none";
+          document.getElementById("field").style.display = "none";
+          document.getElementById("gobackArmchairField").style.display = "none";
+
+
+      drawingPoint = true;
+
+
+        // var currentLocationSimulateClickLat = 3.445137
+        // var currentLocationSimulateClickLng = 7.23346
+        var currentLocationSimulateClickLat = currentLocation[0]
+        var currentLocationSimulateClickLng = currentLocation[1]
+        setTimeout(function(){
+          map.fireEvent('click', {
+          latlng: L.latLng(currentLocationSimulateClickLat, currentLocationSimulateClickLng)
+        },100);
+        })
+  }
+  return drawingPoint && featureType
 }
 ///////////////////////////////////////////draw screen////////////////////////////////////////////////
 
@@ -2103,6 +2213,7 @@ var startCheckingText = function() {
 
 ////////function for pop ups//////////
 function onEachFeature(feature, layer) {
+  console.log(feature.properties.areaPolygon)
     //timeout is used to wait 1000ms until the download link is ready
     setTimeout(function() {
         var audioLinkText = '🔊 AUDIO'
@@ -2110,12 +2221,24 @@ function onEachFeature(feature, layer) {
         if (isIOS == false && recordedBlobs != null) {
             if (isOnline == true) { //condition to only hyperlink the audiolinktext if online
                 clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
-                var popupContent = feature.properties.landUsesEmoji + '</br>' + '</br>' + '⏳...' + clickableFinalUrlAudio; //+ '    ' +dateTimeRandomID
+                if(feature.properties.areaPolygon == 'Point' || feature.properties.areaPolygon == 'Line'){
+                  var popupContent = feature.properties.landUsesEmoji + '</br>' + '</br>' + '⏳...' + clickableFinalUrlAudio; //+ '    ' +dateTimeRandomID
+                }else{
+                  var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.landUsesEmoji + '</br>' + '</br>' + '⏳...' + clickableFinalUrlAudio; //+ '    ' +dateTimeRandomID
+                }
             } else {
-                var popupContent = feature.properties.landUsesEmoji + '</br>' + '</br>' + '⏳...' + 'AUDIO';
+                if(feature.properties.areaPolygon == 'Point' || feature.properties.areaPolygon == 'Line'){
+                  var popupContent = feature.properties.landUsesEmoji + '</br>' + '</br>' + '⏳...' + 'AUDIO';
+                }else{
+                  var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.landUsesEmoji + '</br>' + '</br>' + '⏳...' + 'AUDIO';
+                }
             }
         } else {
-            var popupContent = feature.properties.landUsesEmoji
+            if(feature.properties.areaPolygon == 'Point' || feature.properties.areaPolygon == 'Line'){
+              var popupContent = feature.properties.landUsesEmoji
+            }else{
+              var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.landUsesEmoji
+            }
         }
         if (feature.properties && feature.properties.popupContent) {
             popupContent += feature.properties.popupContent;
@@ -2130,14 +2253,24 @@ function onEachFeature(feature, layer) {
 function onEachFeatureAudioLocalStorage(feature, layer) { // function duplicated to avoid openpop() with local storage
     //timeout is used to wait 1000ms until the download link is ready
     setTimeout(function() {
+      // var hectares = feature.properties.areaPolygon
+      // var hectaresToAcres = hectares * 2.47105
         ////console.log('isonline' + ' ' + isOnline)
         var audioLinkText = '🔊 AUDIO'
         var audioAvailable = feature.properties.audioAvailable;
         //conditions to avoid showing audio link if no audio has been recorded
         if (audioAvailable == true) {
-            var popupContent = feature.properties.landUsesEmoji + '</br>' + '</br>' + '🔊 🚧';
+            if(feature.properties.areaPolygon == 'Point' || feature.properties.areaPolygon == 'Line'){
+              var popupContent = feature.properties.landUsesEmoji + '</br>' + '</br>' + '🔊 🚧';
+            }else{
+              var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.landUsesEmoji + '</br>' + '</br>' + '🔊 🚧';
+            }
         } else {
+          if(feature.properties.areaPolygon == 'Point' || feature.properties.areaPolygon == 'Line'){
             var popupContent = feature.properties.landUsesEmoji
+          }else{
+            var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.landUsesEmoji
+          }
         }
         if (feature.properties && feature.properties.popupContent) {
             popupContent += feature.properties.popupContent;
