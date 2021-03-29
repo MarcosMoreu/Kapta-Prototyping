@@ -188,6 +188,7 @@ var initialiseMap = function(){
       //rose.addTo(map)
       startSearchingLocation()
       deflated.addTo(map) // to initialize //////////////////////!!!!!!!!
+      
       function preload(arrayOfImages) {
         $(arrayOfImages).each(function(){
             try{

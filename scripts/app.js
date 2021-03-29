@@ -1492,9 +1492,9 @@ var gpsIcon = L.icon({
     iconUrl: 'images/man.png',
     //  shadowUrl: 'leaf-shadow.png',
 
-    iconSize: [10, 10], // size of the icon
+    iconSize: [12, 12], // size of the icon
     //shadowSize:   [50, 64], // size of the shadow
-    iconAnchor: [5,5], // point of the icon which will correspond to marker's location, relative to its top left showCoverageOnHover
+    iconAnchor: [6,6], // point of the icon which will correspond to marker's location, relative to its top left showCoverageOnHover
     //shadowAnchor: [4, 62],  // the same for the shadow
     //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
@@ -1573,10 +1573,12 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
               if(field == false){
                 position = L.marker(currentLocation, {
                     icon: gpsIcon,
-                    draggable:false
+                    draggable:false,
+                    zIndexOffset:100
                 })
                 // position.removeFrom(map)
                 position.addTo(map)
+                // position.bringToFront()
               }
 
 
