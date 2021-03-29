@@ -1323,7 +1323,9 @@ var myLayer_Button = L.easyButton({
             } else if (whichLayerIsOn == 'localStorage') {
                 if (localStorageLayer != null) {
                     localStorageLayer.removeFrom(map)
-                    urlgeojsonfeature.removeFrom(map)
+                    try{
+                      urlgeojsonfeature.removeFrom(map)
+                    }catch(e){}
 
                 }
                 whichLayerIsOn = 'none'

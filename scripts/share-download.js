@@ -127,15 +127,15 @@ document.getElementById('share-download').onclick = function(e) {
 
     var boxContentToString = boxContentToShortname.toString();
     //attributes added to Geojson file properties
-    if (finalAreaHa2Decimals == null && finalLength2Decimals == null) {
-        finalAreaHa2Decimals = 'Point'
+    if (finalAreaAcres2Decimals == null && finalLength2Decimals == null) {
+        finalAreaAcres2Decimals = 'Point'
         finalLength2Decimals = 'Point'
     }
-    if (finalAreaHa2Decimals != null && finalLength2Decimals == null) {
+    if (finalAreaAcres2Decimals != null && finalLength2Decimals == null) {
       finalLength2Decimals = 'Polygon'
     }
-    if (finalAreaHa2Decimals == null && finalLength2Decimals != null) {
-      finalAreaHa2Decimals = 'Line'
+    if (finalAreaAcres2Decimals == null && finalLength2Decimals != null) {
+      finalAreaAcres2Decimals = 'Line'
     }
     if (isIOS == false && recordedBlobs != null) {
         var audioAvailable = true
@@ -147,7 +147,7 @@ document.getElementById('share-download').onclick = function(e) {
         'landUses': boxContentToString,
         'landUsesEmoji': boxContent,
         'audioAvailable': audioAvailable,
-        'areaPolygon': finalAreaHa2Decimals,
+        'areaPolygon': finalAreaAcres2Decimals,
         'lengthLine': finalLength2Decimals,
         'dateTime': dateTime,
         'timeSpendSeconds': totalTimeSpent,
@@ -159,7 +159,7 @@ document.getElementById('share-download').onclick = function(e) {
     propertiesGeoJSONURL = {
         'randomID': randomID,
         'landUsesEmoji': boxContent,
-        'areaPolygon': finalAreaHa2Decimals,
+        'areaPolygon': finalAreaAcres2Decimals,
         'lengthLine': finalLength2Decimals,
     };
     //  adding the properties to the geoJSON file:
@@ -360,15 +360,18 @@ document.getElementById('shareWorldButton').onclick = function(e) {
       clickCountSendButton = 1
   } else {
 
-        hideButtons()
-        document.getElementById('goBackClassification').style.display = 'none';
-        document.getElementById('shareMessagingAppsDirect').style.display = 'none';
-        drawnItems.clearLayers();
-        tempLayer.clearLayers()
-        document.getElementById("map").style.height = "0px";
+
         encodeGeoJSON(data,propertiesGeoJSON)
 
+        setTimeout(function(){
+          hideButtons()
+          document.getElementById('goBackClassification').style.display = 'none';
+          document.getElementById('shareMessagingAppsDirect').style.display = 'none';
+          drawnItems.clearLayers();
+          tempLayer.clearLayers()
+          document.getElementById("map").style.height = "0px";
 
+        },200)
         // drawnItems.clearLayers();
         // tempLayer.clearLayers()
         //first, we define the variables that store the attributes
@@ -490,13 +493,13 @@ document.getElementById('shareWorldButton').onclick = function(e) {
           //   alert("🔑 🛑 During the prototyping phase, a KEYWORD must be added in the textbox to publish the spatial data. Click 'Download' and in the main screen click the 'Quetionmark' button. Then click the 'Yellow' button to request the KEYWORD. Thanks");
           //
           // }
-          finalAreaHa2Decimals = null
+          finalAreaAcres2Decimals = null
           finalLength2Decimals = null
           timeStart = new Date(); // to reset time start in case more contributions in this session
 
             field = false
 
-          return featureSent &&  finalAreaHa2Decimals &&  finalLength2Decimals && timeStart && field
+          return featureSent &&  finalAreaAcres2Decimals &&  finalLength2Decimals && timeStart && field
         }else {
           alert('🛑 You are offline')
         }
@@ -508,19 +511,24 @@ document.getElementById('shareWorldButton').onclick = function(e) {
 var elementJustAddedToLocalStorage = false
 document.getElementById('DownloadButton').onclick = function(e) {
   hideButtons()
-  document.getElementById('goBackClassification').style.display = 'none';
-  document.getElementById('shareMessagingAppsDirect').style.display = 'none';
+
 
     drawnItems.clearLayers();
     tempLayer.clearLayers()
-    document.getElementById("map").style.height = "0px";
     document.getElementById('sentVideo').pause();
     document.getElementById('sentVideo').currentTime = 0
     document.getElementById('downloadedVideo').play();
     document.getElementById("downloadedVideo").controls = false;
+    setTimeout(function(){
+      document.getElementById("map").style.height = "0px";
+      document.getElementById('goBackClassification').style.display = 'none';
+      document.getElementById('shareMessagingAppsDirect').style.display = 'none';
+      document.getElementById('shareWorldButton').style.display = 'none';
+      document.getElementById('DownloadButton').style.display = 'none';
 
-    document.getElementById('shareWorldButton').style.display = 'none';
-    document.getElementById('DownloadButton').style.display = 'none';
+    },200)
+
+
 
     document.getElementById('Downloaded').style.display = 'initial';
     //to download the geojson and webm files to the device's downloads folder. NOTE THAT AUDIO FILE DONWLOAD CODE IS IN AUDIO.JS FILE
