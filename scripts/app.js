@@ -76,7 +76,7 @@ var circleLT250
 var circleLT250Added = false
 var circleGT250Added = false
 var cartoGeometriesInitial = null
-var elementJustAddedToLocalStorage
+var elementJustAddedToLocalStorage = false
 
 //var miniMap
 
@@ -292,7 +292,7 @@ var urlContainsGeoJSON = url.includes('/?')
 //to avoid panning outside this bounds
 var southWest = L.latLng(-70, -180);
 var northEast = L.latLng(80, 180);
-
+var urlgeojsonfeature
 if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getItem('pwCorrect')){  // if url contains geojson (and coords)
   //console.log('hash and geojson')
 
@@ -326,6 +326,16 @@ if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getIte
     //console.log(keepGeoJSONOnly)
     //console.log(parsedJSON)
     // //console.log(parsedJSONStringified)
+    // var feature
+    urlgeojsonfeature = L.geoJSON(parsedJSON, {
+        style: function(feature) {
+            return feature.properties && feature.properties.style;
+        },
+        color: 'yellow',
+        onEachFeature: onEachFeatureAudioLocalStorage,
+        zIndexOffset:10
+
+    })
 
     storeURLGeoJSON(parsedJSON)
     setTimeout(function accessLocalStorage(){
@@ -1289,7 +1299,11 @@ var myLayer_Button = L.easyButton({
                 deflated.removeFrom(map)
                 if (localStorageLayer != null) {
                   //console.log('local storage is not null')
+                    // if(urlgeojsonfeature !=null){
+                    // }
                     localStorageLayer.addTo(map)
+                    urlgeojsonfeature.addTo(map)
+
                 }
                 if (finalLayer != null) {
                     finalLayer.addTo(map)
@@ -1309,6 +1323,8 @@ var myLayer_Button = L.easyButton({
             } else if (whichLayerIsOn == 'localStorage') {
                 if (localStorageLayer != null) {
                     localStorageLayer.removeFrom(map)
+                    urlgeojsonfeature.removeFrom(map)
+
                 }
                 whichLayerIsOn = 'none'
                 //  localStorageLayer.addTo(map)
@@ -2299,7 +2315,7 @@ function onEachFeatureAudioLocalStorage(feature, layer) { // function duplicated
             popupContent += feature.properties.popupContent;
         }
         layer.bindPopup(popupContent) //.addTo(map); // removed otherwise the layer is automatically added to the map when oneachfeaturelocl.. is called
-        if (finished == true) {
+        if (finished == true || urlContainsGeoJSON == true) {
             layer.bindPopup(popupContent).openPopup();
         }
     }, 1600)
