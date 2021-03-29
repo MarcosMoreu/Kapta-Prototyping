@@ -667,5 +667,7 @@ document.getElementById('Cancel').onclick = function(e) {
       }
     }
 
-  return created & featureType;
+      field = false
+
+  return created & featureType && field;
 }

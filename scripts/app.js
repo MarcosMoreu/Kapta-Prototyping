@@ -601,9 +601,9 @@ var markerIconLocalStorage = new L.icon({
     //    iconUrl: 'scripts/lib/leaflet/images/marker-icon.png',
     iconSize: [22, 33], // size of the icon
     //shadowSize:   [50, 64], // size of the shadow
-    iconAnchor: [11, 0], // point of the icon which will correspond to marker's location
+    iconAnchor: [11, 33], // point of the icon which will correspond to marker's location
     //shadowAnchor: [4, 62],  // the same for the shadow
-    //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    popupAnchor:  [0, -33] // point from which the popup should open relative to the iconAnchor
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -929,6 +929,7 @@ var osm_Button = L.easyButton({
         //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn, map) {
+          startSearchingLocation()
           // document.getElementById("Alert").style.fontSize = "25px";
           // document.getElementById('Alert').innerHTML = '⌛'
           // document.getElementById("Alert").style.display = 'initial'
@@ -1491,9 +1492,9 @@ var gpsIcon = L.icon({
     iconUrl: 'images/man.png',
     //  shadowUrl: 'leaf-shadow.png',
 
-    iconSize: [30, 30], // size of the icon
+    iconSize: [10, 10], // size of the icon
     //shadowSize:   [50, 64], // size of the shadow
-    iconAnchor: [20, 40], // point of the icon which will correspond to marker's location
+    iconAnchor: [5,5], // point of the icon which will correspond to marker's location, relative to its top left showCoverageOnHover
     //shadowAnchor: [4, 62],  // the same for the shadow
     //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
@@ -1530,9 +1531,11 @@ function findBuffer(position) {
 // var circleGT250Added = false
 
 // if(isFirstTime == true || pageLoaded == true){
+var field = false
+var position
 var startSearchingLocation = function(){
 var refreshGPSbutton = setInterval(function() { ///////////////////////////////////////// function to keep searching for gps position
-  ////console.log('refreshgpsbutton')
+  console.log('refreshgpsbutton')
   if(localStorage.getItem('pwCorrect')){
 
     try {
@@ -1545,9 +1548,9 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
         localStorage.setItem('lastPositionStoredLOCALLY', currentLocation)
         locationFound = true
         //once the position has been found, we stop checking if the user deactivates again (the position will be recorded anyway)
-        if (accuracy <= 50) {
+        if (accuracy <= 100) {
 
-            gps_Button.button.style.backgroundColor = 'green';
+            gps_Button.button.style.backgroundColor = '#3AFB06';
             //to change the icon of the Easybutton based on accuracy... (first gif then static image)
 
             if (isIOS == true) {
@@ -1562,17 +1565,22 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
               }else{
                 document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" width=40px; height=40px; " > '
               }
-            },6400) // time required for three repetitions of the gif
+            },0) // time required for three repetitions of the gif
 
-            // clearInterval(refreshGPSbutton) //stop searching once accuracy <50
-            var position = L.marker(currentLocation, {
-                icon: gpsIcon,
-                draggable:false
-            })
-            position.removeFrom(map)
-            position.addTo(map)
+            clearInterval(refreshGPSbutton) //stop searching once accuracy <50
 
-        } else if (accuracy > 50 && accuracy <= 250) {
+
+              if(field == false){
+                position = L.marker(currentLocation, {
+                    icon: gpsIcon,
+                    draggable:false
+                })
+                // position.removeFrom(map)
+                position.addTo(map)
+              }
+
+
+        } else if (accuracy > 100 && accuracy <= 250) {
 
             gps_Button.button.style.backgroundColor = 'yellow';
             if (isIOS == true) {
@@ -1683,6 +1691,7 @@ var gps_Button = L.easyButton({
                   //  gps_Button.button.style.backgroundColor = 'green';
                   //  gps_Button.button.src = 'images/gpsSearching.gif';
                     map.setView(currentLocation, 15);
+                    // startSearchingLocation()
                     ////console.log(currentLocation)
 
                 } else if (accuracy > 50 && accuracy <= 250) {
@@ -2053,11 +2062,12 @@ document.getElementById("armchair").onclick = function(e) {
 
 }
 
-var field
+
 document.getElementById("field").onclick = function(e) {
   console.log(currentLocation)
   console.log(accuracy)
 
+  // startSearchingLocation()
 
   if(currentLocation[0] == null){
     // alert('Turn on the GPS and wait until the GPS symbol is green. This might take few seconds or minutes');
@@ -2074,7 +2084,7 @@ document.getElementById("field").onclick = function(e) {
       document.getElementById("Alert").style.display = 'none'
 
     },3000)
-  }else if(accuracy > 50){
+  }else if(accuracy > 100){
     // alert('Wait until the GPS symbol is green. This might take few seconds or minutes');
     document.getElementById("Alert").style.fontSize = "40px";
     document.getElementById('Alert').innerHTML = 'GPS</br>🟠⌛</br>🟡⌛</br>🟢👍'
@@ -2091,7 +2101,9 @@ document.getElementById("field").onclick = function(e) {
 
   }else{
     document.getElementById("Alert").style.display = 'none'
-
+    // startSearchingLocation()
+    // position.removeFrom(map)
+    field = true
 
     finalAreaHa2Decimals = null
     finalAreaAcres2Decimals = null
@@ -2121,10 +2133,7 @@ document.getElementById("field").onclick = function(e) {
           document.getElementById("field").style.display = "none";
           document.getElementById("gobackArmchairField").style.display = "none";
 
-
       drawingPoint = true;
-
-
         // var currentLocationSimulateClickLat = 3.445137
         // var currentLocationSimulateClickLng = 7.23346
         var currentLocationSimulateClickLat = currentLocation[0]
@@ -2135,7 +2144,7 @@ document.getElementById("field").onclick = function(e) {
         },100);
         })
   }
-  return drawingPoint && featureType
+  return drawingPoint && featureType && field
 }
 ///////////////////////////////////////////draw screen////////////////////////////////////////////////
 

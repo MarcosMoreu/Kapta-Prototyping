@@ -223,7 +223,7 @@ document.getElementById('youtube').onclick = function(e){
         document.getElementById('startMapping').style.display = "none";
         document.getElementById("infoGoBackButton").style.display = "initial";
      document.getElementById("youtubeVideo").style.display = "initial";
-      },1000)
+   },300)
    }else{
      document.getElementById('youtubeImage').src = '../images/youtubeOffline.png'
    }

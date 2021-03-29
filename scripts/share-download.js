@@ -494,8 +494,9 @@ document.getElementById('shareWorldButton').onclick = function(e) {
           finalLength2Decimals = null
           timeStart = new Date(); // to reset time start in case more contributions in this session
 
+            field = false
 
-          return featureSent &&  finalAreaHa2Decimals &&  finalLength2Decimals && timeStart
+          return featureSent &&  finalAreaHa2Decimals &&  finalLength2Decimals && timeStart && field
         }else {
           alert('🛑 You are offline')
         }
@@ -599,9 +600,11 @@ document.getElementById('DownloadButton').onclick = function(e) {
             onEachFeature: onEachFeatureAudioLocalStorage,
         }).addTo(map);
 
+          field = false
+
     }, timeOfVideo - 300);
 
-    return finished && whichLayerIsOn && localStorageLayer && elementJustAddedToLocalStorage
+    return finished && whichLayerIsOn && localStorageLayer && elementJustAddedToLocalStorage && field
 }
 
 // end
