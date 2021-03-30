@@ -166,7 +166,7 @@ document.getElementById('share-download').onclick = function(e) {
     data.features[0].properties = propertiesGeoJSON;
 
     // Stringify the GeoJson
-    convertedData = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
+    // convertedData = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
     // console.log(convertedData)
     if (isIOS == false && recordedBlobs != null) {
         blob = new Blob(recordedBlobs, {
@@ -534,7 +534,8 @@ document.getElementById('DownloadButton').onclick = function(e) {
     //to download the geojson and webm files to the device's downloads folder. NOTE THAT AUDIO FILE DONWLOAD CODE IS IN AUDIO.JS FILE
     // document.getElementById('Download').setAttribute('href', 'data:' + dataFile);
     // console.log(dateTimeRandomID)
-    // console.log(convertedData)
+    convertedData = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
+
     var toDownloadGeoJSON = document.createElement('a');
     toDownloadGeoJSON.setAttribute('href', convertedData);
     toDownloadGeoJSON.setAttribute('download', dateTimeRandomID+'.geojson');

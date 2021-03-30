@@ -292,7 +292,6 @@ var urlContainsGeoJSON = url.includes('/?')
 //to avoid panning outside this bounds
 var southWest = L.latLng(-70, -180);
 var northEast = L.latLng(80, 180);
-var urlgeojsonfeature
 if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getItem('pwCorrect')){  // if url contains geojson (and coords)
   //console.log('hash and geojson')
 
@@ -322,32 +321,26 @@ if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getIte
     var keepGeoJSONOnly = removeCoords[0]
     var parsedJSONdecoded = decodeURIComponent(keepGeoJSONOnly);
     var parsedJSON = JSON.parse(parsedJSONdecoded)
-    // var parsedJSONStringified = JSON.stringify(parsedJSON)
-    //console.log(keepGeoJSONOnly)
-    //console.log(parsedJSON)
-    // //console.log(parsedJSONStringified)
-    // var feature
-    urlgeojsonfeature = L.geoJSON(parsedJSON, {
-        style: function(feature) {
-            return feature.properties && feature.properties.style;
-        },
-        color: 'yellow',
-        onEachFeature: onEachFeatureAudioLocalStorage,
-        zIndexOffset:10
-
-    })
+    console.log(parsedJSON)
+    console.log(parsedJSON.features[0])
 
     storeURLGeoJSON(parsedJSON)
     setTimeout(function accessLocalStorage(){
           fetchFromLocalStorage()
+          localStorageLayer
           //console.log('after fetch and convert',localStorageLayer)
     },1500) // really don't know why this timeout, but keep it for now
 
+    //to select this feature
+    // var addedFeature = localStorage.getItem(randomIDtest)
+    // console.log(addedFeature)
     elementJustAddedToLocalStorage = true
     setTimeout(function changeToLocalStorageLayer(){
         document.getElementById('myLayerButton').click()
 
     },2000) // really don't know why this timeout, but keep it for now
+
+
 
 }else if (urlContainsHash == true){  // if only coords are in the url
   //console.log('onlyhash')
@@ -537,35 +530,35 @@ geoJSONLocalforageDB.length().then(function(numberOfKeys) {
     //console.log(err);
 });
 
-// function to convert all geojsons in localforage into a layer. The function is called from fetchFromLocalStorage() [below]
-var localStorageLayer
-var localStorageToGeoJSON = function(){
-  ////console.log(groupGeoJSON)
-
-    if (isJson(groupGeoJSON) == false && isFirstTime == false) {
-        localStorageLayer = L.geoJSON(groupGeoJSON, {
-            style: function(feature) {
-                //myLayerIsOn = true;
-                ////console.log(myLayerIsOn)
-                return feature.properties && feature.properties.style;
-            },
-            pointToLayer: function(feature, latlng) {
-
-                return L.marker(latlng, {
-                    icon: markerIconLocalStorage,
-                    draggable:false
-                });
-            },
-            color: '#33FFFF',
-            //  icon: markerIconLocalStorage,
-            onEachFeature: onEachFeatureAudioLocalStorage,
-            autopan: false
-        }) //.addTo(map)
-        ////console.log('localStorageLayer', localStorageLayer)
-
-    }
-return localStorageLayer
-}
+// // function to convert all geojsons in localforage into a layer. The function is called from fetchFromLocalStorage() [below]
+// var localStorageLayer
+// var localStorageToGeoJSON = function(){
+//   ////console.log(groupGeoJSON)
+//
+//     if (isJson(groupGeoJSON) == false && isFirstTime == false) {
+//         localStorageLayer = L.geoJSON(groupGeoJSON, {
+//             style: function(feature) {
+//                 //myLayerIsOn = true;
+//                 ////console.log(myLayerIsOn)
+//                 return feature.properties && feature.properties.style;
+//             },
+//             pointToLayer: function(feature, latlng) {
+//
+//                 return L.marker(latlng, {
+//                     icon: markerIconLocalStorage,
+//                     draggable:false
+//                 });
+//             },
+//             color: '#33FFFF',
+//             //  icon: markerIconLocalStorage,
+//             onEachFeature: onEachFeatureAudioLocalStorage,
+//             autopan: false
+//         }) //.addTo(map)
+//         ////console.log('localStorageLayer', localStorageLayer)
+//
+//     }
+// return localStorageLayer
+// }
 
 
 // function to fetch all geojson files from the IndexedDB-localforage-geoJSONsDB. Localforage is async, so promises are uses. After loop ends, localStorageToGeoJSON() [above] is called
@@ -669,6 +662,7 @@ var offlineControlOSM = L.control.offline(osm, tilesDb, {
     minZoom: 0,
     maxZoom: 21
 });
+
 
 var sentinelHubKey = '82b5a4e7-b887-40b2-949b-1b47a2aa9774';
 
@@ -1302,7 +1296,7 @@ var myLayer_Button = L.easyButton({
                     // if(urlgeojsonfeature !=null){
                     // }
                     localStorageLayer.addTo(map)
-                    urlgeojsonfeature.addTo(map)
+                    // urlgeojsonfeature.addTo(map)
 
                 }
                 if (finalLayer != null) {
@@ -1324,7 +1318,7 @@ var myLayer_Button = L.easyButton({
                 if (localStorageLayer != null) {
                     localStorageLayer.removeFrom(map)
                     try{
-                      urlgeojsonfeature.removeFrom(map)
+                      // urlgeojsonfeature.removeFrom(map)
                     }catch(e){}
 
                 }
@@ -1809,9 +1803,22 @@ document.getElementById('rose').onclick = function(e){
       },3000)
       }
       if(clicksRose == 10){ //this is to show the download tiles buttons
-        clicksRose = 0;
+        // clicksRose = 0;
         offlineControlGoogle.addTo(map);
         offlineControlOSM.addTo(map);
+      }
+      if(clicksRose == 20){ //this is to show the download tiles buttons
+        clicksRose = 0;
+        var dataToExport = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(groupGeoJSON));
+        console.log(convertedData)
+
+
+        var toDownloadGeoJSON = document.createElement('a');
+        toDownloadGeoJSON.setAttribute('href', dataToExport);
+        toDownloadGeoJSON.setAttribute('download', 'exported.geojson');
+        document.body.appendChild(toDownloadGeoJSON); // required for firefox
+        toDownloadGeoJSON.click();
+        toDownloadGeoJSON.remove();
       }
 
       setTimeout(function(){ //this is to refresh click counts, so they don't accumulate
@@ -2292,6 +2299,7 @@ function onEachFeature(feature, layer) {
 }
 // var finished = false; // variable to openpopup only when file downloaded, not when loaded from local storage
 function onEachFeatureAudioLocalStorage(feature, layer) { // function duplicated to avoid openpop() with local storage
+
     //timeout is used to wait 1000ms until the download link is ready
     setTimeout(function() {
       // var hectares = feature.properties.areaPolygon
@@ -2317,10 +2325,17 @@ function onEachFeatureAudioLocalStorage(feature, layer) { // function duplicated
             popupContent += feature.properties.popupContent;
         }
         layer.bindPopup(popupContent) //.addTo(map); // removed otherwise the layer is automatically added to the map when oneachfeaturelocl.. is called
-        if (finished == true || urlContainsGeoJSON == true) {
+
+        if (finished == true) {
             layer.bindPopup(popupContent).openPopup();
         }
-    }, 1600)
+        // if(urlContainsGeoJSON == true){
+        //   console.log(feature)
+        //     feature = parsedJSON.features[0]
+        //     feature.bindPopup(popupContent).openPopup();
+        // }
 
+    }, 1600)
+return feature
 }
 /////////////////LEAFLET DRAW////////
