@@ -11,7 +11,7 @@ console.log(selectedFeature.feature.properties.cartodb_id)
 
 
   document.getElementById("editDeletePopup").style.display = "none";
-  document.getElementById("activatePlay").style.display = "none";
+  // document.getElementById("activatePlay").style.display = "none";
 
   document.getElementById("backDeleteFeature").style.display = "none";
   document.getElementById("shareMessagingApp").style.display = "none";
@@ -31,11 +31,13 @@ console.log(selectedFeature.feature.properties.cartodb_id)
   document.getElementById('backEditDelete').style.display = 'initial';
   document.getElementById("classification").style.display = "initial";
   document.getElementById("emoji").style.display = "initial";
-  if(isIOS == false){
-    document.getElementById("enableRecording").style.display = "initial";
-  }else{
-    document.getElementById("noAudioIOS").style.display = "initial";
-  }
+  document.getElementById("CustomIcons").style.display = "initial";
+
+  // if(isIOS == false){
+  //   document.getElementById("enableRecording").style.display = "initial";
+  // }else{
+  //   document.getElementById("noAudioIOS").style.display = "initial";
+  // }
 
   // document.getElementById("emoji").disabled = true;
   // document.getElementById("emoji").style.opacity = '0.4';
@@ -53,7 +55,7 @@ console.log(selectedFeature.feature.properties.cartodb_id)
   try{
     document.getElementById("popupAreaLength").disabled = false;
     document.getElementById('commentPopup').disabled = false;
-    document.getElementById('audioControls').style.display = 'none'
+    // document.getElementById('audioControls').style.display = 'none'
 
   }catch(e){}
 
@@ -144,15 +146,17 @@ document.getElementById('backEditDelete').onclick = function(){
   document.getElementById("emoji").style.display = "none";
   document.getElementById("emoji").disabled = false;
   document.getElementById("emoji").opacity = '1';
-  document.getElementById('noAudioIOS').style.display = 'none';
+  // document.getElementById('noAudioIOS').style.display = 'none';
   document.getElementById('shareWorldButtonComment').style.display = 'none';
   document.getElementById('shareWorldButtonComment').disabled = false;
   document.getElementById('shareWorldButtonComment').opacity = '1';
   document.getElementById('deleteFeature').style.display = 'none';
-  document.getElementById("enableRecording").style.display = "none";
-  document.getElementById("record").style.display = "none";
+  // document.getElementById("enableRecording").style.display = "none";
+  // document.getElementById("record").style.display = "none";
+  document.getElementById("CustomIcons").style.display = "none";
 
-  document.getElementById("activatePlay").style.display = "none";
+
+  // document.getElementById("activatePlay").style.display = "none";
 
 
 
@@ -257,7 +261,7 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
 
       if (audioButtonClicked == true) {
         console.log('audio clicked')
-        document.getElementById("sendFirebase").click();
+        // document.getElementById("sendFirebase").click();
       } else { //to not show audio icon when no audio available
         console.log('audio NOT clicked')
 
@@ -273,7 +277,7 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
   //document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
   // document.getElementById('shareWorldButtonComment').style.backgroundColor = 'green'
   // document.getElementById('shareWorldButtonComment').style.borderColor = 'green'
-  document.getElementById("activatePlay").style.display = "none";
+  // document.getElementById("activatePlay").style.display = "none";
   document.getElementById("shareWorldButtonCommentImage").src = "images/checkingPw.gif";
 
   // document.getElementById("sentConfirmation").style.display = "initial";
@@ -295,9 +299,9 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
   document.getElementById('backEditDelete').disabled = true;
   document.getElementById("classification").disabled = true;
   document.getElementById("emoji").disabled = true;
-  document.getElementById('noAudioIOS').disabled = true;
-  document.getElementById('enableRecording').disabled = true;
-  document.getElementById('record').disabled = true;
+  // document.getElementById('noAudioIOS').disabled = true;
+  // document.getElementById('enableRecording').disabled = true;
+  // document.getElementById('record').disabled = true;
 
   setTimeout(function(){
     document.getElementById("shareWorldButtonComment").style.backgroundColor = "#39F70F";
@@ -315,21 +319,23 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
     document.getElementById('backEditDelete').style.display = 'none';
     document.getElementById("classification").style.display = "none";
     document.getElementById("emoji").style.display = "none";
-    document.getElementById('noAudioIOS').style.display = 'none';
-    document.getElementById('enableRecording').style.display = 'none';
-    document.getElementById('record').style.display = 'none';
+    // document.getElementById('noAudioIOS').style.display = 'none';
+    // document.getElementById('enableRecording').style.display = 'none';
+    // document.getElementById('record').style.display = 'none';
+    document.getElementById("CustomIcons").style.display = "none";
+
     document.getElementById('backEditDelete').style.opacity = '1';
     document.getElementById("classification").style.opacity = "1";
     document.getElementById("emoji").style.opacity = "1";
-    document.getElementById('noAudioIOS').style.opacity = '1';
-    document.getElementById('enableRecording').style.opacity = '1';
-    document.getElementById('record').style.opacity = '1';
+    // document.getElementById('noAudioIOS').style.opacity = '1';
+    // document.getElementById('enableRecording').style.opacity = '1';
+    // document.getElementById('record').style.opacity = '1';
     document.getElementById('backEditDelete').disabled = false;
     document.getElementById("classification").disabled = false;
     document.getElementById("emoji").disabled = false;
-    document.getElementById('noAudioIOS').disabled = false;
-    document.getElementById('enableRecording').disabled = false;
-    document.getElementById('record').disabled = false;
+    // document.getElementById('noAudioIOS').disabled = false;
+    // document.getElementById('enableRecording').disabled = false;
+    // document.getElementById('record').disabled = false;
 
     document.getElementById('backDeleteFeature').style.display = 'initial';
     document.getElementById('deleteFeature').style.display = 'initial';

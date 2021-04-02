@@ -10,7 +10,7 @@ document.getElementById("backDeleteFeature").onclick = function() {
   try{
     document.getElementById("popupAreaLength").disabled = true;
     document.getElementById('commentPopup').disabled = true;
-    document.getElementById('audioControls').style.display = 'none'
+    // document.getElementById('audioControls').style.display = 'none'
 
   }catch(e){}
 
@@ -86,13 +86,13 @@ document.getElementById("backDeleteFeature").onclick = function() {
     document.getElementById("emoji").style.display = "none";
     document.getElementById("emoji").disabled = false;
     document.getElementById("emoji").opacity = '1';
-    document.getElementById('noAudioIOS').style.display = 'none';
+    // document.getElementById('noAudioIOS').style.display = 'none';
     document.getElementById('shareWorldButtonComment').style.display = 'none';
     document.getElementById('shareWorldButtonComment').disabled = false;
     document.getElementById('shareWorldButtonComment').opacity = '1';
     document.getElementById('deleteFeature').style.display = 'none';
-    document.getElementById("enableRecording").style.display = "none";
-    document.getElementById("record").style.display = "none";
+    // document.getElementById("enableRecording").style.display = "none";
+    // document.getElementById("record").style.display = "none";
 
     // document.getElementById("commentFeature").style.display = 'none';
     //removeMiniMap()

@@ -321,8 +321,8 @@ if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getIte
     var keepGeoJSONOnly = removeCoords[0]
     var parsedJSONdecoded = decodeURIComponent(keepGeoJSONOnly);
     var parsedJSON = JSON.parse(parsedJSONdecoded)
-    console.log(parsedJSON)
-    console.log(parsedJSON.features[0])
+    // console.log(parsedJSON)
+    // console.log(parsedJSON.features[0])
 
     storeURLGeoJSON(parsedJSON)
     setTimeout(function accessLocalStorage(){
@@ -2006,15 +2006,17 @@ document.getElementById("completeFeature").style.display = "none";
 document.getElementById("Cancel").style.display = "none";
 document.getElementById("DownloadButton").style.display = "none";
 
-document.getElementById('record').style.display = 'none';
-document.getElementById('enableRecording').style.display = 'none';
-document.getElementById('activatePlay').style.opacity = '1';
+// document.getElementById('record').style.display = 'none';
+document.getElementById("CustomIcons").style.display = "none";
 
-document.getElementById('storeAudio').style.display = 'none';
-document.getElementById('gum').style.display = 'none';
-document.getElementById('recorded').style.display = 'none';
-document.getElementById('echoCancellation').style.display = 'none';
-document.getElementById('voice').style.display = 'none';
+// document.getElementById('enableRecording').style.display = 'none';
+// document.getElementById('activatePlay').style.opacity = '1';
+
+// document.getElementById('storeAudio').style.display = 'none';
+// document.getElementById('gum').style.display = 'none';
+// document.getElementById('recorded').style.display = 'none';
+// document.getElementById('echoCancellation').style.display = 'none';
+// document.getElementById('voice').style.display = 'none';
 document.getElementById('Sent').style.display = 'none';
 document.getElementById('emoji').style.display = 'none';
 

@@ -485,13 +485,15 @@ map.on('draw:created', function(e) {
     document.getElementById("emoji").disabled = false;
     document.getElementById("emoji").style.opacity = '1';
     document.getElementById('Sent').currentTime = 0;
-    document.getElementById('voice').style.display = 'none';
-    document.getElementById('voice').style.opacity = '0';
-    if (isIOS == false) {
-        document.getElementById('enableRecording').style.display = 'initial';
-    } else {
-        document.getElementById('noAudioIOS').style.display = 'initial';
-    }
+    document.getElementById("CustomIcons").style.display = "initial";
+
+    // document.getElementById('voice').style.display = 'none';
+    // document.getElementById('voice').style.opacity = '0';
+    // if (isIOS == false) {
+    //     document.getElementById('enableRecording').style.display = 'initial';
+    // } else {
+    //     document.getElementById('noAudioIOS').style.display = 'initial';
+    // }
     document.getElementById('emoji').style.display = 'initial';
     data = drawnItems.toGeoJSON();
 
@@ -510,8 +512,8 @@ map.on('draw:created', function(e) {
         finalAreaHa2Decimals = finalAreaHa.toFixed(2) + ' ' + 'ha'
         finalAreaAcres2Decimals = finalAreaAcres.toFixed(2) + ' ' + 'acres'
         //to show the final area on the top
-        document.getElementById('showAreaHa').style.display = 'initial';
-        document.getElementById("showAreaHa").innerHTML = finalAreaHa2Decimals;
+        // document.getElementById('showAreaHa').style.display = 'initial';
+        // document.getElementById("showAreaHa").innerHTML = finalAreaHa2Decimals;
         document.getElementById('showAreaAcres').style.display = 'initial';
         document.getElementById("showAreaAcres").innerHTML = finalAreaAcres2Decimals;
     }
@@ -606,10 +608,10 @@ document.getElementById('Cancel').onclick = function(e) {
 
     map.zoomOut(1);
     drawingPoint = false;
-    if (isIOS == false) {
-        recordedVideo.pause();
-        recordedBlobs = null; // audio is removed if cancel is clicked
-    }
+    // if (isIOS == false) {
+    //     recordedVideo.pause();
+    //     recordedBlobs = null; // audio is removed if cancel is clicked
+    // }
     setTimeout(function() {
 
         document.getElementById("tutorial").style.display = "initial";
@@ -624,12 +626,14 @@ document.getElementById('Cancel').onclick = function(e) {
         // document.getElementById("Download").style.display = "none";
         document.getElementById("DownloadButton").style.display = "none";
 
-        document.getElementById('record').style.display = 'none';
-        document.getElementById('enableRecording').style.display = 'none';
-        document.getElementById('noAudioIOS').style.display = 'none';
+        // document.getElementById('record').style.display = 'none';
+        document.getElementById("CustomIcons").style.display = "none";
 
-        document.getElementById('activatePlay').style.display = 'none';
-        document.getElementById('voice').style.display = 'none';
+        // document.getElementById('enableRecording').style.display = 'none';
+        // document.getElementById('noAudioIOS').style.display = 'none';
+
+        // document.getElementById('activatePlay').style.display = 'none';
+        // document.getElementById('voice').style.display = 'none';
 
         document.getElementById('emoji').style.display = 'none';
 

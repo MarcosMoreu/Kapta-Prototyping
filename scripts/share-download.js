@@ -8,6 +8,7 @@
 // var dateTimeRandomID;
 // var timeFinish;
 // var diffTimes;
+var audioAvailable = 'false'
 
 //var runJSDownload = function(){
 var clickCountSendButton = 0
@@ -19,14 +20,15 @@ var hideButtons = function(){
     document.getElementById("Cancel").style.display = "none";
     // document.getElementById('shareMessagingAppsDirect').style.display = 'none';
     document.getElementById("share-download").style.display = "none";
-    document.getElementById('noAudioIOS').style.display = 'none';
-    document.getElementById("record").style.display = "none";
-    document.getElementById('enableRecording').style.display = 'none';
-    document.getElementById("play").style.display = "none";
-    document.getElementById('voice').style.display = 'none';
-    document.getElementById('voice').style.opacity = '0';
-    document.getElementById('activatePlay').style.display = 'none';
-    document.getElementById('showAreaHa').style.display = 'none';
+    document.getElementById("CustomIcons").style.display = "none";
+    // document.getElementById('noAudioIOS').style.display = 'none';
+    // document.getElementById("record").style.display = "none";
+    // document.getElementById('enableRecording').style.display = 'none';
+    // document.getElementById("play").style.display = "none";
+    // document.getElementById('voice').style.display = 'none';
+    // document.getElementById('voice').style.opacity = '0';
+    // document.getElementById('activatePlay').style.display = 'none';
+    // document.getElementById('showAreaHa').style.display = 'none';
     document.getElementById('showAreaAcres').style.display = 'none'
     // document.getElementById('showLength').style.display = 'none'
     document.getElementById('emoji').style.display = 'none';
@@ -38,14 +40,16 @@ var showButtons = function(){
     document.getElementById("Cancel").style.display = "initial";
     document.getElementById("classification").style.display = "initial";
     document.getElementById("emoji").style.display = "initial";
+    document.getElementById("CustomIcons").style.display = "initial";
+
     // document.getElementById('Sent').currentTime = 0;
-    document.getElementById('voice').style.display = 'none';
-    document.getElementById('voice').style.opacity = '0';
-    if (isIOS == false) {
-        document.getElementById('enableRecording').style.display = 'initial';
-    } else {
-        document.getElementById('noAudioIOS').style.display = 'initial';
-    }
+    // document.getElementById('voice').style.display = 'none';
+    // document.getElementById('voice').style.opacity = '0';
+    // if (isIOS == false) {
+    //     document.getElementById('enableRecording').style.display = 'initial';
+    // } else {
+    //     document.getElementById('noAudioIOS').style.display = 'initial';
+    // }
 }
 
 var encodeGeoJSON = function(data,properties){
@@ -187,10 +191,10 @@ document.getElementById('share-download').onclick = function(e) {
 
         // document.body.style.backgroundColor = "black";
     }, 200)
-    if(isIOS == false){
-      recordedVideo.pause();
-      recordedVideo.currentTime = 0;
-    }
+    // if(isIOS == false){
+    //   recordedVideo.pause();
+    //   recordedVideo.currentTime = 0;
+    // }
 
     created = false;
 
@@ -415,18 +419,18 @@ document.getElementById('shareWorldButton').onclick = function(e) {
 
               //console.log(propertiesGeoJSON)
               // include the firebase url (if audio has been recorded)
-              if (isIOS == false && audioButtonClicked == true) {
-                document.getElementById("sendFirebase").click();
-              } else { //to not show audio icon when no audio available
-                  audioAvailable = '.'
+              // if (isIOS == false && audioButtonClicked == true) {
+              //   document.getElementById("sendFirebase").click();
+              // } else { //to not show audio icon when no audio available
+              //     audioAvailable = '.'
                   setData(); //Call the setDdata() function!!! to post data to database. If audio is available, set data is called in sendfirebase function
-              }
+              // }
           }, 200)
 
           setTimeout(function() {
               document.getElementById('Sent').style.display = 'none';
-              document.getElementById('uploading').style.display = 'none'
-              document.getElementById('progress').style.display = 'none'
+              // document.getElementById('uploading').style.display = 'none'
+              // document.getElementById('progress').style.display = 'none'
 
               document.getElementById("deleteAllVertexs").style.opacity = "0.35";
               document.getElementById("deleteAllVertexs").disabled = true;
@@ -451,10 +455,10 @@ document.getElementById('shareWorldButton').onclick = function(e) {
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById("Alert").innerHTML = '🚧 If the feature is not appearing after few seconds, please toggle layer or reload page'
               // document.getElementById("Alert").style.display = 'initial'
-              if (isIOS == false) {
-                  recordedVideo.pause();
-                  recordedBlobs = null; // audio is removed if cancel is clicked
-              }
+              // if (isIOS == false) {
+              //     recordedVideo.pause();
+              //     recordedBlobs = null; // audio is removed if cancel is clicked
+              // }
               setTimeout(function(){
                 document.getElementById("Alert").style.display = 'none'
               }, 5000)
@@ -551,8 +555,8 @@ document.getElementById('DownloadButton').onclick = function(e) {
 
     setTimeout(function() {
         document.getElementById('Downloaded').style.display = 'none';
-        document.getElementById('uploading').style.display = 'none'
-        document.getElementById('progress').style.display = 'none'
+        // document.getElementById('uploading').style.display = 'none'
+        // document.getElementById('progress').style.display = 'none'
 
         document.getElementById("deleteAllVertexs").style.opacity = "0.35";
         document.getElementById("deleteAllVertexs").disabled = true;
@@ -595,10 +599,10 @@ document.getElementById('DownloadButton').onclick = function(e) {
         elementJustAddedToLocalStorage = true
 
         document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
-        if (isIOS == false) {
-            recordedVideo.pause();
-            recordedBlobs = null; // audio is removed if cancel is clicked
-        }
+        // if (isIOS == false) {
+        //     recordedVideo.pause();
+        //     recordedBlobs = null; // audio is removed if cancel is clicked
+        // }
         whichLayerIsOn = 'localStorage'
         // //console.log('localstoragelayer',localStorageLayer)
         finalLayer = L.geoJSON(data, {
