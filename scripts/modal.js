@@ -130,6 +130,7 @@ var requestCartoData = function() {
 
 var initialiseMap = function(){
   document.getElementById("app-css").disabled = false
+  document.getElementById("customIcons-css").disabled = false
   document.getElementById("slider-css").disabled = false
   document.getElementById("leaflet-css").disabled = false
   document.getElementById("emojionearea-css").disabled = false
@@ -188,7 +189,7 @@ var initialiseMap = function(){
       //rose.addTo(map)
       startSearchingLocation()
       deflated.addTo(map) // to initialize //////////////////////!!!!!!!!
-      
+
       function preload(arrayOfImages) {
         $(arrayOfImages).each(function(){
             try{
@@ -216,10 +217,11 @@ var initialiseMap = function(){
             'images/locked.png','images/man.png','images/marker-icon.png','images/marker-icon-2x.png','images/marker-icon-cian.png','images/markerLine.png',
             'images/markerLocalStorage.png','images/markerPolygon.png','images/myLayer.png','images/nautical.svg','images/osm.png',
             'images/other1.png','images/play.png','images/PlusSign.png',
-            'images/questionmark.png','images/random.png','images/record.png','images/shareMessagingApps.png','images/shareworld.png','images/shareworldConfirm.png',
+            'images/questionmark.png','images/random.png','images/shareMessagingApps.png','images/shareworld.png','images/shareworldConfirm.png',
             'images/telegram.png','images/uk.png','images/other1.png','images/underConstruction.png','images/wechat.png','images/whatsapp.png','images/youtube.png',
             'images/shareMessagingAppsYellow.png','images/sendComment.png','images/sms.png',
-            'images/sent.mp4','images/voice.webm','images/downloaded.mp4',
+            'images/sent.mp4','images/downloaded.mp4',
+            'images/customIconsMap.png','images/customIconsCancel.png',
         ]);
       // var images = new Array()
       //       function preload() {

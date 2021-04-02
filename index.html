@@ -43,6 +43,7 @@
   <link  rel="preload"  href="scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css"> -->
 
   <link rel="stylesheet" href="styles/app.css" id='app-css' as='style' disabled onload="this.media='all'">
+  <link rel="stylesheet" href="styles/customIcons.css" id='customIcons-css' as='style' disabled onload="this.media='all'">
   <link rel="stylesheet"  href="styles/slider.css" id='slider-css' as='style' disabled onload="this.media='all'">
   <link rel="stylesheet" href="scripts/lib/leaflet/leaflet.css" id='leaflet-css' as='style' disabled onload="this.media='all'">
   <link  rel="stylesheet" href="scripts/emojionearea-master/dist/emojionearea.css" id='emojionearea-css' as='style' disabled onload="this.media='all'">
@@ -241,7 +242,7 @@
   <button id='backEditDelete' class='button' aria-label = 'backEditDelete' style='display:none;'>
     <img src="images/backButton.png" loading='lazy'  alt="..." style='margin-left:2px; width:30px ; height:30px'>
   </button>
-  <button id='CustomIcons' class='button' aria-label = 'Cancel' >
+  <button id='CustomIcons' class='button' aria-label = 'CustomIcons' >
     <img src="images/logoNigeria.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
   </button>
   <button id='clearFilter' class='button' aria-label = 'clearFilter' style='display:none;' >
@@ -351,6 +352,15 @@
   <p><span id="demo"></span></p>
 </div>
 
+<div style='z-index:100; text-align:center'>
+  <button id='customIconsMap' class='buttonCustomIcons' aria-label = 'customIconsMap' style='position:relative;display:none;margin-top:100px;margin-right:20px;width:50px ; height:50px'>
+    <img src="images/customIconsMap.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
+  </button>
+  <button id='customIconsCancel' class='buttonCustomIcons' aria-label = 'customIconsCancel' style='position:relative;display:none;margin-top:100px;width:50px ; height:50px' >
+    <img src="images/customIconsCancel.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
+  </button>
+</div>
+
 <script src="sw.js"></script>
 
 <!-- <script src="scripts/initial.js"></script> -->
@@ -410,6 +420,7 @@
 <script  defer src="scripts/filterButtons.js"></script>
 <script defer src="scripts/cartoLayer.js"></script>
 <script defer src="scripts/localStorage.js"></script>
+<script  defer src="scripts/customIcons.js"></script>
 <!-- <script  defer src="scripts/audioButton.js"></script> -->
 <script defer src="scripts/share-download.js"></script>
 
