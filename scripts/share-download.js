@@ -20,7 +20,7 @@ var hideButtons = function(){
     document.getElementById("Cancel").style.display = "none";
     // document.getElementById('shareMessagingAppsDirect').style.display = 'none';
     document.getElementById("share-download").style.display = "none";
-    document.getElementById("CustomIcons").style.display = "none";
+    document.getElementById("sapelliProjects").style.display = "none";
     // document.getElementById('noAudioIOS').style.display = 'none';
     // document.getElementById("record").style.display = "none";
     // document.getElementById('enableRecording').style.display = 'none';
@@ -40,7 +40,7 @@ var showButtons = function(){
     document.getElementById("Cancel").style.display = "initial";
     document.getElementById("classification").style.display = "initial";
     document.getElementById("emoji").style.display = "initial";
-    document.getElementById("CustomIcons").style.display = "initial";
+    document.getElementById("sapelliProjects").style.display = "initial";
 
     // document.getElementById('Sent').currentTime = 0;
     // document.getElementById('voice').style.display = 'none';

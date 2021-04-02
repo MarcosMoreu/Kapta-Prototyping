@@ -485,7 +485,7 @@ map.on('draw:created', function(e) {
     document.getElementById("emoji").disabled = false;
     document.getElementById("emoji").style.opacity = '1';
     document.getElementById('Sent').currentTime = 0;
-    document.getElementById("CustomIcons").style.display = "initial";
+    document.getElementById("sapelliProjects").style.display = "initial";
 
     // document.getElementById('voice').style.display = 'none';
     // document.getElementById('voice').style.opacity = '0';
@@ -627,7 +627,7 @@ document.getElementById('Cancel').onclick = function(e) {
         document.getElementById("DownloadButton").style.display = "none";
 
         // document.getElementById('record').style.display = 'none';
-        document.getElementById("CustomIcons").style.display = "none";
+        document.getElementById("sapelliProjects").style.display = "none";
 
         // document.getElementById('enableRecording').style.display = 'none';
         // document.getElementById('noAudioIOS').style.display = 'none';

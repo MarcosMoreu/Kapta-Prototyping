@@ -31,7 +31,7 @@ console.log(selectedFeature.feature.properties.cartodb_id)
   document.getElementById('backEditDelete').style.display = 'initial';
   document.getElementById("classification").style.display = "initial";
   document.getElementById("emoji").style.display = "initial";
-  document.getElementById("CustomIcons").style.display = "initial";
+  document.getElementById("sapelliProjects").style.display = "initial";
 
   // if(isIOS == false){
   //   document.getElementById("enableRecording").style.display = "initial";
@@ -153,7 +153,7 @@ document.getElementById('backEditDelete').onclick = function(){
   document.getElementById('deleteFeature').style.display = 'none';
   // document.getElementById("enableRecording").style.display = "none";
   // document.getElementById("record").style.display = "none";
-  document.getElementById("CustomIcons").style.display = "none";
+  document.getElementById("sapelliProjects").style.display = "none";
 
 
   // document.getElementById("activatePlay").style.display = "none";
@@ -322,7 +322,7 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
     // document.getElementById('noAudioIOS').style.display = 'none';
     // document.getElementById('enableRecording').style.display = 'none';
     // document.getElementById('record').style.display = 'none';
-    document.getElementById("CustomIcons").style.display = "none";
+    document.getElementById("sapelliProjects").style.display = "none";
 
     document.getElementById('backEditDelete').style.opacity = '1';
     document.getElementById("classification").style.opacity = "1";

@@ -1,3 +1,13 @@
 .buttonCustomIcons{
-  display:inline-block;
+  border-radius: 50px;
+  margin:5px;
+  background-color: white; /* Green */
+  padding: 0px 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border: 2px solid white;
+  position:relative;
+  outline:none;
+  transition: 0.2s all;
 }

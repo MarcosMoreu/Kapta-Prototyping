@@ -110,7 +110,7 @@ var requestCartoData = function() {
             })
             return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
         };
-        getGeoJSON(); //////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      //getGeoJSON(); //////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         //funtion to get geojson with 🌐 to be used in random suggestion
         function getGeoJSONRandom(){ ///RANDOM!!!!!!!!!!!!!!!
@@ -122,7 +122,7 @@ var requestCartoData = function() {
             url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQueryRandom + cartoapiSELECT
           })
         }
-         getGeoJSONRandom() ////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // getGeoJSONRandom() ////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
     return cartousername
 }
@@ -221,6 +221,7 @@ var initialiseMap = function(){
             'images/telegram.png','images/uk.png','images/other1.png','images/underConstruction.png','images/wechat.png','images/whatsapp.png','images/youtube.png',
             'images/shareMessagingAppsYellow.png','images/sendComment.png','images/sms.png',
             'images/sent.mp4','images/downloaded.mp4',
+            'images/excitesTree.png','images/logoNigeria.png',
             'images/customIconsMap.png','images/customIconsCancel.png',
         ]);
       // var images = new Array()

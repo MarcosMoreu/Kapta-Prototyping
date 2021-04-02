@@ -2007,7 +2007,7 @@ document.getElementById("Cancel").style.display = "none";
 document.getElementById("DownloadButton").style.display = "none";
 
 // document.getElementById('record').style.display = 'none';
-document.getElementById("CustomIcons").style.display = "none";
+document.getElementById("sapelliProjects").style.display = "none";
 
 // document.getElementById('enableRecording').style.display = 'none';
 // document.getElementById('activatePlay').style.opacity = '1';
