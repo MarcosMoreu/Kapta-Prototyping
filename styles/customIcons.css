@@ -1,13 +1,36 @@
 .buttonCustomIcons{
   border-radius: 50px;
   margin:5px;
-  background-color: white; /* Green */
+  background-color: grey; /* Green */
   padding: 0px 0px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  border: 2px solid white;
+  border: 2px solid grey;
   position:relative;
   outline:none;
   transition: 0.2s all;
+}
+.buttonsSapelli{
+  background-color: white;
+  width:calc(100%/2);
+  /* height:calc(100%/4); */
+  height:200px;
+  border: 4px solid black;
+  text-align: center;
+  display: inline-block;
+  transition: 0.2s all;
+  overflow-y: scroll;
+  font-size:20px;
+
+
+}
+
+.gridCell{
+  /* overflow-y:auto; */
+
+  background-color: black;
+  height:80%;
+  overflow-y: scroll;
+  text-align:justify;
 }
