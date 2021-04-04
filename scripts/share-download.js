@@ -281,7 +281,10 @@ document.getElementById('goBackClassification').onclick = function(e){
   document.getElementById("shareWorldButtonImage").src = 'images/shareworld.png'
   document.getElementById("shareWorldButton").style.backgroundColor = 'white'
   document.getElementById("shareWorldButton").style.borderColor = 'white'
+
   clickCountSendButton = 0
+  document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
+
   startCheckingText()
 
 

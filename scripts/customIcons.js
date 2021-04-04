@@ -29,9 +29,22 @@ document.getElementById('customIconsMap').onclick = function(e){
   document.getElementById('emoji').style.display = 'initial';
   document.getElementById('showAreaAcres').style.display = 'initial';
   document.getElementById('share-download').style.display = 'initial';
+
+
   cell.style.display = 'none'
   hideAll()
   if(issueSpecific != null){
+    document.getElementById("Cancel").style.opacity = '0'
+    document.getElementById("sapelliProjects").style.opacity = '0'
+    document.getElementById('emoji').style.opacity = '0'
+    document.getElementById('share-download').style.display = 'none';
+
+    setTimeout(function(){
+      document.getElementById("Cancel").style.opacity = '1'
+      document.getElementById("sapelliProjects").style.opacity = '1'
+      document.getElementById('emoji').style.opacity = '1'
+      // document.getElementById('share-download').style.opacity = '1'
+    },2000)
     var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
   //  ////console.log(emojioneareaeditor)
     var emojioneareaeditor0 = emojioneareaeditor[0]
@@ -164,10 +177,6 @@ document.getElementById('sapelliProjects').onclick = function(e){
         newProjectButton = document.createElement("BUTTON");
         cell.appendChild(newProjectButton);
         newProjectButton.className = 'sapelliProjectsLogo'
-        // newProjectButton.style.backgroundColor = 'white'
-        // newProjectButton.style.width = '80px'
-        // newProjectButton.style.height = '80px'
-        // newProjectButton.style.borderColor = 'black'
         newProjectButton.style.marginBottom = '200px'
         newProjectButton.style.marginLeft = '20px'
         newProjectButton.innerHTML = '<img src="images/logoNigeria.png" style="width:50px ; height:50px; border: 0px solid white" />';
@@ -298,6 +307,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
   }
   else{
     newProjectButton.style.display = 'initial';
+    cell.style.display = 'initial'
   }
 
 // // to show the icons of the project selected
@@ -919,7 +929,7 @@ var generateButtonsStage = function(){
   icon53.onclick = function(){
     hideAll()
     generateButtonsBeforePlantingStage()
-    stage = '📅 Before Planting'
+    stage = '⌚ Before Planting'
   }
   icon56 = document.createElement("BUTTON");
   cell.appendChild(icon56);
@@ -928,7 +938,7 @@ var generateButtonsStage = function(){
   icon56.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    stage = '📅 Planting'
+    stage = '⌚ Planting'
   }
   icon55 = document.createElement("BUTTON");
   cell.appendChild(icon55);
@@ -937,7 +947,7 @@ var generateButtonsStage = function(){
   icon55.onclick = function(){
     hideAll()
     generateButtonsPestControlStage()
-    stage = '📅 Pest Control'
+    stage = '⌚ Pest Control'
   }
   icon54 = document.createElement("BUTTON");
   cell.appendChild(icon54);
@@ -946,7 +956,7 @@ var generateButtonsStage = function(){
   icon54.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    stage = '📅 Top Dressing'
+    stage = '⌚ Top Dressing'
   }
   icon58 = document.createElement("BUTTON");
   cell.appendChild(icon58);
@@ -955,7 +965,7 @@ var generateButtonsStage = function(){
   icon58.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    stage = '📅 Harvesting'
+    stage = '⌚ Harvesting'
   }
 
   icon57 = document.createElement("BUTTON");
@@ -965,7 +975,7 @@ var generateButtonsStage = function(){
   icon57.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    stage = '📅 Post Harvesting'
+    stage = '⌚ Post Harvesting'
   }
 
   return stage &&   screenChoice
@@ -1077,33 +1087,33 @@ var generateButtonsHelp = function(){
 
     generateIssuesGeneric()
     hideAll()
-    if(stage == '📅 Before Planting'){
+    if(stage == '⌚ Before Planting'){
       icon69r.style.display = 'initial' //climatic
       icon74r.style.display = 'initial' //soil
       icon75r.style.display = 'initial' //weed
       icon76.style.display = 'initial' //other
     }
-    if(stage == '📅 Planting'){
+    if(stage == '⌚ Planting'){
       icon70r.style.display = 'initial' //dissease
       icon72r.style.display = 'initial' //pest
       icon69r.style.display = 'initial' //climatic
       icon74r.style.display = 'initial' //soil
       icon76.style.display = 'initial' //other
     }
-    if(stage == '📅 Pest Control'){
+    if(stage == '⌚ Pest Control'){
       icon70r.style.display = 'initial' //dissease
       icon72r.style.display = 'initial' //pest
       icon75r.style.display = 'initial' //weed
       icon76.style.display = 'initial' //other
     }
-    if(stage == '📅 Top Dressing'){
+    if(stage == '⌚ Top Dressing'){
       icon70r.style.display = 'initial' //dissease
       icon72r.style.display = 'initial' //pest
       icon69r.style.display = 'initial' //climatic
       icon74r.style.display = 'initial' //soil
       icon76.style.display = 'initial' //other
     }
-    if(stage == '📅 Harvesting'){
+    if(stage == '⌚ Harvesting'){
       icon70r.style.display = 'initial' //dissease
       icon72r.style.display = 'initial' //pest
       icon69r.style.display = 'initial' //climatic
@@ -1111,7 +1121,7 @@ var generateButtonsHelp = function(){
       icon73r.style.display = 'initial' //postharvest
       icon75r.style.display = 'initial' //weed
     }
-    if(stage == '📅 Post Harvesting'){
+    if(stage == '⌚ Post Harvesting'){
       icon70r.style.display = 'initial' //dissease
       icon72r.style.display = 'initial' //pest
       icon69r.style.display = 'initial' //climatic
@@ -1131,13 +1141,13 @@ var generateButtonsHelp = function(){
 
     generateIssuesGeneric()
     hideAll()
-    if(stage == '📅 Before Planting'){
+    if(stage == '⌚ Before Planting'){
       icon69g.style.display = 'initial' //climatic
       icon74g.style.display = 'initial' //soil
       icon75g.style.display = 'initial' //weed
       icon76.style.display = 'initial' //other
     }
-    if(stage == '📅 Planting'){
+    if(stage == '⌚ Planting'){
       icon70g.style.display = 'initial' //dissease
       icon72g.style.display = 'initial' //pest
       icon69g.style.display = 'initial' //climatic
@@ -1145,7 +1155,7 @@ var generateButtonsHelp = function(){
       icon76.style.display = 'initial' //other
 
     }
-    if(stage == '📅 Pest Control'){
+    if(stage == '⌚ Pest Control'){
       icon70g.style.display = 'initial' //dissease
       icon72g.style.display = 'initial' //pest
       icon75g.style.display = 'initial' //weed
@@ -1153,14 +1163,14 @@ var generateButtonsHelp = function(){
 
 
     }
-    if(stage == '📅 Top Dressing'){
+    if(stage == '⌚ Top Dressing'){
       icon70g.style.display = 'initial' //dissease
       icon72g.style.display = 'initial' //pest
       icon69g.style.display = 'initial' //climatic
       icon74g.style.display = 'initial' //soil
       icon76.style.display = 'initial' //other
     }
-    if(stage == '📅 Harvesting'){
+    if(stage == '⌚ Harvesting'){
       icon70g.style.display = 'initial' //dissease
       icon72g.style.display = 'initial' //pest
       icon69g.style.display = 'initial' //climatic
@@ -1170,7 +1180,7 @@ var generateButtonsHelp = function(){
       icon76.style.display = 'initial' //other
 
     }
-    if(stage == '📅 Post Harvesting'){
+    if(stage == '⌚ Post Harvesting'){
       icon70g.style.display = 'initial' //dissease
       icon72g.style.display = 'initial' //pest
       icon69g.style.display = 'initial' //climatic
@@ -1327,6 +1337,13 @@ var generateIssuesGeneric = function(){
     hideAll()
     issueGeneric = 'Weed'
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+
+  document.getElementById('share-download').click()
+
+    },1000)
+
+
   }
   icon75r = document.createElement("BUTTON");
   cell.appendChild(icon75r);
@@ -1336,6 +1353,10 @@ var generateIssuesGeneric = function(){
     hideAll()
     issueGeneric = 'Weed'
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
   }
   icon76 = document.createElement("BUTTON");
   cell.appendChild(icon76);
@@ -1345,6 +1366,10 @@ var generateIssuesGeneric = function(){
     hideAll()
     issueGeneric = '➕ Awon miiran'
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
   }
   return   screenChoice && icon69g && icon69r && icon70g && icon70r && icon71g && icon71r && icon72g && icon72r && icon73g && icon73r && icon74g && icon74r && icon75g && icon75r && icon76
 }
@@ -1362,6 +1387,10 @@ var generateIssuesClimatic = function(){
     hideAll()
     issueSpecific = '💧 Ògbelè'
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
   }
 
   icon78 = document.createElement("BUTTON");
@@ -1372,6 +1401,10 @@ var generateIssuesClimatic = function(){
     hideAll()
     issueSpecific = '💦 Òjò Ségesège'
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
   icon79 = document.createElement("BUTTON");
@@ -1383,6 +1416,10 @@ var generateIssuesClimatic = function(){
     issueSpecific = '⛈️ Ikùn Omi'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
   icon80 = document.createElement("BUTTON");
@@ -1394,6 +1431,10 @@ var generateIssuesClimatic = function(){
     issueSpecific = '🚿 Irrigeson'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
   icon81 = document.createElement("BUTTON");
@@ -1405,6 +1446,10 @@ var generateIssuesClimatic = function(){
     issueSpecific = '☀️🌡️ Orun lile'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
 
   }
@@ -1417,6 +1462,10 @@ var generateIssuesClimatic = function(){
     issueSpecific = '💨 Afefe lile'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
   return   screenChoice
@@ -1434,6 +1483,10 @@ var generateIssuesMarket = function(){
     issueSpecific = '💰 Àdíyelé'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1446,6 +1499,10 @@ var generateIssuesMarket = function(){
     issueSpecific = '🚚 Ìpèsè'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1458,6 +1515,10 @@ var generateIssuesMarket = function(){
     issueSpecific = '👔 Oñra'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1470,6 +1531,10 @@ var generateIssuesMarket = function(){
     issueSpecific = '🚧 Ipò Òpópónà'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1482,6 +1547,10 @@ var generateIssuesMarket = function(){
     issueSpecific = '🕖 Jijinna Si Oja'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1494,6 +1563,10 @@ var generateIssuesMarket = function(){
     issueSpecific = '🚌 Atigbe'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
   return   screenChoice
@@ -1513,6 +1586,10 @@ var generateIssuesPostHarvest = function(){
     issueSpecific = '🔒 Títójú'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1525,6 +1602,10 @@ var generateIssuesPostHarvest = function(){
     issueSpecific = '🧺 Kikosàpo'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1537,6 +1618,10 @@ var generateIssuesPostHarvest = function(){
     issueSpecific = '⚫ Rírà'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1549,6 +1634,10 @@ var generateIssuesPostHarvest = function(){
     issueSpecific = '🌦️ Oju Ojo'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1561,6 +1650,10 @@ var generateIssuesPostHarvest = function(){
     issueSpecific = '🌞 Sisa pelu orun'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
   return screenChoice
@@ -1579,6 +1672,10 @@ var generateIssuesSoil = function(){
     issueSpecific = '🟫 Asálè'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1591,6 +1688,10 @@ var generateIssuesSoil = function(){
     issueSpecific = '🟫 Àgbàrá'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1603,6 +1704,10 @@ var generateIssuesSoil = function(){
     issueSpecific = '🟫 IleLile'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1615,6 +1720,10 @@ var generateIssuesSoil = function(){
     issueSpecific = '🟫 Ajile'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
   return screenChoice
@@ -1638,6 +1747,10 @@ var generateIssuesPests = function(){
     // console.log('issueSpecific ',issueSpecific)
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1650,6 +1763,10 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Eera'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1662,6 +1779,10 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Monnimoni'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1674,6 +1795,10 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Asian Citrus Psyllidst'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1686,6 +1811,10 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Labonbon'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1698,6 +1827,10 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Cassava Greenmite'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1710,6 +1843,10 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Cocoa PodBorert'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1722,6 +1859,10 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Ipaa'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1734,6 +1875,10 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Iree'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1746,6 +1891,10 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Okoo'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
 
   }
 
@@ -1758,6 +1907,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Elete'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -1770,6 +1922,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Dakodako'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -1782,6 +1937,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Tata'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -1794,6 +1952,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Leaf Folder'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -1806,6 +1967,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Leaf Minerr'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -1818,6 +1982,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Leaf Webber'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -1830,6 +1997,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Leaf TwistingWeevil'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -1842,6 +2012,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Eesu'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -1854,6 +2027,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 EsuuIree'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -1866,6 +2042,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 KokoroOwu'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -1878,6 +2057,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Ilepa'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -1890,6 +2072,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Pink HibiscusMealybug'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -1902,6 +2087,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Rice Bug'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -1914,6 +2102,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 RiceGallMidge'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -1926,6 +2117,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Ekute/Lanka'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -1938,6 +2132,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 AlantakunEwe'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -1950,6 +2147,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 SquashBugs'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -1962,6 +2162,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 StalkBorer'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -1974,6 +2177,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Elepete'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -1986,6 +2192,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Salamon'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -1998,6 +2207,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Thrips'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2010,6 +2222,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Tortoise Beetle'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2022,6 +2237,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 Kokoro Agbado'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2034,6 +2252,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 White Grub Larvae'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2046,6 +2267,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 WhorlMaggot'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2058,6 +2282,9 @@ var generateIssuesPests = function(){
     issueSpecific = '🕷️🐛🦋🐞 ZigZag LeafHopper'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2070,6 +2297,9 @@ var generateIssuesPests = function(){
     issueSpecific = '➕ Awon miiran'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
   return screenChoice && issueSpecific
@@ -2088,6 +2318,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Alternaria LeafBlight'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2100,6 +2333,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 lternaria LeafStem'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2112,6 +2348,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Bacterial FruitBlotch'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2124,6 +2363,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Bacterial Wilt'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2136,6 +2378,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Black BankJute'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2148,6 +2393,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Aduu'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2160,6 +2408,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 BlackRot'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2172,6 +2423,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Blight'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2184,6 +2438,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Bract MosaicVirus'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2196,6 +2453,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Bud Recrosis'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2208,6 +2468,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Cassava Root Rot'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2220,6 +2483,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Citrus Anthracnose'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2232,6 +2498,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Citrus Guignardia'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2244,6 +2513,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Citrus Leprosis'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2256,6 +2528,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Citrus Scab'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2268,6 +2543,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Colocasia Bobone'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2280,6 +2558,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Cucumber Mottle Mosaic'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2292,6 +2573,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Downy Mildew'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2304,6 +2588,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Frosty Pod'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2316,6 +2603,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Fusarium Wilt'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2328,6 +2618,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Internal BrownSpot'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2340,6 +2633,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Leaf SteamScab'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2352,6 +2648,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Okra YellowVien'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2364,6 +2663,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Phytophthora Blight'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2376,6 +2678,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Pigweed'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2388,6 +2693,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Powdery Mildew'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2400,6 +2708,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Pox'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2412,6 +2723,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Rodent'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2424,6 +2738,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Root Aphids'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2436,6 +2753,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Rust'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2448,6 +2768,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Southern BlightPumpkin'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2460,6 +2783,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Stem CutwormBeat'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2472,6 +2798,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Streak'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2484,6 +2813,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Sweet Orange Scab'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2496,6 +2828,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Thrips'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2508,6 +2843,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Thrips Tomato'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2520,6 +2858,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Tomato Mosaic'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2532,6 +2873,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Verticilium Wilt'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2544,6 +2888,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Wet Rot'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2556,6 +2903,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 White Mold'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2568,6 +2918,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 White Rust'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2580,6 +2933,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '🟤 Yellow BlackSigatoka'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
 
@@ -2592,6 +2948,9 @@ var generateIssuesDissease = function(){
     issueSpecific = '➕ Awon miiran'
 
     document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
 
   }
   return screenChoice && issueSpecific
