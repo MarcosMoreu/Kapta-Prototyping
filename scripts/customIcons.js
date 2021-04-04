@@ -36,7 +36,7 @@ document.getElementById('customIconsMap').onclick = function(e){
     var emojioneareaeditor0 = emojioneareaeditor[0]
   //  ////console.log(emojioneareaeditor0)
     // emojioneareaeditor0.innerHTML =  crop + ' x ' + stage + ' x ' + landUse + ' x ' + askHelpOrIHelp + ' x ' + issueGeneric + ' x ' + issueSpecific
-    emojioneareaeditor0.innerHTML =  crop + ' x ' + stage + ' x ' + landUse + ' x ' + askHelpOrIHelp + ' x ' + issueGeneric + ' x ' + issueSpecific
+    emojioneareaeditor0.innerHTML =  crop + ' ' + stage + ' ' + landUse + ' ' + askHelpOrIHelp + ' ' + issueSpecific
 
   }
 
@@ -107,11 +107,11 @@ document.getElementById('customIconsCancel').click()
   if(screenChoice == 'issuesSpecific'){
 //  screenChoice = 'genericCrops'
     hideAll()
-    if(askHelpOrIHelp == 'askHelp'){
+    if(askHelpOrIHelp == '🙋🏿🔴 Mo nilo iranwo'){
       icon67.click()
 
     }
-    if(askHelpOrIHelp == 'IHelp'){
+    if(askHelpOrIHelp == '🙋🏿🟢 Mo le se iranwo'){
       icon68.click()
 
     }
@@ -431,7 +431,7 @@ var generateButtonsCereals = function(){
   icon8.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Àgbàdo'
+    crop = '🌽 Àgbàdo'
   }
   icon9 = document.createElement("BUTTON");
   cell.appendChild(icon9);
@@ -440,7 +440,7 @@ var generateButtonsCereals = function(){
   icon9.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Àgbàdo'
+    crop = '🌾 Ìresì'
   }
   return icon8 && icon9 && screenChoice && crop
 }
@@ -454,7 +454,7 @@ var generateButtonsVegetables = function(){
   icon10.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Ilá'
+    crop = '🌿 Ilá'
   }
   icon11 = document.createElement("BUTTON");
   cell.appendChild(icon11);
@@ -463,7 +463,7 @@ var generateButtonsVegetables = function(){
   icon11.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Atarodo'
+    crop = '🌿 Atarodo'
   }
   icon12 = document.createElement("BUTTON");
   cell.appendChild(icon12);
@@ -472,7 +472,7 @@ var generateButtonsVegetables = function(){
   icon12.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Tòmátì'
+    crop = '🍅 Tòmátì'
   }
   icon13 = document.createElement("BUTTON");
   cell.appendChild(icon13);
@@ -481,7 +481,7 @@ var generateButtonsVegetables = function(){
   icon13.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Kukumba'
+    crop = '🥒 Kukumba'
 
   }
   icon14 = document.createElement("BUTTON");
@@ -491,7 +491,7 @@ var generateButtonsVegetables = function(){
   icon14.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Tètè'
+    crop = '🌿 Tètè'
 
   }
   icon15 = document.createElement("BUTTON");
@@ -501,7 +501,7 @@ var generateButtonsVegetables = function(){
   icon15.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Soko'
+    crop = '🌿 Soko'
 
   }
   icon16 = document.createElement("BUTTON");
@@ -511,7 +511,7 @@ var generateButtonsVegetables = function(){
   icon16.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Ewedu'
+    crop = '🌿 Ewedu'
 
   }
   icon17 = document.createElement("BUTTON");
@@ -521,7 +521,7 @@ var generateButtonsVegetables = function(){
   icon17.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Ewuro'
+    crop = '🌿 Ewuro'
 
   }
   icon18 = document.createElement("BUTTON");
@@ -531,7 +531,7 @@ var generateButtonsVegetables = function(){
   icon18.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Gbure'
+    crop = '🌿 Gbure'
 
   }
   icon19 = document.createElement("BUTTON");
@@ -541,7 +541,7 @@ var generateButtonsVegetables = function(){
   icon19.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Ugu'
+    crop = '🌿 Ugu'
 
   }
   icon20 = document.createElement("BUTTON");
@@ -551,7 +551,7 @@ var generateButtonsVegetables = function(){
   icon20.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Awon miiran'
+    crop = '➕ Awon miiran'
 
   }
   return   screenChoice && crop
@@ -569,7 +569,7 @@ var generateButtonsFruits = function(){
   icon21.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Wota-Melon'
+    crop = '🍉 Wota-Melon'
 
   }
   icon22 = document.createElement("BUTTON");
@@ -579,7 +579,7 @@ var generateButtonsFruits = function(){
   icon22.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Gèdè-Paranta'
+    crop = '🍌 Gèdè-Paranta'
 
   }
 
@@ -590,7 +590,7 @@ var generateButtonsFruits = function(){
   icon23.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Ògèdè-Agbagba'
+    crop = '🍌 Ògèdè-Agbagba'
 
   }
   icon24 = document.createElement("BUTTON");
@@ -600,7 +600,7 @@ var generateButtonsFruits = function(){
   icon24.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Òsàn'
+    crop = '🍊 Òsàn'
 
   }
   icon25 = document.createElement("BUTTON");
@@ -610,7 +610,7 @@ var generateButtonsFruits = function(){
   icon25.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Agbalumo'
+    crop = '➡️ Agbalumo'
 
   }
   icon26 = document.createElement("BUTTON");
@@ -620,7 +620,7 @@ var generateButtonsFruits = function(){
   icon26.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Agbon'
+    crop = '➡️ Agbon'
 
   }
   icon27 = document.createElement("BUTTON");
@@ -630,7 +630,7 @@ var generateButtonsFruits = function(){
   icon27.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Cashew'
+    crop = '➡️ Cashew'
 
   }
   icon28 = document.createElement("BUTTON");
@@ -640,7 +640,7 @@ var generateButtonsFruits = function(){
   icon28.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Mangoro'
+    crop = '🥭 Mangoro'
 
   }
   icon29 = document.createElement("BUTTON");
@@ -650,7 +650,7 @@ var generateButtonsFruits = function(){
   icon29.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Ope Oyinbo'
+    crop = '🍍 Ope Oyinbo'
 
   }
   icon30 = document.createElement("BUTTON");
@@ -660,7 +660,7 @@ var generateButtonsFruits = function(){
   icon30.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Pawpaw'
+    crop = '➡️ Pawpaw'
 
   }
   icon31 = document.createElement("BUTTON");
@@ -670,7 +670,7 @@ var generateButtonsFruits = function(){
   icon31.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Tapon'
+    crop = '🍈 Tapon'
 
   }
   icon32 = document.createElement("BUTTON");
@@ -680,7 +680,7 @@ var generateButtonsFruits = function(){
   icon32.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Awon miiran'
+    crop = '➕ Awon miiran'
 
   }
   return screenChoice && crop
@@ -699,7 +699,7 @@ var generateButtonsTubers = function(){
   icon33.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Ànàmó'
+    crop = '🥔 Ànàmó'
 
   }
   icon34 = document.createElement("BUTTON");
@@ -709,7 +709,7 @@ var generateButtonsTubers = function(){
   icon34.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Odunkun'
+    crop = '➡️ Odunkun'
 
   }
   icon35 = document.createElement("BUTTON");
@@ -719,7 +719,7 @@ var generateButtonsTubers = function(){
   icon35.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Gbaguda'
+    crop = '➡️ Gbaguda'
 
   }
   icon36 = document.createElement("BUTTON");
@@ -729,7 +729,7 @@ var generateButtonsTubers = function(){
   icon36.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Koko'
+    crop = '➡️ Koko'
 
   }
   icon38 = document.createElement("BUTTON");
@@ -739,7 +739,7 @@ var generateButtonsTubers = function(){
   icon38.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Coco'
+    crop = '➡️ Coco'
 
   }
   icon39 = document.createElement("BUTTON");
@@ -749,7 +749,7 @@ var generateButtonsTubers = function(){
   icon39.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Esuru'
+    crop = '➡️ Esuru'
 
   }
   icon40 = document.createElement("BUTTON");
@@ -759,7 +759,7 @@ var generateButtonsTubers = function(){
   icon40.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Isu Ewura'
+    crop = '➡️ Isu Ewura'
 
   }
   icon41 = document.createElement("BUTTON");
@@ -769,7 +769,7 @@ var generateButtonsTubers = function(){
   icon41.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Awon miiran'
+    crop = '➕ Awon miiran'
 
   }
   return   screenChoice && crop
@@ -785,7 +785,7 @@ var generateButtonsPulses = function(){
   icon42.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Beans'
+    crop = '➡️ Beans'
 
   }
   icon43 = document.createElement("BUTTON");
@@ -795,7 +795,7 @@ var generateButtonsPulses = function(){
   icon43.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Awon miiran'
+    crop = '➕ Awon miiran'
 
   }
   return screenChoice && crop
@@ -812,7 +812,7 @@ var generateButtonsCashCrop = function(){
   icon44.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Kókò'
+    crop = '➡️ Kókò'
 
   }
   icon45 = document.createElement("BUTTON");
@@ -822,7 +822,7 @@ var generateButtonsCashCrop = function(){
   icon45.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Igi Òpe'
+    crop = '➡️ Igi Òpe'
 
   }
   icon46 = document.createElement("BUTTON");
@@ -832,7 +832,7 @@ var generateButtonsCashCrop = function(){
   icon46.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Awon miiran'
+    crop = '➕ Awon miiran'
 
   }
   return screenChoice && crop
@@ -842,16 +842,16 @@ var generateButtonsNuts = function(){
   screenChoice = 'specificCrop'
 
   //Nuts
-  icon47 = document.createElement("BUTTON");
-  cell.appendChild(icon47);
-  icon47.className = 'buttonsSapelli'
-  icon47.innerHTML = '<img src="images/csaNigeria/Crops/Agbon.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Agbon';
-  icon47.onclick = function(){
-    hideAll()
-    generateButtonsStage()
-    crop = 'Agbon'
-
-  }
+  // icon47 = document.createElement("BUTTON");
+  // cell.appendChild(icon47);
+  // icon47.className = 'buttonsSapelli'
+  // icon47.innerHTML = '<img src="images/csaNigeria/Crops/Agbon.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Agbon';
+  // icon47.onclick = function(){
+  //   hideAll()
+  //   generateButtonsStage()
+  //   crop = 'Agbon'
+  //
+  // }
   icon48 = document.createElement("BUTTON");
   cell.appendChild(icon48);
   icon48.innerHTML = '<img src="images/csaNigeria/Crops/awusa.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Awusa';
@@ -859,7 +859,7 @@ var generateButtonsNuts = function(){
   icon48.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Awusa'
+    crop = '➡️ Awusa'
 
   }
   icon49 = document.createElement("BUTTON");
@@ -869,7 +869,7 @@ var generateButtonsNuts = function(){
   icon49.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Obi'
+    crop = '➡️ Obi'
 
   }
   icon50 = document.createElement("BUTTON");
@@ -879,7 +879,7 @@ var generateButtonsNuts = function(){
   icon50.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Orogbo'
+    crop = '➡️ Orogbo'
 
   }
   icon51 = document.createElement("BUTTON");
@@ -889,7 +889,7 @@ var generateButtonsNuts = function(){
   icon51.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Epa'
+    crop = '➡️ Epa'
 
   }
   icon52 = document.createElement("BUTTON");
@@ -899,7 +899,7 @@ var generateButtonsNuts = function(){
   icon52.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = 'Awon miiran'
+    crop = '➕ Awon miiran'
 
   }
   return   screenChoice && crop
@@ -915,7 +915,7 @@ var generateButtonsStage = function(){
   icon53.onclick = function(){
     hideAll()
     generateButtonsBeforePlantingStage()
-    stage = 'Before Planting'
+    stage = '📅 Before Planting'
   }
   icon56 = document.createElement("BUTTON");
   cell.appendChild(icon56);
@@ -924,7 +924,7 @@ var generateButtonsStage = function(){
   icon56.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    stage = 'Planting'
+    stage = '📅 Planting'
   }
   icon55 = document.createElement("BUTTON");
   cell.appendChild(icon55);
@@ -933,7 +933,7 @@ var generateButtonsStage = function(){
   icon55.onclick = function(){
     hideAll()
     generateButtonsPestControlStage()
-    stage = 'Pest Control'
+    stage = '📅 Pest Control'
   }
   icon54 = document.createElement("BUTTON");
   cell.appendChild(icon54);
@@ -942,7 +942,7 @@ var generateButtonsStage = function(){
   icon54.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    stage = 'Top Dressing'
+    stage = '📅 Top Dressing'
   }
   icon58 = document.createElement("BUTTON");
   cell.appendChild(icon58);
@@ -951,7 +951,7 @@ var generateButtonsStage = function(){
   icon58.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    stage = 'Harvesting'
+    stage = '📅 Harvesting'
   }
 
   icon57 = document.createElement("BUTTON");
@@ -961,7 +961,7 @@ var generateButtonsStage = function(){
   icon57.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    stage = 'Post Harvesting'
+    stage = '📅 Post Harvesting'
   }
 
   return stage &&   screenChoice
@@ -977,7 +977,7 @@ var generateButtonsBeforePlantingStage = function(){
   icon59.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    landUse = 'Irinse Ibile'
+    landUse = '⛏️ Irinse Ibile'
   }
   icon60 = document.createElement("BUTTON");
   cell.appendChild(icon60);
@@ -986,7 +986,7 @@ var generateButtonsBeforePlantingStage = function(){
   icon60.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    landUse = 'Irinse Oyinbo'
+    landUse = '🚜 Irinse Oyinbo'
 
   }
   icon61 = document.createElement("BUTTON");
@@ -996,7 +996,7 @@ var generateButtonsBeforePlantingStage = function(){
   icon61.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    landUse = 'Oko Sisuno'
+    landUse = '🔥 Oko Sisuno'
 
   }
   icon63 = document.createElement("BUTTON");
@@ -1006,7 +1006,7 @@ var generateButtonsBeforePlantingStage = function(){
   icon63.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    landUse = 'Pakopako'
+    landUse = '🌿🔫 Pakopako'
 
   }
   icon64 = document.createElement("BUTTON");
@@ -1016,7 +1016,7 @@ var generateButtonsBeforePlantingStage = function(){
   icon64.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    landUse = 'Aginju'
+    landUse = '🌳 Aginju'
 
   }
   icon64o = document.createElement("BUTTON");
@@ -1026,7 +1026,7 @@ var generateButtonsBeforePlantingStage = function(){
   icon64o.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    landUse = 'Awon miiran'
+    landUse = '➕ Awon miiran'
 
   }
   return   screenChoice && landUse
@@ -1043,7 +1043,7 @@ var generateButtonsPestControlStage = function(){
   icon65.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    landUse = 'Pesticides'
+    landUse = '🦟🔫 Pesticides'
 
   }
   icon66 = document.createElement("BUTTON");
@@ -1053,7 +1053,7 @@ var generateButtonsPestControlStage = function(){
   icon66.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    landUse = 'Pakopako'
+    landUse = '🌿🔫 Pakopako'
 
   }
   return   screenChoice && landUse
@@ -1069,37 +1069,37 @@ var generateButtonsHelp = function(){
   icon67.innerHTML = '<img src="images/csaNigeria/NeedHelp.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Mo nilo iranwo';
 
   icon67.onclick = function(){
-    askHelpOrIHelp = '🙋🏿👎🏿I need help'
+    askHelpOrIHelp = '🙋🏿🔴 Mo nilo iranwo'
 
     generateIssuesGeneric()
     hideAll()
-    if(stage == 'beforePlantingStage'){
+    if(stage == '📅 Before Planting'){
       icon69r.style.display = 'initial' //climatic
       icon74r.style.display = 'initial' //soil
       icon75r.style.display = 'initial' //weed
       icon76.style.display = 'initial' //other
     }
-    if(stage == 'plantingStage'){
+    if(stage == '📅 Planting'){
       icon70r.style.display = 'initial' //dissease
       icon72r.style.display = 'initial' //pest
       icon69r.style.display = 'initial' //climatic
       icon74r.style.display = 'initial' //soil
       icon76.style.display = 'initial' //other
     }
-    if(stage == 'pestControlStage'){
+    if(stage == '📅 Pest Control'){
       icon70r.style.display = 'initial' //dissease
       icon72r.style.display = 'initial' //pest
       icon75r.style.display = 'initial' //weed
       icon76.style.display = 'initial' //other
     }
-    if(stage == 'topDressingStage'){
+    if(stage == '📅 Top Dressing'){
       icon70r.style.display = 'initial' //dissease
       icon72r.style.display = 'initial' //pest
       icon69r.style.display = 'initial' //climatic
       icon74r.style.display = 'initial' //soil
       icon76.style.display = 'initial' //other
     }
-    if(stage == 'harvestingStage'){
+    if(stage == '📅 Harvesting'){
       icon70r.style.display = 'initial' //dissease
       icon72r.style.display = 'initial' //pest
       icon69r.style.display = 'initial' //climatic
@@ -1107,7 +1107,7 @@ var generateButtonsHelp = function(){
       icon73r.style.display = 'initial' //postharvest
       icon75r.style.display = 'initial' //weed
     }
-    if(stage == 'postHarvestingStage'){
+    if(stage == '📅 Post Harvesting'){
       icon70r.style.display = 'initial' //dissease
       icon72r.style.display = 'initial' //pest
       icon69r.style.display = 'initial' //climatic
@@ -1123,17 +1123,17 @@ var generateButtonsHelp = function(){
   icon68.innerHTML = '<img src="images/csaNigeria/IHelp.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Mo le se iranwo';
   icon68.className = 'buttonsSapelli'
   icon68.onclick = function(){
-    askHelpOrIHelp = '🙋🏿👍🏿 I can help'
+    askHelpOrIHelp = '🙋🏿🟢 Mo le se iranwo'
 
     generateIssuesGeneric()
     hideAll()
-    if(stage == 'beforePlantingStage'){
+    if(stage == '📅 Before Planting'){
       icon69g.style.display = 'initial' //climatic
       icon74g.style.display = 'initial' //soil
       icon75g.style.display = 'initial' //weed
       icon76.style.display = 'initial' //other
     }
-    if(stage == 'plantingStage'){
+    if(stage == '📅 Planting'){
       icon70g.style.display = 'initial' //dissease
       icon72g.style.display = 'initial' //pest
       icon69g.style.display = 'initial' //climatic
@@ -1141,7 +1141,7 @@ var generateButtonsHelp = function(){
       icon76.style.display = 'initial' //other
 
     }
-    if(stage == 'pestControlStage'){
+    if(stage == '📅 Pest Control'){
       icon70g.style.display = 'initial' //dissease
       icon72g.style.display = 'initial' //pest
       icon75g.style.display = 'initial' //weed
@@ -1149,14 +1149,14 @@ var generateButtonsHelp = function(){
 
 
     }
-    if(stage == 'topDressingStage'){
+    if(stage == '📅 Top Dressing'){
       icon70g.style.display = 'initial' //dissease
       icon72g.style.display = 'initial' //pest
       icon69g.style.display = 'initial' //climatic
       icon74g.style.display = 'initial' //soil
       icon76.style.display = 'initial' //other
     }
-    if(stage == 'harvestingStage'){
+    if(stage == '📅 Harvesting'){
       icon70g.style.display = 'initial' //dissease
       icon72g.style.display = 'initial' //pest
       icon69g.style.display = 'initial' //climatic
@@ -1166,7 +1166,7 @@ var generateButtonsHelp = function(){
       icon76.style.display = 'initial' //other
 
     }
-    if(stage == 'postHarvestingStage'){
+    if(stage == '📅 Post Harvesting'){
       icon70g.style.display = 'initial' //dissease
       icon72g.style.display = 'initial' //pest
       icon69g.style.display = 'initial' //climatic
@@ -1339,7 +1339,7 @@ var generateIssuesGeneric = function(){
   icon76.innerHTML = '<img src="images/csaNigeria/UnknownOther.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Awon miiran';
   icon76.onclick = function(){
     hideAll()
-    issueGeneric = 'Awon miiran'
+    issueGeneric = '➕ Awon miiran'
     document.getElementById('customIconsMap').click()
   }
   return   screenChoice && icon69g && icon69r && icon70g && icon70r && icon71g && icon71r && icon72g && icon72r && icon73g && icon73r && icon74g && icon74r && icon75g && icon75r && icon76
@@ -1356,7 +1356,7 @@ var generateIssuesClimatic = function(){
   icon77.innerHTML = '<img src="images/csaNigeria/ISSUES/ClimaticIssues/Drought.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Ògbelè';
   icon77.onclick = function(){
     hideAll()
-    issueSpecific = 'Ògbelè'
+    issueSpecific = '💧 Ògbelè'
     document.getElementById('customIconsMap').click()
   }
 
@@ -1366,7 +1366,7 @@ var generateIssuesClimatic = function(){
   icon78.className = 'buttonsSapelli'
   icon78.onclick = function(){
     hideAll()
-    issueSpecific = 'Òjò Ségesège'
+    issueSpecific = '💦 Òjò Ségesège'
     document.getElementById('customIconsMap').click()
 
   }
@@ -1376,7 +1376,7 @@ var generateIssuesClimatic = function(){
   icon79.innerHTML = '<img src="images/csaNigeria/ISSUES/ClimaticIssues/flood.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Ikùn Omi';
   icon79.onclick = function(){
     hideAll()
-    issueSpecific = 'Ikùn Omi'
+    issueSpecific = '⛈️ Ikùn Omi'
 
     document.getElementById('customIconsMap').click()
 
@@ -1387,7 +1387,7 @@ var generateIssuesClimatic = function(){
   icon80.className = 'buttonsSapelli'
   icon80.onclick = function(){
     hideAll()
-    issueSpecific = 'Irrigeson'
+    issueSpecific = '🚿 Irrigeson'
 
     document.getElementById('customIconsMap').click()
 
@@ -1398,7 +1398,7 @@ var generateIssuesClimatic = function(){
   icon81.innerHTML = '<img src="images/csaNigeria/ISSUES/ClimaticIssues/sunIntensity.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Orun lile';
   icon81.onclick = function(){
     hideAll()
-    issueSpecific = 'Orun lile'
+    issueSpecific = '☀️🌡️ Orun lile'
 
     document.getElementById('customIconsMap').click()
 
@@ -1410,7 +1410,7 @@ var generateIssuesClimatic = function(){
   icon82.className = 'buttonsSapelli'
   icon82.onclick = function(){
     hideAll()
-    issueSpecific = 'Afefe lile'
+    issueSpecific = '💨 Afefe lile'
 
     document.getElementById('customIconsMap').click()
 
@@ -1427,7 +1427,7 @@ var generateIssuesMarket = function(){
   icon83.innerHTML = '<img src="images/csaNigeria/ISSUES/market/price.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Àdíyelé';
   icon83.onclick = function(){
     hideAll()
-    issueSpecific = 'Àdíyelé'
+    issueSpecific = '💰 Àdíyelé'
 
     document.getElementById('customIconsMap').click()
 
@@ -1439,7 +1439,7 @@ var generateIssuesMarket = function(){
   icon84.className = 'buttonsSapelli'
   icon84.onclick = function(){
     hideAll()
-    issueSpecific = 'Ìpèsè'
+    issueSpecific = '🚚 Ìpèsè'
 
     document.getElementById('customIconsMap').click()
 
@@ -1451,7 +1451,7 @@ var generateIssuesMarket = function(){
   icon85.innerHTML = '<img src="images/csaNigeria/ISSUES/market/TheBuyer.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Oñra';
   icon85.onclick = function(){
     hideAll()
-    issueSpecific = 'Oñra'
+    issueSpecific = '👔 Oñra'
 
     document.getElementById('customIconsMap').click()
 
@@ -1463,7 +1463,7 @@ var generateIssuesMarket = function(){
   icon86.className = 'buttonsSapelli'
   icon86.onclick = function(){
     hideAll()
-    issueSpecific = 'Ipò Òpópónà'
+    issueSpecific = '🚧 Ipò Òpópónà'
 
     document.getElementById('customIconsMap').click()
 
@@ -1475,7 +1475,7 @@ var generateIssuesMarket = function(){
   icon87.innerHTML = '<img src="images/csaNigeria/ISSUES/market/DistanceToMarket.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Jijinna Si Oja';
   icon87.onclick = function(){
     hideAll()
-    issueSpecific = 'Jijinna Si Oja'
+    issueSpecific = '🕖 Jijinna Si Oja'
 
     document.getElementById('customIconsMap').click()
 
@@ -1487,7 +1487,7 @@ var generateIssuesMarket = function(){
   icon88.className = 'buttonsSapelli'
   icon88.onclick = function(){
     hideAll()
-    issueSpecific = 'Atigbe'
+    issueSpecific = '🚌 Atigbe'
 
     document.getElementById('customIconsMap').click()
 
@@ -1506,7 +1506,7 @@ var generateIssuesPostHarvest = function(){
   icon89.className = 'buttonsSapelli'
   icon89.onclick = function(){
     hideAll()
-    issueSpecific = 'Títójú'
+    issueSpecific = '🔒 Títójú'
 
     document.getElementById('customIconsMap').click()
 
@@ -1518,7 +1518,7 @@ var generateIssuesPostHarvest = function(){
   icon90.innerHTML = '<img src="images/csaNigeria/ISSUES/PostHarvestIssues/bagging.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Kikosàpo';
   icon90.onclick = function(){
     hideAll()
-    issueSpecific = 'Kikosàpo'
+    issueSpecific = '🧺 Kikosàpo'
 
     document.getElementById('customIconsMap').click()
 
@@ -1530,7 +1530,7 @@ var generateIssuesPostHarvest = function(){
   icon91.className = 'buttonsSapelli'
   icon91.onclick = function(){
     hideAll()
-    issueSpecific = 'Rírà'
+    issueSpecific = '⚫ Rírà'
 
     document.getElementById('customIconsMap').click()
 
@@ -1542,7 +1542,7 @@ var generateIssuesPostHarvest = function(){
   icon92.innerHTML = '<img src="images/csaNigeria/ISSUES/PostHarvestIssues/weatherCondition.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Oju Ojo';
   icon92.onclick = function(){
     hideAll()
-    issueSpecific = 'Oju Ojo'
+    issueSpecific = '🌦️ Oju Ojo'
 
     document.getElementById('customIconsMap').click()
 
@@ -1554,7 +1554,7 @@ var generateIssuesPostHarvest = function(){
   icon93.className = 'buttonsSapelli'
   icon93.onclick = function(){
     hideAll()
-    issueSpecific = 'Sisa pelu orun'
+    issueSpecific = '🌞 Sisa pelu orun'
 
     document.getElementById('customIconsMap').click()
 
@@ -1572,7 +1572,7 @@ var generateIssuesSoil = function(){
   icon94.innerHTML = '<img src="images/csaNigeria/ISSUES/soil/poorSoil.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Asálè';
   icon94.onclick = function(){
     hideAll()
-    issueSpecific = 'Asálè'
+    issueSpecific = '🟫 Asálè'
 
     document.getElementById('customIconsMap').click()
 
@@ -1584,7 +1584,7 @@ var generateIssuesSoil = function(){
   icon95.className = 'buttonsSapelli'
   icon95.onclick = function(){
     hideAll()
-    issueSpecific = 'Àgbàrá'
+    issueSpecific = '🟫 Àgbàrá'
 
     document.getElementById('customIconsMap').click()
 
@@ -1596,7 +1596,7 @@ var generateIssuesSoil = function(){
   icon96.innerHTML = '<img src="images/csaNigeria/ISSUES/soil/hardpan.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>IleLile';
   icon96.onclick = function(){
     hideAll()
-    issueSpecific = 'IleLile'
+    issueSpecific = '🟫 IleLile'
 
     document.getElementById('customIconsMap').click()
 
@@ -1608,7 +1608,7 @@ var generateIssuesSoil = function(){
   icon97.className = 'buttonsSapelli'
   icon97.onclick = function(){
     hideAll()
-    issueSpecific = 'Ajile'
+    issueSpecific = '🟫 Ajile'
 
     document.getElementById('customIconsMap').click()
 
@@ -1626,12 +1626,12 @@ var generateIssuesPests = function(){
   icon98.className = 'buttonsSapelli'
   icon98.onclick = function(){
     hideAll()
-    issueSpecific = 'Root TuberScale'
-    console.log('crop ',crop)
-    console.log('stage ',stage)
-    console.log('landUses ',landUse)
-    console.log('help ',askHelpOrIHelp)
-    console.log('issueSpecific ',issueSpecific)
+    issueSpecific = '🕷️🐛 Root TuberScale'
+    // console.log('crop ',crop)
+    // console.log('stage ',stage)
+    // console.log('landUses ',landUse)
+    // console.log('help ',askHelpOrIHelp)
+    // console.log('issueSpecific ',issueSpecific)
 
     document.getElementById('customIconsMap').click()
 
@@ -1643,7 +1643,7 @@ var generateIssuesPests = function(){
   icon99.innerHTML = '<img src="images/csaNigeria/ISSUES/Pest/Aphid.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Eera';
   icon99.onclick = function(){
     hideAll()
-    issueSpecific = 'Eera'
+    issueSpecific = '🕷️🐛🦋🐞 Eera'
 
     document.getElementById('customIconsMap').click()
 
@@ -1655,7 +1655,7 @@ var generateIssuesPests = function(){
   icon100.className = 'buttonsSapelli'
   icon100.onclick = function(){
     hideAll()
-    issueSpecific = 'Monnimoni'
+    issueSpecific = '🕷️🐛🦋🐞 Monnimoni'
 
     document.getElementById('customIconsMap').click()
 
@@ -1667,7 +1667,7 @@ var generateIssuesPests = function(){
   icon101.innerHTML = '<img src="images/csaNigeria/ISSUES/Pest/AsianCitrusPsyllid.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Asian Citrus Psyllidst';
   icon101.onclick = function(){
     hideAll()
-    issueSpecific = 'Asian Citrus Psyllidst'
+    issueSpecific = '🕷️🐛🦋🐞 Asian Citrus Psyllidst'
 
     document.getElementById('customIconsMap').click()
 
@@ -1679,7 +1679,7 @@ var generateIssuesPests = function(){
   icon102.className = 'buttonsSapelli'
   icon102.onclick = function(){
     hideAll()
-    issueSpecific = 'Labonbon'
+    issueSpecific = '🕷️🐛🦋🐞 Labonbon'
 
     document.getElementById('customIconsMap').click()
 
@@ -1691,7 +1691,7 @@ var generateIssuesPests = function(){
   icon103.innerHTML = '<img src="images/csaNigeria/ISSUES/Pest/cassavaGreenMitePest.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Cassava Greenmite';
   icon103.onclick = function(){
     hideAll()
-    issueSpecific = 'Cassava Greenmite'
+    issueSpecific = '🕷️🐛🦋🐞 Cassava Greenmite'
 
     document.getElementById('customIconsMap').click()
 
@@ -1703,7 +1703,7 @@ var generateIssuesPests = function(){
   icon104.className = 'buttonsSapelli'
   icon104.onclick = function(){
     hideAll()
-    issueSpecific = 'Cocoa PodBorert'
+    issueSpecific = '🕷️🐛🦋🐞 Cocoa PodBorert'
 
     document.getElementById('customIconsMap').click()
 
@@ -1715,7 +1715,7 @@ var generateIssuesPests = function(){
   icon105.innerHTML = '<img src="images/csaNigeria/ISSUES/Pest/coconutScale.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Ipaa';
   icon105.onclick = function(){
     hideAll()
-    issueSpecific = 'Ipaa'
+    issueSpecific = '🕷️🐛🦋🐞 Ipaa'
 
     document.getElementById('customIconsMap').click()
 
@@ -1727,7 +1727,7 @@ var generateIssuesPests = function(){
   icon106.className = 'buttonsSapelli'
   icon106.onclick = function(){
     hideAll()
-    issueSpecific = 'Iree'
+    issueSpecific = '🕷️🐛🦋🐞 Iree'
 
     document.getElementById('customIconsMap').click()
 
@@ -1739,7 +1739,7 @@ var generateIssuesPests = function(){
   icon107.innerHTML = '<img src="images/csaNigeria/ISSUES/Pest/cutworms.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Okoo';
   icon107.onclick = function(){
     hideAll()
-    issueSpecific = 'Okoo'
+    issueSpecific = '🕷️🐛🦋🐞 Okoo'
 
     document.getElementById('customIconsMap').click()
 
@@ -1751,7 +1751,7 @@ var generateIssuesPests = function(){
   icon108.className = 'buttonsSapelli'
   icon108.onclick = function(){
     hideAll()
-    issueSpecific = 'Elete'
+    issueSpecific = '🕷️🐛🦋🐞 Elete'
 
     document.getElementById('customIconsMap').click()
 
@@ -1763,7 +1763,7 @@ var generateIssuesPests = function(){
   icon109.innerHTML = '<img src="images/csaNigeria/ISSUES/Pest/GreenLeafhoppers.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Dakodako';
   icon109.onclick = function(){
     hideAll()
-    issueSpecific = 'Dakodako'
+    issueSpecific = '🕷️🐛🦋🐞 Dakodako'
 
     document.getElementById('customIconsMap').click()
 
@@ -1775,7 +1775,7 @@ var generateIssuesPests = function(){
   icon110.className = 'buttonsSapelli'
   icon110.onclick = function(){
     hideAll()
-    issueSpecific = 'Tata'
+    issueSpecific = '🕷️🐛🦋🐞 Tata'
 
     document.getElementById('customIconsMap').click()
 
@@ -1787,7 +1787,7 @@ var generateIssuesPests = function(){
   icon111.innerHTML = '<img src="images/csaNigeria/ISSUES/Pest/leafFolder.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Leaf Folder';
   icon111.onclick = function(){
     hideAll()
-    issueSpecific = 'Leaf Folder'
+    issueSpecific = '🕷️🐛🦋🐞 Leaf Folder'
 
     document.getElementById('customIconsMap').click()
 
@@ -1799,7 +1799,7 @@ var generateIssuesPests = function(){
   icon112.className = 'buttonsSapelli'
   icon112.onclick = function(){
     hideAll()
-    issueSpecific = 'Leaf Minerr'
+    issueSpecific = '🕷️🐛🦋🐞 Leaf Minerr'
 
     document.getElementById('customIconsMap').click()
 
@@ -1811,7 +1811,7 @@ var generateIssuesPests = function(){
   icon113.innerHTML = '<img src="images/csaNigeria/ISSUES/Pest/leafWebber.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Leaf Webber';
   icon113.onclick = function(){
     hideAll()
-    issueSpecific = 'Leaf Webber'
+    issueSpecific = '🕷️🐛🦋🐞 Leaf Webber'
 
     document.getElementById('customIconsMap').click()
 
@@ -1823,7 +1823,7 @@ var generateIssuesPests = function(){
   icon114.className = 'buttonsSapelli'
   icon114.onclick = function(){
     hideAll()
-    issueSpecific = 'Leaf TwistingWeevil'
+    issueSpecific = '🕷️🐛🦋🐞 Leaf TwistingWeevil'
 
     document.getElementById('customIconsMap').click()
 
@@ -1835,7 +1835,7 @@ var generateIssuesPests = function(){
   icon115.innerHTML = '<img src="images/csaNigeria/ISSUES/Pest/locust.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Eesu';
   icon115.onclick = function(){
     hideAll()
-    issueSpecific = 'Eesu'
+    issueSpecific = '🕷️🐛🦋🐞 Eesu'
 
     document.getElementById('customIconsMap').click()
 
@@ -1847,7 +1847,7 @@ var generateIssuesPests = function(){
   icon116.className = 'buttonsSapelli'
   icon116.onclick = function(){
     hideAll()
-    issueSpecific = 'EsuuIree'
+    issueSpecific = '🕷️🐛🦋🐞 EsuuIree'
 
     document.getElementById('customIconsMap').click()
 
@@ -1859,7 +1859,7 @@ var generateIssuesPests = function(){
   icon117.className = 'buttonsSapelli'
   icon117.onclick = function(){
     hideAll()
-    issueSpecific = 'KokoroOwu'
+    issueSpecific = '🕷️🐛🦋🐞 KokoroOwu'
 
     document.getElementById('customIconsMap').click()
 
@@ -1871,7 +1871,7 @@ var generateIssuesPests = function(){
   icon118.innerHTML = '<img src="images/csaNigeria/ISSUES/Pest/nematodes.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Ilepa';
   icon118.onclick = function(){
     hideAll()
-    issueSpecific = 'Ilepa'
+    issueSpecific = '🕷️🐛🦋🐞 Ilepa'
 
     document.getElementById('customIconsMap').click()
 
@@ -1883,7 +1883,7 @@ var generateIssuesPests = function(){
   icon119.className = 'buttonsSapelli'
   icon119.onclick = function(){
     hideAll()
-    issueSpecific = 'Pink HibiscusMealybug'
+    issueSpecific = '🕷️🐛🦋🐞 Pink HibiscusMealybug'
 
     document.getElementById('customIconsMap').click()
 
@@ -1895,7 +1895,7 @@ var generateIssuesPests = function(){
   icon120.innerHTML = '<img src="images/csaNigeria/ISSUES/Pest/RiceBug.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Rice Bug';
   icon120.onclick = function(){
     hideAll()
-    issueSpecific = 'Rice Bug'
+    issueSpecific = '🕷️🐛🦋🐞 Rice Bug'
 
     document.getElementById('customIconsMap').click()
 
@@ -1907,7 +1907,7 @@ var generateIssuesPests = function(){
   icon121.className = 'buttonsSapelli'
   icon121.onclick = function(){
     hideAll()
-    issueSpecific = 'RiceGallMidge'
+    issueSpecific = '🕷️🐛🦋🐞 RiceGallMidge'
 
     document.getElementById('customIconsMap').click()
 
@@ -1919,7 +1919,7 @@ var generateIssuesPests = function(){
   icon122.innerHTML = '<img src="images/csaNigeria/ISSUES/Pest/rodents.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Ekute/Lanka';
   icon122.onclick = function(){
     hideAll()
-    issueSpecific = 'Ekute/Lanka'
+    issueSpecific = '🕷️🐛🦋🐞 Ekute/Lanka'
 
     document.getElementById('customIconsMap').click()
 
@@ -1931,7 +1931,7 @@ var generateIssuesPests = function(){
   icon123.className = 'buttonsSapelli'
   icon123.onclick = function(){
     hideAll()
-    issueSpecific = 'AlantakunEwe'
+    issueSpecific = '🕷️🐛🦋🐞 AlantakunEwe'
 
     document.getElementById('customIconsMap').click()
 
@@ -1943,7 +1943,7 @@ var generateIssuesPests = function(){
   icon124.innerHTML = '<img src="images/csaNigeria/ISSUES/Pest/squashBugs.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>SquashBugs';
   icon124.onclick = function(){
     hideAll()
-    issueSpecific = 'SquashBugs'
+    issueSpecific = '🕷️🐛🦋🐞 SquashBugs'
 
     document.getElementById('customIconsMap').click()
 
@@ -1955,7 +1955,7 @@ var generateIssuesPests = function(){
   icon126.innerHTML = '<img src="images/csaNigeria/ISSUES/Pest/stalkBorer.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>StalkBorer';
   icon126.onclick = function(){
     hideAll()
-    issueSpecific = 'StalkBorer'
+    issueSpecific = '🕷️🐛🦋🐞 StalkBorer'
 
     document.getElementById('customIconsMap').click()
 
@@ -1967,7 +1967,7 @@ var generateIssuesPests = function(){
   icon127.className = 'buttonsSapelli'
   icon127.onclick = function(){
     hideAll()
-    issueSpecific = 'Elepete'
+    issueSpecific = '🕷️🐛🦋🐞 Elepete'
 
     document.getElementById('customIconsMap').click()
 
@@ -1979,7 +1979,7 @@ var generateIssuesPests = function(){
   icon128.innerHTML = '<img src="images/csaNigeria/ISSUES/Pest/teaserAnt.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Salamon';
   icon128.onclick = function(){
     hideAll()
-    issueSpecific = 'Salamon'
+    issueSpecific = '🕷️🐛🦋🐞 Salamon'
 
     document.getElementById('customIconsMap').click()
 
@@ -1991,7 +1991,7 @@ var generateIssuesPests = function(){
   icon129.className = 'buttonsSapelli'
   icon129.onclick = function(){
     hideAll()
-    issueSpecific = 'Thrips'
+    issueSpecific = '🕷️🐛🦋🐞 Thrips'
 
     document.getElementById('customIconsMap').click()
 
@@ -2003,7 +2003,7 @@ var generateIssuesPests = function(){
   icon130.className = 'buttonsSapelli'
   icon130.onclick = function(){
     hideAll()
-    issueSpecific = 'Tortoise Beetle'
+    issueSpecific = '🕷️🐛🦋🐞 Tortoise Beetle'
 
     document.getElementById('customIconsMap').click()
 
@@ -2015,7 +2015,7 @@ var generateIssuesPests = function(){
   icon131.innerHTML = '<img src="images/csaNigeria/ISSUES/Pest/weavils.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Kokoro Agbado';
   icon131.onclick = function(){
     hideAll()
-    issueSpecific = 'Kokoro Agbado'
+    issueSpecific = '🕷️🐛🦋🐞 Kokoro Agbado'
 
     document.getElementById('customIconsMap').click()
 
@@ -2027,7 +2027,7 @@ var generateIssuesPests = function(){
   icon132.className = 'buttonsSapelli'
   icon132.onclick = function(){
     hideAll()
-    issueSpecific = 'White Grub Larvae'
+    issueSpecific = '🕷️🐛🦋🐞 White Grub Larvae'
 
     document.getElementById('customIconsMap').click()
 
@@ -2039,7 +2039,7 @@ var generateIssuesPests = function(){
   icon133.innerHTML = '<img src="images/csaNigeria/ISSUES/Pest/whorlMaggot.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>WhorlMaggot';
   icon133.onclick = function(){
     hideAll()
-    issueSpecific = 'WhorlMaggot'
+    issueSpecific = '🕷️🐛🦋🐞 WhorlMaggot'
 
     document.getElementById('customIconsMap').click()
 
@@ -2051,7 +2051,7 @@ var generateIssuesPests = function(){
   icon134.className = 'buttonsSapelli'
   icon134.onclick = function(){
     hideAll()
-    issueSpecific = 'ZigZag LeafHopper'
+    issueSpecific = '🕷️🐛🦋🐞 ZigZag LeafHopper'
 
     document.getElementById('customIconsMap').click()
 
@@ -2063,7 +2063,7 @@ var generateIssuesPests = function(){
   icon134o.className = 'buttonsSapelli'
   icon134o.onclick = function(){
     hideAll()
-    issueSpecific = 'Awon miiran'
+    issueSpecific = '➕ Awon miiran'
 
     document.getElementById('customIconsMap').click()
 
@@ -2081,7 +2081,7 @@ var generateIssuesDissease = function(){
   icon135.innerHTML = '<img src="images/csaNigeria/ISSUES/Dissease/AlternariaLeafBlight.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Alternaria Leaf Blight';
   icon135.onclick = function(){
     hideAll()
-    issueSpecific = 'Alternaria LeafBlight'
+    issueSpecific = '🟤 Alternaria LeafBlight'
 
     document.getElementById('customIconsMap').click()
 
@@ -2093,7 +2093,7 @@ var generateIssuesDissease = function(){
   icon136.className = 'buttonsSapelli'
   icon136.onclick = function(){
     hideAll()
-    issueSpecific = 'Alternaria LeafStem'
+    issueSpecific = '🟤 lternaria LeafStem'
 
     document.getElementById('customIconsMap').click()
 
@@ -2105,7 +2105,7 @@ var generateIssuesDissease = function(){
   icon137.innerHTML = '<img src="images/csaNigeria/ISSUES/Dissease/BacterialFruitBlotchFoilage.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Bacterial Fruit Blotch';
   icon137.onclick = function(){
     hideAll()
-    issueSpecific = 'Bacterial FruitBlotch'
+    issueSpecific = '🟤 Bacterial FruitBlotch'
 
     document.getElementById('customIconsMap').click()
 
@@ -2117,7 +2117,7 @@ var generateIssuesDissease = function(){
   icon138.className = 'buttonsSapelli'
   icon138.onclick = function(){
     hideAll()
-    issueSpecific = 'Bacterial Wilt'
+    issueSpecific = '🟤 Bacterial Wilt'
 
     document.getElementById('customIconsMap').click()
 
@@ -2129,7 +2129,7 @@ var generateIssuesDissease = function(){
   icon139.className = 'buttonsSapelli'
   icon139.onclick = function(){
     hideAll()
-    issueSpecific = 'Black BankJute'
+    issueSpecific = '🟤 Black BankJute'
 
     document.getElementById('customIconsMap').click()
 
@@ -2141,7 +2141,7 @@ var generateIssuesDissease = function(){
   icon140.innerHTML = '<img src="images/csaNigeria/ISSUES/Dissease/blackPod.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Aduu';
   icon140.onclick = function(){
     hideAll()
-    issueSpecific = 'Aduu'
+    issueSpecific = '🟤 Aduu'
 
     document.getElementById('customIconsMap').click()
 
@@ -2153,7 +2153,7 @@ var generateIssuesDissease = function(){
   icon141.className = 'buttonsSapelli'
   icon141.onclick = function(){
     hideAll()
-    issueSpecific = 'BlackRot'
+    issueSpecific = '🟤 BlackRot'
 
     document.getElementById('customIconsMap').click()
 
@@ -2165,7 +2165,7 @@ var generateIssuesDissease = function(){
   icon142.innerHTML = '<img src="images/csaNigeria/ISSUES/Dissease/blight.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Blight';
   icon142.onclick = function(){
     hideAll()
-    issueSpecific = 'Blight'
+    issueSpecific = '🟤 Blight'
 
     document.getElementById('customIconsMap').click()
 
@@ -2177,7 +2177,7 @@ var generateIssuesDissease = function(){
   icon143.className = 'buttonsSapelli'
   icon143.onclick = function(){
     hideAll()
-    issueSpecific = 'Bract MosaicVirus'
+    issueSpecific = '🟤 Bract MosaicVirus'
 
     document.getElementById('customIconsMap').click()
 
@@ -2189,7 +2189,7 @@ var generateIssuesDissease = function(){
   icon144.innerHTML = '<img src="images/csaNigeria/ISSUES/Dissease/budNecrosisDisease.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Bud Recrosis';
   icon144.onclick = function(){
     hideAll()
-    issueSpecific = 'Bud Recrosis'
+    issueSpecific = '🟤 Bud Recrosis'
 
     document.getElementById('customIconsMap').click()
 
@@ -2201,7 +2201,7 @@ var generateIssuesDissease = function(){
   icon145.className = 'buttonsSapelli'
   icon145.onclick = function(){
     hideAll()
-    issueSpecific = 'Cassava Root Rot'
+    issueSpecific = '🟤 Cassava Root Rot'
 
     document.getElementById('customIconsMap').click()
 
@@ -2213,7 +2213,7 @@ var generateIssuesDissease = function(){
   icon146.innerHTML = '<img src="images/csaNigeria/ISSUES/Dissease/CitrusAnthracnose.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Citrus Anthracnose';
   icon146.onclick = function(){
     hideAll()
-    issueSpecific = 'Citrus Anthracnose'
+    issueSpecific = '🟤 Citrus Anthracnose'
 
     document.getElementById('customIconsMap').click()
 
@@ -2225,7 +2225,7 @@ var generateIssuesDissease = function(){
   icon147.className = 'buttonsSapelli'
   icon147.onclick = function(){
     hideAll()
-    issueSpecific = 'Citrus Guignardia'
+    issueSpecific = '🟤 Citrus Guignardia'
 
     document.getElementById('customIconsMap').click()
 
@@ -2237,7 +2237,7 @@ var generateIssuesDissease = function(){
   icon148.innerHTML = '<img src="images/csaNigeria/ISSUES/Dissease/CitrusLeprosis.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Citrus Leprosis';
   icon148.onclick = function(){
     hideAll()
-    issueSpecific = 'Citrus Leprosis'
+    issueSpecific = '🟤 Citrus Leprosis'
 
     document.getElementById('customIconsMap').click()
 
@@ -2249,7 +2249,7 @@ var generateIssuesDissease = function(){
   icon149.className = 'buttonsSapelli'
   icon149.onclick = function(){
     hideAll()
-    issueSpecific = 'Citrus Scab'
+    issueSpecific = '🟤 Citrus Scab'
 
     document.getElementById('customIconsMap').click()
 
@@ -2261,7 +2261,7 @@ var generateIssuesDissease = function(){
   icon150.innerHTML = '<img src="images/csaNigeria/ISSUES/Dissease/ColocasiaBobone.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Colocasia Bobone';
   icon150.onclick = function(){
     hideAll()
-    issueSpecific = 'Colocasia Bobone'
+    issueSpecific = '🟤 Colocasia Bobone'
 
     document.getElementById('customIconsMap').click()
 
@@ -2273,7 +2273,7 @@ var generateIssuesDissease = function(){
   icon151.className = 'buttonsSapelli'
   icon151.onclick = function(){
     hideAll()
-    issueSpecific = 'Cucumber Mottle Mosaic'
+    issueSpecific = '🟤 Cucumber Mottle Mosaic'
 
     document.getElementById('customIconsMap').click()
 
@@ -2285,7 +2285,7 @@ var generateIssuesDissease = function(){
   icon152.innerHTML = '<img src="images/csaNigeria/ISSUES/Dissease/downyMildew.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Downy Mildew';
   icon152.onclick = function(){
     hideAll()
-    issueSpecific = 'Downy Mildew'
+    issueSpecific = '🟤 Downy Mildew'
 
     document.getElementById('customIconsMap').click()
 
@@ -2297,7 +2297,7 @@ var generateIssuesDissease = function(){
   icon153.className = 'buttonsSapelli'
   icon153.onclick = function(){
     hideAll()
-    issueSpecific = 'Frosty Pod'
+    issueSpecific = '🟤 Frosty Pod'
 
     document.getElementById('customIconsMap').click()
 
@@ -2309,7 +2309,7 @@ var generateIssuesDissease = function(){
   icon154.innerHTML = '<img src="images/csaNigeria/ISSUES/Dissease/FusariumWilt.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Fusarium Wilt';
   icon154.onclick = function(){
     hideAll()
-    issueSpecific = 'Fusarium Wilt'
+    issueSpecific = '🟤 Fusarium Wilt'
 
     document.getElementById('customIconsMap').click()
 
@@ -2321,7 +2321,7 @@ var generateIssuesDissease = function(){
   icon155.className = 'buttonsSapelli'
   icon155.onclick = function(){
     hideAll()
-    issueSpecific = 'Internal BrownSpot'
+    issueSpecific = '🟤 Internal BrownSpot'
 
     document.getElementById('customIconsMap').click()
 
@@ -2333,7 +2333,7 @@ var generateIssuesDissease = function(){
   icon156.innerHTML = '<img src="images/csaNigeria/ISSUES/Dissease/LeafStemScab.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Leaf SteamScab';
   icon156.onclick = function(){
     hideAll()
-    issueSpecific = 'Leaf SteamScab'
+    issueSpecific = '🟤 Leaf SteamScab'
 
     document.getElementById('customIconsMap').click()
 
@@ -2345,7 +2345,7 @@ var generateIssuesDissease = function(){
   icon157.className = 'buttonsSapelli'
   icon157.onclick = function(){
     hideAll()
-    issueSpecific = 'Okra YellowVien'
+    issueSpecific = '🟤 Okra YellowVien'
 
     document.getElementById('customIconsMap').click()
 
@@ -2357,7 +2357,7 @@ var generateIssuesDissease = function(){
   icon158.className = 'buttonsSapelli'
   icon158.onclick = function(){
     hideAll()
-    issueSpecific = 'Phytophthora Blight'
+    issueSpecific = '🟤 Phytophthora Blight'
 
     document.getElementById('customIconsMap').click()
 
@@ -2369,7 +2369,7 @@ var generateIssuesDissease = function(){
   icon159.innerHTML = '<img src="images/csaNigeria/ISSUES/Dissease/pigweed.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Pigweed';
   icon159.onclick = function(){
     hideAll()
-    issueSpecific = 'Pigweed'
+    issueSpecific = '🟤 Pigweed'
 
     document.getElementById('customIconsMap').click()
 
@@ -2381,7 +2381,7 @@ var generateIssuesDissease = function(){
   icon160.className = 'buttonsSapelli'
   icon160.onclick = function(){
     hideAll()
-    issueSpecific = 'Powdery Mildew'
+    issueSpecific = '🟤 Powdery Mildew'
 
     document.getElementById('customIconsMap').click()
 
@@ -2393,7 +2393,7 @@ var generateIssuesDissease = function(){
   icon161.innerHTML = '<img src="images/csaNigeria/ISSUES/Dissease/Pox.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Pox';
   icon161.onclick = function(){
     hideAll()
-    issueSpecific = 'Pox'
+    issueSpecific = '🟤 Pox'
 
     document.getElementById('customIconsMap').click()
 
@@ -2405,7 +2405,7 @@ var generateIssuesDissease = function(){
   icon162.className = 'buttonsSapelli'
   icon162.onclick = function(){
     hideAll()
-    issueSpecific = 'Rodent'
+    issueSpecific = '🟤 Rodent'
 
     document.getElementById('customIconsMap').click()
 
@@ -2417,7 +2417,7 @@ var generateIssuesDissease = function(){
   icon163.innerHTML = '<img src="images/csaNigeria/ISSUES/Dissease/rootAphids.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Root Aphids';
   icon163.onclick = function(){
     hideAll()
-    issueSpecific = 'Root Aphids'
+    issueSpecific = '🟤 Root Aphids'
 
     document.getElementById('customIconsMap').click()
 
@@ -2429,7 +2429,7 @@ var generateIssuesDissease = function(){
   icon164.className = 'buttonsSapelli'
   icon164.onclick = function(){
     hideAll()
-    issueSpecific = 'Rust'
+    issueSpecific = '🟤 Rust'
 
     document.getElementById('customIconsMap').click()
 
@@ -2441,7 +2441,7 @@ var generateIssuesDissease = function(){
   icon165.innerHTML = '<img src="images/csaNigeria/ISSUES/Dissease/southernBlight.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Southern BlightPumpkin';
   icon165.onclick = function(){
     hideAll()
-    issueSpecific = 'Southern BlightPumpkin'
+    issueSpecific = '🟤 Southern BlightPumpkin'
 
     document.getElementById('customIconsMap').click()
 
@@ -2453,7 +2453,7 @@ var generateIssuesDissease = function(){
   icon166.className = 'buttonsSapelli'
   icon166.onclick = function(){
     hideAll()
-    issueSpecific = 'Stem CutwormBeat'
+    issueSpecific = '🟤 Stem CutwormBeat'
 
     document.getElementById('customIconsMap').click()
 
@@ -2465,7 +2465,7 @@ var generateIssuesDissease = function(){
   icon167.innerHTML = '<img src="images/csaNigeria/ISSUES/Dissease/streak.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Streak';
   icon167.onclick = function(){
     hideAll()
-    issueSpecific = 'Streak'
+    issueSpecific = '🟤 Streak'
 
     document.getElementById('customIconsMap').click()
 
@@ -2477,7 +2477,7 @@ var generateIssuesDissease = function(){
   icon168.className = 'buttonsSapelli'
   icon168.onclick = function(){
     hideAll()
-    issueSpecific = 'Sweet Orange Scab'
+    issueSpecific = '🟤 Sweet Orange Scab'
 
     document.getElementById('customIconsMap').click()
 
@@ -2489,7 +2489,7 @@ var generateIssuesDissease = function(){
   icon169.innerHTML = '<img src="images/csaNigeria/ISSUES/Dissease/thrips.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Thrips';
   icon169.onclick = function(){
     hideAll()
-    issueSpecific = 'Thrips'
+    issueSpecific = '🟤 Thrips'
 
     document.getElementById('customIconsMap').click()
 
@@ -2501,7 +2501,7 @@ var generateIssuesDissease = function(){
   icon170.className = 'buttonsSapelli'
   icon170.onclick = function(){
     hideAll()
-    issueSpecific = 'Thrips Tomato'
+    issueSpecific = '🟤 Thrips Tomato'
 
     document.getElementById('customIconsMap').click()
 
@@ -2513,7 +2513,7 @@ var generateIssuesDissease = function(){
   icon171.className = 'buttonsSapelli'
   icon171.onclick = function(){
     hideAll()
-    issueSpecific = 'Tomato Mosaic'
+    issueSpecific = '🟤 Tomato Mosaic'
 
     document.getElementById('customIconsMap').click()
 
@@ -2525,7 +2525,7 @@ var generateIssuesDissease = function(){
   icon172.innerHTML = '<img src="images/csaNigeria/ISSUES/Dissease/VerticilliumWilt.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Verticilium Wilt';
   icon172.onclick = function(){
     hideAll()
-    issueSpecific = 'Verticilium Wilt'
+    issueSpecific = '🟤 Verticilium Wilt'
 
     document.getElementById('customIconsMap').click()
 
@@ -2537,7 +2537,7 @@ var generateIssuesDissease = function(){
   icon173.className = 'buttonsSapelli'
   icon173.onclick = function(){
     hideAll()
-    issueSpecific = 'Wet Rot'
+    issueSpecific = '🟤 Wet Rot'
 
     document.getElementById('customIconsMap').click()
 
@@ -2549,7 +2549,7 @@ var generateIssuesDissease = function(){
   icon174.innerHTML = '<img src="images/csaNigeria/ISSUES/Dissease/whiteMold.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>White Mold';
   icon174.onclick = function(){
     hideAll()
-    issueSpecific = 'White Mold'
+    issueSpecific = '🟤 White Mold'
 
     document.getElementById('customIconsMap').click()
 
@@ -2561,7 +2561,7 @@ var generateIssuesDissease = function(){
   icon175.className = 'buttonsSapelli'
   icon175.onclick = function(){
     hideAll()
-    issueSpecific = 'White Rust'
+    issueSpecific = '🟤 White Rust'
 
     document.getElementById('customIconsMap').click()
 
@@ -2573,7 +2573,7 @@ var generateIssuesDissease = function(){
   icon176.innerHTML = '<img src="images/csaNigeria/ISSUES/Dissease/yellowBlacksigatoka.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Yellow BlackSigatoka';
   icon176.onclick = function(){
     hideAll()
-    issueSpecific = 'Yellow BlackSigatoka'
+    issueSpecific = '🟤 Yellow BlackSigatoka'
 
     document.getElementById('customIconsMap').click()
 
@@ -2585,7 +2585,7 @@ var generateIssuesDissease = function(){
   icon176o.className = 'buttonsSapelli'
   icon176o.onclick = function(){
     hideAll()
-    issueSpecific = 'Awon miiran'
+    issueSpecific = '➕ Awon miiran'
 
     document.getElementById('customIconsMap').click()
 
