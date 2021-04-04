@@ -85,7 +85,10 @@ var elementJustAddedToLocalStorage = false
 ////////////////////////////////////////////////////////      first load         /////////////////////////////////////////////////////////////////////////
 var isFirstTime; //var to store if the site is visited for the first time
 //var oneMapCompleted; // to know if in this session this is the first map or not
-
+var url = window.location.href
+// if(isOnline == false){
+//   url = 'https://amappingprototype.xyz'
+// }
 
 //firstLoad();
 ////console.log('isIOS  ' + isIOS)
@@ -283,7 +286,7 @@ var storeURLGeoJSON = function(data){
 //////////////////  center the map: check first if url with coordinates, if not, check if first load, then check if lastpositionstored.
 //script to check if url contains coordinates when loaded
 
-var url = window.location.href
+
 // var url = 'https://amappingprototype.xyz/?%7B%22type%22%3A%22FeatureCollection%22%2C%22features%22%3A%5B%7B%22type%22%3A%22Feature%22%2C%22properties%22%3A%7B%22randomID%22%3A1111%2C%22landUsesEmoji%22%3A%22test%22%2C%22areaPolygon%22%3A%222489831968.72%20hectares%22%2C%22lengthLine%22%3A%22Polygon%22%7D%2C%22geometry%22%3A%7B%22type%22%3A%22Polygon%22%2C%22coordinates%22%3A%5B%5B%5B-4.21875%2C-13.923404%5D%2C%5B16.875%2C-40.713956%5D%2C%5B66.09375%2C-40.713956%5D%2C%5B63.28125%2C4.214943%5D%2C%5B-4.21875%2C-13.923404%5D%5D%5D%7D%7D%5D%7D/#-15.11455,40.95703,3z'
 // var url = 'https://amappingprototype.xyz/'
 //console.log(url)
@@ -292,9 +295,8 @@ var urlContainsGeoJSON = url.includes('/?')
 //to avoid panning outside this bounds
 var southWest = L.latLng(-70, -180);
 var northEast = L.latLng(80, 180);
-if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getItem('pwCorrect')){  // if url contains geojson (and coords)
+if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains geojson (and coords)
   //console.log('hash and geojson')
-
   //to set mapview
     var keepOnlyLatLngZoom = url.split('#').pop();
     var splittedLatLngZoom = keepOnlyLatLngZoom.split(',');
@@ -344,9 +346,8 @@ if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getIte
 
     },2000) // really don't know why this timeout, but keep it for now
 
-
-
-}else if (urlContainsHash == true){  // if only coords are in the url
+}
+else if (urlContainsHash == true){  // if only coords are in the url
   //console.log('onlyhash')
     var keepOnlyLatLngZoom = url.split('#').pop();
     var splittedLatLngZoom = keepOnlyLatLngZoom.split(',');

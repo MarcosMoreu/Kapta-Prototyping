@@ -93,8 +93,8 @@ var localStorageToGeoJSON = function(){
 
                 /////////////////////////////
               layer.on('click', function(e) {
-                selectedFeature = e.target;
-                selectedFeature.setStyle({color: '#F70573'})
+                // selectedFeature = e.target;
+                // selectedFeature.setStyle({color: '#F70573'})
 
                   // if(aFeatureIsSelected == true ){
                   //   document.getElementById("backDeleteFeature").click() //!!!!!!!!

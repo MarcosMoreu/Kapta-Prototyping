@@ -3,18 +3,19 @@
 
 // Set a name for the current cache. Note that when version is changed, the pwa only updates autmotically after reloading!
 //Note that for automatic update, at one change need to be made in the app.js file (or in other files...)
-var version = 'v18.2';
+var version = 'v18.3';
 //console.log(version)
 
 // Default files to always cache
 var offlineFundamentals = [
   "/index.html",
-  "styles/app.css",
-  "scripts/modal.js",
-  "scripts/app.js",
-  "pages/tutorial.html",
-  "scripts/tutorialPage.js",
-  "styles/tutorialPage.css",
+  "/styles/app.css",
+  "/scripts/modal.js",
+  "/scripts/app.js",
+  "/pages/tutorial.html",
+  "/scripts/tutorialPage.js",
+  "/styles/tutorialPage.css",
+  "/images/icons/icon-72x72.png",
 
 ];
 
@@ -151,6 +152,7 @@ self.addEventListener("fetch", function(event) {
            error response.
         */
         function unableToResolve () {
+          // window.location.href.split('?')[0]
           /* There's a couple of things we can do here.
              - Test the Accept header and then return one of the `offlineFundamentals`
                e.g: `return caches.match('/some/cached/image.png')`
@@ -165,7 +167,24 @@ self.addEventListener("fetch", function(event) {
           /* Here we're creating a response programmatically. The first parameter is the
              response body, and the second one defines the options for the response.
           */
-          return new Response('<h1>Service Unavailable</h1>', {
+          // var url = 'https://amappingprototype.xyz'
+          // var changeURL = function(){
+          //   window.open(url)
+          // }
+          // return new Response(changeURL)
+          //
+
+
+
+          // var url = 'https://amappingprototype.xyz'
+          // var changeURL = function(){
+          //   window.open(url)
+          // }
+          // return new Request('index.html')
+
+
+
+          return new Response('<h1>YOU ARE OFFLINE! To view the contribution while offline, please open the URL once while online. Full offline use under development</h1>', {
             status: 503,
             statusText: 'Service Unavailable',
             headers: new Headers({

@@ -35,7 +35,9 @@ document.getElementById('customIconsMap').onclick = function(e){
   //  ////console.log(emojioneareaeditor)
     var emojioneareaeditor0 = emojioneareaeditor[0]
   //  ////console.log(emojioneareaeditor0)
+    // emojioneareaeditor0.innerHTML =  crop + ' x ' + stage + ' x ' + landUse + ' x ' + askHelpOrIHelp + ' x ' + issueGeneric + ' x ' + issueSpecific
     emojioneareaeditor0.innerHTML =  crop + ' x ' + stage + ' x ' + landUse + ' x ' + askHelpOrIHelp + ' x ' + issueGeneric + ' x ' + issueSpecific
+
   }
 
 
@@ -148,134 +150,10 @@ document.getElementById('sapelliProjects').onclick = function(e){
   document.body.style.background = 'black';
   // document.getElementById('customIconsMap').style.display = 'none';
   document.getElementById('customIconsMap').style.display = 'initial';
-  preload([
-    //crops generic
-//   'images/csaNigeria/Crops/Cereals.png','images/csaNigeria/Crops/Vegetables.png','images/csaNigeria/Crops/Fruits.png','images/csaNigeria/Crops/Tubers.png',"images/csaNigeria/Crops/pulses.png",
-//   "images/csaNigeria/Crops/cashCrop.png","images/csaNigeria/Crops/nuts.png",
-//   //Crops
-//   'images/csaNigeria/Crops/Agbalumo.png','images/csaNigeria/Crops/agbon.png','images/csaNigeria/Crops/amaranthus.png','images/csaNigeria/Crops/Awusa.png',"images/csaNigeria/Crops/banana.png",
-//   "images/csaNigeria/Crops/beans.png","images/csaNigeria/Crops/Cashew.png",'images/csaNigeria/Crops/cassava.png','images/csaNigeria/Crops/coco.png','images/csaNigeria/Crops/cocoa.png',
-//   'images/csaNigeria/Crops/cocoyam.png',"images/csaNigeria/Crops/cucumber.png",'images/csaNigeria/Crops/Epa.png',"images/csaNigeria/Crops/Esuru.png",'images/csaNigeria/Crops/ewedu.png',
-//   "images/csaNigeria/Crops/Ewuro.png","images/csaNigeria/Crops/Fruits.png",'images/csaNigeria/Crops/gbure.png','images/csaNigeria/Crops/irishPotato.png','images/csaNigeria/Crops/Isu Ewura.png',
-//   'images/csaNigeria/Crops/juteLeaf.png',"images/csaNigeria/Crops/Maize.png",'images/csaNigeria/Crops/mangoro.png',"images/csaNigeria/Crops/Obi.png",'images/csaNigeria/Crops/okro.png',
-//   "images/csaNigeria/Crops/Ope Oyinbo.png","images/csaNigeria/Crops/orange.png", 'images/csaNigeria/Crops/orogbo.png','images/csaNigeria/Crops/palmTree.png','images/csaNigeria/Crops/Pawpaw-.png',
-//   'images/csaNigeria/Crops/pepper.png',"images/csaNigeria/Crops/plantain.png",'images/csaNigeria/Crops/rice.png',"images/csaNigeria/Crops/sweetPotato.png",'images/csaNigeria/Crops/tangerine.png',
-//   "images/csaNigeria/Crops/tapon.png","images/csaNigeria/Crops/tomato.png",'images/csaNigeria/Crops/ugu.png','images/csaNigeria/Crops/watermelon.png','images/csaNigeria/Crops/yam.png',
-//   //landUse
-//
-//   'images/csaNigeria/landUse/bushBurning.png','images/csaNigeria/landUse/forest.png','images/csaNigeria/landUse/herbicides.png','images/csaNigeria/landUse/nonMechanised.png','images/csaNigeria/landUse/pesticides.png',
-//   'images/csaNigeria/landUse/Tractor.png','images/csaNigeria/landUse/zeroTillage.png',
-//
-//   //stages
-//   'images/csaNigeria/stages/BeforePlantingStage.png','images/csaNigeria/stages/HarvestingStage.png','images/csaNigeria/stages/PestControlStage.png','images/csaNigeria/stages/PlantingStage.png',
-//   'images/csaNigeria/stages/PostHarvestingStage.png','images/csaNigeria/stages/TopDressingStage.png',
-// //issues generic
-//   'images/csaNigeria/ISSUES/IssuesGeneric/climaticGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/climaticRed.png',
-//   'images/csaNigeria/ISSUES/IssuesGeneric/disseaseGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/disseaseRed.png',
-//   'images/csaNigeria/ISSUES/IssuesGeneric/marketGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/marketRed.png',
-//   'images/csaNigeria/ISSUES/IssuesGeneric/pestGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/pestRed.png',
-//   'images/csaNigeria/ISSUES/IssuesGeneric/postHarvestGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/postHarvestRed.png',
-//   'images/csaNigeria/ISSUES/IssuesGeneric/soilGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/soilRed.png',
-//   'images/csaNigeria/ISSUES/IssuesGeneric/weedGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/weedRed.png',
-//   //issues - 1 climatic
-//   'images/csaNigeria/ISSUES/ClimaticIssues/Drought.png','images/csaNigeria/ISSUES/ClimaticIssues/erraticRain.png','images/csaNigeria/ISSUES/ClimaticIssues/flood.png',
-//   'images/csaNigeria/ISSUES/ClimaticIssues/Irrigation.png','images/csaNigeria/ISSUES/ClimaticIssues/sunIntensity.png','images/csaNigeria/ISSUES/ClimaticIssues/wind.png',
-//   //issues - 2 marker
-//   'images/csaNigeria/ISSUES/market/DistanceToMarket.png','images/csaNigeria/ISSUES/market/MeansOfTransport.png','images/csaNigeria/ISSUES/market/price.png',
-//   'images/csaNigeria/ISSUES/market/roadCondition.png','images/csaNigeria/ISSUES/market/supply.png','images/csaNigeria/ISSUES/market/TheBuyer.png',
-//   //issues - 3 PostHarvestIssues
-//   'images/csaNigeria/ISSUES//PostHarvestIssues/bagging.png','images/csaNigeria/ISSUES//PostHarvestIssues/drying.png','images/csaNigeria/ISSUES//PostHarvestIssues/rotten.png',
-//   'images/csaNigeria/ISSUES//PostHarvestIssues/storage.png','images/csaNigeria/ISSUES//PostHarvestIssues/weatherCondition.png',
-//   //issues - 4 soil
-//   'images/csaNigeria/ISSUES/soil/Erosion.png','images/csaNigeria/ISSUES/soil/fertilizer.png','images/csaNigeria/ISSUES/soil/hardpan.png','images/csaNigeria/ISSUES/soil/poorSoil.png',
-//   //issues - 5 Pest
-//   "images/csaNigeria/ISSUES/Pest/AfricanRootTuberScale.png",
-//   "images/csaNigeria/ISSUES/Pest/Aphid.png",
-//   "images/csaNigeria/ISSUES/Pest/armyWorm.png",
-//   "images/csaNigeria/ISSUES/Pest/AsianCitrusPsyllid.png",
-//   "images/csaNigeria/ISSUES/Pest/beetle.png",
-//   "images/csaNigeria/ISSUES/Pest/cassavaGreenMitePest.png",
-//   "images/csaNigeria/ISSUES/Pest/CocoaPodBorer.png",
-//   "images/csaNigeria/ISSUES/Pest/coconutScale.png",
-//   "images/csaNigeria/ISSUES/Pest/Crickets.png",
-//   "images/csaNigeria/ISSUES/Pest/cutworms.png",
-//   "images/csaNigeria/ISSUES/Pest/Earworm.png",
-//   "images/csaNigeria/ISSUES/Pest/GreenLeafhoppers.png",
-//   "images/csaNigeria/ISSUES/Pest/GreenSemiloopers.png",
-//   "images/csaNigeria/ISSUES/Pest/leafFolder.png",
-//   "images/csaNigeria/ISSUES/Pest/leafminer.png",
-//   "images/csaNigeria/ISSUES/Pest/leafWebber.png",
-//   "images/csaNigeria/ISSUES/Pest/leaveTwistingWeevil.png",
-//   "images/csaNigeria/ISSUES/Pest/locust.png",
-//   "images/csaNigeria/ISSUES/Pest/Mealybugs.png",
-//   "images/csaNigeria/ISSUES/Pest/mirid.png",
-//   "images/csaNigeria/ISSUES/Pest/nematodes.png",
-//   "images/csaNigeria/ISSUES/Pest/pinkHibiscusMealybug.png",
-//   "images/csaNigeria/ISSUES/Pest/RiceBug.png",
-//   "images/csaNigeria/ISSUES/Pest/riceGallMidge.png",
-//   "images/csaNigeria/ISSUES/Pest/rodents.png",
-//   "images/csaNigeria/ISSUES/Pest/spidermite.png",
-//   "images/csaNigeria/ISSUES/Pest/squashBugs.png",
-//   "images/csaNigeria/ISSUES/Pest/stalkBorer.png",
-//   "images/csaNigeria/ISSUES/Pest/stemBorer.png",
-//   "images/csaNigeria/ISSUES/Pest/teaserAnt.png",
-//   "images/csaNigeria/ISSUES/Pest/thrips.png",
-//   "images/csaNigeria/ISSUES/Pest/TortoiseBeetle.png",
-//   "images/csaNigeria/ISSUES/Pest/weavils.png",
-//   "images/csaNigeria/ISSUES/Pest/WhiteGrubLarvae.png",
-//   "images/csaNigeria/ISSUES/Pest/whorlMaggot.png",
-//   "images/csaNigeria/ISSUES/Pest/zigzagLeafhopper.png",
-//   "images/csaNigeria/UnknownOther.png",
-//   "images/csaNigeria/ISSUES/Dissease/AlternariaLeafBlight.png",
-//   "images/csaNigeria/ISSUES/Dissease/AlternariaSpotLeafStemBlight.png",
-//   "images/csaNigeria/ISSUES/Dissease/BacterialFruitBlotchFoilage.png",
-//   "images/csaNigeria/ISSUES/Dissease/BacterialWilt.png",
-//   "images/csaNigeria/ISSUES/Dissease/blackbandJute.png",
-//   "images/csaNigeria/ISSUES/Dissease/blackPod.png",
-//   "images/csaNigeria/ISSUES/Dissease/blackRot.png",
-//   "images/csaNigeria/ISSUES/Dissease/blight.png",
-//   "images/csaNigeria/ISSUES/Dissease/bractmosaicvirus.png",
-//   "images/csaNigeria/ISSUES/Dissease/budNecrosisDisease.png",
-//   "images/csaNigeria/ISSUES/Dissease/CassavaRootRot.png",
-//   "images/csaNigeria/ISSUES/Dissease/CitrusAnthracnose.png",
-//   "images/csaNigeria/ISSUES/Dissease/citrusGuignardiaCitricarpaBlackSpot.png",
-//   "images/csaNigeria/ISSUES/Dissease/CitrusLeprosis.png",
-//   "images/csaNigeria/ISSUES/Dissease/citrusScab.png",
-//   "images/csaNigeria/ISSUES/Dissease/ColocasiaBobone.png",
-//   "images/csaNigeria/ISSUES/Dissease/CucumberMosaic.png",
-//   "images/csaNigeria/ISSUES/Dissease/downyMildew.png",
-//   "images/csaNigeria/ISSUES/Dissease/FrostyPod.png",
-//   "images/csaNigeria/ISSUES/Dissease/FusariumWilt.png",
-//   "images/csaNigeria/ISSUES/Dissease/InternalBrownSpots.png",
-//   "images/csaNigeria/ISSUES/Dissease/LeafStemScab.png",
-//   "images/csaNigeria/ISSUES/Dissease/OkraYellowVien.png",
-//   "images/csaNigeria/ISSUES/Dissease/PhytophthoraBlight.png",
-//   "images/csaNigeria/ISSUES/Dissease/pigweed.png",
-//   "images/csaNigeria/ISSUES/Dissease/PowderyMildew.png",
-//   "images/csaNigeria/ISSUES/Dissease/Pox.png",
-//   "images/csaNigeria/ISSUES/Dissease/rodent.png",
-//   "images/csaNigeria/ISSUES/Dissease/rootAphids.png",
-//   "images/csaNigeria/ISSUES/Dissease/rust.png",
-//   "images/csaNigeria/ISSUES/Dissease/southernBlight.png",
-//   "images/csaNigeria/ISSUES/Dissease/stemCutwormBean.png",
-//   "images/csaNigeria/ISSUES/Dissease/streak.png",
-//   "images/csaNigeria/ISSUES/Dissease/SweetOrangeScab.png",
-//   "images/csaNigeria/ISSUES/Dissease/thrips.png",
-//   "images/csaNigeria/ISSUES/Dissease/thripsTomato.png",
-//   "images/csaNigeria/ISSUES/Dissease/TomatoMosaic.png",
-//   "images/csaNigeria/ISSUES/Dissease/VerticilliumWilt.png",
-//   "images/csaNigeria/ISSUES/Dissease/wetRot.png",
-//   "images/csaNigeria/ISSUES/Dissease/whiteMold.png",
-//   "images/csaNigeria/ISSUES/Dissease/whiteRust.png",
-//   "images/csaNigeria/ISSUES/Dissease/yellowBlacksigatoka.png",
 
-  // issues 6 dissease
+    if(projectsCreated == false){
+      projectsCreated = true
 
-
-  ]);
-
-
-  if(projectsCreated == false){
         cell = document.createElement('div')
         document.body.appendChild(cell)
         cell.className = 'gridCell'
@@ -290,6 +168,129 @@ document.getElementById('sapelliProjects').onclick = function(e){
         newProjectButton.style.marginLeft = '20px'
         newProjectButton.innerHTML = '<img src="images/logoNigeria.png" style="width:50px ; height:50px; border: 0px solid white" />';
 
+        preload([
+          //crops generic
+        'images/csaNigeria/Crops/Cereals.png','images/csaNigeria/Crops/Vegetables.png','images/csaNigeria/Crops/Fruits.png','images/csaNigeria/Crops/Tubers.png',"images/csaNigeria/Crops/pulses.png",
+        "images/csaNigeria/Crops/cashCrop.png","images/csaNigeria/Crops/nuts.png",
+        //Crops
+        'images/csaNigeria/Crops/Agbalumo.png','images/csaNigeria/Crops/agbon.png','images/csaNigeria/Crops/amaranthus.png','images/csaNigeria/Crops/Awusa.png',"images/csaNigeria/Crops/banana.png",
+        "images/csaNigeria/Crops/beans.png","images/csaNigeria/Crops/Cashew.png",'images/csaNigeria/Crops/cassava.png','images/csaNigeria/Crops/coco.png','images/csaNigeria/Crops/cocoa.png',
+        'images/csaNigeria/Crops/cocoyam.png',"images/csaNigeria/Crops/cucumber.png",'images/csaNigeria/Crops/Epa.png',"images/csaNigeria/Crops/Esuru.png",'images/csaNigeria/Crops/ewedu.png',
+        "images/csaNigeria/Crops/Ewuro.png","images/csaNigeria/Crops/Fruits.png",'images/csaNigeria/Crops/gbure.png','images/csaNigeria/Crops/irishPotato.png','images/csaNigeria/Crops/Isu Ewura.png',
+        'images/csaNigeria/Crops/juteLeaf.png',"images/csaNigeria/Crops/Maize.png",'images/csaNigeria/Crops/mangoro.png',"images/csaNigeria/Crops/Obi.png",'images/csaNigeria/Crops/okro.png',
+        "images/csaNigeria/Crops/Ope Oyinbo.png","images/csaNigeria/Crops/orange.png", 'images/csaNigeria/Crops/orogbo.png','images/csaNigeria/Crops/palmTree.png','images/csaNigeria/Crops/Pawpaw-.png',
+        'images/csaNigeria/Crops/pepper.png',"images/csaNigeria/Crops/plantain.png",'images/csaNigeria/Crops/rice.png',"images/csaNigeria/Crops/sweetPotato.png",'images/csaNigeria/Crops/tangerine.png',
+        "images/csaNigeria/Crops/tapon.png","images/csaNigeria/Crops/tomato.png",'images/csaNigeria/Crops/ugu.png','images/csaNigeria/Crops/watermelon.png','images/csaNigeria/Crops/yam.png',
+        //landUse
+
+        'images/csaNigeria/landUse/bushBurning.png','images/csaNigeria/landUse/forest.png','images/csaNigeria/landUse/herbicides.png','images/csaNigeria/landUse/nonMechanised.png','images/csaNigeria/landUse/pesticides.png',
+        'images/csaNigeria/landUse/Tractor.png','images/csaNigeria/landUse/zeroTillage.png',
+
+        //stages
+        'images/csaNigeria/stages/BeforePlantingStage.png','images/csaNigeria/stages/HarvestingStage.png','images/csaNigeria/stages/PestControlStage.png','images/csaNigeria/stages/PlantingStage.png',
+        'images/csaNigeria/stages/PostHarvestingStage.png','images/csaNigeria/stages/TopDressingStage.png',
+      //issues generic
+        'images/csaNigeria/ISSUES/IssuesGeneric/climaticGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/climaticRed.png',
+        'images/csaNigeria/ISSUES/IssuesGeneric/disseaseGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/disseaseRed.png',
+        'images/csaNigeria/ISSUES/IssuesGeneric/marketGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/marketRed.png',
+        'images/csaNigeria/ISSUES/IssuesGeneric/pestGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/pestRed.png',
+        'images/csaNigeria/ISSUES/IssuesGeneric/postHarvestGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/postHarvestRed.png',
+        'images/csaNigeria/ISSUES/IssuesGeneric/soilGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/soilRed.png',
+        'images/csaNigeria/ISSUES/IssuesGeneric/weedGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/weedRed.png',
+        //issues - 1 climatic
+        'images/csaNigeria/ISSUES/ClimaticIssues/Drought.png','images/csaNigeria/ISSUES/ClimaticIssues/erraticRain.png','images/csaNigeria/ISSUES/ClimaticIssues/flood.png',
+        'images/csaNigeria/ISSUES/ClimaticIssues/Irrigation.png','images/csaNigeria/ISSUES/ClimaticIssues/sunIntensity.png','images/csaNigeria/ISSUES/ClimaticIssues/wind.png',
+        //issues - 2 marker
+        'images/csaNigeria/ISSUES/market/DistanceToMarket.png','images/csaNigeria/ISSUES/market/MeansOfTransport.png','images/csaNigeria/ISSUES/market/price.png',
+        'images/csaNigeria/ISSUES/market/roadCondition.png','images/csaNigeria/ISSUES/market/supply.png','images/csaNigeria/ISSUES/market/TheBuyer.png',
+        //issues - 3 PostHarvestIssues
+        'images/csaNigeria/ISSUES//PostHarvestIssues/bagging.png','images/csaNigeria/ISSUES//PostHarvestIssues/drying.png','images/csaNigeria/ISSUES//PostHarvestIssues/rotten.png',
+        'images/csaNigeria/ISSUES//PostHarvestIssues/storage.png','images/csaNigeria/ISSUES//PostHarvestIssues/weatherCondition.png',
+        //issues - 4 soil
+        'images/csaNigeria/ISSUES/soil/Erosion.png','images/csaNigeria/ISSUES/soil/fertilizer.png','images/csaNigeria/ISSUES/soil/hardpan.png','images/csaNigeria/ISSUES/soil/poorSoil.png',
+        //issues - 5 Pest
+        "images/csaNigeria/ISSUES/Pest/AfricanRootTuberScale.png",
+        "images/csaNigeria/ISSUES/Pest/Aphid.png",
+        "images/csaNigeria/ISSUES/Pest/armyWorm.png",
+        "images/csaNigeria/ISSUES/Pest/AsianCitrusPsyllid.png",
+        "images/csaNigeria/ISSUES/Pest/beetle.png",
+        "images/csaNigeria/ISSUES/Pest/cassavaGreenMitePest.png",
+        "images/csaNigeria/ISSUES/Pest/CocoaPodBorer.png",
+        "images/csaNigeria/ISSUES/Pest/coconutScale.png",
+        "images/csaNigeria/ISSUES/Pest/Crickets.png",
+        "images/csaNigeria/ISSUES/Pest/cutworms.png",
+        "images/csaNigeria/ISSUES/Pest/Earworm.png",
+        "images/csaNigeria/ISSUES/Pest/GreenLeafhoppers.png",
+        "images/csaNigeria/ISSUES/Pest/GreenSemiloopers.png",
+        "images/csaNigeria/ISSUES/Pest/leafFolder.png",
+        "images/csaNigeria/ISSUES/Pest/leafminer.png",
+        "images/csaNigeria/ISSUES/Pest/leafWebber.png",
+        "images/csaNigeria/ISSUES/Pest/leaveTwistingWeevil.png",
+        "images/csaNigeria/ISSUES/Pest/locust.png",
+        "images/csaNigeria/ISSUES/Pest/Mealybugs.png",
+        "images/csaNigeria/ISSUES/Pest/mirid.png",
+        "images/csaNigeria/ISSUES/Pest/nematodes.png",
+        "images/csaNigeria/ISSUES/Pest/pinkHibiscusMealybug.png",
+        "images/csaNigeria/ISSUES/Pest/RiceBug.png",
+        "images/csaNigeria/ISSUES/Pest/riceGallMidge.png",
+        "images/csaNigeria/ISSUES/Pest/rodents.png",
+        "images/csaNigeria/ISSUES/Pest/spidermite.png",
+        "images/csaNigeria/ISSUES/Pest/squashBugs.png",
+        "images/csaNigeria/ISSUES/Pest/stalkBorer.png",
+        "images/csaNigeria/ISSUES/Pest/stemBorer.png",
+        "images/csaNigeria/ISSUES/Pest/teaserAnt.png",
+        "images/csaNigeria/ISSUES/Pest/thrips.png",
+        "images/csaNigeria/ISSUES/Pest/TortoiseBeetle.png",
+        "images/csaNigeria/ISSUES/Pest/weavils.png",
+        "images/csaNigeria/ISSUES/Pest/WhiteGrubLarvae.png",
+        "images/csaNigeria/ISSUES/Pest/whorlMaggot.png",
+        "images/csaNigeria/ISSUES/Pest/zigzagLeafhopper.png",
+        "images/csaNigeria/UnknownOther.png",
+        "images/csaNigeria/ISSUES/Dissease/AlternariaLeafBlight.png",
+        "images/csaNigeria/ISSUES/Dissease/AlternariaSpotLeafStemBlight.png",
+        "images/csaNigeria/ISSUES/Dissease/BacterialFruitBlotchFoilage.png",
+        "images/csaNigeria/ISSUES/Dissease/BacterialWilt.png",
+        "images/csaNigeria/ISSUES/Dissease/blackbandJute.png",
+        "images/csaNigeria/ISSUES/Dissease/blackPod.png",
+        "images/csaNigeria/ISSUES/Dissease/blackRot.png",
+        "images/csaNigeria/ISSUES/Dissease/blight.png",
+        "images/csaNigeria/ISSUES/Dissease/bractmosaicvirus.png",
+        "images/csaNigeria/ISSUES/Dissease/budNecrosisDisease.png",
+        "images/csaNigeria/ISSUES/Dissease/CassavaRootRot.png",
+        "images/csaNigeria/ISSUES/Dissease/CitrusAnthracnose.png",
+        "images/csaNigeria/ISSUES/Dissease/citrusGuignardiaCitricarpaBlackSpot.png",
+        "images/csaNigeria/ISSUES/Dissease/CitrusLeprosis.png",
+        "images/csaNigeria/ISSUES/Dissease/citrusScab.png",
+        "images/csaNigeria/ISSUES/Dissease/ColocasiaBobone.png",
+        "images/csaNigeria/ISSUES/Dissease/CucumberMosaic.png",
+        "images/csaNigeria/ISSUES/Dissease/downyMildew.png",
+        "images/csaNigeria/ISSUES/Dissease/FrostyPod.png",
+        "images/csaNigeria/ISSUES/Dissease/FusariumWilt.png",
+        "images/csaNigeria/ISSUES/Dissease/InternalBrownSpots.png",
+        "images/csaNigeria/ISSUES/Dissease/LeafStemScab.png",
+        "images/csaNigeria/ISSUES/Dissease/OkraYellowVien.png",
+        "images/csaNigeria/ISSUES/Dissease/PhytophthoraBlight.png",
+        "images/csaNigeria/ISSUES/Dissease/pigweed.png",
+        "images/csaNigeria/ISSUES/Dissease/PowderyMildew.png",
+        "images/csaNigeria/ISSUES/Dissease/Pox.png",
+        "images/csaNigeria/ISSUES/Dissease/rodent.png",
+        "images/csaNigeria/ISSUES/Dissease/rootAphids.png",
+        "images/csaNigeria/ISSUES/Dissease/rust.png",
+        "images/csaNigeria/ISSUES/Dissease/southernBlight.png",
+        "images/csaNigeria/ISSUES/Dissease/stemCutwormBean.png",
+        "images/csaNigeria/ISSUES/Dissease/streak.png",
+        "images/csaNigeria/ISSUES/Dissease/SweetOrangeScab.png",
+        "images/csaNigeria/ISSUES/Dissease/thrips.png",
+        "images/csaNigeria/ISSUES/Dissease/thripsTomato.png",
+        "images/csaNigeria/ISSUES/Dissease/TomatoMosaic.png",
+        "images/csaNigeria/ISSUES/Dissease/VerticilliumWilt.png",
+        "images/csaNigeria/ISSUES/Dissease/wetRot.png",
+        "images/csaNigeria/ISSUES/Dissease/whiteMold.png",
+        "images/csaNigeria/ISSUES/Dissease/whiteRust.png",
+        "images/csaNigeria/ISSUES/Dissease/yellowBlacksigatoka.png",
+
+        ]);
+
   }
   else{
     newProjectButton.style.display = 'initial';
@@ -297,18 +298,23 @@ document.getElementById('sapelliProjects').onclick = function(e){
 
 // // to show the icons of the project selected
   newProjectButton.onclick = function(){
-    sapProjectFirstTime = false
-    newProjectButton.style.display = 'none';
-    // document.getElementById('customIconsCancel').style.display = 'initial'
-    // document.getElementById('customIconsGoBack').style.display = 'initial'
+        if(projectsCreated == false){
+          newProjectButton.innerHTML = '<img src="images/checkingPw.gif" style="width:50px ; height:50px; border: 0px solid white" />';
+          setTimeout(function(){
+            // sapProjectFirstTime = false
+            newProjectButton.style.display = 'none';
+            generateButtonsGenericCrops()
+            newProjectButton.innerHTML = '<img src="images/logoNigeria.png" style="width:50px ; height:50px; border: 0px solid white" />';
 
-    // cell.style.overflow = 'auto'
+          },3000)
 
+        }else{
+          // sapProjectFirstTime = false
+          newProjectButton.style.display = 'none';
+          generateButtonsGenericCrops()
+        }
 
-    generateButtonsGenericCrops()
-    // cell.style.overflow = 'auto'
     }
-  projectsCreated = true
   return projectsCreated && sapProjectFirstTime && newProjectButton
 }
 
@@ -909,7 +915,7 @@ var generateButtonsStage = function(){
   icon53.onclick = function(){
     hideAll()
     generateButtonsBeforePlantingStage()
-    stage = 'beforePlantingStage'
+    stage = 'Before Planting'
   }
   icon56 = document.createElement("BUTTON");
   cell.appendChild(icon56);
@@ -918,7 +924,7 @@ var generateButtonsStage = function(){
   icon56.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    stage = 'plantingStage'
+    stage = 'Planting'
   }
   icon55 = document.createElement("BUTTON");
   cell.appendChild(icon55);
@@ -927,7 +933,7 @@ var generateButtonsStage = function(){
   icon55.onclick = function(){
     hideAll()
     generateButtonsPestControlStage()
-    stage = 'pestControlStage'
+    stage = 'Pest Control'
   }
   icon54 = document.createElement("BUTTON");
   cell.appendChild(icon54);
@@ -936,7 +942,7 @@ var generateButtonsStage = function(){
   icon54.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    stage = 'topDressingStage'
+    stage = 'Top Dressing'
   }
   icon58 = document.createElement("BUTTON");
   cell.appendChild(icon58);
@@ -945,7 +951,7 @@ var generateButtonsStage = function(){
   icon58.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    stage = 'harvestingStage'
+    stage = 'Harvesting'
   }
 
   icon57 = document.createElement("BUTTON");
@@ -955,7 +961,7 @@ var generateButtonsStage = function(){
   icon57.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    stage = 'postHarvestingStage'
+    stage = 'Post Harvesting'
   }
 
   return stage &&   screenChoice
@@ -1063,7 +1069,7 @@ var generateButtonsHelp = function(){
   icon67.innerHTML = '<img src="images/csaNigeria/NeedHelp.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Mo nilo iranwo';
 
   icon67.onclick = function(){
-    askHelpOrIHelp = 'askHelp'
+    askHelpOrIHelp = '🙋🏿👎🏿I need help'
 
     generateIssuesGeneric()
     hideAll()
@@ -1117,7 +1123,7 @@ var generateButtonsHelp = function(){
   icon68.innerHTML = '<img src="images/csaNigeria/IHelp.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Mo le se iranwo';
   icon68.className = 'buttonsSapelli'
   icon68.onclick = function(){
-    askHelpOrIHelp = 'IHelp'
+    askHelpOrIHelp = '🙋🏿👍🏿 I can help'
 
     generateIssuesGeneric()
     hideAll()
@@ -1620,7 +1626,7 @@ var generateIssuesPests = function(){
   icon98.className = 'buttonsSapelli'
   icon98.onclick = function(){
     hideAll()
-    issueSpecific = 'AfricanRootTuberScale'
+    issueSpecific = 'Root TuberScale'
     console.log('crop ',crop)
     console.log('stage ',stage)
     console.log('landUses ',landUse)
@@ -1685,7 +1691,7 @@ var generateIssuesPests = function(){
   icon103.innerHTML = '<img src="images/csaNigeria/ISSUES/Pest/cassavaGreenMitePest.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Cassava Greenmite';
   icon103.onclick = function(){
     hideAll()
-    issueSpecific = 'CCassava Greenmite'
+    issueSpecific = 'Cassava Greenmite'
 
     document.getElementById('customIconsMap').click()
 
