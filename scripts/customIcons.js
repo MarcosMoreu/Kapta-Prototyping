@@ -30,22 +30,29 @@ document.getElementById('customIconsMap').onclick = function(e){
   document.getElementById('showAreaAcres').style.display = 'initial';
   document.getElementById('share-download').style.display = 'initial';
   hideAll()
-  var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
-//  ////console.log(emojioneareaeditor)
-  var emojioneareaeditor0 = emojioneareaeditor[0]
-//  ////console.log(emojioneareaeditor0)
-  emojioneareaeditor0.innerHTML =  crop + ' x ' + stage + ' x ' + landUse + ' x ' + askHelpOrIHelp + ' x ' + issueGeneric + ' x ' + issueSpecific
+  if(issueSpecific != null){
+    var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
+  //  ////console.log(emojioneareaeditor)
+    var emojioneareaeditor0 = emojioneareaeditor[0]
+  //  ////console.log(emojioneareaeditor0)
+    emojioneareaeditor0.innerHTML =  crop + ' x ' + stage + ' x ' + landUse + ' x ' + askHelpOrIHelp + ' x ' + issueGeneric + ' x ' + issueSpecific
+  }
+
 
 }
 
-document.getElementById('showProjects').onclick = function(e){
-  document.getElementById("customIconsCancel").style.display = "none";
-  document.getElementById("showProjects").style.display = "none";
-  newProjectButton.style.display = 'initial';
-}
+// document.getElementById('showProjects').onclick = function(e){
+//   document.getElementById("customIconsCancel").style.display = "none";
+//   document.getElementById("showProjects").style.display = "none";
+//   newProjectButton.style.display = 'initial';
+// }
 
 document.getElementById('customIconsCancel').onclick = function(e){
   hideAll()
+  document.getElementById('customIconsGoBack').style.display = 'none'
+  document.getElementById('customIconsCancel').style.display = 'none';
+
+
   icon7.style.display = 'initial'
   icon6.style.display = 'initial'
   icon5.style.display = 'initial'
@@ -64,10 +71,10 @@ document.getElementById('customIconsCancel').onclick = function(e){
 }
 document.getElementById('customIconsGoBack').onclick = function(e){
 //  stage landUse help issuesGeneric issuesSpecific
-  if(screenChoice == 'genericCrop'){
-//  screenChoice = 'genericCrops'
-
-  }
+//   if(screenChoice == 'genericCrop'){
+// //  screenChoice = 'genericCrops'
+//
+//   }
   if(screenChoice == 'specificCrop'){
 //  screenChoice = 'genericCrops'
 document.getElementById('customIconsCancel').click()
@@ -143,46 +150,124 @@ document.getElementById('sapelliProjects').onclick = function(e){
   document.getElementById('customIconsMap').style.display = 'initial';
   preload([
     //crops generic
-  'images/csaNigeria/Crops/Cereals.png','images/csaNigeria/Crops/Vegetables.png','images/csaNigeria/Crops/Fruits.png','images/csaNigeria/Crops/Tubers.png',"images/csaNigeria/Crops/pulses.png",
-  "images/csaNigeria/Crops/cashCrop.png","images/csaNigeria/Crops/nuts.png",
-  //Crops
-  'images/csaNigeria/Crops/Agbalumo.png','images/csaNigeria/Crops/agbon.png','images/csaNigeria/Crops/amaranthus.png','images/csaNigeria/Crops/Awusa.png',"images/csaNigeria/Crops/banana.png",
-  "images/csaNigeria/Crops/beans.png","images/csaNigeria/Crops/Cashew.png",'images/csaNigeria/Crops/cassava.png','images/csaNigeria/Crops/coco.png','images/csaNigeria/Crops/cocoa.png',
-  'images/csaNigeria/Crops/cocoyam.png',"images/csaNigeria/Crops/cucumber.png",'images/csaNigeria/Crops/Epa.png',"images/csaNigeria/Crops/Esuru.png",'images/csaNigeria/Crops/ewedu.png',
-  "images/csaNigeria/Crops/Ewuro.png","images/csaNigeria/Crops/Fruits.png",'images/csaNigeria/Crops/gbure.png','images/csaNigeria/Crops/irishPotato.png','images/csaNigeria/Crops/Isu Ewura.png',
-  'images/csaNigeria/Crops/juteLeaf.png',"images/csaNigeria/Crops/Maize.png",'images/csaNigeria/Crops/mangoro.png',"images/csaNigeria/Crops/Obi.png",'images/csaNigeria/Crops/okro.png',
-  "images/csaNigeria/Crops/Ope Oyinbo.png","images/csaNigeria/Crops/orange.png", 'images/csaNigeria/Crops/orogbo.png','images/csaNigeria/Crops/palmTree.png','images/csaNigeria/Crops/Pawpaw-.png',
-  'images/csaNigeria/Crops/pepper.png',"images/csaNigeria/Crops/plantain.png",'images/csaNigeria/Crops/rice.png',"images/csaNigeria/Crops/sweetPotato.png",'images/csaNigeria/Crops/tangerine.png',
-  "images/csaNigeria/Crops/tapon.png","images/csaNigeria/Crops/tomato.png",'images/csaNigeria/Crops/ugu.png','images/csaNigeria/Crops/watermelon.png','images/csaNigeria/Crops/yam.png',
-  //landUse
-
-  'images/csaNigeria/landUse/bushBurning.png','images/csaNigeria/landUse/forest.png','images/csaNigeria/landUse/herbicides.png','images/csaNigeria/landUse/nonMechanised.png','images/csaNigeria/landUse/pesticides.png',
-  'images/csaNigeria/landUse/Tractor.png','images/csaNigeria/landUse/zeroTillage.png',
-
-  //stages
-  'images/csaNigeria/stages/BeforePlantingStage.png','images/csaNigeria/stages/HarvestingStage.png','images/csaNigeria/stages/PestControlStage.png','images/csaNigeria/stages/PlantingStage.png',
-  'images/csaNigeria/stages/PostHarvestingStage.png','images/csaNigeria/stages/TopDressingStage.png',
-//issues generic
-  'images/csaNigeria/ISSUES/IssuesGeneric/climaticGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/climaticRed.png',
-  'images/csaNigeria/ISSUES/IssuesGeneric/disseaseGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/disseaseRed.png',
-  'images/csaNigeria/ISSUES/IssuesGeneric/marketGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/marketRed.png',
-  'images/csaNigeria/ISSUES/IssuesGeneric/pestGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/pestRed.png',
-  'images/csaNigeria/ISSUES/IssuesGeneric/postHarvestGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/postHarvestRed.png',
-  'images/csaNigeria/ISSUES/IssuesGeneric/soilGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/soilRed.png',
-  'images/csaNigeria/ISSUES/IssuesGeneric/weedGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/weedRed.png',
-  //issues - 1 climatic
-  'images/csaNigeria/ISSUES/ClimaticIssues/Drought.png','images/csaNigeria/ISSUES/ClimaticIssues/erraticRain.png','images/csaNigeria/ISSUES/ClimaticIssues/flood.png',
-  'images/csaNigeria/ISSUES/ClimaticIssues/Irrigation.png','images/csaNigeria/ISSUES/ClimaticIssues/sunIntensity.png','images/csaNigeria/ISSUES/ClimaticIssues/wind.png',
-  //issues - 2 marker
-  'images/csaNigeria/ISSUES/market/DistanceToMarket.png','images/csaNigeria/ISSUES/market/MeansOfTransport.png','images/csaNigeria/ISSUES/market/price.png',
-  'images/csaNigeria/ISSUES/market/roadCondition.png','images/csaNigeria/ISSUES/market/supply.png','images/csaNigeria/ISSUES/market/TheBuyer.png',
-  //issues - 3 PostHarvestIssues
-  'images/csaNigeria/ISSUES//PostHarvestIssues/bagging.png','images/csaNigeria/ISSUES//PostHarvestIssues/drying.png','images/csaNigeria/ISSUES//PostHarvestIssues/rotten.png',
-  'images/csaNigeria/ISSUES//PostHarvestIssues/storage.png','images/csaNigeria/ISSUES//PostHarvestIssues/weatherCondition.png',
-  //issues - 4 soil
-  'images/csaNigeria/ISSUES/soil/Erosion.png','images/csaNigeria/ISSUES/soil/fertilizer.png','images/csaNigeria/ISSUES/soil/hardpan.png','images/csaNigeria/ISSUES/soil/poorSoil.png',
-  //issues - 5 Pest
-
+//   'images/csaNigeria/Crops/Cereals.png','images/csaNigeria/Crops/Vegetables.png','images/csaNigeria/Crops/Fruits.png','images/csaNigeria/Crops/Tubers.png',"images/csaNigeria/Crops/pulses.png",
+//   "images/csaNigeria/Crops/cashCrop.png","images/csaNigeria/Crops/nuts.png",
+//   //Crops
+//   'images/csaNigeria/Crops/Agbalumo.png','images/csaNigeria/Crops/agbon.png','images/csaNigeria/Crops/amaranthus.png','images/csaNigeria/Crops/Awusa.png',"images/csaNigeria/Crops/banana.png",
+//   "images/csaNigeria/Crops/beans.png","images/csaNigeria/Crops/Cashew.png",'images/csaNigeria/Crops/cassava.png','images/csaNigeria/Crops/coco.png','images/csaNigeria/Crops/cocoa.png',
+//   'images/csaNigeria/Crops/cocoyam.png',"images/csaNigeria/Crops/cucumber.png",'images/csaNigeria/Crops/Epa.png',"images/csaNigeria/Crops/Esuru.png",'images/csaNigeria/Crops/ewedu.png',
+//   "images/csaNigeria/Crops/Ewuro.png","images/csaNigeria/Crops/Fruits.png",'images/csaNigeria/Crops/gbure.png','images/csaNigeria/Crops/irishPotato.png','images/csaNigeria/Crops/Isu Ewura.png',
+//   'images/csaNigeria/Crops/juteLeaf.png',"images/csaNigeria/Crops/Maize.png",'images/csaNigeria/Crops/mangoro.png',"images/csaNigeria/Crops/Obi.png",'images/csaNigeria/Crops/okro.png',
+//   "images/csaNigeria/Crops/Ope Oyinbo.png","images/csaNigeria/Crops/orange.png", 'images/csaNigeria/Crops/orogbo.png','images/csaNigeria/Crops/palmTree.png','images/csaNigeria/Crops/Pawpaw-.png',
+//   'images/csaNigeria/Crops/pepper.png',"images/csaNigeria/Crops/plantain.png",'images/csaNigeria/Crops/rice.png',"images/csaNigeria/Crops/sweetPotato.png",'images/csaNigeria/Crops/tangerine.png',
+//   "images/csaNigeria/Crops/tapon.png","images/csaNigeria/Crops/tomato.png",'images/csaNigeria/Crops/ugu.png','images/csaNigeria/Crops/watermelon.png','images/csaNigeria/Crops/yam.png',
+//   //landUse
+//
+//   'images/csaNigeria/landUse/bushBurning.png','images/csaNigeria/landUse/forest.png','images/csaNigeria/landUse/herbicides.png','images/csaNigeria/landUse/nonMechanised.png','images/csaNigeria/landUse/pesticides.png',
+//   'images/csaNigeria/landUse/Tractor.png','images/csaNigeria/landUse/zeroTillage.png',
+//
+//   //stages
+//   'images/csaNigeria/stages/BeforePlantingStage.png','images/csaNigeria/stages/HarvestingStage.png','images/csaNigeria/stages/PestControlStage.png','images/csaNigeria/stages/PlantingStage.png',
+//   'images/csaNigeria/stages/PostHarvestingStage.png','images/csaNigeria/stages/TopDressingStage.png',
+// //issues generic
+//   'images/csaNigeria/ISSUES/IssuesGeneric/climaticGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/climaticRed.png',
+//   'images/csaNigeria/ISSUES/IssuesGeneric/disseaseGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/disseaseRed.png',
+//   'images/csaNigeria/ISSUES/IssuesGeneric/marketGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/marketRed.png',
+//   'images/csaNigeria/ISSUES/IssuesGeneric/pestGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/pestRed.png',
+//   'images/csaNigeria/ISSUES/IssuesGeneric/postHarvestGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/postHarvestRed.png',
+//   'images/csaNigeria/ISSUES/IssuesGeneric/soilGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/soilRed.png',
+//   'images/csaNigeria/ISSUES/IssuesGeneric/weedGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/weedRed.png',
+//   //issues - 1 climatic
+//   'images/csaNigeria/ISSUES/ClimaticIssues/Drought.png','images/csaNigeria/ISSUES/ClimaticIssues/erraticRain.png','images/csaNigeria/ISSUES/ClimaticIssues/flood.png',
+//   'images/csaNigeria/ISSUES/ClimaticIssues/Irrigation.png','images/csaNigeria/ISSUES/ClimaticIssues/sunIntensity.png','images/csaNigeria/ISSUES/ClimaticIssues/wind.png',
+//   //issues - 2 marker
+//   'images/csaNigeria/ISSUES/market/DistanceToMarket.png','images/csaNigeria/ISSUES/market/MeansOfTransport.png','images/csaNigeria/ISSUES/market/price.png',
+//   'images/csaNigeria/ISSUES/market/roadCondition.png','images/csaNigeria/ISSUES/market/supply.png','images/csaNigeria/ISSUES/market/TheBuyer.png',
+//   //issues - 3 PostHarvestIssues
+//   'images/csaNigeria/ISSUES//PostHarvestIssues/bagging.png','images/csaNigeria/ISSUES//PostHarvestIssues/drying.png','images/csaNigeria/ISSUES//PostHarvestIssues/rotten.png',
+//   'images/csaNigeria/ISSUES//PostHarvestIssues/storage.png','images/csaNigeria/ISSUES//PostHarvestIssues/weatherCondition.png',
+//   //issues - 4 soil
+//   'images/csaNigeria/ISSUES/soil/Erosion.png','images/csaNigeria/ISSUES/soil/fertilizer.png','images/csaNigeria/ISSUES/soil/hardpan.png','images/csaNigeria/ISSUES/soil/poorSoil.png',
+//   //issues - 5 Pest
+//   "images/csaNigeria/ISSUES/Pest/AfricanRootTuberScale.png",
+//   "images/csaNigeria/ISSUES/Pest/Aphid.png",
+//   "images/csaNigeria/ISSUES/Pest/armyWorm.png",
+//   "images/csaNigeria/ISSUES/Pest/AsianCitrusPsyllid.png",
+//   "images/csaNigeria/ISSUES/Pest/beetle.png",
+//   "images/csaNigeria/ISSUES/Pest/cassavaGreenMitePest.png",
+//   "images/csaNigeria/ISSUES/Pest/CocoaPodBorer.png",
+//   "images/csaNigeria/ISSUES/Pest/coconutScale.png",
+//   "images/csaNigeria/ISSUES/Pest/Crickets.png",
+//   "images/csaNigeria/ISSUES/Pest/cutworms.png",
+//   "images/csaNigeria/ISSUES/Pest/Earworm.png",
+//   "images/csaNigeria/ISSUES/Pest/GreenLeafhoppers.png",
+//   "images/csaNigeria/ISSUES/Pest/GreenSemiloopers.png",
+//   "images/csaNigeria/ISSUES/Pest/leafFolder.png",
+//   "images/csaNigeria/ISSUES/Pest/leafminer.png",
+//   "images/csaNigeria/ISSUES/Pest/leafWebber.png",
+//   "images/csaNigeria/ISSUES/Pest/leaveTwistingWeevil.png",
+//   "images/csaNigeria/ISSUES/Pest/locust.png",
+//   "images/csaNigeria/ISSUES/Pest/Mealybugs.png",
+//   "images/csaNigeria/ISSUES/Pest/mirid.png",
+//   "images/csaNigeria/ISSUES/Pest/nematodes.png",
+//   "images/csaNigeria/ISSUES/Pest/pinkHibiscusMealybug.png",
+//   "images/csaNigeria/ISSUES/Pest/RiceBug.png",
+//   "images/csaNigeria/ISSUES/Pest/riceGallMidge.png",
+//   "images/csaNigeria/ISSUES/Pest/rodents.png",
+//   "images/csaNigeria/ISSUES/Pest/spidermite.png",
+//   "images/csaNigeria/ISSUES/Pest/squashBugs.png",
+//   "images/csaNigeria/ISSUES/Pest/stalkBorer.png",
+//   "images/csaNigeria/ISSUES/Pest/stemBorer.png",
+//   "images/csaNigeria/ISSUES/Pest/teaserAnt.png",
+//   "images/csaNigeria/ISSUES/Pest/thrips.png",
+//   "images/csaNigeria/ISSUES/Pest/TortoiseBeetle.png",
+//   "images/csaNigeria/ISSUES/Pest/weavils.png",
+//   "images/csaNigeria/ISSUES/Pest/WhiteGrubLarvae.png",
+//   "images/csaNigeria/ISSUES/Pest/whorlMaggot.png",
+//   "images/csaNigeria/ISSUES/Pest/zigzagLeafhopper.png",
+//   "images/csaNigeria/UnknownOther.png",
+//   "images/csaNigeria/ISSUES/Dissease/AlternariaLeafBlight.png",
+//   "images/csaNigeria/ISSUES/Dissease/AlternariaSpotLeafStemBlight.png",
+//   "images/csaNigeria/ISSUES/Dissease/BacterialFruitBlotchFoilage.png",
+//   "images/csaNigeria/ISSUES/Dissease/BacterialWilt.png",
+//   "images/csaNigeria/ISSUES/Dissease/blackbandJute.png",
+//   "images/csaNigeria/ISSUES/Dissease/blackPod.png",
+//   "images/csaNigeria/ISSUES/Dissease/blackRot.png",
+//   "images/csaNigeria/ISSUES/Dissease/blight.png",
+//   "images/csaNigeria/ISSUES/Dissease/bractmosaicvirus.png",
+//   "images/csaNigeria/ISSUES/Dissease/budNecrosisDisease.png",
+//   "images/csaNigeria/ISSUES/Dissease/CassavaRootRot.png",
+//   "images/csaNigeria/ISSUES/Dissease/CitrusAnthracnose.png",
+//   "images/csaNigeria/ISSUES/Dissease/citrusGuignardiaCitricarpaBlackSpot.png",
+//   "images/csaNigeria/ISSUES/Dissease/CitrusLeprosis.png",
+//   "images/csaNigeria/ISSUES/Dissease/citrusScab.png",
+//   "images/csaNigeria/ISSUES/Dissease/ColocasiaBobone.png",
+//   "images/csaNigeria/ISSUES/Dissease/CucumberMosaic.png",
+//   "images/csaNigeria/ISSUES/Dissease/downyMildew.png",
+//   "images/csaNigeria/ISSUES/Dissease/FrostyPod.png",
+//   "images/csaNigeria/ISSUES/Dissease/FusariumWilt.png",
+//   "images/csaNigeria/ISSUES/Dissease/InternalBrownSpots.png",
+//   "images/csaNigeria/ISSUES/Dissease/LeafStemScab.png",
+//   "images/csaNigeria/ISSUES/Dissease/OkraYellowVien.png",
+//   "images/csaNigeria/ISSUES/Dissease/PhytophthoraBlight.png",
+//   "images/csaNigeria/ISSUES/Dissease/pigweed.png",
+//   "images/csaNigeria/ISSUES/Dissease/PowderyMildew.png",
+//   "images/csaNigeria/ISSUES/Dissease/Pox.png",
+//   "images/csaNigeria/ISSUES/Dissease/rodent.png",
+//   "images/csaNigeria/ISSUES/Dissease/rootAphids.png",
+//   "images/csaNigeria/ISSUES/Dissease/rust.png",
+//   "images/csaNigeria/ISSUES/Dissease/southernBlight.png",
+//   "images/csaNigeria/ISSUES/Dissease/stemCutwormBean.png",
+//   "images/csaNigeria/ISSUES/Dissease/streak.png",
+//   "images/csaNigeria/ISSUES/Dissease/SweetOrangeScab.png",
+//   "images/csaNigeria/ISSUES/Dissease/thrips.png",
+//   "images/csaNigeria/ISSUES/Dissease/thripsTomato.png",
+//   "images/csaNigeria/ISSUES/Dissease/TomatoMosaic.png",
+//   "images/csaNigeria/ISSUES/Dissease/VerticilliumWilt.png",
+//   "images/csaNigeria/ISSUES/Dissease/wetRot.png",
+//   "images/csaNigeria/ISSUES/Dissease/whiteMold.png",
+//   "images/csaNigeria/ISSUES/Dissease/whiteRust.png",
+//   "images/csaNigeria/ISSUES/Dissease/yellowBlacksigatoka.png",
 
   // issues 6 dissease
 
@@ -196,10 +281,11 @@ document.getElementById('sapelliProjects').onclick = function(e){
         cell.className = 'gridCell'
         newProjectButton = document.createElement("BUTTON");
         cell.appendChild(newProjectButton);
-        newProjectButton.style.backgroundColor = 'white'
-        newProjectButton.style.width = '80px'
-        newProjectButton.style.height = '80px'
-        newProjectButton.style.borderColor = 'black'
+        newProjectButton.className = 'sapelliProjectsLogo'
+        // newProjectButton.style.backgroundColor = 'white'
+        // newProjectButton.style.width = '80px'
+        // newProjectButton.style.height = '80px'
+        // newProjectButton.style.borderColor = 'black'
         newProjectButton.style.marginBottom = '200px'
         newProjectButton.style.marginLeft = '20px'
         newProjectButton.innerHTML = '<img src="images/logoNigeria.png" style="width:50px ; height:50px; border: 0px solid white" />';
@@ -213,8 +299,8 @@ document.getElementById('sapelliProjects').onclick = function(e){
   newProjectButton.onclick = function(){
     sapProjectFirstTime = false
     newProjectButton.style.display = 'none';
-    document.getElementById('customIconsCancel').style.display = 'initial'
-    document.getElementById('customIconsGoBack').style.display = 'initial'
+    // document.getElementById('customIconsCancel').style.display = 'initial'
+    // document.getElementById('customIconsGoBack').style.display = 'initial'
 
     // cell.style.overflow = 'auto'
 
@@ -242,6 +328,7 @@ icon69g, icon69r, icon70g, icon70r, icon71g, icon71r, icon72g, icon72r, icon73g,
 //   return cell
 // }
 var generateButtonsGenericCrops = function(){
+
   screenChoice = 'genericCrops'
   //crops generic
  icon1 = document.createElement("BUTTON");
@@ -251,6 +338,9 @@ var generateButtonsGenericCrops = function(){
   icon1.onclick = function(){
     hideAll()
     generateButtonsCereals()
+    document.getElementById('customIconsGoBack').style.display = 'initial'
+    document.getElementById('customIconsCancel').style.display = 'initial';
+
   }
 
    icon2 = document.createElement("BUTTON");
@@ -260,6 +350,9 @@ var generateButtonsGenericCrops = function(){
   icon2.onclick = function(){
     hideAll()
     generateButtonsVegetables()
+    document.getElementById('customIconsGoBack').style.display = 'initial'
+    document.getElementById('customIconsCancel').style.display = 'initial';
+
   }
 
    icon3 = document.createElement("BUTTON");
@@ -269,6 +362,9 @@ var generateButtonsGenericCrops = function(){
   icon3.onclick = function(){
     hideAll()
     generateButtonsFruits()
+    document.getElementById('customIconsGoBack').style.display = 'initial'
+    document.getElementById('customIconsCancel').style.display = 'initial';
+
   }
    icon4 = document.createElement("BUTTON");
    cell.appendChild(icon4);
@@ -277,6 +373,9 @@ var generateButtonsGenericCrops = function(){
   icon4.onclick = function(){
     hideAll()
     generateButtonsTubers()
+    document.getElementById('customIconsGoBack').style.display = 'initial'
+    document.getElementById('customIconsCancel').style.display = 'initial';
+
   }
    icon5 = document.createElement("BUTTON");
 cell.appendChild(icon5);
@@ -285,6 +384,9 @@ cell.appendChild(icon5);
   icon5.onclick = function(){
     hideAll()
     generateButtonsPulses()
+    document.getElementById('customIconsGoBack').style.display = 'initial'
+    document.getElementById('customIconsCancel').style.display = 'initial';
+
   }
    icon6 = document.createElement("BUTTON");
   cell.appendChild(icon6);
@@ -293,6 +395,9 @@ cell.appendChild(icon5);
   icon6.onclick = function(){
     hideAll()
     generateButtonsCashCrop()
+    document.getElementById('customIconsGoBack').style.display = 'initial'
+    document.getElementById('customIconsCancel').style.display = 'initial';
+
   }
    icon7 = document.createElement("BUTTON");
   cell.appendChild(icon7);
@@ -301,6 +406,9 @@ cell.appendChild(icon5);
   icon7.onclick = function(){
     hideAll()
     generateButtonsNuts()
+    document.getElementById('customIconsGoBack').style.display = 'initial'
+    document.getElementById('customIconsCancel').style.display = 'initial';
+
   }
 
  return icon1 && icon2 && icon3 && icon4 && icon5 && icon6 && icon7 && screenChoice
