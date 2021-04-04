@@ -29,6 +29,7 @@ document.getElementById('customIconsMap').onclick = function(e){
   document.getElementById('emoji').style.display = 'initial';
   document.getElementById('showAreaAcres').style.display = 'initial';
   document.getElementById('share-download').style.display = 'initial';
+  cell.style.display = 'none'
   hideAll()
   if(issueSpecific != null){
     var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
@@ -36,6 +37,9 @@ document.getElementById('customIconsMap').onclick = function(e){
     var emojioneareaeditor0 = emojioneareaeditor[0]
   //  ////console.log(emojioneareaeditor0)
     // emojioneareaeditor0.innerHTML =  crop + ' x ' + stage + ' x ' + landUse + ' x ' + askHelpOrIHelp + ' x ' + issueGeneric + ' x ' + issueSpecific
+    if(landUse == null){
+      landUse = ''
+    }
     emojioneareaeditor0.innerHTML =  crop + ' ' + stage + ' ' + landUse + ' ' + askHelpOrIHelp + ' ' + issueSpecific
 
   }

@@ -124,7 +124,11 @@ document.getElementById('share-download').onclick = function(e) {
     var landUses = allLandUsesFiltered.toString();
     //to convert emojis from unicode to short name, before the data is transmitted
     //value of boxcontent is obtained again (was obtained in 'confirm'), in case user click on 'confirm' before filling in the box
-    boxContent = document.getElementById('emojionearea').value;
+    // boxContent = document.getElementById('emojionearea').value;
+    var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
+    var emojioneareaeditor0 = emojioneareaeditor[0]
+    boxContent = emojioneareaeditor0.innerHTML
+    console.log(boxContent)
     var boxContentToShortname = emojione.toShort(boxContent)
     ////console.log(boxContentToShortname)
     ////console.log(boxContent)
@@ -142,9 +146,9 @@ document.getElementById('share-download').onclick = function(e) {
       finalAreaAcres2Decimals = 'Line'
     }
     if (isIOS == false && recordedBlobs != null) {
-        var audioAvailable = true
+        var audioAvailable = '.'
     } else {
-        audioAvailable = false
+        audioAvailable = '.'
     }
     propertiesGeoJSON = {
         // 'geometryCenter':geometryCenter,
@@ -278,6 +282,8 @@ document.getElementById('goBackClassification').onclick = function(e){
   document.getElementById("shareWorldButton").style.backgroundColor = 'white'
   document.getElementById("shareWorldButton").style.borderColor = 'white'
   clickCountSendButton = 0
+  startCheckingText()
+
 
 
 showButtons()
