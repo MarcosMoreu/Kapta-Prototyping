@@ -337,6 +337,10 @@ if (urlContainsHash == true && urlContainsGeoJSON == true && localStorage.getIte
     elementJustAddedToLocalStorage = true
     setTimeout(function changeToLocalStorageLayer(){
         document.getElementById('myLayerButton').click()
+        if(whichLayerIsOn == 'none'){
+          document.getElementById('myLayerButton').click()
+          document.getElementById('myLayerButton').click()
+        }
 
     },2000) // really don't know why this timeout, but keep it for now
 
