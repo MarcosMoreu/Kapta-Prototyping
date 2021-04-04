@@ -1,12 +1,12 @@
 .buttonCustomIcons{
   border-radius: 50px;
   margin:5px;
-  background-color: grey; /* Green */
+  background-color: #a6a6a6; /* Green */
   padding: 0px 0px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  border: 2px solid grey;
+  border: 2px solid #a6a6a6;
   position:relative;
   outline:none;
   transition: 0.2s all;
@@ -20,7 +20,7 @@
   text-align: center;
   display: inline-block;
   transition: 0.2s all;
-  overflow-y: scroll;
+  overflow-y: hidden;
   font-size:20px;
 
 

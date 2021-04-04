@@ -111,7 +111,7 @@
   display: block;
   height: auto;
   min-height: 8em;
-  max-height: 50px; /* to avoid that the box grows downwards and move the other elements - I didn't manage to make it grow upwards...*/
+  max-height: 40px; /* to avoid that the box grows downwards and move the other elements - I didn't manage to make it grow upwards...*/
   overflow: auto;
   padding: 6px 24px 6px 33px; /*the fourth position is for modifiying the starting point of the text (i.e. margin) */
   line-height: 1.42857143;
