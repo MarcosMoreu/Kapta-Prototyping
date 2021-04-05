@@ -31,7 +31,7 @@ console.log(selectedFeature.feature.properties.cartodb_id)
   document.getElementById('backEditDelete').style.display = 'initial';
   document.getElementById("classification").style.display = "initial";
   document.getElementById("emoji").style.display = "initial";
-  document.getElementById("sapelliProjects").style.display = "initial";
+  // document.getElementById("sapelliProjects").style.display = "initial";
 
   // if(isIOS == false){
   //   document.getElementById("enableRecording").style.display = "initial";
@@ -207,12 +207,12 @@ document.getElementById('backEditDelete').onclick = function(){
   map.touchZoom.enable();
   map.doubleClickZoom.enable();
   map.scrollWheelZoom.enable();
-  if (isIOS == false) {
-      recordedVideo.pause();
-      recordedBlobs = null; // audio is removed if cancel is clicked
-      audioRecorded = false;
-      audioButtonClicked = false
-  }
+  // if (isIOS == false) {
+  //     recordedVideo.pause();
+  //     recordedBlobs = null; // audio is removed if cancel is clicked
+  //     audioRecorded = false;
+  //     audioButtonClicked = false
+  // }
 
   selectedFeature = null;
   editButtonClicked = false
@@ -236,28 +236,28 @@ var updatedFeatureToAdd
 document.getElementById('shareWorldButtonComment').onclick = function(){
     aFeatureIsSelected = false
     //script for audio recording
-      if (isIOS == false && recordedBlobs != null) {
-          blob = new Blob(recordedBlobs, {
-              type: 'audio/webm'
-          });
-          // console.log(blob)
-      }
-
-      var nameAudio = 'audio' + ' ' + 'dateTimeRandomID'
-      var audioBlob = blob;
-      function blobToFile(theBlob, fileName) {
-          theBlob.lastModifiedDate = new Date();
-          theBlob.name = fileName;
-          return theBlob;
-      }
-      if (isIOS == false && recordedBlobs != null) {
-          audioBlobFile = blobToFile(audioBlob, nameAudio);
-          // console.log(audioBlobFile)
-          dataFile = 0 // to avoid problem in firebase, we just submit a 2d array, with geometry null (0)
-          files = [dataFile, audioBlobFile]
-          filesLength = 2
-          // console.log(files)
-      }
+      // if (isIOS == false && recordedBlobs != null) {
+      //     blob = new Blob(recordedBlobs, {
+      //         type: 'audio/webm'
+      //     });
+      //     // console.log(blob)
+      // }
+      //
+      // var nameAudio = 'audio' + ' ' + 'dateTimeRandomID'
+      // var audioBlob = blob;
+      // function blobToFile(theBlob, fileName) {
+      //     theBlob.lastModifiedDate = new Date();
+      //     theBlob.name = fileName;
+      //     return theBlob;
+      // }
+      // if (isIOS == false && recordedBlobs != null) {
+      //     audioBlobFile = blobToFile(audioBlob, nameAudio);
+      //     // console.log(audioBlobFile)
+      //     dataFile = 0 // to avoid problem in firebase, we just submit a 2d array, with geometry null (0)
+      //     files = [dataFile, audioBlobFile]
+      //     filesLength = 2
+      //     // console.log(files)
+      // }
 
       if (audioButtonClicked == true) {
         console.log('audio clicked')
@@ -381,12 +381,12 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
         })
       }
        getUpdatedFeature() ////////////////!!!!
-       if (isIOS == false) {
-           recordedVideo.pause();
-           recordedBlobs = null; // audio is removed if cancel is clicked
-           audioRecorded = false
-           audioButtonClicked = false
-       }
+       // if (isIOS == false) {
+       //     recordedVideo.pause();
+       //     recordedBlobs = null; // audio is removed if cancel is clicked
+       //     audioRecorded = false
+       //     audioButtonClicked = false
+       // }
 },3000)
   editButtonClicked = true
 
