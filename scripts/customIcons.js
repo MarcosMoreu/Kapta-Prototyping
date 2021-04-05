@@ -194,6 +194,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
         "images/csaNigeria/Crops/Ope Oyinbo.png","images/csaNigeria/Crops/orange.png", 'images/csaNigeria/Crops/orogbo.png','images/csaNigeria/Crops/palmTree.png','images/csaNigeria/Crops/Pawpaw-.png',
         'images/csaNigeria/Crops/pepper.png',"images/csaNigeria/Crops/plantain.png",'images/csaNigeria/Crops/rice.png',"images/csaNigeria/Crops/sweetPotato.png",'images/csaNigeria/Crops/tangerine.png',
         "images/csaNigeria/Crops/tapon.png","images/csaNigeria/Crops/tomato.png",'images/csaNigeria/Crops/ugu.png','images/csaNigeria/Crops/watermelon.png','images/csaNigeria/Crops/yam.png',
+        'images/csaNigeria/NeedHelp.png','images/csaNigeria/IHelp.png','images/csaNigeria/UnknownOther.png',
         //landUse
 
         'images/csaNigeria/landUse/bushBurning.png','images/csaNigeria/landUse/forest.png','images/csaNigeria/landUse/herbicides.png','images/csaNigeria/landUse/nonMechanised.png','images/csaNigeria/landUse/pesticides.png',
