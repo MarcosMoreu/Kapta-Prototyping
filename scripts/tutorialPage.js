@@ -37,8 +37,10 @@ document.getElementById('dropDown').onclick = function(e){
 
     return dropDownOpen
   }
+var cognitoFormLoaded = false
 
 document.getElementById('cutomiseButton').onclick = function(e){
+
 
     setTimeout(function(){
       document.getElementById("infoGoBackButton").style.display = "initial";
@@ -59,28 +61,33 @@ document.getElementById('cutomiseButton').onclick = function(e){
    },100)
     // document.getElementById("youtubeImage").src = '../images/checkingPw.gif'
     setTimeout(function(){
+      if(cognitoFormLoaded == false){
 
-    var target = document.getElementById('cognitoForm');
-    // create an observer instance
-    var observer = new MutationObserver(function (mutations) {
-        mutations.forEach(function (mutation) {
-            if (Cognito.config.isReady){
-                // stop observing
-                observer.disconnect();
-
-               document.getElementById("loadingCognito").style.display = "none";
-               // document.getElementById("youtubeImage").src = '../images/youtube.png'
-            };
+        var target = document.getElementById('cognitoForm');
+        // create an observer instance
+        var observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+                if (Cognito.config.isReady){
+                    // stop observing
+                    observer.disconnect();
+                    cognitoFormLoaded = true
+                   document.getElementById("loadingCognito").style.display = "none";
+                   // document.getElementById("youtubeImage").src = '../images/youtube.png'
+                };
+            });
         });
-    });
 
-    // configuration of the observer:
-    var config = { attributes: true, childList: true };
-    // pass in the target node, as well as the observer options
-    observer.observe(target, config);
-    Cognito.load("forms", { id: "2" })
+        // configuration of the observer:
+        var config = { attributes: true, childList: true };
+        // pass in the target node, as well as the observer options
+        observer.observe(target, config);
+        Cognito.load("forms", { id: "2" })
+      }else{
+        document.getElementById("loadingCognito").style.display = "none";
+      }
+
   },300)
-
+  return cognitoFormLoaded
 }
 
 // document.getElementById('cutomiseButton').onclick = function(e){
