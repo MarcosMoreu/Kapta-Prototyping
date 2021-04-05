@@ -1340,6 +1340,7 @@ var generateIssuesGeneric = function(){
   icon75g.onclick = function(){
     hideAll()
     issueGeneric = 'Weed'
+    issueSpecific = '🌿 Weed'
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
 
@@ -1356,6 +1357,8 @@ var generateIssuesGeneric = function(){
   icon75r.onclick = function(){
     hideAll()
     issueGeneric = 'Weed'
+    issueSpecific = '🌿 Weed'
+
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
   document.getElementById('share-download').click()
