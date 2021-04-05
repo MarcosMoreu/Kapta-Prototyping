@@ -12,8 +12,7 @@ var stage // used for both attributes and to select specific issues
 var landUse
 var askHelpOrIHelp
 var issueGeneric
-var issueSpecific
-
+var issueSpecific = 'emojiNoSapelli' //if the sapelli project is completed, then the value changes and the string is treated differently in sharedownload.js
 // console.log('url', url)
 // var urlContainsHashCustomised = url.includes('#Customised')
 
@@ -33,7 +32,7 @@ document.getElementById('customIconsMap').onclick = function(e){
 
   cell.style.display = 'none'
   hideAll()
-  if(issueSpecific != null){
+  if(issueSpecific != 'emojiNoSapelli'){
     document.getElementById("Cancel").style.opacity = '0'
     document.getElementById("sapelliProjects").style.opacity = '0'
     document.getElementById('emoji').style.opacity = '0'
@@ -316,11 +315,14 @@ document.getElementById('sapelliProjects').onclick = function(e){
         if(projectsCreated == false){
           projectsCreated = true
           newProjectButton.innerHTML = '<img src="images/checkingPw.gif" style="width:50px ; height:50px; border: 0px solid white" />';
+          newProjectButton.disabled = true
           setTimeout(function(){
             // sapProjectFirstTime = false
             newProjectButton.style.display = 'none';
             generateButtonsGenericCrops()
             newProjectButton.innerHTML = '<img src="images/logoNigeria.png" style="width:50px ; height:50px; border: 0px solid white" />';
+            newProjectButton.disabled = false
+
 
           },3000)
 

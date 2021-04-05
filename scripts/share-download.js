@@ -124,12 +124,21 @@ document.getElementById('share-download').onclick = function(e) {
     var landUses = allLandUsesFiltered.toString();
     //to convert emojis from unicode to short name, before the data is transmitted
     //value of boxcontent is obtained again (was obtained in 'confirm'), in case user click on 'confirm' before filling in the box
-    // boxContent = document.getElementById('emojionearea').value;
-    var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
-    var emojioneareaeditor0 = emojioneareaeditor[0]
-    boxContent = emojioneareaeditor0.innerHTML
-    console.log(boxContent)
-    var boxContentToShortname = emojione.toShort(boxContent)
+    console.log('issuespecific',issueSpecific)
+    if(issueSpecific == 'emojiNoSapelli'){
+      boxContent = document.getElementById('emojionearea').value;
+      var boxContentToShortname = emojione.toShort(boxContent)
+      console.log(boxContent)
+    }else{
+      var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
+      var emojioneareaeditor0 = emojioneareaeditor[0]
+      boxContent = emojioneareaeditor0.innerHTML
+      var boxContentToShortname = emojione.toShort(boxContent)
+
+      console.log(boxContent)
+
+    }
+
     ////console.log(boxContentToShortname)
     ////console.log(boxContent)
 
@@ -176,12 +185,12 @@ document.getElementById('share-download').onclick = function(e) {
     // Stringify the GeoJson
     // convertedData = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
     // console.log(convertedData)
-    if (isIOS == false && recordedBlobs != null) {
-        blob = new Blob(recordedBlobs, {
-            type: 'audio/webm'
-        });
-        //console.log(blob)
-    }
+    // if (isIOS == false && recordedBlobs != null) {
+    //     blob = new Blob(recordedBlobs, {
+    //         type: 'audio/webm'
+    //     });
+    //     //console.log(blob)
+    // }
 
     //defining the final screen
     setTimeout(function() {
@@ -281,7 +290,7 @@ document.getElementById('goBackClassification').onclick = function(e){
   document.getElementById("shareWorldButtonImage").src = 'images/shareworld.png'
   document.getElementById("shareWorldButton").style.backgroundColor = 'white'
   document.getElementById("shareWorldButton").style.borderColor = 'white'
-
+  issueSpecific = 'emojiNoSapelli'
   clickCountSendButton = 0
   document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
 
@@ -290,6 +299,7 @@ document.getElementById('goBackClassification').onclick = function(e){
 
 
 showButtons()
+return issueSpecific
 }
 
 var mapposLat = mappos.center.lat
@@ -357,6 +367,7 @@ document.getElementById('goBackShareMessagingAppsDirect').onclick = function(e){
 
 
 document.getElementById('shareWorldButton').onclick = function(e) {
+  issueSpecific = 'emojiNoSapelli'
 
 
   if (clickCountSendButton == 0) {
@@ -518,11 +529,12 @@ document.getElementById('shareWorldButton').onclick = function(e) {
         }
 
     }
-  return clickCountSendButton
+  return clickCountSendButton && issueSpecific
 }
 
 var elementJustAddedToLocalStorage = false
 document.getElementById('DownloadButton').onclick = function(e) {
+      issueSpecific = 'emojiNoSapelli'
   hideButtons()
 
 
@@ -626,7 +638,8 @@ document.getElementById('DownloadButton').onclick = function(e) {
 
     }, timeOfVideo - 300);
 
-    return finished && whichLayerIsOn && localStorageLayer && elementJustAddedToLocalStorage && field
+
+    return finished && whichLayerIsOn && localStorageLayer && elementJustAddedToLocalStorage && field && issueSpecific
 }
 
 // end
