@@ -2,7 +2,7 @@ var dropDownOpen = false;
 var isOnline = navigator.onLine
 var browserLanguage = navigator.language
 
-document.getElementById('english').src = "https://raw.githubusercontent.com/hjnilsson/country-flags/master/png100px/ad.png"
+// document.getElementById('english').src = "https://raw.githubusercontent.com/hjnilsson/country-flags/master/png100px/ad.png"
 
 document.getElementById('startMapping').onclick = function(e){
   document.getElementById("startMapping").style.animation = "initial";
@@ -38,46 +38,87 @@ document.getElementById('dropDown').onclick = function(e){
     return dropDownOpen
   }
 
-  document.getElementById('cutomiseButton').onclick = function(e){
+document.getElementById('cutomiseButton').onclick = function(e){
 
-     setTimeout(function(){
-       document.getElementById("infoGoBackButton").style.display = "initial";
-       document.getElementById("cognitoForm").style.display = "initial";
-       document.body.style.overflow = 'visible';
-       document.getElementById('dropDown').style.display = "none";
-       document.getElementById('cutomiseButton').style.display = "none";
-      document.getElementById('infoButton').style.display = "none";
-      document.getElementById("iconsButton").style.display = "none";
+    setTimeout(function(){
+      document.getElementById("infoGoBackButton").style.display = "initial";
+      document.getElementById('TextRequest').style.display = 'initial'
+      document.getElementById("cognitoForm").style.display = "initial";
+      document.body.style.overflow = 'visible';
+      document.getElementById('dropDown').style.display = "none";
       document.getElementById('cutomiseButton').style.display = "none";
-      document.getElementById("youtube").style.display = "none";
-      document.getElementById("startMapping").style.display = "none";
-      //document.getElementById("spanish").style.display = "none";
+     document.getElementById('infoButton').style.display = "none";
+     document.getElementById("iconsButton").style.display = "none";
+     document.getElementById('cutomiseButton').style.display = "none";
+     document.getElementById("youtube").style.display = "none";
+     document.getElementById("startMapping").style.display = "none";
 
-      document.getElementById("english").style.display = "none";
-      //document.getElementById("french").style.display = "none";
+     document.getElementById("english").style.display = "none";
+     document.getElementById("yoruba").style.display = "none";
+     document.getElementById("other1").style.display = "none";
+   },100)
+    // document.getElementById("youtubeImage").src = '../images/checkingPw.gif'
+    setTimeout(function(){
 
-      //document.getElementById("portuguese").style.display = "none";
+    var target = document.getElementById('cognitoForm');
+    // create an observer instance
+    var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+            if (Cognito.config.isReady){
+                // stop observing
+                observer.disconnect();
 
-      //document.getElementById("swahili").style.display = "none";
+               document.getElementById("loadingCognito").style.display = "none";
+               // document.getElementById("youtubeImage").src = '../images/youtube.png'
+            };
+        });
+    });
 
-      //document.getElementById("juhoansi").style.display = "none";
+    // configuration of the observer:
+    var config = { attributes: true, childList: true };
+    // pass in the target node, as well as the observer options
+    observer.observe(target, config);
+    Cognito.load("forms", { id: "2" })
+  },300)
 
-      document.getElementById("other1").style.display = "none";
+}
 
-      // document.getElementById("textEnglish").style.display = "none";
-      //document.getElementById("textSpanish").style.display = "none";
-
-      //document.getElementById("textFrench").style.display = "none";
-
-      //document.getElementById("textPortuguese").style.display = "none";
-
-      //document.getElementById("textSwahili").style.display = "none";
-
-      //document.getElementById("textJuhoansi").style.display = "none";
-
-
-     },100)
-    }
+// document.getElementById('cutomiseButton').onclick = function(e){
+//     document.getElementById("youtubeImage").src = '../images/checkingPw.gif'
+//     var target = document.getElementById('cognitoForm');
+//     // create an observer instance
+//     var observer = new MutationObserver(function (mutations) {
+//         mutations.forEach(function (mutation) {
+//             if (Cognito.config.isReady){
+//                 // stop observing
+//                 observer.disconnect();
+//                 // alert('FORM LOADED!');
+//                 document.getElementById("infoGoBackButton").style.display = "initial";
+//                 document.getElementById("cognitoForm").style.display = "initial";
+//                 document.body.style.overflow = 'visible';
+//                 document.getElementById('dropDown').style.display = "none";
+//                 document.getElementById('cutomiseButton').style.display = "none";
+//                document.getElementById('infoButton').style.display = "none";
+//                document.getElementById("iconsButton").style.display = "none";
+//                document.getElementById('cutomiseButton').style.display = "none";
+//                document.getElementById("youtube").style.display = "none";
+//                document.getElementById("startMapping").style.display = "none";
+//
+//                document.getElementById("english").style.display = "none";
+//                document.getElementById("yoruba").style.display = "none";
+//                document.getElementById("other1").style.display = "none";
+//                document.getElementById("youtubeImage").src = '../images/youtube.png'
+//             };
+//         });
+//     });
+//
+//     // configuration of the observer:
+//     var config = { attributes: true, childList: true };
+//     // pass in the target node, as well as the observer options
+//     observer.observe(target, config);
+//     Cognito.load("forms", { id: "2" })
+//
+// }
 
 document.getElementById('infoButton').onclick = function(e){
    setTimeout(function(){
@@ -94,6 +135,8 @@ document.getElementById('infoButton').onclick = function(e){
     //document.getElementById("spanish").style.display = "none";
 
     document.getElementById("english").style.display = "none";
+    document.getElementById("yoruba").style.display = "none";
+
     //document.getElementById("french").style.display = "none";
 
     //document.getElementById("portuguese").style.display = "none";
@@ -133,6 +176,8 @@ document.getElementById('iconsButton').onclick = function(e){
     //document.getElementById("spanish").style.display = "none";
 
     document.getElementById("english").style.display = "none";
+    document.getElementById("yoruba").style.display = "none";
+
     //document.getElementById("french").style.display = "none";
 
     //document.getElementById("portuguese").style.display = "none";
@@ -165,6 +210,8 @@ document.getElementById('infoGoBackButton').onclick = function(e){
      document.getElementById("iconsCont").style.display = "none";
      document.getElementById("cognitoForm").style.display = "none";
      document.getElementById("youtubeVideo").style.display = "none";
+     document.getElementById("TextRequest").style.display = "none";
+
 
 
      document.body.style.overflow = 'hidden';
@@ -175,6 +222,8 @@ document.getElementById('infoGoBackButton').onclick = function(e){
      //document.getElementById("spanish").style.display = "none";
 
      document.getElementById("english").style.display = "none";
+     document.getElementById("yoruba").style.display = "none";
+
      //document.getElementById("french").style.display = "none";
 
      //document.getElementById("portuguese").style.display = "none";
@@ -208,22 +257,36 @@ document.getElementById('infoGoBackButton').onclick = function(e){
    return dropDownOpen
   }
 
+var youtubeVideoLoaded = false
+document.getElementById('youtubeVideo').onload = function(){
+     document.getElementById('youtubeImage').src = '../images/youtube.png'
+     // document.getElementById('youtubeImage').style.display = 'none'
+     youtubeVideoLoaded = true
+ return youtubeVideoLoaded
+};
 document.getElementById('youtube').onclick = function(e){
      // document.getElementById("textEnglish").style.display = "initial";
      if(isOnline == true){
-       setTimeout(function(){
+       if(youtubeVideoLoaded == false){
+         document.getElementById('youtubeImage').src = '../images/checkingPw.gif'
+       }else{
+         // setTimeout(function(){
+         document.getElementById("youtube").style.display = "none";
+          document.getElementById("youtubeVideo").style.display = "initial";
+          document.getElementById('dropDown').style.display = "none";
+          document.getElementById('dropDown').style.backgroundColor = 'black';
+          document.getElementById('cutomiseButton').style.display = "none";
+          document.getElementById('startMapping').style.display = "none";
+          document.getElementById("infoButton").style.display = "none";
+          document.getElementById("iconsButton").style.display = "none";
+          document.getElementById("infoGoBackButton").style.display = "initial";
+          dropDownOpen = false
+       }
 
-       document.getElementById('dropDown').style.display = "none";
-       document.getElementById('dropDown').style.backgroundColor = 'black';
-       dropDownOpen = false
-       document.getElementById("infoButton").style.display = "none";
-       document.getElementById("iconsButton").style.display = "none";
-        document.getElementById("youtube").style.display = "none";
-        document.getElementById('cutomiseButton').style.display = "none";
-        document.getElementById('startMapping').style.display = "none";
-        document.getElementById("infoGoBackButton").style.display = "initial";
-     document.getElementById("youtubeVideo").style.display = "initial";
-   },300)
+
+
+
+   // },100)
    }else{
      document.getElementById('youtubeImage').src = '../images/youtubeOffline.png'
    }
@@ -244,6 +307,8 @@ document.getElementById('english').onclick = function(e){
     //document.getElementById("spanish").style.display = "none";
 
     document.getElementById("english").style.display = "none";
+    document.getElementById("yoruba").style.display = "none";
+
     //document.getElementById("french").style.display = "none";
     //document.getElementById("portuguese").style.display = "none";
     //document.getElementById("swahili").style.display = "none";
@@ -251,16 +316,16 @@ document.getElementById('english').onclick = function(e){
     document.getElementById("other1").style.display = "none";
     document.getElementById("other1UnderDev").style.display = "none";
     document.getElementById("AlertTranslate").style.display = "none";
-
-
-
   },100)
 
     //this is to load Cognito form 2 sec after UK is clicked, so page load fast - user won't need cognito after few secs
     setTimeout(function(){
-      Cognito.load("forms", { id: "2" })
     },700)
 }
+// select the target node
+
+
+// Cognito.load("forms", { id: "2" });
 document.getElementById('other1').onclick = function(e){
    document.getElementById('imageother1').style.marginLeft = '-4px'
    document.getElementById('imageother1').src = '../images/underConstruction.png'

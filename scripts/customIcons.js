@@ -169,7 +169,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
   document.getElementById('customIconsMap').style.display = 'initial';
 
     if(projectsCreated == false){
-      projectsCreated = true
+
 
         cell = document.createElement('div')
         document.body.appendChild(cell)
@@ -313,6 +313,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
 // // to show the icons of the project selected
   newProjectButton.onclick = function(){
         if(projectsCreated == false){
+          projectsCreated = true
           newProjectButton.innerHTML = '<img src="images/checkingPw.gif" style="width:50px ; height:50px; border: 0px solid white" />';
           setTimeout(function(){
             // sapProjectFirstTime = false
