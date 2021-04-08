@@ -151,10 +151,12 @@ function preload(arrayOfImages) {
   });
 }
 
-
+var isSapelliProjectLoaded
 // var newProjectButton
 //excites Logo in the map: to open the sapelli project
 document.getElementById('sapelliProjects').onclick = function(e){
+  isSapelliProjectLoaded = localStorage.getItem('sapelliProjectAccessed')
+  console.log(isSapelliProjectLoaded)
   document.getElementById("map").style.height = "0px";
 
   document.getElementById("Cancel").style.display = "none";
@@ -167,7 +169,10 @@ document.getElementById('sapelliProjects').onclick = function(e){
   // document.getElementById('customIconsMap').style.display = 'none';
   document.getElementById('customIconsMap').style.display = 'initial';
 
+
     if(projectsCreated == false){
+      projectsCreated = true
+
 
 
         cell = document.createElement('div')
@@ -315,11 +320,13 @@ document.getElementById('sapelliProjects').onclick = function(e){
 // // to show the icons of the project selected
   newProjectButton.onclick = function(){
     // cell.style.overflow =
-        if(projectsCreated == false){
-          projectsCreated = true
+        if(isSapelliProjectLoaded != 'true'){
+
           newProjectButton.innerHTML = '<img src="images/checkingPw.gif" style="width:50px ; height:50px; border: 0px solid white" />';
           newProjectButton.disabled = true
           setTimeout(function(){
+            localStorage.setItem('sapelliProjectAccessed', true);
+
             // sapProjectFirstTime = false
             newProjectButton.style.display = 'none';
             generateButtonsGenericCrops()
