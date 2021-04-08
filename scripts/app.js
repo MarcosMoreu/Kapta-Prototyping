@@ -250,14 +250,14 @@ var tilesDb = {
 // var created = false; // variable to detect wheter the feature (point,line,polygon) has been created
 // var sameSession = false; //to know if user has already mapped in this session
 
-lastPositionStoredLOCALLY = localStorage.getItem('lastPositionStoredLOCALLY')
-////console.log(lastPositionStoredLOCALLY)
-
-//to avoid error if no location was stored either because first load, not allowed, or cache cleared
-if (lastPositionStoredLOCALLY != null) {
-    lastPositionStoredLOCALLY = lastPositionStoredLOCALLY.split(',') // to convert string to array
-    ////console.log(lastPositionStoredLOCALLY[0])
-}
+// lastPositionStoredLOCALLY = localStorage.getItem('lastPositionStoredLOCALLY')
+// ////console.log(lastPositionStoredLOCALLY)
+//
+// //to avoid error if no location was stored either because first load, not allowed, or cache cleared
+// if (lastPositionStoredLOCALLY != null) {
+//     lastPositionStoredLOCALLY = lastPositionStoredLOCALLY.split(',') // to convert string to array
+//     ////console.log(lastPositionStoredLOCALLY[0])
+// }
 
 // function to get coordinates and zoom level from URL, and then use the zoom and center variables to center the map if url != original
 var mappos = L.Permalink.getMapLocation();
@@ -379,7 +379,7 @@ else if (urlContainsHash == true){  // if only coords are in the url
 }else{
   //console.log('only map')
 
-    if (lastPositionStoredLOCALLY == null) {
+    // if (lastPositionStoredLOCALLY == null) {
         var map = L.map('map', {
             renderer: L.canvas({padding: 0.5, tolerance: 8}),
             editable: true,
@@ -393,20 +393,20 @@ else if (urlContainsHash == true){  // if only coords are in the url
             maxBounds: L.latLngBounds(southWest, northEast)
 
         });
-    } else {
-        var map = L.map('map', {
-            renderer: L.canvas({padding: 0.5, tolerance: 8}),
-            editable: true,
-            center: [lastPositionStoredLOCALLY[0], lastPositionStoredLOCALLY[1]],
-            zoom: 10, /////////what is the most appropriate???/
-            minZoom: 2,
-            maxZoom: 21,
-            zoomControl: false,
-            attributionControl: false,
-            //drawControl:true,
-            maxBounds: L.latLngBounds(southWest, northEast)
-        });
-    }
+    // } else {
+    //     var map = L.map('map', {
+    //         renderer: L.canvas({padding: 0.5, tolerance: 8}),
+    //         editable: true,
+    //         center: [lastPositionStoredLOCALLY[0], lastPositionStoredLOCALLY[1]],
+    //         zoom: 10, /////////what is the most appropriate???/
+    //         minZoom: 2,
+    //         maxZoom: 21,
+    //         zoomControl: false,
+    //         attributionControl: false,
+    //         //drawControl:true,
+    //         maxBounds: L.latLngBounds(southWest, northEast)
+    //     });
+    // }
     geoJSONLocalforageDB = localforage.createInstance({ //to create a separate DB in IndexedDB, so geojsons are not mixed with TilesDB
     name: "geoJSONs"
     });
@@ -1526,11 +1526,11 @@ function findBuffer(position) {
     var lat = position.coords.latitude;
     var lng = position.coords.longitude;
     accuracy = position.coords.accuracy;
-    ////console.log(accuracy)
-    if (markerAdded == false) {
-        // L.marker([lat, lng],{icon:gpsIcon}).addTo(map);
-        markerAdded = true;
-    }
+    console.log(accuracy)
+    // if (markerAdded == false) {
+    //     // L.marker([lat, lng],{icon:gpsIcon}).addTo(map);
+    //     markerAdded = true;
+    // }
     currentLocation = [lat, lng];
 
     return currentLocation & markerAdded & accuracy;
@@ -1562,10 +1562,10 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
     }
     //if location found, then set button color, and create circle or add marker if <50m
     if (currentLocation[0] != null) {
-        localStorage.setItem('lastPositionStoredLOCALLY', currentLocation)
+        // localStorage.setItem('lastPositionStoredLOCALLY', currentLocation)
         locationFound = true
         //once the position has been found, we stop checking if the user deactivates again (the position will be recorded anyway)
-        if (accuracy <= 100) {
+        if (accuracy <= 50) {
 
             gps_Button.button.style.backgroundColor = '#3AFB06';
             //to change the icon of the Easybutton based on accuracy... (first gif then static image)
@@ -1584,22 +1584,28 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
               }
             },0) // time required for three repetitions of the gif
 
-            clearInterval(refreshGPSbutton) //stop searching once accuracy <50
+            // clearInterval(refreshGPSbutton) //stop searching once accuracy <50
 
 
               if(field == false){
+                if(position != undefined){
+                  map.removeLayer(position)
+                }
+
                 position = L.marker(currentLocation, {
                     icon: gpsIcon,
                     draggable:false,
                     zIndexOffset:100
                 })
-                // position.removeFrom(map)
+
+                position.setLatLng(currentLocation)
                 position.addTo(map)
                 // position.bringToFront()
               }
+              // clearInterval(refreshGPSbutton) //stop searching once accuracy <50
 
 
-        } else if (accuracy > 100 && accuracy <= 250) {
+        } else if (accuracy > 50 && accuracy <= 250) {
 
             gps_Button.button.style.backgroundColor = 'yellow';
             if (isIOS == true) {
@@ -1663,7 +1669,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
             currentLocation == null;
         }
     }
-    return currentLocation & circleLT250Added & circleGT250Added & circleLT250 & circleGT250;
+    return currentLocation && circleLT250Added && circleGT250Added && circleLT250 && circleGT250 && position;
   }
 }, 1000)
 }
@@ -1676,11 +1682,11 @@ var gps_Button = L.easyButton({
         icon: iconGPS,
         stateName: 'check-mark',
         onClick: function(btn, map) {
-            try {
-                navigator.geolocation.watchPosition(findBuffer);
-            } catch (err) {
-                currentLocation == null;
-            }
+            // try {
+            //     navigator.geolocation.watchPosition(findBuffer);
+            // } catch (err) {
+            //     currentLocation == null;
+            // }
             if (currentLocation[0] != null) {
 
               // googleSat_Button.removeFrom(map);
@@ -2118,7 +2124,7 @@ document.getElementById("field").onclick = function(e) {
       document.getElementById("Alert").style.display = 'none'
 
     },3000)
-  }else if(accuracy > 100){
+  }else if(accuracy > 50){
     // alert('Wait until the GPS symbol is green. This might take few seconds or minutes');
     document.getElementById("Alert").style.fontSize = "40px";
     document.getElementById('Alert').innerHTML = 'GPS</br>🟠⌛</br>🟡⌛</br>🟢👍'
@@ -2135,49 +2141,69 @@ document.getElementById("field").onclick = function(e) {
 
   }else{
     document.getElementById("Alert").style.display = 'none'
-    // startSearchingLocation()
-    // position.removeFrom(map)
-    field = true
+    document.getElementById("field").style.background = '#3AFB06'
+    document.getElementById("field").style.borderColor = '#3AFB06'
 
-    finalAreaHa2Decimals = null
-    finalAreaAcres2Decimals = null
-    finalLength2Decimals = null
+    // document.getElementById("fieldImage").src = 'images/checkingPw.gif'
+    try {
+        navigator.geolocation.watchPosition(findBuffer);
+    } catch (err) {
+        currentLocation == null;
+    }
+    // setTimeout(function(){
+    //   map.removeLayer(position)
+    // },500)
+    setTimeout(function(){
+      document.getElementById("field").style.background = 'white'
+      document.getElementById("field").style.borderColor = 'white'
 
-      filter_Button.button.style.opacity = '0.4';
-      filter_Button.button.disabled = true;
-      gps_Button.button.style.opacity = '0.4';
-      gps_Button.button.disabled = true;
+      // document.getElementById("fieldImage").src = 'images/field.png'
 
-      emojiRequest()
+      // startSearchingLocation()
+      // position.removeFrom(map)
+      field = true
 
-      if (isIOS == false) {
-          recordedBlobs = null; //to empty recorded blobs from previous map in this session
-      }
+      finalAreaHa2Decimals = null
+      finalAreaAcres2Decimals = null
+      finalLength2Decimals = null
 
-      featureType = 'point';
-      map.doubleClickZoom.disable();
-      currentZoom = map.getZoom();
-      drawMarker.enable();
+        filter_Button.button.style.opacity = '0.4';
+        filter_Button.button.disabled = true;
+        gps_Button.button.style.opacity = '0.4';
+        gps_Button.button.disabled = true;
 
-          document.getElementById("tutorial").style.display = "none";
-          document.getElementById("polygon").style.display = "none";
-          document.getElementById("polyline").style.display = "none";
-          document.getElementById("point").style.display = "none";
-          document.getElementById("armchair").style.display = "none";
-          document.getElementById("field").style.display = "none";
-          document.getElementById("gobackArmchairField").style.display = "none";
+        emojiRequest()
 
-      drawingPoint = true;
-        // var currentLocationSimulateClickLat = 3.445137
-        // var currentLocationSimulateClickLng = 7.23346
-        var currentLocationSimulateClickLat = currentLocation[0]
-        var currentLocationSimulateClickLng = currentLocation[1]
-        setTimeout(function(){
-          map.fireEvent('click', {
-          latlng: L.latLng(currentLocationSimulateClickLat, currentLocationSimulateClickLng)
-        },100);
-        })
-  }
+        // if (isIOS == false) {
+        //     recordedBlobs = null; //to empty recorded blobs from previous map in this session
+        // }
+
+        featureType = 'point';
+        map.doubleClickZoom.disable();
+        currentZoom = map.getZoom();
+        drawMarker.enable();
+
+            document.getElementById("tutorial").style.display = "none";
+            document.getElementById("polygon").style.display = "none";
+            document.getElementById("polyline").style.display = "none";
+            document.getElementById("point").style.display = "none";
+            document.getElementById("armchair").style.display = "none";
+            document.getElementById("field").style.display = "none";
+            document.getElementById("gobackArmchairField").style.display = "none";
+
+        drawingPoint = true;
+          // var currentLocationSimulateClickLat = 3.445137
+          // var currentLocationSimulateClickLng = 7.23346
+          var currentLocationSimulateClickLat = currentLocation[0]
+          var currentLocationSimulateClickLng = currentLocation[1]
+
+            map.fireEvent('click', {
+            latlng: L.latLng(currentLocationSimulateClickLat, currentLocationSimulateClickLng)
+          },100);
+        },800)
+    }
+
+
   return drawingPoint && featureType && field
 }
 ///////////////////////////////////////////draw screen////////////////////////////////////////////////
