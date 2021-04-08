@@ -37,7 +37,7 @@ transform: scale(0.6);
 
   background-color: black;
   height:80%;
-  overflow-y: scroll;
+  overflow-y: scroll !important;
   text-align:justify;
 }
 .sapelliProjectsLogo{

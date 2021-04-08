@@ -220,7 +220,7 @@ var initialiseMap = function(){
             'images/markerLocalStorage.png','images/markerPolygon.png','images/myLayer.png','images/nautical.svg','images/osm.png',
             'images/other1.png','images/play.png','images/PlusSign.png',
             'images/questionmark.png','images/random.png','images/shareMessagingApps.png','images/shareworld.png','images/shareworldConfirm.png',
-            'images/telegram.png','images/uk.png','images/other1.png','images/underConstruction.png','images/wechat.png','images/whatsapp.png','images/youtube.png','images/youtubeOffline.png',
+            'images/telegram.png','images/uk.png','images/yoruba.png','images/other1.png','images/underConstruction.png','images/wechat.png','images/whatsapp.png','images/youtube.png','images/youtubeOffline.png',
             'images/shareMessagingAppsYellow.png','images/sendComment.png','images/sms.png',
             'images/sent.mp4','images/downloaded.mp4',
             'images/excitesTree.png','images/logoNigeria.png',

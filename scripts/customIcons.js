@@ -179,6 +179,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
         newProjectButton.style.marginBottom = '200px'
         newProjectButton.style.marginLeft = '20px'
         newProjectButton.innerHTML = '<img src="images/logoNigeria.png" style="width:50px ; height:50px; border: 0px solid white" />';
+        // cell.style.overflow = 'scroll'
 
         preload([
           //crops generic
@@ -186,7 +187,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
         "images/csaNigeria/Crops/cashCrop.png","images/csaNigeria/Crops/nuts.png",
         //Crops
         'images/csaNigeria/Crops/Agbalumo.png','images/csaNigeria/Crops/agbon.png','images/csaNigeria/Crops/amaranthus.png','images/csaNigeria/Crops/Awusa.png',"images/csaNigeria/Crops/banana.png",
-        "images/csaNigeria/Crops/beans.png","images/csaNigeria/Crops/Cashew.png",'images/csaNigeria/Crops/cassava.png','images/csaNigeria/Crops/coco.png','images/csaNigeria/Crops/cocoa.png',
+        "images/csaNigeria/Crops/beans.png","images/csaNigeria/Crops/Cashew.png",'images/csaNigeria/Crops/cassava.png','images/csaNigeria/Crops/cocoa.png',
         'images/csaNigeria/Crops/cocoyam.png',"images/csaNigeria/Crops/cucumber.png",'images/csaNigeria/Crops/Epa.png',"images/csaNigeria/Crops/Esuru.png",'images/csaNigeria/Crops/ewedu.png',
         "images/csaNigeria/Crops/Ewuro.png","images/csaNigeria/Crops/Fruits.png",'images/csaNigeria/Crops/gbure.png','images/csaNigeria/Crops/irishPotato.png','images/csaNigeria/Crops/Isu Ewura.png',
         'images/csaNigeria/Crops/juteLeaf.png',"images/csaNigeria/Crops/Maize.png",'images/csaNigeria/Crops/mangoro.png',"images/csaNigeria/Crops/Obi.png",'images/csaNigeria/Crops/okro.png',
@@ -308,10 +309,12 @@ document.getElementById('sapelliProjects').onclick = function(e){
   else{
     newProjectButton.style.display = 'initial';
     cell.style.display = 'initial'
+    // cell.style.overflow = 'scroll'
   }
 
 // // to show the icons of the project selected
   newProjectButton.onclick = function(){
+    // cell.style.overflow =
         if(projectsCreated == false){
           projectsCreated = true
           newProjectButton.innerHTML = '<img src="images/checkingPw.gif" style="width:50px ; height:50px; border: 0px solid white" />';
@@ -329,11 +332,13 @@ document.getElementById('sapelliProjects').onclick = function(e){
         }else{
           // sapProjectFirstTime = false
           newProjectButton.style.display = 'none';
+          cell.setAttribute("style","overflow-y:scroll");
+
           generateButtonsGenericCrops()
         }
 
     }
-  return projectsCreated && sapProjectFirstTime && newProjectButton
+  return projectsCreated && sapProjectFirstTime && newProjectButton && cell
 }
 
 var  icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8, icon9, icon10, icon11, icon12, icon13, icon14, icon15, icon16, icon17, icon18, icon19, icon20, icon21, icon22, icon22, icon23, icon24, icon25, icon26,
@@ -514,9 +519,19 @@ var generateButtonsVegetables = function(){
   }
   icon15 = document.createElement("BUTTON");
   cell.appendChild(icon15);
-  icon15.innerHTML = '<img src="images/csaNigeria/Crops/ugu.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Soko';
+  icon15.innerHTML = '<img src="images/csaNigeria/Crops/ugu.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Ugu';
   icon15.className = 'buttonsSapelli'
   icon15.onclick = function(){
+    hideAll()
+    generateButtonsStage()
+    crop = '🌿 Ugu'
+
+  }
+  icon15b = document.createElement("BUTTON");
+  cell.appendChild(icon15b);
+  icon15b.innerHTML = '<img src="images/csaNigeria/Crops/soko.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Soko';
+  icon15b.className = 'buttonsSapelli'
+  icon15b.onclick = function(){
     hideAll()
     generateButtonsStage()
     crop = '🌿 Soko'
@@ -673,12 +688,12 @@ var generateButtonsFruits = function(){
   }
   icon30 = document.createElement("BUTTON");
   cell.appendChild(icon30);
-  icon30.innerHTML = '<img src="images/csaNigeria/Crops/Pawpaw-.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Pawpaw';
+  icon30.innerHTML = '<img src="images/csaNigeria/Crops/Pawpaw-.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Ibepe';
   icon30.className = 'buttonsSapelli'
   icon30.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = '➡️ Pawpaw'
+    crop = '➡️ Ibepe'
 
   }
   icon31 = document.createElement("BUTTON");
@@ -722,12 +737,12 @@ var generateButtonsTubers = function(){
   }
   icon34 = document.createElement("BUTTON");
   cell.appendChild(icon34);
-  icon34.innerHTML = '<img src="images/csaNigeria/Crops/sweetPotato.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Odunkun';
+  icon34.innerHTML = '<img src="images/csaNigeria/Crops/sweetPotato.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Odunkun/Ànàmó';
   icon34.className = 'buttonsSapelli'
   icon34.onclick = function(){
     hideAll()
     generateButtonsStage()
-    crop = '➡️ Odunkun'
+    crop = '➡️ Odunkun/Ànàmó'
 
   }
   icon35 = document.createElement("BUTTON");
@@ -750,16 +765,16 @@ var generateButtonsTubers = function(){
     crop = '➡️ Koko'
 
   }
-  icon38 = document.createElement("BUTTON");
-  cell.appendChild(icon38);
-  icon38.className = 'buttonsSapelli'
-  icon38.innerHTML = '<img src="images/csaNigeria/Crops/coco.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Coco';
-  icon38.onclick = function(){
-    hideAll()
-    generateButtonsStage()
-    crop = '➡️ Coco'
-
-  }
+  // icon38 = document.createElement("BUTTON");
+  // cell.appendChild(icon38);
+  // icon38.className = 'buttonsSapelli'
+  // icon38.innerHTML = '<img src="images/csaNigeria/Crops/coco.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Coco';
+  // icon38.onclick = function(){
+  //   hideAll()
+  //   generateButtonsStage()
+  //   crop = '➡️ Coco'
+  //
+  // }
   icon39 = document.createElement("BUTTON");
   cell.appendChild(icon39);
   icon39.innerHTML = '<img src="images/csaNigeria/Crops/Esuru.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Esuru';
@@ -933,7 +948,7 @@ var generateButtonsStage = function(){
   icon53.onclick = function(){
     hideAll()
     generateButtonsBeforePlantingStage()
-    stage = '⌚ Before Planting'
+    stage = '⌚ Ìpalèmó Ogbin'
   }
   icon56 = document.createElement("BUTTON");
   cell.appendChild(icon56);
@@ -942,25 +957,25 @@ var generateButtonsStage = function(){
   icon56.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    stage = '⌚ Planting'
+    stage = '⌚ Asiko Gbíngbìn'
   }
   icon55 = document.createElement("BUTTON");
   cell.appendChild(icon55);
   icon55.className = 'buttonsSapelli'
-  icon55.innerHTML = '<img src="images/csaNigeria/stages/PestControlStage.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Wedding/PestControl';
+  icon55.innerHTML = '<img src="images/csaNigeria/stages/PestControlStage.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Fifin Oko';
   icon55.onclick = function(){
     hideAll()
     generateButtonsPestControlStage()
-    stage = '⌚ Pest Control'
+    stage = '⌚ Fifin Oko'
   }
   icon54 = document.createElement("BUTTON");
   cell.appendChild(icon54);
-  icon54.innerHTML = '<img src="images/csaNigeria/stages/TopDressingStage.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>TopDressing';
+  icon54.innerHTML = '<img src="images/csaNigeria/stages/TopDressingStage.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Lilo Ajile';
   icon54.className = 'buttonsSapelli'
   icon54.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    stage = '⌚ Top Dressing'
+    stage = '⌚ Lilo Ajile'
   }
   icon58 = document.createElement("BUTTON");
   cell.appendChild(icon58);
@@ -969,7 +984,7 @@ var generateButtonsStage = function(){
   icon58.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    stage = '⌚ Harvesting'
+    stage = '⌚ Kiko Ere'
   }
 
   icon57 = document.createElement("BUTTON");
@@ -979,7 +994,7 @@ var generateButtonsStage = function(){
   icon57.onclick = function(){
     hideAll()
     generateButtonsHelp()
-    stage = '⌚ Post Harvesting'
+    stage = '⌚ Kikopamo'
   }
 
   return stage &&   screenChoice
@@ -1091,33 +1106,33 @@ var generateButtonsHelp = function(){
 
     generateIssuesGeneric()
     hideAll()
-    if(stage == '⌚ Before Planting'){
+    if(stage == '⌚ Ìpalèmó Ogbin'){
       icon69r.style.display = 'initial' //climatic
       icon74r.style.display = 'initial' //soil
       icon75r.style.display = 'initial' //weed
       icon76.style.display = 'initial' //other
     }
-    if(stage == '⌚ Planting'){
+    if(stage == '⌚ Asiko Gbíngbìn'){
       icon70r.style.display = 'initial' //dissease
       icon72r.style.display = 'initial' //pest
       icon69r.style.display = 'initial' //climatic
       icon74r.style.display = 'initial' //soil
       icon76.style.display = 'initial' //other
     }
-    if(stage == '⌚ Pest Control'){
+    if(stage == '⌚ Fifin Oko'){
       icon70r.style.display = 'initial' //dissease
       icon72r.style.display = 'initial' //pest
       icon75r.style.display = 'initial' //weed
       icon76.style.display = 'initial' //other
     }
-    if(stage == '⌚ Top Dressing'){
+    if(stage == '⌚ Lilo Ajile'){
       icon70r.style.display = 'initial' //dissease
       icon72r.style.display = 'initial' //pest
       icon69r.style.display = 'initial' //climatic
       icon74r.style.display = 'initial' //soil
       icon76.style.display = 'initial' //other
     }
-    if(stage == '⌚ Harvesting'){
+    if(stage == '⌚ Kiko Ere'){
       icon70r.style.display = 'initial' //dissease
       icon72r.style.display = 'initial' //pest
       icon69r.style.display = 'initial' //climatic
@@ -1125,7 +1140,7 @@ var generateButtonsHelp = function(){
       icon73r.style.display = 'initial' //postharvest
       icon75r.style.display = 'initial' //weed
     }
-    if(stage == '⌚ Post Harvesting'){
+    if(stage == '⌚ Kikopamo'){
       icon70r.style.display = 'initial' //dissease
       icon72r.style.display = 'initial' //pest
       icon69r.style.display = 'initial' //climatic
@@ -1145,13 +1160,13 @@ var generateButtonsHelp = function(){
 
     generateIssuesGeneric()
     hideAll()
-    if(stage == '⌚ Before Planting'){
+    if(stage == '⌚ Ìpalèmó Ogbin'){
       icon69g.style.display = 'initial' //climatic
       icon74g.style.display = 'initial' //soil
       icon75g.style.display = 'initial' //weed
       icon76.style.display = 'initial' //other
     }
-    if(stage == '⌚ Planting'){
+    if(stage == '⌚ Asiko Gbíngbìn'){
       icon70g.style.display = 'initial' //dissease
       icon72g.style.display = 'initial' //pest
       icon69g.style.display = 'initial' //climatic
@@ -1159,7 +1174,7 @@ var generateButtonsHelp = function(){
       icon76.style.display = 'initial' //other
 
     }
-    if(stage == '⌚ Pest Control'){
+    if(stage == '⌚ Fifin Oko'){
       icon70g.style.display = 'initial' //dissease
       icon72g.style.display = 'initial' //pest
       icon75g.style.display = 'initial' //weed
@@ -1167,14 +1182,14 @@ var generateButtonsHelp = function(){
 
 
     }
-    if(stage == '⌚ Top Dressing'){
+    if(stage == '⌚ Lilo Ajile'){
       icon70g.style.display = 'initial' //dissease
       icon72g.style.display = 'initial' //pest
       icon69g.style.display = 'initial' //climatic
       icon74g.style.display = 'initial' //soil
       icon76.style.display = 'initial' //other
     }
-    if(stage == '⌚ Harvesting'){
+    if(stage == '⌚ Kiko Ere'){
       icon70g.style.display = 'initial' //dissease
       icon72g.style.display = 'initial' //pest
       icon69g.style.display = 'initial' //climatic
@@ -1184,7 +1199,7 @@ var generateButtonsHelp = function(){
       icon76.style.display = 'initial' //other
 
     }
-    if(stage == '⌚ Post Harvesting'){
+    if(stage == '⌚ Kikopamo'){
       icon70g.style.display = 'initial' //dissease
       icon72g.style.display = 'initial' //pest
       icon69g.style.display = 'initial' //climatic
