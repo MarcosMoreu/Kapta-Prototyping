@@ -84,7 +84,7 @@ document.getElementById('customIconsCancel').onclick = function(e){
   landUses = null
   help = null
   issueGeneric = null
-  issueSpecific = null
+  issueSpecific = 'emojiNoSapelli'
   return  crop && stage && landUses && help && issueGeneric && issueSpecific
 }
 document.getElementById('customIconsGoBack').onclick = function(e){
