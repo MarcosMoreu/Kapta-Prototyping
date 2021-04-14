@@ -3,7 +3,7 @@
 
 // Set a name for the current cache. Note that when version is changed, the pwa only updates autmotically after reloading!
 //Note that for automatic update, at one change need to be made in the app.js file (or in other files...)
-var version = 'v18.9';
+var version = 'v19.0';
 //console.log(version)
 
 // Default files to always cache
@@ -184,7 +184,7 @@ self.addEventListener("fetch", function(event) {
 
 
 
-          return new Response('<h1>YOU ARE OFFLINE! To view the contribution while offline, please open the URL while online. Full offline use under development</h1>', {
+          return new Response('<h1>You are OFFLINE. FULL offline use under development</h1>', {
             status: 503,
             statusText: 'Service Unavailable',
             headers: new Headers({
