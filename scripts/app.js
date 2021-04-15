@@ -797,6 +797,8 @@ if (isIOS == true) {
     var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > ';
     var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px;margin-bottom:2px" > ';
     var iconRANDOM = '<img src="images/gps.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
+    var iconLocalStorageRecenter = '<img src="images/LocalStorageRecenter.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%; margin-left:-5px" > ';
+
 
 } else {
     var iconGPS = '<img src="images/gpsOff.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;"> ';
@@ -806,6 +808,8 @@ if (isIOS == true) {
     var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px" > ';
     var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px;margin-bottom:2px" > ';
     var iconRANDOM = '<img src="images/gps.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
+    var iconLocalStorageRecenter = '<img src="images/LocalStorageRecenter.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;"> ';
+
 }
 var basemapOn = 'googleSat'
 
@@ -971,7 +975,11 @@ var osm_Button = L.easyButton({
             osm_Button.removeFrom(map);
             planet_Button.addTo(map);
             myLayer_Button.addTo(map) //keep this, otherwise the button moves up
-            filter_Button.addTo(map);
+            if (whichLayerIsOn == 'localStorage'){
+              localStorageRecenter_Button.addTo(map)
+            }else{
+              filter_Button.addTo(map);
+            }
             try{
               osm.addTo(map);
 
@@ -1031,7 +1039,11 @@ var googleSat_Button = L.easyButton({
             osm_Button.addTo(map);
             myLayer_Button.addTo(map) //keep this, otherwise the button moves up
             // if(isOnline == true){
-            filter_Button.addTo(map);
+            if (whichLayerIsOn == 'localStorage'){
+              localStorageRecenter_Button.addTo(map)
+            }else{
+              filter_Button.addTo(map);
+            }
             // }
 
 
@@ -1124,7 +1136,11 @@ var planet_Button = L.easyButton({
           //  planet.addTo(map); // planet imagery goes after so it stays on top of sentinel data (sentinel is global, planet is not yet?)
             myLayer_Button.addTo(map) //keep this, otherwise the button moves up
             // if(isOnline == true){
-            filter_Button.addTo(map);
+            if (whichLayerIsOn == 'localStorage'){
+              localStorageRecenter_Button.addTo(map)
+            }else{
+              filter_Button.addTo(map);
+            }
             // }
             basemapOn = 'planet'
           return basemapOn
@@ -1311,7 +1327,22 @@ var myLayer_Button = L.easyButton({
                   //console.log('local storage is not null')
                     // if(urlgeojsonfeature !=null){
                     // }
+
                     localStorageLayer.addTo(map)
+
+                    filter_Button.removeFrom(map)
+                    // googleSat_Button.addTo(map);
+                    // osm_Button.addTo(map);
+                    // planet_Button.addTo(map)
+                    // myLayer_Button.addTo(map)
+                    localStorageRecenter_Button.addTo(map);
+
+                    // var currentZoom = map.getZoom();
+                    // if(currentZoom >= 18){
+                    //   var boundsLocalStorageLayer = localStorageLayer.getBounds()
+                    //   map.fitBounds(boundsLocalStorageLayer)
+                    // }
+
                     // urlgeojsonfeature.addTo(map)
 
                 }
@@ -1324,6 +1355,8 @@ var myLayer_Button = L.easyButton({
                 filter_Button.button.disabled = true;
 
             } else if (whichLayerIsOn == 'deflated' && localStorageLayer == null) { // to avoid three click when localstorage is limited on first load
+              // rose.remove()
+              // rose.addTo(map)
                 whichLayerIsOn = 'none'
                 deflated.removeFrom(map)
                 filter_Button.button.style.opacity = '0.4';
@@ -1333,6 +1366,7 @@ var myLayer_Button = L.easyButton({
             } else if (whichLayerIsOn == 'localStorage') {
                 if (localStorageLayer != null) {
                     localStorageLayer.removeFrom(map)
+
                     try{
                       // urlgeojsonfeature.removeFrom(map)
                     }catch(e){}
@@ -1343,6 +1377,9 @@ var myLayer_Button = L.easyButton({
                 if (finalLayer != null) {
                     finalLayer.removeFrom(map)
                 }
+                localStorageRecenter_Button.removeFrom(map);
+                filter_Button.addTo(map)
+
                 myLayer_Button.button.style.backgroundColor = 'white'
                 filter_Button.button.style.opacity = '0.4';
                 filter_Button.button.disabled = true;
@@ -1370,7 +1407,7 @@ var myLayer_Button = L.easyButton({
                   featureSent = false
               }
             }
-          return featureSent
+          return featureSent && whichLayerIsOn
         }
     }]
 })
@@ -1772,7 +1809,29 @@ gps_Button.button.style.transitionDuration = '.3s';
 gps_Button.button.style.backgroundColor = 'red';
 //gps_Button.addTo(map);
 
+////console.log(currentLocation[0]ddddddd)
+var localStorageRecenter_Button = L.easyButton({
+    id: 'iconLocalStorageRecenter',
+    position: 'topright',
+    states: [{
+        icon: iconLocalStorageRecenter,
+        stateName: 'check-mark',
+        onClick: function(btn, map) {
 
+            var boundsLocalStorageLayer = localStorageLayer.getBounds()
+            map.fitBounds(boundsLocalStorageLayer)
+            }
+
+
+
+    }]
+});
+
+localStorageRecenter_Button.button.style.width = '50px';
+localStorageRecenter_Button.button.style.height = '50px';
+localStorageRecenter_Button.button.style.transitionDuration = '.3s';
+localStorageRecenter_Button.button.style.backgroundColor = 'black';
+localStorageRecenter_Button.removeFrom(map);
 
 var rose = L.control.rose('rose', {
     position: 'topleft',

@@ -4,6 +4,7 @@
 
 //var runJSselectFeature = function(){
 document.getElementById("backDeleteFeature").onclick = function() {
+  console.log(whichLayerIsOn)
   document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
 
   aFeatureIsSelected = false
@@ -28,10 +29,25 @@ document.getElementById("backDeleteFeature").onclick = function() {
     googleSat_Button.removeFrom(map);
     planet_Button.removeFrom(map);
     myLayer_Button.addTo(map);
-    filter_Button.addTo(map);
+    if(whichLayerIsOn == 'localStorage'){
+      filter_Button.removeFrom(map)
+      localStorageRecenter_Button.addTo(map)
+      localStorageRecenter_Button.button.style.opacity = '1';
+      localStorageRecenter_Button.button.disabled = false;
+    }else{
+      localStorageRecenter_Button.removeFrom(map);
+      filter_Button.addTo(map);
+    }
+    // localStorageRecenter_Button.addTo(map);
+    // filter_Button.removeFrom(map)
     //removeMiniMap()
     //miniMap.remove();
-
+    osm_Button.button.style.opacity = '1';
+    osm_Button.button.disabled = false;
+    googleSat_Button.button.style.opacity = '1';
+    googleSat_Button.button.disabled = false;
+    planet_Button.button.style.opacity = '1';
+    planet_Button.button.disabled = false;
     gps_Button.button.style.opacity = '1';
     gps_Button.button.disabled = false;
     myLayer_Button.button.style.opacity = '1';
@@ -42,9 +58,18 @@ document.getElementById("backDeleteFeature").onclick = function() {
 
     try { //sometimes this fails
       if (selectedFeature.feature.geometry.type != 'Point') {
+        if(whichLayerIsOn == 'localStorage'){
           selectedFeature.setStyle({
-              color: '#AFFDA7'
+              color: '#43ACF0'
           })
+        }else{
+          selectedFeature.setStyle({
+            color: '#AFFDA7'
+
+          })
+          isLocalStorage = false
+        }
+
       }
 
         selectedFeature.editing.disable()
@@ -66,6 +91,8 @@ document.getElementById("backDeleteFeature").onclick = function() {
 
     document.getElementById("backDeleteFeature").style.display = "none";
     document.getElementById("deleteFeature").style.display = 'none';
+    document.getElementById('deleteFeatureLocalStorage').style.display = 'none'
+
     document.getElementById("deleteFeature").style.backgroundColor = 'white';
     document.getElementById("deleteFeature").style.borderColor = 'white';
     document.getElementById("imageDeleteFeature").src = 'images/binpre.png';
@@ -109,7 +136,7 @@ document.getElementById("backDeleteFeature").onclick = function() {
       document.getElementById("Alert").style.display = 'none'
     }
 
-    return selectedFeature && clickCountDeleteButton && cartoIdFeatureSelected && filterIsOn && aFeatureIsSelected
+    return selectedFeature && clickCountDeleteButton && cartoIdFeatureSelected && filterIsOn && aFeatureIsSelected && isLocalStorage
 
 }
 document.getElementById("shareMessagingApp").onclick = function() {
@@ -401,6 +428,12 @@ document.getElementById("deleteFeature").onclick = function() {
         planet_Button.removeFrom(map);
         myLayer_Button.addTo(map);
         filter_Button.addTo(map);
+        osm_Button.button.style.opacity = '1';
+        osm_Button.button.disabled = false;
+        googleSat_Button.button.style.opacity = '1';
+        googleSat_Button.button.disabled = false;
+        planet_Button.button.style.opacity = '1';
+        planet_Button.button.disabled = false;
 
         myLayer_Button.button.style.opacity = '1';
         myLayer_Button.button.disabled = false

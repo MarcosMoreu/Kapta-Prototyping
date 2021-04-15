@@ -222,7 +222,7 @@ var initialiseMap = function(){
             'images/questionmark.png','images/random.png','images/shareMessagingApps.png','images/shareworld.png','images/shareworldConfirm.png',
             'images/telegram.png','images/uk.png','images/yoruba.png','images/other1.png','images/underConstruction.png','images/wechat.png','images/whatsapp.png','images/youtube.png','images/youtubeOffline.png',
             'images/shareMessagingAppsYellow.png','images/sendComment.png','images/sms.png',
-            'images/sent.mp4','images/downloaded.mp4',
+            'images/sent.mp4','images/downloaded.mp4','images/LocalStorageRecenter.png',
             'images/excitesTree.png','images/csaNigeria/Logo.png',
             'images/customIconsMap.png','images/customIconsCancel.png',
             'images/csaNigeria/Crops/Cereals.png','images/csaNigeria/Crops/Vegetables.png','images/csaNigeria/Crops/Fruits.png','images/csaNigeria/Crops/Tubers.png',"images/csaNigeria/Crops/pulses.png",

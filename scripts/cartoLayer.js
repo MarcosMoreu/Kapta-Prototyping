@@ -222,6 +222,13 @@ var cartoGeoJSONLayer = function(data) {
                      document.getElementById("deleteFeature").disabled = false;
                      document.getElementById("randomSuggestion").style.display = "initial";
                     // miniMap.addTo(map);
+                    osm_Button.button.style.opacity = '0.4';
+                    osm_Button.button.disabled = true;
+                    googleSat_Button.button.style.opacity = '0.4';
+                    googleSat_Button.button.disabled = true;
+                    planet_Button.button.style.opacity = '0.4';
+                    planet_Button.button.disabled = true;
+
                      gps_Button.button.style.opacity = '0.4';
                      gps_Button.button.disabled = true;
                      myLayer_Button.button.style.opacity = '0.4';
@@ -300,6 +307,13 @@ var cartoGeoJSONLayer = function(data) {
                          document.getElementById("deleteFeature").disabled = false;
                          document.getElementById("randomSuggestion").style.display = "initial";
                         // miniMap.addTo(map)
+                        osm_Button.button.style.opacity = '0.4';
+                        osm_Button.button.disabled = true;
+                        googleSat_Button.button.style.opacity = '0.4';
+                        googleSat_Button.button.disabled = true;
+                        planet_Button.button.style.opacity = '0.4';
+                        planet_Button.button.disabled = true;
+
                          gps_Button.button.style.opacity = '0.4';
                          gps_Button.button.disabled = true;
                          myLayer_Button.button.style.opacity = '0.4';
