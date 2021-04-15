@@ -1,6 +1,7 @@
 var dropDownOpen = false;
 var isOnline = navigator.onLine
 var browserLanguage = navigator.language
+var languageSelected
 
 // document.getElementById('english').src = "https://raw.githubusercontent.com/hjnilsson/country-flags/master/png100px/ad.png"
 
@@ -211,12 +212,19 @@ document.getElementById('iconsButton').onclick = function(e){
   }
 
 document.getElementById('infoGoBackButton').onclick = function(e){
+  var storeIframeURL = document.getElementById("youtubeVideo").src
    setTimeout(function(){
      document.getElementById("infoGoBackButton").style.display = "none";
      document.getElementById("infoCont").style.display = "none";
      document.getElementById("iconsCont").style.display = "none";
      document.getElementById("cognitoForm").style.display = "none";
+
+     document.getElementById("youtubeVideo").setAttribute('src','')
+     document.getElementById("youtubeVideo").setAttribute('src',storeIframeURL)
      document.getElementById("youtubeVideo").style.display = "none";
+     // document.getElementById("youtubeVideo").stopVideo()
+     // document.getElementById("youtubeVideoYoruba").style.display = "none";
+
      document.getElementById("TextRequest").style.display = "none";
 
 
@@ -226,7 +234,7 @@ document.getElementById('infoGoBackButton').onclick = function(e){
      document.getElementById("infoButton").style.display = "none";
      document.getElementById("iconsButton").style.display = "none";
      document.getElementById('cutomiseButton').style.display = "none";
-     //document.getElementById("spanish").style.display = "none";
+     document.getElementById("youtubeVideo").style.display = "none";
 
      document.getElementById("english").style.display = "none";
      document.getElementById("yoruba").style.display = "none";
@@ -252,58 +260,79 @@ document.getElementById('infoGoBackButton').onclick = function(e){
 
      //document.getElementById("textJuhoansi").style.display = "none";
 
+     if(languageSelected == 'english'){
+       document.getElementById('dropDown').style.backgroundColor = 'black';
+       document.getElementById('imageDropDown').src = '../images/burger.png';
+       document.getElementById('dropDown').style.display = "initial";
+       dropDownOpen = false
 
-     document.getElementById('dropDown').style.backgroundColor = 'black';
-     document.getElementById('imageDropDown').src = '../images/burger.png';
-     document.getElementById('dropDown').style.display = "initial";
-     dropDownOpen = false
+     }
      document.getElementById("youtube").style.display = "initial";
      document.getElementById("startMapping").style.display = "initial";
 
+
+
    },100)
-   return dropDownOpen
+   return dropDownOpen && storeIframeURL
   }
 
 var youtubeVideoLoaded = false
-document.getElementById('youtubeVideo').onload = function(){
-     document.getElementById('youtubeImage').src = '../images/youtube.png'
-     // document.getElementById('youtubeImage').style.display = 'none'
-     youtubeVideoLoaded = true
- return youtubeVideoLoaded
-};
+// var youtubeVideoYorubaLoaded = false
+
+
+// document.getElementById('youtubeVideoYoruba').onload = function(){
+//      document.getElementById('youtubeImage').src = '../images/youtube.png'
+//      // document.getElementById('youtubeImage').style.display = 'none'
+//      youtubeVideoYorubaLoaded = true
+//  return youtubeVideoYorubaLoaded
+// };
 document.getElementById('youtube').onclick = function(e){
      // document.getElementById("textEnglish").style.display = "initial";
+
+
      if(isOnline == true){
-       if(youtubeVideoLoaded == false){
-         document.getElementById('youtubeImage').src = '../images/checkingPw.gif'
-       }else{
-         // setTimeout(function(){
-         document.getElementById("youtube").style.display = "none";
-          document.getElementById("youtubeVideo").style.display = "initial";
-          document.getElementById('dropDown').style.display = "none";
-          document.getElementById('dropDown').style.backgroundColor = 'black';
-          document.getElementById('cutomiseButton').style.display = "none";
-          document.getElementById('startMapping').style.display = "none";
-          document.getElementById("infoButton").style.display = "none";
-          document.getElementById("iconsButton").style.display = "none";
-          document.getElementById("infoGoBackButton").style.display = "initial";
-          dropDownOpen = false
-       }
+        var checkYoutubeLoaded = setInterval(function() {
+             if(youtubeVideoLoaded == false){
+               document.getElementById('youtubeImage').src = '../images/checkingPw.gif'
+             }else{
+               // setTimeout(function(){
+               document.getElementById("youtube").style.display = "none";
+                document.getElementById('dropDown').style.display = "none";
+                document.getElementById('dropDown').style.backgroundColor = 'black';
+                document.getElementById('cutomiseButton').style.display = "none";
+                document.getElementById('startMapping').style.display = "none";
+                document.getElementById("infoButton").style.display = "none";
+                document.getElementById("iconsButton").style.display = "none";
+                document.getElementById("infoGoBackButton").style.display = "initial";
+                document.getElementById("youtubeVideo").style.display = "initial";
+
+                dropDownOpen = false
+                clearInterval(checkYoutubeLoaded)
+             }
 
 
+       },500)
 
 
-   // },100)
-   }else{
-     document.getElementById('youtubeImage').src = '../images/youtubeOffline.png'
-   }
-
+     // },100)
+     }else{
+       document.getElementById('youtubeImage').src = '../images/youtubeOffline.png'
+     }
 
    return dropDownOpen
 
   }
 
 document.getElementById('english').onclick = function(e){
+
+  languageSelected = 'english'
+  document.getElementById('youtubeVideo').src = "https://www.youtube.com/embed/SHv3tH8p724"
+  document.getElementById('youtubeVideo').onload = function(){
+       document.getElementById('youtubeImage').src = '../images/youtube.png'
+       // document.getElementById('youtubeImage').style.display = 'none'
+       youtubeVideoLoaded = true
+   return youtubeVideoLoaded
+  };
 
    setTimeout(function(){
     document.getElementById("dropDown").style.display = "initial";
@@ -328,6 +357,43 @@ document.getElementById('english').onclick = function(e){
     //this is to load Cognito form 2 sec after UK is clicked, so page load fast - user won't need cognito after few secs
     setTimeout(function(){
     },700)
+  return languageSelected
+}
+
+document.getElementById('yoruba').onclick = function(e){
+  languageSelected = 'yoruba'
+  document.getElementById('youtubeVideo').src = "https://www.youtube.com/embed/Bq6FaOC_VpI"
+  document.getElementById('youtubeVideo').onload = function(){
+       document.getElementById('youtubeImage').src = '../images/youtube.png'
+       // document.getElementById('youtubeImage').style.display = 'none'
+       youtubeVideoLoaded = true
+   return youtubeVideoLoaded
+  };
+
+   setTimeout(function(){
+    // document.getElementById("dropDown").style.display = "initial";
+     document.getElementById("youtube").style.display = "initial";
+     document.getElementById("startMapping").style.animation = "none";
+
+     //document.getElementById('cutomiseButton').style.display = "initial";
+    //document.getElementById("spanish").style.display = "none";
+
+    document.getElementById("english").style.display = "none";
+    document.getElementById("yoruba").style.display = "none";
+
+    //document.getElementById("french").style.display = "none";
+    //document.getElementById("portuguese").style.display = "none";
+    //document.getElementById("swahili").style.display = "none";
+    //document.getElementById("juhoansi").style.display = "none";
+    document.getElementById("other1").style.display = "none";
+    document.getElementById("other1UnderDev").style.display = "none";
+    document.getElementById("AlertTranslate").style.display = "none";
+  },100)
+    //
+    // //this is to load Cognito form 2 sec after UK is clicked, so page load fast - user won't need cognito after few secs
+    // setTimeout(function(){
+    // },700)
+  return languageSelected
 }
 // select the target node
 

@@ -183,7 +183,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
         newProjectButton.className = 'sapelliProjectsLogo'
         newProjectButton.style.marginBottom = '200px'
         newProjectButton.style.marginLeft = '20px'
-        newProjectButton.innerHTML = '<img src="images/logoNigeria.png" style="width:50px ; height:50px; border: 0px solid white" />';
+        newProjectButton.innerHTML = '<img src="images/csaNigeria/Logo.png" style="width:50px ; height:50px; border: 0px solid white" />';
         // cell.style.overflow = 'scroll'
 
         preload([
@@ -330,7 +330,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
             // sapProjectFirstTime = false
             newProjectButton.style.display = 'none';
             generateButtonsGenericCrops()
-            newProjectButton.innerHTML = '<img src="images/logoNigeria.png" style="width:50px ; height:50px; border: 0px solid white" />';
+            newProjectButton.innerHTML = '<img src="images/csaNigeria/Logo.png" style="width:50px ; height:50px; border: 0px solid white" />';
             newProjectButton.disabled = false
 
 
