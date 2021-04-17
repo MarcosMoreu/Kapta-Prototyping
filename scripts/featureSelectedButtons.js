@@ -60,7 +60,7 @@ document.getElementById("backDeleteFeature").onclick = function() {
       if (selectedFeature.feature.geometry.type != 'Point') {
         if(whichLayerIsOn == 'localStorage'){
           selectedFeature.setStyle({
-              color: '#43ACF0'
+              color: '#00FFFB'
           })
         }else{
           selectedFeature.setStyle({

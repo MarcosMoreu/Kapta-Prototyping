@@ -94,19 +94,19 @@ var localStorageToGeoJSON = function(){
                 /////////////////////////////
               layer.on('click', function(e) {
                 isLocalStorage = true
-                selectedFeature = e.target;
+                // selectedFeature = e.target;
                 //selectedFeature.setStyle({color: 'red'})
 
-                  // if(aFeatureIsSelected == true ){
-                  //   document.getElementById("backDeleteFeature").click() //!!!!!!!!
-                  //   if(editButtonClicked == true){
-                  //     clearInterval(refreshPopupComment)
-                  //     document.getElementById('backEditDelete').click()
-                  //   }
-                  //
-                  //
-                  //   console.log('aFeatureIsSelected true')
-                  // }else{ // this if/else is to ensure that two features can not be selected at the same time
+                  if(aFeatureIsSelected == true ){
+                    document.getElementById("backDeleteFeature").click() //!!!!!!!!
+                    if(editButtonClicked == true){
+                      clearInterval(refreshPopupComment)
+                      document.getElementById('backEditDelete').click()
+                    }
+
+
+                    console.log('aFeatureIsSelected true')
+                  }else{ // this if/else is to ensure that two features can not be selected at the same time
                   console.log('aFeatureIsSelected false')
 
                   document.getElementById("clearFilter").style.display = "none";
@@ -456,7 +456,7 @@ var localStorageToGeoJSON = function(){
 
                     }//...else
 
-                  //}
+                  }
                 });//...layerclick
             }//...oneachfeature
 
