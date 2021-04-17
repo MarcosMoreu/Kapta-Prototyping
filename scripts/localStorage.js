@@ -1,3 +1,34 @@
+//function to customise deflated shapes
+function customDeflateMarkersLocalStorage(f) {
+    // Use custom marker only for buildings
+    if (f.feature.geometry.type === 'Polygon') {
+        return {
+            icon: L.icon({
+                iconUrl: 'images/markerPolygonBlue.png',
+                iconSize: [30, 30]
+            })
+        }
+    };
+    if (f.feature.geometry.type === 'LineString') {
+        return {
+            icon: L.icon({
+                iconUrl: 'images/markerLine.png',
+                iconSize: [30, 30]
+            })
+        }
+    }
+    return {};
+}
+
+var deflatedLocalStorage = L.deflate({
+    minSize: 20, // if this is set to 100, very small polygons do not deflate at zoom 21
+    maxsize: 1,
+    markerCluster: true,
+    markerType: L.marker,
+    markerOptions: customDeflateMarkersLocalStorage
+})
+// deflatedLocalStorage.addTo(map) // to initialize //////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// localStorageLayer.addTo(deflatedLocalStorage)
 // function onEachFeatureAudioLocalStorage(feature, layer) { // function duplicated to avoid openpop() with local storage
 //
 //     //timeout is used to wait 1000ms until the download link is ready
@@ -137,23 +168,38 @@ var localStorageToGeoJSON = function(){
 
                   //default option is used to check if the target is not deflated (i.e. a marker). Parenteses IMPORTANT!
                   if (!e.target.defaultOptions && e.target.feature.properties.areapolygon != 'Point' && e.target.feature.properties.lengthline != 'Point') { //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed. DefaultOptions is only in Points
+                    console.log('approaching?')
                       map.closePopup();
+                      // e.target.feature.editing.disable();
+
                       var currentZoom = map.getZoom()
-                      var geometryString = e.target.feature.properties.geometrystring
-                      var geometryStringGeoJSON = L.geoJSON(JSON.parse(geometryString))
+                      // console.log(e.target.feature)
+                      // console.log(e.target.feature.geometry)
+                      // console.log(e.target.feature.geometry.coordinates)
+                      var coord = e.target.feature.geometry.coordinates;
+                      var latLng = L.GeoJSON.coordsToLatLng(coord);
+
+                      // var latLngs = [ e.target.feature.getLatLng() ];
+                        // var markerBounds = L.latLngBounds(latLngs);
+                        // map.fitBounds(markerBounds);
+                        map.flyTo(latLng,17)
+
+                      // var geometryString = e.target.feature.geometry.coordinates
+                      // console.log(geometrystring)
+                      // var geometryStringGeoJSON = L.geoJSON(JSON.parse(geometryString))
                     //  console.log(geometryStringGeoJSON)
 
-                      map.fitBounds(geometryStringGeoJSON.getBounds());
+                      // map.fitBounds(geometryStringGeoJSON.getBounds());
                   }
                   //the condition below is as it is because geometry column in the DB cannot be accessed while not deflated, so the properties.areas... is used
-                  if(e.target.feature.geometry.type == 'Point' && map.getZoom() < 15 && e.target.feature.properties.areapolygon == 'Point' && e.target.feature.properties.lengthline == 'Point') {
+                  if(e.target.feature.geometry.type == 'Point' && map.getZoom() < 17 && e.target.feature.properties.areapolygon == 'Point' && e.target.feature.properties.lengthline == 'Point') {
                       map.closePopup();
                       var geometryString = e.target.feature.properties.geometrystring
                       var geometryStringGeoJSON = L.geoJSON(JSON.parse(geometryString))
                       var coord = e.target.feature.geometry.coordinates;
                       var latLng = L.GeoJSON.coordsToLatLng(coord);
 
-                      map.setView(latLng, 15);
+                      map.flyTo(latLng,15)
                       layer.closePopup(feature.properties.landusesemoji + feature.properties.audioavailable); //to not open popup after second click
 
                    }else {
@@ -464,15 +510,21 @@ var localStorageToGeoJSON = function(){
         ////console.log('localStorageLayer', localStorageLayer)
 
     }
+    localStorageLayer.addTo(deflatedLocalStorage)
+
 return localStorageLayer && isLocalStorage
 }
+
+
 
 document.getElementById('deleteFeatureLocalStorage').onclick = function(){
   console.log(selectedFeature)
   //to find the item in the local storage we use randomID, as is the same as keyvalue
   var getRandomID = selectedFeature.feature.properties.randomID
   console.log(getRandomID)
+selectedFeature.removeFrom(deflatedLocalStorage)
 selectedFeature.removeFrom(localStorageLayer)
+
 geoJSONLocalforageDB.removeItem(getRandomID)
   document.getElementById('deleteFeatureLocalStorage').style.display = 'none'
   document.getElementById("backDeleteFeature").click()

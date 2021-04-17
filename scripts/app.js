@@ -1302,7 +1302,12 @@ var checkSliderPosition = function() { /////////////////////////////////////////
 }
 
 var myLayerIsOn = true;
-
+// function changeBGColor() {
+//   var cols = document.getElementsByClassName('marker-cluster-small');
+//   for(i = 0; i < cols.length; i++) {
+//     cols[i].style.backgroundColor = '#00FFFB';
+//   }
+// }
 var whichLayerIsOn = 'deflated';
 var featureSent;
 var myLayer_Button = L.easyButton({
@@ -1315,6 +1320,10 @@ var myLayer_Button = L.easyButton({
         //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn, map) {
+
+
+          // changeBGColor()
+
                     // //console.log('which layer is on', whichLayerIsOn)
           // //console.log('localStorageLayer', localStorageLayer)
             // //console.log(localStorage)
@@ -1324,26 +1333,19 @@ var myLayer_Button = L.easyButton({
             if (whichLayerIsOn == 'deflated' && (localStorageLayer != null || elementJustAddedToLocalStorage ==true)) {
                 deflated.removeFrom(map)
                 if (localStorageLayer != null) {
-                  //console.log('local storage is not null')
-                    // if(urlgeojsonfeature !=null){
-                    // }
+                    // leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive"
+                    // document.getElementsByClassName('.marker-cluster-small').style.backgroundColor = 'rgba(12, 244, 179, 1)'
 
-                    localStorageLayer.addTo(map)
+                    deflatedLocalStorage.addTo(map) // to initialize //////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    var cols = document.getElementsByClassName('marker-cluster-small');
+                    for(i = 0; i < cols.length; i++) {
+                      cols[i].style.backgroundColor = '#00FFFB';
+                    }
 
                     filter_Button.removeFrom(map)
-                    // googleSat_Button.addTo(map);
-                    // osm_Button.addTo(map);
-                    // planet_Button.addTo(map)
-                    // myLayer_Button.addTo(map)
+
                     localStorageRecenter_Button.addTo(map);
 
-                    // var currentZoom = map.getZoom();
-                    // if(currentZoom >= 18){
-                    //   var boundsLocalStorageLayer = localStorageLayer.getBounds()
-                    //   map.fitBounds(boundsLocalStorageLayer)
-                    // }
-
-                    // urlgeojsonfeature.addTo(map)
 
                 }
                 if (finalLayer != null) {
@@ -1365,7 +1367,7 @@ var myLayer_Button = L.easyButton({
 
             } else if (whichLayerIsOn == 'localStorage') {
                 if (localStorageLayer != null) {
-                    localStorageLayer.removeFrom(map)
+                    deflatedLocalStorage.removeFrom(map)
 
                     try{
                       // urlgeojsonfeature.removeFrom(map)
@@ -1395,6 +1397,12 @@ var myLayer_Button = L.easyButton({
                   filter_Button.button.disabled = true;
                   }else{
                     deflated.addTo(map);
+                    var cols = document.getElementsByClassName('marker-cluster-small');
+                    for(i = 0; i < cols.length; i++) {
+                      cols[i].style.backgroundColor = 'white';
+                    }
+
+                    // document.getElementsByClassName('marker-cluster-small')[0].style.color = 'red'
                     myLayer_Button.button.style.backgroundColor = 'black'
                     filter_Button.button.style.opacity = '1';
                     filter_Button.button.disabled = false;
@@ -1819,7 +1827,7 @@ var localStorageRecenter_Button = L.easyButton({
         onClick: function(btn, map) {
 
             var boundsLocalStorageLayer = localStorageLayer.getBounds()
-            map.fitBounds(boundsLocalStorageLayer)
+            map.flyToBounds(boundsLocalStorageLayer)
             }
 
 
@@ -1912,13 +1920,14 @@ document.getElementById('rose').onclick = function(e){
 
 /////////////////////////////////////       CARTO    ADD TO MAP   //////////////////////////////////////////////
 
-var clusters = L.markerClusterGroup({
-    animate: true,
-    spiderfyOnMaxZoom: true,
-    showCoverageOnHover: true,
-    zoomToBoundsOnClick: true,
-    animateAddingMarkers: true,
-});
+// var clusters = L.markerClusterGroup({
+//     animate: true,
+//     spiderfyOnMaxZoom: true,
+//     showCoverageOnHover: false,
+//     zoomToBoundsOnClick: true,
+//     animateAddingMarkers: true,
+
+// });
 
 
 // // Add Data from CARTO using the SQL API. Declare Variables. Create Global Variable to hold CARTO points

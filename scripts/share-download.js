@@ -154,11 +154,11 @@ document.getElementById('share-download').onclick = function(e) {
     if (finalAreaAcres2Decimals == null && finalLength2Decimals != null) {
       finalAreaAcres2Decimals = 'Line'
     }
-    if (isIOS == false && recordedBlobs != null) {
-        var audioAvailable = '.'
-    } else {
-        audioAvailable = '.'
-    }
+    // if (isIOS == false && recordedBlobs != null) {
+    //     var audioAvailable = '.'
+    // } else {
+    //     audioAvailable = '.'
+    // }
     propertiesGeoJSON = {
         // 'geometryCenter':geometryCenter,
         'landUses': boxContentToString,
@@ -237,10 +237,10 @@ document.getElementById('share-download').onclick = function(e) {
         return theBlob;
     }
 
-    if (isIOS == false && recordedBlobs != null) {
-        audioBlobFile = blobToFile(audioBlob, nameAudio);
-        //console.log(audioBlobFile)
-    }
+    // if (isIOS == false && recordedBlobs != null) {
+    //     audioBlobFile = blobToFile(audioBlob, nameAudio);
+    //     //console.log(audioBlobFile)
+    // }
 
     ////console.log(document.getElementsByClassName('emojibtn'))
     featureType = null; //to avoid error of length not recognised when on map click
@@ -250,14 +250,14 @@ document.getElementById('share-download').onclick = function(e) {
     });
     ////console.log(dataFile)
     //to store both audio and geojson into an array, and also get the length of the array and pass this value ot the firebase loop
-    if (isIOS == false && recordedBlobs != null) {
-        files = [dataFile, audioBlobFile]
-        filesLength = 2
-    } else {
+    // if (isIOS == false && recordedBlobs != null) {
+    //     files = [dataFile, audioBlobFile]
+    //     filesLength = 2
+    // } else {
         files = [dataFile]
         filesLength = 1
         created = false; // redundant (to ensure that when DELETE is clicked the sql query is the delete one, not the last Insert query)
-    }
+    // }
       // encodeGeoJSON(data,propertiesGeoJSONURL)
       //console.log(convertedDataShareDirect)
       //console.log(files)
@@ -337,12 +337,12 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
   document.getElementById("whatsApp").style.display = 'initial';
   document.getElementById("telegram").style.display = 'initial';
   document.getElementById("weChat").style.display = "initial";
-  console.log(recordedBlobs)
-  if(recordedBlobs != null){
-    document.getElementById("Alert").style.fontSize = "30px";
-    document.getElementById('Alert').innerHTML = '<br> ⚠️ 🔇 📥'
-    document.getElementById("Alert").style.display = 'initial'
-  }
+  // console.log(recordedBlobs)
+  // if(recordedBlobs != null){
+  //   document.getElementById("Alert").style.fontSize = "30px";
+  //   document.getElementById('Alert').innerHTML = '<br> ⚠️ 🔇 📥'
+  //   document.getElementById("Alert").style.display = 'initial'
+  // }
 
 
   shareURL = 'encodedGeoJSON'

@@ -90,7 +90,7 @@ var cartoGeoJSONLayer = function(data) {
                   var geometryStringGeoJSON = L.geoJSON(JSON.parse(geometryString))
                 //  console.log(geometryStringGeoJSON)
 
-                  map.fitBounds(geometryStringGeoJSON.getBounds());
+                  map.flyToBounds(geometryStringGeoJSON.getBounds());
               }
               //the condition below is as it is because geometry column in the DB cannot be accessed while not deflated, so the properties.areas... is used
               if(e.target.feature.geometry.type == 'Point' && map.getZoom() < 15 && e.target.feature.properties.areapolygon == 'Point' && e.target.feature.properties.lengthline == 'Point') {
