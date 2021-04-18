@@ -192,7 +192,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
         "images/csaNigeria/Crops/cashCrop.png","images/csaNigeria/Crops/nuts.png",
         //Crops
         'images/csaNigeria/Crops/Agbalumo.png','images/csaNigeria/Crops/agbon.png','images/csaNigeria/Crops/amaranthus.png','images/csaNigeria/Crops/Awusa.png',"images/csaNigeria/Crops/banana.png",
-        "images/csaNigeria/Crops/beans.png","images/csaNigeria/Crops/Cashew.png",'images/csaNigeria/Crops/cassava.png','images/csaNigeria/Crops/cocoa.png',
+        "images/csaNigeria/Crops/beans.png","images/csaNigeria/Crops/Cashew.png",'images/csaNigeria/Crops/cassava.png','images/csaNigeria/Crops/cocoa.png','images/csaNigeria/Crops/soko.png',
         'images/csaNigeria/Crops/cocoyam.png',"images/csaNigeria/Crops/cucumber.png",'images/csaNigeria/Crops/Epa.png',"images/csaNigeria/Crops/Esuru.png",'images/csaNigeria/Crops/ewedu.png',
         "images/csaNigeria/Crops/Ewuro.png","images/csaNigeria/Crops/Fruits.png",'images/csaNigeria/Crops/gbure.png','images/csaNigeria/Crops/irishPotato.png','images/csaNigeria/Crops/Isu Ewura.png',
         'images/csaNigeria/Crops/juteLeaf.png',"images/csaNigeria/Crops/Maize.png",'images/csaNigeria/Crops/mangoro.png',"images/csaNigeria/Crops/Obi.png",'images/csaNigeria/Crops/okro.png',
@@ -215,7 +215,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
         'images/csaNigeria/ISSUES/IssuesGeneric/pestGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/pestRed.png',
         'images/csaNigeria/ISSUES/IssuesGeneric/postHarvestGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/postHarvestRed.png',
         'images/csaNigeria/ISSUES/IssuesGeneric/soilGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/soilRed.png',
-        'images/csaNigeria/ISSUES/IssuesGeneric/weedGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/weedRed.png',
+        'images/csaNigeria/ISSUES/IssuesGeneric/weedGreen.png','images/csaNigeria/ISSUES/IssuesGeneric/weedRed.png','images/csaNigeria/ThumbsUp.png',
         //issues - 1 climatic
         'images/csaNigeria/ISSUES/ClimaticIssues/Drought.png','images/csaNigeria/ISSUES/ClimaticIssues/erraticRain.png','images/csaNigeria/ISSUES/ClimaticIssues/flood.png',
         'images/csaNigeria/ISSUES/ClimaticIssues/Irrigation.png','images/csaNigeria/ISSUES/ClimaticIssues/sunIntensity.png','images/csaNigeria/ISSUES/ClimaticIssues/wind.png',
@@ -355,7 +355,7 @@ icon81, icon82, icon83, icon84, icon85, icon86, icon87, icon88, icon89, icon90, 
 icon107, icon108, icon109, icon110, icon111, icon112, icon113, icon114, icon115, icon116, icon117, icon118, icon119, icon120, icon121,icon122, icon123,icon124, icon125, icon126, icon127, icon128, icon129, icon130,
 icon131, icon132, icon133, icon134, icon135, icon136, icon137, icon138, icon139, icon140, icon141, icon142, icon143, icon144, icon145,icon146, icon147, icon148, icon149, icon150, icon151, icon152, icon153, icon154,
 icon155, icon156, icon157, icon158, icon159, icon160, icon161, icon162, icon163, icon164, icon165, icon166, icon167, icon168, icon169, icon170, icon171, icon172,
-icon69g, icon69r, icon70g, icon70r, icon71g, icon71r, icon72g, icon72r, icon73g, icon73r, icon74g, icon74r, icon75g, icon75r, icon76
+icon69g, icon69r, icon70g, icon70r, icon71g, icon71r, icon72g, icon72r, icon73g, icon73r, icon74g, icon74r, icon75g, icon75r, icon76OK
 
 // var generateDivElementCell = function(){
 //   cell = document.createElement("div");
@@ -1172,6 +1172,8 @@ var generateButtonsHelp = function(){
       icon74g.style.display = 'initial' //soil
       icon75g.style.display = 'initial' //weed
       icon76.style.display = 'initial' //other
+      icon76OK.style.display = 'initial' //OK
+
     }
     if(stage == '⌚ Asiko Gbíngbìn'){
       icon70g.style.display = 'initial' //dissease
@@ -1179,6 +1181,8 @@ var generateButtonsHelp = function(){
       icon69g.style.display = 'initial' //climatic
       icon74g.style.display = 'initial' //soil
       icon76.style.display = 'initial' //other
+      icon76OK.style.display = 'initial' //OK
+
 
     }
     if(stage == '⌚ Fifin Oko'){
@@ -1186,6 +1190,8 @@ var generateButtonsHelp = function(){
       icon72g.style.display = 'initial' //pest
       icon75g.style.display = 'initial' //weed
       icon76.style.display = 'initial' //other
+      icon76OK.style.display = 'initial' //OK
+
 
 
     }
@@ -1195,6 +1201,8 @@ var generateButtonsHelp = function(){
       icon69g.style.display = 'initial' //climatic
       icon74g.style.display = 'initial' //soil
       icon76.style.display = 'initial' //other
+      icon76OK.style.display = 'initial' //OK
+
     }
     if(stage == '⌚ Kiko Ere'){
       icon70g.style.display = 'initial' //dissease
@@ -1204,6 +1212,8 @@ var generateButtonsHelp = function(){
       icon73g.style.display = 'initial' //postharvest
       icon75g.style.display = 'initial' //weed
       icon76.style.display = 'initial' //other
+      icon76OK.style.display = 'initial' //OK
+
 
     }
     if(stage == '⌚ Kikopamo'){
@@ -1214,6 +1224,8 @@ var generateButtonsHelp = function(){
       icon73g.style.display = 'initial' //postharvest
       icon75g.style.display = 'initial' //weed
       icon76.style.display = 'initial' //other
+      icon76OK.style.display = 'initial' //OK
+
 
     }
 
@@ -1394,13 +1406,31 @@ var generateIssuesGeneric = function(){
   icon76.onclick = function(){
     hideAll()
     issueGeneric = '➕ Awon miiran'
+    issueSpecific = '➕ Awon miiran'
+
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
   document.getElementById('share-download').click()
 },1000)
 
   }
-  return   screenChoice && icon69g && icon69r && icon70g && icon70r && icon71g && icon71r && icon72g && icon72r && icon73g && icon73r && icon74g && icon74r && icon75g && icon75r && icon76
+  icon76OK = document.createElement("BUTTON");
+  cell.appendChild(icon76OK);
+  icon76OK.className = 'buttonsSapelli'
+  icon76OK.innerHTML = '<img src="images/csaNigeria/ThumbsUp.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>OK';
+  icon76OK.onclick = function(){
+    hideAll()
+    issueGeneric = '👍🏿 OK'
+    issueSpecific = '👍🏿 OK'
+    askHelpOrIHelp = ''
+
+    document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+  document.getElementById('share-download').click()
+},1000)
+
+  }
+  return   screenChoice && icon69g && icon69r && icon70g && icon70r && icon71g && icon71r && icon72g && icon72r && icon73g && icon73r && icon74g && icon74r && icon75g && icon75r && icon76 && icon76OK
 }
 
 var generateIssuesClimatic = function(){

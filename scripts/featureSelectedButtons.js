@@ -444,9 +444,9 @@ document.getElementById("deleteFeature").onclick = function() {
         gps_Button.button.disabled = false;
 
         document.getElementById("tutorial").style.display = "initial";
-        document.getElementById("polygon").style.display = "initial";
-        document.getElementById("polyline").style.display = "initial";
-        document.getElementById("point").style.display = "initial";
+        document.getElementById("field").style.display = "initial";
+        document.getElementById("armchair").style.display = "initial";
+        // document.getElementById("point").style.display = "initial";
         //removeMiniMap()
         //miniMap.remove()
 
