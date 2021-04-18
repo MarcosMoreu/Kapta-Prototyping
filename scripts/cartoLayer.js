@@ -100,7 +100,8 @@ var cartoGeoJSONLayer = function(data) {
                   var coord = e.target.feature.geometry.coordinates;
                   var latLng = L.GeoJSON.coordsToLatLng(coord);
 
-                  map.setView(latLng, 15);
+                  map.flyTo(latLng,17)
+                  // map.setView(latLng, 15);
                   layer.closePopup(feature.properties.landusesemoji + feature.properties.audioavailable); //to not open popup after second click
 
                }else {
@@ -149,8 +150,8 @@ var cartoGeoJSONLayer = function(data) {
                             //       document.getElementById('audioControls').style.display = 'initial'
                             //
                             //     }
-                            //   document.getElementById('toCommentPopup').style.display = 'initial';
-                            //   document.getElementById('toCommentPopup').textContent = '🔊' + ' ' + feature.properties.commentone
+                              document.getElementById('toCommentPopup').style.display = 'initial';
+                              document.getElementById('toCommentPopup').textContent = feature.properties.commentone
                             //
                             //   }
                             //   else{
@@ -200,8 +201,8 @@ var cartoGeoJSONLayer = function(data) {
                            //     document.getElementById('audioControls').style.display = 'initial'
                            //
                            //   }
-                           //   document.getElementById('toCommentPopup').style.display = 'initial';
-                           //   document.getElementById('toCommentPopup').textContent = '🔊' + ' ' + feature.properties.commentone
+                             document.getElementById('toCommentPopup').style.display = 'initial';
+                             document.getElementById('toCommentPopup').textContent = feature.properties.commentone
                            //
                            //   }else{
                              document.getElementById('audioControls').style.display = 'none'
@@ -286,8 +287,8 @@ var cartoGeoJSONLayer = function(data) {
                            //     document.getElementById('audioControls').style.display = 'initial'
                            //
                            //   }
-                           //   document.getElementById('toCommentPopup').style.display = 'initial';
-                           //   document.getElementById('toCommentPopup').textContent = '🔊' + ' ' + feature.properties.commentone
+                             document.getElementById('toCommentPopup').style.display = 'initial';
+                             document.getElementById('toCommentPopup').textContent = feature.properties.commentone
                            //
                            //   }else{
                              document.getElementById('audioControls').style.display = 'none'
