@@ -569,7 +569,7 @@ geoJSONLocalforageDB.length().then(function(numberOfKeys) {
 // function to fetch all geojson files from the IndexedDB-localforage-geoJSONsDB. Localforage is async, so promises are uses. After loop ends, localStorageToGeoJSON() [above] is called
 var completedCount = 0 // to call localStorageToGeoJSON() when loop ends
 function fetchFromLocalStorage(){
-  if (isFirstTime == false && geoJSONLocalforageDB.key(0) != null) {
+  if (geoJSONLocalforageDB.key(0) != null) {
     console.log('fetching from local storage')
 
     geoJSONLocalforageDB.keys(function(err, keys) {
@@ -577,7 +577,7 @@ function fetchFromLocalStorage(){
 
           (function(key) {
             geoJSONLocalforageDB.getItem(key).then(function (value) {
-                // //console.log(key, value);
+                //console.log(key, value);
                 isJson(value);
                 if (isJson(value) == true) {
                   // //console.log(isJson('this is geojson',value))
@@ -1308,8 +1308,19 @@ var myLayerIsOn = true;
 //     cols[i].style.backgroundColor = '#00FFFB';
 //   }
 // }
+
+
 var whichLayerIsOn = 'deflated';
+
 var featureSent;
+var refreshClusterBlueColor = setInterval(function(){
+  if(whichLayerIsOn == 'localStorage'){
+    var cols = document.getElementsByClassName('marker-cluster-small');
+    for(i = 0; i < cols.length; i++) {
+      cols[i].style.backgroundColor = '#00FFFB';
+    }
+  }
+},100)
 var myLayer_Button = L.easyButton({
     id: 'myLayerButton',
     class: 'easyButton',
@@ -1337,13 +1348,15 @@ var myLayer_Button = L.easyButton({
                     // document.getElementsByClassName('.marker-cluster-small').style.backgroundColor = 'rgba(12, 244, 179, 1)'
 
                     deflatedLocalStorage.addTo(map) // to initialize //////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    var cols = document.getElementsByClassName('marker-cluster-small');
-                    for(i = 0; i < cols.length; i++) {
-                      cols[i].style.backgroundColor = '#00FFFB';
-                    }
+                    // var refreshClusterBlueColor = setInterval(function(){
+                      var cols = document.getElementsByClassName('marker-cluster-small');
+                      for(i = 0; i < cols.length; i++) {
+                        cols[i].style.backgroundColor = '#00FFFB';
+                      }
+                    // },300)
+
 
                     filter_Button.removeFrom(map)
-
                     localStorageRecenter_Button.addTo(map);
 
 
@@ -1370,7 +1383,7 @@ var myLayer_Button = L.easyButton({
                     deflatedLocalStorage.removeFrom(map)
 
                     try{
-                      // urlgeojsonfeature.removeFrom(map)
+                      // clearInterval(refreshClusterBlueColor)
                     }catch(e){}
 
                 }
@@ -1378,6 +1391,9 @@ var myLayer_Button = L.easyButton({
                 //  localStorageLayer.addTo(map)
                 if (finalLayer != null) {
                     finalLayer.removeFrom(map)
+                    try{
+                      clearInterval(refreshClusterBlueColor)
+                    }catch(e){}
                 }
                 localStorageRecenter_Button.removeFrom(map);
                 filter_Button.addTo(map)
@@ -1582,7 +1598,7 @@ function findBuffer(position) {
     var lat = position.coords.latitude;
     var lng = position.coords.longitude;
     accuracy = position.coords.accuracy;
-    console.log(accuracy)
+  //  console.log(accuracy)
     // if (markerAdded == false) {
     //     // L.marker([lat, lng],{icon:gpsIcon}).addTo(map);
     //     markerAdded = true;
@@ -1608,7 +1624,7 @@ var field = false
 var position
 var startSearchingLocation = function(){
 var refreshGPSbutton = setInterval(function() { ///////////////////////////////////////// function to keep searching for gps position
-  console.log('refreshgpsbutton')
+//  console.log('refreshgpsbutton')
   if(localStorage.getItem('pwCorrect')){
 
     try {
@@ -1826,8 +1842,12 @@ var localStorageRecenter_Button = L.easyButton({
         stateName: 'check-mark',
         onClick: function(btn, map) {
 
-            var boundsLocalStorageLayer = localStorageLayer.getBounds()
-            map.flyToBounds(boundsLocalStorageLayer)
+            try{
+              var boundsLocalStorageLayer = deflatedLocalStorage.getBounds()
+              map.flyToBounds(boundsLocalStorageLayer)
+            }catch(e){}
+
+
             }
 
 
@@ -1899,7 +1919,7 @@ document.getElementById('rose').onclick = function(e){
       if(clicksRose == 20){ //this is to show the download tiles buttons
         clicksRose = 0;
         var dataToExport = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(groupGeoJSON));
-        console.log(convertedData)
+        //console.log(convertedData)
 
 
         var toDownloadGeoJSON = document.createElement('a');
@@ -2183,8 +2203,8 @@ document.getElementById("armchair").onclick = function(e) {
 
 
 document.getElementById("field").onclick = function(e) {
-  console.log(currentLocation)
-  console.log(accuracy)
+  //console.log(currentLocation)
+//  console.log(accuracy)
 
   // startSearchingLocation()
 
@@ -2373,7 +2393,7 @@ var startCheckingText = function() {
 
 ////////function for pop ups//////////
 function onEachFeature(feature, layer) {
-  console.log(feature.properties.areaPolygon)
+  //console.log(feature.properties.areaPolygon)
     //timeout is used to wait 1000ms until the download link is ready
     setTimeout(function() {
         var audioLinkText = '🔊 AUDIO'

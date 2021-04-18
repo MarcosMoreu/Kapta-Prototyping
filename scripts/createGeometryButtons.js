@@ -452,7 +452,7 @@ map.on('draw:deleted', function(e) {
 var typeOfFeature;
 map.on('draw:created', function(e) {
   field = false
-  console.log(drawnItems)
+  //console.log(drawnItems)
 
   document.getElementById("Alert").style.display = 'none'
 
@@ -576,7 +576,7 @@ map.on('draw:created', function(e) {
     //console.log(document.getElementsByClassName('emojionearea').value)
 
     startCheckingText() // to call the function to start checking the input text
-    console.log(data)
+    //console.log(data)
 
     return created && data && typeOfFeature && field;
 

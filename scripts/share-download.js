@@ -61,7 +61,8 @@ var encodeGeoJSON = function(data,properties){
 
   return convertedDataShareDirect && shareGeomDirect
 }
-
+var dataStringified
+var tempName
 document.getElementById('share-download').onclick = function(e) {
 
     sameSession = true;
@@ -124,18 +125,18 @@ document.getElementById('share-download').onclick = function(e) {
     var landUses = allLandUsesFiltered.toString();
     //to convert emojis from unicode to short name, before the data is transmitted
     //value of boxcontent is obtained again (was obtained in 'confirm'), in case user click on 'confirm' before filling in the box
-    console.log('issuespecific',issueSpecific)
+    //console.log('issuespecific',issueSpecific)
     if(issueSpecific == 'emojiNoSapelli'){
       boxContent = document.getElementById('emojionearea').value;
       var boxContentToShortname = emojione.toShort(boxContent)
-      console.log(boxContent)
+      //console.log(boxContent)
     }else{
       var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
       var emojioneareaeditor0 = emojioneareaeditor[0]
       boxContent = emojioneareaeditor0.innerHTML
       var boxContentToShortname = emojione.toShort(boxContent)
 
-      console.log(boxContent)
+    //  console.log(boxContent)
 
     }
 
@@ -212,11 +213,20 @@ document.getElementById('share-download').onclick = function(e) {
     created = false;
 
     //adding layers to localstorage
-    var dataStringified = JSON.stringify(data);
+    dataStringified = JSON.stringify(data);
     //console.log(dataStringified)
 
-    var tempName = randomID // each polygon must have a different name!!!
-    var layerToLocalStorage = geoJSONLocalforageDB.setItem(tempName, dataStringified);
+     tempName = randomID // each polygon must have a different name!!!
+    // // var layerToLocalStorage = geoJSONLocalforageDB.setItem(tempName, dataStringified);
+    //
+    // geoJSONLocalforageDB.setItem(tempName, dataStringified)//.then(function(){
+
+      // fetchFromLocalStorage()
+      // var latestGeom = geoJSONLocalforageDB.getItem(tempName)
+      // console.log(localStorageLayer)
+      // dataStringified.addTo(map)
+
+  //  });
     // //console.log(layerToLocalStorage);
     ////console.log(dataStringified.geometry)
     ////console.log(data.geometry)
@@ -258,13 +268,14 @@ document.getElementById('share-download').onclick = function(e) {
         filesLength = 1
         created = false; // redundant (to ensure that when DELETE is clicked the sql query is the delete one, not the last Insert query)
     // }
+      isFirstTime = false
       // encodeGeoJSON(data,propertiesGeoJSONURL)
       //console.log(convertedDataShareDirect)
       //console.log(files)
       // var parsedJSONdecoded = decodeURIComponent(convertedDataShareDirect);
       // var parsedJSON = JSON.parse(parsedJSONdecoded)
       // //console.log(parsedJSON)
-    return created && data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType && convertedDataShareDirect && propertiesGeoJSON //&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
+    return created && data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType && convertedDataShareDirect && propertiesGeoJSON && tempName && dataStringified && isFirstTime //&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
 }
 ////console.log(finalLayer)
 
@@ -314,6 +325,20 @@ var urlLngX
 var urlZoomWithZX
 var urlZoomX
 document.getElementById('shareMessagingAppsDirect').onclick = function(e){
+  //to store in localstorage immediately
+  // geoJSONLocalforageDB.setItem(tempName, dataStringified)
+  // var newGeom = JSON.parse(dataStringified)
+  // groupGeoJSON = newGeom
+  // localStorageToGeoJSON()
+   // geoJSONLocalforageDB.setItem(tempName, dataStringified)//.then(function(){
+  //   for (i = 0; i < deflatedLocalStorage._layers.length; i++) { // not the optimal solution, but couldn't find the way to empty deflated
+  //     try{ // because array not starts with 1,2,3
+  //       deflatedLocalStorage.removeLayer(deflatedLocalStorage._layers[i])
+  //       //console.log('forr ',i)
+  //     }catch(e){}
+  //   }
+  //   fetchFromLocalStorage()
+  // })
   encodeGeoJSON(data,propertiesGeoJSONURL)
     urlX = window.location.href
     keepOnlyLatLngZoomX = urlX.split('#').pop();
@@ -347,7 +372,7 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
 
   shareURL = 'encodedGeoJSON'
   // document.getElementById("shareMessagingApp").style.display = "initial";
-  return shareURL && mapposLat  && mapposLng && mapposZoom && urlX && urlLatX && urlLngX && urlZoomX
+  return shareURL && mapposLat  && mapposLng && mapposZoom && urlX && urlLatX && urlLngX && urlZoomX && groupGeoJSON
 }
 document.getElementById('goBackShareMessagingAppsDirect').onclick = function(e){
   document.getElementById("Alert").style.display = 'none'
@@ -367,6 +392,11 @@ document.getElementById('goBackShareMessagingAppsDirect').onclick = function(e){
 
 
 document.getElementById('shareWorldButton').onclick = function(e) {
+  //to store in localstorage
+  // geoJSONLocalforageDB.setItem(tempName, dataStringified)//.then(function(){
+
+
+
   issueSpecific = 'emojiNoSapelli'
 
 
@@ -384,7 +414,16 @@ document.getElementById('shareWorldButton').onclick = function(e) {
       clickCountSendButton = 1
   } else {
 
-
+        //to store in localstorage immediately
+        // geoJSONLocalforageDB.setItem(tempName, dataStringified).then(function(){
+        //   for (i = 0; i < deflatedLocalStorage._layers.length; i++) { // not the optimal solution, but couldn't find the way to empty deflated
+        //     try{ // because array not starts with 1,2,3
+        //       deflatedLocalStorage.removeLayer(deflatedLocalStorage._layers[i])
+        //       //console.log('forr ',i)
+        //     }catch(e){}
+        //   }
+        //   fetchFromLocalStorage()
+        // })
         encodeGeoJSON(data,propertiesGeoJSON)
 
         setTimeout(function(){
@@ -448,6 +487,11 @@ document.getElementById('shareWorldButton').onclick = function(e) {
           }, 200)
 
           setTimeout(function() {
+            geoJSONLocalforageDB.setItem(tempName, dataStringified)
+            var newGeom = JSON.parse(dataStringified)
+            groupGeoJSON = newGeom
+            //console.log(groupGeoJSON)
+            localStorageToGeoJSON()
               document.getElementById('Sent').style.display = 'none';
               // document.getElementById('uploading').style.display = 'none'
               // document.getElementById('progress').style.display = 'none'
@@ -470,6 +514,13 @@ document.getElementById('shareWorldButton').onclick = function(e) {
               document.getElementById("armchair").style.display = "initial";
               document.getElementById("field").style.display = "initial";
               // document.getElementById("gobackArmchairField").style.display = "initial";
+              if(whichLayerIsOn == 'localStorage'){
+                document.getElementById('myLayerButton').click()
+                document.getElementById('myLayerButton').click()
+
+              }else if(whichLayerIsOn == 'none'){
+                document.getElementById('myLayerButton').click()
+              }
 
 
               // document.getElementById("Alert").style.fontSize = "15px";
@@ -529,13 +580,47 @@ document.getElementById('shareWorldButton').onclick = function(e) {
         }
 
     }
-  return clickCountSendButton && issueSpecific
+  return clickCountSendButton && issueSpecific && groupGeoJSON
 }
-
+//console.log(deflatedLocalStorage)
 var elementJustAddedToLocalStorage = false
 document.getElementById('DownloadButton').onclick = function(e) {
+  //console.log(whichLayerIsOn)
+        //to store in localstorage immediately
+        // for (i = 0; i < deflatedLocalStorage._layers.length; i++) { // not the optimal solution, but couldn't find the way to empty deflated
+        //   try{ // because array not starts with 1,2,3
+        //     deflatedLocalStorage.removeLayer(deflatedLocalStorage._layers[i])
+        //     console.log('forr ',i)
+        //   }catch(e){
+        //     console.log('error emptying deflatedlocal')
+        //   }
+        // }
+        // geoJSONLocalforageDB.setItem(tempName, dataStringified).then(function(){
+        //   setTimeout(function(){
+        //     fetchFromLocalStorage()
+        //
+        //   },2000)
+        // })
+        geoJSONLocalforageDB.setItem(tempName, dataStringified)
+        var newGeom = JSON.parse(dataStringified)
+        groupGeoJSON = newGeom
+        localStorageToGeoJSON()
+
+        // geoJSONLocalforageDB.getItem(tempName).then(function (value) {
+        //     console.log(key, value);
+        //     isJson(value);
+        //     if (isJson(value) == true) {
+        //       // //console.log(isJson('this is geojson',value))
+        //         var getItemToJSON = JSON.parse(value);
+        //         isJson(getItemToJSON)
+        //
+        //         localStorageToGeoJSON()
+        //       }
+        //
+        // });
+
       issueSpecific = 'emojiNoSapelli'
-  hideButtons()
+      hideButtons()
 
 
     drawnItems.clearLayers();
@@ -610,10 +695,10 @@ document.getElementById('DownloadButton').onclick = function(e) {
         // filter_Button.addTo(map);
         myLayer_Button.button.style.opacity = '1';
         myLayer_Button.button.disabled = false;
-        myLayer_Button.button.style.backgroundColor = '#43ACF0';
+        // myLayer_Button.button.style.backgroundColor = '#43ACF0';
 
-        filter_Button.button.style.opacity = '0.4';
-        filter_Button.button.disabled = true;
+        // filter_Button.button.style.opacity = '0.4';
+        // filter_Button.button.disabled = true;
         gps_Button.button.style.opacity = '1';
         gps_Button.button.disabled = false;
 
@@ -624,22 +709,34 @@ document.getElementById('DownloadButton').onclick = function(e) {
         //     recordedVideo.pause();
         //     recordedBlobs = null; // audio is removed if cancel is clicked
         // }
-        whichLayerIsOn = 'localStorage'
+        // whichLayerIsOn = 'localStorage'
         // //console.log('localstoragelayer',localStorageLayer)
-        finalLayer = L.geoJSON(data, {
-            style: function(feature) {
-                return feature.properties && feature.properties.style;
-            },
-            color: '#0CACDF',
-            onEachFeature: onEachFeatureAudioLocalStorage,
-        }).addTo(map);
+        if(whichLayerIsOn == 'deflated'){
+          document.getElementById('myLayerButton').click()
+        }if(whichLayerIsOn == 'none'){
+          document.getElementById('myLayerButton').click()
+          document.getElementById('myLayerButton').click()
+        }if(whichLayerIsOn == 'localStorage'){
+          document.getElementById('myLayerButton').click()
+          document.getElementById('myLayerButton').click()
+          document.getElementById('myLayerButton').click()
+
+        }
+
+        // finalLayer = L.geoJSON(data, {
+        //     style: function(feature) {
+        //         return feature.properties && feature.properties.style;
+        //     },
+        //     color: '#0CACDF',
+        //     onEachFeature: onEachFeatureAudioLocalStorage,
+        // }).addTo(map);
 
           field = false
 
     }, timeOfVideo - 300);
 
 
-    return finished && whichLayerIsOn && localStorageLayer && elementJustAddedToLocalStorage && field && issueSpecific
+    return finished && whichLayerIsOn && localStorageLayer && elementJustAddedToLocalStorage && field && issueSpecific && fetchLast && groupGeoJSON
 }
 
 // end

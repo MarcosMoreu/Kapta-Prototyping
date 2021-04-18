@@ -75,7 +75,7 @@ var localStorageLayer
 var localStorageToGeoJSON = function(){
   ////console.log(groupGeoJSON)
 
-    if (isJson(groupGeoJSON) == false && isFirstTime == false) {
+    if (isJson(groupGeoJSON) == false) {
         localStorageLayer = L.geoJSON(groupGeoJSON, {
             style: function(feature) {
                 //myLayerIsOn = true;
