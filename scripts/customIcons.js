@@ -169,11 +169,8 @@ document.getElementById('sapelliProjects').onclick = function(e){
   // document.getElementById('customIconsMap').style.display = 'none';
   document.getElementById('customIconsMap').style.display = 'initial';
 
-
     if(projectsCreated == false){
       projectsCreated = true
-
-
 
         cell = document.createElement('div')
         document.body.appendChild(cell)
@@ -188,7 +185,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
 
         preload([
           //crops generic
-        'images/csaNigeria/Crops/Cereals.png','images/csaNigeria/Crops/Vegetables.png','images/csaNigeria/Crops/Fruits.png','images/csaNigeria/Crops/Tubers.png',"images/csaNigeria/Crops/pulses.png",
+        'images/csaNigeria/Logo.png','images/csaNigeria/Crops/Cereals.png','images/csaNigeria/Crops/Vegetables.png','images/csaNigeria/Crops/Fruits.png','images/csaNigeria/Crops/Tubers.png',"images/csaNigeria/Crops/pulses.png",
         "images/csaNigeria/Crops/cashCrop.png","images/csaNigeria/Crops/nuts.png",
         //Crops
         'images/csaNigeria/Crops/Agbalumo.png','images/csaNigeria/Crops/agbon.png','images/csaNigeria/Crops/amaranthus.png','images/csaNigeria/Crops/Awusa.png',"images/csaNigeria/Crops/banana.png",

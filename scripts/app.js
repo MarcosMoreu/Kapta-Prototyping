@@ -105,7 +105,7 @@ var checkIfOffline = setInterval(function() {
     filter_Button.button.disabled = true;
     filter_Button.button.style.opacity = '0.4';
     filter_Button.button.disabled = true;
-    myLayer_Button.button.style.backgroundColor = '#43ACF0';
+    myLayer_Button.button.style.backgroundColor = '#00FFFB';
 
     deflated.removeFrom(map)
     // //console.log('isonline= ', isOnline)
@@ -337,14 +337,16 @@ if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains 
     // var addedFeature = localStorage.getItem(randomIDtest)
     // console.log(addedFeature)
     elementJustAddedToLocalStorage = true
-    setTimeout(function changeToLocalStorageLayer(){
-        document.getElementById('myLayerButton').click()
-        if(whichLayerIsOn == 'none'){
-          document.getElementById('myLayerButton').click()
-          document.getElementById('myLayerButton').click()
-        }
 
-    },2000) // really don't know why this timeout, but keep it for now
+    var activateLocalStorageLayer = setInterval(function(){
+      if(localStorageLayer != null){
+        try{
+          document.getElementById('myLayerButton').click()
+          clearInterval(activateLocalStorageLayer)
+        }catch(e){}
+
+      }
+    },500) // really don't know why this timeout, but keep it for now
 
 }
 else if (urlContainsHash == true){  // if only coords are in the url
@@ -1365,7 +1367,7 @@ var myLayer_Button = L.easyButton({
                     finalLayer.addTo(map)
                 }
                 whichLayerIsOn = 'localStorage'
-                myLayer_Button.button.style.backgroundColor = '#43ACF0';
+                myLayer_Button.button.style.backgroundColor = '#00FFFB';
                 filter_Button.button.style.opacity = '0.4';
                 filter_Button.button.disabled = true;
 
@@ -1408,7 +1410,7 @@ var myLayer_Button = L.easyButton({
                     finalLayer.removeFrom(map)
                 }
                 if(isOnline == false){
-                  myLayer_Button.button.style.backgroundColor = '#43ACF0'
+                  myLayer_Button.button.style.backgroundColor = '#00FFFB'
                   filter_Button.button.style.opacity = '0.4';
                   filter_Button.button.disabled = true;
                   }else{
@@ -1624,7 +1626,7 @@ var field = false
 var position
 var startSearchingLocation = function(){
 var refreshGPSbutton = setInterval(function() { ///////////////////////////////////////// function to keep searching for gps position
-//  console.log('refreshgpsbutton')
+  console.log('gps accuracy',accuracy)
   if(localStorage.getItem('pwCorrect')){
 
     try {
@@ -1787,7 +1789,7 @@ var gps_Button = L.easyButton({
                 if (accuracy <= 50) {
                   //  gps_Button.button.style.backgroundColor = 'green';
                   //  gps_Button.button.src = 'images/gpsSearching.gif';
-                    map.setView(currentLocation, 15);
+                    map.flyTo(currentLocation, 15);
                     // startSearchingLocation()
                     ////console.log(currentLocation)
 

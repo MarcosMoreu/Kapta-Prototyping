@@ -52,9 +52,9 @@ var cartoGeoJSONLayer = function(data) {
                 }
 
 
-                console.log('aFeatureIsSelected true')
+              //  console.log('aFeatureIsSelected true')
               }else{ // this if/else is to ensure that two features can not be selected at the same time
-              console.log('aFeatureIsSelected false')
+          //    console.log('aFeatureIsSelected false')
 
               document.getElementById("clearFilter").style.display = "none";
               document.getElementById("applyFilter").style.display = "none";
@@ -392,7 +392,7 @@ var cartoGeoJSONLayer = function(data) {
     // cartoGeometriesInitial = cartoGeometries
   try {
     cartoGeometries.addTo(deflated)
-    console.log('cartogeometries',cartoGeometries)
+  //  console.log('cartogeometries',cartoGeometries)
     }catch(err){
     // console.log('error sql catched due to empty layer after filter applied')
   }

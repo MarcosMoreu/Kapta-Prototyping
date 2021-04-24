@@ -451,10 +451,13 @@ var localStorageToGeoJSON = function(){
                               map.closePopup();
                               if(selectedFeature && selectedFeature != null){ //second condition to avoid click when backDeletefeature... not best solution but works
                               document.getElementById("backDeleteFeature").click() // !!!!!!!!
-                              localStorageRecenter_Button.addTo(map);
-                              localStorageRecenter_Button.button.style.opacity = '1';
-                              localStorageRecenter_Button.button.disabled = false;
-                              filter_Button.removeFrom(map)
+                                  if(whichLayerIsOn == 'localStorage'){
+                                    localStorageRecenter_Button.addTo(map);
+                                    localStorageRecenter_Button.button.style.opacity = '1';
+                                    localStorageRecenter_Button.button.disabled = false;
+                                    filter_Button.removeFrom(map)
+                                  }
+
 
                               }
 
@@ -470,10 +473,13 @@ var localStorageToGeoJSON = function(){
 
                               if(selectedFeature && selectedFeature != null){ //second condition to avoid click when backDeletefeature... not best solution but works
                                 document.getElementById("backDeleteFeature").click() //!!!!!!!!
-                                localStorageRecenter_Button.addTo(map);
-                                localStorageRecenter_Button.button.style.opacity = '1';
-                                localStorageRecenter_Button.button.disabled = false;
-                                filter_Button.removeFrom(map)
+                                if(whichLayerIsOn == 'localStorage'){
+
+                                    localStorageRecenter_Button.addTo(map);
+                                    localStorageRecenter_Button.button.style.opacity = '1';
+                                    localStorageRecenter_Button.button.disabled = false;
+                                    filter_Button.removeFrom(map)
+                                }
                               }
                             }
                           })
@@ -489,10 +495,13 @@ var localStorageToGeoJSON = function(){
 
                               if(selectedFeature && selectedFeature != null){ //second condition to avoid click when backDeletefeature... not best solution but works
                                 document.getElementById("backDeleteFeature").click() //!!!!!!!!
-                                localStorageRecenter_Button.addTo(map);
-                                localStorageRecenter_Button.button.style.opacity = '1';
-                                localStorageRecenter_Button.button.disabled = false;
-                                filter_Button.removeFrom(map)
+                                    if(whichLayerIsOn == 'localStorage'){
+
+                                    localStorageRecenter_Button.addTo(map);
+                                    localStorageRecenter_Button.button.style.opacity = '1';
+                                    localStorageRecenter_Button.button.disabled = false;
+                                    filter_Button.removeFrom(map)
+                                  }
                               }
                             }
                           })
