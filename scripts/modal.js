@@ -342,9 +342,17 @@ var requestPw = function(){
                 },1000)
                 //in case first load is with url geoJSON -- not the best approach ever, but it works.
                 if(urlContainsGeoJSON == true){
-                  setTimeout(function(){
-                  location.reload();
-                },1100)
+                  var activateLocalStorageLayer = setInterval(function(){
+                    console.log('checking encodedgeojsonurl')
+                    if(localStorageLayer != null){
+                      try{
+                        document.getElementById('myLayerButton').click()
+                        clearInterval(activateLocalStorageLayer)
+                      }catch(e){}
+
+                    }
+                  },500) // really don't know why this timeout, but keep it for now
+
                 }
 
               }

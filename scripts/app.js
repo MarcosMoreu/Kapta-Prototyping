@@ -268,7 +268,7 @@ var randomIDtest
 var geoJSONLocalforageDB
 //this function will be called only if geojson is found in url
 var storeURLGeoJSON = function(data){
-  var randomID = data.features[0].properties.randomID
+  var randomID = data.properties.randomID
   geoJSONLocalforageDB = localforage.createInstance({ //to create a separate DB in IndexedDB, so geojsons are not mixed with TilesDB
   name: "geoJSONs"
   });
@@ -337,16 +337,19 @@ if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains 
     // var addedFeature = localStorage.getItem(randomIDtest)
     // console.log(addedFeature)
     elementJustAddedToLocalStorage = true
+    if(localStorage.getItem('pwCorrect')){
+      var activateLocalStorageLayer = setInterval(function(){
+        console.log('checking encodedgeojsonurl')
+        if(localStorageLayer != null){
+          try{
+            document.getElementById('myLayerButton').click()
+            clearInterval(activateLocalStorageLayer)
+          }catch(e){}
 
-    var activateLocalStorageLayer = setInterval(function(){
-      if(localStorageLayer != null){
-        try{
-          document.getElementById('myLayerButton').click()
-          clearInterval(activateLocalStorageLayer)
-        }catch(e){}
+        }
+      },500) // really don't know why this timeout, but keep it for now
+    }
 
-      }
-    },500) // really don't know why this timeout, but keep it for now
 
 }
 else if (urlContainsHash == true){  // if only coords are in the url
@@ -2067,7 +2070,7 @@ function setData() {
         //console.log(pURL)
     }
     else { //TO INSERT THE CREATED FEATURE INTO THE CARTO DB
-        dataGeometry = data.features[0].geometry
+        dataGeometry = data.geometry
         ////console.log(dataGeometry)
         var dataGeometryString = JSON.stringify(dataGeometry)
         ////console.log(dataGeometryString)

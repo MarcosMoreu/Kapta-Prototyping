@@ -53,7 +53,7 @@ var showButtons = function(){
 }
 
 var encodeGeoJSON = function(data,properties){
-  data.features[0].properties = properties;
+  data.properties = properties;
   convertedDataShareDirect = encodeURIComponent(JSON.stringify(data));
   // convertedDataShareDirect = JSON.stringify(data);
 
@@ -111,7 +111,8 @@ document.getElementById('share-download').onclick = function(e) {
     dateTimeRandomID = 'Date&time: ' + dateTime + ' RandomID:' + randomID;
     dateTimeRandomID.toString();
     data = drawnItems.toGeoJSON();
-    dataGeometry = data.features[0].geometry
+    data = data.features[0]
+    dataGeometry = data.geometry
     ////console.log(data)
     ////console.log(dataGeometry)
     //The coordinate reference system for all GeoJSON coordinates is a  geographic coordinate reference system, using the World Geodetic
@@ -181,7 +182,7 @@ document.getElementById('share-download').onclick = function(e) {
         'lengthLine': finalLength2Decimals,
     };
     //  adding the properties to the geoJSON file:
-    data.features[0].properties = propertiesGeoJSON;
+    data.properties = propertiesGeoJSON;
 
     // Stringify the GeoJson
     // convertedData = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
@@ -465,7 +466,7 @@ document.getElementById('shareWorldButton').onclick = function(e) {
               //to fire click event of upload button !!
               ////////////////////////////       CARTO - POST DATA      //////////////////////////////////////////
               //first, we define the variables that store the attributes
-              propertiesGeoJSON = data.features[0].properties
+              propertiesGeoJSON = data.properties
               //to assign each attribute to a variable, which will be added as columns to the DB
               landUses = propertiesGeoJSON.landUses;
               landUsesEmoji = propertiesGeoJSON.landUsesEmoji;
