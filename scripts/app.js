@@ -1335,11 +1335,14 @@ var refreshClusterBlueColor = setInterval(function(){
     var colsMedium = document.getElementsByClassName('marker-cluster-medium');
     var colsLarge = document.getElementsByClassName('marker-cluster-large');
 
-    for(i = 0; i < cols.length; i++) {
+    for(i = 0; i < colsSmall.length; i++) {
       colsSmall[i].style.backgroundColor = '#00FFFB';
+    }
+    for(i = 0; i < colsMedium.length; i++) {
       colsMedium[i].style.backgroundColor = '#00FFFB';
+    }
+    for(i = 0; i < colsLarge.length; i++) {
       colsLarge[i].style.backgroundColor = '#00FFFB';
-
     }
   }
 },100)
@@ -1969,13 +1972,30 @@ document.getElementById('rose').onclick = function(e){
       }
       if(clicksRose == 20){ //this is to show the download tiles buttons
         clicksRose = 0;
-        var dataToExport = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(groupGeoJSON));
+        //here we convert the multiple features into a featureCollection ready to be used in a GIS (geojson). Simply adding string before and after
+        var geojsonToString = JSON.stringify(groupGeoJSON)
+        var featureCollectionToExport = "{'type': 'FeatureCollection','features':"+ geojsonToString + '}'
+
+        console.log(featureCollectionToExport)
+        var dataToExport = 'data:text/json;charset=utf-8,' + encodeURIComponent(featureCollectionToExport);
         //console.log(convertedData)
+
+        //to get the date and timeout
+        var randomNumber = Math.random();
+        randomNumber = randomNumber * 10000;
+        var randomID = Math.round(randomNumber);
+        //here the datetime
+        var timeEnd = new Date();
+        var date = timeEnd.getFullYear() + '-' + (timeEnd.getMonth() + 1) + '-' + timeEnd.getDate();
+        var time = timeEnd.getHours() + ":" + timeEnd.getMinutes() + ":" + timeEnd.getSeconds();
+        var dateTime = date + 'T' + time + 'Z';
+        dateTimeRandomID = 'Exported ' + dateTime + ' RandomID:' + randomID;
+        dateTimeRandomID.toString();
 
 
         var toDownloadGeoJSON = document.createElement('a');
         toDownloadGeoJSON.setAttribute('href', dataToExport);
-        toDownloadGeoJSON.setAttribute('download', 'exported.geojson');
+        toDownloadGeoJSON.setAttribute('download', dateTimeRandomID+'.geojson');
         document.body.appendChild(toDownloadGeoJSON); // required for firefox
         toDownloadGeoJSON.click();
         toDownloadGeoJSON.remove();

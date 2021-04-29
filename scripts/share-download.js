@@ -309,9 +309,10 @@ document.getElementById('goBackClassification').onclick = function(e){
   startCheckingText()
 
 
+  clickedshareMessagingAppsDirect = false
 
 showButtons()
-return issueSpecific
+return issueSpecific && clickedshareMessagingAppsDirect
 }
 
 var mapposLat = mappos.center.lat
@@ -325,6 +326,7 @@ var urlLatX
 var urlLngX
 var urlZoomWithZX
 var urlZoomX
+var clickedshareMessagingAppsDirect = false
 document.getElementById('shareMessagingAppsDirect').onclick = function(e){
   //to store in localstorage immediately
   // geoJSONLocalforageDB.setItem(tempName, dataStringified)
@@ -359,6 +361,14 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
   document.getElementById("shareWorldButton").style.borderColor = 'white'
   clickCountSendButton = 0 //!!!!!!!!!!!
   shareURL = 'encodedGeoJSON'
+
+  if(clickedshareMessagingAppsDirect == false){
+    geoJSONLocalforageDB.setItem(tempName, dataStringified)
+    var newGeom = JSON.parse(dataStringified)
+    groupGeoJSON = newGeom
+    localStorageToGeoJSON()
+    clickedshareMessagingAppsDirect = true
+  }
 
   // if (navigator.share) {
   //   navigator.share({
@@ -431,7 +441,7 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
 
 
   // document.getElementById("shareMessagingApp").style.display = "initial";
-  return shareURL && mapposLat  && mapposLng && mapposZoom && urlX && urlLatX && urlLngX && urlZoomX && groupGeoJSON
+  return shareURL && mapposLat  && mapposLng && mapposZoom && urlX && urlLatX && urlLngX && urlZoomX && groupGeoJSON && clickedshareMessagingAppsDirect
 }
 // document.getElementById('goBackShareMessagingAppsDirect').onclick = function(e){
 //   document.getElementById("Alert").style.display = 'none'
@@ -627,13 +637,14 @@ document.getElementById('shareWorldButton').onclick = function(e) {
           //   alert("🔑 🛑 During the prototyping phase, a KEYWORD must be added in the textbox to publish the spatial data. Click 'Download' and in the main screen click the 'Quetionmark' button. Then click the 'Yellow' button to request the KEYWORD. Thanks");
           //
           // }
+          clickedshareMessagingAppsDirect = false
           finalAreaAcres2Decimals = null
           finalLength2Decimals = null
           timeStart = new Date(); // to reset time start in case more contributions in this session
 
             field = false
 
-          return featureSent &&  finalAreaAcres2Decimals &&  finalLength2Decimals && timeStart && field
+          return featureSent &&  finalAreaAcres2Decimals &&  finalLength2Decimals && timeStart && field && clickedshareMessagingAppsDirect
         }else {
           alert('🛑 You are offline')
         }
@@ -789,13 +800,13 @@ document.getElementById('DownloadButton').onclick = function(e) {
         //     color: '#0CACDF',
         //     onEachFeature: onEachFeatureAudioLocalStorage,
         // }).addTo(map);
-
+          clickedshareMessagingAppsDirect = false
           field = false
 
     }, timeOfVideo - 300);
 
 
-    return finished && whichLayerIsOn && localStorageLayer && elementJustAddedToLocalStorage && field && issueSpecific && fetchLast && groupGeoJSON
+    return finished && whichLayerIsOn && localStorageLayer && elementJustAddedToLocalStorage && field && issueSpecific && fetchLast && groupGeoJSON && clickedshareMessagingAppsDirect
 }
 
 // end
