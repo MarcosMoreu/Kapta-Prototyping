@@ -260,13 +260,13 @@ document.getElementById('infoGoBackButton').onclick = function(e){
 
      //document.getElementById("textJuhoansi").style.display = "none";
 
-     if(languageSelected == 'english'){
+     // if(languageSelected == 'english'){
        document.getElementById('dropDown').style.backgroundColor = 'black';
        document.getElementById('imageDropDown').src = '../images/burger.png';
        document.getElementById('dropDown').style.display = "initial";
        dropDownOpen = false
 
-     }
+     // }
      document.getElementById("youtube").style.display = "initial";
      document.getElementById("startMapping").style.display = "initial";
 
@@ -371,7 +371,7 @@ document.getElementById('yoruba').onclick = function(e){
   };
 
    setTimeout(function(){
-    // document.getElementById("dropDown").style.display = "initial";
+    document.getElementById("dropDown").style.display = "initial";
      document.getElementById("youtube").style.display = "initial";
      document.getElementById("startMapping").style.animation = "none";
 

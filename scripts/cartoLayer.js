@@ -62,10 +62,10 @@ var cartoGeoJSONLayer = function(data) {
               document.getElementById("classification").style.display = "none";
               document.getElementById("emoji").style.display = "none";
 
-              document.getElementById("whatsApp").style.display = "none";
-              document.getElementById("telegram").style.display = "none";
-              document.getElementById("weChat").style.display = "none";
-              document.getElementById("goBackMessagingApps").style.display = "none";
+              // document.getElementById("whatsApp").style.display = "none";
+              // document.getElementById("telegram").style.display = "none";
+              // document.getElementById("weChat").style.display = "none";
+              // document.getElementById("goBackMessagingApps").style.display = "none";
 
               // myLayer_Button.button.style.opacity = '0.4';
               // myLayer_Button.button.disabled = true;

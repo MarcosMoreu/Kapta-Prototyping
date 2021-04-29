@@ -78,6 +78,17 @@ var circleGT250Added = false
 var cartoGeometriesInitial = null
 var elementJustAddedToLocalStorage = false
 
+var watchPositionOptions = {
+  enableHighAccuracy: true,
+  // timeout: 5000000,
+  maximumAge: 2000,
+}
+//function for GPS error
+function error(err) {
+  currentLocation == null;
+  console.warn('ERROR(' + err.code + '): ' + err.message);
+  return currentLocation
+}
 //var miniMap
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -1320,9 +1331,15 @@ var whichLayerIsOn = 'deflated';
 var featureSent;
 var refreshClusterBlueColor = setInterval(function(){
   if(whichLayerIsOn == 'localStorage'){
-    var cols = document.getElementsByClassName('marker-cluster-small');
+    var colsSmall = document.getElementsByClassName('marker-cluster-small');
+    var colsMedium = document.getElementsByClassName('marker-cluster-medium');
+    var colsLarge = document.getElementsByClassName('marker-cluster-large');
+
     for(i = 0; i < cols.length; i++) {
-      cols[i].style.backgroundColor = '#00FFFB';
+      colsSmall[i].style.backgroundColor = '#00FFFB';
+      colsMedium[i].style.backgroundColor = '#00FFFB';
+      colsLarge[i].style.backgroundColor = '#00FFFB';
+
     }
   }
 },100)
@@ -1461,10 +1478,10 @@ var filter_Button = L.easyButton({
           emojiRequest()
           document.getElementById("backDeleteFeature").style.display = "none";
           document.getElementById("deleteFeature").style.display = 'none';
-          document.getElementById("goBackMessagingApps").style.display = "none";
-          document.getElementById("whatsApp").style.display = "none";
-          document.getElementById("telegram").style.display = 'none';
-          document.getElementById("weChat").style.display = "none";
+          // document.getElementById("goBackMessagingApps").style.display = "none";
+          // document.getElementById("whatsApp").style.display = "none";
+          // document.getElementById("telegram").style.display = 'none';
+          // document.getElementById("weChat").style.display = "none";
           document.getElementById("shareMessagingApp").style.display = "none";
           document.getElementById("randomSuggestion").style.display = "none";
 
@@ -1625,18 +1642,20 @@ function findBuffer(position) {
 // var circleGT250Added = false
 
 // if(isFirstTime == true || pageLoaded == true){
+
 var field = false
 var position
 var startSearchingLocation = function(){
 var refreshGPSbutton = setInterval(function() { ///////////////////////////////////////// function to keep searching for gps position
   console.log('gps accuracy',accuracy)
   if(localStorage.getItem('pwCorrect')){
-
-    try {
-        navigator.geolocation.watchPosition(findBuffer);
-    } catch (err) {
-        currentLocation == null;
-    }
+    navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
+    //
+    // try {
+    //     navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
+    // } catch (err) {
+    //     currentLocation == null;
+    // }
     //if location found, then set button color, and create circle or add marker if <50m
     if (currentLocation[0] != null) {
         // localStorage.setItem('lastPositionStoredLOCALLY', currentLocation)
@@ -1690,11 +1709,17 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
             }else{
               document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" width=40px; height=40px; " > '
             }            //if accuracy >50, keep searching
-            try {
-                navigator.geolocation.watchPosition(findBuffer);
-            } catch (err) {
-                currentLocation == null;
-            }
+            navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
+
+            // try {
+            //     navigator.geolocation.watchPosition(findBuffer,{
+            //       enableHighAccuracy: true,
+            //       maximumAge:2000,
+            //
+            //     });
+            // } catch (err) {
+            //     currentLocation == null;
+            // }
             if (circleLT250Added == false) {
                 //set circle based on radious-accuracy
                 circleLT250 = L.circle(currentLocation, {
@@ -1716,12 +1741,17 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
             }else{
               document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" width=40px; height=40px; " > '
             }
-            try {
-                navigator.geolocation.watchPosition(findBuffer);
-                //////console.log(currentLocation[0])
-            } catch (err) {
-                currentLocation == null;
-            }
+            navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
+
+            // try {
+            //     navigator.geolocation.watchPosition(findBuffer,{
+            //       enableHighAccuracy: true,
+            //       maximumAge:2000,
+            //     });
+            //     //////console.log(currentLocation[0])
+            // } catch (err) {
+            //     currentLocation == null;
+            // }
             if (circleGT250Added == false) {
                 circleGT250 = L.circle(currentLocation, {
                     color: "#ffffff00",
@@ -1740,11 +1770,16 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
         }else{
           document.getElementById('gps').innerHTML = '<img src="images/gpsOff.png" text-align="center" width=40px; height=40px; > '
         }
-        try {
-            navigator.geolocation.watchPosition(findBuffer);
-        } catch (err) {
-            currentLocation == null;
-        }
+        navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
+
+        // try {
+        //     navigator.geolocation.watchPosition(findBuffer,{
+        //       enableHighAccuracy: true,
+        //       maximumAge:2000,
+        //     });
+        // } catch (err) {
+        //     currentLocation == null;
+        // }
     }
     return currentLocation && circleLT250Added && circleGT250Added && circleLT250 && circleGT250 && position;
   }
@@ -1792,7 +1827,13 @@ var gps_Button = L.easyButton({
                 if (accuracy <= 50) {
                   //  gps_Button.button.style.backgroundColor = 'green';
                   //  gps_Button.button.src = 'images/gpsSearching.gif';
-                    map.flyTo(currentLocation, 15);
+                  var mapCurrentZoom = map.getZoom();
+                  if(mapCurrentZoom >= 17){
+                    map.flyTo(currentLocation, mapCurrentZoom);
+                  }else{
+                    map.flyTo(currentLocation, 17);
+                  }
+
                     // startSearchingLocation()
                     ////console.log(currentLocation)
 
@@ -1822,9 +1863,14 @@ var gps_Button = L.easyButton({
             if (currentLocation[0] == null) {
                 //gps_Button.button.style.backgroundColor = 'red';
                 document.getElementById('gps').src = 'images/gpsOff.png'
-                try{
-                  navigator.geolocation.watchPosition(findBuffer);
-                }catch(e){}
+                navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
+
+                // try{
+                //   navigator.geolocation.watchPosition(findBuffer,{
+                //     enableHighAccuracy: true,
+                //     maximumAge:2000,
+                //   });
+                // }catch(e){}
 
 
             }
@@ -2249,11 +2295,16 @@ document.getElementById("field").onclick = function(e) {
     document.getElementById("field").style.borderColor = '#3AFB06'
 
     // document.getElementById("fieldImage").src = 'images/checkingPw.gif'
-    try {
-        navigator.geolocation.watchPosition(findBuffer);
-    } catch (err) {
-        currentLocation == null;
-    }
+    navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
+
+    // try {
+    //     navigator.geolocation.watchPosition(findBuffer,{
+    //       enableHighAccuracy: true,
+    //       maximumAge:2000,
+    //     });
+    // } catch (err) {
+    //     currentLocation == null;
+    // }
     // setTimeout(function(){
     //   map.removeLayer(position)
     // },500)

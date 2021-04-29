@@ -349,20 +349,78 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
     urlZoomWithZX = splittedLatLngZoomX[2]
     urlZoomX = urlZoomWithZX.replace('z','')
 
-  document.getElementById('goBackClassification').style.display = 'none';
-  document.getElementById('shareMessagingAppsDirect').style.display = 'none';
-  document.getElementById('shareWorldButton').style.display = 'none';
-  document.getElementById('DownloadButton').style.display = 'none';
+  // document.getElementById('goBackClassification').style.display = 'none';
+  // document.getElementById('shareMessagingAppsDirect').style.display = 'none';
+  // document.getElementById('shareWorldButton').style.display = 'none';
+  // document.getElementById('DownloadButton').style.display = 'none';
   document.getElementById('Cancel').style.display = 'none';
   document.getElementById("shareWorldButtonImage").src = 'images/shareworld.png'
   document.getElementById("shareWorldButton").style.backgroundColor = 'white'
   document.getElementById("shareWorldButton").style.borderColor = 'white'
   clickCountSendButton = 0 //!!!!!!!!!!!
-  document.getElementById('weChatImage').src = 'images/sms.png'
-  document.getElementById("goBackShareMessagingAppsDirect").style.display = 'initial';
-  document.getElementById("whatsApp").style.display = 'initial';
-  document.getElementById("telegram").style.display = 'initial';
-  document.getElementById("weChat").style.display = "initial";
+  shareURL = 'encodedGeoJSON'
+
+  // if (navigator.share) {
+  //   navigator.share({
+  //     title: 'WebShare API Demo',
+  //     url: 'https://codepen.io/ayoisaiah/pen/YbNazJ'
+  //   }).then(() => {
+  //     console.log('Thanks for sharing!');
+  //   })
+  //   .catch(console.error);
+  // } else {
+  //   // fallback
+  // }
+  // if(shareURL == 'coords'){
+  //   // if(url.includes('/?')){ // to avoid shareing geojson if url still contains geojson
+  //   //   function getSecondPart(str) {
+  //   //     return str.split('#')[1];
+  //   //   }
+  //   //   var urlAfterHash = getSecondPart(window.location.href)
+  //   //     // window.location.href = 'https://wa.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
+  //   //     var url = encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
+  //   //     navigator.share({
+  //   //       url: url,
+  //   //     })
+  //   //
+  //   //
+  //   //   // //console.log(window.location.href)
+  //   //
+  //   // }else{
+  //   //   var url = encodeURIComponent(window.location.href)
+  //   //   navigator.share({
+  //   //     url:url,
+  //   //   })
+  //   // }
+  // }else if(shareURL == 'encodedGeoJSON'){
+    // console.log(propertiesGeoJSONURL.landUsesEmoji)
+    var attributes = propertiesGeoJSONURL.landUsesEmoji
+    var clickableText = 'click me'
+    var clickableTextHyperlinked = clickableText.link(convertedDataShareDirect)
+    var url = encodeURIComponent(attributes+ ' '+'   🗺️ 👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+      if(navigator.share){
+        navigator.share({
+          text: attributes,
+          url:url,
+        }).then(() => console.log('Successful share'))
+          .catch((error) => console.log('Error sharing', error));
+      }else{
+        // console.log(url)
+        navigator.clipboard.writeText(url).then(function() {
+          alert("Copied to clipboard!");
+        }, function() {
+          alert("Unable to copy");
+        });
+      }
+
+    // window.location.href='https://wa.me/?text='+encodeURIComponent(attributes+ ' '+'👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+
+  //}
+  // document.getElementById('weChatImage').src = 'images/sms.png'
+  // document.getElementById("goBackShareMessagingAppsDirect").style.display = 'initial';
+  // document.getElementById("whatsApp").style.display = 'initial';
+  // document.getElementById("telegram").style.display = 'initial';
+  // document.getElementById("weChat").style.display = "initial";
   // console.log(recordedBlobs)
   // if(recordedBlobs != null){
   //   document.getElementById("Alert").style.fontSize = "30px";
@@ -371,25 +429,25 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
   // }
 
 
-  shareURL = 'encodedGeoJSON'
+
   // document.getElementById("shareMessagingApp").style.display = "initial";
   return shareURL && mapposLat  && mapposLng && mapposZoom && urlX && urlLatX && urlLngX && urlZoomX && groupGeoJSON
 }
-document.getElementById('goBackShareMessagingAppsDirect').onclick = function(e){
-  document.getElementById("Alert").style.display = 'none'
-
-  document.getElementById("goBackShareMessagingAppsDirect").style.display = 'none';
-  document.getElementById("whatsApp").style.display = 'none';
-  document.getElementById("telegram").style.display = 'none';
-  document.getElementById("weChat").style.display = "none";
-  // document.getElementById("shareMessagingApp").style.display = "none";
-
-  document.getElementById('goBackClassification').style.display = 'initial';
-  document.getElementById('shareMessagingAppsDirect').style.display = 'initial';
-  document.getElementById('shareWorldButton').style.display = 'initial';
-  document.getElementById('DownloadButton').style.display = 'initial';
-  // document.getElementById('Cancel').style.display = 'initial';
-}
+// document.getElementById('goBackShareMessagingAppsDirect').onclick = function(e){
+//   document.getElementById("Alert").style.display = 'none'
+//
+//   document.getElementById("goBackShareMessagingAppsDirect").style.display = 'none';
+//   document.getElementById("whatsApp").style.display = 'none';
+//   document.getElementById("telegram").style.display = 'none';
+//   document.getElementById("weChat").style.display = "none";
+//   // document.getElementById("shareMessagingApp").style.display = "none";
+//
+//   document.getElementById('goBackClassification').style.display = 'initial';
+//   document.getElementById('shareMessagingAppsDirect').style.display = 'initial';
+//   document.getElementById('shareWorldButton').style.display = 'initial';
+//   document.getElementById('DownloadButton').style.display = 'initial';
+//   // document.getElementById('Cancel').style.display = 'initial';
+// }
 
 
 document.getElementById('shareWorldButton').onclick = function(e) {

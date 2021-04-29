@@ -97,10 +97,10 @@ document.getElementById("backDeleteFeature").onclick = function() {
     document.getElementById("deleteFeature").style.borderColor = 'white';
     document.getElementById("imageDeleteFeature").src = 'images/binpre.png';
 
-    document.getElementById("goBackMessagingApps").style.display = "none";
-    document.getElementById("whatsApp").style.display = "none";
-    document.getElementById("telegram").style.display = 'none';
-    document.getElementById("weChat").style.display = "none";
+    // document.getElementById("goBackMessagingApps").style.display = "none";
+    // document.getElementById("whatsApp").style.display = "none";
+    // document.getElementById("telegram").style.display = 'none';
+    // document.getElementById("weChat").style.display = "none";
 
     document.getElementById("shareMessagingApp").style.opacity = '1';
     document.getElementById("shareMessagingApp").disabled = false;
@@ -140,122 +140,162 @@ document.getElementById("backDeleteFeature").onclick = function() {
 
 }
 document.getElementById("shareMessagingApp").onclick = function() {
+  if(window.location.href.includes('/?')){ // to avoid shareing geojson if url still contains geojson
+    function getSecondPart(str) {
+      return str.split('#')[1];
+    }
+    var urlAfterHash = getSecondPart(window.location.href)
+      // window.location.href = 'https://wa.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
+      var url = encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
+      if(navigator.share){
+        navigator.share({
+          text: attributes,
+          url:url,
+        }).then(() => console.log('Successful share'))
+          .catch((error) => console.log('Error sharing', error));
+      }else{
+        // console.log(url)
+        navigator.clipboard.writeText(url).then(function() {
+          alert("Copied to clipboard!");
+        }, function() {
+          alert("Unable to copy");
+        });
+      }
 
-  document.getElementById("backDeleteFeature").style.display = "none";
-  document.getElementById("shareMessagingApp").style.display = "none";
-  document.getElementById("deleteFeature").style.display = "none";
-  document.getElementById("randomSuggestion").style.display = "none";
-  document.getElementById('weChatImage').src = 'images/wechat.png'
+    // //console.log(window.location.href)
 
-  document.getElementById("whatsApp").style.display = "initial";
-  document.getElementById("telegram").style.display = "initial";
-  document.getElementById("weChat").style.display = "initial";
-  document.getElementById("goBackMessagingApps").style.display = "initial";
+  }else{
+    var url = encodeURIComponent(window.location.href)
+    if(navigator.share){
+      navigator.share({
+        text: attributes,
+        url:url,
+      }).then(() => console.log('Successful share'))
+        .catch((error) => console.log('Error sharing', error));
+    }else{
+      // console.log(url)
+      navigator.clipboard.writeText(url).then(function() {
+        alert("Copied to clipboard!");
+      }, function() {
+        alert("Unable to copy");
+      });
+    }
+  }
+  // document.getElementById("backDeleteFeature").style.display = "none";
+  // document.getElementById("shareMessagingApp").style.display = "none";
+  // document.getElementById("deleteFeature").style.display = "none";
+  // document.getElementById("randomSuggestion").style.display = "none";
+  // document.getElementById('weChatImage').src = 'images/wechat.png'
+
+  // document.getElementById("whatsApp").style.display = "initial";
+  // document.getElementById("telegram").style.display = "initial";
+  // document.getElementById("weChat").style.display = "initial";
+  // document.getElementById("goBackMessagingApps").style.display = "initial";
   shareURL = 'coords'
   return shareURL
 }
 
-document.getElementById("goBackMessagingApps").onclick = function() {
-  document.getElementById("whatsApp").style.display = "none";
-  document.getElementById("telegram").style.display = "none";
-  document.getElementById("weChat").style.display = "none";
-  document.getElementById("goBackMessagingApps").style.display = "none";
+// document.getElementById("goBackMessagingApps").onclick = function() {
+//   document.getElementById("whatsApp").style.display = "none";
+//   document.getElementById("telegram").style.display = "none";
+//   document.getElementById("weChat").style.display = "none";
+//   document.getElementById("goBackMessagingApps").style.display = "none";
+//
+//   document.getElementById("backDeleteFeature").style.display = "initial";
+//   document.getElementById("shareMessagingApp").style.display = "initial";
+//   document.getElementById("deleteFeature").style.display = "initial";
+//   document.getElementById("deleteFeature").style.backgroundColor = 'white';
+//   document.getElementById("deleteFeature").style.borderColor = 'white';
+//   document.getElementById("imageDeleteFeature").src = 'images/binpre.png'
+//   document.getElementById("randomSuggestion").style.display = "initial";
+//
+// }
 
-  document.getElementById("backDeleteFeature").style.display = "initial";
-  document.getElementById("shareMessagingApp").style.display = "initial";
-  document.getElementById("deleteFeature").style.display = "initial";
-  document.getElementById("deleteFeature").style.backgroundColor = 'white';
-  document.getElementById("deleteFeature").style.borderColor = 'white';
-  document.getElementById("imageDeleteFeature").src = 'images/binpre.png'
-  document.getElementById("randomSuggestion").style.display = "initial";
 
-}
-
-
-document.getElementById("whatsApp").onclick = function() {
-  document.getElementById("Alert").style.display = 'none'
-
-  //console.log(shareURL)
-  //alert('Under development. Available soon.');
-  //  window.location.href = "https://wa.me/whatsappphonenumber/?text=urlencodedtext";
-  if(shareURL == 'coords'){
-    if(url.includes('/?')){ // to avoid shareing geojson if url still contains geojson
-      function getSecondPart(str) {
-        return str.split('#')[1];
-      }
-      var urlAfterHash = getSecondPart(window.location.href)
-        window.location.href = 'https://wa.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
-
-      // //console.log(window.location.href)
-
-    }else{
-      window.location.href='https://wa.me/?text='+encodeURIComponent(window.location.href)
-    }
-  }else if(shareURL == 'encodedGeoJSON'){
-    // console.log(propertiesGeoJSONURL.landUsesEmoji)
-    var attributes = propertiesGeoJSONURL.landUsesEmoji
-    var clickableText = 'click me'
-    var clickableTextHyperlinked = clickableText.link(convertedDataShareDirect)
-    window.location.href='https://wa.me/?text='+encodeURIComponent(attributes+ ' '+'   🗺️ 👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
-    // window.location.href='https://wa.me/?text='+encodeURIComponent(attributes+ ' '+'👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
-
-  }
-}
-
-document.getElementById("telegram").onclick = function() {
-  document.getElementById("Alert").style.display = 'none'
-
-//  alert('🚧 Telegram sharing option not available yet.');
-  if(shareURL == 'coords'){
-    if(url.includes('/?')){ // to avoid shareing geojson if url still contains geojson
-      function getSecondPart(str) {
-        return str.split('#')[1];
-      }
-      var urlAfterHash = getSecondPart(window.location.href)
-        window.location.href = 'https://t.me/share/url?url='+encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
-
-      // //console.log(window.location.href)
-
-    }else{
-      window.location.href='https://t.me/share/url?url='+encodeURIComponent(window.location.href)
-    }
-
-  }else if(shareURL == 'encodedGeoJSON'){
-    // window.location.href='https://telegram.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
-    var attributes = propertiesGeoJSONURL.landUsesEmoji
-
-    window.location.href='https://t.me/share/url?url='+encodeURIComponent(attributes+ ' '+'    🗺️ 👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
-
-  }
-}
-
-document.getElementById("weChat").onclick = function() {
-  document.getElementById("Alert").style.display = 'none'
-
-  //alert('🚧 WeChat sharing option not available yet.');
-  if(shareURL == 'coords'){
-    if(url.includes('/?')){ // to avoid shareing geojson if url still contains geojson
-      function getSecondPart(str) {
-        return str.split('#')[1];
-      }
-      var urlAfterHash = getSecondPart(window.location.href)
-        window.location.href = 'weixin://?text='+encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
-
-      // //console.log(window.location.href)
-
-    }else{
-      window.location.href='weixin://?text='+encodeURIComponent(window.location.href)
-    }
-  }else if(shareURL == 'encodedGeoJSON'){
-    // window.location.href='weixin://?text='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
-    // window.location.href='sms:1234&body=hi'
-    var attributes = propertiesGeoJSONURL.landUsesEmoji
-    window.location.href='sms:?body='+encodeURIComponent(attributes+ ' '+'    🗺️ 👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
-
-  }
-  // window.location.href='weixin://'  // to launch the app without url copied
-
-}
+// document.getElementById("whatsApp").onclick = function() {
+//   document.getElementById("Alert").style.display = 'none'
+//
+//   //console.log(shareURL)
+//   //alert('Under development. Available soon.');
+//   //  window.location.href = "https://wa.me/whatsappphonenumber/?text=urlencodedtext";
+//   if(shareURL == 'coords'){
+//     if(url.includes('/?')){ // to avoid shareing geojson if url still contains geojson
+//       function getSecondPart(str) {
+//         return str.split('#')[1];
+//       }
+//       var urlAfterHash = getSecondPart(window.location.href)
+//         window.location.href = 'https://wa.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
+//
+//       // //console.log(window.location.href)
+//
+//     }else{
+//       window.location.href='https://wa.me/?text='+encodeURIComponent(window.location.href)
+//     }
+//   }else if(shareURL == 'encodedGeoJSON'){
+//     // console.log(propertiesGeoJSONURL.landUsesEmoji)
+//     var attributes = propertiesGeoJSONURL.landUsesEmoji
+//     var clickableText = 'click me'
+//     var clickableTextHyperlinked = clickableText.link(convertedDataShareDirect)
+//     window.location.href='https://wa.me/?text='+encodeURIComponent(attributes+ ' '+'   🗺️ 👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+//     // window.location.href='https://wa.me/?text='+encodeURIComponent(attributes+ ' '+'👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+//
+//   }
+// }
+//
+// document.getElementById("telegram").onclick = function() {
+//   document.getElementById("Alert").style.display = 'none'
+//
+// //  alert('🚧 Telegram sharing option not available yet.');
+//   if(shareURL == 'coords'){
+//     if(url.includes('/?')){ // to avoid shareing geojson if url still contains geojson
+//       function getSecondPart(str) {
+//         return str.split('#')[1];
+//       }
+//       var urlAfterHash = getSecondPart(window.location.href)
+//         window.location.href = 'https://t.me/share/url?url='+encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
+//
+//       // //console.log(window.location.href)
+//
+//     }else{
+//       window.location.href='https://t.me/share/url?url='+encodeURIComponent(window.location.href)
+//     }
+//
+//   }else if(shareURL == 'encodedGeoJSON'){
+//     // window.location.href='https://telegram.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+//     var attributes = propertiesGeoJSONURL.landUsesEmoji
+//
+//     window.location.href='https://t.me/share/url?url='+encodeURIComponent(attributes+ ' '+'    🗺️ 👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+//
+//   }
+// }
+//
+// document.getElementById("weChat").onclick = function() {
+//   document.getElementById("Alert").style.display = 'none'
+//
+//   //alert('🚧 WeChat sharing option not available yet.');
+//   if(shareURL == 'coords'){
+//     if(url.includes('/?')){ // to avoid shareing geojson if url still contains geojson
+//       function getSecondPart(str) {
+//         return str.split('#')[1];
+//       }
+//       var urlAfterHash = getSecondPart(window.location.href)
+//         window.location.href = 'weixin://?text='+encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
+//
+//       // //console.log(window.location.href)
+//
+//     }else{
+//       window.location.href='weixin://?text='+encodeURIComponent(window.location.href)
+//     }
+//   }else if(shareURL == 'encodedGeoJSON'){
+//     // window.location.href='weixin://?text='+encodeURIComponent('https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+//     // window.location.href='sms:1234&body=hi'
+//     var attributes = propertiesGeoJSONURL.landUsesEmoji
+//     window.location.href='sms:?body='+encodeURIComponent(attributes+ ' '+'    🗺️ 👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+//
+//   }
+//   // window.location.href='weixin://'  // to launch the app without url copied
+//
+// }
 
 
 
