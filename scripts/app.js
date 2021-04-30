@@ -1332,18 +1332,18 @@ var featureSent;
 var refreshClusterBlueColor = setInterval(function(){
   if(whichLayerIsOn == 'localStorage'){
     var colsSmall = document.getElementsByClassName('marker-cluster-small');
-    var colsMedium = document.getElementsByClassName('marker-cluster-medium');
-    var colsLarge = document.getElementsByClassName('marker-cluster-large');
+    // var colsMedium = document.getElementsByClassName('marker-cluster-medium');
+    // var colsLarge = document.getElementsByClassName('marker-cluster-large');
 
     for(i = 0; i < colsSmall.length; i++) {
       colsSmall[i].style.backgroundColor = '#00FFFB';
     }
-    for(i = 0; i < colsMedium.length; i++) {
-      colsMedium[i].style.backgroundColor = '#00FFFB';
-    }
-    for(i = 0; i < colsLarge.length; i++) {
-      colsLarge[i].style.backgroundColor = '#00FFFB';
-    }
+    // for(i = 0; i < colsMedium.length; i++) {
+    //   colsMedium[i].style.backgroundColor = '#00FFFB';
+    // }
+    // for(i = 0; i < colsLarge.length; i++) {
+    //   colsLarge[i].style.backgroundColor = '#00FFFB';
+    // }
   }
 },100)
 var myLayer_Button = L.easyButton({
