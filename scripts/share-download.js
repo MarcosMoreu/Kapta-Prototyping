@@ -405,18 +405,23 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
   // }else if(shareURL == 'encodedGeoJSON'){
     // console.log(propertiesGeoJSONURL.landUsesEmoji)
     var attributes = propertiesGeoJSONURL.landUsesEmoji
-    var clickableText = 'click me'
-    var clickableTextHyperlinked = clickableText.link(convertedDataShareDirect)
-    var url = encodeURIComponent(attributes+ ' '+'   🗺️ 👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+    // var clickableText = 'click me'
+    // var clickableTextHyperlinked = clickableText.link(convertedDataShareDirect)
+    // var url = encodeURIComponent(attributes+ ' '+'   🗺️ 👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+    var link = attributes + '   🗺️ 👇'+ "\n" + 'https://amappingprototype.xyz/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
+    // var url
+    console.log(url)
       if(navigator.share){
         navigator.share({
-          text: attributes,
-          url:url,
+          text: link,
+          // url:encodeURIComponent('?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
         }).then(() => console.log('Successful share'))
           .catch((error) => console.log('Error sharing', error));
       }else{
         // console.log(url)
         navigator.clipboard.writeText(url).then(function() {
+          // console.log(url)
+
           alert("Copied to clipboard!");
         }, function() {
           alert("Unable to copy");

@@ -146,11 +146,11 @@ document.getElementById("shareMessagingApp").onclick = function() {
     }
     var urlAfterHash = getSecondPart(window.location.href)
       // window.location.href = 'https://wa.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
-      var url = encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
+      var link = '🗺️ 👇'+ "\n" + 'https://amappingprototype.xyz/'+'#'+urlAfterHash
       if(navigator.share){
         navigator.share({
-          text: attributes,
-          url:url,
+          text: link,
+          // url:url,
         }).then(() => console.log('Successful share'))
           .catch((error) => console.log('Error sharing', error));
       }else{
@@ -165,11 +165,11 @@ document.getElementById("shareMessagingApp").onclick = function() {
     // //console.log(window.location.href)
 
   }else{
-    var url = encodeURIComponent(window.location.href)
+    var link = '🗺️ 👇'+ "\n" + window.location.href
     if(navigator.share){
       navigator.share({
-        text: attributes,
-        url:url,
+        text: link,
+        // url:url,
       }).then(() => console.log('Successful share'))
         .catch((error) => console.log('Error sharing', error));
     }else{

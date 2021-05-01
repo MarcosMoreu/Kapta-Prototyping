@@ -287,7 +287,7 @@ var storeURLGeoJSON = function(data){
 
   geoJSONLocalforageDB.setItem(randomID, parsedJSONStringified).then(function(value){
   }).catch(function(err) {
-    //console.error(err);
+    console.log('error set item geojson url')
   });
   randomIDtest = randomID
 
@@ -1964,6 +1964,8 @@ document.getElementById('rose').onclick = function(e){
           clicksRose = 0;
         }
       },2000)
+      return clicksRose
+
       }
       if(clicksRose == 10){ //this is to show the download tiles buttons
 
@@ -1976,6 +1978,7 @@ document.getElementById('rose').onclick = function(e){
             clicksRose = 0;
           }
       },2000)
+      return clicksRose
       }
       if(clicksRose == 20){ //this is to show the download tiles buttons
         document.getElementById("Alert").style.display = 'none'
