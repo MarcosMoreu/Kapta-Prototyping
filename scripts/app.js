@@ -1945,7 +1945,7 @@ document.getElementById('rose').onclick = function(e){
 
 
         setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
-          if(clicksRose < 8){ //this is to check that the user actually want to click 5 times, not 10
+          if(clicksRose < 7){ //this is to check that the user actually want to click 5 times, not 10
             document.getElementById("Alert").style.display = 'none'
             //console.log('refreshed')
 
@@ -1963,18 +1963,29 @@ document.getElementById('rose').onclick = function(e){
 
           clicksRose = 0;
         }
-      },3000)
+      },2000)
       }
       if(clicksRose == 10){ //this is to show the download tiles buttons
-        // clicksRose = 0;
-        offlineControlGoogle.addTo(map);
-        offlineControlOSM.addTo(map);
+
+        setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
+          if(clicksRose < 12){
+            document.getElementById("Alert").style.display = 'none'
+            // clicksRose = 0;
+            offlineControlGoogle.addTo(map);
+            offlineControlOSM.addTo(map);
+            clicksRose = 0;
+          }
+      },2000)
       }
       if(clicksRose == 20){ //this is to show the download tiles buttons
+        document.getElementById("Alert").style.display = 'none'
+
         clicksRose = 0;
         //here we convert the multiple features into a featureCollection ready to be used in a GIS (geojson). Simply adding string before and after
         var geojsonToString = JSON.stringify(groupGeoJSON)
-        var featureCollectionToExport = "{'type': 'FeatureCollection','features':"+ geojsonToString + '}'
+        // var featureCollectionToExport = "{'type': 'FeatureCollection','features':"+ geojsonToString + '}'
+        var featureCollectionToExport = '{"type": "FeatureCollection","features":'+ geojsonToString + '}'
+
 
         console.log(featureCollectionToExport)
         var dataToExport = 'data:text/json;charset=utf-8,' + encodeURIComponent(featureCollectionToExport);

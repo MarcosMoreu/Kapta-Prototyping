@@ -322,6 +322,10 @@ document.getElementById('sapelliProjects').onclick = function(e){
           newProjectButton.innerHTML = '<img src="images/checkingPw.gif" style="width:50px ; height:50px; border: 0px solid white" />';
           newProjectButton.disabled = true
           setTimeout(function(){
+            newProjectButton.backgroundColor = '#39F70F'
+          },3000)
+
+          setTimeout(function(){
             localStorage.setItem('sapelliProjectAccessed', true);
 
             // sapProjectFirstTime = false
@@ -329,9 +333,10 @@ document.getElementById('sapelliProjects').onclick = function(e){
             generateButtonsGenericCrops()
             newProjectButton.innerHTML = '<img src="images/csaNigeria/Logo.png" style="width:50px ; height:50px; border: 0px solid white" />';
             newProjectButton.disabled = false
+            newProjectButton.backgroundColor = 'white'
 
 
-          },3000)
+          },6000)
 
         }else{
           // sapProjectFirstTime = false
