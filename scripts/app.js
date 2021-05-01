@@ -651,8 +651,8 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
 });
 
 var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
-    saveButtonHtml: '<img src="images/download.png" width=15px ; height=15px>',
-    removeButtonHtml: '<img src="images/bin.png" width=15px ; height=15px>',
+    saveButtonHtml: '<img src="images/download.png" alt="..." width=15px ; height=15px>',
+    removeButtonHtml: '<img src="images/bin.png" alt="..." width=15px ; height=15px>',
     confirmSavingCallback: function(nTilesToSave, continueSaveTiles) {
         if (window.confirm('Save ' + nTilesToSave + '?')) {
             continueSaveTiles();
@@ -667,8 +667,8 @@ var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
     maxZoom: 21
 });
 var offlineControlOSM = L.control.offline(osm, tilesDb, {
-    saveButtonHtml: '<img src="images/download.png" width=15px ; height=15px>',
-    removeButtonHtml: '<img src="images/bin.png" width=15px ; height=15px>',
+    saveButtonHtml: '<img src="images/download.png" alt="..." width=15px ; height=15px>',
+    removeButtonHtml: '<img src="images/bin.png" alt="..." width=15px ; height=15px>',
     //  icon: '<img src="images/OSM.png" width=50px ; height=50px>',
     confirmSavingCallback: function(nTilesToSave, continueSaveTiles) {
         if (window.confirm('Save ' + nTilesToSave + '?')) {
@@ -806,25 +806,25 @@ var clickButtonCount = 0;
 // }
 
 if (isIOS == true) {
-    var iconGPS = '<img src="images/gpsOff.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%; margin-left:-5px" > ';
-    var iconOSM = '<img src="images/osm.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-top:2px; margin-left:-5px" > ';
-    var iconGOOGLE = '<img src="images/google.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-5px" > ';
-    var iconPLANET = '<img src="images/googleHistorical.png" width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-top:2px;margin-left:-3px" > ';
-    var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > ';
-    var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px;margin-bottom:2px" > ';
-    var iconRANDOM = '<img src="images/gps.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
-    var iconLocalStorageRecenter = '<img src="images/LocalStorageRecenter.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%; margin-left:-5px" > ';
+    var iconGPS = '<img src="images/gpsOff.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%; margin-left:-5px" > ';
+    var iconOSM = '<img src="images/osm.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-top:2px; margin-left:-5px" > ';
+    var iconGOOGLE = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-5px" > ';
+    var iconPLANET = '<img src="images/googleHistorical.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-top:2px;margin-left:-3px" > ';
+    var iconLAYERS = '<img src="images/myLayer.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > ';
+    var iconFILTER = '<img src="images/filterIcon.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px;margin-bottom:2px" > ';
+    var iconRANDOM = '<img src="images/gps.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
+    var iconLocalStorageRecenter = '<img src="images/LocalStorageRecenter.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%; margin-left:-5px" > ';
 
 
 } else {
-    var iconGPS = '<img src="images/gpsOff.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;"> ';
-    var iconOSM = '<img src="images/osm.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-top:2px" > ';
-    var iconGOOGLE = '<img src="images/google.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%"> ';
-    var iconPLANET = '<img src="images/googleHistorical.png" width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-top:2px"> ';
-    var iconLAYERS = '<img src="images/myLayer.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px" > ';
-    var iconFILTER = '<img src="images/filterIcon.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px;margin-bottom:2px" > ';
-    var iconRANDOM = '<img src="images/gps.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
-    var iconLocalStorageRecenter = '<img src="images/LocalStorageRecenter.png" width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;"> ';
+    var iconGPS = '<img src="images/gpsOff.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;"> ';
+    var iconOSM = '<img src="images/osm.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-top:2px" > ';
+    var iconGOOGLE = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%"> ';
+    var iconPLANET = '<img src="images/googleHistorical.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-top:2px"> ';
+    var iconLAYERS = '<img src="images/myLayer.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px" > ';
+    var iconFILTER = '<img src="images/filterIcon.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px;margin-bottom:2px" > ';
+    var iconRANDOM = '<img src="images/gps.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
+    var iconLocalStorageRecenter = '<img src="images/LocalStorageRecenter.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;"> ';
 
 }
 var basemapOn = 'googleSat'
@@ -1670,9 +1670,9 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
             //to change the icon of the Easybutton based on accuracy... (first gif then static image)
 
             if (isIOS == true) {
-              document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px" > '
+              document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px" > '
             }else{
-              document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" width=40px; height=40px;" > '
+              document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" alt="..." width=40px; height=40px;" > '
             }
 
             // var gpsIconIntermitent = setTimeout(function() {
@@ -1708,9 +1708,9 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
 
             gps_Button.button.style.backgroundColor = 'yellow';
             if (isIOS == true) {
-              document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px"" > '
+              document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px"" > '
             }else{
-              document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" width=40px; height=40px; " > '
+              document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" alt="..." width=40px; height=40px; " > '
             }            //if accuracy >50, keep searching
             navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
 
@@ -1740,9 +1740,9 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
 
             gps_Button.button.style.backgroundColor = 'orange';
             if (isIOS == true) {
-              document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px" " > '
+              document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px" " > '
             }else{
-              document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" width=40px; height=40px; " > '
+              document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" alt="..." width=40px; height=40px; " > '
             }
             navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
 
@@ -1769,9 +1769,9 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
     } else {
         gps_Button.button.style.backgroundColor = 'red';
         if (isIOS == true) {
-          document.getElementById('gps').innerHTML = '<img src="images/gpsOff.png" text-align="center" width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px" > '
+          document.getElementById('gps').innerHTML = '<img src="images/gpsOff.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px" > '
         }else{
-          document.getElementById('gps').innerHTML = '<img src="images/gpsOff.png" text-align="center" width=40px; height=40px; > '
+          document.getElementById('gps').innerHTML = '<img src="images/gpsOff.png" text-align="center" alt="..." width=40px; height=40px; > '
         }
         navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
 
@@ -1967,52 +1967,61 @@ document.getElementById('rose').onclick = function(e){
       return clicksRose
 
       }
-      if(clicksRose == 10){ //this is to show the download tiles buttons
+      if(clicksRose == 10){ //this is to download the feature collection from the local storage
+        document.getElementById("Alert").style.fontSize = "40px";
+        document.getElementById('Alert').innerHTML = '<br>⌛'
+        document.getElementById("Alert").style.display = 'initial'
+        setTimeout(function(){
 
-        setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
-          if(clicksRose < 12){
+            if(clicksRose < 12){
+            document.getElementById("Alert").style.display = 'none'
+
+              clicksRose = 0;
+              //here we convert the multiple features into a featureCollection ready to be used in a GIS (geojson). Simply adding string before and after
+              var geojsonToString = JSON.stringify(groupGeoJSON)
+              // var featureCollectionToExport = "{'type': 'FeatureCollection','features':"+ geojsonToString + '}'
+              var featureCollectionToExport = '{"type": "FeatureCollection","features":'+ geojsonToString + '}'
+
+
+              console.log(featureCollectionToExport)
+              var dataToExport = 'data:text/json;charset=utf-8,' + encodeURIComponent(featureCollectionToExport);
+              //console.log(convertedData)
+
+              //to get the date and timeout
+              var randomNumber = Math.random();
+              randomNumber = randomNumber * 10000;
+              var randomID = Math.round(randomNumber);
+              //here the datetime
+              var timeEnd = new Date();
+              var date = timeEnd.getFullYear() + '-' + (timeEnd.getMonth() + 1) + '-' + timeEnd.getDate();
+              var time = timeEnd.getHours() + ":" + timeEnd.getMinutes() + ":" + timeEnd.getSeconds();
+              var dateTime = date + 'T' + time + 'Z';
+              dateTimeRandomID = 'Exported ' + dateTime + ' RandomID:' + randomID;
+              dateTimeRandomID.toString();
+
+
+              var toDownloadGeoJSON = document.createElement('a');
+              toDownloadGeoJSON.setAttribute('href', dataToExport);
+              toDownloadGeoJSON.setAttribute('download', dateTimeRandomID+'.geojson');
+              document.body.appendChild(toDownloadGeoJSON); // required for firefox
+              toDownloadGeoJSON.click();
+              toDownloadGeoJSON.remove();
+            }
+          },2000)
+      }
+      if(clicksRose == 20){ //this is to show the download tiles buttons
+
+        // setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
+        //   if(clicksRose < 12){
             document.getElementById("Alert").style.display = 'none'
             // clicksRose = 0;
             offlineControlGoogle.addTo(map);
             offlineControlOSM.addTo(map);
             clicksRose = 0;
-          }
-      },2000)
+      //     }
+      // },2000)
       return clicksRose
-      }
-      if(clicksRose == 20){ //this is to show the download tiles buttons
-        document.getElementById("Alert").style.display = 'none'
 
-        clicksRose = 0;
-        //here we convert the multiple features into a featureCollection ready to be used in a GIS (geojson). Simply adding string before and after
-        var geojsonToString = JSON.stringify(groupGeoJSON)
-        // var featureCollectionToExport = "{'type': 'FeatureCollection','features':"+ geojsonToString + '}'
-        var featureCollectionToExport = '{"type": "FeatureCollection","features":'+ geojsonToString + '}'
-
-
-        console.log(featureCollectionToExport)
-        var dataToExport = 'data:text/json;charset=utf-8,' + encodeURIComponent(featureCollectionToExport);
-        //console.log(convertedData)
-
-        //to get the date and timeout
-        var randomNumber = Math.random();
-        randomNumber = randomNumber * 10000;
-        var randomID = Math.round(randomNumber);
-        //here the datetime
-        var timeEnd = new Date();
-        var date = timeEnd.getFullYear() + '-' + (timeEnd.getMonth() + 1) + '-' + timeEnd.getDate();
-        var time = timeEnd.getHours() + ":" + timeEnd.getMinutes() + ":" + timeEnd.getSeconds();
-        var dateTime = date + 'T' + time + 'Z';
-        dateTimeRandomID = 'Exported ' + dateTime + ' RandomID:' + randomID;
-        dateTimeRandomID.toString();
-
-
-        var toDownloadGeoJSON = document.createElement('a');
-        toDownloadGeoJSON.setAttribute('href', dataToExport);
-        toDownloadGeoJSON.setAttribute('download', dateTimeRandomID+'.geojson');
-        document.body.appendChild(toDownloadGeoJSON); // required for firefox
-        toDownloadGeoJSON.click();
-        toDownloadGeoJSON.remove();
       }
 
       setTimeout(function(){ //this is to refresh click counts, so they don't accumulate
