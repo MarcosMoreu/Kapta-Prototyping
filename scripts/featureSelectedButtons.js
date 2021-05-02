@@ -155,7 +155,7 @@ document.getElementById("shareMessagingApp").onclick = function() {
           .catch((error) => console.log('Error sharing', error));
       }else{
         // console.log(url)
-        navigator.clipboard.writeText(url).then(function() {
+        navigator.clipboard.writeText(link).then(function() {
           alert("Copied to clipboard!");
         }, function() {
           alert("Unable to copy");
@@ -174,7 +174,7 @@ document.getElementById("shareMessagingApp").onclick = function() {
         .catch((error) => console.log('Error sharing', error));
     }else{
       // console.log(url)
-      navigator.clipboard.writeText(url).then(function() {
+      navigator.clipboard.writeText(link).then(function() {
         alert("Copied to clipboard!");
       }, function() {
         alert("Unable to copy");

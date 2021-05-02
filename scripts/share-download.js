@@ -410,7 +410,7 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
     // var url = encodeURIComponent(attributes+ ' '+'   🗺️ 👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
     var link = attributes + "\n" + '🗺️ 👇'+ 'https://amappingprototype.xyz/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
     // var url
-    console.log(url)
+    // console.log(url)
       if(navigator.share){
         navigator.share({
           text: link,
@@ -419,7 +419,7 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
           .catch((error) => console.log('Error sharing', error));
       }else{
         // console.log(url)
-        navigator.clipboard.writeText(url).then(function() {
+        navigator.clipboard.writeText(link).then(function() {
           // console.log(url)
 
           alert("Copied to clipboard!");
