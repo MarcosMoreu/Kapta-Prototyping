@@ -1939,14 +1939,19 @@ document.getElementById('rose').onclick = function(e){
     //console.log('toremovedeflated',toRemoveDeflated)
 
       if(clicksRose == 5){ //this is to refresh the carto layer
-        document.getElementById("Alert").style.fontSize = "40px";
-        document.getElementById('Alert').innerHTML = '<br>⌛'
-        document.getElementById("Alert").style.display = 'initial'
+        // document.getElementById("Alert").style.fontSize = "40px";
+        // document.getElementById('Alert').innerHTML = '<br>⌛'
+        // document.getElementById("Alert").style.display = 'initial'
 
 
         setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
           if(clicksRose < 7){ //this is to check that the user actually want to click 5 times, not 10
-            document.getElementById("Alert").style.display = 'none'
+            document.getElementById("Alert").style.fontSize = "40px";
+            document.getElementById('Alert').innerHTML = '<br>🔄'
+            document.getElementById("Alert").style.display = 'initial'
+              setTimeout(function(){
+                document.getElementById("Alert").style.display = 'none'
+             },1000)
             //console.log('refreshed')
 
             for (i = 0; i < deflated._layers.length; i++) { // not the optimal solution, but couldn't find the way to empty deflated
@@ -1968,14 +1973,18 @@ document.getElementById('rose').onclick = function(e){
 
       }
       if(clicksRose == 10){ //this is to download the feature collection from the local storage
-        document.getElementById("Alert").style.fontSize = "40px";
-        document.getElementById('Alert').innerHTML = '<br>⌛'
-        document.getElementById("Alert").style.display = 'initial'
+        // document.getElementById("Alert").style.fontSize = "40px";
+        // document.getElementById('Alert').innerHTML = '<br>⌛'
+        // document.getElementById("Alert").style.display = 'initial'
         setTimeout(function(){
 
             if(clicksRose < 12){
-            document.getElementById("Alert").style.display = 'none'
-
+              document.getElementById("Alert").style.fontSize = "40px";
+              document.getElementById('Alert').innerHTML = '<br>📥'
+              document.getElementById("Alert").style.display = 'initial'
+                setTimeout(function(){
+                  document.getElementById("Alert").style.display = 'none'
+               },1000)
               clicksRose = 0;
               //here we convert the multiple features into a featureCollection ready to be used in a GIS (geojson). Simply adding string before and after
               var geojsonToString = JSON.stringify(groupGeoJSON)
