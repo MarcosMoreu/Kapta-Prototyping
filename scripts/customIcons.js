@@ -324,7 +324,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
           setTimeout(function(){
             newProjectButton.style.backgroundColor = '#39F70F'
             newProjectButton.style.borderColor = '#39F70F'
-          },4000)
+          },3000)
 
           setTimeout(function(){
             localStorage.setItem('sapelliProjectAccessed', true);
@@ -337,7 +337,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
             newProjectButton.style.backgroundColor = 'white'
             newProjectButton.style.borderColor = 'white'
 
-          },7000)
+          },5000)
 
         }else{
           // sapProjectFirstTime = false

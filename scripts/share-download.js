@@ -408,7 +408,7 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
     // var clickableText = 'click me'
     // var clickableTextHyperlinked = clickableText.link(convertedDataShareDirect)
     // var url = encodeURIComponent(attributes+ ' '+'   🗺️ 👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
-    var link = attributes + "\n" + '🗺️ 👇'+ 'https://amappingprototype.xyz/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
+    var link = attributes + "\n" + '🗺️ 👇'+ "\n" + 'https://amappingprototype.xyz/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
     // var url
     // console.log(url)
       if(navigator.share){

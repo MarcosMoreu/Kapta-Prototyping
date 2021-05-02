@@ -169,6 +169,8 @@ var localStorageToGeoJSON = function(){
                   //default option is used to check if the target is not deflated (i.e. a marker). Parenteses IMPORTANT!
                   if (!e.target.defaultOptions && e.target.feature.properties.areapolygon != 'Point' && e.target.feature.properties.lengthline != 'Point') { //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed. DefaultOptions is only in Points
                     console.log('approaching?')
+                    layer.editing.disable();
+                    // layer.editing.enable();
                       map.closePopup();
                       // e.target.feature.editing.disable();
 
@@ -190,17 +192,23 @@ var localStorageToGeoJSON = function(){
                     //  console.log(geometryStringGeoJSON)
 
                       // map.fitBounds(geometryStringGeoJSON.getBounds());
-                  }
-                  //the condition below is as it is because geometry column in the DB cannot be accessed while not deflated, so the properties.areas... is used
-                  if(e.target.feature.geometry.type == 'Point' && map.getZoom() < 17 && e.target.feature.properties.areapolygon == 'Point' && e.target.feature.properties.lengthline == 'Point') {
-                      map.closePopup();
-                      var geometryString = e.target.feature.properties.geometrystring
-                      var geometryStringGeoJSON = L.geoJSON(JSON.parse(geometryString))
-                      var coord = e.target.feature.geometry.coordinates;
-                      var latLng = L.GeoJSON.coordsToLatLng(coord);
-
-                      map.flyTo(latLng,15)
-                      layer.closePopup(feature.properties.landusesemoji + feature.properties.audioavailable); //to not open popup after second click
+                  // }
+                  // //the condition below is as it is because geometry column in the DB cannot be accessed while not deflated, so the properties.areas... is used
+                  // // if(e.target.feature.geometry.type == 'Point' && map.getZoom() < 17 && e.target.feature.properties.areapolygon == 'Point' && e.target.feature.properties.lengthline == 'Point') {
+                  // if(e.target.feature.geometry.type == 'Point' && map.getZoom() < 0) {
+                  //
+                  //     map.closePopup();
+                  //     console.log('gotopoint')
+                  //     // var geometryString = e.target.feature.properties.geometrystring
+                  //     // var geometryStringGeoJSON = L.geoJSON(JSON.parse(geometryString))
+                  //     var coord = e.target.feature.geometry.coordinates;
+                  //     var latLng = L.GeoJSON.coordsToLatLng(coord);
+                  //     // map.closePopup();
+                  //
+                  //     map.flyTo(latLng,17)
+                  //     // map.closePopup();
+                  //
+                  //     // layer.closePopup(feature.properties.landusesemoji + feature.properties.audioavailable); //to not open popup after second click
 
                    }else {
                      // selectedFeature.editing.disable();
@@ -211,106 +219,12 @@ var localStorageToGeoJSON = function(){
 
                        if (selectedFeature.feature.geometry.type != 'Point') {
                          //to populate the area/length field in the popup
-                          if(selectedFeature.feature.geometry.type == 'Polygon'){
+                          // if(selectedFeature.feature.geometry.type == 'Polygon'){
                             aFeatureIsSelected = true
 
-                            // document.getElementById('popupAreaLength').style.display = 'initial'
-                            // document.getElementById('popupAreaLength').textContent = feature.properties.areapolygon
-
-                              // if(selectedFeature.feature.properties.audioavailable !='.'){
-                              //   document.getElementById('commentPopup').disabled = false
-                              //   document.getElementById('commentPopup').onclick = function(){
-                              //
-                              //     var audioUrl = feature.properties.audioavailable
-                              //     var audioControls = document.getElementById('audioControls')
-                              //     audioControls.src = audioUrl
-                              //     document.getElementById('audioControls').style.display = 'initial'
-                              //
-                              //   }
-                              //   document.getElementById('commentPopup').style.display = 'initial';
-                              //   document.getElementById('commentPopup').textContent = '🔊' + ' ' + feature.properties.landusesemoji
-                              //
-                              //   }else{
-                                // document.getElementById('audioControls').style.display = 'none'
-                              //   document.getElementById('commentPopup').style.display = 'initial';
-                              //   document.getElementById('commentPopup').textContent = feature.properties.landusesemoji
-                              // // }
-
-                              //to add bluebox if comment Available
-                             //  if(selectedFeature.feature.properties.commentone != null){
-                             //    if(selectedFeature.feature.properties.commentoneaudioavailable !='.'){
-                             //      document.getElementById('toCommentPopup').disabled = false
-                             //        document.getElementById('toCommentPopup').onclick = function(){
-                             //
-                             //          var audioUrl = feature.properties.commentoneaudioavailable
-                             //          var audioControls = document.getElementById('audioControls')
-                             //          audioControls.src = audioUrl
-                             //          document.getElementById('audioControls').style.display = 'initial'
-                             //
-                             //        }
-                             //      document.getElementById('toCommentPopup').style.display = 'initial';
-                             //      document.getElementById('toCommentPopup').textContent = '🔊' + ' ' + feature.properties.commentone
-                             //
-                             //      }
-                             //      else{
-                             //        document.getElementById('toCommentPopup').onclick = function(){
-                             //          document.getElementById('audioControls').style.display = 'none'
-                             //        }
-                             //      document.getElementById('audioControls').style.display = 'none'
-                             //      document.getElementById('toCommentPopup').style.display = 'initial';
-                             //      document.getElementById('toCommentPopup').textContent = feature.properties.commentone
-                             //    }
-                             // }else{
-                             //   document.getElementById('toCommentPopup').style.display = 'none';
-                             // }
-
-                          }else{ //it a line
-                            aFeatureIsSelected = true
-
-                             // document.getElementById('popupAreaLength').style.display = 'initial'
-                             // document.getElementById('popupAreaLength').textContent = '〰️'
-                             // document.getElementById('popupAreaLength').style.display = 'none'
-
-
-                             // if(selectedFeature.feature.properties.audioavailable !='.'){
-                             //   document.getElementById('commentPopup').disabled = false
-                             //   document.getElementById('commentPopup').onclick = function(){
-                             //     // document.getElementById('commentPopup').disabled = true
-                             //     var audioUrl = feature.properties.audioavailable
-                             //     var audioControls = document.getElementById('audioControls')
-                             //     audioControls.src = audioUrl
-                             //     document.getElementById('audioControls').style.display = 'initial'
-                             //   }
-                             //   document.getElementById('commentPopup').style.display = 'initial';
-                             //   document.getElementById('commentPopup').textContent = '🔊' + ' ' + feature.properties.landusesemoji
-                             // }else{
-                             //   document.getElementById('audioControls').style.display = 'none'
-                             //   document.getElementById('commentPopup').style.display = 'initial';
-                             //   document.getElementById('commentPopup').textContent = feature.properties.landusesemoji
-                             // // }
-                            //  if(selectedFeature.feature.properties.commentone != null){
-                            //    if(selectedFeature.feature.properties.commentoneaudioavailable !='.'){
-                            //      document.getElementById('toCommentPopup').disabled = false
-                            //      document.getElementById('toCommentPopup').onclick = function(){
-                            //
-                            //        var audioUrl = feature.properties.commentoneaudioavailable
-                            //        var audioControls = document.getElementById('audioControls')
-                            //        audioControls.src = audioUrl
-                            //        document.getElementById('audioControls').style.display = 'initial'
-                            //
-                            //      }
-                            //      document.getElementById('toCommentPopup').style.display = 'initial';
-                            //      document.getElementById('toCommentPopup').textContent = '🔊' + ' ' + feature.properties.commentone
-                            //
-                            //      }else{
-                            //      document.getElementById('audioControls').style.display = 'none'
-                            //      document.getElementById('toCommentPopup').style.display = 'initial';
-                            //      document.getElementById('toCommentPopup').textContent = feature.properties.commentone
-                            //    }
-                            // }else{
-                            //   document.getElementById('toCommentPopup').style.display = 'none';
-                            // }
-                          }
+                          // }else{ //it a line
+                            // aFeatureIsSelected = true
+                          // }
 
                         // document.getElementById('editDeletePopup').style.display = 'initial'
 
@@ -352,92 +266,65 @@ var localStorageToGeoJSON = function(){
                        }
                          //condition below is at is is to avoid deflated symbol to show as selected after polygon/line have been selected
                          if (selectedFeature.feature.geometry.type == 'Point') {
-                           aFeatureIsSelected = true
-                           console.log(aFeatureIsSelected)
-                             // document.getElementById('popupAreaLength').style.display = 'initial'
-                             // document.getElementById('popupAreaLength').style.height = '📍';
-                             // document.getElementById('popupAreaLength').style.display = 'none'
+                           if(map.getZoom() < 15) {
+                             layer.editing.disable();
+                             // layer.closePopup(selectedFeature.properties.landusesemoji)
+                             // layer.editing.enable();
+                               map.closePopup();
+                               var coord = e.target.feature.geometry.coordinates;
+                               var latLng = L.GeoJSON.coordsToLatLng(coord);
+                               // selectedFeature.editing.disable();
+                               //
+                               // map.closePopup();
+
+                               map.flyTo(latLng,17)
+                               // selectedFeature.editing.disable();
+                               // map.closePopup();
 
 
-                             // if(selectedFeature.feature.properties.audioavailable !='.'){
-                             //   document.getElementById('commentPopup').disabled = false
-                             //   document.getElementById('commentPopup').onclick = function(){
-                             //     // document.getElementById('commentPopup').disabled = true
-                             //     var audioUrl = feature.properties.audioavailable
-                             //     var audioControls = document.getElementById('audioControls')
-                             //     audioControls.src = audioUrl
-                             //     document.getElementById('audioControls').style.display = 'initial'
-                             //
-                             //   }
-                             //   document.getElementById('commentPopup').style.display = 'initial';
-                             //   document.getElementById('commentPopup').textContent = '🔊' + ' ' + feature.properties.landusesemoji
-                             // }else{
-                             //   document.getElementById('audioControls').style.display = 'none'
-                             //   document.getElementById('commentPopup').style.display = 'initial';
-                             //   document.getElementById('commentPopup').textContent = feature.properties.landusesemoji
-                             // }
-                            //  if(selectedFeature.feature.properties.commentone != null){
-                            //    if(selectedFeature.feature.properties.commentoneaudioavailable !='.'){
-                            //      document.getElementById('toCommentPopup').disabled = false
-                            //      document.getElementById('toCommentPopup').onclick = function(){
-                            //
-                            //        var audioUrl = feature.properties.commentoneaudioavailable
-                            //        var audioControls = document.getElementById('audioControls')
-                            //        audioControls.src = audioUrl
-                            //        document.getElementById('audioControls').style.display = 'initial'
-                            //
-                            //      }
-                            //      document.getElementById('toCommentPopup').style.display = 'initial';
-                            //      document.getElementById('toCommentPopup').textContent = '🔊' + ' ' + feature.properties.commentone
-                            //
-                            //      }else{
-                            //      document.getElementById('audioControls').style.display = 'none'
-                            //      document.getElementById('toCommentPopup').style.display = 'initial';
-                            //      document.getElementById('toCommentPopup').textContent = feature.properties.commentone
-                            //    }
-                            // }else{
-                            //   document.getElementById('toCommentPopup').style.display = 'none';
-                            // }
+                          }else{
+                            aFeatureIsSelected = true
+                            console.log(aFeatureIsSelected)
 
-                             // document.getElementById('editDeletePopup').style.display = 'initial'
+                              document.getElementById("backDeleteFeature").style.display = "initial";
+                              document.getElementById("deleteFeatureLocalStorage").style.display = "initial";
+                              // document.getElementById("deleteFeature").style.display = "initial";
+                              // document.getElementById("deleteFeature").style.opacity = "1";
+                              // document.getElementById("deleteFeature").disabled = false;
+                              // document.getElementById("randomSuggestion").style.display = "initial";
+                             // miniMap.addTo(map)
 
-                             document.getElementById("backDeleteFeature").style.display = "initial";
-                             document.getElementById("deleteFeatureLocalStorage").style.display = "initial";
-                             // document.getElementById("deleteFeature").style.display = "initial";
-                             // document.getElementById("deleteFeature").style.opacity = "1";
-                             // document.getElementById("deleteFeature").disabled = false;
-                             // document.getElementById("randomSuggestion").style.display = "initial";
-                            // miniMap.addTo(map)
+                             osm_Button.button.style.opacity = '0.4';
+                             osm_Button.button.disabled = true;
+                             googleSat_Button.button.style.opacity = '0.4';
+                             googleSat_Button.button.disabled = true;
+                             planet_Button.button.style.opacity = '0.4';
+                             planet_Button.button.disabled = true;
 
-                            osm_Button.button.style.opacity = '0.4';
-                            osm_Button.button.disabled = true;
-                            googleSat_Button.button.style.opacity = '0.4';
-                            googleSat_Button.button.disabled = true;
-                            planet_Button.button.style.opacity = '0.4';
-                            planet_Button.button.disabled = true;
-
-                             gps_Button.button.style.opacity = '0.4';
-                             gps_Button.button.disabled = true;
-                             myLayer_Button.button.style.opacity = '0.4';
-                             myLayer_Button.button.disabled = true;
-                             filter_Button.button.style.opacity = '0.4';
-                             filter_Button.button.disabled = true;
-                             localStorageRecenter_Button.button.style.opacity = '0.4';
-                             localStorageRecenter_Button.button.disabled = true;
+                              gps_Button.button.style.opacity = '0.4';
+                              gps_Button.button.disabled = true;
+                              myLayer_Button.button.style.opacity = '0.4';
+                              myLayer_Button.button.disabled = true;
+                              filter_Button.button.style.opacity = '0.4';
+                              filter_Button.button.disabled = true;
+                              localStorageRecenter_Button.button.style.opacity = '0.4';
+                              localStorageRecenter_Button.button.disabled = true;
 
 
-                             // document.getElementById("deleteFeature").style.display = "initial";
-                             // document.getElementById("deleteFeature").style.backgroundColor = 'white';
-                             document.getElementById("tutorial").style.display = "none";
-                             document.getElementById("polygon").style.display = "none";
-                             document.getElementById("polyline").style.display = "none";
-                             document.getElementById("point").style.display = "none";
-                             document.getElementById("armchair").style.display = "none";
-                             document.getElementById("field").style.display = "none";
-                             document.getElementById("gobackArmchairField").style.display = "none";
+                              // document.getElementById("deleteFeature").style.display = "initial";
+                              // document.getElementById("deleteFeature").style.backgroundColor = 'white';
+                              document.getElementById("tutorial").style.display = "none";
+                              document.getElementById("polygon").style.display = "none";
+                              document.getElementById("polyline").style.display = "none";
+                              document.getElementById("point").style.display = "none";
+                              document.getElementById("armchair").style.display = "none";
+                              document.getElementById("field").style.display = "none";
+                              document.getElementById("gobackArmchairField").style.display = "none";
 
-                            // random_Button.addTo(map)
-                             selectedFeature.editing.enable();
+                             // random_Button.addTo(map)
+                              selectedFeature.editing.enable();
+                          }
+
                         }
 
                           //to deselect feature if user changes zooms or pans, to avoid deletion without looking at the feature.
