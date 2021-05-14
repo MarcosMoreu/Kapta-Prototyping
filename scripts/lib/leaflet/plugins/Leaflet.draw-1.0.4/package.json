@@ -8,6 +8,7 @@
     "git-rev": "^0.2.1",
     "happen": "^0.3.2",
     "jake": "^8.0.15",
+    "jshint": "^2.12.0",
     "karma": "^1.7.1",
     "karma-chrome-launcher": "^2.2.0",
     "karma-coverage": "~1.1.1",
@@ -22,7 +23,6 @@
     "prosthetic-hand": "^1.3.1",
     "source-map": "^0.5.7",
     "uglify-js": "^2.8.29",
-    "jshint": "^2.9.6",
     "uglifycss": "0.0.25"
   },
   "main": "dist/leaflet.draw.js",
