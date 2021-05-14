@@ -188,7 +188,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
         'images/csaNigeria/Logo.png','images/csaNigeria/Crops/Cereals.png','images/csaNigeria/Crops/Vegetables.png','images/csaNigeria/Crops/Fruits.png','images/csaNigeria/Crops/Tubers.png',"images/csaNigeria/Crops/pulses.png",
         "images/csaNigeria/Crops/cashCrop.png","images/csaNigeria/Crops/nuts.png",
         //Crops
-        'images/csaNigeria/Crops/Agbalumo.png','images/csaNigeria/Crops/agbon.png','images/csaNigeria/Crops/amaranthus.png','images/csaNigeria/Crops/Awusa.png',"images/csaNigeria/Crops/banana.png",
+        'images/csaNigeria/Crops/Agbalumo.png','images/csaNigeria/Crops/Agbon.png','images/csaNigeria/Crops/amaranthus.png','images/csaNigeria/Crops/Awusa.png',"images/csaNigeria/Crops/banana.png",
         "images/csaNigeria/Crops/beans.png","images/csaNigeria/Crops/Cashew.png",'images/csaNigeria/Crops/cassava.png','images/csaNigeria/Crops/cocoa.png','images/csaNigeria/Crops/soko.png',
         'images/csaNigeria/Crops/cocoyam.png',"images/csaNigeria/Crops/cucumber.png",'images/csaNigeria/Crops/Epa.png',"images/csaNigeria/Crops/Esuru.png",'images/csaNigeria/Crops/ewedu.png',
         "images/csaNigeria/Crops/Ewuro.png","images/csaNigeria/Crops/Fruits.png",'images/csaNigeria/Crops/gbure.png','images/csaNigeria/Crops/irishPotato.png','images/csaNigeria/Crops/Isu Ewura.png',
@@ -897,7 +897,7 @@ var generateButtonsNuts = function(){
   // }
   icon48 = document.createElement("BUTTON");
   cell.appendChild(icon48);
-  icon48.innerHTML = '<img src="images/csaNigeria/Crops/awusa.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Awusa';
+  icon48.innerHTML = '<img src="images/csaNigeria/Crops/Awusa.png" style="width:140px ; height:140px; border: 0px solid white" /> </br>Awusa';
   icon48.className = 'buttonsSapelli'
   icon48.onclick = function(){
     hideAll()
