@@ -112,11 +112,13 @@ var checkIfOffline = setInterval(function() {
   if(isOnline == false){
     document.getElementById('shareWorldButton').style.opacity = '0.2';
     document.getElementById('shareWorldButton').disabled = 'true';
-    filter_Button.button.style.opacity = '0.4';
-    filter_Button.button.disabled = true;
-    filter_Button.button.style.opacity = '0.4';
-    filter_Button.button.disabled = true;
-    myLayer_Button.button.style.backgroundColor = '#00FFFB';
+    // filter_Button.button.style.opacity = '0.4';
+    // filter_Button.button.disabled = true;
+    // filter_Button.button.style.opacity = '0.4';
+    // filter_Button.button.disabled = true;
+    // localStorageRecenter_Button.addTo(map);
+    // filter_Button.removeFrom(map)
+    // myLayer_Button.button.style.backgroundColor = '#00FFFB';
 
     deflated.removeFrom(map)
     // //console.log('isonline= ', isOnline)
@@ -1434,7 +1436,7 @@ var myLayer_Button = L.easyButton({
                     finalLayer.removeFrom(map)
                 }
                 if(isOnline == false){
-                  myLayer_Button.button.style.backgroundColor = '#00FFFB'
+                  myLayer_Button.button.style.backgroundColor = 'black'
                   filter_Button.button.style.opacity = '0.4';
                   filter_Button.button.disabled = true;
                   }else{
@@ -1646,14 +1648,16 @@ function findBuffer(position) {
 // var circleGT250Added = false
 
 // if(isFirstTime == true || pageLoaded == true){
-
+if(localStorage.getItem('pwCorrect')){
+  navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
+}
 var field = false
 var position
 var startSearchingLocation = function(){
 var refreshGPSbutton = setInterval(function() { ///////////////////////////////////////// function to keep searching for gps position
   console.log('gps accuracy',accuracy)
   if(localStorage.getItem('pwCorrect')){
-    navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
+    // navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
     //
     // try {
     //     navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
@@ -1713,7 +1717,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
             }else{
               document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" alt="..." width=40px; height=40px; " > '
             }            //if accuracy >50, keep searching
-            navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
+          //  navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
 
             // try {
             //     navigator.geolocation.watchPosition(findBuffer,{
@@ -1745,7 +1749,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
             }else{
               document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" alt="..." width=40px; height=40px; " > '
             }
-            navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
+          //  navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
 
             // try {
             //     navigator.geolocation.watchPosition(findBuffer,{
@@ -1774,7 +1778,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
         }else{
           document.getElementById('gps').innerHTML = '<img src="images/gpsOff.png" text-align="center" alt="..." width=40px; height=40px; > '
         }
-        navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
+      //  navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
 
         // try {
         //     navigator.geolocation.watchPosition(findBuffer,{
@@ -2348,7 +2352,7 @@ document.getElementById("field").onclick = function(e) {
     document.getElementById("field").style.borderColor = '#3AFB06'
 
     // document.getElementById("fieldImage").src = 'images/checkingPw.gif'
-    navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
+    //navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
 
     // try {
     //     navigator.geolocation.watchPosition(findBuffer,{

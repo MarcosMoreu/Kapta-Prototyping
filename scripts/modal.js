@@ -208,7 +208,7 @@ var initialiseMap = function(){
 
         preload([
             'images/ThumbsUpGreen.png','images/checkingPw.gif',
-            'images/armchair.png','images/field.png',
+            'images/armchair.png','images/field.png', 'images/tvSmall.png',
             'images/drawPolygon.png','images/line.png','images/point.png',
             'images/applyFilter.png','images/arrowLeft.png', 'images/arrowRight.png', 'images/backButton.png','images/bin.png','images/binOriginal.png','images/binpost.png',
             'images/binpre.png','images/burger.png','images/burgerBlack.png','images/cancel.png','images/clearFilter.png','images/commentFeature.png',
@@ -338,6 +338,7 @@ var requestPw = function(){
                     document.getElementById('modal').style.display='none';
                     document.getElementById('pwForm').style.display='none';
                     document.getElementById('AlertModalIOS').style.display = 'none'
+                    navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
 
                 },1000)
                 //in case first load is with url geoJSON -- not the best approach ever, but it works.
