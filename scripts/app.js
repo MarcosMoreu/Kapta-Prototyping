@@ -281,17 +281,33 @@ var randomIDtest
 var geoJSONLocalforageDB
 //this function will be called only if geojson is found in url
 var storeURLGeoJSON = function(data){
-  var randomID = data.properties.randomID
-  geoJSONLocalforageDB = localforage.createInstance({ //to create a separate DB in IndexedDB, so geojsons are not mixed with TilesDB
-  name: "geoJSONs"
-  });
-  var parsedJSONStringified = JSON.stringify(data)
+  try{
+    var randomID = data.properties.randomID
+    geoJSONLocalforageDB = localforage.createInstance({ //to create a separate DB in IndexedDB, so geojsons are not mixed with TilesDB
+    name: "geoJSONs"
+    });
+    var parsedJSONStringified = JSON.stringify(data)
 
-  geoJSONLocalforageDB.setItem(randomID, parsedJSONStringified).then(function(value){
-  }).catch(function(err) {
-    console.log('error set item geojson url')
-  });
-  randomIDtest = randomID
+    geoJSONLocalforageDB.setItem(randomID, parsedJSONStringified).then(function(value){
+    }).catch(function(err) {
+      console.log('error set item geojson url')
+    });
+    randomIDtest = randomID
+  }catch(e){
+    data = data.features[0]
+    var randomID = data.properties.randomID
+    geoJSONLocalforageDB = localforage.createInstance({ //to create a separate DB in IndexedDB, so geojsons are not mixed with TilesDB
+    name: "geoJSONs"
+    });
+    var parsedJSONStringified = JSON.stringify(data)
+
+    geoJSONLocalforageDB.setItem(randomID, parsedJSONStringified).then(function(value){
+    }).catch(function(err) {
+      console.log('error set item geojson url')
+    });
+    randomIDtest = randomID
+  }
+
 
   return randomIDtest
 }
