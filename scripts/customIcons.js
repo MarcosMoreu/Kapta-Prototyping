@@ -162,6 +162,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
   document.getElementById("Cancel").style.display = "none";
   document.getElementById("sapelliProjects").style.display = "none";
   document.getElementById('emoji').style.display = 'none';
+  
   // document.getElementById('showAreaHa').style.display = 'none';
   document.getElementById('showAreaAcres').style.display = 'none';
   document.getElementById('share-download').style.display = 'none';

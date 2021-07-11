@@ -702,32 +702,113 @@ var offlineControlOSM = L.control.offline(osm, tilesDb, {
     maxZoom: 21
 });
 
+//script to refresh planet mosaics based on the date (assuming new monthly mosaics is updated around the 10th of each month)
+if(isIOS == false){
+  var d = new Date();
+  // d.setMonth(d.getMonth() - 3);
+  var monthNumber = d.getMonth() + 1 // the month count starts in 0!!! so July is 6
+  var dayNumber = d.getDay()
+  var year = d.getFullYear()
+  console.log('year',year)
+  const monthsArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  console.log('month',monthNumber)
 
+  if(dayNumber >= 15){ ///////////////// because planet usually uploads the mosaics mid of the month (so 15june the May mosaic is uploaded)
+    var monthsBack = 1
+  }else{
+    var monthsBack = 2
+
+  }
+
+    //last month
+   var mosaicRequestedLatest = (monthNumber - monthsBack).toLocaleString('en-US', {minimumIntegerDigits: 2}) //url MONTH
+   var attributeMosaicLatest = monthsArray[mosaicRequestedLatest - 1] // attributes
+
+   //4months ago
+   var date4MonthsAgo = new Date(d.setMonth(d.getMonth()-(3+monthsBack))); //3 because monthsback is 1 (or 2), so 4 months ago (or 5)
+   console.log('date4MonthsAgo',date4MonthsAgo)
+   var month4MonthsAgo = date4MonthsAgo.getMonth()+1;
+   var mosaicRequested4Months = month4MonthsAgo.toLocaleString('en-US', {minimumIntegerDigits: 2}) //url MONTH
+   var year4MonthsAgo = date4MonthsAgo.getFullYear(); //url & attributes YEAR
+   var attributeMosaic4Months = monthsArray[mosaicRequested4Months - 1] //attributes MONTH
+
+   //8months ago
+   d = new Date() //to refresh the date
+   var date8MonthsAgo = new Date(d.setMonth(d.getMonth()-(7+monthsBack)));
+   console.log('date8MonthsAgo',date8MonthsAgo)
+   var month8MonthsAgo = date8MonthsAgo.getMonth()+1;
+   var mosaicRequested8Months = month8MonthsAgo.toLocaleString('en-US', {minimumIntegerDigits: 2}) //url MONTH
+   var year8MonthsAgo = date8MonthsAgo.getFullYear(); //url & attributes YEAR
+   var attributeMosaic8Months = monthsArray[mosaicRequested8Months - 1] //attributes MONTH
+
+   //12months ago
+   d = new Date() //to refresh the date
+   var date12MonthsAgo = new Date(d.setMonth(d.getMonth()-(11+monthsBack)));
+   console.log('date12MonthsAgo',date12MonthsAgo)
+   var month12MonthsAgo = date12MonthsAgo.getMonth()+1;
+   var mosaicRequested12Months = month12MonthsAgo.toLocaleString('en-US', {minimumIntegerDigits: 2}) //url MONTH
+   var year12MonthsAgo = date12MonthsAgo.getFullYear(); //url & attributes YEAR
+   var attributeMosaic12Months = monthsArray[mosaicRequested12Months - 1] //attributes MONTH
+
+   //2 years ago
+   d = new Date() //to refresh the date
+   var date24MonthsAgo = new Date(d.setMonth(d.getMonth()-(23+monthsBack)));
+   console.log('date24MonthsAgo',date24MonthsAgo)
+   var month24MonthsAgo = date24MonthsAgo.getMonth()+1;
+   var mosaicRequested24Months = month24MonthsAgo.toLocaleString('en-US', {minimumIntegerDigits: 2}) //url MONTH
+   var year24MonthsAgo = date24MonthsAgo.getFullYear(); //url & attributes YEAR
+   var attributeMosaic24Months = monthsArray[mosaicRequested24Months - 1] //attributes MONTH
+
+   //3 years ago
+   d = new Date() //to refresh the date
+   var date36MonthsAgo = new Date(d.setMonth(d.getMonth()-(35+monthsBack)));
+   console.log('date36MonthsAgo',date36MonthsAgo)
+   var month36MonthsAgo = date36MonthsAgo.getMonth()+1;
+   var mosaicRequested36Months = month36MonthsAgo.toLocaleString('en-US', {minimumIntegerDigits: 2}) //url MONTH
+   var year36MonthsAgo = date36MonthsAgo.getFullYear(); //url & attributes YEAR
+   var attributeMosaic36Months = monthsArray[mosaicRequested36Months - 1] //attributes MONTH
+
+   //5 years ago
+   d = new Date() //to refresh the date
+   var date60MonthsAgo = new Date(d.setMonth(d.getMonth()-(59+monthsBack)));
+   console.log('date60MonthsAgo',date60MonthsAgo)
+   var month60MonthsAgo = date60MonthsAgo.getMonth()+1;
+   var mosaicRequested60Months = month60MonthsAgo.toLocaleString('en-US', {minimumIntegerDigits: 2}) //url MONTH
+   var year60MonthsAgo = date60MonthsAgo.getFullYear(); //url & attributes YEAR
+   var attributeMosaic60Months = monthsArray[mosaicRequested60Months - 1] //attributes MONTH
+
+}else{
+   var monthMosaicRequested = (monthNumber - 2).toLocaleString('en-US', {minimumIntegerDigits: 2})
+   year = '2021'
+   mosaicRequestedLatest = '06'
+   attributeMosaicLatest = 'July 2021'
+
+}
 
 var sentinelHubKey = '82b5a4e7-b887-40b2-949b-1b47a2aa9774';
 
 // a script to automate the update of these global mosaics is needed. At the moment, this needs to be done manually, both here to update the attributes and in the SentinelHub platfrom
-var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2021_03_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-  attribution: 'Leaflet | PlanetScope Imagery March 2021'
+var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year + '_' + mosaicRequestedLatest + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+  attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaicLatest + ' ' + year
   })
-  var planetScopeMonthlyMosaicLatestMinus4Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_12_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-    attribution: 'Leaflet | PlanetScope Imagery December 2020'
+  var planetScopeMonthlyMosaicLatestMinus4Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year4MonthsAgo + '_' + mosaicRequested4Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+    attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic4Months + ' ' + year4MonthsAgo
     })
-  var planetScopeMonthlyMosaicLatestMinus8Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_08_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-    attribution: 'Leaflet | PlanetScope Imagery August 2020'
+  var planetScopeMonthlyMosaicLatestMinus8Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year8MonthsAgo + '_' + mosaicRequested8Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+    attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic8Months + ' ' + year8MonthsAgo
     })
-  var planetScopeMonthlyMosaic1YearAgo = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2020_03_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-    attribution: 'Leaflet | PlanetScope Imagery  March 2020'
+  var planetScopeMonthlyMosaic1YearAgo = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year12MonthsAgo + '_' + mosaicRequested12Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+    attribution: 'Leaflet | PlanetScope Imagery  ' + attributeMosaic12Months + ' ' + year12MonthsAgo
     })
 
-  var planetMosaicLatestMinus2Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2019_03_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        attribution: 'Leaflet | PlanetScope Imagery March 2019'
+  var planetMosaicLatestMinus2Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year24MonthsAgo + '_' + mosaicRequested24Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic24Months + ' ' + year24MonthsAgo
     });
-  var planetMosaicLatestMinus3Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2018_03_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        attribution: 'Leaflet | PlanetScope Imagery March 2018'
+  var planetMosaicLatestMinus3Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year36MonthsAgo + '_' + mosaicRequested36Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic36Months + ' ' + year36MonthsAgo
     });
-  var planetMosaicLatestMinus5Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_2017_03_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        attribution: 'Leaflet | PlanetScope Imagery March 2017'
+  var planetMosaicLatestMinus5Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year60MonthsAgo + '_' + mosaicRequested60Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+        attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic60Months + ' ' + year60MonthsAgo
     });
 
     // var sentinelMosaicLatestMinus2Years = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelHubKey + "?REQUEST=GetMap&PREVIEW=2", {
