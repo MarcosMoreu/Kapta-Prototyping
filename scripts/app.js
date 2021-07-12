@@ -709,9 +709,9 @@ if(isIOS == false){
   var monthNumber = d.getMonth() + 1 // the month count starts in 0!!! so July is 6
   var dayNumber = d.getDay()
   var year = d.getFullYear()
-  console.log('year',year)
+  // console.log('year',year)
   const monthsArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  console.log('month',monthNumber)
+  // console.log('month',monthNumber)
 
   if(dayNumber >= 15){ ///////////////// because planet usually uploads the mosaics mid of the month (so 15june the May mosaic is uploaded)
     var monthsBack = 1
@@ -726,7 +726,7 @@ if(isIOS == false){
 
    //4months ago
    var date4MonthsAgo = new Date(d.setMonth(d.getMonth()-(3+monthsBack))); //3 because monthsback is 1 (or 2), so 4 months ago (or 5)
-   console.log('date4MonthsAgo',date4MonthsAgo)
+   // console.log('date4MonthsAgo',date4MonthsAgo)
    var month4MonthsAgo = date4MonthsAgo.getMonth()+1;
    var mosaicRequested4Months = month4MonthsAgo.toLocaleString('en-US', {minimumIntegerDigits: 2}) //url MONTH
    var year4MonthsAgo = date4MonthsAgo.getFullYear(); //url & attributes YEAR
@@ -735,7 +735,7 @@ if(isIOS == false){
    //8months ago
    d = new Date() //to refresh the date
    var date8MonthsAgo = new Date(d.setMonth(d.getMonth()-(7+monthsBack)));
-   console.log('date8MonthsAgo',date8MonthsAgo)
+   // console.log('date8MonthsAgo',date8MonthsAgo)
    var month8MonthsAgo = date8MonthsAgo.getMonth()+1;
    var mosaicRequested8Months = month8MonthsAgo.toLocaleString('en-US', {minimumIntegerDigits: 2}) //url MONTH
    var year8MonthsAgo = date8MonthsAgo.getFullYear(); //url & attributes YEAR
@@ -744,7 +744,7 @@ if(isIOS == false){
    //12months ago
    d = new Date() //to refresh the date
    var date12MonthsAgo = new Date(d.setMonth(d.getMonth()-(11+monthsBack)));
-   console.log('date12MonthsAgo',date12MonthsAgo)
+   // console.log('date12MonthsAgo',date12MonthsAgo)
    var month12MonthsAgo = date12MonthsAgo.getMonth()+1;
    var mosaicRequested12Months = month12MonthsAgo.toLocaleString('en-US', {minimumIntegerDigits: 2}) //url MONTH
    var year12MonthsAgo = date12MonthsAgo.getFullYear(); //url & attributes YEAR
@@ -753,7 +753,7 @@ if(isIOS == false){
    //2 years ago
    d = new Date() //to refresh the date
    var date24MonthsAgo = new Date(d.setMonth(d.getMonth()-(23+monthsBack)));
-   console.log('date24MonthsAgo',date24MonthsAgo)
+   // console.log('date24MonthsAgo',date24MonthsAgo)
    var month24MonthsAgo = date24MonthsAgo.getMonth()+1;
    var mosaicRequested24Months = month24MonthsAgo.toLocaleString('en-US', {minimumIntegerDigits: 2}) //url MONTH
    var year24MonthsAgo = date24MonthsAgo.getFullYear(); //url & attributes YEAR
@@ -762,7 +762,7 @@ if(isIOS == false){
    //3 years ago
    d = new Date() //to refresh the date
    var date36MonthsAgo = new Date(d.setMonth(d.getMonth()-(35+monthsBack)));
-   console.log('date36MonthsAgo',date36MonthsAgo)
+   // console.log('date36MonthsAgo',date36MonthsAgo)
    var month36MonthsAgo = date36MonthsAgo.getMonth()+1;
    var mosaicRequested36Months = month36MonthsAgo.toLocaleString('en-US', {minimumIntegerDigits: 2}) //url MONTH
    var year36MonthsAgo = date36MonthsAgo.getFullYear(); //url & attributes YEAR
@@ -771,7 +771,7 @@ if(isIOS == false){
    //5 years ago
    d = new Date() //to refresh the date
    var date60MonthsAgo = new Date(d.setMonth(d.getMonth()-(59+monthsBack)));
-   console.log('date60MonthsAgo',date60MonthsAgo)
+   // console.log('date60MonthsAgo',date60MonthsAgo)
    var month60MonthsAgo = date60MonthsAgo.getMonth()+1;
    var mosaicRequested60Months = month60MonthsAgo.toLocaleString('en-US', {minimumIntegerDigits: 2}) //url MONTH
    var year60MonthsAgo = date60MonthsAgo.getFullYear(); //url & attributes YEAR
