@@ -19,7 +19,7 @@ transform: scale(0.6);
 }
 .buttonsSapelli{
   background-color: white;
-  width:calc(100%/2);
+  width:100%;
   /* height:calc(100%/4); */
   height:200px;
   border: 4px solid black;
@@ -37,19 +37,45 @@ transform: scale(0.6);
 
   background-color: black;
   height:90%;
+  width:100%;
   overflow-y: scroll !important;
-  text-align:justify;
+  /* text-align:justify; */
+  /* display: grid;
+grid-template-columns: 1fr 1fr;
+grid-auto-rows: 75px;
+grid-gap: 10px; */
+
+display: inline-grid;
+/* text-align: center; */
+
+align-items: center;
+justify-items: center;
+row-gap:2px;
+column-gap:2px;
+/* grid-template-columns: 80px; */
+
+grid-template-columns: repeat(2, 1fr);
+grid-template-rows: repeat(6, 1fr);
+/* grid-template-columns: 1fr 1fr 1fr;
+grid-template-rows: repeat(6, 1fr); */
+
+
 }
 .sapelliProjectsLogo{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  /* left:50%; */
   width:80px;
   height:80px;
   border-radius: 80px;
-  margin:5px;
+  /* margin-left: 100px; */
+  /* margin-top:-200px; */
+  /* margin:5px; */
   background-color: white; /* Green */
-  padding: 0px 0px;
-  text-align: center;
+  /* padding: 0px 0px; */
   text-decoration: none;
-  display: inline-block;
+  /* display: inline-block; */
   border: 2px solid white;
   position:relative;
   outline:none;

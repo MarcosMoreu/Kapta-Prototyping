@@ -223,10 +223,9 @@ var initialiseMap = function(){
             'images/uk.png','images/yoruba.png','images/other1.png','images/underConstruction.png','images/youtube.png','images/youtubeOffline.png',
             'images/shareMessagingAppsYellow.png','images/sendComment.png',
             'images/sent.mp4','images/downloaded.mp4','images/LocalStorageRecenter.png',
-            'images/excitesTree.png','images/csaNigeria/Logo.png',
+            'images/excitesTree.png','images/KenyaMaasaiMARA/logoMara.png','images/KenyaMaasaiMARA/logoKenyaGeneric.png','images/KenyaMaasaiMAU/logoMau.png','images/KenyaEMC/logoKenyaEMC.png',
             'images/customIconsMap.png','images/customIconsCancel.png',
-            'images/csaNigeria/Crops/Cereals.png','images/csaNigeria/Crops/Vegetables.png','images/csaNigeria/Crops/Fruits.png','images/csaNigeria/Crops/Tubers.png',"images/csaNigeria/Crops/pulses.png",
-            "images/csaNigeria/Crops/cashCrop.png","images/csaNigeria/Crops/nuts.png",
+
 
         ]);
       // var images = new Array()
