@@ -117,7 +117,12 @@ document.getElementById('customIconsGoBack').onclick = function(e){
 function hideAll(){
   document.querySelectorAll('.buttonsSapelli').forEach(function(el) {
    el.style.display = 'none';
+
   });
+}
+function scrollToTop() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 var totalPreloaded = 0
 // var preloadedCompleted
@@ -127,7 +132,7 @@ function preload(arrayOfImages) {
           $('<img/>')[0].src = this;
           totalPreloaded = totalPreloaded+1
 
-          console.log(totalPreloaded)
+          // console.log(totalPreloaded)
       }catch(e){
         //console.log('image failed to preload')
       }
@@ -200,58 +205,74 @@ document.getElementById('sapelliProjects').onclick = function(e){
 
         preload([
 
-'images/KenyaMaasaiMAU/icons/Aonet_Policius%20vulva.png','images/KenyaMaasaiMAU/icons/Arorwet.png','images/KenyaMaasaiMAU/icons/Bontet_Rosewood.png','images/KenyaMaasaiMAU/icons/Botkawet.png','images/KenyaMaasaiMAU/icons/Chemoset.png','images/KenyaMaasaiMAU/icons/Chepchabayiet.png',
-'images/KenyaMaasaiMAU/icons/Chepgetuiyet.png','images/KenyaMaasaiMAU/icons/Chepkoibet.png','images/KenyaMaasaiMAU/icons/Chepkorgoriet.png','images/KenyaMaasaiMAU/icons/Chepkowet.png','images/KenyaMaasaiMAU/icons/Chepkurbet.png','images/KenyaMaasaiMAU/icons/Chepngororiet.png',
-'images/KenyaMaasaiMAU/icons/Chepongiot.png','images/KenyaMaasaiMAU/icons/Chepsakitiet.png','images/KenyaMaasaiMAU/icons/Chep_tenderet.png','images/KenyaMaasaiMAU/icons/Cheptiringwet.png','images/KenyaMaasaiMAU/icons/Cherungut.png','images/KenyaMaasaiMAU/icons/Chesamisiet.png',
-'images/KenyaMaasaiMAU/icons/Chesamisiet_Clerodendrum%20myricoids.png','images/KenyaMaasaiMAU/icons/Chesicheiyet.png','images/KenyaMaasaiMAU/icons/Eburwet.png','images/KenyaMaasaiMAU/icons/Enabooi_Chemngesumiet.png','images/KenyaMaasaiMAU/icons/Endalati%20ekutuk.png',
-'images/KenyaMaasaiMAU/icons/Enkaisuishoi.png','images/KenyaMaasaiMAU/icons/Enkisiau.png','images/KenyaMaasaiMAU/icons/Enkoloshoo.png','images/KenyaMaasaiMAU/icons/Enkopisiadi.png','images/KenyaMaasaiMAU/icons/Enkopito_enkopito%20ooltorrobo.png','images/KenyaMaasaiMAU/icons/Enkopito%20ooltorrobo.png',
-'images/KenyaMaasaiMAU/icons/Entakuleti.png','images/KenyaMaasaiMAU/icons/Entamejoi.png','images/KenyaMaasaiMAU/icons/Entamejoi%20oolosowuani.png','images/KenyaMaasaiMAU/icons/Entapipi.png','images/KenyaMaasaiMAU/icons/Entemelua.png','images/KenyaMaasaiMAU/icons/Entiangaras.png',
-'images/KenyaMaasaiMAU/icons/Entiapapaa.png','images/KenyaMaasaiMAU/icons/Esere.png','images/KenyaMaasaiMAU/icons/Esumeita.png','images/KenyaMaasaiMAU/icons/Ewat.png','images/KenyaMaasaiMAU/icons/Imaniat.png','images/KenyaMaasaiMAU/icons/Imeenpet.png','images/KenyaMaasaiMAU/icons/Kalialwet.png',
-'images/KenyaMaasaiMAU/icons/Kebukeyet.png','images/KenyaMaasaiMAU/icons/Kepkoibet_Angerae.png','images/KenyaMaasaiMAU/icons/Ketegaa.png','images/KenyaMaasaiMAU/icons/Ketungutiet.png','images/KenyaMaasaiMAU/icons/Kibirirgorok.png','images/KenyaMaasaiMAU/icons/Kipkosieriet.png',
-'images/KenyaMaasaiMAU/icons/Kipkutungit.png','images/KenyaMaasaiMAU/icons/Kipsebwet.png','images/KenyaMaasaiMAU/icons/Kipsertwet.png','images/KenyaMaasaiMAU/icons/Kipsotiet.png','images/KenyaMaasaiMAU/icons/Kipsowoit.png','images/KenyaMaasaiMAU/icons/Kogob_toroi.png',
-'images/KenyaMaasaiMAU/icons/Kombeito.png','images/KenyaMaasaiMAU/icons/Korosiot.png','images/KenyaMaasaiMAU/icons/Kosisietet_Rhannus%20prinoides.png','images/KenyaMaasaiMAU/icons/Kosisitiet.png','images/KenyaMaasaiMAU/icons/Kuresiet_olkushurui.png','images/KenyaMaasaiMAU/icons/Lapotiet.png',
-'images/KenyaMaasaiMAU/icons/Lebekwet.png','images/KenyaMaasaiMAU/icons/Lekikuuni.png','images/KenyaMaasaiMAU/icons/Lepekwet.png','images/KenyaMaasaiMAU/icons/Logg%20plant.png','images/KenyaMaasaiMAU/icons/Logomaita_macaranga%20kilimanscharia.png','images/KenyaMaasaiMAU/icons/Mailpuch.png',
-'images/KenyaMaasaiMAU/icons/Mangoita.png','images/KenyaMaasaiMAU/icons/Manguangiet.png','images/KenyaMaasaiMAU/icons/Marongeet_olmeikuaya.png','images/KenyaMaasaiMAU/icons/Martit.png','images/KenyaMaasaiMAU/icons/Matirtirwet.png','images/KenyaMaasaiMAU/icons/Meswot_bees.png',
-'images/KenyaMaasaiMAU/icons/Mogoiwet.png','images/KenyaMaasaiMAU/icons/Mogokwet.png','images/KenyaMaasaiMAU/icons/Mopondet.png','images/KenyaMaasaiMAU/icons/Mosipchot.png','images/KenyaMaasaiMAU/icons/Murguiwet.png','images/KenyaMaasaiMAU/icons/Mutereriet.png',
-'images/KenyaMaasaiMAU/icons/Mwabiyet.png','images/KenyaMaasaiMAU/icons/Naman%20keon.png','images/KenyaMaasaiMAU/icons/Nareruk.png','images/KenyaMaasaiMAU/icons/Ndakariat.png','images/KenyaMaasaiMAU/icons/Ngingichet.png','images/KenyaMaasaiMAU/icons/Noiwet.png','images/KenyaMaasaiMAU/icons/Nukiat_nime.png',
-'images/KenyaMaasaiMAU/icons/Nyelwet.png','images/KenyaMaasaiMAU/icons/Olabai%20lepartolu.png','images/KenyaMaasaiMAU/icons/Olaimurunyai.png','images/KenyaMaasaiMAU/icons/Olalaa.png','images/KenyaMaasaiMAU/icons/Olayakuji.png','images/KenyaMaasaiMAU/icons/Olchani.png','images/KenyaMaasaiMAU/icons/Olchartuyian.png',
-'images/KenyaMaasaiMAU/icons/Oledat.png','images/KenyaMaasaiMAU/icons/Oleturot.png','images/KenyaMaasaiMAU/icons/Olkekeyiet.png','images/KenyaMaasaiMAU/icons/Olkikuei%20loosirkon.png','images/KenyaMaasaiMAU/icons/Olkilelit_olchani.png','images/KenyaMaasaiMAU/icons/Olkiparnyany_kuparnyaat.png',
-'images/KenyaMaasaiMAU/icons/Olkipejus.png','images/KenyaMaasaiMAU/icons/Olkirenyi.png','images/KenyaMaasaiMAU/icons/Olkisushet.png','images/KenyaMaasaiMAU/icons/Olkujuk.png','images/KenyaMaasaiMAU/icons/Olmasiligi.png','images/KenyaMaasaiMAU/icons/Olmomoi.png','images/KenyaMaasaiMAU/icons/Olmusaakwa.png',
-'images/KenyaMaasaiMAU/icons/Olngenchemi.png','images/KenyaMaasaiMAU/icons/Ologolbenek.png','images/KenyaMaasaiMAU/icons/Ologumati.png','images/KenyaMaasaiMAU/icons/Oloiborr%20benek.png','images/KenyaMaasaiMAU/icons/Oloisuti.png','images/KenyaMaasaiMAU/icons/Oloiururr.png',
-'images/KenyaMaasaiMAU/icons/Ololiontoi.png','images/KenyaMaasaiMAU/icons/Olomei.png','images/KenyaMaasaiMAU/icons/Oloniyai.png','images/KenyaMaasaiMAU/icons/Olorrondo.png','images/KenyaMaasaiMAU/icons/Olosiro.png','images/KenyaMaasaiMAU/icons/Olpalagilagi.png','images/KenyaMaasaiMAU/icons/Olpiron.png',
-'images/KenyaMaasaiMAU/icons/Olpolto.png','images/KenyaMaasaiMAU/icons/Oltarakuai.png','images/KenyaMaasaiMAU/icons/Oltiini.png','images/KenyaMaasaiMAU/icons/Oltikampu.png','images/KenyaMaasaiMAU/icons/Oltirkoyian.png','images/KenyaMaasaiMAU/icons/Olturuj.png','images/KenyaMaasaiMAU/icons/Ormarrar.png',
-'images/KenyaMaasaiMAU/icons/Osasimawani.png','images/KenyaMaasaiMAU/icons/Osinantei.png','images/KenyaMaasaiMAU/icons/Osonkorori.png','images/KenyaMaasaiMAU/icons/Osupukiai%20orok.png','images/KenyaMaasaiMAU/icons/Rerendet_rauvolfia.png','images/KenyaMaasaiMAU/icons/Rokoret_drinking%20straw.png',
-'images/KenyaMaasaiMAU/icons/Rope%20plant.png','images/KenyaMaasaiMAU/icons/Sabetet_nabutoria.png','images/KenyaMaasaiMAU/icons/Saiyet.png','images/KenyaMaasaiMAU/icons/Sangainet.png','images/KenyaMaasaiMAU/icons/Sasiat.png','images/KenyaMaasaiMAU/icons/Sasuriet_wild%20banana.png','images/KenyaMaasaiMAU/icons/Sebeberiet.png',
-'images/KenyaMaasaiMAU/icons/Seet_alipizias.png','images/KenyaMaasaiMAU/icons/Sergutiet.png','images/KenyaMaasaiMAU/icons/Serkutwet.png','images/KenyaMaasaiMAU/icons/Setiot.png','images/KenyaMaasaiMAU/icons/Singorwet.png','images/KenyaMaasaiMAU/icons/Sinkorwet.png','images/KenyaMaasaiMAU/icons/Sirimpiet.png',
-'images/KenyaMaasaiMAU/icons/Sitotwet_oseketeki.png','images/KenyaMaasaiMAU/icons/Siwot.png','images/KenyaMaasaiMAU/icons/Sugumeriet.png','images/KenyaMaasaiMAU/icons/Sumetet.png','images/KenyaMaasaiMAU/icons/Suseita.png','images/KenyaMaasaiMAU/icons/Takamamiet.png','images/KenyaMaasaiMAU/icons/Taparariet.png',
-'images/KenyaMaasaiMAU/icons/Tebararietab%20teta.png','images/KenyaMaasaiMAU/icons/Tekelteet.png','images/KenyaMaasaiMAU/icons/Tekiat_oltiyani.png','images/KenyaMaasaiMAU/icons/Teldet.png','images/KenyaMaasaiMAU/icons/Tepengwet.png','images/KenyaMaasaiMAU/icons/Tiniet_scheflera%20rolkensil.png',
-'images/KenyaMaasaiMAU/icons/Tokweyot.png','images/KenyaMaasaiMAU/icons/Topitiet.png',
+'images/KenyaMaasaiMARA/icons/White_Thorn_Acacia.png','images/KenyaMaasaiMARA/icons/Whistling_Thorn_Acacia.png','images/KenyaMaasaiMARA/icons/Olodoganayioi.png','images/KenyaMaasaiMARA/icons/Madagascar_Periwinkle.png',
+'images/KenyaMaasaiMARA/icons/Imukutio.png','images/KenyaMaasaiMARA/icons/Esampukike_Ormocarpum_Kirkii.png','images/KenyaMaasaiMARA/icons/Enkosikirianchoi.png','images/KenyaMaasaiMARA/icons/Enkasuishoi_Pavonia_Urens.png',
+'images/KenyaMaasaiMARA/icons/Enkameloki.png','images/KenyaMaasaiMARA/icons/Cat_Thorn_Osanangururi.png','images/KenyaMaasaiMARA/icons/Cacia_Ocadantalis.png','images/KenyaMaasaiMARA/icons/Logo.png',
+'images/KenyaMaasaiMARA/icons/InvasiveSpecies.png','images/KenyaMaasaiMARA/icons/Hand.png','images/KenyaMaasaiMARA/icons/Goat.png','images/KenyaMaasaiMARA/icons/Flood.png','images/KenyaMaasaiMARA/icons/Firewood.png',
+'images/KenyaMaasaiMARA/icons/Emorogi_KayaApples.png','images/KenyaMaasaiMARA/icons/Emankulai_GrewiaVillosa.png','images/KenyaMaasaiMARA/icons/Elephant.png','images/KenyaMaasaiMARA/icons/Eleleshwaekop.png',
+'images/KenyaMaasaiMARA/icons/Ekogoltim.png','images/KenyaMaasaiMARA/icons/Ekirenyi.png','images/KenyaMaasaiMARA/icons/Drought.png','images/KenyaMaasaiMARA/icons/Discard.png','images/KenyaMaasaiMARA/icons/ConvolvulusSagittatus.png',
+'images/KenyaMaasaiMARA/icons/Confirm.png','images/KenyaMaasaiMARA/icons/Chainsaw.png','images/KenyaMaasaiMARA/icons/AudioClip.png','images/KenyaMaasaiMARA/icons/Ant.png','images/KenyaMaasaiMARA/icons/AgungaRemota.png',
+'images/KenyaMaasaiMARA/icons/Charcoal.png','images/KenyaMaasaiMARA/icons/Olmotoo.png','images/KenyaMaasaiMARA/icons/Olmorijoi_PoisonArrowTree.png','images/KenyaMaasaiMARA/icons/Olmisigiyioi_RhusNatalensis.png',
+'images/KenyaMaasaiMARA/icons/Olmingarukeon.png','images/KenyaMaasaiMARA/icons/Olmerumori_SickleBush.png','images/KenyaMaasaiMARA/icons/Olmatundai_Cactus.png','images/KenyaMaasaiMARA/icons/Olmaroroi_CopretumMolle.png',
+'images/KenyaMaasaiMARA/icons/Olmalilio.png','images/KenyaMaasaiMARA/icons/Olkunetia.png','images/KenyaMaasaiMARA/icons/Olkonyil.png','images/KenyaMaasaiMARA/icons/Olkombobit_DevilMilkyBush.png','images/KenyaMaasaiMARA/icons/Olkokola_Ramnustaddo.png',
+'images/KenyaMaasaiMARA/icons/Olkisikongu_PappeaCapensis.png','images/KenyaMaasaiMARA/icons/Olkirigirri_WaitABit.png','images/KenyaMaasaiMARA/icons/Olkinyei_UclearDovinrum.png','images/KenyaMaasaiMARA/icons/Olkimitare.png',
+'images/KenyaMaasaiMARA/icons/Olkiloreti_AcaciaNilotica.png','images/KenyaMaasaiMARA/icons/Olkierenkure.png','images/KenyaMaasaiMARA/icons/Olkakawa.png','images/KenyaMaasaiMARA/icons/Oliouruur_CabaggeTree.png',
+'images/KenyaMaasaiMARA/icons/Olgumi.png','images/KenyaMaasaiMARA/icons/Olgoswa_DesertDate.png','images/KenyaMaasaiMARA/icons/Olgigiri_WaitAbit.png','images/KenyaMaasaiMARA/icons/OlgalayioiLoosirkon.png',
+'images/KenyaMaasaiMARA/icons/Oleturot.png','images/KenyaMaasaiMARA/icons/Olesupeni.png','images/KenyaMaasaiMARA/icons/Olesayiet_RedCherry.png','images/KenyaMaasaiMARA/icons/Olerai_YellowBarkedAcacia.png',
+'images/KenyaMaasaiMARA/icons/Oleparmunyo_ToddaliaAsiatica.png','images/KenyaMaasaiMARA/icons/Olemuran_OcimumBasllicum.png','images/KenyaMaasaiMARA/icons/Olemenega.png','images/KenyaMaasaiMARA/icons/Oleleshwa_CamphorBush_TarchonanthusCamphoratus.png',
+'images/KenyaMaasaiMARA/icons/Olekidongo_Actyphafruticosa.png','images/KenyaMaasaiMARA/icons/Oldupai.png','images/KenyaMaasaiMARA/icons/Oldule_CastorOilPlant.png','images/KenyaMaasaiMARA/icons/Oldarpoi_KigeliaAfricana-Sausage.png',
+'images/KenyaMaasaiMARA/icons/Olchhartuyian_GallinieraSaxiFraga.png','images/KenyaMaasaiMARA/icons/Olchanilekule.png','images/KenyaMaasaiMARA/icons/Olbibi_OrangeLeonotisMollisima.png','images/KenyaMaasaiMARA/icons/Olbangi_TagetesMinuta.png',
+'images/KenyaMaasaiMARA/icons/Olauraki.png','images/KenyaMaasaiMARA/icons/Olaturdei_CaperCaparis.png','images/KenyaMaasaiMARA/icons/Olarae.png','images/KenyaMaasaiMARA/icons/Olangungue.png','images/KenyaMaasaiMARA/icons/Olamuriaki_CarissaEdulis.png',
+'images/KenyaMaasaiMARA/icons/Olamuranya_SpikeThornBush.png','images/KenyaMaasaiMARA/icons/Olamererua.png','images/KenyaMaasaiMARA/icons/Olakiroingai_OrangeLeafCroton.png','images/KenyaMaasaiMARA/icons/Olairagai.png',
+'images/KenyaMaasaiMARA/icons/Okilenyai.png','images/KenyaMaasaiMARA/icons/OitiOibor_SenegalSenegalsis.png','images/KenyaMaasaiMARA/icons/Oiiri.png','images/KenyaMaasaiMARA/icons/NoRecording.png',
+'images/KenyaMaasaiMARA/icons/NoRecName.png','images/KenyaMaasaiMARA/icons/NoPhoto.png','images/KenyaMaasaiMARA/icons/NewPlant.png','images/KenyaMaasaiMARA/icons/Naingongundeyo.png','images/KenyaMaasaiMARA/icons/Intualan_LionsClan.png',
+'images/KenyaMaasaiMARA/icons/Imasilig.png','images/KenyaMaasaiMARA/icons/Esiaiti.png','images/KenyaMaasaiMARA/icons/Esambukike.png','images/KenyaMaasaiMARA/icons/Enyieman.png','images/KenyaMaasaiMARA/icons/Entasim.png',
+'images/KenyaMaasaiMARA/icons/Enkorukoti.png','images/KenyaMaasaiMARA/icons/Enkarani.png','images/KenyaMaasaiMARA/icons/Enkameloki_Maerua_LongBeadBean.png','images/KenyaMaasaiMARA/icons/Enkamai_SourPlum-FalseSandalwood.png','images/KenyaMaasaiMARA/icons/Enkaiteteyiai_CyanotisArachoidea.png',
+'images/KenyaMaasaiMARA/icons/Engosikireisie.png','images/KenyaMaasaiMARA/icons/Engeriadus.png','images/KenyaMaasaiMARA/icons/EnchaniOsirkon_CandamaForinosa.png','images/KenyaMaasaiMARA/icons/EnchaniEnkashe.png',
+'images/KenyaMaasaiMARA/icons/Enaimuruai_CoutchGrass.png','images/KenyaMaasaiMARA/icons/Send.png','images/KenyaMaasaiMARA/icons/Sakutae_FlameLily.png','images/KenyaMaasaiMARA/icons/Questionmark.png','images/KenyaMaasaiMARA/icons/provisionalLogo_Masai.png',
+'images/KenyaMaasaiMARA/icons/provisionalLogo_Land.png','images/KenyaMaasaiMARA/icons/provisionalLogo.png','images/KenyaMaasaiMARA/icons/Photo.png','images/KenyaMaasaiMARA/icons/Pharmacy.png','images/KenyaMaasaiMARA/icons/Panga.png',
+'images/KenyaMaasaiMARA/icons/OyiitiOibor_Acacia_Senegal.png','images/KenyaMaasaiMARA/icons/Osuyai.png','images/KenyaMaasaiMARA/icons/Osupukiai_Dombeya.png','images/KenyaMaasaiMARA/icons/Osupakupes_AlbiziaGummifera.png',
+'images/KenyaMaasaiMARA/icons/Osuguroi_AloeKillifiensis.png','images/KenyaMaasaiMARA/icons/Osokonoi_WaburgiaUgandensis.png','images/KenyaMaasaiMARA/icons/Ositeti_FalseBrandyBush.png','images/KenyaMaasaiMARA/icons/Osinoni_FeverTree.png',
+'images/KenyaMaasaiMARA/icons/Osilalei_Camiphora.png','images/KenyaMaasaiMARA/icons/Osikawai_SolanumAculeastrum_BitterApple.png','images/KenyaMaasaiMARA/icons/Osenetoi_CandleBush.png','images/KenyaMaasaiMARA/icons/Orupanti.png',
+'images/KenyaMaasaiMARA/icons/OrngiroAre.png','images/KenyaMaasaiMARA/icons/Orngerioi.png','images/KenyaMaasaiMARA/icons/Orgilai_TecleaNobilis.png','images/KenyaMaasaiMARA/icons/Oreteti_WildFig.png','images/KenyaMaasaiMARA/icons/Orbibi_Sunbird.png',
+'images/KenyaMaasaiMARA/icons/Oltuyiesi_HopBush_DodonaeaViscosa.png','images/KenyaMaasaiMARA/icons/Oltutu.png','images/KenyaMaasaiMARA/icons/Oltulelei_SodomApple.png','images/KenyaMaasaiMARA/icons/Oltopisianoi.png',
+'images/KenyaMaasaiMARA/icons/Oltirkish.png','images/KenyaMaasaiMARA/icons/Oltiamiletei_MorningGlory.png','images/KenyaMaasaiMARA/icons/Oltakurkuriet_LargeLeafGardenia.png','images/KenyaMaasaiMARA/icons/Olsukurtutui_Cactusvine.png','images/KenyaMaasaiMARA/icons/Olseyiai_Cypreus.png',
+'images/KenyaMaasaiMARA/icons/Olseki_SandpaperCodiar.png','images/KenyaMaasaiMARA/icons/Olriroi.png','images/KenyaMaasaiMARA/icons/Olpopogi_EuphobiaCandalebra.png','images/KenyaMaasaiMARA/icons/Olpisialokonoi.png','images/KenyaMaasaiMARA/icons/OlperrElongo.png',
+'images/KenyaMaasaiMARA/icons/Olperesiorasha.png','images/KenyaMaasaiMARA/icons/Olpaleki_AaturaStramonium.png','images/KenyaMaasaiMARA/icons/Olpalakai.png','images/KenyaMaasaiMARA/icons/Oloyiapasei_AspiliaPluriseta.png',
+'images/KenyaMaasaiMARA/icons/Oloyaepase.png','images/KenyaMaasaiMARA/icons/Olosida_HypoestesForskahlii.png','images/KenyaMaasaiMARA/icons/Olosholol.png','images/KenyaMaasaiMARA/icons/Olosesiai_SandalBush.png','images/KenyaMaasaiMARA/icons/Oloroukileleng.png',
+'images/KenyaMaasaiMARA/icons/Olopito.png','images/KenyaMaasaiMARA/icons/Oloorodo_CyphostemmaSerpens.png','images/KenyaMaasaiMARA/icons/Ololupa_Camiphora.png','images/KenyaMaasaiMARA/icons/Olokunonoi.png','images/KenyaMaasaiMARA/icons/Olokiridingae_OrangeLeaveCroton.png',
+'images/KenyaMaasaiMARA/icons/Olokilepoi.png','images/KenyaMaasaiMARA/icons/Oloitodoraek.png','images/KenyaMaasaiMARA/icons/Oloiropijiloosiikon.png','images/KenyaMaasaiMARA/icons/Oloirien_AfricanWildOlive.png','images/KenyaMaasaiMARA/icons/Oloireroi_LeopardTree.png',
+'images/KenyaMaasaiMARA/icons/Oloilalei_ZiziphusMucronata_BuffaloThorn.png','images/KenyaMaasaiMARA/icons/Ologumati.png','images/KenyaMaasaiMARA/icons/Olobai_PsiadiaPanctulata.png','images/KenyaMaasaiMARA/icons/Olnyalugai_GrewiaSimilis.png',
+'images/KenyaMaasaiMARA/icons/Olnokoret.png','images/KenyaMaasaiMARA/icons/Olngongwenyi_BlackBarkedAcacia.png','images/KenyaMaasaiMARA/icons/Wind.png','images/KenyaMaasaiMARA/icons/Wildfire.png','images/KenyaMaasaiMARA/icons/ViynaMembranacea.png',
+'images/KenyaMaasaiMARA/icons/ThumbsUpThumbsDown.png','images/KenyaMaasaiMARA/icons/ThumbsUp.png','images/KenyaMaasaiMARA/icons/ThumbsDown.png','images/KenyaMaasaiMARA/icons/Suguroi_AloeVera.png','images/KenyaMaasaiMARA/icons/returnMainScreen.png',
+'images/KenyaMaasaiMARA/icons/Olmasei_ForestRothmania_Cheesewood.png','images/KenyaMaasaiMARA/icons/CrossRed_small.png','images/KenyaMaasaiMARA/icons/CrossRed.png',
 
 
-'images/KenyaMaasaiMAU/icons/Aonet_Policius%20vulva.png','images/KenyaMaasaiMAU/icons/Arorwet.png','images/KenyaMaasaiMAU/icons/Bontet_Rosewood.png','images/KenyaMaasaiMAU/icons/Botkawet.png','images/KenyaMaasaiMAU/icons/Chemoset.png','images/KenyaMaasaiMAU/icons/Chepchabayiet.png',
+
+'images/KenyaMaasaiMAU/icons/Aonet_Policius vulva.png','images/KenyaMaasaiMAU/icons/Arorwet.png','images/KenyaMaasaiMAU/icons/Bontet_Rosewood.png','images/KenyaMaasaiMAU/icons/Botkawet.png','images/KenyaMaasaiMAU/icons/Chemoset.png','images/KenyaMaasaiMAU/icons/Chepchabayiet.png',
 'images/KenyaMaasaiMAU/icons/Chepgetuiyet.png','images/KenyaMaasaiMAU/icons/Chepkoibet.png','images/KenyaMaasaiMAU/icons/Chepkorgoriet.png','images/KenyaMaasaiMAU/icons/Chepkowet.png','images/KenyaMaasaiMAU/icons/Chepkurbet.png','images/KenyaMaasaiMAU/icons/Chepngororiet.png',
 'images/KenyaMaasaiMAU/icons/Chepongiot.png','images/KenyaMaasaiMAU/icons/Chepsakitiet.png','images/KenyaMaasaiMAU/icons/Chep_tenderet.png','images/KenyaMaasaiMAU/icons/Cheptiringwet.png','images/KenyaMaasaiMAU/icons/Cherungut.png','images/KenyaMaasaiMAU/icons/Chesamisiet.png',
-'images/KenyaMaasaiMAU/icons/Chesamisiet_Clerodendrum%20myricoids.png','images/KenyaMaasaiMAU/icons/Chesicheiyet.png','images/KenyaMaasaiMAU/icons/Eburwet.png','images/KenyaMaasaiMAU/icons/Enabooi_Chemngesumiet.png','images/KenyaMaasaiMAU/icons/Endalati%20ekutuk.png','images/KenyaMaasaiMAU/icons/Enkaisuishoi.png',
-'images/KenyaMaasaiMAU/icons/Enkisiau.png','images/KenyaMaasaiMAU/icons/Enkoloshoo.png','images/KenyaMaasaiMAU/icons/Enkopisiadi.png','images/KenyaMaasaiMAU/icons/Enkopito_enkopito%20ooltorrobo.png','images/KenyaMaasaiMAU/icons/Enkopito%20ooltorrobo.png','images/KenyaMaasaiMAU/icons/Entakuleti.png',
-'images/KenyaMaasaiMAU/icons/Entamejoi.png','images/KenyaMaasaiMAU/icons/Entamejoi%20oolosowuani.png','images/KenyaMaasaiMAU/icons/Entapipi.png','images/KenyaMaasaiMAU/icons/Entemelua.png','images/KenyaMaasaiMAU/icons/Entiangaras.png','images/KenyaMaasaiMAU/icons/Entiapapaa.png','images/KenyaMaasaiMAU/icons/Esere.png',
+'images/KenyaMaasaiMAU/icons/Chesamisiet_Clerodendrum myricoids.png','images/KenyaMaasaiMAU/icons/Chesicheiyet.png','images/KenyaMaasaiMAU/icons/Eburwet.png','images/KenyaMaasaiMAU/icons/Enabooi_Chemngesumiet.png','images/KenyaMaasaiMAU/icons/Endalati ekutuk.png','images/KenyaMaasaiMAU/icons/Enkaisuishoi.png',
+'images/KenyaMaasaiMAU/icons/Enkisiau.png','images/KenyaMaasaiMAU/icons/Enkoloshoo.png','images/KenyaMaasaiMAU/icons/Enkopisiadi.png','images/KenyaMaasaiMAU/icons/Enkopito_enkopito ooltorrobo.png','images/KenyaMaasaiMAU/icons/Enkopito ooltorrobo.png','images/KenyaMaasaiMAU/icons/Entakuleti.png',
+'images/KenyaMaasaiMAU/icons/Entamejoi.png','images/KenyaMaasaiMAU/icons/Entamejoi oolosowuani.png','images/KenyaMaasaiMAU/icons/Entapipi.png','images/KenyaMaasaiMAU/icons/Entemelua.png','images/KenyaMaasaiMAU/icons/Entiangaras.png','images/KenyaMaasaiMAU/icons/Entiapapaa.png','images/KenyaMaasaiMAU/icons/Esere.png',
 'images/KenyaMaasaiMAU/icons/Esumeita.png','images/KenyaMaasaiMAU/icons/Ewat.png','images/KenyaMaasaiMAU/icons/Imaniat.png','images/KenyaMaasaiMAU/icons/Imeenpet.png','images/KenyaMaasaiMAU/icons/Kalialwet.png','images/KenyaMaasaiMAU/icons/Kebukeyet.png','images/KenyaMaasaiMAU/icons/Kepkoibet_Angerae.png',
 'images/KenyaMaasaiMAU/icons/Ketegaa.png','images/KenyaMaasaiMAU/icons/Ketungutiet.png','images/KenyaMaasaiMAU/icons/Kibirirgorok.png','images/KenyaMaasaiMAU/icons/Kipkosieriet.png','images/KenyaMaasaiMAU/icons/Kipkutungit.png','images/KenyaMaasaiMAU/icons/Kipsebwet.png','images/KenyaMaasaiMAU/icons/Kipsertwet.png',
-'images/KenyaMaasaiMAU/icons/Kipsotiet.png','images/KenyaMaasaiMAU/icons/Kipsowoit.png','images/KenyaMaasaiMAU/icons/Kogob_toroi.png','images/KenyaMaasaiMAU/icons/Kombeito.png','images/KenyaMaasaiMAU/icons/Korosiot.png','images/KenyaMaasaiMAU/icons/Kosisietet_Rhannus%20prinoides.png','images/KenyaMaasaiMAU/icons/Kosisitiet.png',
-'images/KenyaMaasaiMAU/icons/Kuresiet_olkushurui.png','images/KenyaMaasaiMAU/icons/Lapotiet.png','images/KenyaMaasaiMAU/icons/Lebekwet.png','images/KenyaMaasaiMAU/icons/Lekikuuni.png','images/KenyaMaasaiMAU/icons/Lepekwet.png','images/KenyaMaasaiMAU/icons/Logg%20plant.png','images/KenyaMaasaiMAU/icons/Logomaita_macaranga%20kilimanscharia.png',
+'images/KenyaMaasaiMAU/icons/Kipsotiet.png','images/KenyaMaasaiMAU/icons/Kipsowoit.png','images/KenyaMaasaiMAU/icons/Kogob_toroi.png','images/KenyaMaasaiMAU/icons/Kombeito.png','images/KenyaMaasaiMAU/icons/Korosiot.png','images/KenyaMaasaiMAU/icons/Kosisietet_Rhannus prinoides.png','images/KenyaMaasaiMAU/icons/Kosisitiet.png',
+'images/KenyaMaasaiMAU/icons/Kuresiet_olkushurui.png','images/KenyaMaasaiMAU/icons/Lapotiet.png','images/KenyaMaasaiMAU/icons/Lebekwet.png','images/KenyaMaasaiMAU/icons/Lekikuuni.png','images/KenyaMaasaiMAU/icons/Lepekwet.png','images/KenyaMaasaiMAU/icons/Logg plant.png','images/KenyaMaasaiMAU/icons/Logomaita_macaranga kilimanscharia.png',
 'images/KenyaMaasaiMAU/icons/Mailpuch.png','images/KenyaMaasaiMAU/icons/Mangoita.png','images/KenyaMaasaiMAU/icons/Manguangiet.png','images/KenyaMaasaiMAU/icons/Marongeet_olmeikuaya.png','images/KenyaMaasaiMAU/icons/Martit.png','images/KenyaMaasaiMAU/icons/Matirtirwet.png',
 'images/KenyaMaasaiMAU/icons/Meswot_bees.png','images/KenyaMaasaiMAU/icons/Mogoiwet.png','images/KenyaMaasaiMAU/icons/Mogokwet.png','images/KenyaMaasaiMAU/icons/Mopondet.png','images/KenyaMaasaiMAU/icons/Mosipchot.png','images/KenyaMaasaiMAU/icons/Murguiwet.png','images/KenyaMaasaiMAU/icons/Mutereriet.png',
-'images/KenyaMaasaiMAU/icons/Mwabiyet.png','images/KenyaMaasaiMAU/icons/Naman%20keon.png','images/KenyaMaasaiMAU/icons/Nareruk.png','images/KenyaMaasaiMAU/icons/Ndakariat.png','images/KenyaMaasaiMAU/icons/Ngingichet.png','images/KenyaMaasaiMAU/icons/Noiwet.png','images/KenyaMaasaiMAU/icons/Nukiat_nime.png',
-'images/KenyaMaasaiMAU/icons/Nyelwet.png','images/KenyaMaasaiMAU/icons/Olabai%20lepartolu.png','images/KenyaMaasaiMAU/icons/Olaimurunyai.png','images/KenyaMaasaiMAU/icons/Olalaa.png','images/KenyaMaasaiMAU/icons/Olayakuji.png','images/KenyaMaasaiMAU/icons/Olchani.png','images/KenyaMaasaiMAU/icons/Olchartuyian.png',
-'images/KenyaMaasaiMAU/icons/Oledat.png','images/KenyaMaasaiMAU/icons/Oleturot.png','images/KenyaMaasaiMAU/icons/Olkekeyiet.png','images/KenyaMaasaiMAU/icons/Olkikuei%20loosirkon.png','images/KenyaMaasaiMAU/icons/Olkilelit_olchani.png','images/KenyaMaasaiMAU/icons/Olkiparnyany_kuparnyaat.png',
+'images/KenyaMaasaiMAU/icons/Mwabiyet.png','images/KenyaMaasaiMAU/icons/Naman keon.png','images/KenyaMaasaiMAU/icons/Nareruk.png','images/KenyaMaasaiMAU/icons/Ndakariat.png','images/KenyaMaasaiMAU/icons/Ngingichet.png','images/KenyaMaasaiMAU/icons/Noiwet.png','images/KenyaMaasaiMAU/icons/Nukiat_nime.png',
+'images/KenyaMaasaiMAU/icons/Nyelwet.png','images/KenyaMaasaiMAU/icons/Olabai lepartolu.png','images/KenyaMaasaiMAU/icons/Olaimurunyai.png','images/KenyaMaasaiMAU/icons/Olalaa.png','images/KenyaMaasaiMAU/icons/Olayakuji.png','images/KenyaMaasaiMAU/icons/Olchani.png','images/KenyaMaasaiMAU/icons/Olchartuyian.png',
+'images/KenyaMaasaiMAU/icons/Oledat.png','images/KenyaMaasaiMAU/icons/Oleturot.png','images/KenyaMaasaiMAU/icons/Olkekeyiet.png','images/KenyaMaasaiMAU/icons/Olkikuei loosirkon.png','images/KenyaMaasaiMAU/icons/Olkilelit_olchani.png','images/KenyaMaasaiMAU/icons/Olkiparnyany_kuparnyaat.png',
 'images/KenyaMaasaiMAU/icons/Olkipejus.png','images/KenyaMaasaiMAU/icons/Olkirenyi.png','images/KenyaMaasaiMAU/icons/Olkisushet.png','images/KenyaMaasaiMAU/icons/Olkujuk.png','images/KenyaMaasaiMAU/icons/Olmasiligi.png','images/KenyaMaasaiMAU/icons/Olmomoi.png','images/KenyaMaasaiMAU/icons/Olmusaakwa.png',
-'images/KenyaMaasaiMAU/icons/Olngenchemi.png','images/KenyaMaasaiMAU/icons/Ologolbenek.png','images/KenyaMaasaiMAU/icons/Ologumati.png','images/KenyaMaasaiMAU/icons/Oloiborr%20benek.png','images/KenyaMaasaiMAU/icons/Oloisuti.png','images/KenyaMaasaiMAU/icons/Oloiururr.png','images/KenyaMaasaiMAU/icons/Ololiontoi.png',
+'images/KenyaMaasaiMAU/icons/Olngenchemi.png','images/KenyaMaasaiMAU/icons/Ologolbenek.png','images/KenyaMaasaiMAU/icons/Ologumati.png','images/KenyaMaasaiMAU/icons/Oloiborr benek.png','images/KenyaMaasaiMAU/icons/Oloisuti.png','images/KenyaMaasaiMAU/icons/Oloiururr.png','images/KenyaMaasaiMAU/icons/Ololiontoi.png',
 'images/KenyaMaasaiMAU/icons/Olomei.png','images/KenyaMaasaiMAU/icons/Oloniyai.png','images/KenyaMaasaiMAU/icons/Olorrondo.png','images/KenyaMaasaiMAU/icons/Olosiro.png','images/KenyaMaasaiMAU/icons/Olpalagilagi.png','images/KenyaMaasaiMAU/icons/Olpiron.png','images/KenyaMaasaiMAU/icons/Olpolto.png',
 'images/KenyaMaasaiMAU/icons/Oltarakuai.png','images/KenyaMaasaiMAU/icons/Oltiini.png','images/KenyaMaasaiMAU/icons/Oltikampu.png','images/KenyaMaasaiMAU/icons/Oltirkoyian.png','images/KenyaMaasaiMAU/icons/Olturuj.png','images/KenyaMaasaiMAU/icons/Ormarrar.png','images/KenyaMaasaiMAU/icons/Osasimawani.png',
-'images/KenyaMaasaiMAU/icons/Osinantei.png','images/KenyaMaasaiMAU/icons/Osonkorori.png','images/KenyaMaasaiMAU/icons/Osupukiai%20orok.png','images/KenyaMaasaiMAU/icons/Rerendet_rauvolfia.png','images/KenyaMaasaiMAU/icons/Rokoret_drinking%20straw.png','images/KenyaMaasaiMAU/icons/Rope%20plant.png','images/KenyaMaasaiMAU/icons/Sabetet_nabutoria.png',
-'images/KenyaMaasaiMAU/icons/Saiyet.png','images/KenyaMaasaiMAU/icons/Sangainet.png','images/KenyaMaasaiMAU/icons/Sasiat.png','images/KenyaMaasaiMAU/icons/Sasuriet_wild%20banana.png','images/KenyaMaasaiMAU/icons/Sebeberiet.png','images/KenyaMaasaiMAU/icons/Seet_alipizias.png','images/KenyaMaasaiMAU/icons/Sergutiet.png',
+'images/KenyaMaasaiMAU/icons/Osinantei.png','images/KenyaMaasaiMAU/icons/Osonkorori.png','images/KenyaMaasaiMAU/icons/Osupukiai orok.png','images/KenyaMaasaiMAU/icons/Rerendet_rauvolfia.png','images/KenyaMaasaiMAU/icons/Rokoret_drinking straw.png','images/KenyaMaasaiMAU/icons/Rope plant.png','images/KenyaMaasaiMAU/icons/Sabetet_nabutoria.png',
+'images/KenyaMaasaiMAU/icons/Saiyet.png','images/KenyaMaasaiMAU/icons/Sangainet.png','images/KenyaMaasaiMAU/icons/Sasiat.png','images/KenyaMaasaiMAU/icons/Sasuriet_wild banana.png','images/KenyaMaasaiMAU/icons/Sebeberiet.png','images/KenyaMaasaiMAU/icons/Seet_alipizias.png','images/KenyaMaasaiMAU/icons/Sergutiet.png',
 'images/KenyaMaasaiMAU/icons/Serkutwet.png','images/KenyaMaasaiMAU/icons/Setiot.png','images/KenyaMaasaiMAU/icons/Singorwet.png','images/KenyaMaasaiMAU/icons/Sinkorwet.png','images/KenyaMaasaiMAU/icons/Sirimpiet.png','images/KenyaMaasaiMAU/icons/Sitotwet_oseketeki.png','images/KenyaMaasaiMAU/icons/Siwot.png',
-'images/KenyaMaasaiMAU/icons/Sugumeriet.png','images/KenyaMaasaiMAU/icons/Sumetet.png','images/KenyaMaasaiMAU/icons/Suseita.png','images/KenyaMaasaiMAU/icons/Takamamiet.png','images/KenyaMaasaiMAU/icons/Taparariet.png','images/KenyaMaasaiMAU/icons/Tebararietab%20teta.png','images/KenyaMaasaiMAU/icons/Tekelteet.png',
-'images/KenyaMaasaiMAU/icons/Tekiat_oltiyani.png','images/KenyaMaasaiMAU/icons/Teldet.png','images/KenyaMaasaiMAU/icons/Tepengwet.png','images/KenyaMaasaiMAU/icons/Tiniet_scheflera%20rolkensil.png','images/KenyaMaasaiMAU/icons/Tokweyot.png','images/KenyaMaasaiMAU/icons/Topitiet.png',
+'images/KenyaMaasaiMAU/icons/Sugumeriet.png','images/KenyaMaasaiMAU/icons/Sumetet.png','images/KenyaMaasaiMAU/icons/Suseita.png','images/KenyaMaasaiMAU/icons/Takamamiet.png','images/KenyaMaasaiMAU/icons/Taparariet.png','images/KenyaMaasaiMAU/icons/Tebararietab teta.png','images/KenyaMaasaiMAU/icons/Tekelteet.png',
+'images/KenyaMaasaiMAU/icons/Tekiat_oltiyani.png','images/KenyaMaasaiMAU/icons/Teldet.png','images/KenyaMaasaiMAU/icons/Tepengwet.png','images/KenyaMaasaiMAU/icons/Tiniet_scheflera rolkensil.png','images/KenyaMaasaiMAU/icons/Tokweyot.png','images/KenyaMaasaiMAU/icons/Topitiet.png',
         ]);
 
   }
@@ -286,7 +307,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
           newProjectButton.innerHTML = '<img src="images/checkingPw.gif" style="width:50px ; height:50px; border: 0px solid white" />';
           newProjectButton.disabled = true
               var checkingIfPreloadCompleted = setInterval(function(){
-                console.log('checkingifpreload...')
+                // console.log('checkingifpreload...')
                 if(totalPreloaded > 300){
                   document.getElementById("Alert").style.display = 'none'
                   localStorage.setItem('sapelliProjectAccessed', true);
@@ -429,6 +450,7 @@ var generateButtonsPlantsMARA = function(){
  iconMARA_8.onclick = function(){
     hideAll()
     generateButtonsIssues()
+
     document.getElementById('customIconsGoBack').style.display = 'initial';
     document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olakiroingai ▪️ Orange Leaf Croton'
@@ -4101,6 +4123,7 @@ var generateButtonsPlantsMAU = function(){
 
 
 var generateButtonsIssues = function(){
+  scrollToTop()
 
 
   screenChoice = 'issueGeneric'
@@ -4235,6 +4258,7 @@ var generateButtonsIssues = function(){
 }
 
 var generateButtonsHumanIssues = function(){
+  scrollToTop()
 
   screenChoice = 'issuesHuman'
 

@@ -110,7 +110,7 @@ var requestCartoData = function() {
             })
             return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
         };
-      //getGeoJSON(); //////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      getGeoJSON(); //////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         //funtion to get geojson with 🌐 to be used in random suggestion
         function getGeoJSONRandom(){ ///RANDOM!!!!!!!!!!!!!!!
@@ -122,7 +122,7 @@ var requestCartoData = function() {
             url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQueryRandom + cartoapiSELECT
           })
         }
-        //getGeoJSONRandom() ////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        getGeoJSONRandom() ////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
     return cartousername
 }
@@ -220,7 +220,7 @@ var initialiseMap = function(){
             'images/markerLocalStorage.png','images/myLayer.png','images/nautical.svg','images/osm.png',
             'images/other1.png','images/play.png','images/PlusSign.png',
             'images/questionmark.png','images/random.png','images/shareMessagingApps.png','images/shareworld.png','images/shareworldConfirm.png',
-            'images/uk.png','images/yoruba.png','images/other1.png','images/underConstruction.png','images/youtube.png','images/youtubeOffline.png',
+            'images/uk.png','images/kenyaTutorial.png','images/other1.png','images/underConstruction.png','images/youtube.png','images/youtubeOffline.png',
             'images/shareMessagingAppsYellow.png','images/sendComment.png',
             'images/sent.mp4','images/downloaded.mp4','images/LocalStorageRecenter.png',
             'images/excitesTree.png','images/KenyaMaasaiMARA/logoMara.png','images/KenyaMaasaiMARA/logoKenyaGeneric.png','images/KenyaMaasaiMAU/logoMau.png','images/KenyaEMC/logoKenyaEMC.png',

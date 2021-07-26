@@ -707,7 +707,7 @@ if(isIOS == false){
   var d = new Date();
   // d.setMonth(d.getMonth() - 3);
   var monthNumber = d.getMonth() + 1 // the month count starts in 0!!! so July is 6
-  var dayNumber = d.getDay()
+  var dayNumber = d.getDate()
   var year = d.getFullYear()
   // console.log('year',year)
   const monthsArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -715,6 +715,7 @@ if(isIOS == false){
 
   if(dayNumber >= 15){ ///////////////// because planet usually uploads the mosaics mid of the month (so 15june the May mosaic is uploaded)
     var monthsBack = 1
+    // console.log(dayNumber)
   }else{
     var monthsBack = 2
 
