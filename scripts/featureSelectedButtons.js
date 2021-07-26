@@ -146,7 +146,7 @@ document.getElementById("shareMessagingApp").onclick = function() {
     }
     var urlAfterHash = getSecondPart(window.location.href)
       // window.location.href = 'https://wa.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
-      var link = '🗺️ 👇'+ "\n" + "\n" + 'https://amappingprototype.xyz/'+'#'+urlAfterHash
+      var link = '🗺️ 👇'+ "\n" + "\n" + 'https://kenya.amappingprototype.xyz/'+'#'+urlAfterHash
       if(navigator.share){
         navigator.share({
           text: link,
