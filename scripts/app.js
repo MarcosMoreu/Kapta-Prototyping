@@ -1221,7 +1221,7 @@ var planet_Button = L.easyButton({
 
             clickButtonCount = 0;
             //to avoid black tiles as sentinel API does not serves tiles above 10 (or perhaps yes), then zoom back to 10 again
-            map.options.maxZoom = 17; //no need for more zoom levels as 'low' resolution
+            map.options.maxZoom = 15; //no need for more zoom levels as 'low' resolution
             map.options.minZoom = 2;
 
             planet_Button.removeFrom(map);
@@ -1229,8 +1229,8 @@ var planet_Button = L.easyButton({
             //to zoom out if previous map zoom is higher than 17
             mapCurrentZoom = map.getZoom();
             // //console.log('zoom1', mapCurrentZoom)
-            if(mapCurrentZoom >17){
-              map.setZoom(17)//because OSM does not provide tiles beyond zoom 19
+            if(mapCurrentZoom >15){
+              map.setZoom(15)//because OSM does not provide tiles beyond zoom 19
               mapCurrentZoom = map.getZoom();
             // //console.log('zoom2', mapCurrentZoom)
             }
@@ -1934,10 +1934,10 @@ var gps_Button = L.easyButton({
                   //  gps_Button.button.style.backgroundColor = 'green';
                   //  gps_Button.button.src = 'images/gpsSearching.gif';
                   var mapCurrentZoom = map.getZoom();
-                  if(mapCurrentZoom >= 17){
+                  if(mapCurrentZoom >= 15){
                     map.flyTo(currentLocation, mapCurrentZoom);
                   }else{
-                    map.flyTo(currentLocation, 17);
+                    map.flyTo(currentLocation, 15);
                   }
 
                     // startSearchingLocation()

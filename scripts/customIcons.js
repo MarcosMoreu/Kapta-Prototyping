@@ -17,6 +17,7 @@ var isMARAorMAU
 
 //to return to the map
 document.getElementById('customIconsMap').onclick = function(e){
+
   document.getElementById('customIconsMap').style.display = 'none';
   document.getElementById('customIconsCancel').style.display = 'none';
   document.getElementById('customIconsGoBack').style.display = 'none';
@@ -29,7 +30,10 @@ document.getElementById('customIconsMap').onclick = function(e){
   document.getElementById('share-download').style.display = 'initial';
 
 
-  cell.style.display = 'none'
+  // cell.style.visibility = 'hidden'
+  //FUCK, the grid doesn't need to be hidden!!!
+  // cell.style.display = 'none'
+
   hideAll()
   if(issueSpecific != 'emojiNoSapelli'){
     document.getElementById("Cancel").style.opacity = '0'
@@ -58,12 +62,19 @@ document.getElementById('customIconsMap').onclick = function(e){
 
 document.getElementById('customIconsCancel').onclick = function(e){
   hideAll()
-  screenChoice == 'ismaraormau'
+  screenChoice == 'plants'
   document.getElementById('customIconsGoBack').style.display = 'initial'
   document.getElementById('customIconsCancel').style.display = 'none';
 
-  iconMARA.style.display = 'initial';
-  iconMAU.style.display = 'initial';
+  if(isMARAorMAU == 'mara'){
+    iconMARA.style.display = 'initial'
+    iconMARA.click()
+    screenChoice == 'plants'
+  }else if(isMARAorMAU == 'mau'){
+    iconMAU.style.display = 'initial'
+    iconMAU.click()
+    screenChoice == 'plants'
+  }
 
   plant = null
   issueGeneric = null
@@ -86,9 +97,11 @@ document.getElementById('customIconsGoBack').onclick = function(e){
       hideAll()
       iconMARA.style.display = 'initial'
       iconMAU.style.display = 'initial'
+      screenChoice = 'ismaraormau'
 
   }
   if(screenChoice == 'issueGeneric'){
+    document.getElementById('customIconsCancel').style.display = 'none'
       hideAll()
       if(isMARAorMAU == 'mara'){
         iconMARA.style.display = 'initial'
@@ -102,6 +115,7 @@ document.getElementById('customIconsGoBack').onclick = function(e){
   }
   if(screenChoice == 'issuesHuman'){
       hideAll()
+      screenChoice = 'issueGeneric'
       iconI1.style.display = 'initial'
       iconI2.style.display = 'initial'
       iconI3.style.display = 'initial'
@@ -112,6 +126,7 @@ document.getElementById('customIconsGoBack').onclick = function(e){
       iconI8.style.display = 'initial'
       iconI9.style.display = 'initial'
   }
+  return screenChoice
 }
 
 function hideAll(){
@@ -152,6 +167,15 @@ var screenwidth = screen.width +'px'
 // var newProjectButton
 //excites Logo in the map: to open the sapelli project
 document.getElementById('sapelliProjects').onclick = function(e){
+  preload([
+    'images/KenyaMaasaiMARA/logoKenyaGeneric.png','images/KenyaEMC/logoKenyaEMC.png',
+
+  ])
+  setTimeout(function(){
+
+
+
+
   isSapelliProjectLoaded = localStorage.getItem('sapelliProjectAccessed')
   console.log(isSapelliProjectLoaded)
   document.getElementById("map").style.height = "0px";
@@ -182,6 +206,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
         newProjectButton.innerHTML = '<img src="images/KenyaMaasaiMARA/logoKenyaGeneric.png" style="width:50px ; height:50px; border: 0px solid white" />';
         newProjectButton.style.gridColumn = '1'
         newProjectButton.style.gridRow = '1';
+
         // newProjectButton.style.left = '50%'
         // cell.style.overflow = 'scroll'
 
@@ -277,12 +302,20 @@ document.getElementById('sapelliProjects').onclick = function(e){
 
   }
   else{
-    cell.style.display = 'initial'
+
+
+
+    //FUCK, the grid doesn't need to be hidden!!!
+    // cell.style.display = 'initial'
+
     //this is to ensure that the two buttons are well located. Not the best solution but ....
     newProjectButton.style.display = 'initial';
+    // newProjectButton.style.left = '50px'
     newProjectButton2.style.display = 'initial';
-    newProjectButton.click()
-    document.getElementById('customIconsGoBack').click()
+    // newProjectButton2.style.left = '100px'
+
+    // newProjectButton2.click()
+    // document.getElementById('customIconsGoBack').click()
 
     // newProjectButton3.style.display = 'initial';
     // newProjectButton4.style.display = 'initial';
@@ -316,11 +349,13 @@ document.getElementById('sapelliProjects').onclick = function(e){
                   newProjectButton.style.display = 'none';
                   newProjectButton2.style.display = 'none';
                   generateButtonsMaraORMau()
-                  newProjectButton.innerHTML = '<img src="images/KenyaMaasaiMARA/logoMara.png" style="width:50px ; height:50px; border: 0px solid white" />';
+                  newProjectButton.innerHTML = '<img src="images/KenyaMaasaiMARA/logoKenyaGeneric.png" style="width:50px ; height:50px; border: 0px solid white" />';
                   newProjectButton.disabled = false
                   newProjectButton.style.backgroundColor = 'white'
                   newProjectButton.style.borderColor = 'white'
                   clearInterval(checkingIfPreloadCompleted)
+                  document.getElementById('customIconsGoBack').style.display = 'initial'
+
 
 
 
@@ -368,12 +403,15 @@ document.getElementById('sapelliProjects').onclick = function(e){
           newProjectButton.style.display = 'none';
           newProjectButton2.style.display = 'none';
           cell.setAttribute("style","overflow-y:scroll");
+          document.getElementById('customIconsGoBack').style.display = 'initial'
+
 
           generateButtonsMaraORMau()
         }
 
     }
-  return projectsCreated && sapProjectFirstTime && newProjectButton && cell
+  },400)
+  return projectsCreated && sapProjectFirstTime && newProjectButton && newProjectButton2 && cell
 }
 
 var  iconMARA, iconMAU,iconMARA_8,iconMARA_9,iconMARA_10,iconMARA_11,iconMARA_12,iconMARA_13,iconMARA_14,iconMARA_15,iconMARA_16,iconMARA_17,iconMARA_18,iconMARA_19,iconMARA_20,iconMARA_21,iconMARA_22,iconMARA_22,iconMARA_23,iconMARA_24,iconMARA_25,iconMARA_26,
