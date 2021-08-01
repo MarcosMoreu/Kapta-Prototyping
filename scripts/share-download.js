@@ -466,9 +466,11 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
 
 
 document.getElementById('shareWorldButton').onclick = function(e) {
-  cell.style.backgroundColor = 'white'
-  newProjectButton.style.display = 'none'
-  newProjectButton2.style.display = 'none'
+  try{
+    cell.style.backgroundColor = 'white'
+    newProjectButton.style.display = 'none'
+    newProjectButton2.style.display = 'none'
+  }catch(e){}
   //to store in localstorage
   // geoJSONLocalforageDB.setItem(tempName, dataStringified)//.then(function(){
 
@@ -590,7 +592,10 @@ document.getElementById('shareWorldButton').onclick = function(e) {
               // document.getElementById("point").style.display = "initial";
               document.getElementById("armchair").style.display = "initial";
               document.getElementById("field").style.display = "initial";
-              cell.style.backgroundColor = 'black'
+              try{
+                cell.style.backgroundColor = 'black'
+
+              }catch(e){}
 
               // document.getElementById("gobackArmchairField").style.display = "initial";
               if(whichLayerIsOn == 'localStorage'){
@@ -665,9 +670,12 @@ document.getElementById('shareWorldButton').onclick = function(e) {
 //console.log(deflatedLocalStorage)
 var elementJustAddedToLocalStorage = false
 document.getElementById('DownloadButton').onclick = function(e) {
-  cell.style.backgroundColor = 'white'
-  newProjectButton.style.display = 'none'
-  newProjectButton2.style.display = 'none'
+  try{
+    cell.style.backgroundColor = 'white'
+    newProjectButton.style.display = 'none'
+    newProjectButton2.style.display = 'none'
+  }catch(e){}
+
 
   //console.log(whichLayerIsOn)
         //to store in localstorage immediately
@@ -789,7 +797,10 @@ document.getElementById('DownloadButton').onclick = function(e) {
         elementJustAddedToLocalStorage = true
 
         document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
-        cell.style.backgroundColor = 'black'
+        try{
+          cell.style.backgroundColor = 'black'
+
+        }catch(e){}
 
         // if (isIOS == false) {
         //     recordedVideo.pause();

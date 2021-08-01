@@ -106,6 +106,12 @@ var url = window.location.href
 
 // var isOnlineGlobal = isOnline
 
+
+//to avoid showing gif if tiles not loading while offline
+if(isOnline == false){
+  document.getElementById('MapLoading').style.display = 'none'
+}
+
 //to check if offline so some elements can be disabled
 var checkIfOffline = setInterval(function() {
   isOnline = navigator.onLine
@@ -2361,6 +2367,11 @@ document.getElementById("completeFeature").disabled = true;
 // var mapCurrentCenter;
 
 document.getElementById("tutorial").onclick = function(e) {
+  try{
+    newProjectButton.style.display = 'none'
+    newProjectButton2.style.display = 'none'
+  }catch(e){}
+
   document.getElementById("Alert").style.display = 'none'
 
     mapCurrentBounds = map.getBounds();
