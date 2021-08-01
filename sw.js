@@ -3,7 +3,7 @@
 
 // Set a name for the current cache. Note that when version is changed, the pwa only updates autmotically after reloading!
 //Note that for automatic update, at one change need to be made in the app.js file (or in other files...)
-var version = 'v20.8';
+var version = 'v21.4';
 //console.log(version)
 
 // Default files to always cache
@@ -63,6 +63,7 @@ self.addEventListener("install", function(event) {
    CSS resources, fonts, any images, etc.
 */
 self.addEventListener("fetch", function(event) {
+
   //console.log('WORKER: fetch event in progress.');
 
   /* We should only cache GET requests, and deal with the rest of method in the
@@ -89,7 +90,13 @@ self.addEventListener("fetch", function(event) {
          the request. Once the promise is settled, we can then provide a response
          to the fetch request.
       */
-      .match(event.request)
+      // .match(event.request)
+      .match(event.request,{
+        //with this, the app open also when urlgeojson and & offline, because it ignores the url query, yet still loads into the map because app.js
+        //the issue is when using VPN, that offline is not always detected? need to look at it
+        ignoreSearch: true
+
+      })
       .then(function(cached) {
         /* Even if the response is in our cache, we go to the network as well.
            This pattern is known for producing "eventually fresh" responses,

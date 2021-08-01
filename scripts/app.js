@@ -108,9 +108,12 @@ var url = window.location.href
 
 
 //to avoid showing gif if tiles not loading while offline
-if(isOnline == false){
-  document.getElementById('MapLoading').style.display = 'none'
-}
+var removeGifIfOnline = setInterval(function(){
+  if(isOnline == false){
+    document.getElementById('MapLoading').style.display = 'none'
+  }
+},5000)
+
 
 //to check if offline so some elements can be disabled
 var checkIfOffline = setInterval(function() {
