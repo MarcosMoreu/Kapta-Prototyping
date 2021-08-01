@@ -466,6 +466,9 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
 
 
 document.getElementById('shareWorldButton').onclick = function(e) {
+  cell.style.backgroundColor = 'white'
+  newProjectButton.style.display = 'none'
+  newProjectButton2.style.display = 'none'
   //to store in localstorage
   // geoJSONLocalforageDB.setItem(tempName, dataStringified)//.then(function(){
 
@@ -587,6 +590,8 @@ document.getElementById('shareWorldButton').onclick = function(e) {
               // document.getElementById("point").style.display = "initial";
               document.getElementById("armchair").style.display = "initial";
               document.getElementById("field").style.display = "initial";
+              cell.style.backgroundColor = 'black'
+
               // document.getElementById("gobackArmchairField").style.display = "initial";
               if(whichLayerIsOn == 'localStorage'){
                 document.getElementById('myLayerButton').click()
@@ -660,6 +665,10 @@ document.getElementById('shareWorldButton').onclick = function(e) {
 //console.log(deflatedLocalStorage)
 var elementJustAddedToLocalStorage = false
 document.getElementById('DownloadButton').onclick = function(e) {
+  cell.style.backgroundColor = 'white'
+  newProjectButton.style.display = 'none'
+  newProjectButton2.style.display = 'none'
+
   //console.log(whichLayerIsOn)
         //to store in localstorage immediately
         // for (i = 0; i < deflatedLocalStorage._layers.length; i++) { // not the optimal solution, but couldn't find the way to empty deflated
@@ -780,6 +789,8 @@ document.getElementById('DownloadButton').onclick = function(e) {
         elementJustAddedToLocalStorage = true
 
         document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
+        cell.style.backgroundColor = 'black'
+
         // if (isIOS == false) {
         //     recordedVideo.pause();
         //     recordedBlobs = null; // audio is removed if cancel is clicked
