@@ -3,7 +3,7 @@
 
 // Set a name for the current cache. Note that when version is changed, the pwa only updates autmotically after reloading!
 //Note that for automatic update, at one change need to be made in the app.js file (or in other files...)
-var version = 'v21.4';
+var version = 'v21.8';
 //console.log(version)
 
 // Default files to always cache
@@ -84,6 +84,32 @@ self.addEventListener("fetch", function(event) {
      Fulfillment result will be used as the response, and rejection will end in a
      HTTP response indicating failure.
   */
+//////////////approach 1 to solve the issue of url query
+  //////////// if the request has query parameters, `hasQuery` will be set to `true`
+  //////// var hasQuery = event.request.url.indexOf('?') != -1;
+
+
+  //////////////approach 2 to solve the issue of url query
+
+  //find urls that only have numbers as parameters
+  //yours will obviously differ, my queries to ignore were just repo revisions
+  // var shaved = event.request.url.match(/^([^?]*)[?]\d+$/);
+  // //extract the url without the query
+  // shaved = shaved && shaved[1];
+  // console.log(shaved)
+
+
+
+///////////// approach 3  >> after testing other people's approach, I've created this one which actually works, because approach 2 didn't work, and approach 1 caused
+/////////... error with when post CARTO. This way, I ensure that only the URLgeojson request takes ignoreSearch as TRUE, the rest are false.
+  var ignore
+
+  if(event.request.url.includes('#') && event.request.url.includes('/?') && event.request.url.includes('z')){
+    ignore = true
+  }else{
+    ignore = false
+  }
+
   event.respondWith(
     caches
       /* This method returns a promise that resolves to a cache entry matching
@@ -91,11 +117,22 @@ self.addEventListener("fetch", function(event) {
          to the fetch request.
       */
       // .match(event.request)
-      .match(event.request,{
-        //with this, the app open also when urlgeojson and & offline, because it ignores the url query, yet still loads into the map because app.js
-        //the issue is when using VPN, that offline is not always detected? need to look at it
-        ignoreSearch: true
 
+//////////////approach 1 to solve the issue of url query
+      // .match(event.request,{
+      //   //with this, the app open also when urlgeojson and & offline, because it ignores the url query, yet still loads into the map because app.js
+      //   //the issue is when using VPN, that offline is not always detected? need to look at it
+      //   // ignoreSearch: false
+      //
+      //   // ignore query section of the URL based on our variable
+      //   ignoreSearch: hasQuery,
+      //
+      // })
+/////////////approach 2 to solve the issue of url query
+///....caches.match(shaved || event.request)  >>>>>  https://stackoverflow.com/questions/41758252/service-worker-slow-response-times
+
+      .match(event.request,{
+        ignoreSearch:ignore,   ///////////////////////// approach 3 (see above)
       })
       .then(function(cached) {
         /* Even if the response is in our cache, we go to the network as well.
