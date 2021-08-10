@@ -8,6 +8,8 @@ var askHelpOrIHelp
 
 //variable to populate the popup
 var plant
+var imageName1
+var imageName2
 var issueSpecific = 'emojiNoSapelli' //if the sapelli project is completed, then the value changes and the string is treated differently in sharedownload.js
 var issuesHuman
 var isMARAorMAU
@@ -63,6 +65,8 @@ document.getElementById('customIconsMap').onclick = function(e){
 document.getElementById('customIconsCancel').onclick = function(e){
   hideAll()
   screenChoice == 'plants'
+  imageName1 = null
+  imageName2 = null
   document.getElementById('customIconsGoBack').style.display = 'initial'
   document.getElementById('customIconsCancel').style.display = 'none';
 
@@ -80,7 +84,7 @@ document.getElementById('customIconsCancel').onclick = function(e){
   issueGeneric = null
   // issuesHuman = 'emojiNoSapelli'
   issueSpecific = 'emojiNoSapelli'
-  return  plant && issueSpecific && screenChoice
+  return  plant && issueSpecific && screenChoice && imageName
 }
 document.getElementById('customIconsGoBack').onclick = function(e){
     if(screenChoice == 'ismaraormau'){
@@ -168,7 +172,7 @@ var screenwidth = screen.width +'px'
 //excites Logo in the map: to open the sapelli project
 document.getElementById('sapelliProjects').onclick = function(e){
   preload([
-    'images/KenyaMaasaiMARA/logoKenyaGeneric.png','images/KenyaEMC/logoKenyaEMC.png',
+    'images/KenyaMaasaiMARA/logoKenyaGeneric.png','images/KenyaEMC/logoKenyaEMC.png','images/KenyaMaasaiMARA/logoMara.png','images/KenyaMaasaiMARA/logoMau.png',
 
   ])
   setTimeout(function(){
@@ -274,30 +278,30 @@ document.getElementById('sapelliProjects').onclick = function(e){
 
 
 
-'images/KenyaMaasaiMAU/icons/Aonet_Policius vulva.png','images/KenyaMaasaiMAU/icons/Arorwet.png','images/KenyaMaasaiMAU/icons/Bontet_Rosewood.png','images/KenyaMaasaiMAU/icons/Botkawet.png','images/KenyaMaasaiMAU/icons/Chemoset.png','images/KenyaMaasaiMAU/icons/Chepchabayiet.png',
-'images/KenyaMaasaiMAU/icons/Chepgetuiyet.png','images/KenyaMaasaiMAU/icons/Chepkoibet.png','images/KenyaMaasaiMAU/icons/Chepkorgoriet.png','images/KenyaMaasaiMAU/icons/Chepkowet.png','images/KenyaMaasaiMAU/icons/Chepkurbet.png','images/KenyaMaasaiMAU/icons/Chepngororiet.png',
-'images/KenyaMaasaiMAU/icons/Chepongiot.png','images/KenyaMaasaiMAU/icons/Chepsakitiet.png','images/KenyaMaasaiMAU/icons/Chep_tenderet.png','images/KenyaMaasaiMAU/icons/Cheptiringwet.png','images/KenyaMaasaiMAU/icons/Cherungut.png','images/KenyaMaasaiMAU/icons/Chesamisiet.png',
-'images/KenyaMaasaiMAU/icons/Chesamisiet_Clerodendrum myricoids.png','images/KenyaMaasaiMAU/icons/Chesicheiyet.png','images/KenyaMaasaiMAU/icons/Eburwet.png','images/KenyaMaasaiMAU/icons/Enabooi_Chemngesumiet.png','images/KenyaMaasaiMAU/icons/Endalati ekutuk.png','images/KenyaMaasaiMAU/icons/Enkaisuishoi.png',
-'images/KenyaMaasaiMAU/icons/Enkisiau.png','images/KenyaMaasaiMAU/icons/Enkoloshoo.png','images/KenyaMaasaiMAU/icons/Enkopisiadi.png','images/KenyaMaasaiMAU/icons/Enkopito_enkopito ooltorrobo.png','images/KenyaMaasaiMAU/icons/Enkopito ooltorrobo.png','images/KenyaMaasaiMAU/icons/Entakuleti.png',
-'images/KenyaMaasaiMAU/icons/Entamejoi.png','images/KenyaMaasaiMAU/icons/Entamejoi oolosowuani.png','images/KenyaMaasaiMAU/icons/Entapipi.png','images/KenyaMaasaiMAU/icons/Entemelua.png','images/KenyaMaasaiMAU/icons/Entiangaras.png','images/KenyaMaasaiMAU/icons/Entiapapaa.png','images/KenyaMaasaiMAU/icons/Esere.png',
-'images/KenyaMaasaiMAU/icons/Esumeita.png','images/KenyaMaasaiMAU/icons/Ewat.png','images/KenyaMaasaiMAU/icons/Imaniat.png','images/KenyaMaasaiMAU/icons/Imeenpet.png','images/KenyaMaasaiMAU/icons/Kalialwet.png','images/KenyaMaasaiMAU/icons/Kebukeyet.png','images/KenyaMaasaiMAU/icons/Kepkoibet_Angerae.png',
-'images/KenyaMaasaiMAU/icons/Ketegaa.png','images/KenyaMaasaiMAU/icons/Ketungutiet.png','images/KenyaMaasaiMAU/icons/Kibirirgorok.png','images/KenyaMaasaiMAU/icons/Kipkosieriet.png','images/KenyaMaasaiMAU/icons/Kipkutungit.png','images/KenyaMaasaiMAU/icons/Kipsebwet.png','images/KenyaMaasaiMAU/icons/Kipsertwet.png',
-'images/KenyaMaasaiMAU/icons/Kipsotiet.png','images/KenyaMaasaiMAU/icons/Kipsowoit.png','images/KenyaMaasaiMAU/icons/Kogob_toroi.png','images/KenyaMaasaiMAU/icons/Kombeito.png','images/KenyaMaasaiMAU/icons/Korosiot.png','images/KenyaMaasaiMAU/icons/Kosisietet_Rhannus prinoides.png','images/KenyaMaasaiMAU/icons/Kosisitiet.png',
-'images/KenyaMaasaiMAU/icons/Kuresiet_olkushurui.png','images/KenyaMaasaiMAU/icons/Lapotiet.png','images/KenyaMaasaiMAU/icons/Lebekwet.png','images/KenyaMaasaiMAU/icons/Lekikuuni.png','images/KenyaMaasaiMAU/icons/Lepekwet.png','images/KenyaMaasaiMAU/icons/Logg plant.png','images/KenyaMaasaiMAU/icons/Logomaita_macaranga kilimanscharia.png',
-'images/KenyaMaasaiMAU/icons/Mailpuch.png','images/KenyaMaasaiMAU/icons/Mangoita.png','images/KenyaMaasaiMAU/icons/Manguangiet.png','images/KenyaMaasaiMAU/icons/Marongeet_olmeikuaya.png','images/KenyaMaasaiMAU/icons/Martit.png','images/KenyaMaasaiMAU/icons/Matirtirwet.png',
-'images/KenyaMaasaiMAU/icons/Meswot_bees.png','images/KenyaMaasaiMAU/icons/Mogoiwet.png','images/KenyaMaasaiMAU/icons/Mogokwet.png','images/KenyaMaasaiMAU/icons/Mopondet.png','images/KenyaMaasaiMAU/icons/Mosipchot.png','images/KenyaMaasaiMAU/icons/Murguiwet.png','images/KenyaMaasaiMAU/icons/Mutereriet.png',
-'images/KenyaMaasaiMAU/icons/Mwabiyet.png','images/KenyaMaasaiMAU/icons/Naman keon.png','images/KenyaMaasaiMAU/icons/Nareruk.png','images/KenyaMaasaiMAU/icons/Ndakariat.png','images/KenyaMaasaiMAU/icons/Ngingichet.png','images/KenyaMaasaiMAU/icons/Noiwet.png','images/KenyaMaasaiMAU/icons/Nukiat_nime.png',
-'images/KenyaMaasaiMAU/icons/Nyelwet.png','images/KenyaMaasaiMAU/icons/Olabai lepartolu.png','images/KenyaMaasaiMAU/icons/Olaimurunyai.png','images/KenyaMaasaiMAU/icons/Olalaa.png','images/KenyaMaasaiMAU/icons/Olayakuji.png','images/KenyaMaasaiMAU/icons/Olchani.png','images/KenyaMaasaiMAU/icons/Olchartuyian.png',
-'images/KenyaMaasaiMAU/icons/Oledat.png','images/KenyaMaasaiMAU/icons/Oleturot.png','images/KenyaMaasaiMAU/icons/Olkekeyiet.png','images/KenyaMaasaiMAU/icons/Olkikuei loosirkon.png','images/KenyaMaasaiMAU/icons/Olkilelit_olchani.png','images/KenyaMaasaiMAU/icons/Olkiparnyany_kuparnyaat.png',
-'images/KenyaMaasaiMAU/icons/Olkipejus.png','images/KenyaMaasaiMAU/icons/Olkirenyi.png','images/KenyaMaasaiMAU/icons/Olkisushet.png','images/KenyaMaasaiMAU/icons/Olkujuk.png','images/KenyaMaasaiMAU/icons/Olmasiligi.png','images/KenyaMaasaiMAU/icons/Olmomoi.png','images/KenyaMaasaiMAU/icons/Olmusaakwa.png',
-'images/KenyaMaasaiMAU/icons/Olngenchemi.png','images/KenyaMaasaiMAU/icons/Ologolbenek.png','images/KenyaMaasaiMAU/icons/Ologumati.png','images/KenyaMaasaiMAU/icons/Oloiborr benek.png','images/KenyaMaasaiMAU/icons/Oloisuti.png','images/KenyaMaasaiMAU/icons/Oloiururr.png','images/KenyaMaasaiMAU/icons/Ololiontoi.png',
-'images/KenyaMaasaiMAU/icons/Olomei.png','images/KenyaMaasaiMAU/icons/Oloniyai.png','images/KenyaMaasaiMAU/icons/Olorrondo.png','images/KenyaMaasaiMAU/icons/Olosiro.png','images/KenyaMaasaiMAU/icons/Olpalagilagi.png','images/KenyaMaasaiMAU/icons/Olpiron.png','images/KenyaMaasaiMAU/icons/Olpolto.png',
-'images/KenyaMaasaiMAU/icons/Oltarakuai.png','images/KenyaMaasaiMAU/icons/Oltiini.png','images/KenyaMaasaiMAU/icons/Oltikampu.png','images/KenyaMaasaiMAU/icons/Oltirkoyian.png','images/KenyaMaasaiMAU/icons/Olturuj.png','images/KenyaMaasaiMAU/icons/Ormarrar.png','images/KenyaMaasaiMAU/icons/Osasimawani.png',
-'images/KenyaMaasaiMAU/icons/Osinantei.png','images/KenyaMaasaiMAU/icons/Osonkorori.png','images/KenyaMaasaiMAU/icons/Osupukiai orok.png','images/KenyaMaasaiMAU/icons/Rerendet_rauvolfia.png','images/KenyaMaasaiMAU/icons/Rokoret_drinking straw.png','images/KenyaMaasaiMAU/icons/Rope plant.png','images/KenyaMaasaiMAU/icons/Sabetet_nabutoria.png',
-'images/KenyaMaasaiMAU/icons/Saiyet.png','images/KenyaMaasaiMAU/icons/Sangainet.png','images/KenyaMaasaiMAU/icons/Sasiat.png','images/KenyaMaasaiMAU/icons/Sasuriet_wild banana.png','images/KenyaMaasaiMAU/icons/Sebeberiet.png','images/KenyaMaasaiMAU/icons/Seet_alipizias.png','images/KenyaMaasaiMAU/icons/Sergutiet.png',
-'images/KenyaMaasaiMAU/icons/Serkutwet.png','images/KenyaMaasaiMAU/icons/Setiot.png','images/KenyaMaasaiMAU/icons/Singorwet.png','images/KenyaMaasaiMAU/icons/Sinkorwet.png','images/KenyaMaasaiMAU/icons/Sirimpiet.png','images/KenyaMaasaiMAU/icons/Sitotwet_oseketeki.png','images/KenyaMaasaiMAU/icons/Siwot.png',
-'images/KenyaMaasaiMAU/icons/Sugumeriet.png','images/KenyaMaasaiMAU/icons/Sumetet.png','images/KenyaMaasaiMAU/icons/Suseita.png','images/KenyaMaasaiMAU/icons/Takamamiet.png','images/KenyaMaasaiMAU/icons/Taparariet.png','images/KenyaMaasaiMAU/icons/Tebararietab teta.png','images/KenyaMaasaiMAU/icons/Tekelteet.png',
-'images/KenyaMaasaiMAU/icons/Tekiat_oltiyani.png','images/KenyaMaasaiMAU/icons/Teldet.png','images/KenyaMaasaiMAU/icons/Tepengwet.png','images/KenyaMaasaiMAU/icons/Tiniet_scheflera rolkensil.png','images/KenyaMaasaiMAU/icons/Tokweyot.png','images/KenyaMaasaiMAU/icons/Topitiet.png',
+'images/KenyaMaasaiMARA/icons/Aonet_Policius vulva.png','images/KenyaMaasaiMARA/icons/Arorwet.png','images/KenyaMaasaiMARA/icons/Bontet_Rosewood.png','images/KenyaMaasaiMARA/icons/Botkawet.png','images/KenyaMaasaiMARA/icons/Chemoset.png','images/KenyaMaasaiMARA/icons/Chepchabayiet.png',
+'images/KenyaMaasaiMARA/icons/Chepgetuiyet.png','images/KenyaMaasaiMARA/icons/Chepkoibet.png','images/KenyaMaasaiMARA/icons/Chepkorgoriet.png','images/KenyaMaasaiMARA/icons/Chepkowet.png','images/KenyaMaasaiMARA/icons/Chepkurbet.png','images/KenyaMaasaiMARA/icons/Chepngororiet.png',
+'images/KenyaMaasaiMARA/icons/Chepongiot.png','images/KenyaMaasaiMARA/icons/Chepsakitiet.png','images/KenyaMaasaiMARA/icons/Chep_tenderet.png','images/KenyaMaasaiMARA/icons/Cheptiringwet.png','images/KenyaMaasaiMARA/icons/Cherungut.png','images/KenyaMaasaiMARA/icons/Chesamisiet.png',
+'images/KenyaMaasaiMARA/icons/Chesamisiet_Clerodendrum myricoids.png','images/KenyaMaasaiMARA/icons/Chesicheiyet.png','images/KenyaMaasaiMARA/icons/Eburwet.png','images/KenyaMaasaiMARA/icons/Enabooi_Chemngesumiet.png','images/KenyaMaasaiMARA/icons/Endalati ekutuk.png','images/KenyaMaasaiMARA/icons/Enkaisuishoi.png',
+'images/KenyaMaasaiMARA/icons/Enkisiau.png','images/KenyaMaasaiMARA/icons/Enkoloshoo.png','images/KenyaMaasaiMARA/icons/Enkopisiadi.png','images/KenyaMaasaiMARA/icons/Enkopito_enkopito ooltorrobo.png','images/KenyaMaasaiMARA/icons/Enkopito ooltorrobo.png','images/KenyaMaasaiMARA/icons/Entakuleti.png',
+'images/KenyaMaasaiMARA/icons/Entamejoi.png','images/KenyaMaasaiMARA/icons/Entamejoi oolosowuani.png','images/KenyaMaasaiMARA/icons/Entapipi.png','images/KenyaMaasaiMARA/icons/Entemelua.png','images/KenyaMaasaiMARA/icons/Entiangaras.png','images/KenyaMaasaiMARA/icons/Entiapapaa.png','images/KenyaMaasaiMARA/icons/Esere.png',
+'images/KenyaMaasaiMARA/icons/Esumeita.png','images/KenyaMaasaiMARA/icons/Ewat.png','images/KenyaMaasaiMARA/icons/Imaniat.png','images/KenyaMaasaiMARA/icons/Imeenpet.png','images/KenyaMaasaiMARA/icons/Kalialwet.png','images/KenyaMaasaiMARA/icons/Kebukeyet.png','images/KenyaMaasaiMARA/icons/Kepkoibet_Angerae.png',
+'images/KenyaMaasaiMARA/icons/Ketegaa.png','images/KenyaMaasaiMARA/icons/Ketungutiet.png','images/KenyaMaasaiMARA/icons/Kibirirgorok.png','images/KenyaMaasaiMARA/icons/Kipkosieriet.png','images/KenyaMaasaiMARA/icons/Kipkutungit.png','images/KenyaMaasaiMARA/icons/Kipsebwet.png','images/KenyaMaasaiMARA/icons/Kipsertwet.png',
+'images/KenyaMaasaiMARA/icons/Kipsotiet.png','images/KenyaMaasaiMARA/icons/Kipsowoit.png','images/KenyaMaasaiMARA/icons/Kogob_toroi.png','images/KenyaMaasaiMARA/icons/Kombeito.png','images/KenyaMaasaiMARA/icons/Korosiot.png','images/KenyaMaasaiMARA/icons/Kosisietet_Rhannus prinoides.png','images/KenyaMaasaiMARA/icons/Kosisitiet.png',
+'images/KenyaMaasaiMARA/icons/Kuresiet_olkushurui.png','images/KenyaMaasaiMARA/icons/Lapotiet.png','images/KenyaMaasaiMARA/icons/Lebekwet.png','images/KenyaMaasaiMARA/icons/Lekikuuni.png','images/KenyaMaasaiMARA/icons/Lepekwet.png','images/KenyaMaasaiMARA/icons/Logg plant.png','images/KenyaMaasaiMARA/icons/Logomaita_macaranga kilimanscharia.png',
+'images/KenyaMaasaiMARA/icons/Mailpuch.png','images/KenyaMaasaiMARA/icons/Mangoita.png','images/KenyaMaasaiMARA/icons/Manguangiet.png','images/KenyaMaasaiMARA/icons/Marongeet_olmeikuaya.png','images/KenyaMaasaiMARA/icons/Martit.png','images/KenyaMaasaiMARA/icons/Matirtirwet.png',
+'images/KenyaMaasaiMARA/icons/Meswot_bees.png','images/KenyaMaasaiMARA/icons/Mogoiwet.png','images/KenyaMaasaiMARA/icons/Mogokwet.png','images/KenyaMaasaiMARA/icons/Mopondet.png','images/KenyaMaasaiMARA/icons/Mosipchot.png','images/KenyaMaasaiMARA/icons/Murguiwet.png','images/KenyaMaasaiMARA/icons/Mutereriet.png',
+'images/KenyaMaasaiMARA/icons/Mwabiyet.png','images/KenyaMaasaiMARA/icons/Naman keon.png','images/KenyaMaasaiMARA/icons/Nareruk.png','images/KenyaMaasaiMARA/icons/Ndakariat.png','images/KenyaMaasaiMARA/icons/Ngingichet.png','images/KenyaMaasaiMARA/icons/Noiwet.png','images/KenyaMaasaiMARA/icons/Nukiat_nime.png',
+'images/KenyaMaasaiMARA/icons/Nyelwet.png','images/KenyaMaasaiMARA/icons/Olabai lepartolu.png','images/KenyaMaasaiMARA/icons/Olaimurunyai.png','images/KenyaMaasaiMARA/icons/Olalaa.png','images/KenyaMaasaiMARA/icons/Olayakuji.png','images/KenyaMaasaiMARA/icons/Olchani.png','images/KenyaMaasaiMARA/icons/Olchartuyian.png',
+'images/KenyaMaasaiMARA/icons/Oledat.png','images/KenyaMaasaiMARA/icons/Oleturot.png','images/KenyaMaasaiMARA/icons/Olkekeyiet.png','images/KenyaMaasaiMARA/icons/Olkikuei loosirkon.png','images/KenyaMaasaiMARA/icons/Olkilelit_olchani.png','images/KenyaMaasaiMARA/icons/Olkiparnyany_kuparnyaat.png',
+'images/KenyaMaasaiMARA/icons/Olkipejus.png','images/KenyaMaasaiMARA/icons/Olkirenyi.png','images/KenyaMaasaiMARA/icons/Olkisushet.png','images/KenyaMaasaiMARA/icons/Olkujuk.png','images/KenyaMaasaiMARA/icons/Olmasiligi.png','images/KenyaMaasaiMARA/icons/Olmomoi.png','images/KenyaMaasaiMARA/icons/Olmusaakwa.png',
+'images/KenyaMaasaiMARA/icons/Olngenchemi.png','images/KenyaMaasaiMARA/icons/Ologolbenek.png','images/KenyaMaasaiMARA/icons/Ologumati.png','images/KenyaMaasaiMARA/icons/Oloiborr benek.png','images/KenyaMaasaiMARA/icons/Oloisuti.png','images/KenyaMaasaiMARA/icons/Oloiururr.png','images/KenyaMaasaiMARA/icons/Ololiontoi.png',
+'images/KenyaMaasaiMARA/icons/Olomei.png','images/KenyaMaasaiMARA/icons/Oloniyai.png','images/KenyaMaasaiMARA/icons/Olorrondo.png','images/KenyaMaasaiMARA/icons/Olosiro.png','images/KenyaMaasaiMARA/icons/Olpalagilagi.png','images/KenyaMaasaiMARA/icons/Olpiron.png','images/KenyaMaasaiMARA/icons/Olpolto.png',
+'images/KenyaMaasaiMARA/icons/Oltarakuai.png','images/KenyaMaasaiMARA/icons/Oltiini.png','images/KenyaMaasaiMARA/icons/Oltikampu.png','images/KenyaMaasaiMARA/icons/Oltirkoyian.png','images/KenyaMaasaiMARA/icons/Olturuj.png','images/KenyaMaasaiMARA/icons/Ormarrar.png','images/KenyaMaasaiMARA/icons/Osasimawani.png',
+'images/KenyaMaasaiMARA/icons/Osinantei.png','images/KenyaMaasaiMARA/icons/Osonkorori.png','images/KenyaMaasaiMARA/icons/Osupukiai orok.png','images/KenyaMaasaiMARA/icons/Rerendet_rauvolfia.png','images/KenyaMaasaiMARA/icons/Rokoret_drinking straw.png','images/KenyaMaasaiMARA/icons/Rope plant.png','images/KenyaMaasaiMARA/icons/Sabetet_nabutoria.png',
+'images/KenyaMaasaiMARA/icons/Saiyet.png','images/KenyaMaasaiMARA/icons/Sangainet.png','images/KenyaMaasaiMARA/icons/Sasiat.png','images/KenyaMaasaiMARA/icons/Sasuriet_wild banana.png','images/KenyaMaasaiMARA/icons/Sebeberiet.png','images/KenyaMaasaiMARA/icons/Seet_alipizias.png','images/KenyaMaasaiMARA/icons/Sergutiet.png',
+'images/KenyaMaasaiMARA/icons/Serkutwet.png','images/KenyaMaasaiMARA/icons/Setiot.png','images/KenyaMaasaiMARA/icons/Singorwet.png','images/KenyaMaasaiMARA/icons/Sinkorwet.png','images/KenyaMaasaiMARA/icons/Sirimpiet.png','images/KenyaMaasaiMARA/icons/Sitotwet_oseketeki.png','images/KenyaMaasaiMARA/icons/Siwot.png',
+'images/KenyaMaasaiMARA/icons/Sugumeriet.png','images/KenyaMaasaiMARA/icons/Sumetet.png','images/KenyaMaasaiMARA/icons/Suseita.png','images/KenyaMaasaiMARA/icons/Takamamiet.png','images/KenyaMaasaiMARA/icons/Taparariet.png','images/KenyaMaasaiMARA/icons/Tebararietab teta.png','images/KenyaMaasaiMARA/icons/Tekelteet.png',
+'images/KenyaMaasaiMARA/icons/Tekiat_oltiyani.png','images/KenyaMaasaiMARA/icons/Teldet.png','images/KenyaMaasaiMARA/icons/Tepengwet.png','images/KenyaMaasaiMARA/icons/Tiniet_scheflera rolkensil.png','images/KenyaMaasaiMARA/icons/Tokweyot.png','images/KenyaMaasaiMARA/icons/Topitiet.png',
         ]);
 
   }
@@ -459,7 +463,7 @@ var generateButtonsMaraORMau = function(){
   iconMAU = document.createElement("BUTTON");
   cell.appendChild(iconMAU);
   iconMAU.style.backgroundColor = 'green'
-  iconMAU.innerHTML = '<img src="images/KenyaMaasaiMAU/logoMau.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> </br>';
+  iconMAU.innerHTML = '<img src="images/KenyaMaasaiMARA/logoMau.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> </br>';
   iconMAU.className = 'buttonsSapelli'
   iconMAU.onclick = function(){
     isMARAorMAU = 'mau'
@@ -492,6 +496,7 @@ var generateButtonsPlantsMARA = function(){
     document.getElementById('customIconsGoBack').style.display = 'initial';
     document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olakiroingai ▪️ Orange Leaf Croton'
+    imageName1 = 'Olakiroingai_OrangeLeafCroton'
   }
  iconMARA_9 = document.createElement("BUTTON");
   cell.appendChild(iconMARA_9);
@@ -503,6 +508,7 @@ var generateButtonsPlantsMARA = function(){
   document.getElementById('customIconsGoBack').style.display = 'initial';
   document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olamuranya ▪️ Spike Thorn Bush'
+    imageName1 = 'Olamuranya_SpikeThornBush'
   }
 
  iconMARA_10 = document.createElement("BUTTON");
@@ -515,6 +521,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olerai ▪️ Yellow Barked Acacia'
+    imageName1 = 'Olerai_YellowBarkedAcacia'
+
   }
  iconMARA_11 = document.createElement("BUTTON");
   cell.appendChild(iconMARA_11);
@@ -526,6 +534,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olgoswa ▪️ Desert Date'
+    imageName1 = 'Olgoswa_DesertDate'
+
   }
  iconMARA_12 = document.createElement("BUTTON");
   cell.appendChild(iconMARA_12);
@@ -537,6 +547,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olmasei ▪️ Forest Rothmania Cheesewood'
+    imageName1 = 'Olmasei_ForestRothmania_Cheesewood'
+
   }
  iconMARA_13 = document.createElement("BUTTON");
   cell.appendChild(iconMARA_13);
@@ -548,6 +560,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Osinoni ▪️ Fever Tree'
+    imageName1 = 'Osinoni_FeverTree'
+
 
   }
  iconMARA_14 = document.createElement("BUTTON");
@@ -560,6 +574,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Osupakupes ▪️ Albizia Gummifera'
+    imageName1 = 'Osupakupes_AlbiziaGummifera'
+
 
   }
  iconMARA_15 = document.createElement("BUTTON");
@@ -572,6 +588,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Osokonoi ▪️ Waburgia Ugandensis'
+    imageName1 = 'Osokonoi_WaburgiaUgandensis'
+
 
   }
  iconMARA_38 = document.createElement("BUTTON");
@@ -584,6 +602,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Ositeti ▪️ False Brandy Bush'
+    imageName1 = 'Ositeti_FalseBrandyBush'
+
 
   }
  iconMARA_16 = document.createElement("BUTTON");
@@ -596,6 +616,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Osilalei ▪️ Camiphora'
+    imageName1 = 'Osilalei_Camiphora'
+
 
   }
  iconMARA_17 = document.createElement("BUTTON");
@@ -608,6 +630,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Osenetoi ▪️ Candle Bush'
+    imageName1 = 'Osenetoi_CandleBush'
+
 
   }
  iconMARA_18 = document.createElement("BUTTON");
@@ -620,6 +644,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Orupanti'
+    imageName1 = 'Orupanti'
+
 
   }
  iconMARA_19 = document.createElement("BUTTON");
@@ -632,6 +658,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 OrngiroAre'
+    imageName1 = 'OrngiroAre'
+
 
   }
  iconMARA_20 = document.createElement("BUTTON");
@@ -644,6 +672,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Orgilai ▪️ Teclea Nobilis'
+    imageName1 = 'Orgilai_TecleaNobilis'
+
 
   }
 
@@ -657,6 +687,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oreteti ▪️ Wild Fig'
+    imageName1 = 'Oreteti_WildFig'
+
 
   }
  iconMARA_22 = document.createElement("BUTTON");
@@ -669,6 +701,7 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oltuyiesi ▪️ HopBush Dodonaea Viscosa'
+    imageName1 = 'Oltuyiesi_HopBush_DodonaeaViscosa'
 
   }
 
@@ -682,6 +715,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oltopisianoi'
+    imageName1 = 'Oltopisianoi'
+
 
   }
  iconMARA_24 = document.createElement("BUTTON");
@@ -694,6 +729,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oltirkish'
+    imageName1 = 'Oltirkish'
+
 
   }
  iconMARA_25 = document.createElement("BUTTON");
@@ -706,6 +743,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oltakurkuriet ▪️ Large Leaf Gardenia'
+    imageName1 = 'Oltakurkuriet_LargeLeafGardenia'
+
 
   }
  iconMARA_26 = document.createElement("BUTTON");
@@ -718,6 +757,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olchanilekule'
+    imageName1 = 'Olchanilekule'
+
 
   }
  iconMARA_27 = document.createElement("BUTTON");
@@ -730,6 +771,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olseki ▪️ Sandpaper Codiar'
+    imageName1 = 'Olseki_SandpaperCodiar'
+
 
   }
  iconMARA_28 = document.createElement("BUTTON");
@@ -742,6 +785,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olpopogi ▪️ Euphobia Candalebra'
+    imageName1 = 'Olpopogi_EuphobiaCandalebra'
+
 
   }
  iconMARA_29 = document.createElement("BUTTON");
@@ -754,6 +799,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olperr Elongo'
+    imageName1 = 'OlperrElongo'
+
 
   }
  iconMARA_30 = document.createElement("BUTTON");
@@ -766,6 +813,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olosesiai ▪️ Sandal Bush'
+    imageName1 = 'Olosesiai_SandalBush'
+
 
   }
  iconMARA_31 = document.createElement("BUTTON");
@@ -778,6 +827,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olosholol'
+    imageName1 = 'Olosholol'
+
 
   }
  iconMARA_32 = document.createElement("BUTTON");
@@ -790,6 +841,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Ololupa ▪️ Camiphora'
+    imageName1 = 'Ololupa_Camiphora'
+
 
   }
 
@@ -803,6 +856,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oloirien ▪️ African Wild Olive'
+    imageName1 = 'Oloirien_AfricanWildOlive'
+
 
   }
  iconMARA_34 = document.createElement("BUTTON");
@@ -815,6 +870,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oloireroi ▪️ Leopard Tree'
+    imageName1 = 'Oloireroi_LeopardTree'
+
 
   }
  iconMARA_35 = document.createElement("BUTTON");
@@ -827,6 +884,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oloilalei ▪️ Ziziphus Mucronata Buffalo Thorn'
+    imageName1 = 'Oloilalei_ZiziphusMucronata_BuffaloThorn'
+
 
   }
  iconMARA_36 = document.createElement("BUTTON");
@@ -839,6 +898,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olnyalugai ▪️ Grewia Similis'
+    imageName1 = 'Olnyalugai_GrewiaSimilis'
+
 
   }
 
@@ -852,6 +913,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olnokoret'
+    imageName1 = 'Olnokoret'
+
 
   }
  iconMARA_40 = document.createElement("BUTTON");
@@ -864,6 +927,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olgumi'
+    imageName1 = 'Olgumi'
+
 
   }
  iconMARA_41 = document.createElement("BUTTON");
@@ -876,6 +941,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olngongwenyi ▪️ Black Barked Acacia'
+    imageName1 = 'Olngongwenyi_BlackBarkedAcacia'
+
 
   }
 
@@ -889,6 +956,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olmotoo'
+    imageName1 = 'Olmotoo'
+
 
   }
  iconMARA_43 = document.createElement("BUTTON");
@@ -901,6 +970,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olmorijoi ▪️ Poison Arrow Tree'
+    imageName1 = 'Olmorijoi_PoisonArrowTree'
+
 
   }
 
@@ -914,6 +985,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olmisigiyioi ▪️ RhusNatalensis'
+    imageName1 = 'Olmisigiyioi_RhusNatalensis'
+
 
   }
  iconMARA_45 = document.createElement("BUTTON");
@@ -926,6 +999,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olmingarukeon'
+    imageName1 = 'Olmingarukeon'
+
 
   }
  iconMARA_46 = document.createElement("BUTTON");
@@ -938,6 +1013,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olmerumori ▪️ SickleBush'
+    imageName1 = 'Olmerumori_SickleBush'
+
 
   }
 
@@ -951,6 +1028,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olmatundai ▪️ Cactus'
+    imageName1 = 'Olmatundai_Cactus'
+
 
   }
  iconMARA_49 = document.createElement("BUTTON");
@@ -963,6 +1042,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olmaroroi ▪️ Copretum Molle'
+    imageName1 = 'Olmaroroi_CopretumMolle'
+
 
   }
  iconMARA_50 = document.createElement("BUTTON");
@@ -975,6 +1056,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olkonyil'
+    imageName1 = 'Olkonyil'
+
 
   }
  iconMARA_51 = document.createElement("BUTTON");
@@ -987,6 +1070,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olkombobit ▪️ Devil Milky Bush'
+    imageName1 = 'Olkombobit_DevilMilkyBush'
+
 
   }
  iconMARA_52 = document.createElement("BUTTON");
@@ -999,6 +1084,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olkokola ▪️ Ramnustaddo'
+    imageName1 = 'Olkokola_Ramnustaddo'
+
 
   }
 
@@ -1012,6 +1099,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olkisikongu ▪️ Pappea Capensis'
+    imageName1 = 'Olkisikongu_PappeaCapensis'
+
   }
  iconMARA_54 = document.createElement("BUTTON");
   cell.appendChild(iconMARA_54);
@@ -1023,6 +1112,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olkinyei ▪️ Uclear Dovinrum'
+    imageName1 = 'Olkinyei_UclearDovinrum'
+
   }
 
  iconMARA_55 = document.createElement("BUTTON");
@@ -1035,6 +1126,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olkiloreti ▪️ Acacia Nilotica'
+    imageName1 = 'Olkiloreti_AcaciaNilotica'
+
   }
  iconMARA_47 = document.createElement("BUTTON");
   cell.appendChild(iconMARA_47);
@@ -1046,6 +1139,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olkakawa'
+    imageName1 = 'Olkakawa'
+
   }
  iconMARA_56 = document.createElement("BUTTON");
   cell.appendChild(iconMARA_56);
@@ -1057,6 +1152,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olesupeni'
+    imageName1 = 'Olesupeni'
+
   }
  iconMARA_57 = document.createElement("BUTTON");
   cell.appendChild(iconMARA_57);
@@ -1068,6 +1165,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oleparmunyo ▪️ Toddalia Asiatica'
+    imageName1 = 'Oleparmunyo_ToddaliaAsiatica'
+
 
   }
  iconMARA_58 = document.createElement("BUTTON");
@@ -1080,6 +1179,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oleleshwa ▪️ CamphorBush Tarchonanthus Camphoratus'
+    imageName1 = 'Oleleshwa_CamphorBush_TarchonanthusCamphoratus'
+
 
   }
  iconMARA_59 = document.createElement("BUTTON");
@@ -1092,6 +1193,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oldarpoi ▪️  Kigelia Africana Sausage'
+    imageName1 = 'Oldarpoi_KigeliaAfricana-Sausage'
+
 
   }
  iconMARA_60 = document.createElement("BUTTON");
@@ -1104,6 +1207,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olaturdei ▪️ Caper Caparis'
+    imageName1 = 'Olaturdei_CaperCaparis'
+
 
   }
  iconMARA_61 = document.createElement("BUTTON");
@@ -1116,6 +1221,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olamuriaki ▪️ Carissa Edulis'
+    imageName1 = 'Olamuriaki_CarissaEdulis'
+
 
   }
  iconMARA_62 = document.createElement("BUTTON");
@@ -1128,6 +1235,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olairagai'
+    imageName1 = 'Olairagai'
+
 
   }
  iconMARA_63 = document.createElement("BUTTON");
@@ -1140,6 +1249,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 OitiOibor ▪️ Senegal Senegalsis'
+    imageName1 = 'OitiOibor_SenegalSenegalsis'
+
 
   }
  iconMARA_64 = document.createElement("BUTTON");
@@ -1152,6 +1263,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Enkorukoti'
+    imageName1 = 'Enkorukoti'
+
 
   }
  iconMARA_65 = document.createElement("BUTTON");
@@ -1164,6 +1277,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Enkamai ▪️ Sour Plum ▪️ False Sandalwood'
+    imageName1 = 'Enkamai_SourPlum-FalseSandalwood'
+
 
   }
 
@@ -1177,6 +1292,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Enchani Enkashe'
+    imageName1 = 'EnchaniEnkashe'
+
 
   }
  iconMARA_67 = document.createElement("BUTTON");
@@ -1189,6 +1306,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Emorogi ▪️ Kaya Apples'
+    imageName1 = 'Emorogi_KayaApples'
+
 
   }
 
@@ -1202,6 +1321,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Ekogoltim'
+    imageName1 = 'Ekogoltim'
+
 
   }
  iconMARA_69 = document.createElement("BUTTON");
@@ -1214,6 +1335,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Viyna Membranacea'
+    imageName1 = 'ViynaMembranacea'
+
 
   }
  iconMARA_70 = document.createElement("BUTTON");
@@ -1226,6 +1349,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Suguroi ▪️ AloeVera'
+    imageName1 = 'Suguroi_AloeVera'
+
 
   }
  iconMARA_71 = document.createElement("BUTTON");
@@ -1238,6 +1363,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Sakutae ▪️ FlameLily'
+    imageName1 = 'Sakutae_FlameLily'
+
 
   }
  iconMARA_72 = document.createElement("BUTTON");
@@ -1250,6 +1377,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Osuyai'
+    imageName1 = 'Osuyai'
+
 
   }
  iconMARA_73 = document.createElement("BUTTON");
@@ -1262,6 +1391,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Osupukiai ▪️ Dombeya'
+    imageName1 = 'Osupukiai_Dombeya'
+
 
   }
  iconMARA_74 = document.createElement("BUTTON");
@@ -1274,6 +1405,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Osuguroi ▪️ AloeKillifiensis'
+    imageName1 = 'Osuguroi_AloeKillifiensis'
+
 
   }
  iconMARA_75 = document.createElement("BUTTON");
@@ -1286,6 +1419,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Osikawai ▪️ Solanum Aculeastrum ▪️ BitterApple'
+    imageName1 = 'Osikawai_SolanumAculeastrum_BitterApple'
+
 
   }
  iconMARA_76 = document.createElement("BUTTON");
@@ -1298,6 +1433,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Orngerioi'
+    imageName1 = 'Orngerioi'
+
 
   }
  iconMARA_77 = document.createElement("BUTTON");
@@ -1310,6 +1447,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Orbibi ▪️ Sunbird'
+    imageName1 = 'Orbibi_Sunbird'
+
 
   }
 
@@ -1323,6 +1462,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oltutu'
+    imageName1 = 'Oltutu'
+
 
   }
  iconMARA_79 = document.createElement("BUTTON");
@@ -1335,6 +1476,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oltulelei ▪️ Sodom Apple'
+    imageName1 = 'Oltulelei_SodomApple'
+
 
   }
  iconMARA_80 = document.createElement("BUTTON");
@@ -1347,6 +1490,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oltiamiletei ▪️ MorningGlory'
+    imageName1 = 'Oltiamiletei_MorningGlory'
+
 
   }
  iconMARA_81 = document.createElement("BUTTON");
@@ -1359,6 +1504,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olsukurtutui ▪️ Cactusvine'
+    imageName1 = 'Olsukurtutui_Cactusvine'
+
 
   }
 
@@ -1372,6 +1519,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olchhartuyian ▪️ Galliniera Saxi Fraga'
+    imageName1 = 'Olchhartuyian_GallinieraSaxiFraga'
+
 
   }
  iconMARA_83 = document.createElement("BUTTON");
@@ -1384,6 +1533,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olseyiai ▪️ Cypreus'
+    imageName1 = 'Olseyiai_Cypreus'
+
 
   }
  iconMARA_84 = document.createElement("BUTTON");
@@ -1396,6 +1547,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olriroi'
+    imageName1 = 'Olriroi'
+
 
   }
 
@@ -1409,6 +1562,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olpisialokonoi'
+    imageName1 = 'Olpisialokonoi'
+
 
   }
  iconMARA_86 = document.createElement("BUTTON");
@@ -1421,6 +1576,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olperesiorasha'
+    imageName1 = 'Olperesiorasha'
+
 
   }
 
@@ -1434,6 +1591,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olpaleki ▪️ Aatura Stramonium'
+    imageName1 = 'Olpaleki_AaturaStramonium'
+
 
   }
  iconMARA_88 = document.createElement("BUTTON");
@@ -1446,6 +1605,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olpalakai'
+    imageName1 = 'Olpalakai'
+
 
   }
  iconMARA_89 = document.createElement("BUTTON");
@@ -1458,6 +1619,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oliouruur ▪️ Cabagge Tree'
+    imageName1 = 'Oliouruur_CabaggeTree'
+
 
   }
 
@@ -1471,6 +1634,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oloitodoraek'
+    imageName1 = 'Oloitodoraek'
+
 
   }
  iconMARA_91 = document.createElement("BUTTON");
@@ -1483,6 +1648,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olosida ▪️ Hypoestes Forskahlii'
+    imageName1 = 'Olosida_HypoestesForskahlii'
+
 
   }
  iconMARA_92 = document.createElement("BUTTON");
@@ -1495,6 +1662,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oloroukileleng'
+    imageName1 = 'Oloroukileleng'
+
 
   }
  iconMARA_93 = document.createElement("BUTTON");
@@ -1507,6 +1676,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olopito'
+    imageName1 = 'Olopito'
+
 
   }
 
@@ -1520,6 +1691,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oloorodo ▪️ Cyphostemma Serpens'
+    imageName1 = 'Oloorodo_CyphostemmaSerpens'
+
   }
  iconMARA_95 = document.createElement("BUTTON");
   cell.appendChild(iconMARA_95);
@@ -1531,6 +1704,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Ologumati'
+    imageName1 = 'Ologumati'
+
   }
 
  iconMARA_96 = document.createElement("BUTTON");
@@ -1543,6 +1718,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olobai ▪️ Psiadia Panctulata'
+    imageName1 = 'Olobai_PsiadiaPanctulata'
+
   }
  iconMARA_97 = document.createElement("BUTTON");
   cell.appendChild(iconMARA_97);
@@ -1554,6 +1731,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olokunonoi'
+    imageName1 = 'Olokunonoi'
+
   }
  iconMARA_98 = document.createElement("BUTTON");
   cell.appendChild(iconMARA_98);
@@ -1565,6 +1744,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oloiropijiloosiikon'
+    imageName1 = 'Oloiropijiloosiikon'
+
   }
  iconMARA_99 = document.createElement("BUTTON");
   cell.appendChild(iconMARA_99);
@@ -1576,6 +1757,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olmalilio'
+    imageName1 = 'Olmalilio'
+
 
   }
  iconMARA_100 = document.createElement("BUTTON");
@@ -1588,6 +1771,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olkunetia'
+    imageName1 = 'Olkunetia'
+
 
   }
  iconMARA_101 = document.createElement("BUTTON");
@@ -1600,6 +1785,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olkimitare'
+    imageName1 = 'Olkimitare'
+
 
   }
  iconMARA_102 = document.createElement("BUTTON");
@@ -1612,6 +1799,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olkierenkure'
+    imageName1 = 'Olkierenkure'
+
 
   }
  iconMARA_103 = document.createElement("BUTTON");
@@ -1624,6 +1813,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oloyiapasei ▪️ Aspilia Pluriseta'
+    imageName1 = 'Oloyiapasei_AspiliaPluriseta'
+
 
   }
  iconMARA_104 = document.createElement("BUTTON");
@@ -1636,6 +1827,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olgigiri ▪️ WaitAbit'
+    imageName1 = 'Olgigiri_WaitAbit'
+
 
   }
  iconMARA_105 = document.createElement("BUTTON");
@@ -1648,6 +1841,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olgalayioi Loosirkon'
+    imageName1 = 'OlgalayioiLoosirkon'
+
 
   }
  iconMARA_106 = document.createElement("BUTTON");
@@ -1660,6 +1855,7 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oleturot'
+    imageName1 = 'Oleturot'
 
   }
  iconMARA_107 = document.createElement("BUTTON");
@@ -1672,6 +1868,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olesayiet ▪️ RedCherry'
+    imageName1 = 'Olesayiet_RedCherry'
+
 
   }
 
@@ -1685,6 +1883,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olemuran ▪️ Ocimum Basllicum'
+    imageName1 = 'Olemuran_OcimumBasllicum'
+
 
   }
  iconMARA_109 = document.createElement("BUTTON");
@@ -1697,6 +1897,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olemenega'
+    imageName1 = 'Olemenega'
+
 
   }
 
@@ -1710,6 +1912,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olekidongo ▪️ Actypha fruticosa'
+    imageName1 = 'Olekidongo_Actyphafruticosa'
+
 
   }
  iconMARA_111 = document.createElement("BUTTON");
@@ -1722,6 +1926,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oldupai'
+    imageName1 = 'Oldupai'
+
 
   }
  iconMARA_112 = document.createElement("BUTTON");
@@ -1734,6 +1940,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oldule ▪️ Castor Oil Plant'
+    imageName1 = 'Oldule_CastorOilPlant'
+
 
   }
  iconMARA_113 = document.createElement("BUTTON");
@@ -1746,6 +1954,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olbibi ▪️ Orange Leonotis Mollisima'
+    imageName1 = 'Olbibi_OrangeLeonotisMollisima'
+
 
   }
  iconMARA_114 = document.createElement("BUTTON");
@@ -1758,6 +1968,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olbangi ▪️ Tagetes Minuta'
+    imageName1 = 'Olbangi_TagetesMinuta'
+
 
   }
  iconMARA_115 = document.createElement("BUTTON");
@@ -1770,6 +1982,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olauraki'
+    imageName1 = 'Olauraki'
+
 
   }
  iconMARA_116 = document.createElement("BUTTON");
@@ -1782,6 +1996,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olarae'
+    imageName1 = 'Olarae'
+
 
   }
  iconMARA_117 = document.createElement("BUTTON");
@@ -1794,6 +2010,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olangungue'
+    imageName1 = 'Olangungue'
+
 
   }
  iconMARA_118 = document.createElement("BUTTON");
@@ -1806,6 +2024,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olamererua'
+    imageName1 = 'Olamererua'
+
 
   }
  iconMARA_119 = document.createElement("BUTTON");
@@ -1818,6 +2038,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Okilenyai'
+    imageName1 = 'Okilenyai'
+
 
   }
 
@@ -1831,6 +2053,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oiiri'
+    imageName1 = 'Oiiri'
+
 
   }
  iconMARA_121 = document.createElement("BUTTON");
@@ -1843,6 +2067,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Naingongundeyo'
+    imageName1 = 'Naingongundeyo'
+
 
   }
  iconMARA_122 = document.createElement("BUTTON");
@@ -1855,6 +2081,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Intualan ▪️ Lions Clan'
+    imageName1 = 'Intualan_LionsClan'
+
 
   }
  iconMARA_123 = document.createElement("BUTTON");
@@ -1867,6 +2095,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Imasilig'
+    imageName1 = 'Imasilig'
+
 
   }
 
@@ -1880,6 +2110,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Esiaiti'
+    imageName1 = 'Esiaiti'
+
 
   }
  iconMARA_125 = document.createElement("BUTTON");
@@ -1892,6 +2124,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Esambukike'
+    imageName1 = 'Esambukike'
+
 
   }
  iconMARA_126 = document.createElement("BUTTON");
@@ -1904,6 +2138,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Enyieman'
+    imageName1 = 'Enyieman'
+
 
   }
 
@@ -1917,6 +2153,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Entasim'
+    imageName1 = 'Entasim'
+
 
   }
  iconMARA_128 = document.createElement("BUTTON");
@@ -1929,6 +2167,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Enkarani'
+    imageName1 = 'Enkarani'
+
 
   }
 
@@ -1942,6 +2182,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Enkameloki ▪️ Maerua Long BeadBean'
+    imageName1 = 'Enkameloki_Maerua_LongBeadBean'
+
 
   }
  iconMARA_130 = document.createElement("BUTTON");
@@ -1954,6 +2196,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Enkaiteteyiai ▪️ Cyanotis Arachoidea'
+    imageName1 = 'Enkaiteteyiai_CyanotisArachoidea'
+
 
   }
  iconMARA_131 = document.createElement("BUTTON");
@@ -1966,6 +2210,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Engosikireisie'
+    imageName1 = 'Engosikireisie'
+
 
   }
 
@@ -1979,6 +2225,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Engeriadus'
+    imageName1 = 'Engeriadus'
+
 
   }
  iconMARA_133 = document.createElement("BUTTON");
@@ -1991,6 +2239,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 EnchaniOsirkon ▪️ Candama Forinosa'
+    imageName1 = 'EnchaniOsirkon_CandamaForinosa'
+
 
   }
  iconMARA_134 = document.createElement("BUTTON");
@@ -2003,6 +2253,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Enaimuruai ▪️ CoutchGrass'
+    imageName1 = 'Enaimuruai_CoutchGrass'
+
 
   }
 
@@ -2016,6 +2268,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Emankulai ▪️ Grewia Villosa'
+    imageName1 = 'Emankulai_GrewiaVillosa'
+
 
   }
  iconMARA_136 = document.createElement("BUTTON");
@@ -2028,6 +2282,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 AgungaRemota'
+    imageName1 = 'AgungaRemota'
+
 
   }
 
@@ -2041,6 +2297,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Eleleshwaekop'
+    imageName1 = 'Eleleshwaekop'
+
 
   }
  iconMARA_138 = document.createElement("BUTTON");
@@ -2053,6 +2311,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Ekirenyi'
+    imageName1 = 'Ekirenyi'
+
 
   }
  iconMARA_139 = document.createElement("BUTTON");
@@ -2065,6 +2325,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Convolvulus Sagittatus'
+    imageName1 = 'ConvolvulusSagittatus'
+
 
   }
  iconMARA_140 = document.createElement("BUTTON");
@@ -2077,6 +2339,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 White Thorn Acacia'
+    imageName1 = 'White_Thorn_Acacia'
+
 
   }
  iconMARA_141 = document.createElement("BUTTON");
@@ -2089,6 +2353,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Whistling Thorn Acacia'
+    imageName1 = 'Whistling_Thorn_Acacia'
+
 
   }
  iconMARA_142 = document.createElement("BUTTON");
@@ -2101,6 +2367,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olodoganayioi'
+    imageName1 = 'Olodoganayioi'
+
 
   }
  iconMARA_143 = document.createElement("BUTTON");
@@ -2113,6 +2381,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Madagascar Periwinkle'
+    imageName1 = 'Madagascar_Periwinkle'
+
 
   }
  iconMARA_144 = document.createElement("BUTTON");
@@ -2125,6 +2395,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Imukutio'
+    imageName1 = 'Imukutio'
+
 
   }
  iconMARA_145 = document.createElement("BUTTON");
@@ -2137,20 +2409,24 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Esampukike Ormocarpum Kirkii'
+    imageName1 = 'Esampukike_Ormocarpum_Kirkii'
+
 
   }
- iconMARA_146 = document.createElement("BUTTON");
-  cell.appendChild(iconMARA_146);
- iconMARA_146.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Esampukike_Ormocarpum_Kirkii.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
- iconMARA_146.className = 'buttonsSapelli'
- iconMARA_146.onclick = function(){
-    hideAll()
-  generateButtonsIssues()
-   document.getElementById('customIconsGoBack').style.display = 'initial';
-   document.getElementById('customIconsCancel').style.display = 'initial';
-    plant = '🌿 Esampukike Ormocarpum Kirkii'
-
-  }
+ // iconMARA_146 = document.createElement("BUTTON");
+ //  cell.appendChild(iconMARA_146);
+ // iconMARA_146.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Esampukike_Ormocarpum_Kirkii.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ // iconMARA_146.className = 'buttonsSapelli'
+ // iconMARA_146.onclick = function(){
+ //    hideAll()
+ //  generateButtonsIssues()
+ //   document.getElementById('customIconsGoBack').style.display = 'initial';
+ //   document.getElementById('customIconsCancel').style.display = 'initial';
+ //    plant = '🌿 Esampukike Ormocarpum Kirkii'
+ //    imageName1 = 'Esampukike_Ormocarpum_Kirkii'
+ //
+ //
+ //  }
  iconMARA_147 = document.createElement("BUTTON");
   cell.appendChild(iconMARA_147);
  iconMARA_147.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Enkasuishoi_Pavonia_Urens.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
@@ -2161,6 +2437,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Enkasuishoi Pavonia Urens'
+    imageName1 = 'Enkasuishoi_Pavonia_Urens'
+
 
   }
  iconMARA_148 = document.createElement("BUTTON");
@@ -2173,6 +2451,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Enkameloki'
+    imageName1 = 'Enkameloki'
+
 
   }
  iconMARA_149 = document.createElement("BUTTON");
@@ -2185,6 +2465,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Cat Thorn Osanangururi'
+    imageName1 = 'Cat_Thorn_Osanangururi'
+
 
   }
  iconMARA_150 = document.createElement("BUTTON");
@@ -2197,6 +2479,8 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Cacia Ocadantalis'
+    imageName1 = 'Cacia_Ocadantalis'
+
 
   }
 
@@ -2212,10 +2496,12 @@ var generateButtonsPlantsMARA = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '➕ New Plant'
+    imageName1 = 'NewPlant'
+
 
   }
 
-  return screenChoice && plant
+  return screenChoice && plant && imageName1
 }
 
 
@@ -2228,17 +2514,19 @@ var generateButtonsPlantsMAU = function(){
  iconMAU_8 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_8);
  iconMAU_8.className = 'buttonsSapelli'
- iconMAU_8.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Osupukiai orok.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> </br>';
+ iconMAU_8.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Osupukiai orok.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> </br>';
  iconMAU_8.onclick = function(){
     hideAll()
     generateButtonsIssues()
     document.getElementById('customIconsGoBack').style.display = 'initial';
     document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Osupukiai orok'
+    imageName1 = 'Osupukiai orok'
+
   }
  iconMAU_9 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_9);
- iconMAU_9.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Osasimawani.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> </br>';
+ iconMAU_9.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Osasimawani.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> </br>';
  iconMAU_9.className = 'buttonsSapelli'
  iconMAU_9.onclick = function(){
     hideAll()
@@ -2246,22 +2534,26 @@ var generateButtonsPlantsMAU = function(){
   document.getElementById('customIconsGoBack').style.display = 'initial';
   document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Osasimawani'
+    imageName1 = 'Osasimawani'
+
   }
 
  iconMAU_10 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_10);
  iconMAU_10.className = 'buttonsSapelli'
- iconMAU_10.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olturuj.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_10.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olturuj.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_10.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olturuj'
+    imageName1 = 'Olturuj'
+
   }
  iconMAU_11 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_11);
- iconMAU_11.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Oltirkoyian.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_11.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Oltirkoyian.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_11.className = 'buttonsSapelli'
  iconMAU_11.onclick = function(){
     hideAll()
@@ -2269,21 +2561,25 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oltirkoyian'
+    imageName1 = 'Oltirkoyian'
+
   }
  iconMAU_12 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_12);
  iconMAU_12.className = 'buttonsSapelli'
- iconMAU_12.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Oltiini.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_12.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Oltiini.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_12.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oltiini'
+    imageName1 = 'Oltiini'
+
   }
  iconMAU_13 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_13);
- iconMAU_13.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olpolto.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_13.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olpolto.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_13.className = 'buttonsSapelli'
  iconMAU_13.onclick = function(){
     hideAll()
@@ -2291,23 +2587,27 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olpolto'
+    imageName1 = 'Olpolto'
+
 
   }
  iconMAU_14 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_14);
  iconMAU_14.className = 'buttonsSapelli'
- iconMAU_14.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olomei.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_14.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olomei.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_14.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olomei'
+    imageName1 = 'Olomei'
+
 
   }
  iconMAU_15 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_15);
- iconMAU_15.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olkipejus.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_15.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olkipejus.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_15.className = 'buttonsSapelli'
  iconMAU_15.onclick = function(){
     hideAll()
@@ -2315,11 +2615,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olkipejus'
+    imageName1 = 'Olkipejus'
+
 
   }
  iconMAU_38 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_38);
- iconMAU_38.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olkilelit_olchani.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_38.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olkilelit_olchani.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_38.className = 'buttonsSapelli'
  iconMAU_38.onclick = function(){
     hideAll()
@@ -2327,11 +2629,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olkilelit olchani'
+    imageName1 = 'Olkilelit_olchani'
+
 
   }
  iconMAU_16 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_16);
- iconMAU_16.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olkikuei loosirkon.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_16.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olkikuei loosirkon.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_16.className = 'buttonsSapelli'
  iconMAU_16.onclick = function(){
     hideAll()
@@ -2339,11 +2643,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olkikuei loosirkon'
+    imageName1 = 'Olkikuei loosirkon'
+
 
   }
  iconMAU_17 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_17);
- iconMAU_17.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Oleturot.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_17.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Oleturot.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_17.className = 'buttonsSapelli'
  iconMAU_17.onclick = function(){
     hideAll()
@@ -2351,23 +2657,27 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oleturot'
+    imageName1 = 'Olkikuei loosirkon'
+
 
   }
  iconMAU_18 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_18);
  iconMAU_18.className = 'buttonsSapelli'
- iconMAU_18.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olalaa.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_18.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olalaa.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_18.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olalaa'
+    imageName1 = 'Olalaa'
+
 
   }
  iconMAU_19 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_19);
- iconMAU_19.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Nareruk.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_19.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Nareruk.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_19.className = 'buttonsSapelli'
  iconMAU_19.onclick = function(){
     hideAll()
@@ -2375,11 +2685,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Nareruk'
+    imageName1 = 'Nareruk'
+
 
   }
  iconMAU_20 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_20);
- iconMAU_20.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Naman keon.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_20.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Naman keon.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_20.className = 'buttonsSapelli'
  iconMAU_20.onclick = function(){
     hideAll()
@@ -2387,24 +2699,28 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Naman keon'
+    imageName1 = 'Naman keon'
+
 
   }
 
  iconMAU_21 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_21);
  iconMAU_21.className = 'buttonsSapelli'
- iconMAU_21.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Lekikuuni.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_21.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Lekikuuni.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_21.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Lekikuuni'
+    imageName1 = 'Lekikuuni'
+
 
   }
  iconMAU_22 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_22);
- iconMAU_22.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Esumeita.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_22.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Esumeita.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_22.className = 'buttonsSapelli'
  iconMAU_22.onclick = function(){
     hideAll()
@@ -2412,24 +2728,28 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Esumeita'
+    imageName1 = 'Esumeita'
+
 
   }
 
  iconMAU_23 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_23);
  iconMAU_23.className = 'buttonsSapelli'
- iconMAU_23.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Esere.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_23.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Esere.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_23.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Esere'
+    imageName1 = 'Esere'
+
 
   }
  iconMAU_24 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_24);
- iconMAU_24.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Entiapapaa.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_24.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Entiapapaa.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_24.className = 'buttonsSapelli'
  iconMAU_24.onclick = function(){
     hideAll()
@@ -2437,23 +2757,27 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Entiapapaa'
+    imageName1 = 'Entiapapaa'
+
 
   }
  iconMAU_25 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_25);
  iconMAU_25.className = 'buttonsSapelli'
- iconMAU_25.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Entapipi.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" />';
+ iconMAU_25.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Entapipi.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" />';
  iconMAU_25.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Entapipi'
+    imageName1 = 'Entapipi'
+
 
   }
  iconMAU_26 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_26);
- iconMAU_26.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Entamejoi.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_26.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Entamejoi.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_26.className = 'buttonsSapelli'
  iconMAU_26.onclick = function(){
     hideAll()
@@ -2461,11 +2785,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Entamejoi'
+    imageName1 = 'Entamejoi'
+
 
   }
  iconMAU_27 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_27);
- iconMAU_27.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Entamejoi oolosowuani.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_27.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Entamejoi oolosowuani.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_27.className = 'buttonsSapelli'
  iconMAU_27.onclick = function(){
     hideAll()
@@ -2473,11 +2799,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Entamejoi oolosowuani'
+    imageName1 = 'Entamejoi oolosowuani'
+
 
   }
  iconMAU_28 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_28);
- iconMAU_28.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Enkopito_enkopito ooltorrobo.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_28.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Enkopito_enkopito ooltorrobo.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_28.className = 'buttonsSapelli'
  iconMAU_28.onclick = function(){
     hideAll()
@@ -2485,23 +2813,27 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Enkopito enkopito ooltorrobo'
+    imageName1 = 'Enkopito_enkopito ooltorrobo'
+
 
   }
  iconMAU_29 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_29);
  iconMAU_29.className = 'buttonsSapelli'
- iconMAU_29.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Enkoloshoo.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_29.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Enkoloshoo.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_29.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Enkoloshoo'
+    imageName1 = 'Enkoloshoo'
+
 
   }
  iconMAU_30 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_30);
- iconMAU_30.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Enkisiau.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_30.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Enkisiau.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_30.className = 'buttonsSapelli'
  iconMAU_30.onclick = function(){
     hideAll()
@@ -2509,11 +2841,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Enkisiau'
+    imageName1 = 'Enkisiau'
+
 
   }
  iconMAU_31 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_31);
- iconMAU_31.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Enkaisuishoi.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_31.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Enkaisuishoi.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_31.className = 'buttonsSapelli'
  iconMAU_31.onclick = function(){
     hideAll()
@@ -2521,11 +2855,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Enkaisuishoi'
+    imageName1 = 'Enkaisuishoi'
+
 
   }
  iconMAU_32 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_32);
- iconMAU_32.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Tokweyot.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_32.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Tokweyot.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_32.className = 'buttonsSapelli'
  iconMAU_32.onclick = function(){
     hideAll()
@@ -2533,24 +2869,28 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Tokweyot'
+    imageName1 = 'Tokweyot'
+
 
   }
 
  iconMAU_33 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_33);
  iconMAU_33.className = 'buttonsSapelli'
- iconMAU_33.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Tekiat_oltiyani.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_33.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Tekiat_oltiyani.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_33.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Tekiat oltiyani'
+    imageName1 = 'Tekiat_oltiyani'
+
 
   }
  iconMAU_34 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_34);
- iconMAU_34.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Tebararietab teta.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_34.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Tebararietab teta.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_34.className = 'buttonsSapelli'
  iconMAU_34.onclick = function(){
     hideAll()
@@ -2558,23 +2898,27 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Tebararietab teta'
+    imageName1 = 'Tebararietab teta'
+
 
   }
  iconMAU_35 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_35);
  iconMAU_35.className = 'buttonsSapelli'
- iconMAU_35.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Takamamiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_35.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Takamamiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_35.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Takamamiet'
+    imageName1 = 'Takamamiet'
+
 
   }
  iconMAU_36 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_36);
- iconMAU_36.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Sergutiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_36.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Sergutiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_36.className = 'buttonsSapelli'
  iconMAU_36.onclick = function(){
     hideAll()
@@ -2582,12 +2926,14 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Sergutiet'
+    imageName1 = 'Sergutiet'
+
 
   }
 
  iconMAU_39 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_39);
- iconMAU_39.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Sangainet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_39.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Sangainet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_39.className = 'buttonsSapelli'
  iconMAU_39.onclick = function(){
     hideAll()
@@ -2595,11 +2941,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Sangainet'
+    imageName1 = 'Sangainet'
+
 
   }
  iconMAU_40 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_40);
- iconMAU_40.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Mwabiyet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_40.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Mwabiyet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_40.className = 'buttonsSapelli'
  iconMAU_40.onclick = function(){
     hideAll()
@@ -2607,11 +2955,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Mwabiyet'
+    imageName1 = 'Mwabiyet'
+
 
   }
  iconMAU_41 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_41);
- iconMAU_41.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Mosipchot.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_41.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Mosipchot.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_41.className = 'buttonsSapelli'
  iconMAU_41.onclick = function(){
     hideAll()
@@ -2619,12 +2969,14 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Mosipchot'
+    imageName1 = 'Mosipchot'
+
 
   }
 
  iconMAU_42 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_42);
- iconMAU_42.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Kuresiet_olkushurui.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_42.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Kuresiet_olkushurui.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_42.className = 'buttonsSapelli'
  iconMAU_42.onclick = function(){
     hideAll()
@@ -2632,11 +2984,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Kuresiet olkushurui'
+    imageName1 = 'Kuresiet_olkushurui'
+
 
   }
  iconMAU_43 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_43);
- iconMAU_43.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Korosiot.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_43.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Korosiot.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_43.className = 'buttonsSapelli'
  iconMAU_43.onclick = function(){
     hideAll()
@@ -2644,12 +2998,14 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Korosiot'
+    imageName1 = 'Korosiot'
+
 
   }
 
  iconMAU_44 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_44);
- iconMAU_44.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Kibirirgorok.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_44.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Kibirirgorok.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_44.className = 'buttonsSapelli'
  iconMAU_44.onclick = function(){
     hideAll()
@@ -2657,11 +3013,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Kibirirgorok'
+    imageName1 = 'Kibirirgorok'
+
 
   }
  iconMAU_45 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_45);
- iconMAU_45.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Kebukeyet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_45.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Kebukeyet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_45.className = 'buttonsSapelli'
  iconMAU_45.onclick = function(){
     hideAll()
@@ -2669,11 +3027,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Kebukeyet'
+    imageName1 = 'Kebukeyet'
+
 
   }
  iconMAU_46 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_46);
- iconMAU_46.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Eburwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_46.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Eburwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_46.className = 'buttonsSapelli'
  iconMAU_46.onclick = function(){
     hideAll()
@@ -2681,12 +3041,14 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Eburwet'
+    imageName1 = 'Eburwet'
+
 
   }
 
  iconMAU_48 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_48);
- iconMAU_48.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Chepsakitiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_48.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Chepsakitiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_48.className = 'buttonsSapelli'
  iconMAU_48.onclick = function(){
     hideAll()
@@ -2694,23 +3056,27 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Chepsakitiet'
+    imageName1 = 'Chepsakitiet'
+
 
   }
  iconMAU_49 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_49);
  iconMAU_49.className = 'buttonsSapelli'
- iconMAU_49.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Chepkowet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_49.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Chepkowet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_49.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Chepkowet'
+    imageName1 = 'Chepkowet'
+
 
   }
  iconMAU_50 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_50);
- iconMAU_50.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Chepgetuiyet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_50.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Chepgetuiyet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_50.className = 'buttonsSapelli'
  iconMAU_50.onclick = function(){
     hideAll()
@@ -2718,23 +3084,27 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Chepgetuiyet'
+    imageName1 = 'Chepgetuiyet'
+
 
   }
  iconMAU_51 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_51);
  iconMAU_51.className = 'buttonsSapelli'
- iconMAU_51.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Osonkorori.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_51.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Osonkorori.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_51.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Osonkorori'
+    imageName1 = 'Osonkorori'
+
 
   }
  iconMAU_52 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_52);
- iconMAU_52.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Osinantei.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_52.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Osinantei.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_52.className = 'buttonsSapelli'
  iconMAU_52.onclick = function(){
     hideAll()
@@ -2742,23 +3112,27 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Osinantei'
+    imageName1 = 'Osinantei'
+
 
   }
 
  iconMAU_53 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_53);
  iconMAU_53.className = 'buttonsSapelli'
- iconMAU_53.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Ormarrar.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_53.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Ormarrar.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_53.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Ormarrar'
+    imageName1 = 'Ormarrar'
+
   }
  iconMAU_54 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_54);
- iconMAU_54.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Oltikampu.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_54.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Oltikampu.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_54.className = 'buttonsSapelli'
  iconMAU_54.onclick = function(){
     hideAll()
@@ -2766,22 +3140,26 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oltikampu'
+    imageName1 = 'Oltikampu'
+
   }
 
  iconMAU_55 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_55);
  iconMAU_55.className = 'buttonsSapelli'
- iconMAU_55.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Oltarakuai.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_55.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Oltarakuai.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_55.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oltarakuai'
+    imageName1 = 'Oltarakuai'
+
   }
  iconMAU_47 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_47);
- iconMAU_47.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olpiron.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_47.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olpiron.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_47.className = 'buttonsSapelli'
  iconMAU_47.onclick = function(){
     hideAll()
@@ -2789,21 +3167,25 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olpiron'
+    imageName1 = 'Olpiron'
+
   }
  iconMAU_56 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_56);
  iconMAU_56.className = 'buttonsSapelli'
- iconMAU_56.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olpalagilagi.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_56.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olpalagilagi.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_56.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olpalagilagi'
+    imageName1 = 'Olpalagilagi'
+
   }
  iconMAU_57 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_57);
- iconMAU_57.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olosiro.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_57.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olosiro.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_57.className = 'buttonsSapelli'
  iconMAU_57.onclick = function(){
     hideAll()
@@ -2811,23 +3193,27 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olosiro'
+    imageName1 = 'Olosiro'
+
 
   }
  iconMAU_58 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_58);
  iconMAU_58.className = 'buttonsSapelli'
- iconMAU_58.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olorrondo.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_58.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olorrondo.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_58.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olorrondo'
+    imageName1 = 'Olorrondo'
+
 
   }
  iconMAU_59 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_59);
- iconMAU_59.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Oloniyai.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_59.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Oloniyai.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_59.className = 'buttonsSapelli'
  iconMAU_59.onclick = function(){
     hideAll()
@@ -2835,11 +3221,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oloniyai'
+    imageName1 = 'Oloniyai'
+
 
   }
  iconMAU_60 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_60);
- iconMAU_60.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Ololiontoi.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_60.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Ololiontoi.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_60.className = 'buttonsSapelli'
  iconMAU_60.onclick = function(){
     hideAll()
@@ -2847,11 +3235,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Ololiontoi'
+    imageName1 = 'Ololiontoi'
+
 
   }
  iconMAU_61 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_61);
- iconMAU_61.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Oloiururr.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_61.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Oloiururr.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_61.className = 'buttonsSapelli'
  iconMAU_61.onclick = function(){
     hideAll()
@@ -2859,11 +3249,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oloiururr'
+    imageName1 = 'Oloiururr'
+
 
   }
  iconMAU_62 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_62);
- iconMAU_62.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Oloisuti.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_62.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Oloisuti.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_62.className = 'buttonsSapelli'
  iconMAU_62.onclick = function(){
     hideAll()
@@ -2871,23 +3263,27 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oloisuti'
+    imageName1 = 'Oloisuti'
+
 
   }
  iconMAU_63 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_63);
  iconMAU_63.className = 'buttonsSapelli'
- iconMAU_63.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Oloiborr benek.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_63.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Oloiborr benek.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_63.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oloiborr benek'
+    imageName1 = 'Oloiborr benek'
+
 
   }
  iconMAU_64 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_64);
- iconMAU_64.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Ologumati.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_64.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Ologumati.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_64.className = 'buttonsSapelli'
  iconMAU_64.onclick = function(){
     hideAll()
@@ -2895,11 +3291,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Ologumati'
+    imageName1 = 'Ologumati'
+
 
   }
  iconMAU_65 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_65);
- iconMAU_65.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Ologolbenek.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_65.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Ologolbenek.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_65.className = 'buttonsSapelli'
  iconMAU_65.onclick = function(){
     hideAll()
@@ -2907,24 +3305,28 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Ologolbenek'
+    imageName1 = 'Ologolbenek'
+
 
   }
 
  iconMAU_66 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_66);
  iconMAU_66.className = 'buttonsSapelli'
- iconMAU_66.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olmusaakwa.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_66.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olmusaakwa.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_66.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olmusaakwa'
+    imageName1 = 'Olmusaakwa'
+
 
   }
  iconMAU_67 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_67);
- iconMAU_67.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olmasiligi.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_67.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olmasiligi.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_67.className = 'buttonsSapelli'
  iconMAU_67.onclick = function(){
     hideAll()
@@ -2932,24 +3334,28 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olmasiligi'
+    imageName1 = 'Olmasiligi'
+
 
   }
 
  iconMAU_68 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_68);
  iconMAU_68.className = 'buttonsSapelli'
- iconMAU_68.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olkujuk.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_68.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olkujuk.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_68.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olkujuk'
+    imageName1 = 'Olkujuk'
+
 
   }
  iconMAU_69 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_69);
- iconMAU_69.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olkisushet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_69.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olkisushet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_69.className = 'buttonsSapelli'
  iconMAU_69.onclick = function(){
     hideAll()
@@ -2957,23 +3363,27 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olkisushet'
+    imageName1 = 'Olkisushet'
+
 
   }
  iconMAU_70 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_70);
  iconMAU_70.className = 'buttonsSapelli'
- iconMAU_70.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olkirenyi.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_70.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olkirenyi.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_70.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olkirenyi'
+    imageName1 = 'Olkirenyi'
+
 
   }
  iconMAU_71 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_71);
- iconMAU_71.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olkekeyiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_71.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olkekeyiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_71.className = 'buttonsSapelli'
  iconMAU_71.onclick = function(){
     hideAll()
@@ -2981,11 +3391,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olkekeyiet'
+    imageName1 = 'Olkekeyiet'
+
 
   }
  iconMAU_72 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_72);
- iconMAU_72.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Oledat.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_72.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Oledat.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_72.className = 'buttonsSapelli'
  iconMAU_72.onclick = function(){
     hideAll()
@@ -2993,11 +3405,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Oledat'
+    imageName1 = 'Oledat'
+
 
   }
  iconMAU_73 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_73);
- iconMAU_73.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olchartuyian.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_73.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olchartuyian.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_73.className = 'buttonsSapelli'
  iconMAU_73.onclick = function(){
     hideAll()
@@ -3005,23 +3419,27 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olchartuyian'
+    imageName1 = 'Olchartuyian'
+
 
   }
  iconMAU_74 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_74);
  iconMAU_74.className = 'buttonsSapelli'
- iconMAU_74.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olchani.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_74.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olchani.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_74.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olchani'
+    imageName1 = 'Olchani'
+
 
   }
  iconMAU_75 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_75);
- iconMAU_75.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olayakuji.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_75.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olayakuji.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_75.className = 'buttonsSapelli'
  iconMAU_75.onclick = function(){
     hideAll()
@@ -3029,11 +3447,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olayakuji'
+    imageName1 = 'Olayakuji'
+
 
   }
  iconMAU_76 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_76);
- iconMAU_76.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olaimurunyai.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_76.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olaimurunyai.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_76.className = 'buttonsSapelli'
  iconMAU_76.onclick = function(){
     hideAll()
@@ -3041,11 +3461,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olaimurunyai'
+    imageName1 = 'Olaimurunyai'
+
 
   }
  iconMAU_77 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_77);
- iconMAU_77.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Logg plant.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_77.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Logg plant.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_77.className = 'buttonsSapelli'
  iconMAU_77.onclick = function(){
     hideAll()
@@ -3053,24 +3475,28 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Logg plant'
+    imageName1 = 'Logg plant'
+
 
   }
 
  iconMAU_78 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_78);
  iconMAU_78.className = 'buttonsSapelli'
- iconMAU_78.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Rope plant.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_78.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Rope plant.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_78.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Rope plant'
+    imageName1 = 'Rope plant'
+
 
   }
  iconMAU_79 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_79);
- iconMAU_79.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Entiangaras.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_79.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Entiangaras.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_79.className = 'buttonsSapelli'
  iconMAU_79.onclick = function(){
     hideAll()
@@ -3078,23 +3504,27 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Entiangaras'
+    imageName1 = 'Entiangaras'
+
 
   }
  iconMAU_80 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_80);
  iconMAU_80.className = 'buttonsSapelli'
- iconMAU_80.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Entemelua.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_80.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Entemelua.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_80.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Entemelua'
+    imageName1 = 'Entemelua'
+
 
   }
  iconMAU_81 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_81);
- iconMAU_81.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Entakuleti.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_81.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Entakuleti.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_81.className = 'buttonsSapelli'
  iconMAU_81.onclick = function(){
     hideAll()
@@ -3102,12 +3532,14 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Entakuleti'
+    imageName1 = 'Entakuleti'
+
 
   }
 
  iconMAU_82 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_82);
- iconMAU_82.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Enkopito ooltorrobo.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_82.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Enkopito ooltorrobo.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_82.className = 'buttonsSapelli'
  iconMAU_82.onclick = function(){
     hideAll()
@@ -3115,11 +3547,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Enkopito ooltorrobo'
+    imageName1 = 'Enkopito ooltorrobo'
+
 
   }
  iconMAU_83 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_83);
- iconMAU_83.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Enkopisiadi.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_83.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Enkopisiadi.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_83.className = 'buttonsSapelli'
  iconMAU_83.onclick = function(){
     hideAll()
@@ -3127,11 +3561,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Enkopisiadi'
+    imageName1 = 'Enkopisiadi'
+
 
   }
  iconMAU_84 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_84);
- iconMAU_84.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Endalati ekutuk.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_84.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Endalati ekutuk.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_84.className = 'buttonsSapelli'
  iconMAU_84.onclick = function(){
     hideAll()
@@ -3139,12 +3575,14 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Endalati ekutuk'
+    imageName1 = 'Endalati ekutuk'
+
 
   }
 
  iconMAU_85 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_85);
- iconMAU_85.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Tiniet_scheflera rolkensil.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_85.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Tiniet_scheflera rolkensil.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_85.className = 'buttonsSapelli'
  iconMAU_85.onclick = function(){
     hideAll()
@@ -3152,11 +3590,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Tiniet scheflera rolkensil'
+    imageName1 = 'Tiniet_scheflera rolkensil'
+
 
   }
  iconMAU_86 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_86);
- iconMAU_86.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Tekelteet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_86.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Tekelteet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_86.className = 'buttonsSapelli'
  iconMAU_86.onclick = function(){
     hideAll()
@@ -3164,12 +3604,14 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Tekelteet'
+    imageName1 = 'Tekelteet'
+
 
   }
 
  iconMAU_87 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_87);
- iconMAU_87.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Taparariet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_87.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Taparariet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_87.className = 'buttonsSapelli'
  iconMAU_87.onclick = function(){
     hideAll()
@@ -3177,11 +3619,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Taparariet'
+    imageName1 = 'Taparariet'
+
 
   }
  iconMAU_88 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_88);
- iconMAU_88.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Suseita.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_88.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Suseita.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_88.className = 'buttonsSapelli'
  iconMAU_88.onclick = function(){
     hideAll()
@@ -3189,11 +3633,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Suseita'
+    imageName1 = 'Suseita'
+
 
   }
  iconMAU_89 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_89);
- iconMAU_89.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Sitotwet_oseketeki.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_89.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Sitotwet_oseketeki.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_89.className = 'buttonsSapelli'
  iconMAU_89.onclick = function(){
     hideAll()
@@ -3201,12 +3647,14 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Sitotwet oseketeki'
+    imageName1 = 'Sitotwet_oseketeki'
+
 
   }
 
  iconMAU_90 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_90);
- iconMAU_90.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Sirimpiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_90.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Sirimpiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_90.className = 'buttonsSapelli'
  iconMAU_90.onclick = function(){
     hideAll()
@@ -3214,23 +3662,27 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Sirimpiet'
+    imageName1 = 'Sirimpiet'
+
 
   }
  iconMAU_91 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_91);
  iconMAU_91.className = 'buttonsSapelli'
- iconMAU_91.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Sinkorwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_91.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Sinkorwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_91.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Sinkorwet'
+    imageName1 = 'Sinkorwet'
+
 
   }
  iconMAU_92 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_92);
- iconMAU_92.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Setiot.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_92.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Setiot.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_92.className = 'buttonsSapelli'
  iconMAU_92.onclick = function(){
     hideAll()
@@ -3238,35 +3690,41 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Setiot'
+    imageName1 = 'Setiot'
+
 
   }
  iconMAU_93 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_93);
  iconMAU_93.className = 'buttonsSapelli'
- iconMAU_93.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Serkutwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_93.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Serkutwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_93.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Serkutwet'
+    imageName1 = 'Serkutwet'
+
 
   }
 
  iconMAU_94 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_94);
  iconMAU_94.className = 'buttonsSapelli'
- iconMAU_94.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Seet_alipizias.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_94.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Seet_alipizias.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_94.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Seet alipizias'
+    imageName1 = 'Seet_alipizias'
+
   }
  iconMAU_95 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_95);
- iconMAU_95.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Sebeberiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_95.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Sebeberiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_95.className = 'buttonsSapelli'
  iconMAU_95.onclick = function(){
     hideAll()
@@ -3274,22 +3732,26 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Sebeberiet'
+    imageName1 = 'Sebeberiet'
+
   }
 
  iconMAU_96 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_96);
  iconMAU_96.className = 'buttonsSapelli'
- iconMAU_96.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Sabetet_nabutoria.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_96.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Sabetet_nabutoria.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_96.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Sabetet nabutoria'
+    imageName1 = 'Sabetet_nabutoria'
+
   }
  iconMAU_97 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_97);
- iconMAU_97.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Rokoret_drinking straw.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_97.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Rokoret_drinking straw.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_97.className = 'buttonsSapelli'
  iconMAU_97.onclick = function(){
     hideAll()
@@ -3297,21 +3759,25 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Rokoret drinking straw'
+    imageName1 = 'Rokoret_drinking straw'
+
   }
  iconMAU_98 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_98);
  iconMAU_98.className = 'buttonsSapelli'
- iconMAU_98.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Rerendet_rauvolfia.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_98.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Rerendet_rauvolfia.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_98.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Rerendet rauvolfia'
+    imageName1 = 'Rerendet_rauvolfia'
+
   }
  iconMAU_99 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_99);
- iconMAU_99.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olmomoi.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_99.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olmomoi.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_99.className = 'buttonsSapelli'
  iconMAU_99.onclick = function(){
     hideAll()
@@ -3319,23 +3785,27 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olmomoi'
+    imageName1 = 'Olmomoi'
+
 
   }
  iconMAU_100 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_100);
  iconMAU_100.className = 'buttonsSapelli'
- iconMAU_100.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Olkiparnyany_kuparnyaat.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_100.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Olkiparnyany_kuparnyaat.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_100.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Olkiparnyany kuparnyaat'
+    imageName1 = 'Olkiparnyany_kuparnyaat'
+
 
   }
  iconMAU_101 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_101);
- iconMAU_101.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Nyelwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_101.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Nyelwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_101.className = 'buttonsSapelli'
  iconMAU_101.onclick = function(){
     hideAll()
@@ -3343,11 +3813,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Nyelwet'
+    imageName1 = 'Nyelwet'
+
 
   }
  iconMAU_102 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_102);
- iconMAU_102.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Nukiat_nime.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_102.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Nukiat_nime.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_102.className = 'buttonsSapelli'
  iconMAU_102.onclick = function(){
     hideAll()
@@ -3355,11 +3827,12 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Nukiat nime'
+    imageName1 = 'Nukiat_nime'
 
   }
  iconMAU_103 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_103);
- iconMAU_103.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Meswot_bees.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_103.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Meswot_bees.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_103.className = 'buttonsSapelli'
  iconMAU_103.onclick = function(){
     hideAll()
@@ -3367,11 +3840,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Meswot bees'
+    imageName1 = 'Meswot_bees'
+
 
   }
  iconMAU_104 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_104);
- iconMAU_104.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Matirtirwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_104.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Matirtirwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_104.className = 'buttonsSapelli'
  iconMAU_104.onclick = function(){
     hideAll()
@@ -3379,23 +3854,27 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Matirtirwet'
+    imageName1 = 'Matirtirwet'
+
 
   }
  iconMAU_105 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_18);
  iconMAU_105.className = 'buttonsSapelli'
- iconMAU_105.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Marongeet_olmeikuaya.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_105.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Marongeet_olmeikuaya.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_105.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Marongeet olmeikuaya'
+    imageName1 = 'Marongeet_olmeikuaya'
+
 
   }
  iconMAU_106 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_106);
- iconMAU_106.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Mangoita.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_106.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Mangoita.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_106.className = 'buttonsSapelli'
  iconMAU_106.onclick = function(){
     hideAll()
@@ -3403,11 +3882,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Mangoita'
+    imageName1 = 'Mangoita'
+
 
   }
  iconMAU_107 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_107);
- iconMAU_107.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Logomaita_macaranga kilimanscharia.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_107.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Logomaita_macaranga kilimanscharia.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_107.className = 'buttonsSapelli'
  iconMAU_107.onclick = function(){
     hideAll()
@@ -3415,24 +3896,28 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Logomaita macaranga kilimanscharia'
+    imageName1 = 'Logomaita_macaranga kilimanscharia'
+
 
   }
 
  iconMAU_108 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_108);
  iconMAU_108.className = 'buttonsSapelli'
- iconMAU_108.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Lebekwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_108.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Lebekwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_108.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Lebekwet'
+    imageName1 = 'Lebekwet'
+
 
   }
  iconMAU_109 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_109);
- iconMAU_109.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Lapotiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_109.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Lapotiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_109.className = 'buttonsSapelli'
  iconMAU_109.onclick = function(){
     hideAll()
@@ -3440,24 +3925,28 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Lapotiet'
+    imageName1 = 'Lapotiet'
+
 
   }
 
  iconMAU_110 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_110);
  iconMAU_110.className = 'buttonsSapelli'
- iconMAU_110.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Kosisietet_Rhannus prinoides.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_110.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Kosisietet_Rhannus prinoides.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_110.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Kosisietet Rhannus prinoides'
+    imageName1 = 'Kosisietet_Rhannus prinoides'
+
 
   }
  iconMAU_111 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_111);
- iconMAU_111.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Kombeito.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_111.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Kombeito.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_111.className = 'buttonsSapelli'
  iconMAU_111.onclick = function(){
     hideAll()
@@ -3465,23 +3954,26 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Kombeito'
+    imageName1 = 'Kombeito'
 
   }
  iconMAU_112 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_112);
  iconMAU_112.className = 'buttonsSapelli'
- iconMAU_112.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Kipkosieriet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_112.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Kipkosieriet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_112.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Kipkosieriet'
+    imageName1 = 'Kipkosieriet'
+
 
   }
  iconMAU_113 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_113);
- iconMAU_113.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Kepkoibet_Angerae.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_113.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Kepkoibet_Angerae.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_113.className = 'buttonsSapelli'
  iconMAU_113.onclick = function(){
     hideAll()
@@ -3489,11 +3981,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Kepkoibet Angerae'
+    imageName1 = 'Kepkoibet_Angerae'
+
 
   }
  iconMAU_114 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_114);
- iconMAU_114.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Enabooi_Chemngesumiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_114.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Enabooi_Chemngesumiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_114.className = 'buttonsSapelli'
  iconMAU_114.onclick = function(){
     hideAll()
@@ -3501,11 +3995,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Enabooi Chemngesumiet'
+    imageName1 = 'Enabooi_Chemngesumiet'
+
 
   }
  iconMAU_115 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_115);
- iconMAU_115.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Chesamisiet_Clerodendrum myricoids.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_115.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Chesamisiet_Clerodendrum myricoids.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_115.className = 'buttonsSapelli'
  iconMAU_115.onclick = function(){
     hideAll()
@@ -3513,23 +4009,27 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Chesamisiet Clerodendrum myricoids'
+    imageName1 = 'Chesamisiet_Clerodendrum myricoids'
+
 
   }
  iconMAU_116 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_116);
  iconMAU_116.className = 'buttonsSapelli'
- iconMAU_116.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Chesamisiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_116.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Chesamisiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_116.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Chesamisiet'
+    imageName1 = 'Chesamisiet'
+
 
   }
  iconMAU_117 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_117);
- iconMAU_117.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Chepchabayiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_117.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Chepchabayiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_117.className = 'buttonsSapelli'
  iconMAU_117.onclick = function(){
     hideAll()
@@ -3537,11 +4037,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Chepchabayiet'
+    imageName1 = 'Chepchabayiet'
+
 
   }
  iconMAU_118 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_118);
- iconMAU_118.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Bontet_Rosewood.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_118.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Bontet_Rosewood.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_118.className = 'buttonsSapelli'
  iconMAU_118.onclick = function(){
     hideAll()
@@ -3549,11 +4051,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Bontet Rosewood'
+    imageName1 = 'Bontet_Rosewood'
+
 
   }
  iconMAU_119 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_119);
- iconMAU_119.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Arorwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_119.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Arorwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_119.className = 'buttonsSapelli'
  iconMAU_119.onclick = function(){
     hideAll()
@@ -3561,24 +4065,28 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Arorwet'
+    imageName1 = 'Arorwet'
+
 
   }
 
  iconMAU_120 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_120);
  iconMAU_120.className = 'buttonsSapelli'
- iconMAU_120.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Aonet_Policius vulva.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_120.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Aonet_Policius vulva.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_120.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Aonet Policius vulva'
+    imageName1 = 'Aonet_Policius vulva'
+
 
   }
  iconMAU_121 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_121);
- iconMAU_121.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Cherungut.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_121.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Cherungut.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_121.className = 'buttonsSapelli'
  iconMAU_121.onclick = function(){
     hideAll()
@@ -3586,23 +4094,27 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Cherungut'
+    imageName1 = 'Cherungut'
+
 
   }
  iconMAU_122 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_122);
  iconMAU_122.className = 'buttonsSapelli'
- iconMAU_122.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Chep_tenderet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_122.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Chep_tenderet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_122.onclick = function(){
     hideAll()
   generateButtonsIssues()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Chep tenderet'
+    imageName1 = 'Chep_tenderet'
+
 
   }
  iconMAU_123 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_123);
- iconMAU_123.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Chepongiot.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_123.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Chepongiot.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_123.className = 'buttonsSapelli'
  iconMAU_123.onclick = function(){
     hideAll()
@@ -3610,12 +4122,14 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Chepongiot'
+    imageName1 = 'Chepongiot'
+
 
   }
 
  iconMAU_124 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_124);
- iconMAU_124.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Botkawet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_124.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Botkawet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_124.className = 'buttonsSapelli'
  iconMAU_124.onclick = function(){
     hideAll()
@@ -3623,11 +4137,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Botkawet'
+    imageName1 = 'Botkawet'
+
 
   }
  iconMAU_125 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_125);
- iconMAU_125.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Chemoset.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_125.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Chemoset.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_125.className = 'buttonsSapelli'
  iconMAU_125.onclick = function(){
     hideAll()
@@ -3635,11 +4151,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Chemoset'
+    imageName1 = 'Chemoset'
+
 
   }
  iconMAU_126 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_126);
- iconMAU_126.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Chepkoibet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_126.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Chepkoibet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_126.className = 'buttonsSapelli'
  iconMAU_126.onclick = function(){
     hideAll()
@@ -3647,12 +4165,14 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Chepkoibet'
+    imageName1 = 'Chepkoibet'
+
 
   }
 
  iconMAU_127 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_127);
- iconMAU_127.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Chepkorgoriet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_127.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Chepkorgoriet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_127.className = 'buttonsSapelli'
  iconMAU_127.onclick = function(){
     hideAll()
@@ -3660,11 +4180,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Chepkorgoriet'
+    imageName1 = 'Chepkorgoriet'
+
 
   }
  iconMAU_128 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_128);
- iconMAU_128.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Chepkurbet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_128.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Chepkurbet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_128.className = 'buttonsSapelli'
  iconMAU_128.onclick = function(){
     hideAll()
@@ -3672,12 +4194,14 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Chepkurbet'
+    imageName1 = 'Chepkurbet'
+
 
   }
 
  iconMAU_129 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_129);
- iconMAU_129.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Cheptiringwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_129.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Cheptiringwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_129.className = 'buttonsSapelli'
  iconMAU_129.onclick = function(){
     hideAll()
@@ -3685,11 +4209,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Cheptiringwet'
+    imageName1 = 'Cheptiringwet'
+
 
   }
  iconMAU_130 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_130);
- iconMAU_130.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Chesicheiyet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_130.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Chesicheiyet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_130.className = 'buttonsSapelli'
  iconMAU_130.onclick = function(){
     hideAll()
@@ -3697,11 +4223,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Chesicheiyet'
+    imageName1 = 'Chesicheiyet'
+
 
   }
  iconMAU_131 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_131);
- iconMAU_131.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Ewat.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_131.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Ewat.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_131.className = 'buttonsSapelli'
  iconMAU_131.onclick = function(){
     hideAll()
@@ -3709,12 +4237,14 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Ewat'
+    imageName1 = 'Ewat'
+
 
   }
 
  iconMAU_132 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_132);
- iconMAU_132.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Imaniat.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_132.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Imaniat.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_132.className = 'buttonsSapelli'
  iconMAU_132.onclick = function(){
     hideAll()
@@ -3722,11 +4252,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Imaniat'
+    imageName1 = 'Imaniat'
+
 
   }
  iconMAU_133 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_133);
- iconMAU_133.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Imeenpet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_133.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Imeenpet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_133.className = 'buttonsSapelli'
  iconMAU_133.onclick = function(){
     hideAll()
@@ -3734,11 +4266,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Imeenpet'
+    imageName1 = 'Imeenpet'
+
 
   }
  iconMAU_134 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_134);
- iconMAU_134.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Kalialwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_134.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Kalialwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_134.className = 'buttonsSapelli'
  iconMAU_134.onclick = function(){
     hideAll()
@@ -3746,12 +4280,14 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Kalialwet'
+    imageName1 = 'Kalialwet'
+
 
   }
 
  iconMAU_135 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_135);
- iconMAU_135.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Ketegaa.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_135.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Ketegaa.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_135.className = 'buttonsSapelli'
  iconMAU_135.onclick = function(){
     hideAll()
@@ -3759,11 +4295,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Ketegaa'
+    imageName1 = 'Ketegaa'
+
 
   }
  iconMAU_136 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_136);
- iconMAU_136.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Ketungutiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_136.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Ketungutiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_136.className = 'buttonsSapelli'
  iconMAU_136.onclick = function(){
     hideAll()
@@ -3771,12 +4309,14 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Ketungutiet'
+    imageName1 = 'Ketungutiet'
+
 
   }
 
  iconMAU_137 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_137);
- iconMAU_137.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Kipkutungit.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_137.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Kipkutungit.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_137.className = 'buttonsSapelli'
  iconMAU_137.onclick = function(){
     hideAll()
@@ -3784,11 +4324,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Kipkutungit'
+    imageName1 = 'Kipkutungit'
+
 
   }
  iconMAU_138 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_138);
- iconMAU_138.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Kipsebwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_138.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Kipsebwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_138.className = 'buttonsSapelli'
  iconMAU_138.onclick = function(){
     hideAll()
@@ -3796,11 +4338,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Kipsebwet'
+    imageName1 = 'Kipsebwet'
+
 
   }
  iconMAU_139 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_139);
- iconMAU_139.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Kipsertwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_139.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Kipsertwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_139.className = 'buttonsSapelli'
  iconMAU_139.onclick = function(){
     hideAll()
@@ -3808,11 +4352,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Kipsertwet'
+    imageName1 = 'Kipsertwet'
+
 
   }
  iconMAU_140 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_140);
- iconMAU_140.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Kipsotiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_140.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Kipsotiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_140.className = 'buttonsSapelli'
  iconMAU_140.onclick = function(){
     hideAll()
@@ -3820,11 +4366,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Kipsotiet'
+    imageName1 = 'Kipsotiet'
+
 
   }
  iconMAU_141 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_141);
- iconMAU_141.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Kipsowoit.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_141.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Kipsowoit.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_141.className = 'buttonsSapelli'
  iconMAU_141.onclick = function(){
     hideAll()
@@ -3832,11 +4380,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Kipsowoit'
+    imageName1 = 'Kipsowoit'
+
 
   }
  iconMAU_142 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_142);
- iconMAU_142.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Kogob_toroi.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_142.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Kogob_toroi.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_142.className = 'buttonsSapelli'
  iconMAU_142.onclick = function(){
     hideAll()
@@ -3844,11 +4394,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Kogob toroi'
+    imageName1 = 'Kogob_toroi'
+
 
   }
  iconMAU_143 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_143);
- iconMAU_143.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Kosisitiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_143.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Kosisitiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_143.className = 'buttonsSapelli'
  iconMAU_143.onclick = function(){
     hideAll()
@@ -3856,11 +4408,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Kosisitiet'
+    imageName1 = 'Kosisitiet'
+
 
   }
  iconMAU_144 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_144);
- iconMAU_144.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Lepekwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_144.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Lepekwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_144.className = 'buttonsSapelli'
  iconMAU_144.onclick = function(){
     hideAll()
@@ -3868,11 +4422,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Lepekwet'
+    imageName1 = 'Lepekwet'
+
 
   }
  iconMAU_145 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_145);
- iconMAU_145.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Mailpuch.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_145.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Mailpuch.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_145.className = 'buttonsSapelli'
  iconMAU_145.onclick = function(){
     hideAll()
@@ -3880,11 +4436,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Mailpuch'
+    imageName1 = 'Mailpuch'
+
 
   }
  iconMAU_146 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_146);
- iconMAU_146.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Manguangiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_146.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Manguangiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_146.className = 'buttonsSapelli'
  iconMAU_146.onclick = function(){
     hideAll()
@@ -3892,11 +4450,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Manguangiet'
+    imageName1 = 'Manguangiet'
+
 
   }
  iconMAU_147 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_147);
- iconMAU_147.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Martit.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_147.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Martit.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_147.className = 'buttonsSapelli'
  iconMAU_147.onclick = function(){
     hideAll()
@@ -3904,11 +4464,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Martit'
+    imageName1 = 'Martit'
+
 
   }
  iconMAU_148 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_148);
- iconMAU_148.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Mogoiwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_148.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Mogoiwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_148.className = 'buttonsSapelli'
  iconMAU_148.onclick = function(){
     hideAll()
@@ -3916,11 +4478,13 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Mogoiwet'
+    imageName1 = 'Mogoiwet'
+
 
   }
  iconMAU_149 = document.createElement("BUTTON");
   cell.appendChild(iconMAU_149);
- iconMAU_149.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Mogokwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+ iconMAU_149.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Mogokwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
  iconMAU_149.className = 'buttonsSapelli'
  iconMAU_149.onclick = function(){
     hideAll()
@@ -3928,12 +4492,14 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '🌿 Mogokwet'
+    imageName1 = 'Mogokwet'
+
 
   }
 
   iconMAU_151 = document.createElement("BUTTON");
    cell.appendChild(iconMAU_151);
-  iconMAU_151.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Mopondet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+  iconMAU_151.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Mopondet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
   iconMAU_151.className = 'buttonsSapelli'
   iconMAU_151.onclick = function(){
      hideAll()
@@ -3941,11 +4507,13 @@ var generateButtonsPlantsMAU = function(){
     document.getElementById('customIconsGoBack').style.display = 'initial';
     document.getElementById('customIconsCancel').style.display = 'initial';
      plant = '🌿 Mopondet'
+     imageName1 = 'Mopondet'
+
 
    }
   iconMAU_152 = document.createElement("BUTTON");
    cell.appendChild(iconMAU_152);
-  iconMAU_152.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Murguiwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+  iconMAU_152.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Murguiwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
   iconMAU_152.className = 'buttonsSapelli'
   iconMAU_152.onclick = function(){
      hideAll()
@@ -3953,12 +4521,14 @@ var generateButtonsPlantsMAU = function(){
     document.getElementById('customIconsGoBack').style.display = 'initial';
     document.getElementById('customIconsCancel').style.display = 'initial';
      plant = '🌿 Murguiwet'
+     imageName1 = 'Murguiwet'
+
 
    }
 
   iconMAU_153 = document.createElement("BUTTON");
    cell.appendChild(iconMAU_153);
-  iconMAU_153.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Mutereriet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+  iconMAU_153.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Mutereriet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
   iconMAU_153.className = 'buttonsSapelli'
   iconMAU_153.onclick = function(){
      hideAll()
@@ -3966,11 +4536,13 @@ var generateButtonsPlantsMAU = function(){
     document.getElementById('customIconsGoBack').style.display = 'initial';
     document.getElementById('customIconsCancel').style.display = 'initial';
      plant = '🌿 Mutereriet'
+     imageName1 = 'Mutereriet'
+
 
    }
   iconMAU_154 = document.createElement("BUTTON");
    cell.appendChild(iconMAU_154);
-  iconMAU_154.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Ndakariat.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+  iconMAU_154.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Ndakariat.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
   iconMAU_154.className = 'buttonsSapelli'
   iconMAU_154.onclick = function(){
      hideAll()
@@ -3978,12 +4550,14 @@ var generateButtonsPlantsMAU = function(){
     document.getElementById('customIconsGoBack').style.display = 'initial';
     document.getElementById('customIconsCancel').style.display = 'initial';
      plant = '🌿 Ndakariat'
+     imageName1 = 'Ndakariat'
+
 
    }
 
   iconMAU_155 = document.createElement("BUTTON");
    cell.appendChild(iconMAU_155);
-  iconMAU_155.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Ngingichet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+  iconMAU_155.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Ngingichet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
   iconMAU_155.className = 'buttonsSapelli'
   iconMAU_155.onclick = function(){
      hideAll()
@@ -3991,11 +4565,13 @@ var generateButtonsPlantsMAU = function(){
     document.getElementById('customIconsGoBack').style.display = 'initial';
     document.getElementById('customIconsCancel').style.display = 'initial';
      plant = '🌿 Ngingichet'
+     imageName1 = 'Ngingichet'
+
 
    }
   iconMAU_156 = document.createElement("BUTTON");
    cell.appendChild(iconMAU_156);
-  iconMAU_156.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Noiwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+  iconMAU_156.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Noiwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
   iconMAU_156.className = 'buttonsSapelli'
   iconMAU_156.onclick = function(){
      hideAll()
@@ -4003,11 +4579,13 @@ var generateButtonsPlantsMAU = function(){
     document.getElementById('customIconsGoBack').style.display = 'initial';
     document.getElementById('customIconsCancel').style.display = 'initial';
      plant = '🌿 Noiwet'
+     imageName1 = 'Noiwet'
+
 
    }
   iconMAU_157 = document.createElement("BUTTON");
    cell.appendChild(iconMAU_157);
-  iconMAU_157.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Saiyet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+  iconMAU_157.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Saiyet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
   iconMAU_157.className = 'buttonsSapelli'
   iconMAU_157.onclick = function(){
      hideAll()
@@ -4015,11 +4593,13 @@ var generateButtonsPlantsMAU = function(){
     document.getElementById('customIconsGoBack').style.display = 'initial';
     document.getElementById('customIconsCancel').style.display = 'initial';
      plant = '🌿 Saiyet'
+     imageName1 = 'Saiyet'
+
 
    }
   iconMAU_158 = document.createElement("BUTTON");
    cell.appendChild(iconMAU_158);
-  iconMAU_158.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Sasiat.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+  iconMAU_158.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Sasiat.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
   iconMAU_158.className = 'buttonsSapelli'
   iconMAU_158.onclick = function(){
      hideAll()
@@ -4027,11 +4607,13 @@ var generateButtonsPlantsMAU = function(){
     document.getElementById('customIconsGoBack').style.display = 'initial';
     document.getElementById('customIconsCancel').style.display = 'initial';
      plant = '🌿 Sasiat'
+     imageName1 = 'Sasiat'
+
 
    }
   iconMAU_159 = document.createElement("BUTTON");
    cell.appendChild(iconMAU_159);
-  iconMAU_159.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Sasuriet_wild banana.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+  iconMAU_159.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Sasuriet_wild banana.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
   iconMAU_159.className = 'buttonsSapelli'
   iconMAU_159.onclick = function(){
      hideAll()
@@ -4039,11 +4621,13 @@ var generateButtonsPlantsMAU = function(){
     document.getElementById('customIconsGoBack').style.display = 'initial';
     document.getElementById('customIconsCancel').style.display = 'initial';
      plant = '🌿 Sasuriet wild banana'
+     imageName1 = 'Sasuriet_wild banana'
+
 
    }
   iconMAU_160 = document.createElement("BUTTON");
    cell.appendChild(iconMAU_160);
-  iconMAU_160.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Sergutiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+  iconMAU_160.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Sergutiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
   iconMAU_160.className = 'buttonsSapelli'
   iconMAU_160.onclick = function(){
      hideAll()
@@ -4051,11 +4635,13 @@ var generateButtonsPlantsMAU = function(){
     document.getElementById('customIconsGoBack').style.display = 'initial';
     document.getElementById('customIconsCancel').style.display = 'initial';
      plant = '🌿 Sergutiet'
+     imageName1 = 'Sergutiet'
+
 
    }
   iconMAU_161 = document.createElement("BUTTON");
    cell.appendChild(iconMAU_161);
-  iconMAU_161.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Singorwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+  iconMAU_161.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Singorwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
   iconMAU_161.className = 'buttonsSapelli'
   iconMAU_161.onclick = function(){
      hideAll()
@@ -4063,11 +4649,13 @@ var generateButtonsPlantsMAU = function(){
     document.getElementById('customIconsGoBack').style.display = 'initial';
     document.getElementById('customIconsCancel').style.display = 'initial';
      plant = '🌿 Singorwet'
+     imageName1 = 'Singorwet'
+
 
    }
   iconMAU_162 = document.createElement("BUTTON");
    cell.appendChild(iconMAU_162);
-  iconMAU_162.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Siwot.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+  iconMAU_162.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Siwot.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
   iconMAU_162.className = 'buttonsSapelli'
   iconMAU_162.onclick = function(){
      hideAll()
@@ -4075,11 +4663,13 @@ var generateButtonsPlantsMAU = function(){
     document.getElementById('customIconsGoBack').style.display = 'initial';
     document.getElementById('customIconsCancel').style.display = 'initial';
      plant = '🌿 Siwot'
+     imageName1 = 'Siwot'
+
 
    }
   iconMAU_163 = document.createElement("BUTTON");
    cell.appendChild(iconMAU_163);
-  iconMAU_163.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Sugumeriet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+  iconMAU_163.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Sugumeriet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
   iconMAU_163.className = 'buttonsSapelli'
   iconMAU_163.onclick = function(){
      hideAll()
@@ -4087,11 +4677,13 @@ var generateButtonsPlantsMAU = function(){
     document.getElementById('customIconsGoBack').style.display = 'initial';
     document.getElementById('customIconsCancel').style.display = 'initial';
      plant = '🌿 Sugumeriet'
+     imageName1 = 'Sugumeriet'
+
 
    }
   iconMAU_164 = document.createElement("BUTTON");
    cell.appendChild(iconMAU_164);
-  iconMAU_164.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Sumetet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+  iconMAU_164.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Sumetet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
   iconMAU_164.className = 'buttonsSapelli'
   iconMAU_164.onclick = function(){
      hideAll()
@@ -4099,11 +4691,13 @@ var generateButtonsPlantsMAU = function(){
     document.getElementById('customIconsGoBack').style.display = 'initial';
     document.getElementById('customIconsCancel').style.display = 'initial';
      plant = '🌿 Sumetet'
+     imageName1 = 'Sumetet'
+
 
    }
   iconMAU_165 = document.createElement("BUTTON");
    cell.appendChild(iconMAU_165);
-  iconMAU_165.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Teldet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+  iconMAU_165.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Teldet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
   iconMAU_165.className = 'buttonsSapelli'
   iconMAU_165.onclick = function(){
      hideAll()
@@ -4111,11 +4705,13 @@ var generateButtonsPlantsMAU = function(){
     document.getElementById('customIconsGoBack').style.display = 'initial';
     document.getElementById('customIconsCancel').style.display = 'initial';
      plant = '🌿 Teldet'
+     imageName1 = 'Teldet'
+
 
    }
   iconMAU_166 = document.createElement("BUTTON");
    cell.appendChild(iconMAU_166);
-  iconMAU_166.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Tepengwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+  iconMAU_166.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Tepengwet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
   iconMAU_166.className = 'buttonsSapelli'
   iconMAU_166.onclick = function(){
      hideAll()
@@ -4123,11 +4719,13 @@ var generateButtonsPlantsMAU = function(){
     document.getElementById('customIconsGoBack').style.display = 'initial';
     document.getElementById('customIconsCancel').style.display = 'initial';
      plant = '🌿 Tepengwet'
+     imageName1 = 'Tepengwet'
+
 
    }
    iconMAU_167 = document.createElement("BUTTON");
     cell.appendChild(iconMAU_167);
-   iconMAU_167.innerHTML = '<img src="images/KenyaMaasaiMAU/icons/Topitiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
+   iconMAU_167.innerHTML = '<img src="images/KenyaMaasaiMARA/icons/Topitiet.png" style="max-height: 100%; max-width: 100%; border: 0px solid white" /> ';
    iconMAU_167.className = 'buttonsSapelli'
    iconMAU_167.onclick = function(){
       hideAll()
@@ -4135,6 +4733,8 @@ var generateButtonsPlantsMAU = function(){
      document.getElementById('customIconsGoBack').style.display = 'initial';
      document.getElementById('customIconsCancel').style.display = 'initial';
       plant = '🌿 Topitiet'
+      imageName1 = 'Topitiet'
+
 
     }
 
@@ -4150,10 +4750,12 @@ var generateButtonsPlantsMAU = function(){
    document.getElementById('customIconsGoBack').style.display = 'initial';
    document.getElementById('customIconsCancel').style.display = 'initial';
     plant = '➕ New Plant'
+    imageName1 = 'NewPlant'
+
 
   }
 
-  return screenChoice && plant
+  return screenChoice && plant && imageName1
 }
 
 
@@ -4174,6 +4776,8 @@ var generateButtonsIssues = function(){
   iconI1.onclick = function(){
     hideAll()
     issueSpecific = '👍 OK'
+    imageName2 = 'ThumbsUp'
+
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
@@ -4199,6 +4803,8 @@ var generateButtonsIssues = function(){
   iconI3.onclick = function(){
     hideAll()
     issueSpecific = '🐜 Ant'
+    imageName2 = 'Ant'
+
 
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
@@ -4213,6 +4819,8 @@ var generateButtonsIssues = function(){
   iconI4.onclick = function(){
     hideAll()
     issueSpecific = '🐘 Elephant'
+    imageName2 = 'Elephant'
+
 
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
@@ -4227,6 +4835,8 @@ var generateButtonsIssues = function(){
   iconI5.onclick = function(){
     hideAll()
     issueSpecific = '🐐 Goat'
+    imageName2 = 'Goat'
+
 
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
@@ -4241,6 +4851,8 @@ var generateButtonsIssues = function(){
   iconI6.onclick = function(){
     hideAll()
     issueSpecific = '🌳🔥 Wildfire'
+    imageName2 = 'Wildfire'
+
 
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
@@ -4255,6 +4867,8 @@ var generateButtonsIssues = function(){
   iconI7.onclick = function(){
     hideAll()
     issueSpecific = '💧❌ Drought'
+    imageName2 = 'Drought'
+
 
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
@@ -4270,6 +4884,8 @@ var generateButtonsIssues = function(){
   iconI8.onclick = function(){
     hideAll()
     issueSpecific = '🌊 Flood'
+    imageName2 = 'Flood'
+
 
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
@@ -4284,6 +4900,8 @@ var generateButtonsIssues = function(){
   iconI9.onclick = function(){
     hideAll()
     issueSpecific = '💨 Wind'
+    imageName2 = 'Wind'
+
 
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
@@ -4291,7 +4909,7 @@ var generateButtonsIssues = function(){
     },1000)
   }
 
-  return screenChoice && issueSpecific
+  return screenChoice && issueSpecific && imageName2
 
 }
 
@@ -4307,6 +4925,8 @@ var generateButtonsHumanIssues = function(){
   iconIH1.onclick = function(){
     hideAll()
     issueSpecific = '🖐 🗡️ Panga'
+    imageName2 = 'Panga'
+
 
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
@@ -4321,6 +4941,8 @@ var generateButtonsHumanIssues = function(){
   iconIH2.onclick = function(){
     hideAll()
     issueSpecific = '🖐 ⬛ Charcoal'
+    imageName2 = 'Charcoal'
+
 
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
@@ -4335,6 +4957,8 @@ var generateButtonsHumanIssues = function(){
   iconIH3.onclick = function(){
     hideAll()
     issueSpecific = '🖐 🗡️ Chainsaw'
+    imageName2 = 'Chainsaw'
+
 
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
@@ -4350,6 +4974,8 @@ var generateButtonsHumanIssues = function(){
   iconIH4.onclick = function(){
     hideAll()
     issueSpecific = '🖐 💉 Pharmacy'
+    imageName2 = 'Pharmacy'
+
 
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
@@ -4364,6 +4990,8 @@ var generateButtonsHumanIssues = function(){
   iconIH5.onclick = function(){
     hideAll()
     issueSpecific = '🖐 🥄🔥 Firewood'
+    imageName2 = 'Firewood'
+
 
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
@@ -4371,5 +4999,5 @@ var generateButtonsHumanIssues = function(){
     },1000)
   }
 
-return screenChoice && issueSpecific
+return screenChoice && issueSpecific && imageName2
 }

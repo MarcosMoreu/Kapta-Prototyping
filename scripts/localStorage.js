@@ -95,22 +95,57 @@ var localStorageToGeoJSON = function(){
             onEachFeature: function(feature, layer) {
               // timeout is used to wait 1000ms until the download link is ready
                   setTimeout(function() {
+                      var imgPopup1 = '<img src="images/KenyaMaasaiMARA/icons/' + feature.properties.I1 + '.png"'+ 'height="50px" width="50px"/>'
+
+                    var imgPopup2 = '<img src="images/KenyaMaasaiMARA/icons/' + feature.properties.I2 + '.png"'+ 'height="50px" width="50px"/>'
+
 
                       var audioLinkText = '🔊 AUDIO'
                       var audioAvailable = feature.properties.audioAvailable;
                       //conditions to avoid showing audio link if no audio has been recorded
                       if (audioAvailable == true) {
-                          if(feature.properties.areaPolygon == 'Point' || feature.properties.areaPolygon == 'Line'){
-                            var popupContent = feature.properties.landUsesEmoji + '</br>' + '</br>' + '🔊 🚧';
+                          if(feature.properties.A == 'Point' || feature.properties.A == 'Line'){
+                            var popupContent = feature.properties.LU + '</br>' + '</br>' + '🔊 🚧';
                           }else{
-                            var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.landUsesEmoji + '</br>' + '</br>' + '🔊 🚧';
+                            var popupContent = '📐 ' + '<i>' + feature.properties.A + '</i>' + '</br>' + '</br>' + feature.properties.LU + '</br>' + '</br>' + '🔊 🚧';
                           }
                       } else {
-                        if(feature.properties.areaPolygon == 'Point' || feature.properties.areaPolygon == 'Line'){
-                          var popupContent = feature.properties.landUsesEmoji
+                        //to check if properties are landuseemoji or LU
+                        if(feature.properties.A){
+                          if(feature.properties.A == 'Point' || feature.properties.A == 'Line'){
+                            // var imgPopup = '<img src="images/google.png" height="50px" width="50px"/>'
+                            if(feature.properties.I1){
+                              var popupContent = feature.properties.LU + '</br>' + imgPopup1 + imgPopup2
+                            }else{
+                              var popupContent = feature.properties.LU + '</br>'
+                            }
+
+                          }else{
+                            if(feature.properties.I1){
+                              var popupContent = '📐 ' + '<i>' + feature.properties.A + '</i>' + '</br>' + '</br>' + feature.properties.LU + '</br>'+ imgPopup1  + imgPopup2
+                            }else{
+                              var popupContent = '📐 ' + '<i>' + feature.properties.A + '</i>' + '</br>' + '</br>' + feature.properties.LU + '</br>'
+                            }
+                          }
                         }else{
-                          var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.landUsesEmoji
+                          if(feature.properties.areaPolygon == 'Point' || feature.properties.areaPolygon == 'Line'){
+                            // var imgPopup = '<img src="images/google.png" height="50px" width="50px"/>'
+                            if(feature.properties.I1){
+                              var popupContent = feature.properties.landUsesEmoji + '</br>' + imgPopup1 + imgPopup2
+                            }else{
+                              var popupContent = feature.properties.landUsesEmoji + '</br>'
+                            }
+
+                          }else{
+                            if(feature.properties.I1){
+                              var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.landUsesEmoji + '</br>' + imgPopup1  + imgPopup2
+                            }else{
+                              var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.landUsesEmoji + '</br>'
+                            }
+                          }
                         }
+
+
                       }
                       if (feature.properties && feature.properties.popupContent) {
                           popupContent += feature.properties.popupContent;

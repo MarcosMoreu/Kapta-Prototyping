@@ -161,6 +161,9 @@ document.getElementById('share-download').onclick = function(e) {
     // } else {
     //     audioAvailable = '.'
     // }
+    //kenya, change for other depending on number of images
+
+  if(imageName1 == null){
     propertiesGeoJSON = {
         // 'geometryCenter':geometryCenter,
         'landUses': boxContentToString,
@@ -175,12 +178,40 @@ document.getElementById('share-download').onclick = function(e) {
         'geometrystring':data.toString(),
         'screensize':screensize
     };
-    propertiesGeoJSONURL = {
-        'randomID': randomID,
-        'landUsesEmoji': boxContent,
-        'areaPolygon': finalAreaAcres2Decimals,
-        'lengthLine': finalLength2Decimals,
-    };
+
+      propertiesGeoJSONURL = {
+          'ID': randomID,
+          'LU': boxContent,
+          'A': finalAreaAcres2Decimals,
+          'L': finalLength2Decimals,
+      };
+    }else{
+      propertiesGeoJSON = {
+          // 'geometryCenter':geometryCenter,
+          'landUses': boxContentToString,
+          'landUsesEmoji': boxContent,
+          'audioAvailable': audioAvailable,
+          'areaPolygon': finalAreaAcres2Decimals,
+          'lengthLine': finalLength2Decimals,
+          'dateTime': dateTime,
+          'timeSpendSeconds': totalTimeSpent,
+          'dist_m_Participant_Feature': distanceObfTrunc,
+          'randomID': randomID,
+          'geometrystring':data.toString(),
+          'screensize':screensize,
+          'I1':imageName1,
+          'I2':imageName2,
+      };
+      propertiesGeoJSONURL = {
+          'ID': randomID,
+          'LU': boxContent,
+          'A': finalAreaAcres2Decimals,
+          'L': finalLength2Decimals,
+          'I1':imageName1,
+          'I2':imageName2,
+      };
+    }
+
     //  adding the properties to the geoJSON file:
     data.properties = propertiesGeoJSON;
 
