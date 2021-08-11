@@ -814,12 +814,40 @@ var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/b
   var planetMosaicLatestMinus2Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year24MonthsAgo + '_' + mosaicRequested24Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
         attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic24Months + ' ' + year24MonthsAgo
     });
-  var planetMosaicLatestMinus3Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year36MonthsAgo + '_' + mosaicRequested36Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic36Months + ' ' + year36MonthsAgo
-    });
-  var planetMosaicLatestMinus5Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year60MonthsAgo + '_' + mosaicRequested60Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-        attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic60Months + ' ' + year60MonthsAgo
-    });
+  // var planetMosaicLatestMinus3Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year36MonthsAgo + '_' + mosaicRequested36Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+  //       attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic36Months + ' ' + year36MonthsAgo
+  //   });
+  // var planetMosaicLatestMinus5Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year60MonthsAgo + '_' + mosaicRequested60Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+  //       attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic60Months + ' ' + year60MonthsAgo
+  //   });
+    var  planetMosaicLatestMinus3Years = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelHubKey + "?REQUEST=GetMap&PREVIEW=2", {
+          layers: '2017SENTINEL2',
+          attribution: 'Leaflet | Sentinel 2 Imagery August 2015'
+      });
+
+      // var  planetMosaicLatestMinus5Years = L.tileLayer.wms("https://services-uswest2.sentinel-hub.com/api/v1/catalog/collections/landsat-ot-l2/" + sentinelHubKey, {
+      //       layers: '2015LANDSAT',
+      //       attribution: 'Leaflet | Landsat Imagery 2013'
+      //   });
+        // var  planetMosaicLatestMinus5Years = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelHubKey + "?REQUEST=GetMap", {
+        //       layers: '2015LANDSAT',
+        //       attribution: 'Leaflet | Landsat Imagery 2013'
+        //   });
+
+
+
+
+        //here we just need to copy the instance ID from the dashboard, and set the bounding box
+
+        var  planetMosaicLatestMinus5Years = L.tileLayer.wms("https://services-uswest2.sentinel-hub.com/ogc/wms/09235d3c-8c31-4b0e-abdf-213a9f622639?REQUEST=GetMap&PREVIEW=2", {
+              layers: '2013LANDSAT',
+              attribution: 'Leaflet | Landsat Imagery 2013'
+          });
+
+
+
+
+
 
     // var sentinelMosaicLatestMinus2Years = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelHubKey + "?REQUEST=GetMap&PREVIEW=2", {
     //       layers: '2019SENTINEL2',
@@ -917,10 +945,10 @@ var clickButtonCount = 0;
 
 if (isIOS == true) {
     var iconGPS = '<img src="images/gpsOff.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%; margin-left:-5px" > ';
-    var iconOSM = '<img src="images/osm.png" alt="..." width=30px; height=30px; loading="lazy" text-align="center" style="top:50%;margin-top:2px; margin-left:-5px" > ';
+    var iconOSM = '<img src="images/osm.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-top:2px; margin-left:-5px" > ';
     var iconGOOGLE = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-5px" > ';
     var iconPLANET = '<img src="images/googleHistorical.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-top:2px;margin-left:-3px" > ';
-    var iconLAYERS = '<img src="images/myLayerOpen.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > ';
+    var iconLAYERS = '<img src="images/myLayerPrivate.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > ';
     var iconFILTER = '<img src="images/filterIcon.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px;margin-top:2px" > ';
     var iconRANDOM = '<img src="images/gps.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
     var iconLocalStorageRecenter = '<img src="images/LocalStorageRecenter.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%; margin-left:-5px" > ';
@@ -928,10 +956,10 @@ if (isIOS == true) {
 
 } else {
     var iconGPS = '<img src="images/gpsOff.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;"> ';
-    var iconOSM = '<img src="images/osm.png" alt="..." width=30px; height=30px; loading="lazy" text-align="center" style="top:50%; margin-top:5px" > ';
+    var iconOSM = '<img src="images/osm.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%; margin-top:2px" > ';
     var iconGOOGLE = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%"> ';
     var iconPLANET = '<img src="images/googleHistorical.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-top:2px"> ';
-    var iconLAYERS = '<img src="images/myLayerOpen.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px" > ';
+    var iconLAYERS = '<img src="images/myLayerPrivate.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-2px" > ';
     var iconFILTER = '<img src="images/filterIcon.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px;margin-top:2px" > ';
     var iconRANDOM = '<img src="images/gps.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
     var iconLocalStorageRecenter = '<img src="images/LocalStorageRecenter.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;"> ';
@@ -1056,7 +1084,7 @@ planetMosaicLatestMinus3Years.on("load",function() {
   document.getElementById("MapLoading").style.display = 'none'
 
   document.getElementById("Alert").style.fontSize = "20px";
-  document.getElementById('Alert').innerHTML = '3<br>☀️🌎'
+  document.getElementById('Alert').innerHTML = '2015<br>'
   document.getElementById("Alert").style.display = 'initial'
 });
 planetMosaicLatestMinus5Years.on("load",function() {
@@ -1064,7 +1092,7 @@ planetMosaicLatestMinus5Years.on("load",function() {
   document.getElementById("MapLoading").style.display = 'none'
 
   document.getElementById("Alert").style.fontSize = "20px";
-  document.getElementById('Alert').innerHTML = '4<br>☀️🌎'
+  document.getElementById('Alert').innerHTML = '2013<br>'
   document.getElementById("Alert").style.display = 'initial'
 });
 
@@ -1135,7 +1163,7 @@ osm_Button.button.style.transitionDuration = '.3s';
 osm_Button.button.style.backgroundColor = 'black';
 //osm_Button.button.style.transitionDuration = '.3s';
 //osm_Button.addTo(map);
-
+var sliderPosition = 100
 var googleSat_Button = L.easyButton({
     id: 'googleSat',
     class: 'easyButton1',
@@ -1230,7 +1258,7 @@ var planet_Button = L.easyButton({
 
             clickButtonCount = 0;
             //to avoid black tiles as sentinel API does not serves tiles above 10 (or perhaps yes), then zoom back to 10 again
-            map.options.maxZoom = 15; //no need for more zoom levels as 'low' resolution
+            map.options.maxZoom = 18; //no need for more zoom levels as 'low' resolution
             map.options.minZoom = 2;
 
             planet_Button.removeFrom(map);
@@ -1238,24 +1266,59 @@ var planet_Button = L.easyButton({
             //to zoom out if previous map zoom is higher than 17
             mapCurrentZoom = map.getZoom();
             // //console.log('zoom1', mapCurrentZoom)
-            if(mapCurrentZoom >15){
-              map.setZoom(15)//because OSM does not provide tiles beyond zoom 19
+            if(mapCurrentZoom >18){
+              map.setZoom(18)//because OSM does not provide tiles beyond zoom 19
               mapCurrentZoom = map.getZoom();
             // //console.log('zoom2', mapCurrentZoom)
             }
             // googleSat.removeFrom(map);
             osm.removeFrom(map);
             try{
-              planetScopeMonthlyMosaicLatest.addTo(map);
-              planetScopeMonthlyMosaicLatest.on("load",function() {
-
-                //console.log("all visible planet tiles have been loaded")
-                // document.getElementById("Alert").style.display = 'none'
+              if(sliderPosition == 100){
+                planetScopeMonthlyMosaicLatest.addTo(map);
+                planetScopeMonthlyMosaicLatest.on("load",function() {
                 document.getElementById("MapLoading").style.display = 'none'
+              })
+              }
 
-               });
+              if(sliderPosition == 1){
+                planetMosaicLatestMinus5Years.addTo(map);
+                planetMosaicLatestMinus5Years.on("load",function() {
+                document.getElementById("MapLoading").style.display = 'none'
+              })
+              }
+              if(sliderPosition == 17){
+                planetMosaicLatestMinus3Years.addTo(map);
+                planetMosaicLatestMinus3Years.on("load",function() {
+                document.getElementById("MapLoading").style.display = 'none'
+              })
+              }
+              if(sliderPosition == 32){
+                planetMosaicLatestMinus2Years.addTo(map);
+                planetMosaicLatestMinus2Years.on("load",function() {
+                document.getElementById("MapLoading").style.display = 'none'
+              })
+              }
+              if(sliderPosition == 47){
+                planetScopeMonthlyMosaic1YearAgo.addTo(map);
+                planetScopeMonthlyMosaic1YearAgo.on("load",function() {
+                document.getElementById("MapLoading").style.display = 'none'
+              })
+              }
+              if(sliderPosition == 62){
+                planetScopeMonthlyMosaicLatestMinus8Months.addTo(map);
+                planetScopeMonthlyMosaicLatestMinus8Months.on("load",function() {
+                document.getElementById("MapLoading").style.display = 'none'
+              })
+              }
+              if(sliderPosition == 77){
+                planetScopeMonthlyMosaicLatestMinus4Months.addTo(map);
+                planetScopeMonthlyMosaicLatestMinus4Months.on("load",function() {
+                document.getElementById("MapLoading").style.display = 'none'
+              })
+              }
 
-            }catch{
+            }catch(e){
               //console.log('error loading planet tiles')
             }
 
@@ -1339,22 +1402,28 @@ var checkSliderPosition = function() { /////////////////////////////////////////
   var x = output.innerHTML
   slider.oninput = function() {
     output.innerHTML = this.value;
+    document.getElementById("Alert").style.display = 'none'
+
 
       switch (true) {
           case (output.innerHTML > 85):
               this.value = 100
               removeAllimagery()
               planetScopeMonthlyMosaicLatest.addTo(map)
+              sliderPosition = 100
               //console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "25px";
               // document.getElementById('Alert').innerHTML = '<br>⌛'
               document.getElementById("MapLoading").style.display = 'initial'
+
 
               break
           case (output.innerHTML < 10):
               this.value = 1
               removeAllimagery()
               planetMosaicLatestMinus5Years.addTo(map)
+              sliderPosition = 1
+
               //console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>1/2019 '
@@ -1366,6 +1435,8 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               this.value = 17 // this is to locate the circle in a specific position
               removeAllimagery()
               planetMosaicLatestMinus3Years.addTo(map)
+              sliderPosition = 17
+
               //console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>12/2019 '
@@ -1377,6 +1448,8 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               this.value = 32
               removeAllimagery()
               planetMosaicLatestMinus2Years.addTo(map)
+              sliderPosition = 32
+
               //console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>9/2020 '
@@ -1388,6 +1461,8 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               this.value = 47
               removeAllimagery()
               planetScopeMonthlyMosaic1YearAgo.addTo(map)
+              sliderPosition = 47
+
               //console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>10/2020 '
@@ -1399,6 +1474,8 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               this.value = 62
               removeAllimagery()
               planetScopeMonthlyMosaicLatestMinus8Months.addTo(map)
+              sliderPosition = 62
+
               //console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>11/2020 '
@@ -1410,6 +1487,8 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               this.value = 77
               removeAllimagery()
               planetScopeMonthlyMosaicLatestMinus4Months.addTo(map)
+              sliderPosition = 77
+
               //console.log(output.innerHTML)
               // document.getElementById("Alert").style.fontSize = "15px";
               // document.getElementById('Alert').innerHTML = '<br>12/2020 '
@@ -1420,11 +1499,13 @@ var checkSliderPosition = function() { /////////////////////////////////////////
           default:
               removeAllimagery()
               planetScopeMonthlyMosaicLatest.addTo(map)
+              sliderPosition = 100
+
               //console.log(output.innerHTML)
               break
       }
     }
-
+    return sliderPosition
 }
 
 var myLayerIsOn = true;
@@ -1500,17 +1581,19 @@ var myLayer_Button = L.easyButton({
                     finalLayer.addTo(map)
                 }
                 whichLayerIsOn = 'localStorage'
-                myLayer_Button.button.style.backgroundColor = '#00FFFB';
+                // myLayer_Button.button.style.backgroundColor = '#00FFFB';
                 // document.getElementById('myLayerButton').src = 'images/osm.png'
                 if(isIOS == false){
-                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-1px" > '
+                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerEmpty.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
                 }else{
-                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
+                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerEmpty.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
                 }
                 // var iconLAYERS = '<img src="images/osm.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px" > ';
 
                 filter_Button.button.style.opacity = '0.4';
                 filter_Button.button.disabled = true;
+                myLayer_Button.button.style.borderColor = '#00FFFB';
+
 
             } else if (whichLayerIsOn == 'deflated' && localStorageLayer == null) { // to avoid three click when localstorage is limited on first load
               // rose.remove()
@@ -1519,11 +1602,13 @@ var myLayer_Button = L.easyButton({
                 deflated.removeFrom(map)
                 filter_Button.button.style.opacity = '0.4';
                 filter_Button.button.disabled = true;
-                myLayer_Button.button.style.backgroundColor = 'white'
+                // myLayer_Button.button.style.backgroundColor = 'white'
+                myLayer_Button.button.style.borderColor = '#00FFFB';
+
                 if(isIOS == false){
-                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerEmpty.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-1px" > '
+                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
                 }else{
-                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerEmpty.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
+                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
                 }
 
             } else if (whichLayerIsOn == 'localStorage') {
@@ -1546,14 +1631,16 @@ var myLayer_Button = L.easyButton({
                 localStorageRecenter_Button.removeFrom(map);
                 filter_Button.addTo(map)
 
-                myLayer_Button.button.style.backgroundColor = 'white'
                 if(isIOS == false){
-                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerEmpty.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-1px" > '
+                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
                 }else{
-                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerEmpty.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
+                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
                 }
                 filter_Button.button.style.opacity = '0.4';
                 filter_Button.button.disabled = true;
+                myLayer_Button.button.style.borderColor = 'transparent';
+
+
 
             } else if (whichLayerIsOn == 'none') {
                 whichLayerIsOn = 'deflated'
@@ -1561,14 +1648,16 @@ var myLayer_Button = L.easyButton({
                     finalLayer.removeFrom(map)
                 }
                 if(isOnline == false){
-                  myLayer_Button.button.style.backgroundColor = 'black'
+                  // myLayer_Button.button.style.backgroundColor = 'black'
                   if(isIOS == false){
-                    document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-1px" > '
+                    document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..." width=40px; height=40px style="top:50%;  margin-left:-2px" > '
                   }else{
-                    document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
+                    document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
                   }
                   filter_Button.button.style.opacity = '0.4';
                   filter_Button.button.disabled = true;
+                  myLayer_Button.button.style.borderColor = 'white';
+
                   }else{
                     deflated.addTo(map);
                     var cols = document.getElementsByClassName('marker-cluster-small');
@@ -1577,14 +1666,16 @@ var myLayer_Button = L.easyButton({
                     }
 
                     // document.getElementsByClassName('marker-cluster-small')[0].style.color = 'red'
-                    myLayer_Button.button.style.backgroundColor = 'black'
+                    // myLayer_Button.button.style.backgroundColor = 'black'
                     if(isIOS == false){
-                      document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-1px" > '
+                      document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
                     }else{
-                      document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
+                      document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
                     }
                     filter_Button.button.style.opacity = '1';
                     filter_Button.button.disabled = false;
+                    myLayer_Button.button.style.borderColor = 'white';
+
                   }
 
                if (featureSent == true) { //to update the carto layer with recently created feature. This is fired after DB update has been checked
@@ -1603,6 +1694,13 @@ myLayer_Button.button.style.width = '50px';
 myLayer_Button.button.style.height = '50px';
 myLayer_Button.button.style.transitionDuration = '.3s';
 myLayer_Button.button.style.backgroundColor = 'black';
+myLayer_Button.button.style.border= '1px solid white';
+
+// myLayer_Button.button.style.borderColor = 'white';
+
+// myLayer_Button.button.style.border = '3px'
+// myLayer_Button.button.style.borderColor = 'yellow';
+
 //myLayer_Button.addTo(map); //always on as there will always be features in the map, even when first load
 
 var filterApplied = false;
