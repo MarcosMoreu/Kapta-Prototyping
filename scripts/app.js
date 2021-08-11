@@ -920,7 +920,7 @@ if (isIOS == true) {
     var iconOSM = '<img src="images/osm.png" alt="..." width=30px; height=30px; loading="lazy" text-align="center" style="top:50%;margin-top:2px; margin-left:-5px" > ';
     var iconGOOGLE = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-5px" > ';
     var iconPLANET = '<img src="images/googleHistorical.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-top:2px;margin-left:-3px" > ';
-    var iconLAYERS = '<img src="images/myLayer.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > ';
+    var iconLAYERS = '<img src="images/myLayerOpen.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > ';
     var iconFILTER = '<img src="images/filterIcon.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px;margin-top:2px" > ';
     var iconRANDOM = '<img src="images/gps.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
     var iconLocalStorageRecenter = '<img src="images/LocalStorageRecenter.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%; margin-left:-5px" > ';
@@ -931,7 +931,7 @@ if (isIOS == true) {
     var iconOSM = '<img src="images/osm.png" alt="..." width=30px; height=30px; loading="lazy" text-align="center" style="top:50%; margin-top:5px" > ';
     var iconGOOGLE = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%"> ';
     var iconPLANET = '<img src="images/googleHistorical.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-top:2px"> ';
-    var iconLAYERS = '<img src="images/myLayer.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px" > ';
+    var iconLAYERS = '<img src="images/myLayerOpen.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px" > ';
     var iconFILTER = '<img src="images/filterIcon.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px;margin-top:2px" > ';
     var iconRANDOM = '<img src="images/gps.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
     var iconLocalStorageRecenter = '<img src="images/LocalStorageRecenter.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;"> ';
@@ -1501,6 +1501,14 @@ var myLayer_Button = L.easyButton({
                 }
                 whichLayerIsOn = 'localStorage'
                 myLayer_Button.button.style.backgroundColor = '#00FFFB';
+                // document.getElementById('myLayerButton').src = 'images/osm.png'
+                if(isIOS == false){
+                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-1px" > '
+                }else{
+                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
+                }
+                // var iconLAYERS = '<img src="images/osm.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px" > ';
+
                 filter_Button.button.style.opacity = '0.4';
                 filter_Button.button.disabled = true;
 
@@ -1512,6 +1520,11 @@ var myLayer_Button = L.easyButton({
                 filter_Button.button.style.opacity = '0.4';
                 filter_Button.button.disabled = true;
                 myLayer_Button.button.style.backgroundColor = 'white'
+                if(isIOS == false){
+                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerEmpty.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-1px" > '
+                }else{
+                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerEmpty.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
+                }
 
             } else if (whichLayerIsOn == 'localStorage') {
                 if (localStorageLayer != null) {
@@ -1534,6 +1547,11 @@ var myLayer_Button = L.easyButton({
                 filter_Button.addTo(map)
 
                 myLayer_Button.button.style.backgroundColor = 'white'
+                if(isIOS == false){
+                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerEmpty.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-1px" > '
+                }else{
+                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerEmpty.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
+                }
                 filter_Button.button.style.opacity = '0.4';
                 filter_Button.button.disabled = true;
 
@@ -1544,6 +1562,11 @@ var myLayer_Button = L.easyButton({
                 }
                 if(isOnline == false){
                   myLayer_Button.button.style.backgroundColor = 'black'
+                  if(isIOS == false){
+                    document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-1px" > '
+                  }else{
+                    document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
+                  }
                   filter_Button.button.style.opacity = '0.4';
                   filter_Button.button.disabled = true;
                   }else{
@@ -1555,6 +1578,11 @@ var myLayer_Button = L.easyButton({
 
                     // document.getElementsByClassName('marker-cluster-small')[0].style.color = 'red'
                     myLayer_Button.button.style.backgroundColor = 'black'
+                    if(isIOS == false){
+                      document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-1px" > '
+                    }else{
+                      document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
+                    }
                     filter_Button.button.style.opacity = '1';
                     filter_Button.button.disabled = false;
                   }

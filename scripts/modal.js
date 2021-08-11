@@ -217,7 +217,7 @@ var initialiseMap = function(){
             'images/google.png','images/googleHistorical.png','images/gps.png','images/gpsOff.png','images/gpsSearching.gif','images/gpsSearchingIOS.gif',
             'images/infoGoBack.png','images/key.png','images/lineDeleteAll.png','images/lineDeleteVertex.png',
             'images/locked.png','images/man.png','images/marker-icon.png','images/marker-icon-2x.png','images/marker-icon-cian.png','images/markerPolygonBlue.png','images/markerLine.png','images/markerPolygon.png',
-            'images/markerLocalStorage.png','images/myLayer.png','images/nautical.svg','images/osm.png',
+            'images/markerLocalStorage.png','images/myLayerOpen.png','images/myLayerPrivate.png','images/myLayerEmpty.png','images/nautical.svg','images/osm.png',
             'images/other1.png','images/play.png','images/PlusSign.png',
             'images/questionmark.png','images/random.png','images/shareMessagingApps.png','images/shareworld.png','images/shareworldConfirm.png',
             'images/uk.png','images/kenyaTutorial.png','images/other1.png','images/underConstruction.png','images/youtube.png','images/youtubeOffline.png',
