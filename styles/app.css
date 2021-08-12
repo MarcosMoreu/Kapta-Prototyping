@@ -145,3 +145,59 @@ height:20px;  /*  to set the size of  both the emoji in the text box and the pop
 }
 
 a, a:visited, a:hover, a:active {color:grey;text-decoration:none}  /* Selected link   */
+
+.gridCellForImportExportButtons{
+  /* overflow-y:auto; */
+
+  z-index:1000;
+  position:absolute;
+  margin-top: 0px;
+  background-color: white;
+  height:100%;
+  width:100%;
+  overflow-y: scroll !important;
+  /* text-align:justify; */
+  /* display: grid;
+grid-template-columns: 1fr 1fr;
+grid-auto-rows: 75px;
+grid-gap: 10px; */
+
+display: inline-grid;
+/* text-align: center; */
+
+align-items: center;
+justify-items: center;
+row-gap:2px;
+column-gap:2px;
+/* grid-template-columns: 80px; */
+
+grid-template-columns: repeat(2, 1fr);
+grid-template-rows: repeat(6, 1fr);
+/* grid-template-columns: 1fr 1fr 1fr;
+grid-template-rows: repeat(6, 1fr); */
+
+
+}
+.hiddenButtons{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  /* left:50%; */
+  width:150px;
+  height:80px;
+  border-radius: 20px;
+  border: 2px solid black;
+
+  /* border-radius: 80px; */
+  /* margin-left: 100px; */
+  /* margin-top:-200px; */
+  /* margin:5px; */
+  background-color: grey; /* Green */
+  /* padding: 0px 0px; */
+  text-decoration: none;
+  /* display: inline-block; */
+  border: 2px solid white;
+  position:relative;
+  outline:none;
+  transition: 0.2s all;
+}

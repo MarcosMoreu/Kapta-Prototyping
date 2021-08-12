@@ -849,7 +849,7 @@ var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/b
               layers: '2013LANDSAT',
               attribution: 'Leaflet | Landsat Imagery 2013'
           });
-          
+
 
 
 
@@ -2257,6 +2257,132 @@ localStorageRecenter_Button.button.style.transitionDuration = '.3s';
 localStorageRecenter_Button.button.style.backgroundColor = 'black';
 localStorageRecenter_Button.removeFrom(map);
 
+// var rose = L.control.rose('rose', {
+//     position: 'topleft',
+//     icon: 'nautical',
+//     iSize: 'medium',
+//     opacity: 1
+// })//.addTo(map)
+// document.getElementById('rose').style.marginBottom = '5px' // to avoid extra margin, visible when offline buttons appear
+//
+// // script to show the download tiles buttons (10clicks) and/or reload cartolayer (5clicks)
+// var clicksRose = 0
+// document.getElementById('rose').onclick = function(e){
+//     clicksRose += 1;
+//     // //console.log(clicksRose)
+//     //this is to avoid zoom in with doubleClick if rose is clicked too quickly
+//     map.doubleClickZoom.disable();
+//     setTimeout(function(){
+//       map.doubleClickZoom.enable();
+//
+//     },200)
+//     //console.log('deflated',deflated)
+//     var toRemoveDeflated = deflated._layers
+//     //console.log('toremovedeflated',toRemoveDeflated)
+//
+//       if(clicksRose == 5){ //this is to refresh the carto layer
+//         // document.getElementById("Alert").style.fontSize = "40px";
+//         // document.getElementById('Alert').innerHTML = '<br>⌛'
+//         // document.getElementById("Alert").style.display = 'initial'
+//
+//
+//         setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
+//           if(clicksRose < 7){ //this is to check that the user actually want to click 5 times, not 10
+//             document.getElementById("Alert").style.fontSize = "40px";
+//             document.getElementById('Alert').innerHTML = '<br>🔄'
+//             document.getElementById("Alert").style.display = 'initial'
+//               setTimeout(function(){
+//                 document.getElementById("Alert").style.display = 'none'
+//              },1000)
+//             //console.log('refreshed')
+//
+//             for (i = 0; i < deflated._layers.length; i++) { // not the optimal solution, but couldn't find the way to empty deflated
+//               try{ // because array not starts with 1,2,3
+//                 deflated.removeLayer(deflated._layers[i])
+//                 //console.log('forr ',i)
+//               }catch(e){}
+//             }
+//             //sqlquery specified below to avoid interferance with SELECT after INSERT
+//             sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date, commentone, commentoneaudioavailable FROM lumblu"
+//             getGeoJSON()
+//             // location.reload();
+//
+//
+//           clicksRose = 0;
+//         }
+//       },2000)
+//       return clicksRose
+//
+//       }
+//       if(clicksRose == 10){ //this is to download the feature collection from the local storage
+//         // document.getElementById("Alert").style.fontSize = "40px";
+//         // document.getElementById('Alert').innerHTML = '<br>⌛'
+//         // document.getElementById("Alert").style.display = 'initial'
+//         setTimeout(function(){
+//
+//             if(clicksRose < 12){
+//               document.getElementById("Alert").style.fontSize = "40px";
+//               document.getElementById('Alert').innerHTML = '<br>📥'
+//               document.getElementById("Alert").style.display = 'initial'
+//                 setTimeout(function(){
+//                   document.getElementById("Alert").style.display = 'none'
+//                },1000)
+//               clicksRose = 0;
+//               //here we convert the multiple features into a featureCollection ready to be used in a GIS (geojson). Simply adding string before and after
+//               var geojsonToString = JSON.stringify(groupGeoJSON)
+//               // var featureCollectionToExport = "{'type': 'FeatureCollection','features':"+ geojsonToString + '}'
+//               var featureCollectionToExport = '{"type": "FeatureCollection","features":'+ geojsonToString + '}'
+//
+//
+//               console.log(featureCollectionToExport)
+//               var dataToExport = 'data:text/json;charset=utf-8,' + encodeURIComponent(featureCollectionToExport);
+//               //console.log(convertedData)
+//
+//               //to get the date and timeout
+//               var randomNumber = Math.random();
+//               randomNumber = randomNumber * 10000;
+//               var randomID = Math.round(randomNumber);
+//               //here the datetime
+//               var timeEnd = new Date();
+//               var date = timeEnd.getFullYear() + '-' + (timeEnd.getMonth() + 1) + '-' + timeEnd.getDate();
+//               var time = timeEnd.getHours() + ":" + timeEnd.getMinutes() + ":" + timeEnd.getSeconds();
+//               var dateTime = date + 'T' + time + 'Z';
+//               dateTimeRandomID = 'Exported ' + dateTime + ' RandomID:' + randomID;
+//               dateTimeRandomID.toString();
+//
+//
+//               var toDownloadGeoJSON = document.createElement('a');
+//               toDownloadGeoJSON.setAttribute('href', dataToExport);
+//               toDownloadGeoJSON.setAttribute('download', dateTimeRandomID+'.geojson');
+//               document.body.appendChild(toDownloadGeoJSON); // required for firefox
+//               toDownloadGeoJSON.click();
+//               toDownloadGeoJSON.remove();
+//             }
+//           },2000)
+//       }
+//       if(clicksRose == 20){ //this is to show the download tiles buttons
+//
+//         // setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
+//         //   if(clicksRose < 12){
+//             document.getElementById("Alert").style.display = 'none'
+//             // clicksRose = 0;
+//             offlineControlGoogle.addTo(map);
+//             offlineControlOSM.addTo(map);
+//             clicksRose = 0;
+//       //     }
+//       // },2000)
+//       return clicksRose
+//
+//       }
+//
+//       setTimeout(function(){ //this is to refresh click counts, so they don't accumulate
+//         clicksRose = 0;
+//       },20000)
+//
+//   return clicksRose && sqlQuery
+// }
+
+
 var rose = L.control.rose('rose', {
     position: 'topleft',
     icon: 'nautical',
@@ -2267,6 +2393,12 @@ document.getElementById('rose').style.marginBottom = '5px' // to avoid extra mar
 
 // script to show the download tiles buttons (10clicks) and/or reload cartolayer (5clicks)
 var clicksRose = 0
+
+var divForButtons
+var buttonForDownloadTiles
+var buttonForExportGeometries
+var buttonForImportGeometries
+var buttonForHideAll
 document.getElementById('rose').onclick = function(e){
     clicksRose += 1;
     // //console.log(clicksRose)
@@ -2287,7 +2419,7 @@ document.getElementById('rose').onclick = function(e){
 
 
         setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
-          if(clicksRose < 7){ //this is to check that the user actually want to click 5 times, not 10
+          if(clicksRose == 5){ //this is to check that the user actually want to click 5 times, not 10
             document.getElementById("Alert").style.fontSize = "40px";
             document.getElementById('Alert').innerHTML = '<br>🔄'
             document.getElementById("Alert").style.display = 'initial'
@@ -2314,66 +2446,152 @@ document.getElementById('rose').onclick = function(e){
       return clicksRose
 
       }
-      if(clicksRose == 10){ //this is to download the feature collection from the local storage
+      if(clicksRose >= 10){ //this is to download the feature collection from the local storage
         // document.getElementById("Alert").style.fontSize = "40px";
         // document.getElementById('Alert').innerHTML = '<br>⌛'
         // document.getElementById("Alert").style.display = 'initial'
-        setTimeout(function(){
+        // setTimeout(function(){
+        console.log('buttons loaded')
+        document.getElementById("map").style.height = "0px";
+        // document.getElementById("divForButtons").style.display = 'initial'
+        // document.getElementById("divForButtons").style.width = '100%'
+        // document.getElementById("divForButtons").style.height = '100%'
 
-            if(clicksRose < 12){
-              document.getElementById("Alert").style.fontSize = "40px";
-              document.getElementById('Alert').innerHTML = '<br>📥'
-              document.getElementById("Alert").style.display = 'initial'
-                setTimeout(function(){
-                  document.getElementById("Alert").style.display = 'none'
-               },1000)
-              clicksRose = 0;
-              //here we convert the multiple features into a featureCollection ready to be used in a GIS (geojson). Simply adding string before and after
-              var geojsonToString = JSON.stringify(groupGeoJSON)
-              // var featureCollectionToExport = "{'type': 'FeatureCollection','features':"+ geojsonToString + '}'
-              var featureCollectionToExport = '{"type": "FeatureCollection","features":'+ geojsonToString + '}'
+        var divForButtons = document.createElement('div')
+        document.body.appendChild(divForButtons)
+        divForButtons.className = 'gridCellForImportExportButtons'
 
 
-              console.log(featureCollectionToExport)
-              var dataToExport = 'data:text/json;charset=utf-8,' + encodeURIComponent(featureCollectionToExport);
-              //console.log(convertedData)
+        buttonForHideAll = document.createElement("BUTTON");
+        divForButtons.appendChild(buttonForHideAll);
+        buttonForHideAll.className = 'hiddenButtons'
+        buttonForHideAll.innerHTML = '<img src="images/arrowLeft.png" style="width:50px ; height:50px; border: 0px solid white" />';
+        buttonForHideAll.style.borderColor = 'black'
+        buttonForHideAll.style.gridColumn = '1'
+        buttonForHideAll.style.gridRow = '4';
 
-              //to get the date and timeout
-              var randomNumber = Math.random();
-              randomNumber = randomNumber * 10000;
-              var randomID = Math.round(randomNumber);
-              //here the datetime
-              var timeEnd = new Date();
-              var date = timeEnd.getFullYear() + '-' + (timeEnd.getMonth() + 1) + '-' + timeEnd.getDate();
-              var time = timeEnd.getHours() + ":" + timeEnd.getMinutes() + ":" + timeEnd.getSeconds();
-              var dateTime = date + 'T' + time + 'Z';
-              dateTimeRandomID = 'Exported ' + dateTime + ' RandomID:' + randomID;
-              dateTimeRandomID.toString();
+        buttonForDownloadTiles = document.createElement("BUTTON");
+        divForButtons.appendChild(buttonForDownloadTiles);
+        buttonForDownloadTiles.className = 'hiddenButtons'
+        buttonForDownloadTiles.innerHTML = 'Download map tiles';
+        buttonForDownloadTiles.style.borderColor = 'black'
+        buttonForDownloadTiles.style.gridColumn = '2'
+        buttonForDownloadTiles.style.gridRow = '4';
+
+        buttonForExportGeometries = document.createElement("BUTTON");
+        divForButtons.appendChild(buttonForExportGeometries);
+        buttonForExportGeometries.className = 'hiddenButtons'
+        buttonForExportGeometries.innerHTML = 'Download Contributions (geoJSON)';
+        buttonForExportGeometries.style.borderColor = 'black'
+        buttonForExportGeometries.style.gridColumn = '1'
+        buttonForExportGeometries.style.gridRow = '5';
+
+        buttonForImportGeometries = document.createElement("BUTTON");
+        divForButtons.appendChild(buttonForImportGeometries);
+        buttonForImportGeometries.className = 'hiddenButtons'
+        buttonForImportGeometries.innerHTML = 'Import data (geoJSON)';
+        buttonForImportGeometries.style.borderColor = 'black'
+        buttonForImportGeometries.style.gridColumn = '2'
+        buttonForImportGeometries.style.gridRow = '5';
 
 
-              var toDownloadGeoJSON = document.createElement('a');
-              toDownloadGeoJSON.setAttribute('href', dataToExport);
-              toDownloadGeoJSON.setAttribute('download', dateTimeRandomID+'.geojson');
-              document.body.appendChild(toDownloadGeoJSON); // required for firefox
-              toDownloadGeoJSON.click();
-              toDownloadGeoJSON.remove();
-            }
-          },2000)
+
+      buttonForDownloadTiles.onclick = function(){
+        clicksRose = 0;
+
+
+        buttonForDownloadTiles.style.display = 'none'
+        buttonForExportGeometries.style.display = 'none'
+        buttonForImportGeometries.style.display = 'none'
+        buttonForHideAll.style.display = 'none'
+        divForButtons.style.display = 'none'
+        document.getElementById("Alert").style.display = 'none'
+                document.getElementById("map").style.height = "100%";
+
+        // clicksRose = 0;
+        offlineControlGoogle.addTo(map);
+        offlineControlOSM.addTo(map);
+        clicksRose = 0;
       }
-      if(clicksRose == 20){ //this is to show the download tiles buttons
+      buttonForExportGeometries.onclick = function(){
+        clicksRose = 0;
 
-        // setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
-        //   if(clicksRose < 12){
+        buttonForExportGeometries.style.display = 'none'
+        buttonForImportGeometries.style.display = 'none'
+        buttonForHideAll.style.display = 'none'
+        divForButtons.style.display = 'none'
+
+        document.getElementById("map").style.height = "100%";
+
+        document.getElementById("Alert").style.fontSize = "40px";
+        document.getElementById('Alert').innerHTML = '<br>📥'
+        document.getElementById("Alert").style.display = 'initial'
+          setTimeout(function(){
             document.getElementById("Alert").style.display = 'none'
-            // clicksRose = 0;
-            offlineControlGoogle.addTo(map);
-            offlineControlOSM.addTo(map);
-            clicksRose = 0;
-      //     }
-      // },2000)
-      return clicksRose
+         },1000)
+        clicksRose = 0;
+        //here we convert the multiple features into a featureCollection ready to be used in a GIS (geojson). Simply adding string before and after
+        var geojsonToString = JSON.stringify(groupGeoJSON)
+        // var featureCollectionToExport = "{'type': 'FeatureCollection','features':"+ geojsonToString + '}'
+        var featureCollectionToExport = '{"type": "FeatureCollection","features":'+ geojsonToString + '}'
+
+
+        console.log(featureCollectionToExport)
+        var dataToExport = 'data:text/json;charset=utf-8,' + encodeURIComponent(featureCollectionToExport);
+        //console.log(convertedData)
+
+        //to get the date and timeout
+        var randomNumber = Math.random();
+        randomNumber = randomNumber * 10000;
+        var randomID = Math.round(randomNumber);
+        //here the datetime
+        var timeEnd = new Date();
+        var date = timeEnd.getFullYear() + '-' + (timeEnd.getMonth() + 1) + '-' + timeEnd.getDate();
+        var time = timeEnd.getHours() + ":" + timeEnd.getMinutes() + ":" + timeEnd.getSeconds();
+        var dateTime = date + 'T' + time + 'Z';
+        dateTimeRandomID = 'Exported ' + dateTime + ' RandomID:' + randomID;
+        dateTimeRandomID.toString();
+
+
+        var toDownloadGeoJSON = document.createElement('a');
+        toDownloadGeoJSON.setAttribute('href', dataToExport);
+        toDownloadGeoJSON.setAttribute('download', dateTimeRandomID+'.geojson');
+        document.body.appendChild(toDownloadGeoJSON); // required for firefox
+        toDownloadGeoJSON.click();
+        toDownloadGeoJSON.remove();
+      }
+
+      buttonForImportGeometries.onclick = function(){
+        clicksRose = 0;
+
+        document.getElementById("Alert").style.fontSize = "20px";
+        document.getElementById('Alert').innerHTML = 'import under development'
+        document.getElementById("Alert").style.display = 'initial'
+          setTimeout(function(){
+            document.getElementById("Alert").style.display = 'none'
+         },3000)
+      }
+      buttonForHideAll.onclick = function(){
+        clicksRose = 0;
+
+        buttonForDownloadTiles.style.display = 'none'
+        try{
+          offlineControlGoogle.removeFrom(map);
+          offlineControlOSM.removeFrom(map);
+        }catch(e){}
+
+
+        buttonForExportGeometries.style.display = 'none'
+        buttonForImportGeometries.style.display = 'none'
+        buttonForHideAll.style.display = 'none'
+        divForButtons.style.display = 'none'
+
+        document.getElementById("map").style.height = "100%";
+
 
       }
+
+    }
 
       setTimeout(function(){ //this is to refresh click counts, so they don't accumulate
         clicksRose = 0;
