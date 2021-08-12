@@ -6,6 +6,7 @@ var buttonForExportGeometries
 var buttonForImportGeometries
 var buttonForHideAll
 var choosefile
+var readfile
 document.getElementById('rose').onclick = function(e){
     clicksRose += 1;
     // //console.log(clicksRose)
@@ -93,21 +94,29 @@ document.getElementById('rose').onclick = function(e){
         buttonForExportGeometries.style.gridColumn = '1'
         buttonForExportGeometries.style.gridRow = '5';
 
-        // buttonForImportGeometries = document.createElement("BUTTON");
-        // divForButtons.appendChild(buttonForImportGeometries);
-        // buttonForImportGeometries.className = 'hiddenButtons'
-        // buttonForImportGeometries.innerHTML = 'Import data (geoJSON)';
-        // buttonForImportGeometries.style.borderColor = 'black'
-        // buttonForImportGeometries.style.gridColumn = '2'
-        // buttonForImportGeometries.style.gridRow = '5';
+        // buttonForExportGeometries = document.createElement("BUTTON");
+        // divForButtons.appendChild(buttonForExportGeometries);
+        // buttonForExportGeometries.className = 'hiddenButtons'
+        // buttonForExportGeometries.innerHTML = 'Download Contributions (geoJSON)';
+        // buttonForExportGeometries.style.borderColor = 'black'
+        // buttonForExportGeometries.style.gridColumn = '1'
+        // buttonForExportGeometries.style.gridRow = '5';
 
         buttonForImportGeometries = document.createElement("BUTTON");
         divForButtons.appendChild(buttonForImportGeometries);
         buttonForImportGeometries.className = 'hiddenButtons'
-        buttonForImportGeometries.innerHTML = 'Import data to your map';
+        buttonForImportGeometries.innerHTML = 'Import data (geoJSON)';
         buttonForImportGeometries.style.borderColor = 'black'
         buttonForImportGeometries.style.gridColumn = '2'
         buttonForImportGeometries.style.gridRow = '5';
+        //
+        // readfile = document.createElement("BUTTON");
+        // divForButtons.appendChild(readfile);
+        // readfile.className = 'hiddenButtons'
+        // readfile.innerHTML = 'Import data to your map';
+        // readfile.style.borderColor = 'black'
+        // readfile.style.gridColumn = '2'
+        // readfile.style.gridRow = '5';
 
 
 
@@ -182,7 +191,48 @@ document.getElementById('rose').onclick = function(e){
         choosefile = document.createElement("input");
         buttonForImportGeometries.appendChild(choosefile);
         choosefile.type = 'file'
-        choosefile.className = 'custom-file-input'
+        choosefile.className="custom-file-input"
+        choosefile.id="choosefile"
+        const fileInput = document.getElementById('choosefile');
+        fileInput.onchange = () => {
+          const selectedFile = fileInput.files[0];
+          console.log(selectedFile);
+          // new FileReader object
+          	let reader = new FileReader();
+          	// event fired when file reading finished
+          	reader.addEventListener('load', function(e) {
+          	   // contents of the file
+          	    let text = e.target.result; ///////////////////////////////////////////this is the imported file /////////////////
+          	    // document.querySelector("#file-contents").textContent = text;
+                console.log(text)
+          	});
+          	// event fired when file reading failed
+          	reader.addEventListener('error', function() {
+          	    alert('Error : Failed to read file');
+          	});
+          	// read file as text file
+          	reader.readAsText(selectedFile);
+
+
+        }
+        // document.getElementById("read-button").style.display = 'initial'
+
+        // readfile = document.createElement("BUTTON");
+        // buttonForImportGeometries.appendChild(readfile);
+        // choosefile.accept = '.geojson' !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! and whatsapp!!!!!!!!!!!!!!!!!!!!!
+        // readfile.className = 'custom-file-input'
+
+        // var openFile = function(event) {
+        //     var input = event.target;
+        //
+        //     var reader = new FileReader();
+        //     reader.onload = function(){
+        //       var dataURL = reader.result;
+        //       var output = document.getElementById('output');
+        //       output.src = dataURL;
+        //     };
+        //     reader.readAsDataURL(input.files[0]);
+        //   };
 
 
         // buttonForImportGeometries.click()
@@ -193,6 +243,23 @@ document.getElementById('rose').onclick = function(e){
         //     document.getElementById("Alert").style.display = 'none'
         //  },3000)
       }
+
+
+
+      // function readImage(file) {
+      //   // Check if the file is an image.
+      //   if (file.type && !file.type.startsWith('image/')) {
+      //     console.log('File is not an image.', file.type, file);
+      //     return;
+      //   }
+      //
+      //   const reader = new FileReader();
+      //   reader.addEventListener('load', (event) => {
+      //     img.src = event.target.result;
+      //     console.log('image added!!!!!!')
+      //   });
+      //   reader.readAsDataURL(file);
+      // }
 
       buttonForHideAll.onclick = function(){
         clicksRose = 0;
