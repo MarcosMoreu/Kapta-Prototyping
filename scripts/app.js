@@ -91,6 +91,7 @@ function error(err) {
 }
 //var miniMap
 
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////      first load         /////////////////////////////////////////////////////////////////////////
@@ -108,11 +109,11 @@ var url = window.location.href
 
 
 //to avoid showing gif if tiles not loading while offline
-var removeGifIfOnline = setInterval(function(){
-  if(isOnline == false){
-    document.getElementById('MapLoading').style.display = 'none'
-  }
-},5000)
+// var removeGifIfOnline = setInterval(function(){
+//   if(isOnline == false){
+//     document.getElementById('MapLoading').style.display = 'none'
+//   }
+// },5000)
 
 
 //to check if offline so some elements can be disabled
@@ -467,7 +468,12 @@ else if (urlContainsHash == true){  // if only coords are in the url
 // }
 
 
+//to see the zoom when changing interval
+map.on('zoomend', function(e) {
+  var currentZoom = map.getZoom()
+  console.log(currentZoom)
 
+})
 
 L.Permalink.setup(map);
 
@@ -843,6 +849,7 @@ var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/b
               layers: '2013LANDSAT',
               attribution: 'Leaflet | Landsat Imagery 2013'
           });
+          
 
 
 
@@ -1018,35 +1025,58 @@ document.getElementById("MapLoading").style.display = 'initial'
 //     document.getElementById("Alert").style.display = 'initial'
 // });
 
-
+var returnErrorLatestPlanet = false
 osm.on("load",function() {
-  //console.log("all visible osm tiles have been loaded")
-  // clearInterval(intervalOsm)
-  // document.getElementById("Alert").style.display = 'none'
   document.getElementById("MapLoading").style.display = 'none'
 
-  // osmloaded = true
-  // return osmloaded
+});
+osm.on("tileerror",function() {
+  console.log('error loading tiles')
+  document.getElementById("MapLoading").style.display = 'none'
+  document.getElementById("Alert").style.fontSize = "30px";
+  document.getElementById("Alert").style.textAlign = "center"
+  document.getElementById('Alert').innerHTML = '<br> ❗ 📶 ❗'
+  document.getElementById("Alert").style.display = 'initial'
 });
 googleSat.on("load",function() {
- //console.log("all visible google tiles have been loaded")
- // document.getElementById("Alert").style.display = 'none'
+
  document.getElementById("MapLoading").style.display = 'none'
+});
+googleSat.on("tileerror",function() {
+  console.log('error loading tiles')
+  document.getElementById("MapLoading").style.display = 'none'
+  document.getElementById("Alert").style.fontSize = "30px";
+  document.getElementById("Alert").style.textAlign = "center"
+  document.getElementById('Alert').innerHTML = '<br> ❗ 📶 ❗'
+  document.getElementById("Alert").style.display = 'initial'
 });
 planetScopeMonthlyMosaicLatest.on("load",function() {
   //console.log("all visible planet tiles have been loaded")
   // document.getElementById("Alert").style.display = 'none'
   document.getElementById("MapLoading").style.display = 'none'
-  document.getElementById("Alert").style.fontSize = "20px";
-  document.getElementById('Alert').innerHTML = '🕑<br>☀️🌙'
-  document.getElementById("Alert").style.display = 'initial'
-});
 
-// demo.on('click',function(){
-//   document.getElementById("Alert").style.fontSize = "15px";
-//   document.getElementById('Alert').innerHTML = '⌛'
-//   document.getElementById("Alert").style.display = 'initial';
-// })
+  if(returnErrorLatestPlanet == false){
+    document.getElementById("Alert").style.fontSize = "20px";
+    document.getElementById('Alert').innerHTML = '🕑<br>☀️🌙'
+    document.getElementById("Alert").style.display = 'initial'
+  }else{
+    document.getElementById("Alert").style.fontSize = "30px";
+    document.getElementById("Alert").style.textAlign = "center"
+    document.getElementById('Alert').innerHTML = '<br> ❗ 📶 ❗'
+    document.getElementById("Alert").style.display = 'initial'
+  }
+});
+planetScopeMonthlyMosaicLatest.on("tileerror",function() {
+  console.log('error loading tiles')
+  // clearInterval(checkSliderPosition)
+  document.getElementById("MapLoading").style.display = 'none'
+  // document.getElementById("Alert").style.display = 'none'
+  // document.getElementById("Alert").style.fontSize = "40px";
+  // document.getElementById('Alert').innerHTML = '<br> 📶 ❗'
+  // document.getElementById("Alert").style.display = 'initial'
+  returnErrorLatestPlanet = true
+  return returnErrorLatestPlanet
+});
 
 planetScopeMonthlyMosaicLatestMinus4Months.on("load",function() {
   //console.log("all visible planet tiles have been loaded")
@@ -1055,12 +1085,35 @@ planetScopeMonthlyMosaicLatestMinus4Months.on("load",function() {
   document.getElementById("Alert").style.fontSize = "20px";
   document.getElementById('Alert').innerHTML = '120<br>☀️🌙'
   document.getElementById("Alert").style.display = 'initial'});
+planetScopeMonthlyMosaicLatestMinus4Months.on("tileerror",function() {
+  console.log('error loading tiles')
+  // clearInterval(checkSliderPosition)
+  document.getElementById("MapLoading").style.display = 'none'
+
+  document.getElementById("Alert").style.display = 'none'
+  document.getElementById("Alert").style.fontSize = "30px";
+  document.getElementById("Alert").style.textAlign = "center"
+  document.getElementById('Alert').innerHTML = '<br> ❗ 📶 ❗'
+  document.getElementById("Alert").style.display = 'initial'
+});
+
 planetScopeMonthlyMosaicLatestMinus8Months.on("load",function() {
   //console.log("all visible planet tiles have been loaded")
   document.getElementById("MapLoading").style.display = 'none'
 
   document.getElementById("Alert").style.fontSize = "20px";
   document.getElementById('Alert').innerHTML = '240<br>☀️🌙'
+  document.getElementById("Alert").style.display = 'initial'
+});
+planetScopeMonthlyMosaicLatestMinus8Months.on("tileerror",function() {
+  console.log('error loading tiles')
+  // clearInterval(checkSliderPosition)
+  document.getElementById("MapLoading").style.display = 'none'
+
+  document.getElementById("Alert").style.display = 'none'
+  document.getElementById("Alert").style.fontSize = "30px";
+  document.getElementById("Alert").style.textAlign = "center"
+  document.getElementById('Alert').innerHTML = '<br> ❗ 📶 ❗'
   document.getElementById("Alert").style.display = 'initial'
 });
 planetScopeMonthlyMosaic1YearAgo.on("load",function() {
@@ -1071,12 +1124,34 @@ planetScopeMonthlyMosaic1YearAgo.on("load",function() {
   document.getElementById('Alert').innerHTML = '365<br>☀️🌙'
   document.getElementById("Alert").style.display = 'initial'
 });
+planetScopeMonthlyMosaic1YearAgo.on("tileerror",function() {
+  console.log('error loading tiles')
+  // clearInterval(checkSliderPosition)
+  document.getElementById("MapLoading").style.display = 'none'
+
+  document.getElementById("Alert").style.display = 'none'
+  document.getElementById("Alert").style.fontSize = "30px";
+  document.getElementById("Alert").style.textAlign = "center"
+  document.getElementById('Alert').innerHTML = '<br> ❗ 📶 ❗'
+  document.getElementById("Alert").style.display = 'initial'
+});
 planetMosaicLatestMinus2Years.on("load",function() {
   //console.log("all visible planet tiles have been loaded")
   document.getElementById("MapLoading").style.display = 'none'
 
   document.getElementById("Alert").style.fontSize = "20px";
   document.getElementById('Alert').innerHTML = '2<br>☀️🌎'
+  document.getElementById("Alert").style.display = 'initial'
+});
+planetMosaicLatestMinus2Years.on("tileerror",function() {
+  console.log('error loading tiles')
+  // clearInterval(checkSliderPosition)
+  document.getElementById("MapLoading").style.display = 'none'
+
+  document.getElementById("Alert").style.display = 'none'
+  document.getElementById("Alert").style.fontSize = "30px";
+  document.getElementById("Alert").style.textAlign = "center"
+  document.getElementById('Alert').innerHTML = '<br> ❗ 📶 ❗'
   document.getElementById("Alert").style.display = 'initial'
 });
 planetMosaicLatestMinus3Years.on("load",function() {
@@ -1087,12 +1162,35 @@ planetMosaicLatestMinus3Years.on("load",function() {
   document.getElementById('Alert').innerHTML = '2015<br>'
   document.getElementById("Alert").style.display = 'initial'
 });
+planetMosaicLatestMinus3Years.on("tileerror",function() {
+  console.log('error loading tiles')
+  // clearInterval(checkSliderPosition)
+  document.getElementById("MapLoading").style.display = 'none'
+
+  document.getElementById("Alert").style.display = 'none'
+  document.getElementById("Alert").style.fontSize = "30px";
+  document.getElementById("Alert").style.textAlign = "center"
+  document.getElementById('Alert').innerHTML = '<br> ❗ 📶 ❗'
+  document.getElementById("Alert").style.display = 'initial'
+});
 planetMosaicLatestMinus5Years.on("load",function() {
   //console.log("all visible planet tiles have been loaded")
   document.getElementById("MapLoading").style.display = 'none'
 
   document.getElementById("Alert").style.fontSize = "20px";
   document.getElementById('Alert').innerHTML = '2013<br>'
+  document.getElementById("Alert").style.display = 'initial'
+
+});
+planetMosaicLatestMinus5Years.on("tileerror",function() {
+  console.log('error loading tiles')
+  // clearInterval(checkSliderPosition)
+  document.getElementById("MapLoading").style.display = 'none'
+
+  document.getElementById("Alert").style.display = 'none'
+  document.getElementById("Alert").style.fontSize = "30px";
+  document.getElementById("Alert").style.textAlign = "center"
+  document.getElementById('Alert').innerHTML = '<br> ❗ 📶 ❗'
   document.getElementById("Alert").style.display = 'initial'
 });
 
@@ -1250,9 +1348,9 @@ var planet_Button = L.easyButton({
 
             /////////////////////// to load planet tiles manually  /////////////
             document.getElementById('myRange').style.display = 'initial'
-            document.getElementById("Alert").style.fontSize = "20px";
-            document.getElementById('Alert').innerHTML = '🕑<br>☀️🌙'
-            document.getElementById("Alert").style.display = 'initial'
+            // document.getElementById("Alert").style.fontSize = "20px";
+            // document.getElementById('Alert').innerHTML = '🕑<br>☀️🌙'
+            // document.getElementById("Alert").style.display = 'initial'
 
             setInterval(checkSliderPosition,200)
 
@@ -1374,6 +1472,7 @@ planet_Button.button.style.backgroundColor = 'black';
 //imagery Slider
 
 
+
   var slider = document.getElementById("myRange");
   var output = document.getElementById("demo");
   slider.value = 100; // Display the default slider value
@@ -1430,6 +1529,11 @@ var checkSliderPosition = function() { /////////////////////////////////////////
               // document.getElementById("Alert").style.fontSize = "25px";
               // document.getElementById('Alert').innerHTML = '<br>⌛'
               document.getElementById("MapLoading").style.display = 'initial'
+              var currentZoom = map.getZoom()
+              if(currentZoom <= 6){
+                // console.log(currentZoom)
+                map.setZoom(8)
+              }
               break
           case (output.innerHTML < 25):
               this.value = 17 // this is to locate the circle in a specific position
