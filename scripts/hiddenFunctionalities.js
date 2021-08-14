@@ -7,6 +7,7 @@ var buttonForImportGeometries
 var buttonForHideAll
 var choosefile
 var readfile
+var processAndAddToMap
 document.getElementById('rose').onclick = function(e){
     clicksRose += 1;
     // //console.log(clicksRose)
@@ -81,7 +82,7 @@ document.getElementById('rose').onclick = function(e){
         buttonForDownloadTiles = document.createElement("BUTTON");
         divForButtons.appendChild(buttonForDownloadTiles);
         buttonForDownloadTiles.className = 'hiddenButtons'
-        buttonForDownloadTiles.innerHTML = 'Download map tiles';
+        buttonForDownloadTiles.innerHTML = 'Store map tiles for offline use';
         buttonForDownloadTiles.style.borderColor = 'black'
         buttonForDownloadTiles.style.gridColumn = '2'
         buttonForDownloadTiles.style.gridRow = '4';
@@ -89,7 +90,7 @@ document.getElementById('rose').onclick = function(e){
         buttonForExportGeometries = document.createElement("BUTTON");
         divForButtons.appendChild(buttonForExportGeometries);
         buttonForExportGeometries.className = 'hiddenButtons'
-        buttonForExportGeometries.innerHTML = 'Download Contributions (geoJSON)';
+        buttonForExportGeometries.innerHTML = 'Download Contributions (geoJSON) to add in a GIS';
         buttonForExportGeometries.style.borderColor = 'black'
         buttonForExportGeometries.style.gridColumn = '1'
         buttonForExportGeometries.style.gridRow = '5';
@@ -105,7 +106,7 @@ document.getElementById('rose').onclick = function(e){
         buttonForImportGeometries = document.createElement("BUTTON");
         divForButtons.appendChild(buttonForImportGeometries);
         buttonForImportGeometries.className = 'hiddenButtons'
-        buttonForImportGeometries.innerHTML = 'Import data (geoJSON)';
+        buttonForImportGeometries.innerHTML = 'Import data: geoJSON or txt';
         buttonForImportGeometries.style.borderColor = 'black'
         buttonForImportGeometries.style.gridColumn = '2'
         buttonForImportGeometries.style.gridRow = '5';
@@ -187,12 +188,22 @@ document.getElementById('rose').onclick = function(e){
 
       buttonForImportGeometries.onclick = function(){
         clicksRose = 0;
-        buttonForImportGeometries.innerHTML = null
+        // buttonForImportGeometries.innerHTML = null
         choosefile = document.createElement("input");
-        buttonForImportGeometries.appendChild(choosefile);
+        divForButtons.appendChild(choosefile);
         choosefile.type = 'file'
         choosefile.className="custom-file-input"
         choosefile.id="choosefile"
+        // choosefile.accept = '.geojson' !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! and whatsapp!!!!!!!!!!!!!!!!!!!!!
+        choosefile.style.gridColumn = '1'
+
+        choosefile.style.gridRow = '6';
+        choosefile.style.color = 'white'
+        // choosefile.style.content = 'Click & browse'
+        setTimeout(function(){
+          choosefile.click()
+        },300)
+
         const fileInput = document.getElementById('choosefile');
         fileInput.onchange = () => {
           const selectedFile = fileInput.files[0];
@@ -205,6 +216,15 @@ document.getElementById('rose').onclick = function(e){
           	    let text = e.target.result; ///////////////////////////////////////////this is the imported file /////////////////
           	    // document.querySelector("#file-contents").textContent = text;
                 console.log(text)
+                // buttonForImportGeometries.disabled = true
+                choosefile.style.color = 'black'
+                processAndAddToMap = document.createElement("BUTTON");
+                divForButtons.appendChild(processAndAddToMap);
+                processAndAddToMap.className="hiddenButtons"
+                processAndAddToMap.innerHTML = 'Add to map';
+                processAndAddToMap.style.borderColor = 'green'
+                processAndAddToMap.style.gridColumn = '2'
+                processAndAddToMap.style.gridRow = '6';
           	});
           	// event fired when file reading failed
           	reader.addEventListener('error', function() {
@@ -212,54 +232,9 @@ document.getElementById('rose').onclick = function(e){
           	});
           	// read file as text file
           	reader.readAsText(selectedFile);
-
-
         }
-        // document.getElementById("read-button").style.display = 'initial'
 
-        // readfile = document.createElement("BUTTON");
-        // buttonForImportGeometries.appendChild(readfile);
-        // choosefile.accept = '.geojson' !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! and whatsapp!!!!!!!!!!!!!!!!!!!!!
-        // readfile.className = 'custom-file-input'
-
-        // var openFile = function(event) {
-        //     var input = event.target;
-        //
-        //     var reader = new FileReader();
-        //     reader.onload = function(){
-        //       var dataURL = reader.result;
-        //       var output = document.getElementById('output');
-        //       output.src = dataURL;
-        //     };
-        //     reader.readAsDataURL(input.files[0]);
-        //   };
-
-
-        // buttonForImportGeometries.click()
-        // document.getElementById("Alert").style.fontSize = "20px";
-        // document.getElementById('Alert').innerHTML = 'import under development'
-        // document.getElementById("Alert").style.display = 'initial'
-        //   setTimeout(function(){
-        //     document.getElementById("Alert").style.display = 'none'
-        //  },3000)
       }
-
-
-
-      // function readImage(file) {
-      //   // Check if the file is an image.
-      //   if (file.type && !file.type.startsWith('image/')) {
-      //     console.log('File is not an image.', file.type, file);
-      //     return;
-      //   }
-      //
-      //   const reader = new FileReader();
-      //   reader.addEventListener('load', (event) => {
-      //     img.src = event.target.result;
-      //     console.log('image added!!!!!!')
-      //   });
-      //   reader.readAsDataURL(file);
-      // }
 
       buttonForHideAll.onclick = function(){
         clicksRose = 0;
@@ -268,6 +243,10 @@ document.getElementById('rose').onclick = function(e){
         try{
           offlineControlGoogle.removeFrom(map);
           offlineControlOSM.removeFrom(map);
+          buttonForImportGeometries.disabled = false
+          choosefile.style.display = 'none'
+          processAndAddToMap.style.display = 'none'
+
         }catch(e){}
 
 
@@ -277,10 +256,7 @@ document.getElementById('rose').onclick = function(e){
         divForButtons.style.display = 'none'
 
         document.getElementById("map").style.height = "100%";
-
-
       }
-
     }
 
       setTimeout(function(){ //this is to refresh click counts, so they don't accumulate
