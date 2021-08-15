@@ -283,8 +283,8 @@ var localStorageToGeoJSON = function(){
                          myLayer_Button.button.disabled = true;
                          filter_Button.button.style.opacity = '0.4';
                          filter_Button.button.disabled = true;
-                         localStorageRecenter_Button.button.style.opacity = '0.4';
-                         localStorageRecenter_Button.button.disabled = true;
+                         filterLocalStorage_Button.button.style.opacity = '0.4';
+                         filterLocalStorage_Button.button.disabled = true;
 
                          // document.getElementById("deleteFeature").style.display = "initial";
                          // document.getElementById("deleteFeature").style.backgroundColor = 'white';
@@ -342,8 +342,8 @@ var localStorageToGeoJSON = function(){
                               myLayer_Button.button.disabled = true;
                               filter_Button.button.style.opacity = '0.4';
                               filter_Button.button.disabled = true;
-                              localStorageRecenter_Button.button.style.opacity = '0.4';
-                              localStorageRecenter_Button.button.disabled = true;
+                              filterLocalStorage_Button.button.style.opacity = '0.4';
+                              filterLocalStorage_Button.button.disabled = true;
 
 
                               // document.getElementById("deleteFeature").style.display = "initial";
@@ -374,9 +374,9 @@ var localStorageToGeoJSON = function(){
                               if(selectedFeature && selectedFeature != null){ //second condition to avoid click when backDeletefeature... not best solution but works
                               document.getElementById("backDeleteFeature").click() // !!!!!!!!
                                   if(whichLayerIsOn == 'localStorage'){
-                                    localStorageRecenter_Button.addTo(map);
-                                    localStorageRecenter_Button.button.style.opacity = '1';
-                                    localStorageRecenter_Button.button.disabled = false;
+                                    filterLocalStorage_Button.addTo(map);
+                                    filterLocalStorage_Button.button.style.opacity = '1';
+                                    filterLocalStorage_Button.button.disabled = false;
                                     filter_Button.removeFrom(map)
                                   }
 
@@ -397,9 +397,9 @@ var localStorageToGeoJSON = function(){
                                 document.getElementById("backDeleteFeature").click() //!!!!!!!!
                                 if(whichLayerIsOn == 'localStorage'){
 
-                                    localStorageRecenter_Button.addTo(map);
-                                    localStorageRecenter_Button.button.style.opacity = '1';
-                                    localStorageRecenter_Button.button.disabled = false;
+                                    filterLocalStorage_Button.addTo(map);
+                                    filterLocalStorage_Button.button.style.opacity = '1';
+                                    filterLocalStorage_Button.button.disabled = false;
                                     filter_Button.removeFrom(map)
                                 }
                               }
@@ -419,9 +419,9 @@ var localStorageToGeoJSON = function(){
                                 document.getElementById("backDeleteFeature").click() //!!!!!!!!
                                     if(whichLayerIsOn == 'localStorage'){
 
-                                    localStorageRecenter_Button.addTo(map);
-                                    localStorageRecenter_Button.button.style.opacity = '1';
-                                    localStorageRecenter_Button.button.disabled = false;
+                                    filterLocalStorage_Button.addTo(map);
+                                    filterLocalStorage_Button.button.style.opacity = '1';
+                                    filterLocalStorage_Button.button.disabled = false;
                                     filter_Button.removeFrom(map)
                                   }
                               }
@@ -460,7 +460,7 @@ geoJSONLocalforageDB.removeItem(getRandomID)
   document.getElementById('deleteFeatureLocalStorage').style.display = 'none'
   document.getElementById("backDeleteFeature").click()
   document.getElementById('backDeleteFeature').style.display = 'none'
-  localStorageRecenter_Button.addTo(map);
+  filterLocalStorage_Button.addTo(map);
   filter_Button.removeFrom(map)
 
 }

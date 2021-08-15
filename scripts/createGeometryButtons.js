@@ -467,7 +467,7 @@ map.on('draw:created', function(e) {
     //8888888 this is fetched onload instead, to avoid loading time
     created = true;
     drawPolygon.disable();
-    localStorageRecenter_Button.removeFrom(map);
+    filterLocalStorage_Button.removeFrom(map);
     filter_Button.addTo(map)
     filter_Button.button.style.opacity = '0.4';
     filter_Button.button.disabled = true;

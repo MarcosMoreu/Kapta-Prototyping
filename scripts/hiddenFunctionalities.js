@@ -278,8 +278,9 @@ document.getElementById('rose').onclick = function(e){
                 divForButtons.appendChild(processAndAddToMap);
                 processAndAddToMap.className="hiddenButtons"
                 processAndAddToMap.innerHTML = 'Add to map';
-                processAndAddToMap.style.borderColor = 'black'
-                processAndAddToMap.style.backgroundColor = 'blue'
+                processAndAddToMap.style.borderColor = 'blue'
+                processAndAddToMap.style.color = 'blue'
+                processAndAddToMap.style.backgroundColor = 'orange'
                 processAndAddToMap.style.gridColumn = '2'
                 processAndAddToMap.style.gridRow = '5';
 
@@ -323,7 +324,7 @@ document.getElementById('rose').onclick = function(e){
                     processAndAddToMap.innerHTML = 'Added to the map!'
                     setTimeout(function(){
                       location.reload()
-                    },2000)
+                    },1500)
 
                     geometriesUploaded = true
                   }

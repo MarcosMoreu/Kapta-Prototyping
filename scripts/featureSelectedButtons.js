@@ -31,14 +31,14 @@ document.getElementById("backDeleteFeature").onclick = function() {
     myLayer_Button.addTo(map);
     if(whichLayerIsOn == 'localStorage'){
       filter_Button.removeFrom(map)
-      localStorageRecenter_Button.addTo(map)
-      localStorageRecenter_Button.button.style.opacity = '1';
-      localStorageRecenter_Button.button.disabled = false;
+      filterLocalStorage_Button.addTo(map)
+      filterLocalStorage_Button.button.style.opacity = '1';
+      filterLocalStorage_Button.button.disabled = false;
     }else{
-      localStorageRecenter_Button.removeFrom(map);
+      filterLocalStorage_Button.removeFrom(map);
       filter_Button.addTo(map);
     }
-    // localStorageRecenter_Button.addTo(map);
+    // filterLocalStorage_Button.addTo(map);
     // filter_Button.removeFrom(map)
     //removeMiniMap()
     //miniMap.remove();

@@ -125,6 +125,7 @@ setTimeout(function(){
      cache:true,
     url:'scripts/customIcons.js'
   })
+
 },3000)
 
 //to check if offline so some elements can be disabled
@@ -137,7 +138,7 @@ var checkIfOffline = setInterval(function() {
     // filter_Button.button.disabled = true;
     // filter_Button.button.style.opacity = '0.4';
     // filter_Button.button.disabled = true;
-    // localStorageRecenter_Button.addTo(map);
+    // filterLocalStorage_Button.addTo(map);
     // filter_Button.removeFrom(map)
     // myLayer_Button.button.style.backgroundColor = '#00FFFB';
 
@@ -968,6 +969,7 @@ if (isIOS == true) {
     var iconPLANET = '<img src="images/googleHistorical.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-top:2px;margin-left:-3px" > ';
     var iconLAYERS = '<img src="images/myLayerPrivate.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > ';
     var iconFILTER = '<img src="images/filterIcon.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px;margin-top:2px" > ';
+    var iconFILTERlocalStorage = '<img src="images/filterIcon.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px;margin-top:2px" > ';
     var iconRANDOM = '<img src="images/gps.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
     var iconLocalStorageRecenter = '<img src="images/LocalStorageRecenter.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%; margin-left:-5px" > ';
 
@@ -979,6 +981,7 @@ if (isIOS == true) {
     var iconPLANET = '<img src="images/googleHistorical.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-top:2px"> ';
     var iconLAYERS = '<img src="images/myLayerPrivate.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-2px" > ';
     var iconFILTER = '<img src="images/filterIcon.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px;margin-top:2px" > ';
+    var iconFILTERlocalStorage = '<img src="images/filterIcon.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px;margin-top:2px" > ';
     var iconRANDOM = '<img src="images/gps.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
     var iconLocalStorageRecenter = '<img src="images/LocalStorageRecenter.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;"> ';
 
@@ -1239,7 +1242,7 @@ var osm_Button = L.easyButton({
             planet_Button.addTo(map);
             myLayer_Button.addTo(map) //keep this, otherwise the button moves up
             if (whichLayerIsOn == 'localStorage'){
-              localStorageRecenter_Button.addTo(map)
+              filterLocalStorage_Button.addTo(map)
             }else{
               filter_Button.addTo(map);
             }
@@ -1303,7 +1306,7 @@ var googleSat_Button = L.easyButton({
             myLayer_Button.addTo(map) //keep this, otherwise the button moves up
             // if(isOnline == true){
             if (whichLayerIsOn == 'localStorage'){
-              localStorageRecenter_Button.addTo(map)
+              filterLocalStorage_Button.addTo(map)
             }else{
               filter_Button.addTo(map);
             }
@@ -1435,7 +1438,7 @@ var planet_Button = L.easyButton({
             myLayer_Button.addTo(map) //keep this, otherwise the button moves up
             // if(isOnline == true){
             if (whichLayerIsOn == 'localStorage'){
-              localStorageRecenter_Button.addTo(map)
+              filterLocalStorage_Button.addTo(map)
             }else{
               filter_Button.addTo(map);
             }
@@ -1688,7 +1691,7 @@ var myLayer_Button = L.easyButton({
 
 
                     filter_Button.removeFrom(map)
-                    localStorageRecenter_Button.addTo(map);
+                    filterLocalStorage_Button.addTo(map);
 
 
                 }
@@ -1743,7 +1746,7 @@ var myLayer_Button = L.easyButton({
                       clearInterval(refreshClusterBlueColor)
                     }catch(e){}
                 }
-                localStorageRecenter_Button.removeFrom(map);
+                filterLocalStorage_Button.removeFrom(map);
                 filter_Button.addTo(map)
 
                 if(isIOS == false){
@@ -2241,32 +2244,121 @@ gps_Button.button.style.backgroundColor = 'red';
 //gps_Button.addTo(map);
 
 ////console.log(currentLocation[0]ddddddd)
-var localStorageRecenter_Button = L.easyButton({
+var filterLocalStorage_Button = L.easyButton({
     id: 'iconLocalStorageRecenter',
     position: 'topright',
     states: [{
-        icon: iconLocalStorageRecenter,
+        icon: iconFILTERlocalStorage,
         stateName: 'check-mark',
         onClick: function(btn, map) {
 
-            try{
-              var boundsLocalStorageLayer = deflatedLocalStorage.getBounds()
-              map.flyToBounds(boundsLocalStorageLayer)
-            }catch(e){}
+            // try{
+            //   var boundsLocalStorageLayer = deflatedLocalStorage.getBounds()
+            //   map.flyToBounds(boundsLocalStorageLayer)
+            // }catch(e){}
+            //
+            //
+            // }
+            emojiRequest()
+            document.getElementById("backDeleteFeature").style.display = "none";
+            document.getElementById("deleteFeature").style.display = 'none';
+            // document.getElementById("goBackMessagingApps").style.display = "none";
+            // document.getElementById("whatsApp").style.display = "none";
+            // document.getElementById("telegram").style.display = 'none';
+            // document.getElementById("weChat").style.display = "none";
+            document.getElementById("shareMessagingApp").style.display = "none";
+            document.getElementById("randomSuggestion").style.display = "none";
 
+            if(filterIsOn == false){
+              startCheckAttrDateContent = setInterval(checkAttrDateContent,300)
+              //console.log('filterisonfalse')
+              filterIsOn = true
+              myLayer_Button.button.style.opacity = '0.4';
+              myLayer_Button.button.disabled = true;
+              // gps_Button.button.style.opacity = '0.4';
+              // gps_Button.button.disabled = true;
+              filter_Button.button.style.backgroundColor = '#949493';
 
-            }
+              document.getElementById("tutorial").style.display = "none";
+              document.getElementById("polygon").style.display = "none";
+              document.getElementById("polyline").style.display = "none";
+              document.getElementById("point").style.display = "none";
+              document.getElementById("armchair").style.display = "none";
+              document.getElementById("field").style.display = "none";
 
+              if(filterApplied == true){
+                //console.log('filterisonfalse')
 
+                document.getElementById("clearFilter").style.opacity = '1'
+                document.getElementById("clearFilter").disabled = false
+              }else{
+                document.getElementById("clearFilter").style.opacity = '0.4'
+                document.getElementById("clearFilter").disabled = true
+              }
+              document.getElementById("clearFilter").style.display = "initial";
+              document.getElementById("applyFilter").style.display = "initial";
+              document.getElementById("applyFilter").style.opacity = '0.4'
+              document.getElementById("applyFilter").disabled = true
+              document.getElementById("filterByDate").style.display = "initial";
+              document.getElementById("classification").style.display = "initial";
+              document.getElementById("emoji").style.display = "initial";
+              document.getElementById("emoji").disabled = false;
+              document.getElementById("emoji").style.opacity = '1';
+
+              // if(alertAlreadyShown == false){
+              //
+              //   document.getElementById("Alert").style.fontSize = "15px";
+              //   document.getElementById('Alert').innerHTML = 'Filter by attribute only filters exact matches. 🚧 To be improved '
+              //   document.getElementById("Alert").style.display = 'initial'
+              // setTimeout(function(){
+              //   document.getElementById("Alert").style.display = 'none'
+              // },5000)
+              // alertAlreadyShown = true
+              // }
+
+          }else{
+              clearInterval(startCheckAttrDateContent)
+              //console.log('filterisontrue')
+
+              filterIsOn = false
+              myLayer_Button.button.style.opacity = '1';
+              myLayer_Button.button.disabled = false;
+              filter_Button.button.style.opacity = '1';
+              filter_Button.button.disabled = false;
+
+              if(filterApplied == true){ //to avoid that if dilterby date is all, color is not green
+                filter_Button.button.style.backgroundColor = 'green'
+
+              }else{
+                filter_Button.button.style.backgroundColor = 'black'
+                document.getElementById("Alert").style.display = 'none'
+              }
+
+              document.getElementById("tutorial").style.display = "initial";
+              document.getElementById("armchair").style.display = "initial";
+              document.getElementById("field").style.display = "initial";
+              // document.getElementById("polygon").style.display = "initial";
+              // document.getElementById("polyline").style.display = "initial";
+              // document.getElementById("point").style.display = "initial";
+
+              document.getElementById("clearFilter").style.display = "none";
+              document.getElementById("applyFilter").style.display = "none";
+              document.getElementById("filterByDate").style.display = "none";
+              document.getElementById("classification").style.display = "none";
+              document.getElementById("emoji").style.display = "none";
+          }
+
+          return alertAlreadyShown && filterIsOn
+        }
 
     }]
 });
 
-localStorageRecenter_Button.button.style.width = '50px';
-localStorageRecenter_Button.button.style.height = '50px';
-localStorageRecenter_Button.button.style.transitionDuration = '.3s';
-localStorageRecenter_Button.button.style.backgroundColor = 'black';
-localStorageRecenter_Button.removeFrom(map);
+filterLocalStorage_Button.button.style.width = '50px';
+filterLocalStorage_Button.button.style.height = '50px';
+filterLocalStorage_Button.button.style.transitionDuration = '.3s';
+filterLocalStorage_Button.button.style.backgroundColor = '#00FFFB';
+filterLocalStorage_Button.removeFrom(map);
 
 var rose = L.control.rose('rose', {
     position: 'topleft',
