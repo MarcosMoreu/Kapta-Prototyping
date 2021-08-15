@@ -115,6 +115,17 @@ var url = window.location.href
 //   }
 // },5000)
 
+//script to request the HIDDEN FUNCTIONALITIES AND CUSTOM ICONS script 3 secs after load (to improve performance)
+setTimeout(function(){
+  $.getScript({
+     cache:true,
+    url:'scripts/hiddenFunctionalities.js'
+  }),
+  $.getScript({
+     cache:true,
+    url:'scripts/customIcons.js'
+  })
+},3000)
 
 //to check if offline so some elements can be disabled
 var checkIfOffline = setInterval(function() {
@@ -1663,7 +1674,7 @@ var myLayer_Button = L.easyButton({
             // whichLayerIsOn = 'deflated'
             if (whichLayerIsOn == 'deflated' && (localStorageLayer != null || elementJustAddedToLocalStorage ==true)) {
                 deflated.removeFrom(map)
-                if (localStorageLayer != null) {
+                if (localStorageLayer != null || geometriesUploaded == true) {
                     // leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive"
                     // document.getElementsByClassName('.marker-cluster-small').style.backgroundColor = 'rgba(12, 244, 179, 1)'
 

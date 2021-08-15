@@ -8,6 +8,9 @@ var buttonForHideAll
 var choosefile
 var readfile
 var processAndAddToMap
+var geometriesUploaded
+var nameFileAdded
+var buttonForDeleteAllGeom
 document.getElementById('rose').onclick = function(e){
     clicksRose += 1;
     // //console.log(clicksRose)
@@ -56,6 +59,10 @@ document.getElementById('rose').onclick = function(e){
 
       }
       if(clicksRose >= 10){ //this is to download the feature collection from the local storage
+
+        setTimeout(function(){ //this is to refresh click counts, so they don't accumulate
+          clicksRose = 0;
+        },20000)
         // document.getElementById("Alert").style.fontSize = "40px";
         // document.getElementById('Alert').innerHTML = '<br>⌛'
         // document.getElementById("Alert").style.display = 'initial'
@@ -66,50 +73,60 @@ document.getElementById('rose').onclick = function(e){
         // document.getElementById("divForButtons").style.width = '100%'
         // document.getElementById("divForButtons").style.height = '100%'
 
-        var divForButtons = document.createElement('div')
-        document.body.appendChild(divForButtons)
-        divForButtons.className = 'gridCellForImportExportButtons'
+          var divForButtons = document.createElement('div')
+          document.body.appendChild(divForButtons)
+          divForButtons.className = 'gridCellForImportExportButtons'
 
 
-        buttonForHideAll = document.createElement("BUTTON");
-        divForButtons.appendChild(buttonForHideAll);
-        buttonForHideAll.className = 'hiddenButtons'
-        buttonForHideAll.innerHTML = '<img src="images/arrowLeft.png" style="width:50px ; height:50px; border: 0px solid white" />';
-        buttonForHideAll.style.borderColor = 'black'
-        buttonForHideAll.style.gridColumn = '1'
-        buttonForHideAll.style.gridRow = '4';
+          buttonForHideAll = document.createElement("BUTTON");
+          divForButtons.appendChild(buttonForHideAll);
+          buttonForHideAll.className = 'hiddenButtons'
+          buttonForHideAll.innerHTML = '<img src="images/arrowLeft.png" style="width:50px ; height:50px; border: 0px solid white" />';
+          buttonForHideAll.style.borderColor = 'black'
+          buttonForHideAll.style.gridColumn = '1'
+          buttonForHideAll.style.gridRow = '3';
 
-        buttonForDownloadTiles = document.createElement("BUTTON");
-        divForButtons.appendChild(buttonForDownloadTiles);
-        buttonForDownloadTiles.className = 'hiddenButtons'
-        buttonForDownloadTiles.innerHTML = 'Store map tiles for offline use';
-        buttonForDownloadTiles.style.borderColor = 'black'
-        buttonForDownloadTiles.style.gridColumn = '2'
-        buttonForDownloadTiles.style.gridRow = '4';
+          buttonForDownloadTiles = document.createElement("BUTTON");
+          divForButtons.appendChild(buttonForDownloadTiles);
+          buttonForDownloadTiles.className = 'hiddenButtons'
+          buttonForDownloadTiles.innerHTML = 'Store map tiles for offline use';
+          buttonForDownloadTiles.style.borderColor = 'black'
+          buttonForDownloadTiles.style.backgroundColor = 'yellow'
+          buttonForDownloadTiles.style.gridColumn = '2'
+          buttonForDownloadTiles.style.gridRow = '3';
 
-        buttonForExportGeometries = document.createElement("BUTTON");
-        divForButtons.appendChild(buttonForExportGeometries);
-        buttonForExportGeometries.className = 'hiddenButtons'
-        buttonForExportGeometries.innerHTML = 'Download Contributions (geoJSON) to add in a GIS';
-        buttonForExportGeometries.style.borderColor = 'black'
-        buttonForExportGeometries.style.gridColumn = '1'
-        buttonForExportGeometries.style.gridRow = '5';
+          buttonForExportGeometries = document.createElement("BUTTON");
+          divForButtons.appendChild(buttonForExportGeometries);
+          buttonForExportGeometries.className = 'hiddenButtons'
+          buttonForExportGeometries.innerHTML = 'Download Contributions (geoJSON) to add in a GIS';
+          buttonForExportGeometries.style.borderColor = 'black'
+          buttonForExportGeometries.style.backgroundColor = 'pink'
+          buttonForExportGeometries.style.gridColumn = '1'
+          buttonForExportGeometries.style.gridRow = '4';
 
-        // buttonForExportGeometries = document.createElement("BUTTON");
-        // divForButtons.appendChild(buttonForExportGeometries);
-        // buttonForExportGeometries.className = 'hiddenButtons'
-        // buttonForExportGeometries.innerHTML = 'Download Contributions (geoJSON)';
-        // buttonForExportGeometries.style.borderColor = 'black'
-        // buttonForExportGeometries.style.gridColumn = '1'
-        // buttonForExportGeometries.style.gridRow = '5';
+          buttonForImportGeometries = document.createElement("BUTTON");
+          divForButtons.appendChild(buttonForImportGeometries);
+          buttonForImportGeometries.className = 'hiddenButtons'
+          buttonForImportGeometries.innerHTML = 'Import data: geoJSON or txt';
+          buttonForImportGeometries.style.borderColor = 'black'
+          buttonForImportGeometries.style.backgroundColor = 'orange'
+          buttonForImportGeometries.style.gridColumn = '2'
+          buttonForImportGeometries.style.gridRow = '4';
 
-        buttonForImportGeometries = document.createElement("BUTTON");
-        divForButtons.appendChild(buttonForImportGeometries);
-        buttonForImportGeometries.className = 'hiddenButtons'
-        buttonForImportGeometries.innerHTML = 'Import data: geoJSON or txt';
-        buttonForImportGeometries.style.borderColor = 'black'
-        buttonForImportGeometries.style.gridColumn = '2'
-        buttonForImportGeometries.style.gridRow = '5';
+          buttonForDeleteAllGeom = document.createElement("BUTTON");
+          divForButtons.appendChild(buttonForDeleteAllGeom);
+          buttonForDeleteAllGeom.className = 'hiddenButtons'
+          buttonForDeleteAllGeom.innerHTML = 'Delete all geometries';
+          buttonForDeleteAllGeom.style.borderColor = 'black'
+          buttonForDeleteAllGeom.style.backgroundColor = 'red'
+          buttonForDeleteAllGeom.style.gridColumn = '1'
+          buttonForDeleteAllGeom.style.gridRow = '5';
+
+//this is just to avoid that user clicks on button by mistake
+          buttonForHideAll.disabled = true;
+          setTimeout(function(){
+            buttonForHideAll.disabled = false
+          },1000)
         //
         // readfile = document.createElement("BUTTON");
         // divForButtons.appendChild(readfile);
@@ -119,7 +136,27 @@ document.getElementById('rose').onclick = function(e){
         // readfile.style.gridColumn = '2'
         // readfile.style.gridRow = '5';
 
+        buttonForHideAll.onclick = function(){
+          clicksRose = 0;
 
+          try{
+            offlineControlGoogle.removeFrom(map);
+            offlineControlOSM.removeFrom(map);
+            buttonForImportGeometries.disabled = false
+            choosefile.style.display = 'none'
+            processAndAddToMap.style.display = 'none'
+            nameFileAdded.style.display ='none'
+
+          }catch(e){}
+
+          buttonForDownloadTiles.style.display = 'none'
+          buttonForExportGeometries.style.display = 'none'
+          buttonForImportGeometries.style.display = 'none'
+          buttonForHideAll.style.display = 'none'
+          divForButtons.style.display = 'none'
+
+          document.getElementById("map").style.height = "100%";
+        }
 
       buttonForDownloadTiles.onclick = function(){
         clicksRose = 0;
@@ -186,6 +223,23 @@ document.getElementById('rose').onclick = function(e){
         toDownloadGeoJSON.remove();
       }
 
+
+      buttonForDeleteAllGeom.onclick = function(){
+
+        geoJSONLocalforageDB.clear()
+        buttonForDeleteAllGeom.style.color = 'yellow'
+        buttonForDeleteAllGeom.innerHTML = 'All geometries have been removed from the local storage'
+        buttonForDeleteAllGeom.disabled = true
+        buttonForExportGeometries.style.display = 'none'
+        buttonForImportGeometries.style.display = 'none'
+        buttonForHideAll.style.display = 'none'
+        buttonForDownloadTiles.style.display = 'none'
+        // buttonForDeleteAllGeom.style.display ='none'
+        setTimeout(function(){
+          location.reload()
+        },2000)
+      }
+
       buttonForImportGeometries.onclick = function(){
         clicksRose = 0;
         // buttonForImportGeometries.innerHTML = null
@@ -194,14 +248,16 @@ document.getElementById('rose').onclick = function(e){
         choosefile.type = 'file'
         choosefile.className="custom-file-input"
         choosefile.id="choosefile"
-        // choosefile.accept = '.geojson' !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! and whatsapp!!!!!!!!!!!!!!!!!!!!!
+        choosefile.accept = '.geojson, .txt'// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! and whatsapp!!!!!!!!!!!!!!!!!!!!!
         choosefile.style.gridColumn = '1'
 
-        choosefile.style.gridRow = '6';
+        choosefile.style.gridRow = '5';
+        // choosefile.style.fontSize = 'px'
         choosefile.style.color = 'white'
         // choosefile.style.content = 'Click & browse'
         setTimeout(function(){
           choosefile.click()
+          choosefile.remove() // to avoid error when cancel after opening (to not create the choose file button multiple times)
         },300)
 
         const fileInput = document.getElementById('choosefile');
@@ -222,9 +278,58 @@ document.getElementById('rose').onclick = function(e){
                 divForButtons.appendChild(processAndAddToMap);
                 processAndAddToMap.className="hiddenButtons"
                 processAndAddToMap.innerHTML = 'Add to map';
-                processAndAddToMap.style.borderColor = 'green'
+                processAndAddToMap.style.borderColor = 'black'
+                processAndAddToMap.style.backgroundColor = 'blue'
                 processAndAddToMap.style.gridColumn = '2'
-                processAndAddToMap.style.gridRow = '6';
+                processAndAddToMap.style.gridRow = '5';
+
+                nameFileAdded = document.createElement("text");
+                divForButtons.appendChild(nameFileAdded);
+                nameFileAdded.className="hiddenButtons"
+                nameFileAdded.innerHTML = selectedFile.name
+                nameFileAdded.style.fontSize = '10px';
+                nameFileAdded.style.marginTop = '0px'
+                nameFileAdded.style.color = 'blue'
+                nameFileAdded.style.borderColor = 'white'
+                nameFileAdded.style.backgroundColor = 'white'
+                nameFileAdded.style.gridColumn = '2'
+                nameFileAdded.style.gridRow = '6';
+
+                processAndAddToMap.onclick = function(){
+                /////////////////////////   function to read the input file and process and add to map
+                var toGeojson = JSON.parse(text)
+                console.log(toGeojson)
+
+                var lengthGeojson = toGeojson.features.length
+                console.log(lengthGeojson)
+                for(i = 0; i < lengthGeojson; i++){
+                  var feature = toGeojson.features[i]
+                  var featureStringified = JSON.stringify(feature)
+                  geoJSONLocalforageDB.setItem(feature.properties.randomID, featureStringified)
+                  console.log(feature)
+
+                  if(i == lengthGeojson -1){
+                    buttonForExportGeometries.style.display = 'none'
+                    buttonForImportGeometries.style.display = 'none'
+                    buttonForHideAll.style.display = 'none'
+                    buttonForDownloadTiles.style.display = 'none'
+                    buttonForDeleteAllGeom.style.display ='none'
+                    // divForButtons.style.display = 'none'
+
+                    processAndAddToMap.disabled = true
+                    processAndAddToMap.style.borderColor = 'green'
+                    processAndAddToMap.style.backgroundColor = 'green'
+                    processAndAddToMap.style.color = 'black'
+                    processAndAddToMap.innerHTML = 'Added to the map!'
+                    setTimeout(function(){
+                      location.reload()
+                    },2000)
+
+                    geometriesUploaded = true
+                  }
+                }
+
+                }
           	});
           	// event fired when file reading failed
           	reader.addEventListener('error', function() {
@@ -236,32 +341,7 @@ document.getElementById('rose').onclick = function(e){
 
       }
 
-      buttonForHideAll.onclick = function(){
-        clicksRose = 0;
-
-        buttonForDownloadTiles.style.display = 'none'
-        try{
-          offlineControlGoogle.removeFrom(map);
-          offlineControlOSM.removeFrom(map);
-          buttonForImportGeometries.disabled = false
-          choosefile.style.display = 'none'
-          processAndAddToMap.style.display = 'none'
-
-        }catch(e){}
-
-
-        buttonForExportGeometries.style.display = 'none'
-        buttonForImportGeometries.style.display = 'none'
-        buttonForHideAll.style.display = 'none'
-        divForButtons.style.display = 'none'
-
-        document.getElementById("map").style.height = "100%";
-      }
     }
 
-      setTimeout(function(){ //this is to refresh click counts, so they don't accumulate
-        clicksRose = 0;
-      },20000)
-
-  return clicksRose && sqlQuery
+  return clicksRose && sqlQuery && geometriesUploaded
 }
