@@ -87,10 +87,16 @@ document.getElementById("applyFilter").onclick = function(e) {
 
   }else if(whichLayerIsOn == 'localStorage'){
     // The same code, but using ES6 Promises.
+    try{
+      deflatedLocalStorage.clearLayers() ////////this must be out of the loop!!!! otherwise it empties the layer everytime!!!!!
+    }catch(err){
+      console.log(err)
+    }
     geoJSONLocalforageDB.iterate(function(value, key, iterationNumber) {
         // Resulting key/value pair -- this callback
         // will be executed for every item in the
         // database.
+
         console.log([key, value]);
         console.log(value)
         var parsedValue = JSON.parse(value)
@@ -101,8 +107,37 @@ document.getElementById("applyFilter").onclick = function(e) {
         var secondWord = boxContent.split(' ')[1]
 
         if(parsedValue.properties.landUsesEmoji){ //two types of properties to address download or geojsonurl properties names/acronyms
+          //the approach here is to empty the array groupGeoJSON, then add each geometry (that matches the filter) to the array, then call the
+          //function localStorageToGeoJSON at the end of the iteration
           if(parsedValue.properties.landUsesEmoji.includes(firstWord) || parsedValue.properties.landUsesEmoji.includes(secondWord)){
             console.log('filtered')
+            console.log(deflatedLocalStorage)
+            console.log(localStorageLayer)
+
+            isJson(parsedValue)
+            groupGeoJSON.length = 0
+            groupGeoJSON.push(parsedValue)
+            console.log(localStorageLayer)
+            console.log(deflatedLocalStorage)
+            console.log(groupGeoJSON)
+
+
+            localStorageToGeoJSON()
+// localStorageLayer.addTo(deflatedLocalStorage)
+// deflatedLocalStorage.addTo(map)
+
+            // parsedValue.addTo(localStorageLayer)
+
+            // parsedValue.addTo(deflatedLocalStorage)
+          }else{
+            console.log('no match')
+            // selectedFeature.removeFrom(deflatedLocalStorage)
+            // selectedFeature.removeFrom(localStorageLayer)
+            // geoJSONLocalforageDB.getItem(key).then(function (value) {
+
+            // }catch(err){
+            //   console.log(err)
+            // }
           }
 
       }else if(parsedValue.properties.LU){
