@@ -1699,6 +1699,12 @@ var myLayer_Button = L.easyButton({
                     finalLayer.addTo(map)
                 }
                 whichLayerIsOn = 'localStorage'
+                // document.getElementById("Alert").style.fontSize = "20px";
+                document.getElementById("Alert").innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
+                document.getElementById("Alert").style.display = 'initial'
+                setTimeout(function(){
+                  document.getElementById("Alert").style.display = 'none'
+                },1500)
                 // myLayer_Button.button.style.backgroundColor = '#00FFFB';
                 // document.getElementById('myLayerButton').src = 'images/osm.png'
                 if(isIOS == false){
@@ -1717,6 +1723,12 @@ var myLayer_Button = L.easyButton({
               // rose.remove()
               // rose.addTo(map)
                 whichLayerIsOn = 'none'
+                document.getElementById("Alert").innerHTML = '<img src="images/myLayerEmpty.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
+                document.getElementById("Alert").style.display = 'initial'
+                setTimeout(function(){
+                  document.getElementById("Alert").style.display = 'none'
+                },1500)
+
                 deflated.removeFrom(map)
                 filter_Button.button.style.opacity = '0.4';
                 filter_Button.button.disabled = true;
@@ -1739,6 +1751,12 @@ var myLayer_Button = L.easyButton({
 
                 }
                 whichLayerIsOn = 'none'
+                document.getElementById("Alert").innerHTML = '<img src="images/myLayerEmpty.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
+                document.getElementById("Alert").style.display = 'initial'
+                setTimeout(function(){
+                  document.getElementById("Alert").style.display = 'none'
+                },1500)
+
                 //  localStorageLayer.addTo(map)
                 if (finalLayer != null) {
                     finalLayer.removeFrom(map)
@@ -1762,6 +1780,12 @@ var myLayer_Button = L.easyButton({
 
             } else if (whichLayerIsOn == 'none') {
                 whichLayerIsOn = 'deflated'
+                document.getElementById("Alert").innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
+                document.getElementById("Alert").style.display = 'initial'
+                setTimeout(function(){
+                  document.getElementById("Alert").style.display = 'none'
+                },1500)
+
                 if (finalLayer != null) {
                     finalLayer.removeFrom(map)
                 }
@@ -1774,7 +1798,7 @@ var myLayer_Button = L.easyButton({
                   }
                   filter_Button.button.style.opacity = '0.4';
                   filter_Button.button.disabled = true;
-                  myLayer_Button.button.style.borderColor = 'white';
+                  myLayer_Button.button.style.borderColor = 'transparent';
 
                   }else{
                     deflated.addTo(map);
@@ -1792,7 +1816,7 @@ var myLayer_Button = L.easyButton({
                     }
                     filter_Button.button.style.opacity = '1';
                     filter_Button.button.disabled = false;
-                    myLayer_Button.button.style.borderColor = 'white';
+                    myLayer_Button.button.style.borderColor = 'transparent';
 
                   }
 
@@ -1812,7 +1836,7 @@ myLayer_Button.button.style.width = '50px';
 myLayer_Button.button.style.height = '50px';
 myLayer_Button.button.style.transitionDuration = '.3s';
 myLayer_Button.button.style.backgroundColor = 'black';
-myLayer_Button.button.style.border= '1px solid white';
+myLayer_Button.button.style.border= '1px solid transparent';
 
 // myLayer_Button.button.style.borderColor = 'white';
 
@@ -1850,7 +1874,7 @@ var filter_Button = L.easyButton({
             myLayer_Button.button.disabled = true;
             // gps_Button.button.style.opacity = '0.4';
             // gps_Button.button.disabled = true;
-            filter_Button.button.style.backgroundColor = '#949493';
+            // filter_Button.button.style.backgroundColor = '#949493';
 
             document.getElementById("tutorial").style.display = "none";
             document.getElementById("polygon").style.display = "none";
@@ -1862,16 +1886,19 @@ var filter_Button = L.easyButton({
             if(filterApplied == true){
               //console.log('filterisonfalse')
 
+              document.getElementById("clearFilter").style.display = "initial";
               document.getElementById("clearFilter").style.opacity = '1'
               document.getElementById("clearFilter").disabled = false
             }else{
-              document.getElementById("clearFilter").style.opacity = '0.4'
-              document.getElementById("clearFilter").disabled = true
+              // document.getElementById("clearFilter").style.opacity = '0.4'
+              // document.getElementById("clearFilter").disabled = true
+              document.getElementById("clearFilter").style.display = "none";
+              document.getElementById("applyFilter").style.display = "initial";
+              document.getElementById("applyFilter").style.opacity = '0.4'
+              document.getElementById("applyFilter").disabled = true
             }
-            document.getElementById("clearFilter").style.display = "initial";
-            document.getElementById("applyFilter").style.display = "initial";
-            document.getElementById("applyFilter").style.opacity = '0.4'
-            document.getElementById("applyFilter").disabled = true
+            document.getElementById("filterWithIcons").style.display = "initial";
+
             document.getElementById("filterByDate").style.display = "initial";
             document.getElementById("classification").style.display = "initial";
             document.getElementById("emoji").style.display = "initial";
@@ -1900,7 +1927,7 @@ var filter_Button = L.easyButton({
             filter_Button.button.disabled = false;
 
             if(filterApplied == true){ //to avoid that if dilterby date is all, color is not green
-              filter_Button.button.style.backgroundColor = 'green'
+              filter_Button.button.style.borderColor = 'yellow'
 
             }else{
               filter_Button.button.style.backgroundColor = 'black'
@@ -1913,7 +1940,7 @@ var filter_Button = L.easyButton({
             // document.getElementById("polygon").style.display = "initial";
             // document.getElementById("polyline").style.display = "initial";
             // document.getElementById("point").style.display = "initial";
-
+            document.getElementById("filterWithIcons").style.display = "none";
             document.getElementById("clearFilter").style.display = "none";
             document.getElementById("applyFilter").style.display = "none";
             document.getElementById("filterByDate").style.display = "none";
@@ -1947,6 +1974,8 @@ filter_Button.button.style.width = '50px';
 filter_Button.button.style.height = '50px';
 filter_Button.button.style.transitionDuration = '.3s';
 filter_Button.button.style.backgroundColor = 'black';
+filter_Button.button.style.border= '2px solid transparent';
+
 //filter_Button.addTo(map);
 if(isOnline == false){
   filter_Button.button.style.opacity = '0.4';
@@ -2251,6 +2280,7 @@ var filterLocalStorage_Button = L.easyButton({
         icon: iconFILTERlocalStorage,
         stateName: 'check-mark',
         onClick: function(btn, map) {
+          console.log(filterApplied)
 
             // try{
             //   var boundsLocalStorageLayer = deflatedLocalStorage.getBounds()
@@ -2277,7 +2307,7 @@ var filterLocalStorage_Button = L.easyButton({
               myLayer_Button.button.disabled = true;
               // gps_Button.button.style.opacity = '0.4';
               // gps_Button.button.disabled = true;
-              filter_Button.button.style.backgroundColor = '#949493';
+              // filterLocalStorage_Button.button.style.backgroundColor = '#949493';
 
               document.getElementById("tutorial").style.display = "none";
               document.getElementById("polygon").style.display = "none";
@@ -2288,17 +2318,19 @@ var filterLocalStorage_Button = L.easyButton({
 
               if(filterApplied == true){
                 //console.log('filterisonfalse')
-
+                document.getElementById("clearFilter").style.display = "initial";
                 document.getElementById("clearFilter").style.opacity = '1'
                 document.getElementById("clearFilter").disabled = false
               }else{
-                document.getElementById("clearFilter").style.opacity = '0.4'
-                document.getElementById("clearFilter").disabled = true
+                // document.getElementById("clearFilter").style.opacity = '0.4'
+                // document.getElementById("clearFilter").disabled = true
+                document.getElementById("clearFilter").style.display = "none";
+                document.getElementById("applyFilter").style.display = "initial";
+                document.getElementById("applyFilter").style.opacity = '0.4'
+                document.getElementById("applyFilter").disabled = true
               }
-              document.getElementById("clearFilter").style.display = "initial";
-              document.getElementById("applyFilter").style.display = "initial";
-              document.getElementById("applyFilter").style.opacity = '0.4'
-              document.getElementById("applyFilter").disabled = true
+              document.getElementById("filterWithIcons").style.display = "initial";
+
               document.getElementById("filterByDate").style.display = "initial";
               document.getElementById("classification").style.display = "initial";
               document.getElementById("emoji").style.display = "initial";
@@ -2323,11 +2355,11 @@ var filterLocalStorage_Button = L.easyButton({
               filterIsOn = false
               myLayer_Button.button.style.opacity = '1';
               myLayer_Button.button.disabled = false;
-              filter_Button.button.style.opacity = '1';
-              filter_Button.button.disabled = false;
+              filterLocalStorage_Button.button.style.opacity = '1';
+              filterLocalStorage_Button.button.disabled = false;
 
               if(filterApplied == true){ //to avoid that if dilterby date is all, color is not green
-                filter_Button.button.style.backgroundColor = 'green'
+                filterLocalStorage_Button.button.style.borderColor = 'yellow'
 
               }else{
                 filter_Button.button.style.backgroundColor = 'black'
@@ -2340,7 +2372,7 @@ var filterLocalStorage_Button = L.easyButton({
               // document.getElementById("polygon").style.display = "initial";
               // document.getElementById("polyline").style.display = "initial";
               // document.getElementById("point").style.display = "initial";
-
+              document.getElementById("filterWithIcons").style.display = "none";
               document.getElementById("clearFilter").style.display = "none";
               document.getElementById("applyFilter").style.display = "none";
               document.getElementById("filterByDate").style.display = "none";
@@ -2358,6 +2390,8 @@ filterLocalStorage_Button.button.style.width = '50px';
 filterLocalStorage_Button.button.style.height = '50px';
 filterLocalStorage_Button.button.style.transitionDuration = '.3s';
 filterLocalStorage_Button.button.style.backgroundColor = '#00FFFB';
+filterLocalStorage_Button.button.style.border= '2px solid transparent';
+
 filterLocalStorage_Button.removeFrom(map);
 
 var rose = L.control.rose('rose', {

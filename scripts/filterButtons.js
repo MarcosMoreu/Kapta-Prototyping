@@ -13,9 +13,13 @@ var numberOfKeys
 document.getElementById("applyFilter").onclick = function(e) {
 
   if(whichLayerIsOn == 'deflated'){  // to differentiate between filtering carto or localstorage
+    filter_Button.button.style.borderColor = 'yellow'
+
     boxContent = document.getElementById('emojionearea').value;
     var boxContentToShortname = emojione.toShort(boxContent)
     console.log(boxContentToShortname)
+    document.getElementById("applyFilter").style.display = "none";
+    document.getElementById("clearFilter").style.display = "initial";
     document.getElementById("clearFilter").style.opacity = '1'
     document.getElementById("clearFilter").disabled = false
 
@@ -87,8 +91,18 @@ document.getElementById("applyFilter").onclick = function(e) {
 
   }else if(whichLayerIsOn == 'localStorage'){
     // The same code, but using ES6 Promises.
+    filterLocalStorage_Button.button.style.borderColor = 'yellow'
+
+    document.getElementById("applyFilter").style.display = "none";
+    document.getElementById("clearFilter").style.display = "initial";
+    document.getElementById("clearFilter").style.opacity = '1'
+    document.getElementById("clearFilter").disabled = false
+    // document.getElementById("clearFilter").style.opacity = '1'
+    // document.getElementById("clearFilter").disabled = false
     try{
       deflatedLocalStorage.clearLayers() ////////this must be out of the loop!!!! otherwise it empties the layer everytime!!!!!
+      groupGeoJSON.length = 0 // to empty array in case filter is already applied previously
+
     }catch(err){
       console.log(err)
     }
@@ -122,7 +136,6 @@ document.getElementById("applyFilter").onclick = function(e) {
             console.log(groupGeoJSON)
 
 
-            localStorageToGeoJSON()
 // localStorageLayer.addTo(deflatedLocalStorage)
 // deflatedLocalStorage.addTo(map)
 
@@ -144,7 +157,11 @@ document.getElementById("applyFilter").onclick = function(e) {
 
       }
     }).then(function() {
+      localStorageToGeoJSON() // we call the function only at the end of the iteration, once the groupgeojson array is completed
+      filterApplied = true
+
         console.log('Iteration has completed');
+        return filterApplied
     }).catch(function(err) {
         // This code runs if there were any errors
         console.log(err);
@@ -181,10 +198,12 @@ document.getElementById("applyFilter").onclick = function(e) {
 
 //script for remove filters
 document.getElementById("clearFilter").onclick = function(e) {
+  document.getElementById("clearFilter").style.display = "none";
+  document.getElementById("applyFilter").style.display = "initial";
   document.getElementById("applyFilter").style.opacity = '0.4'
   document.getElementById("applyFilter").disabled = true
-  document.getElementById("clearFilter").style.opacity = '0.4'
-  document.getElementById("clearFilter").disabled = true
+  // document.getElementById("clearFilter").style.opacity = '0.4'
+  // document.getElementById("clearFilter").disabled = true
   document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null;
   document.getElementById('emojionearea').value = null
   boxContentFilteringEncoded = null
@@ -195,18 +214,66 @@ document.getElementById("clearFilter").onclick = function(e) {
 
   document.getElementById("Alert").style.display = 'none'
 
-  if(filterApplied == true){
+  if(whichLayerIsOn == 'deflated'){
+    filter_Button.button.style.backgroundColor = 'black'
+    filter_Button.button.style.borderColor = 'transparent'
 
-        try {
-          deflated.clearLayers()  // clearLayers instead of cartoGeometries, as this doesn't contain all geometries after 'sent'
-        //  cartoGeometries.removeFrom(deflated)
-        } catch (err) {
-          // console.log('error sql catched due to empty layer after filter applied  ')
 
-        }
-        sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu"
-        getGeoJSON()
-   }
+    if(filterApplied == true){
+
+          try {
+            deflated.clearLayers()  // clearLayers instead of cartoGeometries, as this doesn't contain all geometries after 'sent'
+          //  cartoGeometries.removeFrom(deflated)
+          } catch (err) {
+            // console.log('error sql catched due to empty layer after filter applied  ')
+
+          }
+          sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu"
+          getGeoJSON()
+     }
+  }else if(whichLayerIsOn == 'localStorage'){
+    filterLocalStorage_Button.button.style.backgroundColor = '#00FFFB'
+    filterLocalStorage_Button.button.style.borderColor = 'transparent'
+
+
+    // try{
+    //   deflatedLocalStorage.clearLayers() ////////this must be out of the loop!!!! otherwise it empties the layer everytime!!!!!
+    //   groupGeoJSON.length = 0 // to empty array in case filter is already applied previously
+    //
+    // }catch(err){
+    //   console.log(err)
+    // }
+    geoJSONLocalforageDB.iterate(function(value, key, iterationNumber) {
+        var parsedValue = JSON.parse(value)
+
+        if(parsedValue.properties.landUsesEmoji){
+          console.log('iteration delete')
+
+            isJson(parsedValue)
+            groupGeoJSON.length = 0
+            groupGeoJSON.push(parsedValue)
+
+
+      }else if(parsedValue.properties.LU){
+
+      }
+    }).then(function() {
+      localStorageToGeoJSON() // we call the function only at the end of the iteration, once the groupgeojson array is completed
+      filterApplied = false
+
+        return filterApplied
+    }).catch(function(err) {
+        // This code runs if there were any errors
+        console.log(err);
+    });
+
+
+
+
+
+
+  }
+
 //  deflated.addTo(map)
   filterApplied = false
   return filterApplied && boxContentFilteringEncoded && period
@@ -272,4 +339,10 @@ document.getElementById("filterByDate").onclick = function(e) {
         //console.log('datePeriodAgoReplaceComaInvert ' + datePeriodAgoReplaceComaInvert);
       }
   return dateFilterValue & period && filterApplied && datePeriodAgoReplaceComaInvert
+}
+
+document.getElementById("filterWithIcons").onclick = function(e) {
+
+
+
 }

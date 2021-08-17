@@ -55,7 +55,7 @@ var cartoGeoJSONLayer = function(data) {
               //  console.log('aFeatureIsSelected true')
               }else{ // this if/else is to ensure that two features can not be selected at the same time
           //    console.log('aFeatureIsSelected false')
-
+              document.getElementById("filterWithIcons").style.display = "none";
               document.getElementById("clearFilter").style.display = "none";
               document.getElementById("applyFilter").style.display = "none";
               document.getElementById("filterByDate").style.display = "none";
