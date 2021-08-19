@@ -591,7 +591,7 @@ document.getElementById('Cancel').onclick = function(e) {
     document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
     myLayer_Button.button.style.opacity = '1';
     myLayer_Button.button.disabled = false;
-    myLayer_Button.button.style.backgroundColor = 'grey';
+    // myLayer_Button.button.style.backgroundColor = 'grey';
 
     gps_Button.button.style.opacity = '1';
     gps_Button.button.disabled = false;

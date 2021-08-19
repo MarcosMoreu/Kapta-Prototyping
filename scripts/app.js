@@ -2280,6 +2280,7 @@ var filterLocalStorage_Button = L.easyButton({
         icon: iconFILTERlocalStorage,
         stateName: 'check-mark',
         onClick: function(btn, map) {
+          groupGeoJSON = [] // to replace groupGeoJSON = newGeom created when new feature added in local storage, which caused and error when applying the filter
           console.log(filterApplied)
 
             // try{

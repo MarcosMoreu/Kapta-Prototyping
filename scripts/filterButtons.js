@@ -125,22 +125,20 @@ document.getElementById("applyFilter").onclick = function(e) {
           //function localStorageToGeoJSON at the end of the iteration
           if(parsedValue.properties.landUsesEmoji.includes(firstWord) || parsedValue.properties.landUsesEmoji.includes(secondWord)){
             console.log('filtered')
-            console.log(deflatedLocalStorage)
-            console.log(localStorageLayer)
 
-            isJson(parsedValue)
-            groupGeoJSON.length = 0
-            groupGeoJSON.push(parsedValue)
-            console.log(localStorageLayer)
-            console.log(deflatedLocalStorage)
-            console.log(groupGeoJSON)
+            try{
+              console.log(value)
+              console.log(iterationNumber)
+              isJson(parsedValue)
+              groupGeoJSON.length = 0
+              groupGeoJSON.push(parsedValue)
 
-
-// localStorageLayer.addTo(deflatedLocalStorage)
-// deflatedLocalStorage.addTo(map)
-
+            }catch(err){
+              console.log(parsedValue, 'error when pushing in iteration')
+            }
+            // localStorageLayer.addTo(deflatedLocalStorage)
+            // deflatedLocalStorage.addTo(map)
             // parsedValue.addTo(localStorageLayer)
-
             // parsedValue.addTo(deflatedLocalStorage)
           }else{
             console.log('no match')
@@ -231,32 +229,47 @@ document.getElementById("clearFilter").onclick = function(e) {
           sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu"
           getGeoJSON()
      }
+
+
   }else if(whichLayerIsOn == 'localStorage'){
     filterLocalStorage_Button.button.style.backgroundColor = '#00FFFB'
     filterLocalStorage_Button.button.style.borderColor = 'transparent'
 
 
-    // try{
-    //   deflatedLocalStorage.clearLayers() ////////this must be out of the loop!!!! otherwise it empties the layer everytime!!!!!
-    //   groupGeoJSON.length = 0 // to empty array in case filter is already applied previously
-    //
-    // }catch(err){
-    //   console.log(err)
-    // }
+    try{
+      deflatedLocalStorage.clearLayers() ////////this must be out of the loop!!!! otherwise it empties the layer everytime!!!!!
+      groupGeoJSON.length = 0 // to empty array in case filter is already applied previously
+
+    }catch(err){
+      console.log(err)
+    }
     geoJSONLocalforageDB.iterate(function(value, key, iterationNumber) {
+
+      try{
         var parsedValue = JSON.parse(value)
-
-        if(parsedValue.properties.landUsesEmoji){
-          console.log('iteration delete')
-
-            isJson(parsedValue)
-            groupGeoJSON.length = 0
-            groupGeoJSON.push(parsedValue)
-
-
-      }else if(parsedValue.properties.LU){
-
+        isJson(parsedValue)
+        // groupGeoJSON.length = 0
+        groupGeoJSON.push(parsedValue)
+      }catch(err){
+        console.log(parsedValue)
       }
+
+
+      //   if(parsedValue.properties.landUsesEmoji){
+      //     // console.log('iteration delete')
+      //
+      //       isJson(parsedValue)
+      //       groupGeoJSON.length = 0
+      //       groupGeoJSON.push(parsedValue)
+      //
+      //
+      // }else if(parsedValue.properties.LU){
+      //   // console.log('iteration delete')
+      //
+      //     isJson(parsedValue)
+      //     groupGeoJSON.length = 0
+      //     groupGeoJSON.push(parsedValue)
+      // }
     }).then(function() {
       localStorageToGeoJSON() // we call the function only at the end of the iteration, once the groupgeojson array is completed
       filterApplied = false
