@@ -63,6 +63,29 @@ var encodeGeoJSON = function(data,properties){
 }
 var dataStringified
 var tempName
+var filesArray = []
+
+var testBlob = null
+document.getElementById('share-download').addEventListener("click", () => {
+  console.log('ddddddddddddddd')
+
+      fetch("images/field.png")
+      .then(function (response) {
+         return response.blob();
+      })
+      .then(function (blob) {
+         // resEle.innerHTML = "blob.size = " + blob.size + "<br>";
+         // resEle.innerHTML += "blob.type = " + blob.type + "<br>";
+         console.log(blob)
+         testBlob = blob
+         console.log(testBlob.type)
+         var nameFile = 'test.png'
+         var file = new File([testBlob],nameFile, {type: testBlob.type });
+         filesArray = [file];
+
+         return testBlob && filesArray
+      });
+   });
 document.getElementById('share-download').onclick = function(e) {
 
     sameSession = true;
@@ -225,6 +248,8 @@ document.getElementById('share-download').onclick = function(e) {
     //     //console.log(blob)
     // }
 
+
+
     //defining the final screen
     setTimeout(function() {
       hideButtons()
@@ -307,7 +332,7 @@ document.getElementById('share-download').onclick = function(e) {
       // var parsedJSONdecoded = decodeURIComponent(convertedDataShareDirect);
       // var parsedJSON = JSON.parse(parsedJSONdecoded)
       // //console.log(parsedJSON)
-    return created && data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType && convertedDataShareDirect && propertiesGeoJSON && tempName && dataStringified && isFirstTime //&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
+    return created && data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType && convertedDataShareDirect && propertiesGeoJSON && tempName && dataStringified && isFirstTime && filesArray //&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
 }
 ////console.log(finalLayer)
 
@@ -359,6 +384,7 @@ var urlZoomWithZX
 var urlZoomX
 var clickedshareMessagingAppsDirect = false
 document.getElementById('shareMessagingAppsDirect').onclick = function(e){
+  console.log(filesArray,'filesarray')
   //to store in localstorage immediately
   // geoJSONLocalforageDB.setItem(tempName, dataStringified)
   // var newGeom = JSON.parse(dataStringified)
@@ -442,22 +468,7 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
     var link = attributes + "\n" + '🗺️ 👇 👇 👇'+ "\n" + 'https://kenya.amappingprototype.xyz/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
     // var url
     // console.log(url)
-    var testBlob = null
-    document.getElementById('armchair').addEventListener("click", () => {
-          fetch("images/armchair.png")
-          .then(function (response) {
-             return response.blob();
-          })
-          .then(function (blob) {
-             // resEle.innerHTML = "blob.size = " + blob.size + "<br>";
-             // resEle.innerHTML += "blob.type = " + blob.type + "<br>";
-             console.log(blob)
-             testBlob = blob
-             return testBlob
-          });
-       });
-    var file = new File([testBlob], "picture.jpg", {type: 'image/jpeg'});
-    var filesArray = [file];
+
       if(navigator.share){
 
         navigator.share({
