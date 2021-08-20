@@ -23,7 +23,7 @@ document.getElementById('rose').onclick = function(e){
     //console.log('deflated',deflated)
     var toRemoveDeflated = deflated._layers
     //console.log('toremovedeflated',toRemoveDeflated)
-      
+
       if(clicksRose == 5){ //this is to refresh the carto layer
         // document.getElementById("Alert").style.fontSize = "40px";
         // document.getElementById('Alert').innerHTML = '<br>⌛'
@@ -140,8 +140,8 @@ document.getElementById('rose').onclick = function(e){
           clicksRose = 0;
 
           try{
-            offlineControlGoogle.removeFrom(map);
-            offlineControlOSM.removeFrom(map);
+            offlineControlGoogle.remove();
+            offlineControlOSM.remove();
             buttonForImportGeometries.disabled = false
             choosefile.style.display = 'none'
             processAndAddToMap.style.display = 'none'
@@ -280,7 +280,7 @@ document.getElementById('rose').onclick = function(e){
                 processAndAddToMap.innerHTML = 'Add to map';
                 processAndAddToMap.style.borderColor = 'blue'
                 processAndAddToMap.style.color = 'blue'
-                processAndAddToMap.style.backgroundColor = 'orange'
+                processAndAddToMap.style.backgroundColor = 'green'
                 processAndAddToMap.style.gridColumn = '2'
                 processAndAddToMap.style.gridRow = '5';
 
