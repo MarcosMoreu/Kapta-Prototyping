@@ -97,19 +97,13 @@ var localStorageToGeoJSON = function(){
                   setTimeout(function() {
                       var imgPopup1 = '<img src="images/omoIcons/' + feature.properties.I1 + '.png"'+ 'height="50px" width="50px" border="2" bordercolor="grey"/>'
 
-                    // var imgPopup2 = '<img src="images/omoIcons/' + feature.properties.I2 + '.png"'+ 'height="50px" width="50px" border="2" bordercolor="grey"/>'
+                    var imgPopup2 = '<img src="images/omoIcons/' + feature.properties.I2 + '.png"'+ 'height="50px" width="50px" border="2" bordercolor="grey"/>'
 
-                    //to put and image of zero dimension in case there isn't such property
-                    if(feature.properties.I2){
-                      var imgPopup2 = '<img src="images/omoIcons/' + feature.properties.I2 + '.png"'+ 'height="50px" width="50px" border="2" bordercolor="grey"/>'
-                    }else{
-                      var imgPopup2 = '<img src="images/omoIcons/ThumbsUp.png"'+ 'height="0px" width="0px" border="0" bordercolor="grey"/>'
-                    }
-
+                    //to add always a thumbs up for those that are always Available
                     if(feature.properties.I3){
                       var imgPopup3 = '<img src="images/omoIcons/' + feature.properties.I3 + '.png"'+ 'height="50px" width="50px" border="2" bordercolor="grey"/>'
                     }else{
-                      var imgPopup3 = '<img src="images/omoIcons/ThumbsUp.png"'+ 'height="0px" width="0px" border="0" bordercolor="grey"/>'
+                      var imgPopup3 = '<img src="images/omoIcons/ThumbsUp.png"'+ 'height="50px" width="50px" border="2" bordercolor="grey"/>'
                     }
 
 
@@ -129,15 +123,26 @@ var localStorageToGeoJSON = function(){
                         if(feature.properties.A){
                           if(feature.properties.A == 'Point' || feature.properties.A == 'Line'){
                             // var imgPopup = '<img src="images/google.png" height="50px" width="50px"/>'
-                            if(feature.properties.I1){ // to distinguish between sapelli attributes or just text
+                            if(feature.properties.I1){
+                              if(feature.properties.I2 && feature.properties.I3){
                                 var popupContent = feature.properties.LU + '</br>' + '</br>'+ imgPopup1 + ' ' +imgPopup2 + ' ' + imgPopup3
-                           }else{
+                              }else if(!feature.properties.I2 && feature.properties.I3){
+                                var popupContent = feature.properties.LU + '</br>' + '</br>'+ imgPopup1 + ' ' + imgPopup3
+                              }else if(feature.properties.I2 && !feature.properties.I3){
+                                
+                              }
+                            }else{
                               var popupContent = feature.properties.LU + '</br>'
                             }
 
                           }else{
                             if(feature.properties.I1){
+                              if(feature.properties.I2){
                                 var popupContent = '📐 ' + '<i>' + feature.properties.A + '</i>' + '</br>' + '</br>' + feature.properties.LU + '</br>'+ '</br>'+ imgPopup1  + ' ' + imgPopup2 + ' ' + imgPopup3
+                              }else{
+                                var popupContent = '📐 ' + '<i>' + feature.properties.A + '</i>' + '</br>' + '</br>' + feature.properties.LU + '</br>'+ '</br>'+ imgPopup1 + ' ' + imgPopup3
+                              }
+
                             }else{
                               var popupContent = '📐 ' + '<i>' + feature.properties.A + '</i>' + '</br>' + '</br>' + feature.properties.LU + '</br>'
                             }
@@ -146,14 +151,24 @@ var localStorageToGeoJSON = function(){
                           if(feature.properties.areaPolygon == 'Point' || feature.properties.areaPolygon == 'Line'){
                             // var imgPopup = '<img src="images/google.png" height="50px" width="50px"/>'
                             if(feature.properties.I1){
+                              if(feature.properties.I2){
                                 var popupContent = feature.properties.landUsesEmoji + '</br>' +'</br>'+ imgPopup1 + ' ' +imgPopup2 + ' ' + imgPopup3
+                              }else{
+                                var popupContent = feature.properties.landUsesEmoji + '</br>' +'</br>'+ imgPopup1 + ' ' + imgPopup3
+                              }
+
                             }else{
                               var popupContent = feature.properties.landUsesEmoji + '</br>'
                             }
 
                           }else{
                             if(feature.properties.I1){
+                              if(feature.properties.I2){
                                 var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.landUsesEmoji + '</br>' + '</br>'+ imgPopup1  + ' ' + imgPopup2 + ' ' + imgPopup3
+                              }else{
+                                var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.landUsesEmoji + '</br>' + '</br>'+ imgPopup1 + ' ' + imgPopup3
+                              }
+
                             }else{
                               var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.landUsesEmoji + '</br>'
                             }

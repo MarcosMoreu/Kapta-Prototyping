@@ -146,7 +146,7 @@ document.getElementById("shareMessagingApp").onclick = function() {
     }
     var urlAfterHash = getSecondPart(window.location.href)
       // window.location.href = 'https://wa.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
-      var link = '🗺️ 👇 👇 👇'+ "\n" + "\n" + 'https://kenya.amappingprototype.xyz/'+'#'+urlAfterHash
+      var link = '🗺️ 👇🏿'+ "\n" + "\n" + 'https://omo.amappingprototype.xyz/'+'#'+urlAfterHash
       if(navigator.share){
         navigator.share({
           text: link,
@@ -165,7 +165,7 @@ document.getElementById("shareMessagingApp").onclick = function() {
     // //console.log(window.location.href)
 
   }else{
-    var link = '🗺️ 👇 👇 👇'+ "\n" + "\n" + window.location.href
+    var link = '🗺️ 👇🏿'+ "\n" + "\n" + window.location.href
     if(navigator.share){
       navigator.share({
         text: link,

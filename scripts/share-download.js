@@ -150,7 +150,7 @@ document.getElementById('share-download').onclick = function(e) {
     //to convert emojis from unicode to short name, before the data is transmitted
     //value of boxcontent is obtained again (was obtained in 'confirm'), in case user click on 'confirm' before filling in the box
     //console.log('issuespecific',issueSpecific)
-    if(issueSpecific == 'emojiNoSapelli'){
+    if(landUse == 'emojiNoSapelli'){
       boxContent = document.getElementById('emojionearea').value;
       var boxContentToShortname = emojione.toShort(boxContent)
       //console.log(boxContent)
@@ -224,6 +224,7 @@ document.getElementById('share-download').onclick = function(e) {
           'screensize':screensize,
           'I1':imageName1,
           'I2':imageName2,
+          'I3':imageName3,
       };
       propertiesGeoJSONURL = {
           'ID': randomID,
@@ -232,6 +233,7 @@ document.getElementById('share-download').onclick = function(e) {
           'L': finalLength2Decimals,
           'I1':imageName1,
           'I2':imageName2,
+          'I3':imageName3,
       };
     }
 
@@ -358,7 +360,7 @@ document.getElementById('goBackClassification').onclick = function(e){
   document.getElementById("shareWorldButtonImage").src = 'images/shareworld.png'
   document.getElementById("shareWorldButton").style.backgroundColor = 'white'
   document.getElementById("shareWorldButton").style.borderColor = 'white'
-  issueSpecific = 'emojiNoSapelli'
+  landUse = 'emojiNoSapelli'
   clickCountSendButton = 0
   document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
 
@@ -368,7 +370,7 @@ document.getElementById('goBackClassification').onclick = function(e){
   clickedshareMessagingAppsDirect = false
 
 showButtons()
-return issueSpecific && clickedshareMessagingAppsDirect
+return landUse && clickedshareMessagingAppsDirect
 }
 
 var mapposLat = mappos.center.lat
@@ -465,7 +467,7 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
     // var clickableText = 'click me'
     // var clickableTextHyperlinked = clickableText.link(convertedDataShareDirect)
     // var url = encodeURIComponent(attributes+ ' '+'   🗺️ 👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
-    var link = attributes + "\n" + '🗺️ 👇 👇 👇'+ "\n" + 'https://kenya.amappingprototype.xyz/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
+    var link = attributes + "\n" + '🗺️ 👇🏿'+ "\n" + 'https://omo.amappingprototype.xyz/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
     // var url
     // console.log(url)
 
@@ -536,7 +538,7 @@ document.getElementById('shareWorldButton').onclick = function(e) {
 
 
 
-  issueSpecific = 'emojiNoSapelli'
+  landUse = 'emojiNoSapelli'
 
 
   if (clickCountSendButton == 0) {
@@ -725,7 +727,7 @@ document.getElementById('shareWorldButton').onclick = function(e) {
         }
 
     }
-  return clickCountSendButton && issueSpecific && groupGeoJSON
+  return clickCountSendButton && landUse && groupGeoJSON
 }
 //console.log(deflatedLocalStorage)
 var elementJustAddedToLocalStorage = false
@@ -771,7 +773,7 @@ document.getElementById('DownloadButton').onclick = function(e) {
         //
         // });
 
-      issueSpecific = 'emojiNoSapelli'
+      landUse = 'emojiNoSapelli'
       hideButtons()
 
 
@@ -893,7 +895,7 @@ document.getElementById('DownloadButton').onclick = function(e) {
     }, timeOfVideo - 300);
 
 
-    return finished && whichLayerIsOn && localStorageLayer && elementJustAddedToLocalStorage && field && issueSpecific && fetchLast && groupGeoJSON && clickedshareMessagingAppsDirect
+    return finished && whichLayerIsOn && localStorageLayer && elementJustAddedToLocalStorage && field && landUse && fetchLast && groupGeoJSON && clickedshareMessagingAppsDirect
 }
 
 // end
