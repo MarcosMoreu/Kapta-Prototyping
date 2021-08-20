@@ -23,7 +23,7 @@ document.getElementById('rose').onclick = function(e){
     //console.log('deflated',deflated)
     var toRemoveDeflated = deflated._layers
     //console.log('toremovedeflated',toRemoveDeflated)
-
+      
       if(clicksRose == 5){ //this is to refresh the carto layer
         // document.getElementById("Alert").style.fontSize = "40px";
         // document.getElementById('Alert').innerHTML = '<br>⌛'

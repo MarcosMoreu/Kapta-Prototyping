@@ -89,7 +89,29 @@ function error(err) {
   console.warn('ERROR(' + err.code + '): ' + err.message);
   return currentLocation
 }
-//var miniMap
+
+
+
+
+// //var miniMap
+// setTimeout(function(){
+//   var canvas = document.getElementById('shareWorldButtonCommentImage');
+//
+//   canvas.toBlob(function(blob) {
+//     var newImg = document.createElement('img'),
+//         url = URL.createObjectURL(blob);
+//
+//     newImg.onload = function() {
+//       // no longer need to read the blob so it's revoked
+//       URL.revokeObjectURL(url);
+//     };
+//
+//     newImg.src = url;
+//     document.body.appendChild(newImg);
+//   });
+//
+//   // canvas.toBlob(function(blob){...}, 'image/jpeg', 0.95); // JPEG at 95% quality
+// },5000)
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -1284,7 +1306,6 @@ var googleSat_Button = L.easyButton({
         icon: iconGOOGLE,
         //stateName: 'check-mark',
         onClick: function(btn, map) {
-
           document.getElementById('myRange').style.display = 'none'
           document.getElementById("Alert").style.display = 'none'
           document.getElementById("MapLoading").style.display = 'none'

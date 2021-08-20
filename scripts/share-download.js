@@ -435,16 +435,34 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
   //   // }
   // }else if(shareURL == 'encodedGeoJSON'){
     // console.log(propertiesGeoJSONURL.landUsesEmoji)
-    var attributes = propertiesGeoJSONURL.landUsesEmoji
+    var attributes = propertiesGeoJSONURL.LU
     // var clickableText = 'click me'
     // var clickableTextHyperlinked = clickableText.link(convertedDataShareDirect)
     // var url = encodeURIComponent(attributes+ ' '+'   🗺️ 👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
     var link = attributes + "\n" + '🗺️ 👇 👇 👇'+ "\n" + 'https://kenya.amappingprototype.xyz/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
     // var url
     // console.log(url)
+    var testBlob = null
+    document.getElementById('armchair').addEventListener("click", () => {
+          fetch("images/armchair.png")
+          .then(function (response) {
+             return response.blob();
+          })
+          .then(function (blob) {
+             // resEle.innerHTML = "blob.size = " + blob.size + "<br>";
+             // resEle.innerHTML += "blob.type = " + blob.type + "<br>";
+             console.log(blob)
+             testBlob = blob
+             return testBlob
+          });
+       });
+    var file = new File([testBlob], "picture.jpg", {type: 'image/jpeg'});
+    var filesArray = [file];
       if(navigator.share){
+
         navigator.share({
           text: link,
+          files:filesArray,
           // url:encodeURIComponent('?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
         }).then(() => console.log('Successful share'))
           .catch((error) => console.log('Error sharing', error));
