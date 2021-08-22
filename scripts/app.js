@@ -2692,6 +2692,8 @@ document.getElementById("armchair").onclick = function(e) {
   document.getElementById("polyline").style.display = "initial";
   document.getElementById("point").style.display = "initial";
 
+  finalLength = 0 //to set to cero the length distance
+  return finalLength
 }
 
 

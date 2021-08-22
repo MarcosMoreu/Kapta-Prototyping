@@ -4,7 +4,7 @@
  * @inherits L.Draw.Feature
  */
 
- var finalLength;
+ var finalLength = 0;
 L.Draw.Polyline = L.Draw.Feature.extend({
 	statics: {
 		TYPE: 'polyline'
@@ -511,7 +511,13 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 			}
 
 			this._measurementRunningTotal += distance * (added ? 1 : -1);
-		finalLength = distance  //// to store the final length into a global variable
+      // finalLength = distance  /// to store the final length into a global variable
+  	finalLength = finalLength + distance  //to sum up all the segments
+    // finallengthTotal =
+
+    // console.log(finalLength)
+    // console.log(distance)
+
 		}
 		return finalLength
 	},
@@ -529,6 +535,7 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 		}
 	 var finalLength =	L.GeometryUtil.readableDistance(distance, this.options.metric, this.options.feet, this.options.nautic, this.options.precision)
 		return L.GeometryUtil.readableDistance(distance, this.options.metric, this.options.feet, this.options.nautic, this.options.precision) ;
+
 	},
 
 	_showErrorTooltip: function () {

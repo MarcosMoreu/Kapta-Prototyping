@@ -524,7 +524,11 @@ map.on('draw:created', function(e) {
     if (type == 'polyline') {
         typeOfFeature = 'polyline'
         //to remove decimals ....
-        finalLength2Decimals = finalLength.toFixed(2) + ' ' + 'meters'
+        finalLength2Decimals = (finalLength/1000).toFixed(2) + ' ' + 'Km'
+        console.log(finalLength2Decimals,'length')
+
+        document.getElementById('showAreaAcres').style.display = 'initial';
+        document.getElementById("showAreaAcres").innerHTML = finalLength2Decimals;
         //to show the final length on the top
         // document.getElementById('showLength').style.display = 'initial';
         //document.getElementById("showLength").innerHTML = finalLength2Decimals;
@@ -586,6 +590,7 @@ map.on('draw:created', function(e) {
 var boxContent;
 
 document.getElementById('Cancel').onclick = function(e) {
+
   document.getElementById("Alert").style.display = 'none'
 
     document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
@@ -675,6 +680,7 @@ document.getElementById('Cancel').onclick = function(e) {
     }
 
       field = false
+      finalLength = 0 //to set to cero the length distance
 
-  return created & featureType && field;
+  return created & featureType && field && finalLength;
 }
