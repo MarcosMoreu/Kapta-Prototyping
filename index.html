@@ -307,6 +307,24 @@
     <video id='downloadedVideo' src="images/downloaded.mp4" autoplay='autoplay' playsinline muted   alt="..." style='text-align:center;height:100%; width:100%; display:block; margin:auto;'>
   </div>
 
+  <!-- <div  style='z-index:2; position:absolute'> -->
+      <button id="camera"  aria-label = 'camera' style='position:fixed; display:none;width:50px;left:calc(50% - 25px);height:50px;bottom:150px;background-color:#C6C6C5;  border-radius: 50px'>
+        <!-- <input type='file' accept='image/' capture='camera' id='cameraInput' /> -->
+        <img src="images/cameraIcon.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
+      </button>
+      <!-- <button id="storeAudio" disabled aria-label = 'storeAudio' style='display:none;margin-top: 15px;width:80px;height:60px;background-color:yellow; '></button> -->
+  <!-- </div> -->
+<!-- <div>
+    <p><input type="checkbox" id="echoCancellation"></p>
+</div> -->
+<!-- <video id="gum" playsinline  muted></video>
+<video id="recorded" playsinline loop></video>
+<div style='z-index:3; position:relative;margin-top:-200px;left:calc(50% - 25px)'>
+  <button  id='activatePlay' class='buttonActivatePlay' aria-label = 'activatePlay' style='display:none;width:50px;height:50px;background-color:white; border-color: yellow; border-radius: 50px'>
+    <img src="images/play.png"  loading='lazy' alt="..." style='width:30px ; height:30px;margin-top:1px'>
+  </button>
+</div> -->
+
     <!-- <div  style='z-index:2; position:relative'>
     <button id="play"  aria-label = 'play' style='display:none;width:50px;height:50px;top:300px;background-color:white;  border-radius: 50px'>
       <img src="images/play.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
@@ -388,6 +406,38 @@
     <img src="images/customIconsMap.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
   </button>
 </div>
+<div style='position:absolute;   top:0px;
+  right:0px;
+  /* margin-bottom:100px; */
+  left:0px;
+bottom:0px;
+  z-index:1;'>
+      <!-- <div class="columns"> -->
+        <!-- <div class="column is-four-fifths"> -->
+   <video autoplay id="video" style='position:relative; bottom:100px;width:100%;height:100%'></video>
+   <button id="btnScreenshot" style='position:relative; bottom:50px;'>screenshot</button>
+   <button id="btnChangeCamera" style='position:relative; bottom:50px;'>switch</button>
+
+</div>
+<!-- <div  align='center' style='z-index:1000; position:relative; margin-top:-90px'>
+  <button id="btnScreenshot" style='position:absolute; margin-bottom:-90px;'>screenshot</button>
+  <button id="btnChangeCamera" style='position:absolute; margin-bottom:-90px;'>switch</button>
+</div> -->
+
+<!-- <div  align='center' style='z-index:2; position:relative; margin-top:-90px'>
+  <button id="btnPlay" style='display:none'>play</button>
+  <button id="btnPause" style='display:none'>pause</button>
+
+</div> -->
+
+        <!-- </div> -->
+        <!-- <div class="column"> -->
+          <!-- <h2 class="title">Screenshots</h2> -->
+<div id="screenshots" style='display:none'></div>
+        <!-- </div> -->
+      <!-- </div> -->
+    <!-- </div> -->
+<canvas class="is-hidden" id="canvas"></canvas>
 
 <script src="sw.js"></script>
 
@@ -453,11 +503,13 @@
 <!-- <script  defer src="scripts/sapelliProjects/Nigeria.js"></script> -->
 
 <!-- <script  defer src="scripts/audioButton.js"></script> -->
+<script  defer src="scripts/camera.js"></script>
 <script defer src="scripts/share-download.js"></script>
 
 <script defer src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
 <!-- <script defer src="https://www.gstatic.com/firebasejs/8.2.1/firebase-storage.js"></script> -->
 <script defer src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+<script defer src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
 <!-- <script defer src="scripts/firebaseAudioURL.js"></script> -->
 <!-- <script  defer src="scripts/audio.js"></script> -->
 <noscript>Javascript is disabled. Please enable it</noscript>

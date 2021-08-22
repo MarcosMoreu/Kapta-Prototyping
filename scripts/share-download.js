@@ -67,27 +67,6 @@ var filesArray = []
 
 var testBlob = null
 
-// for testing the photo thing.............................
-// document.getElementById('share-download').addEventListener("click", () => {
-//   console.log('ddddddddddddddd')
-//
-//       fetch("images/field.png")
-//       .then(function (response) {
-//          return response.blob();
-//       })
-//       .then(function (blob) {
-//          // resEle.innerHTML = "blob.size = " + blob.size + "<br>";
-//          // resEle.innerHTML += "blob.type = " + blob.type + "<br>";
-//          console.log(blob)
-//          testBlob = blob
-//          console.log(testBlob.type)
-//          var nameFile = 'test.png'
-//          var file = new File([testBlob],nameFile, {type: testBlob.type });
-//          filesArray = [file];
-//
-//          return testBlob && filesArray
-//       });
-//    });
 document.getElementById('share-download').onclick = function(e) {
 
     sameSession = true;
@@ -262,6 +241,8 @@ document.getElementById('share-download').onclick = function(e) {
         document.getElementById('shareMessagingAppsDirect').style.display = 'initial';
         document.getElementById('shareWorldButton').style.display = 'initial';
         document.getElementById('DownloadButton').style.display = 'initial';
+        document.getElementById('camera').style.display = 'initial'
+        document.getElementById('camera').style.backgroundColor = '#C6C6C5'
         // var boxContentString = boxContent[0]
         console.log('TIP: the shareWorld button is disabled by default to prevent unintended open data contributions. To enable it, simply start the string in the input box in the previous screen with the emoji 🌐')
 
@@ -368,6 +349,8 @@ document.getElementById('goBackClassification').onclick = function(e){
   document.getElementById('shareMessagingAppsDirect').style.display = 'none';
   document.getElementById('shareWorldButton').style.display = 'none';
   document.getElementById('DownloadButton').style.display = 'none';
+  document.getElementById('camera').style.display = 'none';
+  document.getElementById('camera').style.backgroundColor = '#C6C6C5'
   document.getElementById("shareWorldButtonImage").src = 'images/shareworld.png'
   document.getElementById("shareWorldButton").style.backgroundColor = 'white'
   document.getElementById("shareWorldButton").style.borderColor = 'white'
@@ -400,6 +383,7 @@ var urlLngX
 var urlZoomWithZX
 var urlZoomX
 var clickedshareMessagingAppsDirect = false
+
 document.getElementById('shareMessagingAppsDirect').onclick = function(e){
   // console.log(filesArray,'filesarray')
   //to store in localstorage immediately
@@ -486,7 +470,7 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
     // var url
     // console.log(url)
 
-      if(navigator.share){
+      if(navigator.share && attachPhoto == false){
 
         navigator.share({
           text: link,
@@ -494,6 +478,16 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
           // url:encodeURIComponent('?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
         }).then(() => console.log('Successful share'))
           .catch((error) => console.log('Error sharing', error));
+
+      }else if(navigator.share && attachPhoto ==true){
+
+        navigator.share({
+          text: link,
+          files:filesArray, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          // url:encodeURIComponent('?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+        }).then(() => console.log('Successful share'))
+          .catch((error) => console.log('Error sharing', error));
+
       }else{
         // console.log(url)
         navigator.clipboard.writeText(link).then(function() {
@@ -610,6 +604,9 @@ document.getElementById('shareWorldButton').onclick = function(e) {
           setTimeout(function() {
               document.getElementById('shareWorldButton').style.display = 'none';
               document.getElementById('DownloadButton').style.display = 'none';
+              document.getElementById('camera').style.display = 'none'
+              document.getElementById('camera').style.backgroundColor = '#C6C6C5'
+
               document.getElementById('Sent').style.display = 'initial';
               document.getElementById('sentVideo').pause();
               document.getElementById('sentVideo').currentTime = 0
@@ -804,6 +801,9 @@ document.getElementById('DownloadButton').onclick = function(e) {
       document.getElementById('shareMessagingAppsDirect').style.display = 'none';
       document.getElementById('shareWorldButton').style.display = 'none';
       document.getElementById('DownloadButton').style.display = 'none';
+      document.getElementById('camera').style.display = 'none'
+      document.getElementById('camera').style.backgroundColor = '#C6C6C5'
+
 
     },200)
 
