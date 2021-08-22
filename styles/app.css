@@ -201,6 +201,10 @@ grid-template-rows: repeat(6, 1fr); */
   outline:none;
   transition: 0.2s all;
 }
+.hiddenButtons:active{
+  transform: scale(0.8);
+
+}
 .custom-file-input::-webkit-file-upload-button {
   visibility: hidden;
 

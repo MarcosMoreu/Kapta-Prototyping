@@ -7,7 +7,7 @@ var screenChoice
 var askHelpOrIHelp
 
 //variable to populate the popup
-var landUse= 'emojiNoSapelli' //if the sapelli project is completed, then the value changes and the string is treated differently in sharedownload.js
+var landUse = 'emojiNoSapelli' //if the sapelli project is completed, then the value changes and the string is treated differently in sharedownload.js
 
 var imageName1
 var imageName2
@@ -39,7 +39,7 @@ document.getElementById('customIconsMap').onclick = function(e){
   //FUCK, the grid doesn't need to be hidden!!!
   // cell.style.display = 'none'
 
-  hideAll()
+  // hideAll()
   if(landUse != 'emojiNoSapelli'){
     document.getElementById("Cancel").style.opacity = '0'
     document.getElementById("sapelliProjects").style.opacity = '0'
@@ -60,7 +60,10 @@ document.getElementById('customIconsMap').onclick = function(e){
     // if(croptype == null){
     //   croptype = ''
     // }
-    if(evaluation != null && croptype == null){
+
+    if(evaluation == null && croptype == null){
+      emojioneareaeditor0.innerHTML =  landUse
+    }else if(evaluation != null && croptype == null){
       emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + evaluation
     }else if(evaluation == null && croptype != null){
       emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + croptype
@@ -428,6 +431,8 @@ var generateButtonsLandUse = function(){
  iconOMO_8.className = 'buttonsSapelli'
  iconOMO_8.innerHTML = '<img src="images/omoIcons/hutVillage.png" style="height: 150px; width: 150px; border: 0px solid white;" /> </br>አዊ / መንደር';
  iconOMO_8.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
     landUse = 'አዊ / መንደር'
     imageName1 = 'hutVillage'
@@ -435,19 +440,26 @@ var generateButtonsLandUse = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },1000)
+    },600)
+    console.log(landUse)
+
+  },400)
   }
  iconOMO_9 = document.createElement("BUTTON");
   cell.appendChild(iconOMO_9);
  iconOMO_9.innerHTML = '<img src="images/omoIcons/manualPump.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አፕሪች / ቧንቧ';
  iconOMO_9.className = 'buttonsSapelli'
  iconOMO_9.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
   generateButtonsEvaluation()
   document.getElementById('customIconsGoBack').style.display = 'initial';
   // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አፕሪች / ቧንቧ'
     imageName1 = 'manualPump'
+  },400)
+
   }
 
  iconOMO_10 = document.createElement("BUTTON");
@@ -455,12 +467,15 @@ var generateButtonsLandUse = function(){
  iconOMO_10.className = 'buttonsSapelli'
  iconOMO_10.innerHTML = '<img src="images/omoIcons/pondFarming.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አክታረ አታፓር / ኽልኩሬ ሸሽ';
  iconOMO_10.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
   generateButtonsCropType()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አክታረ አታፓር / ኽልኩሬ ሸሽ'
     imageName1 = 'pondFarming'
+  },400)
 
   }
  iconOMO_11 = document.createElement("BUTTON");
@@ -468,12 +483,15 @@ var generateButtonsLandUse = function(){
  iconOMO_11.innerHTML = '<img src="images/omoIcons/lakeFarming.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አሳክ / ሀይቅ እርሻ';
  iconOMO_11.className = 'buttonsSapelli'
  iconOMO_11.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
   generateButtonsCropType()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አሳክ / ሀይቅ እርሻ'
     imageName1 = 'lakeFarming'
+  },400)
 
   }
  iconOMO_12 = document.createElement("BUTTON");
@@ -481,12 +499,15 @@ var generateButtonsLandUse = function(){
  iconOMO_12.className = 'buttonsSapelli'
  iconOMO_12.innerHTML = '<img src="images/omoIcons/irrigationPump.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤሪያቻ / መስኖ';
  iconOMO_12.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
   generateButtonsCropType()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'ኤሪያቻ / መስኖ'
     imageName1 = 'irrigationPump'
+  },400)
 
   }
  iconOMO_13 = document.createElement("BUTTON");
@@ -494,12 +515,15 @@ var generateButtonsLandUse = function(){
  iconOMO_13.innerHTML = '<img src="images/omoIcons/floodRecessionFlat.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤመራ / ኦሞሸሽ';
  iconOMO_13.className = 'buttonsSapelli'
  iconOMO_13.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
   generateButtonsCropType()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'ኤመራ / ኦሞሸሽ'
     imageName1 = 'floodRecessionFlat'
+  },400)
 
 
   }
@@ -508,12 +532,15 @@ var generateButtonsLandUse = function(){
  iconOMO_14.className = 'buttonsSapelli'
  iconOMO_14.innerHTML = '<img src="images/omoIcons/floodRecessionSteep.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤቴሎ / ኦሞ ሸሽ';
  iconOMO_14.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
   generateButtonsCropType()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'ኤቴሎ / ኦሞ ሸሽ'
     imageName1 = 'floodRecessionSteep'
+  },400)
 
 
   }
@@ -522,12 +549,15 @@ var generateButtonsLandUse = function(){
  iconOMO_15.innerHTML = '<img src="images/omoIcons/cattleGrazing.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አዳካሩ አɔ̂ቱክ / የከብት ግጦሽ';
  iconOMO_15.className = 'buttonsSapelli'
  iconOMO_15.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
   generateButtonsEvaluation()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አዳካሩ አɔ̂ቱክ / የከብት ግጦሽ'
     imageName1 = 'cattleGrazing'
+  },400)
 
 
   }
@@ -536,12 +566,15 @@ var generateButtonsLandUse = function(){
  iconOMO_38.innerHTML = '<img src="images/omoIcons/goatSheepGrazing.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አዳካሩ አɔ̂ክኔይ / ፍየል ግጦሽ';
  iconOMO_38.className = 'buttonsSapelli'
  iconOMO_38.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
   generateButtonsEvaluation()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አዳካሩ አɔ̂ክኔይ / ፍየል ግጦሽ'
     imageName1 = 'goatSheepGrazing'
+  },400)
 
 
   }
@@ -550,12 +583,15 @@ var generateButtonsLandUse = function(){
  iconOMO_16.innerHTML = '<img src="images/omoIcons/waterpondAnimal.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አክፒ አታፓር / ኩሬ ውሃ';
  iconOMO_16.className = 'buttonsSapelli'
  iconOMO_16.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
   generateButtonsEvaluation()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አክፒ አታፓር / ኩሬ ውሃ'
     imageName1 = 'waterpondAnimal'
+  },400)
 
 
   }
@@ -564,6 +600,8 @@ var generateButtonsLandUse = function(){
  iconOMO_17.innerHTML = '<img src="images/omoIcons/waterRiverAnimal.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አይፒ አናም / የኦሞ ውሃ';
  iconOMO_17.className = 'buttonsSapelli'
  iconOMO_17.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
 
     landUse = 'አይፒ አናም / የኦሞ ውሃ'
@@ -571,7 +609,8 @@ var generateButtonsLandUse = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },1000)
+    },600)
+  },400)
 
   }
  iconOMO_18 = document.createElement("BUTTON");
@@ -579,6 +618,8 @@ var generateButtonsLandUse = function(){
  iconOMO_18.className = 'buttonsSapelli'
  iconOMO_18.innerHTML = '<img src="images/omoIcons/saltlick.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤዶት / ጨው';
  iconOMO_18.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
 
     landUse = 'ኤዶት / ጨው'
@@ -587,7 +628,8 @@ var generateButtonsLandUse = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },1000)
+    },600)
+  },400)
 
   }
  iconOMO_19 = document.createElement("BUTTON");
@@ -595,12 +637,15 @@ var generateButtonsLandUse = function(){
  iconOMO_19.innerHTML = '<img src="images/omoIcons/wildFruits.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አጌዎር / የአከባቢ የምበላ ቅጠል';
  iconOMO_19.className = 'buttonsSapelli'
  iconOMO_19.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
   generateButtonsEvaluation()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አጌዎር / የአከባቢ የምበላ ቅጠል'
     imageName1 = 'wildFruits'
+  },400)
 
 
   }
@@ -609,6 +654,8 @@ var generateButtonsLandUse = function(){
  iconOMO_20.innerHTML = '<img src="images/omoIcons/hunting.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤርካ / አደን';
  iconOMO_20.className = 'buttonsSapelli'
  iconOMO_20.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
 
     landUse = 'ኤርካ / አደን'
@@ -617,7 +664,8 @@ var generateButtonsLandUse = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },1000)
+    },600)
+  },400)
 
   }
 
@@ -626,6 +674,8 @@ var generateButtonsLandUse = function(){
  iconOMO_21.className = 'buttonsSapelli'
  iconOMO_21.innerHTML = '<img src="images/omoIcons/fishing.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አክሎክ / አሳ ማጥመድ';
  iconOMO_21.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
 
     landUse = 'አክሎክ / አሳ ማጥመድ'
@@ -634,7 +684,9 @@ var generateButtonsLandUse = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },1000)
+    },600)
+  },400)
+
   }
 
  iconOMO_22 = document.createElement("BUTTON");
@@ -642,12 +694,15 @@ var generateButtonsLandUse = function(){
  iconOMO_22.innerHTML = '<img src="images/omoIcons/reehive.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አሙሉጅ / የንብ ቀፎ';
  iconOMO_22.className = 'buttonsSapelli'
  iconOMO_22.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
   generateButtonsEvaluation()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አሙሉጅ / የንብ ቀፎ'
     imageName1 = 'reehive'
+  },400)
 
   }
 
@@ -656,6 +711,8 @@ var generateButtonsLandUse = function(){
  iconOMO_23.className = 'buttonsSapelli'
  iconOMO_23.innerHTML = '<img src="images/omoIcons/medicinalPlants.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤደዋ / ባህላዊ ጨው';
  iconOMO_23.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
 
     landUse = 'ኤደዋ / ባህላዊ ጨው'
@@ -663,7 +720,8 @@ var generateButtonsLandUse = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },1000)
+    },600)
+  },400)
 
   }
  iconOMO_24 = document.createElement("BUTTON");
@@ -671,6 +729,8 @@ var generateButtonsLandUse = function(){
  iconOMO_24.innerHTML = '<img src="images/omoIcons/timber.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አኩቶይ አክም / ማገዶ';
  iconOMO_24.className = 'buttonsSapelli'
  iconOMO_24.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
 
     landUse = 'አኩቶይ አክም / ማገዶ'
@@ -679,7 +739,9 @@ var generateButtonsLandUse = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },1000)
+    },600)
+  },400)
+
 
   }
  iconOMO_25 = document.createElement("BUTTON");
@@ -687,6 +749,8 @@ var generateButtonsLandUse = function(){
  iconOMO_25.className = 'buttonsSapelli'
  iconOMO_25.innerHTML = '<img src="images/omoIcons/hotSpring.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤሩስ / ፍል ውሃ';
  iconOMO_25.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
 
     landUse = 'ኤሩስ / ፍል ውሃ'
@@ -695,7 +759,8 @@ var generateButtonsLandUse = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },1000)
+    },600)
+  },400)
 
   }
 
@@ -704,12 +769,15 @@ var generateButtonsLandUse = function(){
  iconOMO_27.innerHTML = '<img src="images/omoIcons/waterPoint.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አቦኖ / ቦኖ';
  iconOMO_27.className = 'buttonsSapelli'
  iconOMO_27.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
   generateButtonsEvaluation()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አቦኖ / ቦኖ'
     imageName1 = 'waterPoint'
+  },400)
 
 
   }
@@ -718,12 +786,15 @@ var generateButtonsLandUse = function(){
  iconOMO_28.innerHTML = '<img src="images/omoIcons/healthStation.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አካይ ኤደዋ / ጤና ጣቢያ';
  iconOMO_28.className = 'buttonsSapelli'
  iconOMO_28.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
   generateButtonsEvaluation()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አካይ ኤደዋ / ጤና ጣቢያ'
     imageName1 = 'healthStation'
+  },400)
 
 
   }
@@ -732,6 +803,8 @@ var generateButtonsLandUse = function(){
  iconOMO_29.className = 'buttonsSapelli'
  iconOMO_29.innerHTML = '<img src="images/omoIcons/school.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አካይ ኤሱኩል / ትምህርት ቤት';
  iconOMO_29.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
 
     landUse = 'አካይ ኤሱኩል / ትምህርት ቤት'
@@ -740,19 +813,24 @@ var generateButtonsLandUse = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },1000)
+    },600)
+  },400)
+
   }
  iconOMO_30 = document.createElement("BUTTON");
   cell.appendChild(iconOMO_30);
  iconOMO_30.innerHTML = '<img src="images/omoIcons/veterinary.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አካይ ኤደዋ አግባረን / የከብት ህክምና';
  iconOMO_30.className = 'buttonsSapelli'
  iconOMO_30.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
   generateButtonsEvaluation()
    document.getElementById('customIconsGoBack').style.display = 'initial';
    // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አካይ ኤደዋ አግባረን / የከብት ህክምና'
     imageName1 = 'veterinary'
+  },400)
 
 
   }
@@ -761,6 +839,8 @@ var generateButtonsLandUse = function(){
  iconOMO_31.innerHTML = '<img src="images/omoIcons/treeForGathering.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤኩቶይ / መሰብሰቢያ ዛፍ';
  iconOMO_31.className = 'buttonsSapelli'
  iconOMO_31.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
 
     landUse = 'ኤኩቶይ / መሰብሰቢያ ዛፍ'
@@ -769,13 +849,17 @@ var generateButtonsLandUse = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },1000)
+    },600)
+  },400)
+
   }
  iconOMO_32 = document.createElement("BUTTON");
   cell.appendChild(iconOMO_32);
  iconOMO_32.innerHTML = '<img src="images/omoIcons/eldersHut.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤካፓ / የሽማግሌ መሰባሰቢያ';
  iconOMO_32.className = 'buttonsSapelli'
  iconOMO_32.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
 
     landUse = 'ኤካፓ / የሽማግሌ መሰባሰቢያ'
@@ -784,7 +868,9 @@ var generateButtonsLandUse = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },1000)
+    },600)
+  },400)
+
   }
 
  iconOMO_33 = document.createElement("BUTTON");
@@ -792,6 +878,8 @@ var generateButtonsLandUse = function(){
  iconOMO_33.className = 'buttonsSapelli'
  iconOMO_33.innerHTML = '<img src="images/omoIcons/recreationCenter.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አፓክ ንቦልያት / መዝናኛ';
  iconOMO_33.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
 
     landUse = 'አፓክ ንቦልያት / መዝናኛ'
@@ -800,13 +888,17 @@ var generateButtonsLandUse = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },1000)
+    },600)
+  },400)
+
   }
  iconOMO_34 = document.createElement("BUTTON");
   cell.appendChild(iconOMO_34);
  iconOMO_34.innerHTML = '<img src="images/omoIcons/church.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አካይ አኩጅ / ቤተ ክርስቲያን';
  iconOMO_34.className = 'buttonsSapelli'
  iconOMO_34.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
 
     landUse = 'አካይ አኩጅ / ቤተ ክርስቲያን'
@@ -815,13 +907,17 @@ var generateButtonsLandUse = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },1000)
+    },600)
+  },400)
+
   }
  iconOMO_35 = document.createElement("BUTTON");
   cell.appendChild(iconOMO_35);
  iconOMO_35.className = 'buttonsSapelli'
  iconOMO_35.innerHTML = '<img src="images/omoIcons/boatCrossing.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤዶከት አቱቧ / ጀልባ መሻገሪያ';
  iconOMO_35.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
 
     landUse = 'ኤዶከት አቱቧ / ጀልባ መሻገሪያ'
@@ -830,13 +926,17 @@ var generateButtonsLandUse = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },1000)
+    },600)
+  },400)
+
   }
  iconOMO_36 = document.createElement("BUTTON");
   cell.appendChild(iconOMO_36);
  iconOMO_36.innerHTML = '<img src="images/omoIcons/unknownOther.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ɔ̂ቺየ / ሌላ';
  iconOMO_36.className = 'buttonsSapelli'
  iconOMO_36.onclick = function(){
+   setTimeout(function(){
+
     hideAll()
   generateButtonsEvaluation()
    document.getElementById('customIconsGoBack').style.display = 'initial';
@@ -844,6 +944,7 @@ var generateButtonsLandUse = function(){
     landUse = 'ɔ̂ቺየ / ሌላ'
     imageName1 = 'unknownOther'
 
+  },400)
 
   }
 
@@ -861,6 +962,8 @@ var generateButtonsCropType = function(){
   iconCT1.innerHTML = '<img src="images/omoIcons/noFarming.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ማም አክታረ / እርሻ የለም';
   iconCT1.className = 'buttonsSapelli'
   iconCT1.onclick = function(){
+    setTimeout(function(){
+
     hideAll()
     croptype = 'ማም አክታረ / እርሻ የለም'
     imageName2 = 'noFarming'
@@ -869,7 +972,9 @@ var generateButtonsCropType = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },1000)
+    },600)
+  },400)
+
   }
 
   iconCT2 = document.createElement("BUTTON");
@@ -877,11 +982,15 @@ var generateButtonsCropType = function(){
   iconCT2.className = 'buttonsSapelli'
   iconCT2.innerHTML = '<img src="images/omoIcons/maize.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤሮመፖ / በቆሎ';
   iconCT2.onclick = function(){
+    setTimeout(function(){
+
     hideAll()
     croptype = 'ኤሮመፖ / በቆሎ'
     imageName2 = 'maize'
 
     generateButtonsEvaluation()
+  },400)
+
   }
 
   iconCT3 = document.createElement("BUTTON");
@@ -889,11 +998,15 @@ var generateButtonsCropType = function(){
   iconCT3.className = 'buttonsSapelli'
   iconCT3.innerHTML = '<img src="images/omoIcons/sorghum.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤሟይ / ማሽላ';
   iconCT3.onclick = function(){
+    setTimeout(function(){
+
     hideAll()
     croptype = 'ኤሟይ / ማሽላ'
     imageName2 = 'sorghum'
 
     generateButtonsEvaluation()
+  },400)
+
   }
 
   iconCT4 = document.createElement("BUTTON");
@@ -901,6 +1014,8 @@ var generateButtonsCropType = function(){
   iconCT4.className = 'buttonsSapelli'
   iconCT4.innerHTML = '<img src="images/omoIcons/unknownOther.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ɔ̂ቺየ / ሌላ';
   iconCT4.onclick = function(){
+    setTimeout(function(){
+
     hideAll()
     croptype = 'ɔ̂ቺየ / ሌላ'
     imageName2 = 'unknownOther'
@@ -909,7 +1024,9 @@ var generateButtonsCropType = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },1000)
+    },600)
+  },400)
+
   }
 
 return screenChoice && evaluation && imageName2
@@ -927,6 +1044,8 @@ var generateButtonsEvaluation = function(){
   iconE1.className = 'buttonsSapelli'
   iconE1.innerHTML = '<img src="images/omoIcons/Questionmark.png" style="height: 150px; width: 150px; border: 0px solid white" /> ';
   iconE1.onclick = function(){
+    setTimeout(function(){
+
     hideAll()
     evaluation = '❓'
     imageName3 = 'Questionmark'
@@ -934,7 +1053,9 @@ var generateButtonsEvaluation = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },1000)
+    },600)
+  },400)
+
   }
 
 
@@ -944,6 +1065,8 @@ var generateButtonsEvaluation = function(){
   iconE2.innerHTML = '<img src="images/omoIcons/ThumbsUp.png" style="height: 150px; width: 150px; border: 0px solid white" /> ';
   iconE2.className = 'buttonsSapelli'
   iconE2.onclick = function(){
+    setTimeout(function(){
+
     hideAll()
     evaluation = '👍🏿'
     imageName3 = 'ThumbsUp'
@@ -951,7 +1074,9 @@ var generateButtonsEvaluation = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },1000)
+    },600)
+  },400)
+
   }
 
   iconE3 = document.createElement("BUTTON");
@@ -959,6 +1084,8 @@ var generateButtonsEvaluation = function(){
   iconE3.className = 'buttonsSapelli'
   iconE3.innerHTML = '<img src="images/omoIcons/ThumbsDown.png" style="height: 150px; width: 150px; border: 0px solid white" /> ';
   iconE3.onclick = function(){
+    setTimeout(function(){
+
     hideAll()
     evaluation = '👎🏿'
     imageName3 = 'ThumbsDown'
@@ -967,7 +1094,8 @@ var generateButtonsEvaluation = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },1000)
+    },600)
+  },400)
   }
 
     return screenChoice && evaluation && imageName2

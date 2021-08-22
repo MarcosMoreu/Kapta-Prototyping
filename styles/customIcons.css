@@ -9,7 +9,7 @@
   border: 2px solid #a6a6a6;
   position:relative;
   outline:none;
-  transition: 0.8s all;
+  transition: 0.4s all;
 }
 .buttonCustomIcons:active{
 outline:none;
@@ -28,8 +28,16 @@ transform: scale(0.6);
   transition: 0.2s all;
   overflow-y: hidden;
   font-size:12px;
+  transition: 0.4s all;
 
 
+}
+.buttonsSapelli:active{
+  transform: scale(0.8);
+  /* background-color:green; */
+  /* background-color: #D3D2D2; */
+
+  /* border: 2px solid #D3D2D2; */
 }
 
 .gridCell{
