@@ -466,12 +466,12 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
     // var clickableText = 'click me'
     // var clickableTextHyperlinked = clickableText.link(convertedDataShareDirect)
     // var url = encodeURIComponent(attributes+ ' '+'   🗺️ 👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
-    var link = attributes + "\n" + '🗺️ 👇🏿'+ "\n" + 'https://omo.amappingprototype.xyz/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
+    var link = attributes + "\n" + '🗺️ 👇🏿'+ "\n" + 'https://testing.amappingprototype.xyz/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
     // var url
     // console.log(url)
 
-      if(navigator.share && attachPhoto == false){
-
+      if(navigator.share && photoAccepted == null){
+        console.log('without photo')
         navigator.share({
           text: link,
           //files:filesArray, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -479,7 +479,8 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
         }).then(() => console.log('Successful share'))
           .catch((error) => console.log('Error sharing', error));
 
-      }else if(navigator.share && attachPhoto ==true){
+      }else if(navigator.share && photoAccepted != null){
+        console.log('with photo')
 
         navigator.share({
           text: link,
@@ -489,6 +490,8 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
           .catch((error) => console.log('Error sharing', error));
 
       }else{
+        console.log(photoAccepted)
+
         // console.log(url)
         navigator.clipboard.writeText(link).then(function() {
           // console.log(url)

@@ -172,6 +172,7 @@ document.getElementById('btnChangeCamera').style.display = 'initial';
       document.getElementById('btnCancelPhoto').style.display = 'initial'
 
     },500)
+    photoAccepted = img
 return photoAccepted
 });
 
@@ -210,6 +211,8 @@ return photoAccepted
 
     document.getElementById("map").style.height = "100%";
     document.getElementById('camera').style.display = 'initial'
+    photoAccepted = null
+    return photoAccepted
   });
 
   //confirm photo
