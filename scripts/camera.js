@@ -1,4 +1,5 @@
 var attachPhoto = false
+var photoAccepted
 
 document.getElementById('camera').addEventListener('click', async function init(e) {
 document.getElementById('camera').style.display = 'none'
@@ -9,6 +10,7 @@ document.getElementById('cameraDiv').style.display = 'initial'
 document.getElementById('video').style.display = 'initial'
 document.getElementById('canvas').style.display = 'initial'
 
+document.getElementById('goBackCamera').style.display = 'initial'
 document.getElementById('btnScreenshot').style.display = 'initial'
 document.getElementById('btnChangeCamera').style.display = 'initial';
 
@@ -97,8 +99,9 @@ document.getElementById('btnChangeCamera').style.display = 'initial';
 
   // get page elements
   const video = document.querySelector("#video");
-  const btnPlay = document.querySelector("#btnPlay");
-  const btnPause = document.querySelector("#btnPause");
+  // const btnPlay = document.querySelector("#btnPlay");
+  // const btnPause = document.querySelector("#btnPause");
+  const goBackCamera = document.querySelector("#goBackCamera");
   const btnScreenshot = document.querySelector("#btnScreenshot");
   const btnChangeCamera = document.querySelector("#btnChangeCamera");
   const screenshotsContainer = document.querySelector("#screenshots");
@@ -138,9 +141,16 @@ document.getElementById('btnChangeCamera').style.display = 'initial';
 
   // take screenshot
   btnScreenshot.addEventListener("click", function () {
-    const img = document.createElement("img");
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
+
+    $('#screenshots').empty() // this is to clear the cancelled screenshots
+
+    // if(cancelled == true){
+    //   screenshotsContainer.removeChild(img);
+    //   console.log('cancelled')
+    // }
+    const img = document.createElement("img");
     canvas.getContext("2d").drawImage(video, 0, 0);
     img.src = canvas.toDataURL("image/png");
     screenshotsContainer.prepend(img);
@@ -153,6 +163,7 @@ document.getElementById('btnChangeCamera').style.display = 'initial';
       video.height = '0px'
       // document.getElementById('video').style.display = 'none'
       stopVideoStream()
+      document.getElementById('goBackCamera').style.display = 'none'
       document.getElementById('btnChangeCamera').style.display = 'none'
       document.getElementById('btnScreenshot').style.display = 'none'
       document.getElementById('video').style.display = 'none'
@@ -161,7 +172,7 @@ document.getElementById('btnChangeCamera').style.display = 'initial';
       document.getElementById('btnCancelPhoto').style.display = 'initial'
 
     },500)
-
+return photoAccepted
 });
 
 
@@ -170,6 +181,63 @@ document.getElementById('btnChangeCamera').style.display = 'initial';
     useFrontCamera = !useFrontCamera;
 
     initializeCamera();
+  });
+ // button go back
+    btnCancelPhoto.addEventListener("click", function () {
+
+      document.getElementById('screenshots').style.display = 'none'
+      document.getElementById('btnConfirmPhoto').style.display = 'none'
+      document.getElementById('btnCancelPhoto').style.display = 'none'
+  //     console.log(screenshotsContainer.innerHTML)
+  // screenshotsContainer.innerHTML=''
+  // document.getElementById('screenshots').empty()
+     document.getElementById('camera').click()
+
+
+    })
+  //cancel photo
+  goBackCamera.addEventListener("click", function () {
+    document.getElementById('cameraDiv').style.display = 'none'
+    document.getElementById('video').style.display = 'none'
+    document.getElementById('canvas').style.display = 'none'
+    document.getElementById('screenshots').style.display = 'none'
+
+    document.getElementById('goBackCamera').style.display = 'none'
+    document.getElementById('btnScreenshot').style.display = 'none'
+    document.getElementById('btnChangeCamera').style.display = 'none';
+    // document.getElementById('btnConfirmPhoto').style.display = 'none'
+    // document.getElementById('btnCancelPhoto').style.display = 'none'
+
+    document.getElementById("map").style.height = "100%";
+    document.getElementById('camera').style.display = 'initial'
+  });
+
+  //confirm photo
+  btnConfirmPhoto.addEventListener("click", function () {
+    console.log('photo confirmed')
+    // $('#screenshots').empty() // this is to clear the cancelled screenshots
+    //
+    // document.getElementById('video').style.height = "0px";
+    //     document.getElementById('cameraDiv').style.height = "0px";
+
+    document.getElementById('cameraDiv').style.display = 'none'
+    document.getElementById('video').style.display = 'none'
+    document.getElementById('canvas').style.display = 'none'
+    document.getElementById('screenshots').style.display = 'none'
+
+    document.getElementById('goBackCamera').style.display = 'none'
+    document.getElementById('btnScreenshot').style.display = 'none'
+    document.getElementById('btnChangeCamera').style.display = 'none';
+    document.getElementById('btnConfirmPhoto').style.display = 'none'
+    document.getElementById('btnCancelPhoto').style.display = 'none'
+
+    document.getElementById("map").style.height = "100%";
+    document.getElementById('camera').style.display = 'initial'
+
+
+
+
+    console.log(photoAccepted)
   });
 
   // stop video stream
