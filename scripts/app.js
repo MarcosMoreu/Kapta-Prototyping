@@ -2304,103 +2304,103 @@ var filterLocalStorage_Button = L.easyButton({
           groupGeoJSON = [] // to replace groupGeoJSON = newGeom created when new feature added in local storage, which caused and error when applying the filter
           console.log(filterApplied)
 
-            // try{
-            //   var boundsLocalStorageLayer = deflatedLocalStorage.getBounds()
-            //   map.flyToBounds(boundsLocalStorageLayer)
-            // }catch(e){}
+            try{
+              var boundsLocalStorageLayer = deflatedLocalStorage.getBounds()
+              map.flyToBounds(boundsLocalStorageLayer)
+            }catch(e){}
             //
             //
             // }
-            emojiRequest()
-            document.getElementById("backDeleteFeature").style.display = "none";
-            document.getElementById("deleteFeature").style.display = 'none';
-            // document.getElementById("goBackMessagingApps").style.display = "none";
-            // document.getElementById("whatsApp").style.display = "none";
-            // document.getElementById("telegram").style.display = 'none';
-            // document.getElementById("weChat").style.display = "none";
-            document.getElementById("shareMessagingApp").style.display = "none";
-            document.getElementById("randomSuggestion").style.display = "none";
-
-            if(filterIsOn == false){
-              startCheckAttrDateContent = setInterval(checkAttrDateContent,300)
-              //console.log('filterisonfalse')
-              filterIsOn = true
-              myLayer_Button.button.style.opacity = '0.4';
-              myLayer_Button.button.disabled = true;
-              // gps_Button.button.style.opacity = '0.4';
-              // gps_Button.button.disabled = true;
-              // filterLocalStorage_Button.button.style.backgroundColor = '#949493';
-
-              document.getElementById("tutorial").style.display = "none";
-              document.getElementById("polygon").style.display = "none";
-              document.getElementById("polyline").style.display = "none";
-              document.getElementById("point").style.display = "none";
-              document.getElementById("armchair").style.display = "none";
-              document.getElementById("field").style.display = "none";
-
-              if(filterApplied == true){
-                //console.log('filterisonfalse')
-                document.getElementById("clearFilter").style.display = "initial";
-                document.getElementById("clearFilter").style.opacity = '1'
-                document.getElementById("clearFilter").disabled = false
-              }else{
-                // document.getElementById("clearFilter").style.opacity = '0.4'
-                // document.getElementById("clearFilter").disabled = true
-                document.getElementById("clearFilter").style.display = "none";
-                document.getElementById("applyFilter").style.display = "initial";
-                document.getElementById("applyFilter").style.opacity = '0.4'
-                document.getElementById("applyFilter").disabled = true
-              }
-              document.getElementById("filterWithIcons").style.display = "initial";
-
-              document.getElementById("filterByDate").style.display = "initial";
-              document.getElementById("classification").style.display = "initial";
-              document.getElementById("emoji").style.display = "initial";
-              document.getElementById("emoji").disabled = false;
-              document.getElementById("emoji").style.opacity = '1';
-
-              // if(alertAlreadyShown == false){
-              //
-              //   document.getElementById("Alert").style.fontSize = "15px";
-              //   document.getElementById('Alert').innerHTML = 'Filter by attribute only filters exact matches. 🚧 To be improved '
-              //   document.getElementById("Alert").style.display = 'initial'
-              // setTimeout(function(){
-              //   document.getElementById("Alert").style.display = 'none'
-              // },5000)
-              // alertAlreadyShown = true
-              // }
-
-          }else{
-              clearInterval(startCheckAttrDateContent)
-              //console.log('filterisontrue')
-
-              filterIsOn = false
-              myLayer_Button.button.style.opacity = '1';
-              myLayer_Button.button.disabled = false;
-              filterLocalStorage_Button.button.style.opacity = '1';
-              filterLocalStorage_Button.button.disabled = false;
-
-              if(filterApplied == true){ //to avoid that if dilterby date is all, color is not green
-                filterLocalStorage_Button.button.style.borderColor = 'yellow'
-
-              }else{
-                filter_Button.button.style.backgroundColor = 'black'
-                document.getElementById("Alert").style.display = 'none'
-              }
-
-              document.getElementById("tutorial").style.display = "initial";
-              document.getElementById("armchair").style.display = "initial";
-              document.getElementById("field").style.display = "initial";
-              // document.getElementById("polygon").style.display = "initial";
-              // document.getElementById("polyline").style.display = "initial";
-              // document.getElementById("point").style.display = "initial";
-              document.getElementById("filterWithIcons").style.display = "none";
-              document.getElementById("clearFilter").style.display = "none";
-              document.getElementById("applyFilter").style.display = "none";
-              document.getElementById("filterByDate").style.display = "none";
-              document.getElementById("classification").style.display = "none";
-              document.getElementById("emoji").style.display = "none";
-          }
+          //   emojiRequest()
+          //   document.getElementById("backDeleteFeature").style.display = "none";
+          //   document.getElementById("deleteFeature").style.display = 'none';
+          //   // document.getElementById("goBackMessagingApps").style.display = "none";
+          //   // document.getElementById("whatsApp").style.display = "none";
+          //   // document.getElementById("telegram").style.display = 'none';
+          //   // document.getElementById("weChat").style.display = "none";
+          //   document.getElementById("shareMessagingApp").style.display = "none";
+          //   document.getElementById("randomSuggestion").style.display = "none";
+          //
+          //   if(filterIsOn == false){
+          //     startCheckAttrDateContent = setInterval(checkAttrDateContent,300)
+          //     //console.log('filterisonfalse')
+          //     filterIsOn = true
+          //     myLayer_Button.button.style.opacity = '0.4';
+          //     myLayer_Button.button.disabled = true;
+          //     // gps_Button.button.style.opacity = '0.4';
+          //     // gps_Button.button.disabled = true;
+          //     // filterLocalStorage_Button.button.style.backgroundColor = '#949493';
+          //
+          //     document.getElementById("tutorial").style.display = "none";
+          //     document.getElementById("polygon").style.display = "none";
+          //     document.getElementById("polyline").style.display = "none";
+          //     document.getElementById("point").style.display = "none";
+          //     document.getElementById("armchair").style.display = "none";
+          //     document.getElementById("field").style.display = "none";
+          //
+          //     if(filterApplied == true){
+          //       //console.log('filterisonfalse')
+          //       document.getElementById("clearFilter").style.display = "initial";
+          //       document.getElementById("clearFilter").style.opacity = '1'
+          //       document.getElementById("clearFilter").disabled = false
+          //     }else{
+          //       // document.getElementById("clearFilter").style.opacity = '0.4'
+          //       // document.getElementById("clearFilter").disabled = true
+          //       document.getElementById("clearFilter").style.display = "none";
+          //       document.getElementById("applyFilter").style.display = "initial";
+          //       document.getElementById("applyFilter").style.opacity = '0.4'
+          //       document.getElementById("applyFilter").disabled = true
+          //     }
+          //     document.getElementById("filterWithIcons").style.display = "initial";
+          //
+          //     document.getElementById("filterByDate").style.display = "initial";
+          //     document.getElementById("classification").style.display = "initial";
+          //     document.getElementById("emoji").style.display = "initial";
+          //     document.getElementById("emoji").disabled = false;
+          //     document.getElementById("emoji").style.opacity = '1';
+          //
+          //     // if(alertAlreadyShown == false){
+          //     //
+          //     //   document.getElementById("Alert").style.fontSize = "15px";
+          //     //   document.getElementById('Alert').innerHTML = 'Filter by attribute only filters exact matches. 🚧 To be improved '
+          //     //   document.getElementById("Alert").style.display = 'initial'
+          //     // setTimeout(function(){
+          //     //   document.getElementById("Alert").style.display = 'none'
+          //     // },5000)
+          //     // alertAlreadyShown = true
+          //     // }
+          //
+          // }else{
+          //     clearInterval(startCheckAttrDateContent)
+          //     //console.log('filterisontrue')
+          //
+          //     filterIsOn = false
+          //     myLayer_Button.button.style.opacity = '1';
+          //     myLayer_Button.button.disabled = false;
+          //     filterLocalStorage_Button.button.style.opacity = '1';
+          //     filterLocalStorage_Button.button.disabled = false;
+          //
+          //     if(filterApplied == true){ //to avoid that if dilterby date is all, color is not green
+          //       filterLocalStorage_Button.button.style.borderColor = 'yellow'
+          //
+          //     }else{
+          //       filter_Button.button.style.backgroundColor = 'black'
+          //       document.getElementById("Alert").style.display = 'none'
+          //     }
+          //
+          //     document.getElementById("tutorial").style.display = "initial";
+          //     document.getElementById("armchair").style.display = "initial";
+          //     document.getElementById("field").style.display = "initial";
+          //     // document.getElementById("polygon").style.display = "initial";
+          //     // document.getElementById("polyline").style.display = "initial";
+          //     // document.getElementById("point").style.display = "initial";
+          //     document.getElementById("filterWithIcons").style.display = "none";
+          //     document.getElementById("clearFilter").style.display = "none";
+          //     document.getElementById("applyFilter").style.display = "none";
+          //     document.getElementById("filterByDate").style.display = "none";
+          //     document.getElementById("classification").style.display = "none";
+          //     document.getElementById("emoji").style.display = "none";
+          // }
 
           return alertAlreadyShown && filterIsOn
         }

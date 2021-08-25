@@ -89,3 +89,33 @@ grid-template-rows: repeat(6, 1fr); */
   outline:none;
   transition: 0.2s all;
 }
+
+.gridCellFilter{
+  /* overflow-y:auto; */
+
+  background-color: black;
+  height:90%;
+  width:100%;
+  overflow-y: scroll !important;
+  /* text-align:justify; */
+  /* display: grid;
+grid-template-columns: 1fr 1fr;
+grid-auto-rows: 75px;
+grid-gap: 10px; */
+
+display: inline-grid;
+/* text-align: center; */
+
+align-items: center;
+justify-items: center;
+row-gap:2px;
+column-gap:2px;
+/* grid-template-columns: 80px; */
+
+grid-template-columns: repeat(4, 1fr);
+grid-template-rows: repeat(10, 1fr);
+/* grid-template-columns: 1fr 1fr 1fr;
+grid-template-rows: repeat(6, 1fr); */
+
+
+}
