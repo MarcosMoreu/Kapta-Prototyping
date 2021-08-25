@@ -237,10 +237,28 @@ return photoAccepted
     document.getElementById("map").style.height = "100%";
     document.getElementById('camera').style.display = 'initial'
 
+    //to convert to blob
 
+    fetch(photoAccepted.src)
+         .then(function (response) {
+            return response.blob();
+         })
+         .then(function (blob) {
+            // resEle.innerHTML = "blob.size = " + blob.size + "<br>";
+            // resEle.innerHTML += "blob.type = " + blob.type + "<br>";
+            console.log(blob)
+            testBlob = blob
+            console.log(testBlob.type)
+            var nameFile = 'test.png'
+            var file = new File([testBlob],nameFile, {type: testBlob.type });
+            filesArray = [file];
 
+            return testBlob && filesArray
+         });
 
     console.log(photoAccepted)
+    console.log(photoAccepted.src)
+
   });
 
   // stop video stream
