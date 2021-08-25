@@ -2,9 +2,17 @@ var attachPhoto = false
 
 document.getElementById('camera').addEventListener('click', async function init(e) {
 document.getElementById('camera').style.display = 'none'
+document.getElementById("map").style.height = "0px";
+
+
+document.getElementById('cameraDiv').style.display = 'initial'
+document.getElementById('video').style.display = 'initial'
+document.getElementById('canvas').style.display = 'initial'
 
 document.getElementById('btnScreenshot').style.display = 'initial'
-document.getElementById('btnChangeCamera').style.display = 'initial'
+document.getElementById('btnChangeCamera').style.display = 'initial';
+
+
 
 
 
@@ -61,9 +69,8 @@ document.getElementById('btnChangeCamera').style.display = 'initial'
 //   }
 // return attachPhoto
 
-console.log(screenwidth)
-console.log(screenwidth)
-document.getElementById("map").style.height = "0px";
+// console.log(screenwidth)
+// console.log(screenwidth)
 // document.getElementById('classification').style.display ='none'
 
 // // Prefer camera resolution nearest to 1280x720.
@@ -141,7 +148,19 @@ document.getElementById("map").style.height = "0px";
     // document.getElementById('btnPlay').style.display = 'initial'
     // document.getElementById('btnPause').style.display = 'initial'
     // document.getElementById('btnPlay').style.display = 'initial'
-    document.getElementById('btnChangeCamera').style.display = 'initial'
+    setTimeout(function(){
+      video.width = '0px'
+      video.height = '0px'
+      // document.getElementById('video').style.display = 'none'
+      stopVideoStream()
+      document.getElementById('btnChangeCamera').style.display = 'none'
+      document.getElementById('btnScreenshot').style.display = 'none'
+      document.getElementById('video').style.display = 'none'
+      document.getElementById('screenshots').style.display = 'initial'
+      document.getElementById('btnConfirmPhoto').style.display = 'initial'
+      document.getElementById('btnCancelPhoto').style.display = 'initial'
+
+    },500)
 
 });
 
