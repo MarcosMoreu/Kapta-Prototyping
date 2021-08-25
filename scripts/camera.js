@@ -8,7 +8,7 @@ document.getElementById("map").style.height = "0px";
 
 document.getElementById('cameraDiv').style.display = 'initial'
 document.getElementById('video').style.display = 'initial'
-document.getElementById('canvas').style.display = 'initial'
+// document.getElementById('canvas').style.display = 'initial'
 
 document.getElementById('goBackCamera').style.display = 'initial'
 document.getElementById('btnScreenshot').style.display = 'initial'
@@ -105,21 +105,53 @@ document.getElementById('btnChangeCamera').style.display = 'initial';
   const btnScreenshot = document.querySelector("#btnScreenshot");
   const btnChangeCamera = document.querySelector("#btnChangeCamera");
   const screenshotsContainer = document.querySelector("#screenshots");
-  const canvas = document.querySelector("#canvas");
+  // const canvas = document.querySelector("#canvas");
   const devicesSelect = document.querySelector("#devicesSelect");
 
   // video constraints
   const constraints = {
+    audio:false,
     video: {
       // width: canvas.width,
       // height:canvas.height
-      width: screen.width,
-      height:screen.height
-    },
-  };
+      // width: '100vw',
+      // height:'100vh'
 
+      // width: { min: 1024, ideal: 1280, max: 1920 },
+      // height: { min: 576, ideal: 720, max: 1080 }
+
+   //    video:
+   //     {
+   //       minAspectRatio: 1.333,
+   //       minFrameRate: 30,
+         width: 300,
+         heigth: 500,
+         facingMode: {exact: "environment"}
+     }
+  };
+//   const constraints = {
+//     audio:false,
+//     video: {
+//       width: {
+//         min: 1280,
+//         ideal: canvas.width,
+//         max: 2560,
+//       },
+//       height: {
+//         min: 720,
+//         ideal: canvas.width,
+//         max: 1440
+//       },
+//       facingMode: {
+// //Use the back camera
+//       exact: 'environment',
+//       // width: 1280,
+//       // heigth: 720
+//     }
+//     }
+//   };
   // use front face camera
-  let useFrontCamera = true;
+  let useFrontCamera = false;
 
   // current video stream
   let videoStream;
@@ -141,10 +173,10 @@ document.getElementById('btnChangeCamera').style.display = 'initial';
 
   // take screenshot
   btnScreenshot.addEventListener("click", function () {
+
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
 
-    $('#screenshots').empty() // this is to clear the cancelled screenshots
 
     // if(cancelled == true){
     //   screenshotsContainer.removeChild(img);
@@ -153,23 +185,50 @@ document.getElementById('btnChangeCamera').style.display = 'initial';
     const img = document.createElement("img");
     canvas.getContext("2d").drawImage(video, 0, 0);
     img.src = canvas.toDataURL("image/png");
-    screenshotsContainer.prepend(img);
+
+
+    // screenshotsContainer.style.width = '90%'
+    // screenshotsContainer.style.height = '80%'
+
+
 
     // document.getElementById('btnPlay').style.display = 'initial'
     // document.getElementById('btnPause').style.display = 'initial'
     // document.getElementById('btnPlay').style.display = 'initial'
     setTimeout(function(){
-      video.width = '0px'
-      video.height = '0px'
+
+
+      // canvas.width = '300px'
+      // canvas.height = '500px'
       // document.getElementById('video').style.display = 'none'
       stopVideoStream()
+      // video.width = '0px'
+      // video.height = '0px'
+      // canvas.width = '0px'
+      // canvas.height = '0px'
+
       document.getElementById('goBackCamera').style.display = 'none'
       document.getElementById('btnChangeCamera').style.display = 'none'
       document.getElementById('btnScreenshot').style.display = 'none'
       document.getElementById('video').style.display = 'none'
+            // document.getElementById('screenshotsImage').src = img.src
       document.getElementById('screenshots').style.display = 'initial'
+      // document.getElementById('screenshots').style.width = '100%'
+      // document.getElementById('screenshots').style.height = '100%'
+      // document.getElementById('screenshots').style.backgroundColor = 'yellow'
+      $('#screenshots').empty() // this is to clear the cancelled screenshots
+
+      // screenshotsContainer.width = '300px'
+      // screenshotsContainer.height = '500px'
+      screenshotsContainer.prepend(img);
+      img.style.marginTop = '100px'
+      // img.style.left = '50%'
+
+
       document.getElementById('btnConfirmPhoto').style.display = 'initial'
       document.getElementById('btnCancelPhoto').style.display = 'initial'
+      // document.getElementById('canvas').style.display = 'initial'
+
 
     },500)
     photoAccepted = img
@@ -200,7 +259,7 @@ return photoAccepted
   goBackCamera.addEventListener("click", function () {
     document.getElementById('cameraDiv').style.display = 'none'
     document.getElementById('video').style.display = 'none'
-    document.getElementById('canvas').style.display = 'none'
+    // document.getElementById('canvas').style.display = 'none'
     document.getElementById('screenshots').style.display = 'none'
 
     document.getElementById('goBackCamera').style.display = 'none'
@@ -212,6 +271,7 @@ return photoAccepted
     document.getElementById("map").style.height = "100%";
     document.getElementById('camera').style.display = 'initial'
     photoAccepted = null
+    $('#screenshots').empty() // this is to clear the cancelled screenshots
     return photoAccepted
   });
 
@@ -225,7 +285,7 @@ return photoAccepted
 
     document.getElementById('cameraDiv').style.display = 'none'
     document.getElementById('video').style.display = 'none'
-    document.getElementById('canvas').style.display = 'none'
+    // document.getElementById('canvas').style.display = 'none'
     document.getElementById('screenshots').style.display = 'none'
 
     document.getElementById('goBackCamera').style.display = 'none'
@@ -236,6 +296,7 @@ return photoAccepted
 
     document.getElementById("map").style.height = "100%";
     document.getElementById('camera').style.display = 'initial'
+    document.getElementById('camera').style.backgroundColor = 'green'
 
     //to convert to blob
 
@@ -252,12 +313,13 @@ return photoAccepted
             var nameFile = 'test.png'
             var file = new File([testBlob],nameFile, {type: testBlob.type });
             filesArray = [file];
+            $('#screenshots').empty() // this is to clear the cancelled screenshots
 
             return testBlob && filesArray
          });
 
-    console.log(photoAccepted)
-    console.log(photoAccepted.src)
+    // console.log(photoAccepted)
+    // console.log(photoAccepted.src)
 
   });
 

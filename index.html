@@ -409,22 +409,26 @@
 <div id='cameraDiv' style='position:absolute;top:0px; right:0px;left:0px;bottom:0px;z-index:1;display:none'>
 
    <video autoplay id="video" style='position:relative; bottom:60px;width:100%;height:100%; padding:0px;display:none'></video>
-   <div id="screenshots" style='display:none; position:relative; bottom:60px;width:100%;height:100%; padding:0px'></div>
 
+   <canvas class="is-hidden" id="canvas" style='position:relative; bottom:60px;width:100%;height:100%; padding:0px;display:none'></canvas>
+
+   <div id="screenshots" align='center'  style='display:none; position:absolute; bottom:60px;width:100%;height:80%; padding:0px;'>
+     <!-- <img   id="screenshotsImage" src="" loading='lazy'  alt="..." style='width:40px ; height:40px'> -->
+   </div>
    <div align='center'>
-     <button id="goBackCamera"  style='display:inline-block;position:relative;width:25%;height:60px;bottom:65px;padding:0px;display:none'>
+     <button id="goBackCamera"  style='display:inline-block;position:relative;width:25%;height:60px;bottom:68px;padding:0px;display:none;border-radius:20px; border: 1px solid black'>
        <img src="images/arrowLeft.png" loading='lazy'  alt="..." style='width:40px ; height:40px'>
      </button>
-      <button id="btnScreenshot"  style='display:inline-block;position:relative;width:35%;height:60px;bottom:65px;padding:0px;display:none'>
+      <button id="btnScreenshot"  style='display:inline-block;position:relative;width:35%;height:60px;bottom:68px;padding:0px;display:none;border-radius:20px; border: 1px solid black'>
         <img src="images/cameraIcon.png" loading='lazy'  alt="..." style='width:40px ; height:40px'>
       </button>
-      <button id="btnChangeCamera"  style='display:inline-block;position:relative; width:35%;height:60px;;bottom:65px;padding:0px;display:none'>
+      <button id="btnChangeCamera"  style='display:inline-block;position:relative; width:35%;height:60px;;bottom:68px;padding:0px;display:none;border-radius:20px;border: 1px solid black'>
         <img src="images/changeCamera.png" loading='lazy'  alt="..." style='width:40px ; height:40px'>
       </button>
-      <button id="btnConfirmPhoto"  style='display:inline-block;position:relative; width:49%;height:60px;;bottom:65px;padding:0px;display:none'>
+      <button id="btnConfirmPhoto"  style='display:inline-block;position:absolute;left:0px; margin-left: 5px;width:47%;height:60px;;bottom:5px;padding:0px;display:none;border-radius:20px;border: 1px solid black'>
         <img src="images/ThumbsUpGreen.png" loading='lazy'  alt="..." style='width:40px ; height:40px'>
       </button>
-      <button id="btnCancelPhoto"  style='display:inline-block;position:relative; width:49%;height:60px;;bottom:65px;padding:0px;display:none'>
+      <button id="btnCancelPhoto"  style='display:inline-block;position:absolute;right:0px; margin-right: 5px;width:47%;height:60px;;bottom:5px;padding:0px;display:none; border-radius:20px;border: 1px solid black'>
         <img src="images/cancel.png" loading='lazy'  alt="..." style='width:40px ; height:40px'>
       </button>
     </div>
@@ -448,7 +452,6 @@
         <!-- </div> -->
       <!-- </div> -->
     <!-- </div> -->
-<canvas class="is-hidden" id="canvas" style='display:none'></canvas>
 
 <script src="sw.js"></script>
 
