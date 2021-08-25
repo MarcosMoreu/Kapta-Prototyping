@@ -151,7 +151,7 @@ document.getElementById('btnChangeCamera').style.display = 'initial';
 //     }
 //   };
   // use front face camera
-  let useFrontCamera = false;
+  let environmentCamera = true;
 
   // current video stream
   let videoStream;
@@ -238,7 +238,7 @@ return photoAccepted
 
   // switch camera
   btnChangeCamera.addEventListener("click", function () {
-    useFrontCamera = !useFrontCamera;
+    environmentCamera = !environmentCamera;
 
     initializeCamera();
   });
@@ -335,7 +335,7 @@ return photoAccepted
   // initialize
   async function initializeCamera() {
     stopVideoStream();
-    constraints.video.facingMode = useFrontCamera ? "user" : "environment";
+    constraints.video.facingMode = environmentCamera ? "environment" : "user";
 
     try {
       videoStream = await navigator.mediaDevices.getUserMedia(constraints);
