@@ -317,7 +317,7 @@ var localStorageToGeoJSON = function(){
                        }
                          //condition below is at is is to avoid deflated symbol to show as selected after polygon/line have been selected
                          if (selectedFeature.feature.geometry.type == 'Point') {
-                           if(map.getZoom() < 15) {
+                           if(map.getZoom() < 17) {
                              layer.editing.disable();
                              // layer.closePopup(selectedFeature.properties.landusesemoji)
                              // layer.editing.enable();

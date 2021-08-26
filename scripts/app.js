@@ -92,7 +92,6 @@ function error(err) {
 
 
 
-
 // //var miniMap
 // setTimeout(function(){
 //   var canvas = document.getElementById('shareWorldButtonCommentImage');
@@ -2011,23 +2010,53 @@ if(isOnline == false){
 
 
 ////////////////////////////////   GNSS  //////////////////////////////////////
-var gpsIcon = L.icon({
-    iconUrl: 'images/man.png',
-    //  shadowUrl: 'leaf-shadow.png',
 
-    iconSize: [12, 12], // size of the icon
-    //shadowSize:   [50, 64], // size of the shadow
-    iconAnchor: [6,6], // point of the icon which will correspond to marker's location, relative to its top left showCoverageOnHover
-    //shadowAnchor: [4, 62],  // the same for the shadow
-    //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-});
-
+// setTimeout(function(){
+//   var iconGPSURL1 = document.getElementsByClassName("leaflet-pane leaflet-marker-pane")
+//   var iconGPSURL2 = iconGPSURL1[0]
+//   var iconGPSURL3 = iconGPSURL2.innerHTML
+//   // iconGPSURL3.src = 'images/shadowGPS.png'
+//   // // gpsIcon.shadowUrl = 'images/man.png'
+//   // var iconGPSURL = L.icon.iconUrl
+//   console.log(iconGPSURL1)
+//
+//   console.log(iconGPSURL2)
+//   console.log(iconGPSURL3)
+//   // console.log(iconGPSURL2.img.src)
+//
+//   console.log(iconGPSURL3.src)
+//   var iconGPSURL11 = document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")
+//   var iconGPSURL21 = iconGPSURL11[0]
+//   var iconGPSURL31 = iconGPSURL21.innerHTML
+//   console.log(iconGPSURL11)
+//
+//   console.log(iconGPSURL21) ///////////////////////////////////
+//   console.log(iconGPSURL21.src) ///////////////////////////////////
+//   iconGPSURL21.src = 'images/myLayerPrivate.png'
+//
+//   console.log(iconGPSURL31)
+//
+//
+//
+// },10000)
 // // add location via browser geolocation
 // var currentLocation = []; // variable created to allow the user recenter the map
 // var accuracy = 0
 // var markerAdded = false; // var to avoid multiple markers
+var gpsIcon = L.icon({
+        iconUrl: 'images/man.png',
+        iconSize: [12, 12], // size of the icon
+        shadowSize:   [20,20], // size of the shadow
+        iconAnchor: [6,6], // point of the icon which will correspond to marker's location, relative to its top left showCoverageOnHover
+        // shadowAnchor: [10, 10],  // the same for the shadow
+        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
+// var iconGPSURL0
+var gpsIconRotationAngle
 
 function findBuffer(position) {
+
+
     //  L.marker([lat, lng],{icon:gpsIcon}).removeFrom(map);
     var lat = position.coords.latitude;
     var lng = position.coords.longitude;
@@ -2038,6 +2067,7 @@ function findBuffer(position) {
     //     markerAdded = true;
     // }
     currentLocation = [lat, lng];
+
 
     return currentLocation & markerAdded & accuracy;
 }
@@ -2052,7 +2082,23 @@ function findBuffer(position) {
 // var circleLT250
 // var circleLT250Added = false
 // var circleGT250Added = false
+var checkDeviceOrientation = setInterval(function() {
+  window.addEventListener("deviceorientation", handleOrientation, true);
+//alpha goes counter  1 to 365 clockwise
+  function handleOrientation(event) {
+    // var absolute = event.absolute;
+    var alpha = event.alpha;
+    // var beta     = event.beta;
+    // var gamma    = event.gamma;
+  console.log(alpha,'alpha')
+  gpsIconRotationAngle = 365 - alpha
+  }
+    // gpsIconRotationAngle = 30
 
+  return gpsIconRotationAngle
+},1000)
+
+// checkDeviceOrientation()
 // if(isFirstTime == true || pageLoaded == true){
 if(localStorage.getItem('pwCorrect')){
   navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
@@ -2061,6 +2107,7 @@ var field = false
 var position
 var startSearchingLocation = function(){
 var refreshGPSbutton = setInterval(function() { ///////////////////////////////////////// function to keep searching for gps position
+
   console.log('gps accuracy',accuracy)
   if(localStorage.getItem('pwCorrect')){
     // navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
@@ -2075,7 +2122,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
         // localStorage.setItem('lastPositionStoredLOCALLY', currentLocation)
         locationFound = true
         //once the position has been found, we stop checking if the user deactivates again (the position will be recorded anyway)
-        if (accuracy <= 50) {
+        if (accuracy <= 50000) {
 
             gps_Button.button.style.backgroundColor = '#3AFB06';
             //to change the icon of the Easybutton based on accuracy... (first gif then static image)
@@ -2104,6 +2151,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
 
                 position = L.marker(currentLocation, {
                     icon: gpsIcon,
+                    rotationAngle: gpsIconRotationAngle,
                     draggable:false,
                     zIndexOffset:100
                 })
@@ -2242,10 +2290,10 @@ var gps_Button = L.easyButton({
                   //  gps_Button.button.style.backgroundColor = 'green';
                   //  gps_Button.button.src = 'images/gpsSearching.gif';
                   var mapCurrentZoom = map.getZoom();
-                  if(mapCurrentZoom >= 15){
+                  if(mapCurrentZoom > 17){
                     map.flyTo(currentLocation, mapCurrentZoom);
                   }else{
-                    map.flyTo(currentLocation, 15);
+                    map.flyTo(currentLocation, 17);
                   }
 
                     // startSearchingLocation()

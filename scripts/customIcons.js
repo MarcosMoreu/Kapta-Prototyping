@@ -246,7 +246,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
     document.getElementById('customIconsMap').style.borderColor = 'grey'
 
   }
-
+  document.getElementById("customIconsGoBack").style.display = 'none'
   document.getElementById("filterWithIcons").style.display = 'none'
   document.getElementById("filterByDate").style.display = 'none'
   document.getElementById("clearFilter").style.display = 'none'
