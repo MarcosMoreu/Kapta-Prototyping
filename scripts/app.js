@@ -1903,6 +1903,10 @@ var filter_Button = L.easyButton({
             document.getElementById("point").style.display = "none";
             document.getElementById("armchair").style.display = "none";
             document.getElementById("field").style.display = "none";
+            document.getElementById("gobackArmchairField").style.display = "none";
+            filterLocalStorage_Button.button.style.opacity = '1';
+            filterLocalStorage_Button.button.disabled = false;
+
 
             if(filterApplied == true){
               //console.log('filterisonfalse')
@@ -1918,6 +1922,7 @@ var filter_Button = L.easyButton({
               document.getElementById("applyFilter").style.opacity = '0.4'
               document.getElementById("applyFilter").disabled = true
             }
+
             document.getElementById("filterWithIcons").style.display = "initial";
 
             document.getElementById("filterByDate").style.display = "initial";
@@ -2679,6 +2684,10 @@ document.getElementById("gobackArmchairField").onclick = function(e) {
   document.getElementById("polygon").style.display = "none";
   document.getElementById("polyline").style.display = "none";
   document.getElementById("point").style.display = "none";
+  filterLocalStorage_Button.button.disabled = false
+  filter_Button.button.disabled = false
+  filterLocalStorage_Button.button.style.opacity = '1'
+  filter_Button.button.style.opacity = '1'
 
 }
 document.getElementById("armchair").onclick = function(e) {
@@ -2693,6 +2702,10 @@ document.getElementById("armchair").onclick = function(e) {
   document.getElementById("polygon").style.display = "initial";
   document.getElementById("polyline").style.display = "initial";
   document.getElementById("point").style.display = "initial";
+  filterLocalStorage_Button.button.disabled = true
+  filter_Button.button.disabled = true
+  filterLocalStorage_Button.button.style.opacity = '0.5'
+  filter_Button.button.style.opacity = '0.5'
 
   finalLength = 0 //to set to cero the length distance
   return finalLength
@@ -2700,6 +2713,7 @@ document.getElementById("armchair").onclick = function(e) {
 
 
 document.getElementById("field").onclick = function(e) {
+
   //console.log(currentLocation)
 //  console.log(accuracy)
 
@@ -2768,8 +2782,10 @@ document.getElementById("field").onclick = function(e) {
       finalAreaAcres2Decimals = null
       finalLength2Decimals = null
 
-        filter_Button.button.style.opacity = '0.4';
-        filter_Button.button.disabled = true;
+      filterLocalStorage_Button.button.disabled = true
+      filter_Button.button.disabled = true
+      filterLocalStorage_Button.button.style.opacity = '0.5'
+      filter_Button.button.style.opacity = '0.5'
         gps_Button.button.style.opacity = '0.4';
         gps_Button.button.disabled = true;
 

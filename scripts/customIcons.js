@@ -87,6 +87,7 @@ document.getElementById('customIconsMap').onclick = function(e){
     if(landUse != 'emojiNoSapelli'){
       setTimeout(function(){
         emojioneareaeditor0.innerHTML = landUse
+        emojioneareaeditor0.focus()
 
       },500)
     }

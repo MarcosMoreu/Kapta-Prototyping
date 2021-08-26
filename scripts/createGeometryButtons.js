@@ -114,6 +114,8 @@ document.getElementById("goBack2").onclick = function(e) {
     if(myLayer_Button.button.style.backgroundColor == 'black'){
       filter_Button.button.style.opacity = '1';
       filter_Button.button.disabled = false;
+      filterLocalStorage_Button.button.style.opacity = '1';
+      filterLocalStorage_Button.button.disabled = false;
     }
 
     clickMapCount = 0;
@@ -471,6 +473,8 @@ map.on('draw:created', function(e) {
     filter_Button.addTo(map)
     filter_Button.button.style.opacity = '0.4';
     filter_Button.button.disabled = true;
+    filterLocalStorage_Button.button.style.opacity = '0.4';
+    filterLocalStorage_Button.button.disabled = true;
     document.getElementById("deleteAllVertexs").style.display = "none";
     document.getElementById("deleteLastVertex").style.display = "none";
     document.getElementById("goBack2").style.display = "none";
@@ -658,6 +662,8 @@ document.getElementById('Cancel').onclick = function(e) {
     if(myLayer_Button.button.style.backgroundColor == 'black'){
       filter_Button.button.style.opacity = '1';
       filter_Button.button.disabled = false;
+      filterLocalStorage_Button.button.style.opacity = '1';
+      filterLocalStorage_Button.button.disabled = false;
       document.getElementById('myLayerButton').click()
       document.getElementById('myLayerButton').click()
       if(localStorageLayer != null){  // because first time app is used mylayer_button has only two positions (local storage is empty)

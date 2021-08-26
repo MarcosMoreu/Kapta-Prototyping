@@ -714,6 +714,8 @@ document.getElementById('shareWorldButton').onclick = function(e) {
             myLayer_Button.button.disabled = false
             filter_Button.button.style.opacity = '1';
             filter_Button.button.disabled = false;
+            filterLocalStorage_Button.button.style.opacity = '1';
+            filterLocalStorage_Button.button.disabled = false;
             gps_Button.button.style.opacity = '1';
             gps_Button.button.disabled = false;
 
