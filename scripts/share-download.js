@@ -87,7 +87,10 @@ document.getElementById('share-download').onclick = function(e) {
     var date = timeEnd.getFullYear() + '-' + (timeEnd.getMonth() + 1) + '-' + timeEnd.getDate();
     var time = timeEnd.getHours() + ":" + timeEnd.getMinutes() + ":" + timeEnd.getSeconds();
     var dateTime = date + 'T' + time + 'Z';
-    //console.log(dateTime)
+
+    // console.log(date)
+    // var date1 = new Date(date)
+    // console.log(date1)
 
     ////////////////////// get time spend on mapping (in seconds)///////////////////////////////////////
     var res = Math.abs(timeStart - timeEnd) / 1000;
@@ -188,6 +191,8 @@ document.getElementById('share-download').onclick = function(e) {
           'LU': boxContent,
           'A': finalAreaAcres2Decimals,
           'L': finalLength2Decimals,
+          'D': date,
+
       };
     }else{
       propertiesGeoJSON = {
@@ -212,6 +217,7 @@ document.getElementById('share-download').onclick = function(e) {
           'LU': boxContent,
           'A': finalAreaAcres2Decimals,
           'L': finalLength2Decimals,
+          'D': date,
           'I1':imageName1,
           'I2':imageName2,
           'I3':imageName3,
@@ -360,6 +366,10 @@ document.getElementById('goBackClassification').onclick = function(e){
 
   landUse = 'emojiNoSapelli'
   clickCountSendButton = 0
+  imageName1 = null
+  imageName2 = null
+  imageName3 = null
+  attachPhoto = false
   document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
 
   startCheckingText()
@@ -368,7 +378,7 @@ document.getElementById('goBackClassification').onclick = function(e){
   clickedshareMessagingAppsDirect = false
 
 showButtons()
-return landUse && clickedshareMessagingAppsDirect
+return landUse && clickedshareMessagingAppsDirect && imageName1 && imageName2 && imageName3 && attachPhoto
 }
 
 var mapposLat = mappos.center.lat
@@ -734,6 +744,11 @@ document.getElementById('shareWorldButton').onclick = function(e) {
           finalLength2Decimals = null
           timeStart = new Date(); // to reset time start in case more contributions in this session
 
+          imageName1 = null
+          imageName2 = null
+          imageName3 = null
+          attachPhoto = false
+
             field = false
 
           return featureSent &&  finalAreaAcres2Decimals &&  finalLength2Decimals && timeStart && field && clickedshareMessagingAppsDirect
@@ -742,7 +757,7 @@ document.getElementById('shareWorldButton').onclick = function(e) {
         }
 
     }
-  return clickCountSendButton && landUse && groupGeoJSON
+  return clickCountSendButton && landUse && groupGeoJSON && imageName1 && imageName2 && imageName3 && attachPhoto
 }
 //console.log(deflatedLocalStorage)
 var elementJustAddedToLocalStorage = false
@@ -819,8 +834,26 @@ document.getElementById('DownloadButton').onclick = function(e) {
     convertedData = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
 
     var toDownloadGeoJSON = document.createElement('a');
-    toDownloadGeoJSON.setAttribute('href', convertedData);
-    toDownloadGeoJSON.setAttribute('download', dateTimeRandomID+'.geojson');
+
+      toDownloadGeoJSON.setAttribute('href', convertedData);
+      toDownloadGeoJSON.setAttribute('download', dateTimeRandomID+'.geojson');
+
+      if(attachPhoto == true){
+        console.log('array not null')
+        console.log(filesArray)
+
+        // var convertedPhoto = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
+        // var convertedPhoto = 'data:image/png;charset=utf-8,' + encodeURIComponent(JSON.stringify(testBlob));
+        const convertedPhoto = URL.createObjectURL(testBlob);
+
+        var toDownloadPhoto = document.createElement('a');
+        toDownloadPhoto.setAttribute('href', convertedPhoto);
+        toDownloadPhoto.setAttribute('download', dateTimeRandomID+'.png');
+        document.body.appendChild(toDownloadPhoto); // required for firefox
+        toDownloadPhoto.click();
+        toDownloadPhoto.remove();
+      }
+
     document.body.appendChild(toDownloadGeoJSON); // required for firefox
     toDownloadGeoJSON.click();
     toDownloadGeoJSON.remove();
@@ -910,10 +943,15 @@ document.getElementById('DownloadButton').onclick = function(e) {
           clickedshareMessagingAppsDirect = false
           field = false
 
+          imageName1 = null
+          imageName2 = null
+          imageName3 = null
+          attachPhoto = false
+
     }, timeOfVideo - 300);
 
 
-    return finished && whichLayerIsOn && localStorageLayer && elementJustAddedToLocalStorage && field && landUse && fetchLast && groupGeoJSON && clickedshareMessagingAppsDirect
+    return finished && whichLayerIsOn && localStorageLayer && elementJustAddedToLocalStorage && field && landUse && fetchLast && groupGeoJSON && clickedshareMessagingAppsDirect && imageName1 && imageName2 && imageName3 && attachPhoto
 }
 
 // end

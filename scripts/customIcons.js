@@ -100,6 +100,9 @@ document.getElementById('customIconsCancel').onclick = function(e){
   return  landUse && evaluation && screenChoice && imageName
 }
 document.getElementById('customIconsGoBack').onclick = function(e){
+      imageName1 = null
+      imageName2 = null
+      imageName3 = null
     // if(screenChoice == 'ismaraormau'){
     //   document.getElementById('customIconsGoBack').style.display = 'none'
     //   iconMARA.style.display = 'none'
@@ -144,7 +147,7 @@ document.getElementById('customIconsGoBack').onclick = function(e){
       generateButtonsLandUse()
 
   }
-  return screenChoice
+  return screenChoice && imageName1 && imageName2 && imageName3
 }
 
 function hideAll(){

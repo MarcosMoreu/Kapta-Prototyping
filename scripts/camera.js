@@ -1,5 +1,6 @@
 var attachPhoto = false
 var photoAccepted
+var imgSrc
 
 document.getElementById('camera').addEventListener('click', async function init(e) {
 document.getElementById('camera').style.display = 'none'
@@ -272,7 +273,9 @@ return photoAccepted
     document.getElementById('camera').style.display = 'initial'
     photoAccepted = null
     $('#screenshots').empty() // this is to clear the cancelled screenshots
-    return photoAccepted
+    attachPhoto = true
+
+    return photoAccepted && attachPhoto
   });
 
   //confirm photo
@@ -296,7 +299,7 @@ return photoAccepted
 
     document.getElementById("map").style.height = "100%";
     document.getElementById('camera').style.display = 'initial'
-    document.getElementById('camera').style.backgroundColor = 'green'
+    // document.getElementById('camera').style.backgroundColor = 'green'
 
     //to convert to blob
 
@@ -320,6 +323,12 @@ return photoAccepted
 
     // console.log(photoAccepted)
     // console.log(photoAccepted.src)
+    attachPhoto = true
+    // imgSrc = photoAccepted.src
+    // console.log(imgSrc)
+    startCheckingText()
+    // clearInterval(refreshPopup)
+    return attachPhoto
 
   });
 
