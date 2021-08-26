@@ -90,6 +90,8 @@ grid-template-rows: repeat(6, 1fr); */
   transition: 0.2s all;
 }
 
+
+
 .gridCellFilter{
   /* overflow-y:auto; */
 
@@ -112,8 +114,8 @@ row-gap:2px;
 column-gap:2px;
 /* grid-template-columns: 80px; */
 
-grid-template-columns: repeat(4, 1fr);
-grid-template-rows: repeat(10, 1fr);
+grid-template-columns: repeat(2, 1fr);
+grid-template-rows: repeat(6, 1fr);
 /* grid-template-columns: 1fr 1fr 1fr;
 grid-template-rows: repeat(6, 1fr); */
 

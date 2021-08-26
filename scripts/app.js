@@ -2337,6 +2337,8 @@ var filterLocalStorage_Button = L.easyButton({
               document.getElementById("point").style.display = "none";
               document.getElementById("armchair").style.display = "none";
               document.getElementById("field").style.display = "none";
+              document.getElementById("armchair").style.display = "none";
+              document.getElementById("field").style.display = "none";
 
               if(filterApplied == true){
                 //console.log('filterisonfalse')

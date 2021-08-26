@@ -23,16 +23,7 @@ var croptype = null
 //to return to the map
 document.getElementById('customIconsMap').onclick = function(e){
 
-  document.getElementById('customIconsMap').style.display = 'none';
-  document.getElementById('customIconsCancel').style.display = 'none';
-  document.getElementById('customIconsGoBack').style.display = 'none';
 
-  document.getElementById("map").style.height = "100%";
-  document.getElementById("Cancel").style.display = "initial";
-  document.getElementById("sapelliProjects").style.display = "initial";
-  document.getElementById('emoji').style.display = 'initial';
-  document.getElementById('showAreaAcres').style.display = 'initial';
-  document.getElementById('share-download').style.display = 'initial';
 
 
   // cell.style.visibility = 'hidden'
@@ -40,37 +31,68 @@ document.getElementById('customIconsMap').onclick = function(e){
   // cell.style.display = 'none'
 
   // hideAll()
-  if(landUse != 'emojiNoSapelli'){
-    document.getElementById("Cancel").style.opacity = '0'
-    document.getElementById("sapelliProjects").style.opacity = '0'
-    document.getElementById('emoji').style.opacity = '0'
-    document.getElementById('share-download').style.display = 'none';
+  var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
+  var emojioneareaeditor0 = emojioneareaeditor[0]
 
-    setTimeout(function(){
-      document.getElementById("Cancel").style.opacity = '1'
-      document.getElementById("sapelliProjects").style.opacity = '1'
-      document.getElementById('emoji').style.opacity = '1'
-      // document.getElementById('share-download').style.opacity = '1'
-    },2000)
-    var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
-  //  ////console.log(emojioneareaeditor)
-    var emojioneareaeditor0 = emojioneareaeditor[0]
-  //  ////console.log(emojioneareaeditor0)
-    // emojioneareaeditor0.innerHTML =  crop + ' x ' + stage + ' x ' + landUse + ' x ' + askHelpOrIHelp + ' x ' + evaluation + ' x ' + evaluation
-    // if(croptype == null){
-    //   croptype = ''
-    // }
+  if(filterIsOn == false){
+    document.getElementById('customIconsMap').style.display = 'none';
+    document.getElementById('customIconsCancel').style.display = 'none';
+    document.getElementById('customIconsGoBack').style.display = 'none';
 
-    if(evaluation == null && croptype == null){
-      emojioneareaeditor0.innerHTML =  landUse
-    }else if(evaluation != null && croptype == null){
-      emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + evaluation
-    }else if(evaluation == null && croptype != null){
-      emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + croptype
-    }else if(evaluation != null && croptype != null){
-      emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + croptype + ' ▪️ ' + evaluation
+    document.getElementById("map").style.height = "100%";
+    document.getElementById("Cancel").style.display = "initial";
+    document.getElementById("sapelliProjects").style.display = "initial";
+    document.getElementById('emoji').style.display = 'initial';
+    document.getElementById('showAreaAcres').style.display = 'initial';
+    document.getElementById('share-download').style.display = 'initial';
+    if(landUse != 'emojiNoSapelli'){
+      document.getElementById("Cancel").style.opacity = '0'
+      document.getElementById("sapelliProjects").style.opacity = '0'
+      document.getElementById('emoji').style.opacity = '0'
+      document.getElementById('share-download').style.display = 'none';
+
+      setTimeout(function(){
+        document.getElementById("Cancel").style.opacity = '1'
+        document.getElementById("sapelliProjects").style.opacity = '1'
+        document.getElementById('emoji').style.opacity = '1'
+        // document.getElementById('share-download').style.opacity = '1'
+      },2000)
+
+    //  ////console.log(emojioneareaeditor0)
+      // emojioneareaeditor0.innerHTML =  crop + ' x ' + stage + ' x ' + landUse + ' x ' + askHelpOrIHelp + ' x ' + evaluation + ' x ' + evaluation
+      // if(croptype == null){
+      //   croptype = ''
+      // }
+
+      if(evaluation == null && croptype == null){
+        emojioneareaeditor0.innerHTML =  landUse
+      }else if(evaluation != null && croptype == null){
+        emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + evaluation
+      }else if(evaluation == null && croptype != null){
+        emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + croptype
+      }else if(evaluation != null && croptype != null){
+        emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + croptype + ' ▪️ ' + evaluation
+      }
     }
+  }else if(filterIsOn == true){
+    document.getElementById("map").style.height = "100%";
+    document.getElementById("filterWithIcons").style.display = 'initial'
+    document.getElementById("filterByDate").style.display = 'initial'
+    document.getElementById("clearFilter").style.display = 'none'
+    document.getElementById("applyFilter").style.display = 'initial'
+    document.getElementById('emoji').style.display = 'initial';
+
+
+    document.getElementById('customIconsMap').style.display = 'none';
+    if(landUse != 'emojiNoSapelli'){
+      setTimeout(function(){
+        emojioneareaeditor0.innerHTML = landUse
+
+      },500)
+    }
+
   }
+
 }
 
 
@@ -210,6 +232,22 @@ document.getElementById('sapelliProjects').onclick = function(e){
   document.getElementById('showAreaAcres').style.display = 'none';
   document.getElementById('share-download').style.display = 'none';
   document.body.style.background = 'black';
+
+  if(filterIsOn == true){
+   document.getElementById('customIconsMap').style.background = '#00FFFB'
+   document.getElementById('customIconsMap').style.borderColor = '#00FFFB'
+
+  }else{
+    document.getElementById('customIconsMap').style.background = 'grey'
+    document.getElementById('customIconsMap').style.borderColor = 'grey'
+
+  }
+
+  document.getElementById("filterWithIcons").style.display = 'none'
+  document.getElementById("filterByDate").style.display = 'none'
+  document.getElementById("clearFilter").style.display = 'none'
+  document.getElementById("applyFilter").style.display = 'none'
+  document.getElementById('emoji').style.display = 'none';
   // document.getElementById('customIconsMap').style.display = 'none';
   document.getElementById('customIconsMap').style.display = 'initial';
 
@@ -227,6 +265,8 @@ document.getElementById('sapelliProjects').onclick = function(e){
         newProjectButton.innerHTML = '<img src="images/logoNyangatomReduced.png" style="width:50px ; height:50px; border: 0px solid white" />';
         newProjectButton.style.gridColumn = '1'
         newProjectButton.style.gridRow = '1';
+        hideAll() // to prevent grid showing together with sapelli project icons
+
 
         // newProjectButton.style.left = '50%'
         // cell.style.overflow = 'scroll'
@@ -270,6 +310,8 @@ document.getElementById('sapelliProjects').onclick = function(e){
 
     //this is to ensure that the two buttons are well located. Not the best solution but ....
     newProjectButton.style.display = 'initial';
+    hideAll() // to prevent grid showing together with sapelli project icons
+
     // newProjectButton.style.left = '50px'
     // newProjectButton2.style.display = 'initial';
     // newProjectButton2.style.left = '100px'
@@ -435,15 +477,17 @@ var generateButtonsLandUse = function(){
  iconOMO_8.innerHTML = '<img src="images/omoIcons/hutVillage.png" style="height: 150px; width: 150px; border: 0px solid white;" /> </br>አዊ / መንደር';
  iconOMO_8.onclick = function(){
    setTimeout(function(){
-
     hideAll()
     landUse = 'አዊ / መንደር'
     imageName1 = 'hutVillage'
 
     document.getElementById('customIconsMap').click()
-    setTimeout(function(){
-      document.getElementById('share-download').click()
-    },600)
+    if(filterIsOn == false){
+      setTimeout(function(){
+        document.getElementById('share-download').click()
+      },600)
+    }
+
     console.log(landUse)
 
   },400)
@@ -456,11 +500,17 @@ var generateButtonsLandUse = function(){
    setTimeout(function(){
 
     hideAll()
-  generateButtonsEvaluation()
-  document.getElementById('customIconsGoBack').style.display = 'initial';
+
   // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አፕሪች / ቧንቧ'
     imageName1 = 'manualPump'
+    if(filterIsOn == false){
+      generateButtonsEvaluation()
+      document.getElementById('customIconsGoBack').style.display = 'initial';
+    }else{
+      document.getElementById('customIconsMap').click()
+    }
+
   },400)
 
   }
@@ -473,11 +523,16 @@ var generateButtonsLandUse = function(){
    setTimeout(function(){
 
     hideAll()
-  generateButtonsCropType()
-   document.getElementById('customIconsGoBack').style.display = 'initial';
-   // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አክታረ አታፓር / ኽልኩሬ ሸሽ'
     imageName1 = 'pondFarming'
+    if(filterIsOn == false){
+      generateButtonsCropType()
+       document.getElementById('customIconsGoBack').style.display = 'initial';
+       // document.getElementById('customIconsCancel').style.display = 'initial';
+     }else{
+       document.getElementById('customIconsMap').click()
+     }
+
   },400)
 
   }
@@ -489,11 +544,16 @@ var generateButtonsLandUse = function(){
    setTimeout(function(){
 
     hideAll()
-  generateButtonsCropType()
-   document.getElementById('customIconsGoBack').style.display = 'initial';
-   // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አሳክ / ሀይቅ እርሻ'
     imageName1 = 'lakeFarming'
+    if(filterIsOn == false){
+      generateButtonsCropType()
+       document.getElementById('customIconsGoBack').style.display = 'initial';
+       // document.getElementById('customIconsCancel').style.display = 'initial';
+     }else{
+       document.getElementById('customIconsMap').click()
+     }
+
   },400)
 
   }
@@ -505,11 +565,16 @@ var generateButtonsLandUse = function(){
    setTimeout(function(){
 
     hideAll()
-  generateButtonsCropType()
-   document.getElementById('customIconsGoBack').style.display = 'initial';
-   // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'ኤሪያቻ / መስኖ'
     imageName1 = 'irrigationPump'
+    if(filterIsOn == false){
+      generateButtonsCropType()
+       document.getElementById('customIconsGoBack').style.display = 'initial';
+       // document.getElementById('customIconsCancel').style.display = 'initial';
+     }else{
+       document.getElementById('customIconsMap').click()
+     }
+
   },400)
 
   }
@@ -521,11 +586,16 @@ var generateButtonsLandUse = function(){
    setTimeout(function(){
 
     hideAll()
-  generateButtonsCropType()
-   document.getElementById('customIconsGoBack').style.display = 'initial';
-   // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'ኤመራ / ኦሞሸሽ'
     imageName1 = 'floodRecessionFlat'
+    if(filterIsOn == false){
+      generateButtonsCropType()
+       document.getElementById('customIconsGoBack').style.display = 'initial';
+       // document.getElementById('customIconsCancel').style.display = 'initial';
+     }else{
+       document.getElementById('customIconsMap').click()
+     }
+
   },400)
 
 
@@ -538,11 +608,17 @@ var generateButtonsLandUse = function(){
    setTimeout(function(){
 
     hideAll()
-  generateButtonsCropType()
-   document.getElementById('customIconsGoBack').style.display = 'initial';
-   // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'ኤቴሎ / ኦሞ ሸሽ'
     imageName1 = 'floodRecessionSteep'
+  generateButtonsCropType()
+  if(filterIsOn == false){
+    generateButtonsCropType()
+     document.getElementById('customIconsGoBack').style.display = 'initial';
+     // document.getElementById('customIconsCancel').style.display = 'initial';
+   }else{
+     document.getElementById('customIconsMap').click()
+   }
+
   },400)
 
 
@@ -555,11 +631,16 @@ var generateButtonsLandUse = function(){
    setTimeout(function(){
 
     hideAll()
-  generateButtonsEvaluation()
-   document.getElementById('customIconsGoBack').style.display = 'initial';
-   // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አዳካሩ አɔ̂ቱክ / የከብት ግጦሽ'
     imageName1 = 'cattleGrazing'
+    if(filterIsOn == false){
+      generateButtonsEvaluation()
+       document.getElementById('customIconsGoBack').style.display = 'initial';
+       // document.getElementById('customIconsCancel').style.display = 'initial';
+     }else{
+       document.getElementById('customIconsMap').click()
+     }
+
   },400)
 
 
@@ -572,11 +653,16 @@ var generateButtonsLandUse = function(){
    setTimeout(function(){
 
     hideAll()
-  generateButtonsEvaluation()
-   document.getElementById('customIconsGoBack').style.display = 'initial';
-   // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አዳካሩ አɔ̂ክኔይ / ፍየል ግጦሽ'
     imageName1 = 'goatSheepGrazing'
+    if(filterIsOn == false){
+      generateButtonsEvaluation()
+       document.getElementById('customIconsGoBack').style.display = 'initial';
+       // document.getElementById('customIconsCancel').style.display = 'initial';
+     }else{
+       document.getElementById('customIconsMap').click()
+     }
+
   },400)
 
 
@@ -589,11 +675,16 @@ var generateButtonsLandUse = function(){
    setTimeout(function(){
 
     hideAll()
-  generateButtonsEvaluation()
-   document.getElementById('customIconsGoBack').style.display = 'initial';
-   // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አክፒ አታፓር / ኩሬ ውሃ'
     imageName1 = 'waterpondAnimal'
+    if(filterIsOn == false){
+      generateButtonsEvaluation()
+       document.getElementById('customIconsGoBack').style.display = 'initial';
+       // document.getElementById('customIconsCancel').style.display = 'initial';
+     }else{
+       document.getElementById('customIconsMap').click()
+     }
+
   },400)
 
 
@@ -610,9 +701,11 @@ var generateButtonsLandUse = function(){
     landUse = 'አይፒ አናም / የኦሞ ውሃ'
     imageName1 = 'waterRiverAnimal'
     document.getElementById('customIconsMap').click()
-    setTimeout(function(){
-      document.getElementById('share-download').click()
-    },600)
+    if(filterIsOn == false){
+      setTimeout(function(){
+        document.getElementById('share-download').click()
+      },600)
+    }
   },400)
 
   }
@@ -629,9 +722,11 @@ var generateButtonsLandUse = function(){
     imageName1 = 'saltlick'
 
     document.getElementById('customIconsMap').click()
-    setTimeout(function(){
-      document.getElementById('share-download').click()
-    },600)
+    if(filterIsOn == false){
+      setTimeout(function(){
+        document.getElementById('share-download').click()
+      },600)
+    }
   },400)
 
   }
@@ -643,11 +738,16 @@ var generateButtonsLandUse = function(){
    setTimeout(function(){
 
     hideAll()
-  generateButtonsEvaluation()
-   document.getElementById('customIconsGoBack').style.display = 'initial';
-   // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አጌዎር / የአከባቢ የምበላ ቅጠል'
     imageName1 = 'wildFruits'
+    if(filterIsOn == false){
+      generateButtonsEvaluation()
+       document.getElementById('customIconsGoBack').style.display = 'initial';
+       // document.getElementById('customIconsCancel').style.display = 'initial';
+     }else{
+       document.getElementById('customIconsMap').click()
+     }
+
   },400)
 
 
@@ -665,9 +765,11 @@ var generateButtonsLandUse = function(){
     imageName1 = 'hunting'
 
     document.getElementById('customIconsMap').click()
-    setTimeout(function(){
-      document.getElementById('share-download').click()
-    },600)
+    if(filterIsOn == false){
+      setTimeout(function(){
+        document.getElementById('share-download').click()
+      },600)
+    }
   },400)
 
   }
@@ -685,9 +787,11 @@ var generateButtonsLandUse = function(){
     imageName1 = 'fishing'
 
     document.getElementById('customIconsMap').click()
-    setTimeout(function(){
-      document.getElementById('share-download').click()
-    },600)
+    if(filterIsOn == false){
+      setTimeout(function(){
+        document.getElementById('share-download').click()
+      },600)
+    }
   },400)
 
   }
@@ -700,11 +804,16 @@ var generateButtonsLandUse = function(){
    setTimeout(function(){
 
     hideAll()
-  generateButtonsEvaluation()
-   document.getElementById('customIconsGoBack').style.display = 'initial';
-   // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አሙሉጅ / የንብ ቀፎ'
     imageName1 = 'reehive'
+    if(filterIsOn == false){
+      generateButtonsEvaluation()
+       document.getElementById('customIconsGoBack').style.display = 'initial';
+       // document.getElementById('customIconsCancel').style.display = 'initial';
+     }else{
+       document.getElementById('customIconsMap').click()
+     }
+
   },400)
 
   }
@@ -721,9 +830,11 @@ var generateButtonsLandUse = function(){
     landUse = 'ኤደዋ / ባህላዊ ጨው'
     imageName1 = 'medicinalPlants'
     document.getElementById('customIconsMap').click()
-    setTimeout(function(){
-      document.getElementById('share-download').click()
-    },600)
+    if(filterIsOn == false){
+      setTimeout(function(){
+        document.getElementById('share-download').click()
+      },600)
+    }
   },400)
 
   }
@@ -740,9 +851,11 @@ var generateButtonsLandUse = function(){
     imageName1 = 'timber'
 
     document.getElementById('customIconsMap').click()
-    setTimeout(function(){
-      document.getElementById('share-download').click()
-    },600)
+    if(filterIsOn == false){
+      setTimeout(function(){
+        document.getElementById('share-download').click()
+      },600)
+    }
   },400)
 
 
@@ -760,9 +873,11 @@ var generateButtonsLandUse = function(){
     imageName1 = 'hotSpring'
 
     document.getElementById('customIconsMap').click()
-    setTimeout(function(){
-      document.getElementById('share-download').click()
-    },600)
+    if(filterIsOn == false){
+      setTimeout(function(){
+        document.getElementById('share-download').click()
+      },600)
+    }
   },400)
 
   }
@@ -775,11 +890,16 @@ var generateButtonsLandUse = function(){
    setTimeout(function(){
 
     hideAll()
-  generateButtonsEvaluation()
-   document.getElementById('customIconsGoBack').style.display = 'initial';
-   // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አቦኖ / ቦኖ'
     imageName1 = 'waterPoint'
+    if(filterIsOn == false){
+      generateButtonsEvaluation()
+       document.getElementById('customIconsGoBack').style.display = 'initial';
+       // document.getElementById('customIconsCancel').style.display = 'initial';
+     }else{
+       document.getElementById('customIconsMap').click()
+     }
+
   },400)
 
 
@@ -792,11 +912,16 @@ var generateButtonsLandUse = function(){
    setTimeout(function(){
 
     hideAll()
-  generateButtonsEvaluation()
-   document.getElementById('customIconsGoBack').style.display = 'initial';
-   // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አካይ ኤደዋ / ጤና ጣቢያ'
     imageName1 = 'healthStation'
+    if(filterIsOn == false){
+      generateButtonsEvaluation()
+       document.getElementById('customIconsGoBack').style.display = 'initial';
+       // document.getElementById('customIconsCancel').style.display = 'initial';
+     }else{
+       document.getElementById('customIconsMap').click()
+     }
+
   },400)
 
 
@@ -814,9 +939,11 @@ var generateButtonsLandUse = function(){
     imageName1 = 'school'
 
     document.getElementById('customIconsMap').click()
-    setTimeout(function(){
-      document.getElementById('share-download').click()
-    },600)
+    if(filterIsOn == false){
+      setTimeout(function(){
+        document.getElementById('share-download').click()
+      },600)
+    }
   },400)
 
   }
@@ -828,11 +955,16 @@ var generateButtonsLandUse = function(){
    setTimeout(function(){
 
     hideAll()
-  generateButtonsEvaluation()
-   document.getElementById('customIconsGoBack').style.display = 'initial';
-   // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'አካይ ኤደዋ አግባረን / የከብት ህክምና'
     imageName1 = 'veterinary'
+    if(filterIsOn == false){
+      generateButtonsEvaluation()
+       document.getElementById('customIconsGoBack').style.display = 'initial';
+       // document.getElementById('customIconsCancel').style.display = 'initial';
+     }else{
+       document.getElementById('customIconsMap').click()
+     }
+
   },400)
 
 
@@ -850,9 +982,11 @@ var generateButtonsLandUse = function(){
     imageName1 = 'treeForGathering'
 
     document.getElementById('customIconsMap').click()
-    setTimeout(function(){
-      document.getElementById('share-download').click()
-    },600)
+    if(filterIsOn == false){
+      setTimeout(function(){
+        document.getElementById('share-download').click()
+      },600)
+    }
   },400)
 
   }
@@ -869,9 +1003,11 @@ var generateButtonsLandUse = function(){
     imageName1 = 'eldersHut'
 
     document.getElementById('customIconsMap').click()
-    setTimeout(function(){
-      document.getElementById('share-download').click()
-    },600)
+    if(filterIsOn == false){
+      setTimeout(function(){
+        document.getElementById('share-download').click()
+      },600)
+    }
   },400)
 
   }
@@ -889,9 +1025,11 @@ var generateButtonsLandUse = function(){
     imageName1 = 'recreationCenter'
 
     document.getElementById('customIconsMap').click()
-    setTimeout(function(){
-      document.getElementById('share-download').click()
-    },600)
+    if(filterIsOn == false){
+      setTimeout(function(){
+        document.getElementById('share-download').click()
+      },600)
+    }
   },400)
 
   }
@@ -908,9 +1046,11 @@ var generateButtonsLandUse = function(){
     imageName1 = 'church'
 
     document.getElementById('customIconsMap').click()
-    setTimeout(function(){
-      document.getElementById('share-download').click()
-    },600)
+    if(filterIsOn == false){
+      setTimeout(function(){
+        document.getElementById('share-download').click()
+      },600)
+    }
   },400)
 
   }
@@ -927,9 +1067,11 @@ var generateButtonsLandUse = function(){
     imageName1 = 'boatCrossing'
 
     document.getElementById('customIconsMap').click()
-    setTimeout(function(){
-      document.getElementById('share-download').click()
-    },600)
+    if(filterIsOn == false){
+      setTimeout(function(){
+        document.getElementById('share-download').click()
+      },600)
+    }
   },400)
 
   }
@@ -938,14 +1080,20 @@ var generateButtonsLandUse = function(){
  iconOMO_36.innerHTML = '<img src="images/omoIcons/unknownOther.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ɔ̂ቺየ / ሌላ';
  iconOMO_36.className = 'buttonsSapelli'
  iconOMO_36.onclick = function(){
+
    setTimeout(function(){
 
     hideAll()
-  generateButtonsEvaluation()
-   document.getElementById('customIconsGoBack').style.display = 'initial';
-   // document.getElementById('customIconsCancel').style.display = 'initial';
     landUse = 'ɔ̂ቺየ / ሌላ'
     imageName1 = 'unknownOther'
+    if(filterIsOn == false){
+      generateButtonsEvaluation()
+       document.getElementById('customIconsGoBack').style.display = 'initial';
+       // document.getElementById('customIconsCancel').style.display = 'initial';
+     }else{
+       document.getElementById('customIconsMap').click()
+     }
+
 
   },400)
 
