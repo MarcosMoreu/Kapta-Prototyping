@@ -117,11 +117,12 @@ document.getElementById("applyFilter").onclick = function(e) {
         boxContent = document.getElementById('emojionearea').value;
         var firstWord = boxContent.split(' ')[0]
         var secondWord = boxContent.split(' ')[1]
+        console.log(firstWord,'first word')
 
         if(parsedValue.properties.landUsesEmoji){ //two types of properties to address download or geojsonurl properties names/acronyms
           //the approach here is to empty the array groupGeoJSON, then add each geometry (that matches the filter) to the array, then call the
           //function localStorageToGeoJSON at the end of the iteration
-          if(parsedValue.properties.landUsesEmoji.includes(firstWord) || parsedValue.properties.landUsesEmoji.includes(secondWord)){
+          if(parsedValue.properties.landUsesEmoji.includes(firstWord)){
             console.log('filtered')
 
             try{
@@ -134,23 +135,27 @@ document.getElementById("applyFilter").onclick = function(e) {
             }catch(err){
               console.log(parsedValue, 'error when pushing in iteration')
             }
-            // localStorageLayer.addTo(deflatedLocalStorage)
-            // deflatedLocalStorage.addTo(map)
-            // parsedValue.addTo(localStorageLayer)
-            // parsedValue.addTo(deflatedLocalStorage)
           }else{
             console.log('no match')
-            // selectedFeature.removeFrom(deflatedLocalStorage)
-            // selectedFeature.removeFrom(localStorageLayer)
-            // geoJSONLocalforageDB.getItem(key).then(function (value) {
-
-            // }catch(err){
-            //   console.log(err)
-            // }
           }
 
       }else if(parsedValue.properties.LU){
+        if(parsedValue.properties.LU.includes(firstWord)){
+          console.log('filtered')
 
+          try{
+            console.log(value)
+            console.log(iterationNumber)
+            isJson(parsedValue)
+            groupGeoJSON.length = 0
+            groupGeoJSON.push(parsedValue)
+
+          }catch(err){
+            console.log(parsedValue, 'error when pushing in iteration')
+          }
+        }else{
+          console.log('no match')
+        }
       }
     }).then(function() {
       localStorageToGeoJSON() // we call the function only at the end of the iteration, once the groupgeojson array is completed

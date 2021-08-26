@@ -69,6 +69,12 @@ document.getElementById('rose').onclick = function(e){
         // setTimeout(function(){
         console.log('buttons loaded')
         document.getElementById("map").style.height = "0px";
+        try{
+          cell.style.display = 'none'
+          // buttonSapelliNavigation.style.height = '0px'
+        }catch(err){
+
+        }
         // document.getElementById("divForButtons").style.display = 'initial'
         // document.getElementById("divForButtons").style.width = '100%'
         // document.getElementById("divForButtons").style.height = '100%'
@@ -76,6 +82,8 @@ document.getElementById('rose').onclick = function(e){
           var divForButtons = document.createElement('div')
           document.body.appendChild(divForButtons)
           divForButtons.className = 'gridCellForImportExportButtons'
+          // document.getElementsByClassName('gridCellForImportExportButtons').style.display = 'initial'
+
 
 
           buttonForHideAll = document.createElement("BUTTON");
@@ -126,7 +134,7 @@ document.getElementById('rose').onclick = function(e){
           buttonForHideAll.disabled = true;
           setTimeout(function(){
             buttonForHideAll.disabled = false
-          },1000)
+          },500)
         //
         // readfile = document.createElement("BUTTON");
         // divForButtons.appendChild(readfile);
@@ -146,9 +154,10 @@ document.getElementById('rose').onclick = function(e){
             choosefile.style.display = 'none'
             processAndAddToMap.style.display = 'none'
             nameFileAdded.style.display ='none'
-
           }catch(e){}
-
+          try{
+            cell.style.display = 'initial'
+          }catch(err){}
           buttonForDownloadTiles.style.display = 'none'
           buttonForExportGeometries.style.display = 'none'
           buttonForImportGeometries.style.display = 'none'
@@ -156,6 +165,7 @@ document.getElementById('rose').onclick = function(e){
           divForButtons.style.display = 'none'
 
           document.getElementById("map").style.height = "100%";
+
         }
 
       buttonForDownloadTiles.onclick = function(){

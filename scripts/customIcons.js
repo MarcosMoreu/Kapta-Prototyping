@@ -139,6 +139,8 @@ document.getElementById('customIconsGoBack').onclick = function(e){
   if(screenChoice == 'landUses'){
       hideAll()
       newProjectButton.style.display = 'initial'
+      newProjectButton2.style.display = 'initial'
+
       document.getElementById('customIconsGoBack').style.display = 'none'
       // iconMAU.style.display = 'initial'
       // screenChoice = 'ismaraormau'
@@ -272,22 +274,24 @@ document.getElementById('sapelliProjects').onclick = function(e){
         // newProjectButton.style.left = '50%'
         // cell.style.overflow = 'scroll'
 
-        // newProjectButton2 = document.createElement("BUTTON");
-        // cell.appendChild(newProjectButton2);
-        // newProjectButton2.className = 'sapelliProjectsLogo'
-        // newProjectButton2.innerHTML = '<img src="images/KenyaEMC/logoKenyaEMC.png" style="width:50px ;  height:50px; border: 0px solid white" />';
-        // // newProjectButton2.style.marginTop = '100px'
-        // newProjectButton2.style.gridColumn = '2'
-        // newProjectButton2.style.gridRow = '1'
-        // // newProjectButton.style.left = '50%'
-        //
-        //  newProjectButton2.onclick = function(){
-        //    newProjectButton2.innerHTML = '<img src="images/underConstruction.png" style="width:50px ; height:50px; border: 0px solid white" />';
-        //    setTimeout(function(){
-        //      newProjectButton2.innerHTML = '<img src="images/KenyaEMC/logoKenyaEMC.png" style="width:50px ; height:50px; border: 0px solid white" />';
-        //
-        //    },2000)
-        //  }
+        newProjectButton2 = document.createElement("BUTTON");
+        cell.appendChild(newProjectButton2);
+        newProjectButton2.className = 'sapelliProjectsLogo'
+        newProjectButton2.innerHTML = '<img src="images/omoIcons/unknownOther.png" style="width:50px ;  height:50px; border: 0px solid white" />';
+        // newProjectButton2.style.marginTop = '100px'
+        newProjectButton2.style.gridColumn = '2'
+        newProjectButton2.style.gridRow = '1'
+        // newProjectButton2.style.opacity = '0.5'
+
+        // newProjectButton.style.left = '50%'
+
+         newProjectButton2.onclick = function(){
+           newProjectButton2.innerHTML = '<img src="images/underConstruction.png" style="width:50px ; height:50px; border: 0px solid white" />';
+           setTimeout(function(){
+             newProjectButton2.innerHTML = '<img src="images/omoIcons/unknownOther.png" style="width:50px ; height:50px; border: 0px solid white" />';
+
+           },1000)
+         }
 
 
         preload([
@@ -311,6 +315,8 @@ document.getElementById('sapelliProjects').onclick = function(e){
 
     //this is to ensure that the two buttons are well located. Not the best solution but ....
     newProjectButton.style.display = 'initial';
+    newProjectButton2.style.display = 'initial'
+
     hideAll() // to prevent grid showing together with sapelli project icons
 
     // newProjectButton.style.left = '50px'
@@ -350,6 +356,8 @@ document.getElementById('sapelliProjects').onclick = function(e){
                   document.getElementById('customIconsMap').style.display = 'initial';
                   // sapProjectFirstTime = false
                   newProjectButton.style.display = 'none';
+                  newProjectButton2.style.display = 'none';
+
                   // newProjectButton2.style.display = 'none';
                   generateButtonsLandUse()
                   newProjectButton.innerHTML = '<img src="images/omoIcons/logoNyangatom.png" style="width:50px ; height:50px; border: 0px solid white" />';
@@ -404,6 +412,8 @@ document.getElementById('sapelliProjects').onclick = function(e){
         }else{
           // sapProjectFirstTime = false
           newProjectButton.style.display = 'none';
+          newProjectButton2.style.display = 'none';
+
           // newProjectButton2.style.display = 'none';
           cell.setAttribute("style","overflow-y:scroll");
           document.getElementById('customIconsGoBack').style.display = 'initial'
