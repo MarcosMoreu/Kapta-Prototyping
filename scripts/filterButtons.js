@@ -114,10 +114,22 @@ document.getElementById("applyFilter").onclick = function(e) {
         var parsedValue = JSON.parse(value)
         console.log(parsedValue.properties.landUsesEmoji)
 
-        boxContent = document.getElementById('emojionearea').value;
+        // boxContent = document.getElementById('emojionearea').value;
+        // console.log(boxContent,'boxcontent')
+
+        var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
+        var emojioneareaeditor0 = emojioneareaeditor[0]
+        boxContent = emojioneareaeditor0.innerHTML
+        //to get the box value in case this is filled with icons
+        if(boxContent == null){
+          boxContent = landUse
+        }
+        console.log(boxContent,'boxcontentLU')
+
         var firstWord = boxContent.split(' ')[0]
         var secondWord = boxContent.split(' ')[1]
         console.log(firstWord,'first word')
+
 
         if(parsedValue.properties.landUsesEmoji){ //two types of properties to address download or geojsonurl properties names/acronyms
           //the approach here is to empty the array groupGeoJSON, then add each geometry (that matches the filter) to the array, then call the
@@ -127,9 +139,9 @@ document.getElementById("applyFilter").onclick = function(e) {
 
             try{
               console.log(value)
-              console.log(iterationNumber)
+              console.log(iterationNumber,'iteration number')
               isJson(parsedValue)
-              groupGeoJSON.length = 0
+              // groupGeoJSON.length = 0
               groupGeoJSON.push(parsedValue)
 
             }catch(err){
@@ -147,7 +159,7 @@ document.getElementById("applyFilter").onclick = function(e) {
             console.log(value)
             console.log(iterationNumber)
             isJson(parsedValue)
-            groupGeoJSON.length = 0
+            // groupGeoJSON.length = 0
             groupGeoJSON.push(parsedValue)
 
           }catch(err){
@@ -158,9 +170,10 @@ document.getElementById("applyFilter").onclick = function(e) {
         }
       }
     }).then(function() {
+      console.log(groupGeoJSON)
+
       localStorageToGeoJSON() // we call the function only at the end of the iteration, once the groupgeojson array is completed
       filterApplied = true
-
         console.log('Iteration has completed');
         return filterApplied
     }).catch(function(err) {

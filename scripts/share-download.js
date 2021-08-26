@@ -255,7 +255,7 @@ document.getElementById('share-download').onclick = function(e) {
         // if(boxContentString.charAt(0) == '🌐'){ //🌐
           if(boxContentToString[1] == 'g' && boxContentToString[2] == 'l' && boxContentToString[3] == 'o' && boxContentToString[4] == 'b' && boxContentToString[5] == 'e'){ //🌐 to prevent unintended submissions as opendata
 
-          document.getElementById('shareWorldButton').disabled == false;
+          document.getElementById('shareWorldButton').disabled = false;
           document.getElementById('shareWorldButton').style.opacity = 1
         }
         // document.getElementById('Download').style.display = 'initial';
@@ -346,7 +346,7 @@ if (isIOS == false) {
 }
 if (isOnline == false){ // to disable send button if offline
   document.getElementById('shareWorldButton').style.opacity = '0.2';
-  document.getElementById('shareWorldButton').disabled = 'true';
+  document.getElementById('shareWorldButton').disabled = true;
 
 }
 
@@ -527,7 +527,8 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
   //   document.getElementById("Alert").style.display = 'initial'
   // }
 
-
+  filterLocalStorage_Button.button.style.opacity = '1';
+  filterLocalStorage_Button.button.disabled = false;
 
   // document.getElementById("shareMessagingApp").style.display = "initial";
   return shareURL && mapposLat  && mapposLng && mapposZoom && urlX && urlLatX && urlLngX && urlZoomX && groupGeoJSON && clickedshareMessagingAppsDirect
@@ -908,6 +909,8 @@ document.getElementById('DownloadButton').onclick = function(e) {
         // filter_Button.button.disabled = true;
         gps_Button.button.style.opacity = '1';
         gps_Button.button.disabled = false;
+        filterLocalStorage_Button.button.style.opacity = '1';
+        filterLocalStorage_Button.button.disabled = false;
 
         elementJustAddedToLocalStorage = true
 
