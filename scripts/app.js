@@ -1719,11 +1719,14 @@ var myLayer_Button = L.easyButton({
                     finalLayer.addTo(map)
                 }
                 whichLayerIsOn = 'localStorage'
-                // document.getElementById("Alert").style.fontSize = "20px";
-                document.getElementById("Alert").innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
+                document.getElementById("Alert").style.fontSize = "20px";
+                document.getElementById("Alert").style.color = 'black'
+                document.getElementById("Alert").innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > ON'
                 document.getElementById("Alert").style.display = 'initial'
                 setTimeout(function(){
                   document.getElementById("Alert").style.display = 'none'
+                  document.getElementById("Alert").style.color = 'yellow'
+
                 },1500)
                 // myLayer_Button.button.style.backgroundColor = '#00FFFB';
                 // document.getElementById('myLayerButton').src = 'images/osm.png'
@@ -1743,10 +1746,14 @@ var myLayer_Button = L.easyButton({
               // rose.remove()
               // rose.addTo(map)
                 whichLayerIsOn = 'none'
-                document.getElementById("Alert").innerHTML = '<img src="images/myLayerEmpty.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
+                document.getElementById("Alert").style.fontSize = "20px";
+                document.getElementById("Alert").style.color = 'black'
+                document.getElementById("Alert").innerHTML = 'NO <img src="images/myLayerEmpty.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
                 document.getElementById("Alert").style.display = 'initial'
                 setTimeout(function(){
                   document.getElementById("Alert").style.display = 'none'
+                  document.getElementById("Alert").style.color = 'yellow'
+
                 },1500)
 
                 deflated.removeFrom(map)
@@ -1771,10 +1778,14 @@ var myLayer_Button = L.easyButton({
 
                 }
                 whichLayerIsOn = 'none'
-                document.getElementById("Alert").innerHTML = '<img src="images/myLayerEmpty.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
+                document.getElementById("Alert").style.fontSize = "20px";
+                document.getElementById("Alert").style.color = 'black'
+                document.getElementById("Alert").innerHTML = 'NO <img src="images/myLayerEmpty.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
                 document.getElementById("Alert").style.display = 'initial'
                 setTimeout(function(){
                   document.getElementById("Alert").style.display = 'none'
+                  document.getElementById("Alert").style.color = 'yellow'
+
                 },1500)
 
                 //  localStorageLayer.addTo(map)
@@ -1800,10 +1811,14 @@ var myLayer_Button = L.easyButton({
 
             } else if (whichLayerIsOn == 'none') {
                 whichLayerIsOn = 'deflated'
-                document.getElementById("Alert").innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
+                document.getElementById("Alert").style.fontSize = "20px";
+                document.getElementById("Alert").style.color = 'black'
+                document.getElementById("Alert").innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > ON'
                 document.getElementById("Alert").style.display = 'initial'
                 setTimeout(function(){
                   document.getElementById("Alert").style.display = 'none'
+                  document.getElementById("Alert").style.color = 'yellow'
+
                 },1500)
 
                 if (finalLayer != null) {
@@ -2044,13 +2059,17 @@ if(isOnline == false){
 // var accuracy = 0
 // var markerAdded = false; // var to avoid multiple markers
 var gpsIcon = L.icon({
+        className: "GPSIconShadow",
         iconUrl: 'images/man.png',
-        iconSize: [12, 12], // size of the icon
-        shadowSize:   [20,20], // size of the shadow
-        iconAnchor: [6,6], // point of the icon which will correspond to marker's location, relative to its top left showCoverageOnHover
-        // shadowAnchor: [10, 10],  // the same for the shadow
+        iconSize: [50, 50], // size of the icon
+        iconAnchor: [25,25], // point of the icon which will correspond to marker's location, relative to its top left showCoverageOnHover
+
+        // shadowUrl:'images/cone.png',
+        // shadowSize:   [50,50], // size of the shadow
+        // shadowAnchor: [7, 7],  // the same for the shadow
         //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
     });
+
 // var iconGPSURL0
 var gpsIconRotationAngle
 
@@ -2082,21 +2101,31 @@ function findBuffer(position) {
 // var circleLT250
 // var circleLT250Added = false
 // var circleGT250Added = false
-var checkDeviceOrientation = setInterval(function() {
+var initialOffset = null;
+// var checkDeviceOrientation = setInterval(function() {
   window.addEventListener("deviceorientation", handleOrientation, true);
 //alpha goes counter  1 to 365 clockwise
   function handleOrientation(event) {
+    if(initialOffset === null) {
+      initialOffset = event.alpha;
+    }
+
+    var alpha = event.alpha - initialOffset;
+    if(alpha < 0) {
+      alpha += 360;
+    }
     // var absolute = event.absolute;
     var alpha = event.alpha;
     // var beta     = event.beta;
     // var gamma    = event.gamma;
   console.log(alpha,'alpha')
   gpsIconRotationAngle = 365 - alpha
+  return gpsIconRotationAngle
+
   }
     // gpsIconRotationAngle = 30
 
-  return gpsIconRotationAngle
-},1000)
+// },300)
 
 // checkDeviceOrientation()
 // if(isFirstTime == true || pageLoaded == true){
@@ -2122,7 +2151,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
         // localStorage.setItem('lastPositionStoredLOCALLY', currentLocation)
         locationFound = true
         //once the position has been found, we stop checking if the user deactivates again (the position will be recorded anyway)
-        if (accuracy <= 50000) {
+        if (accuracy <= 500) {
 
             gps_Button.button.style.backgroundColor = '#3AFB06';
             //to change the icon of the Easybutton based on accuracy... (first gif then static image)

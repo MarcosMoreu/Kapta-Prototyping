@@ -237,3 +237,22 @@ grid-template-rows: repeat(6, 1fr); */
 .custom-file-input:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
+
+.GPSIconShadow{
+  /* width:100px;
+height:100px; */
+/* border-radius:50%; */
+/* background-image: conic-gradient(transparent 0deg, transparent 45deg, white 45deg, white 315deg, transparent 315deg, transparent 360deg), radial-gradient(rgba(0, 0, 255, 0.5), rgba(0, 0, 255, 0.2) 30%, rgba(0, 0, 0, 0.1) 70%, transparent 80%); */
+
+/* background:conic-gradient(from -45deg at bottom,#0000, blue 1deg 90deg, #0000 91deg); */
+/* -webkit-mask:linear-gradient(#0000,#000); */
+/* -webkit-mask:linear-gradient(to top, #0000 25px,#000); */
+
+
+/* -webkit-mask:linear-gradient(to top, black, 20%, cyan); */
+border-radius:50%;
+
+-webkit-mask:linear-gradient(to top, black, 90%, #0000);  // this fuck!
+
+
+}
