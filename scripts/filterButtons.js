@@ -14,6 +14,9 @@ document.getElementById("applyFilter").onclick = function(e) {
   if(whichLayerIsOn == 'deflated'){  // to differentiate between filtering carto or localstorage
     filter_Button.button.style.borderColor = 'green'
 
+
+
+
     boxContent = document.getElementById('emojionearea').value;
     var boxContentToShortname = emojione.toShort(boxContent)
     console.log(boxContentToShortname)
@@ -22,11 +25,18 @@ document.getElementById("applyFilter").onclick = function(e) {
     document.getElementById("clearFilter").style.opacity = '1'
     document.getElementById("clearFilter").disabled = false
     filter_Button.button.style.borderColor = 'green'
+    if(landUse != 'emojiNoSapelli'){// we use innerHTML only when populated with sapelli (see below else)
+      var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
+      var emojioneareaeditor0 = emojioneareaeditor[0]
+      boxContentFiltering = emojioneareaeditor0.innerHTML
+    }else{
+      // boxContentFiltering = document.getElementsByClassName('emojionearea-editor')[0].innerHTML  // use this instead of .value!!!
+      boxContentFiltering = document.getElementById('emojionearea').value; // we use value instead because innerhtml takes emojis as images, which is a problem for the sql query
+      boxContentFilteringEncoded = emojione.toShort(boxContentFiltering)
+      console.log('box',boxContentFilteringEncoded)
+    }
 
-    // boxContentFiltering = document.getElementsByClassName('emojionearea-editor')[0].innerHTML  // use this instead of .value!!!
-    boxContentFiltering = document.getElementById('emojionearea').value; // we use value instead because innerhtml takes emojis as images, which is a problem for the sql query
-    boxContentFilteringEncoded = emojione.toShort(boxContentFiltering)
-    console.log('box',boxContentFilteringEncoded)
+
 
       if(boxContentFilteringEncoded ==='' && period == 3650){
         filterApplied = false
@@ -195,12 +205,13 @@ document.getElementById("applyFilter").onclick = function(e) {
       console.log(groupGeoJSON)
 
       localStorageToGeoJSON() // we call the function only at the end of the iteration, once the groupgeojson array is completed
-      filterApplied = true
         console.log('Iteration has completed');
-        return filterApplied
     }).catch(function(err) {
         // This code runs if there were any errors
         console.log(err);
+        filterApplied = true // here because if no matches then filterApplied is not returned
+        return filterApplied
+
     });
 
 
@@ -408,7 +419,7 @@ document.getElementById("filterByDate").onclick = function(e) {
 
       return datePeriodAgoReplaceComaInvert
     }
-    return dateFilterValue
+    return dateFilterValue && filterApplied
 }
 }
 

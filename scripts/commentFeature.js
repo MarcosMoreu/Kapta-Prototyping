@@ -220,7 +220,7 @@ document.getElementById('backEditDelete').onclick = function(){
 
   //to ensure filter button remains green if filter applied
   if(filterApplied == true){ //to avoid that if dilterby date is all, color is not green
-    filter_Button.button.style.backgroundColor = 'green'
+    filter_Button.button.style.borderColor = 'green'
     filterIsOn = false
 
 
