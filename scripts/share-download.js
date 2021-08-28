@@ -55,6 +55,9 @@ var showButtons = function(){
 var encodeGeoJSON = function(data,properties){
   data.properties = properties;
   convertedDataShareDirect = encodeURIComponent(JSON.stringify(data));
+  // console.log(convertedDataShareDirect)
+  // console.log(properties)
+
   // convertedDataShareDirect = JSON.stringify(data);
 
   shareGeomDirect = true
@@ -81,14 +84,16 @@ document.getElementById('share-download').onclick = function(e) {
     //here we generate a random ID so when offline the downloaded file is not duplicated
     var randomNumber = Math.random();
     randomNumber = randomNumber * 10000;
-    var randomID = Math.round(randomNumber);
+    var randomID = Math.round(randomNumber)+armchairOrGPS;  // if a means mapped with armchair, if g means mapped with gps
     //here the datetime
     var timeEnd = new Date();
     var date = timeEnd.getFullYear() + '-' + (timeEnd.getMonth() + 1) + '-' + timeEnd.getDate();
     var time = timeEnd.getHours() + ":" + timeEnd.getMinutes() + ":" + timeEnd.getSeconds();
     var dateTime = date + 'T' + time + 'Z';
 
-    // console.log(date)
+    console.log(randomID)
+    console.log(dateTime)
+
     // var date1 = new Date(date)
     // console.log(date1)
 
@@ -178,6 +183,7 @@ document.getElementById('share-download').onclick = function(e) {
         'audioAvailable': audioAvailable,
         'areaPolygon': finalAreaAcres2Decimals,
         'lengthLine': finalLength2Decimals,
+        // 'dateTime': '2021-8-10T6:9:26Z', // for testing
         'dateTime': dateTime,
         'timeSpendSeconds': totalTimeSpent,
         'dist_m_Participant_Feature': distanceObfTrunc,
@@ -191,7 +197,7 @@ document.getElementById('share-download').onclick = function(e) {
           'LU': boxContent,
           'A': finalAreaAcres2Decimals,
           'L': finalLength2Decimals,
-          'D': date,
+          'D': dateTime,
 
       };
     }else{
@@ -217,7 +223,7 @@ document.getElementById('share-download').onclick = function(e) {
           'LU': boxContent,
           'A': finalAreaAcres2Decimals,
           'L': finalLength2Decimals,
-          'D': date,
+          'D': dateTime,
           'I1':imageName1,
           'I2':imageName2,
           'I3':imageName3,
@@ -470,6 +476,7 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
   //   //     url:url,
   //   //   })
   //   // }
+
   // }else if(shareURL == 'encodedGeoJSON'){
     // console.log(propertiesGeoJSONURL.landUsesEmoji)
     var attributes = propertiesGeoJSONURL.LU

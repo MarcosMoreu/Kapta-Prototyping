@@ -63,6 +63,7 @@ var refreshPopup;
 var refreshPopupComment;
 var editButtonClicked = false;
 var audioComment = '.'
+var armchairOrGPS
 
 
 // // add location via browser geolocation
@@ -2785,7 +2786,8 @@ document.getElementById("armchair").onclick = function(e) {
   filter_Button.button.style.opacity = '0.5'
 
   finalLength = 0 //to set to cero the length distance
-  return finalLength
+  armchairOrGPS = 'a'
+  return finalLength && armchairOrGPS
 }
 
 
@@ -2897,8 +2899,8 @@ document.getElementById("field").onclick = function(e) {
         },800)
     }
 
-
-  return drawingPoint && featureType && field
+    armchairOrGPS = 'g'
+  return drawingPoint && featureType && field && armchairOrGPS
 }
 ///////////////////////////////////////////draw screen////////////////////////////////////////////////
 

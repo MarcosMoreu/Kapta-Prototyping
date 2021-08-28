@@ -7,6 +7,7 @@ var datePeriodAgoReplaceComaInvert = '2010-1-1'
 var numberOfKeys
 var cellFilter
 var filterIconOpen = false
+var dateFilterValueLocalStorage
 //script for apply filters
 document.getElementById("applyFilter").onclick = function(e) {
 
@@ -129,12 +130,25 @@ document.getElementById("applyFilter").onclick = function(e) {
         var firstWord = boxContent.split(' ')[0]
         var secondWord = boxContent.split(' ')[1]
         console.log(firstWord,'first word')
+        var dateFilterApplied = new Date(datePeriodAgoReplaceComaInvert)
+          // console.log(datePeriodAgoReplaceComaInvert)
+          console.log(dateFilterApplied)
+        // var reformatDate = parsedValue.properties.dateTime
 
 
         if(parsedValue.properties.landUsesEmoji){ //two types of properties to address download or geojsonurl properties names/acronyms
           //the approach here is to empty the array groupGeoJSON, then add each geometry (that matches the filter) to the array, then call the
           //function localStorageToGeoJSON at the end of the iteration
-          if(parsedValue.properties.landUsesEmoji.includes(firstWord)){
+
+          //this is to find and format the date
+          var dateWithoutTime = parsedValue.properties.dateTime.split('T')[0]
+          var dateFeatureIterated = new Date(dateWithoutTime)
+            // console.log(dateWithoutTime)
+            // console.log(parsedValue.properties.dateTime)
+            console.log(dateFeatureIterated)
+
+
+          if(parsedValue.properties.landUsesEmoji.includes(firstWord) && dateFeatureIterated > dateFilterApplied){
             console.log('filtered')
 
             try{
@@ -152,7 +166,14 @@ document.getElementById("applyFilter").onclick = function(e) {
           }
 
       }else if(parsedValue.properties.LU){
-        if(parsedValue.properties.LU.includes(firstWord)){
+
+        //this is to find and format the date
+        var dateWithoutTime = parsedValue.properties.D.split('T')[0]
+        var dateFeatureIterated = new Date(dateWithoutTime)
+          // console.log(dateWithoutTime)
+          // console.log(parsedValue.properties.dateTime)
+          console.log(dateFeatureIterated)
+        if(parsedValue.properties.LU.includes(firstWord) && dateFeatureIterated > dateFilterApplied){
           console.log('filtered')
 
           try{
@@ -365,13 +386,22 @@ document.getElementById("filterByDate").onclick = function(e) {
         // date = date.split("-").reverse().join("-");
         //console.log('datePeriodAgoReplaceComaInvert ' + datePeriodAgoReplaceComaInvert);
 
-      return dateFilterValue & period && filterApplied && datePeriodAgoReplaceComaInvert
+      return period && filterApplied && datePeriodAgoReplaceComaInvert
     }else if(whichLayerIsOn == 'localStorage'){
       console.log('under development')
+      var datePeriodAgo = calcDatePeriodAgo(period)
+      //console.log('datePeriodAgo ' + datePeriodAgo);
+      //var datePeriodAgo = '2020-10-14'
+      var datePeriodAgoReplace = datePeriodAgo.replaceAll("/", "-")
+      //console.log('datePeriodAgoReplace ' + datePeriodAgoReplace);
+      var datePeriodAgoReplaceComa = datePeriodAgoReplace.replace(/,[^,]+$/, "")
+      //console.log('datePeriodAgoReplaceComa ' + datePeriodAgoReplaceComa);
+      datePeriodAgoReplaceComaInvert = datePeriodAgoReplaceComa.split("-").reverse().join("-");
+      console.log(datePeriodAgoReplaceComaInvert)
 
-
-      return dateFilterValue
+      return datePeriodAgoReplaceComaInvert
     }
+    return dateFilterValue
 }
 }
 
