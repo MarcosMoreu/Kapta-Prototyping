@@ -505,7 +505,7 @@ else if (urlContainsHash == true){  // if only coords are in the url
 //to see the zoom when changing interval
 map.on('zoomend', function(e) {
   var currentZoom = map.getZoom()
-  console.log(currentZoom)
+  console.log('zoom level',currentZoom)
 
 })
 
@@ -1720,7 +1720,7 @@ var myLayer_Button = L.easyButton({
                     finalLayer.addTo(map)
                 }
                 whichLayerIsOn = 'localStorage'
-                document.getElementById("Alert").style.fontSize = "20px";
+                document.getElementById("Alert").style.fontSize = "30px";
                 document.getElementById("Alert").style.color = 'black'
                 document.getElementById("Alert").innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > ON'
                 document.getElementById("Alert").style.display = 'initial'
@@ -1747,7 +1747,7 @@ var myLayer_Button = L.easyButton({
               // rose.remove()
               // rose.addTo(map)
                 whichLayerIsOn = 'none'
-                document.getElementById("Alert").style.fontSize = "20px";
+                document.getElementById("Alert").style.fontSize = "30px";
                 document.getElementById("Alert").style.color = 'black'
                 document.getElementById("Alert").innerHTML = 'NO <img src="images/myLayerEmpty.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
                 document.getElementById("Alert").style.display = 'initial'
@@ -1779,7 +1779,7 @@ var myLayer_Button = L.easyButton({
 
                 }
                 whichLayerIsOn = 'none'
-                document.getElementById("Alert").style.fontSize = "20px";
+                document.getElementById("Alert").style.fontSize = "30px";
                 document.getElementById("Alert").style.color = 'black'
                 document.getElementById("Alert").innerHTML = 'NO <img src="images/myLayerEmpty.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
                 document.getElementById("Alert").style.display = 'initial'
@@ -1812,7 +1812,7 @@ var myLayer_Button = L.easyButton({
 
             } else if (whichLayerIsOn == 'none') {
                 whichLayerIsOn = 'deflated'
-                document.getElementById("Alert").style.fontSize = "20px";
+                document.getElementById("Alert").style.fontSize = "30px";
                 document.getElementById("Alert").style.color = 'black'
                 document.getElementById("Alert").innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > ON'
                 document.getElementById("Alert").style.display = 'initial'
@@ -1960,6 +1960,7 @@ var filter_Button = L.easyButton({
             // }
 
         }else{
+            landUse = 'emojiNoSapelli'
             clearInterval(startCheckAttrDateContent)
             //console.log('filterisontrue')
             filter_Button.button.style.border= '2px solid transparent';
@@ -2073,9 +2074,18 @@ var gpsIcon = L.icon({
         // shadowAnchor: [7, 7],  // the same for the shadow
         //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
     });
+var gpsIconNoOrientation = L.icon({
+        className: "GPSIconShadow",
+        iconUrl: 'images/manNoOrientation.png',
+        iconSize: [50, 50], // size of the icon
+        iconAnchor: [25,25], // point of the icon which will correspond to marker's location, relative to its top left showCoverageOnHover
 
+        // shadowUrl:'images/cone.png',
+        // shadowSize:   [50,50], // size of the shadow
+        // shadowAnchor: [7, 7],  // the same for the shadow
+        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
 // var iconGPSURL0
-var gpsIconRotationAngle
 
 function findBuffer(position) {
 
@@ -2106,32 +2116,30 @@ function findBuffer(position) {
 // var circleLT250Added = false
 // var circleGT250Added = false
 var initialOffset = null;
-// var checkDeviceOrientation = setInterval(function() {
-  window.addEventListener("deviceorientation", handleOrientation, true);
-//alpha goes counter  1 to 365 clockwise
+var initialMarkerOrientation
+var gpsIconRotationAngle = null
+
+  window.addEventListener("deviceorientationabsolute", handleOrientation, true); // if deviceorientation instead of deviceorientationabsolute, then only works in the laptop the absolute location, but not in mobile
+//alpha goes counter  1 to 360 clockwise
   function handleOrientation(event) {
+
     if(initialOffset === null) {
       initialOffset = event.alpha;
+      var absolute = event.absolute
+      // console.log(absolute,'absolute or not')
+      // console.log(initialOffset,'initialoffset')
     }
 
     var alpha = event.alpha - initialOffset;
-    if(alpha < 0) {
-      alpha += 360;
-    }
-    // var absolute = event.absolute;
-    var alpha = event.alpha;
-    // var beta     = event.beta;
-    // var gamma    = event.gamma;
-  console.log(alpha,'alpha')
-  gpsIconRotationAngle = 365 - alpha
+        if(alpha < 0) {
+          alpha += 360;
+        }
+  // console.log(alpha,'alpha')
+  gpsIconRotationAngle = 360 - alpha - initialOffset
+
   return gpsIconRotationAngle
 
   }
-    // gpsIconRotationAngle = 30
-
-// },300)
-
-// checkDeviceOrientation()
 // if(isFirstTime == true || pageLoaded == true){
 if(localStorage.getItem('pwCorrect')){
   navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
@@ -2181,16 +2189,28 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
                 if(position != undefined){
                   map.removeLayer(position)
                 }
+                if(gpsIconRotationAngle == 360 || gpsIconRotationAngle === null){
+                  position = L.marker(currentLocation, {
+                      icon: gpsIconNoOrientation,
+                      // rotationAngle: 90,
+                      draggable:false,
+                      zIndexOffset:100
+                  })
+                }else{
+                  console.log(gpsIconRotationAngle,'gpsIconRotationAngle')
+                  // console.log(initialMarkerOrientation,'initialMarkerOrientation')
 
-                position = L.marker(currentLocation, {
-                    icon: gpsIcon,
-                    rotationAngle: gpsIconRotationAngle,
-                    draggable:false,
-                    zIndexOffset:100
-                })
+                  position = L.marker(currentLocation, {
+                      icon: gpsIcon,
+                      rotationAngle: gpsIconRotationAngle,
+                      draggable:false,
+                      zIndexOffset:100
+                  })
+                }
 
                 position.setLatLng(currentLocation)
                 position.addTo(map)
+                position.setOpacity(1)
                 // position.bringToFront()
               }
               // clearInterval(refreshGPSbutton) //stop searching once accuracy <50
@@ -2215,6 +2235,12 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
             // } catch (err) {
             //     currentLocation == null;
             // }
+
+            //to hide the marker if not accuracte position
+            try{
+              position.setOpacity(0)
+            }catch(e){}
+
             if (circleLT250Added == false) {
                 //set circle based on radious-accuracy
                 circleLT250 = L.circle(currentLocation, {
@@ -2247,6 +2273,10 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
             // } catch (err) {
             //     currentLocation == null;
             // }
+            try{
+              position.setOpacity(0)
+            }catch(e){}
+
             if (circleGT250Added == false) {
                 circleGT250 = L.circle(currentLocation, {
                     color: "#ffffff00",
@@ -2276,7 +2306,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
         //     currentLocation == null;
         // }
     }
-    return currentLocation && circleLT250Added && circleGT250Added && circleLT250 && circleGT250 && position;
+    return currentLocation && circleLT250Added && circleGT250Added && circleLT250 && circleGT250 && position
   }
 }, 1000)
 }
@@ -2467,6 +2497,7 @@ var filterLocalStorage_Button = L.easyButton({
 
           }else{
             filterLocalStorage_Button.button.style.border= '2px solid transparent';
+            landUse = 'emojiNoSapelli'  // to refresh the popup content while creating geom incease filter applied before
 
               clearInterval(startCheckAttrDateContent)
               //console.log('filterisontrue')
@@ -2479,6 +2510,8 @@ var filterLocalStorage_Button = L.easyButton({
 
               if(filterApplied == true){ //to avoid that if dilterby date is all, color is not green
                 filterLocalStorage_Button.button.style.borderColor = 'green'
+                // landUse = 'emojiNoSapelli'  // to refresh the popup content while creating geom incease filter applied before
+                // console.log('emojinosapelli')
 
               }else{
                 filter_Button.button.style.backgroundColor = 'black'
