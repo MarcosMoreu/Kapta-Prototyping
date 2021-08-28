@@ -12,7 +12,7 @@ var dateFilterValueLocalStorage
 document.getElementById("applyFilter").onclick = function(e) {
 
   if(whichLayerIsOn == 'deflated'){  // to differentiate between filtering carto or localstorage
-    filter_Button.button.style.borderColor = 'yellow'
+    filter_Button.button.style.borderColor = 'green'
 
     boxContent = document.getElementById('emojionearea').value;
     var boxContentToShortname = emojione.toShort(boxContent)
@@ -21,6 +21,7 @@ document.getElementById("applyFilter").onclick = function(e) {
     document.getElementById("clearFilter").style.display = "initial";
     document.getElementById("clearFilter").style.opacity = '1'
     document.getElementById("clearFilter").disabled = false
+    filter_Button.button.style.borderColor = 'green'
 
     // boxContentFiltering = document.getElementsByClassName('emojionearea-editor')[0].innerHTML  // use this instead of .value!!!
     boxContentFiltering = document.getElementById('emojionearea').value; // we use value instead because innerhtml takes emojis as images, which is a problem for the sql query
@@ -90,7 +91,7 @@ document.getElementById("applyFilter").onclick = function(e) {
 
   }else if(whichLayerIsOn == 'localStorage'){
     // The same code, but using ES6 Promises.
-    filterLocalStorage_Button.button.style.borderColor = 'yellow'
+    filterLocalStorage_Button.button.style.borderColor = 'green'
 
     document.getElementById("applyFilter").style.display = "none";
     document.getElementById("clearFilter").style.display = "initial";
@@ -237,6 +238,8 @@ document.getElementById("clearFilter").onclick = function(e) {
   document.getElementById("applyFilter").style.display = "initial";
   document.getElementById("applyFilter").style.opacity = '0.4'
   document.getElementById("applyFilter").disabled = true
+
+
   // document.getElementById("clearFilter").style.opacity = '0.4'
   // document.getElementById("clearFilter").disabled = true
   document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null;
@@ -251,7 +254,9 @@ document.getElementById("clearFilter").onclick = function(e) {
 
   if(whichLayerIsOn == 'deflated'){
     filter_Button.button.style.backgroundColor = 'black'
-    filter_Button.button.style.borderColor = 'transparent'
+    filter_Button.button.style.borderColor = 'white'
+
+    // filter_Button.button.style.borderColor = 'transparent'
 
 
     if(filterApplied == true){
@@ -270,7 +275,9 @@ document.getElementById("clearFilter").onclick = function(e) {
 
   }else if(whichLayerIsOn == 'localStorage'){
     filterLocalStorage_Button.button.style.backgroundColor = '#00FFFB'
-    filterLocalStorage_Button.button.style.borderColor = 'transparent'
+    filterLocalStorage_Button.button.style.borderColor = 'white'
+
+    // filterLocalStorage_Button.button.style.borderColor = 'transparent'
 
 
     try{

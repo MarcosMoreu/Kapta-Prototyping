@@ -1903,6 +1903,7 @@ var filter_Button = L.easyButton({
           document.getElementById("randomSuggestion").style.display = "none";
 
           if(filterIsOn == false){
+            filter_Button.button.style.borderColor = 'white'
             startCheckAttrDateContent = setInterval(checkAttrDateContent,300)
             //console.log('filterisonfalse')
             filterIsOn = true
@@ -1925,6 +1926,7 @@ var filter_Button = L.easyButton({
 
             if(filterApplied == true){
               //console.log('filterisonfalse')
+              filter_Button.button.style.borderColor = 'green'
 
               document.getElementById("clearFilter").style.display = "initial";
               document.getElementById("clearFilter").style.opacity = '1'
@@ -1960,6 +1962,7 @@ var filter_Button = L.easyButton({
         }else{
             clearInterval(startCheckAttrDateContent)
             //console.log('filterisontrue')
+            filter_Button.button.style.border= '2px solid transparent';
 
             filterIsOn = false
             myLayer_Button.button.style.opacity = '1';
@@ -1968,7 +1971,7 @@ var filter_Button = L.easyButton({
             filter_Button.button.disabled = false;
 
             if(filterApplied == true){ //to avoid that if dilterby date is all, color is not green
-              filter_Button.button.style.borderColor = 'yellow'
+              filter_Button.button.style.borderColor = 'green'
 
             }else{
               filter_Button.button.style.backgroundColor = 'black'
@@ -2152,7 +2155,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
         // localStorage.setItem('lastPositionStoredLOCALLY', currentLocation)
         locationFound = true
         //once the position has been found, we stop checking if the user deactivates again (the position will be recorded anyway)
-        if (accuracy <= 500) {
+        if (accuracy <= 50) {
 
             gps_Button.button.style.backgroundColor = '#3AFB06';
             //to change the icon of the Easybutton based on accuracy... (first gif then static image)
@@ -2394,6 +2397,7 @@ var filterLocalStorage_Button = L.easyButton({
             //
             //
             // }
+
             emojiRequest()
             document.getElementById("backDeleteFeature").style.display = "none";
             document.getElementById("deleteFeature").style.display = 'none';
@@ -2405,6 +2409,8 @@ var filterLocalStorage_Button = L.easyButton({
             document.getElementById("randomSuggestion").style.display = "none";
 
             if(filterIsOn == false){
+              filterLocalStorage_Button.button.style.borderColor = 'white'
+
               startCheckAttrDateContent = setInterval(checkAttrDateContent,300)
               //console.log('filterisonfalse')
               filterIsOn = true
@@ -2425,10 +2431,13 @@ var filterLocalStorage_Button = L.easyButton({
 
               if(filterApplied == true){
                 //console.log('filterisonfalse')
+                filterLocalStorage_Button.button.style.borderColor = 'green'
+
                 document.getElementById("clearFilter").style.display = "initial";
                 document.getElementById("clearFilter").style.opacity = '1'
                 document.getElementById("clearFilter").disabled = false
               }else{
+
                 // document.getElementById("clearFilter").style.opacity = '0.4'
                 // document.getElementById("clearFilter").disabled = true
                 document.getElementById("clearFilter").style.display = "none";
@@ -2444,6 +2453,7 @@ var filterLocalStorage_Button = L.easyButton({
               document.getElementById("emoji").disabled = false;
               document.getElementById("emoji").style.opacity = '1';
 
+
               // if(alertAlreadyShown == false){
               //
               //   document.getElementById("Alert").style.fontSize = "15px";
@@ -2456,6 +2466,8 @@ var filterLocalStorage_Button = L.easyButton({
               // }
 
           }else{
+            filterLocalStorage_Button.button.style.border= '2px solid transparent';
+
               clearInterval(startCheckAttrDateContent)
               //console.log('filterisontrue')
 
@@ -2466,7 +2478,7 @@ var filterLocalStorage_Button = L.easyButton({
               filterLocalStorage_Button.button.disabled = false;
 
               if(filterApplied == true){ //to avoid that if dilterby date is all, color is not green
-                filterLocalStorage_Button.button.style.borderColor = 'yellow'
+                filterLocalStorage_Button.button.style.borderColor = 'green'
 
               }else{
                 filter_Button.button.style.backgroundColor = 'black'
