@@ -2126,6 +2126,8 @@ var gpsIconRotationAngle = null
     if(initialOffset === null) {
       initialOffset = event.alpha;
       var absolute = event.absolute
+      console.log(initialOffset,'initial offset')
+
       // console.log(absolute,'absolute or not')
       // console.log(initialOffset,'initialoffset')
     }
@@ -2197,7 +2199,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
                       zIndexOffset:100
                   })
                 }else{
-                  console.log(gpsIconRotationAngle,'gpsIconRotationAngle')
+                  // console.log(gpsIconRotationAngle,'gpsIconRotationAngle')
                   // console.log(initialMarkerOrientation,'initialMarkerOrientation')
 
                   position = L.marker(currentLocation, {
@@ -2308,7 +2310,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
     }
     return currentLocation && circleLT250Added && circleGT250Added && circleLT250 && circleGT250 && position
   }
-}, 1000)
+}, 500)
 }
 
 ////console.log(currentLocation[0]ddddddd)

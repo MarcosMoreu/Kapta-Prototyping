@@ -118,15 +118,15 @@ document.getElementById('btnChangeCamera').style.display = 'initial';
       // width: '100vw',
       // height:'100vh'
 
-      // width: { min: 1024, ideal: 1280, max: 1920 },
-      // height: { min: 576, ideal: 720, max: 1080 }
+      width: { min: 1024, ideal: 1280, max: 1920 },
+      height: { min: 576, ideal: 720, max: 1080 },
 
    //    video:
    //     {
    //       minAspectRatio: 1.333,
    //       minFrameRate: 30,
-         width: 300,
-         heigth: 500,
+         // width: 300,
+         // heigth: 500,
          facingMode: {exact: "environment"}
      }
   };
@@ -221,9 +221,11 @@ document.getElementById('btnChangeCamera').style.display = 'initial';
 
       // screenshotsContainer.width = '300px'
       // screenshotsContainer.height = '500px'
+      img.style.width = '100%'
+      img.style.height = 'auto'
       screenshotsContainer.prepend(img);
-      img.style.marginTop = '100px'
-      // img.style.left = '50%'
+      img.style.marginTop = '0px'
+      img.style.left = '50%'
 
 
       document.getElementById('btnConfirmPhoto').style.display = 'initial'
