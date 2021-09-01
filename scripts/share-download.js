@@ -193,7 +193,7 @@ document.getElementById('share-download').onclick = function(e) {
     };
 
       propertiesGeoJSONURL = {
-          'ID': randomID,
+          'randomID': randomID,
           'LU': boxContent,
           'A': finalAreaAcres2Decimals,
           'L': finalLength2Decimals,
