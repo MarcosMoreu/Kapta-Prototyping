@@ -119,7 +119,7 @@ var localStorageToGeoJSON = function(){
                       var audioAvailable = feature.properties.audioAvailable;
                       //conditions to avoid showing audio link if no audio has been recorded
                       if (audioAvailable == true) {
-                          if(feature.properties.A == 'Point' || feature.properties.A == 'Line'){
+                          if(feature.properties.A == 'Point' || feature.properties.A == 'Line' || !feature.properties.A){
                             var popupContent = feature.properties.LU + '</br>' + '</br>' + '🔊 🚧';
                           }else{
                             var popupContent = '📐 ' + '<i>' + feature.properties.A + '</i>' + '</br>' + '</br>' + feature.properties.LU + '</br>' + '</br>' + '🔊 🚧';
@@ -127,7 +127,7 @@ var localStorageToGeoJSON = function(){
                       } else {
                         //to check if properties are landuseemoji or LU
                         if(feature.properties.A){
-                          if(feature.properties.A == 'Point' || feature.properties.A == 'Line'){
+                          if(feature.properties.A == 'Point' || feature.properties.A == 'Line' || !feature.properties.A){
                             // var imgPopup = '<img src="images/google.png" height="50px" width="50px"/>'
                             if(feature.properties.I1){ // to distinguish between sapelli attributes or just text
                                 var popupContent = feature.properties.LU + '</br>' + '</br>'+ imgPopup1 + ' ' +imgPopup2 + ' ' + imgPopup3
@@ -143,7 +143,7 @@ var localStorageToGeoJSON = function(){
                             }
                           }
                         }else{
-                          if(feature.properties.areaPolygon == 'Point' || feature.properties.areaPolygon == 'Line'){
+                          if(feature.properties.areaPolygon == 'Point' || feature.properties.areaPolygon == 'Line' || !feature.properties.areaPolygon){
                             // var imgPopup = '<img src="images/google.png" height="50px" width="50px"/>'
                             if(feature.properties.I1){
                                 var popupContent = feature.properties.landUsesEmoji + '</br>' +'</br>'+ imgPopup1 + ' ' +imgPopup2 + ' ' + imgPopup3
