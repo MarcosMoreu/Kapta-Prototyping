@@ -1713,8 +1713,13 @@ var myLayer_Button = L.easyButton({
 
                     filter_Button.removeFrom(map)
                     filterLocalStorage_Button.addTo(map);
-
-
+                    var mapCurrentZoom = map.getZoom();
+                    if(mapCurrentZoom <= 11){
+                      try{
+                      var boundsLocalStorageLayer = deflatedLocalStorage.getBounds()
+                      map.flyToBounds(boundsLocalStorageLayer)
+                    }catch(e){}
+                  }
                 }
                 if (finalLayer != null) {
                     finalLayer.addTo(map)

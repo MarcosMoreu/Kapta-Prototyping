@@ -312,7 +312,7 @@ document.getElementById('rose').onclick = function(e){
                 console.log(toGeojson)
 
                 var lengthGeojson = toGeojson.features.length
-                console.log(lengthGeojson)
+                console.log('lengthgeojson',lengthGeojson)
                 for(i = 0; i < lengthGeojson; i++){
                   var feature = toGeojson.features[i]
                   var featureStringified = JSON.stringify(feature)
@@ -331,10 +331,10 @@ document.getElementById('rose').onclick = function(e){
                     processAndAddToMap.style.borderColor = 'green'
                     processAndAddToMap.style.backgroundColor = 'green'
                     processAndAddToMap.style.color = 'black'
-                    processAndAddToMap.innerHTML = 'Added to the map!'
+                    processAndAddToMap.innerHTML = 'Adding, wait...'
                     setTimeout(function(){
                       location.reload()
-                    },1500)
+                    },3000)
 
                     geometriesUploaded = true
                   }

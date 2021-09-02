@@ -299,10 +299,10 @@ document.getElementById('sapelliProjects').onclick = function(e){
 
           'images/omoIcons/banana.png','images/omoIcons/boatCrossing.png','images/omoIcons/cattleGrazing.png','images/omoIcons/church.png','images/omoIcons/eldersHut.png','images/omoIcons/fishing.png',
           'images/omoIcons/floodRecessionFlat.png','images/omoIcons/floodRecessionSteep.png','images/omoIcons/goatSheepGrazing.png','images/omoIcons/healthStation.png','images/omoIcons/hotSpring.png','images/omoIcons/hunting.png',
-          'images/omoIcons/hutVillage.png','images/omoIcons/irrigationPump.png','images/omoIcons/kraal.png','images/omoIcons/lakeFarming.png','images/omoIcons/maize.png',
+          'images/omoIcons/hutVillage.png','images/omoIcons/irrigationPump.png','images/omoIcons/kraal.png','images/omoIcons/lakeRecession.png','images/omoIcons/maize.png',
           'images/omoIcons/manualPump.png','images/omoIcons/medicinalPlants.png','images/omoIcons/noFarming.png','images/omoIcons/pondFarming.png','images/omoIcons/Questionmark.png','images/omoIcons/recreationCenter.png',
           'images/omoIcons/reehive.png','images/omoIcons/saltlick.png','images/omoIcons/school.png','images/omoIcons/sorghum.png','images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
-          'images/omoIcons/timber.png','images/omoIcons/treeForGathering.png','images/omoIcons/unknownOther.png','images/omoIcons/veterinary.png','images/omoIcons/waterPoint.png','images/omoIcons/waterpondAnimal.png',
+          'images/omoIcons/timber.png','images/omoIcons/treeForGathering.png','images/omoIcons/unknownOther.png','images/omoIcons/veterinary.png','images/omoIcons/waterPoint.png','images/omoIcons/waterPondAnimal.png',
           'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png',
         ]);
 
@@ -550,14 +550,14 @@ var generateButtonsLandUse = function(){
   }
  iconOMO_11 = document.createElement("BUTTON");
   cell.appendChild(iconOMO_11);
- iconOMO_11.innerHTML = '<img src="images/omoIcons/lakeFarming.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አሳክ / ሀይቅ እርሻ';
+ iconOMO_11.innerHTML = '<img src="images/omoIcons/lakeRecession.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አሳክ / ሀይቅ እርሻ';
  iconOMO_11.className = 'buttonsSapelli'
  iconOMO_11.onclick = function(){
    setTimeout(function(){
 
     hideAll()
     landUse = 'አሳክ / ሀይቅ እርሻ'
-    imageName1 = 'lakeFarming'
+    imageName1 = 'lakeRecession'
     if(filterIsOn == false){
       generateButtonsCropType()
        document.getElementById('customIconsGoBack').style.display = 'initial';
@@ -681,14 +681,14 @@ var generateButtonsLandUse = function(){
   }
  iconOMO_16 = document.createElement("BUTTON");
   cell.appendChild(iconOMO_16);
- iconOMO_16.innerHTML = '<img src="images/omoIcons/waterpondAnimal.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አክፒ አታፓር / ኩሬ ውሃ';
+ iconOMO_16.innerHTML = '<img src="images/omoIcons/waterPondAnimal.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አክፒ አታፓር / ኩሬ ውሃ';
  iconOMO_16.className = 'buttonsSapelli'
  iconOMO_16.onclick = function(){
    setTimeout(function(){
 
     hideAll()
     landUse = 'አክፒ አታፓር / ኩሬ ውሃ'
-    imageName1 = 'waterpondAnimal'
+    imageName1 = 'waterPondAnimal'
     if(filterIsOn == false){
       generateButtonsEvaluation()
        document.getElementById('customIconsGoBack').style.display = 'initial';
