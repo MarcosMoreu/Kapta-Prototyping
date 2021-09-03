@@ -45,6 +45,11 @@ document.getElementById('customIconsMap').onclick = function(e){
     document.getElementById('emoji').style.display = 'initial';
     document.getElementById('showAreaAcres').style.display = 'initial';
     document.getElementById('share-download').style.display = 'initial';
+    if(screenChoice == 'sapprojectsscreen'){
+      landUse = 'emojiNoSapelli'
+      // document.getElementById('share-download').style.opacity = '0.5'
+
+    }
     if(landUse != 'emojiNoSapelli'){
       document.getElementById("Cancel").style.opacity = '0'
       document.getElementById("sapelliProjects").style.opacity = '0'
@@ -64,6 +69,7 @@ document.getElementById('customIconsMap').onclick = function(e){
       //   croptype = ''
       // }
 
+
       if(evaluation == null && croptype == null){
         emojioneareaeditor0.innerHTML =  landUse
       }else if(evaluation != null && croptype == null){
@@ -73,6 +79,7 @@ document.getElementById('customIconsMap').onclick = function(e){
       }else if(evaluation != null && croptype != null){
         emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + croptype + ' ▪️ ' + evaluation
       }
+
     }
   }else if(filterIsOn == true){
     document.getElementById("map").style.height = "100%";
@@ -142,8 +149,10 @@ document.getElementById('customIconsGoBack').onclick = function(e){
       newProjectButton2.style.display = 'initial'
 
       document.getElementById('customIconsGoBack').style.display = 'none'
+      document.getElementById('customIconsMap').style.display = 'initial';
+
       // iconMAU.style.display = 'initial'
-      // screenChoice = 'ismaraormau'
+      screenChoice = 'sapprojectsscreen'
 
   }
   if(screenChoice == 'evaluation'){
@@ -519,6 +528,8 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       generateButtonsEvaluation()
       document.getElementById('customIconsGoBack').style.display = 'initial';
+      document.getElementById('customIconsMap').style.display = 'none';
+
     }else{
       document.getElementById('customIconsMap').click()
     }
@@ -540,6 +551,8 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       generateButtonsCropType()
        document.getElementById('customIconsGoBack').style.display = 'initial';
+       document.getElementById('customIconsMap').style.display = 'none';
+
        // document.getElementById('customIconsCancel').style.display = 'initial';
      }else{
        document.getElementById('customIconsMap').click()
@@ -561,6 +574,8 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       generateButtonsCropType()
        document.getElementById('customIconsGoBack').style.display = 'initial';
+       document.getElementById('customIconsMap').style.display = 'none';
+
        // document.getElementById('customIconsCancel').style.display = 'initial';
      }else{
        document.getElementById('customIconsMap').click()
@@ -582,6 +597,8 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       generateButtonsCropType()
        document.getElementById('customIconsGoBack').style.display = 'initial';
+       document.getElementById('customIconsMap').style.display = 'none';
+
        // document.getElementById('customIconsCancel').style.display = 'initial';
      }else{
        document.getElementById('customIconsMap').click()
@@ -603,6 +620,8 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       generateButtonsCropType()
        document.getElementById('customIconsGoBack').style.display = 'initial';
+       document.getElementById('customIconsMap').style.display = 'none';
+
        // document.getElementById('customIconsCancel').style.display = 'initial';
      }else{
        document.getElementById('customIconsMap').click()
@@ -626,6 +645,8 @@ var generateButtonsLandUse = function(){
   if(filterIsOn == false){
     generateButtonsCropType()
      document.getElementById('customIconsGoBack').style.display = 'initial';
+     document.getElementById('customIconsMap').style.display = 'none';
+
      // document.getElementById('customIconsCancel').style.display = 'initial';
    }else{
      document.getElementById('customIconsMap').click()
@@ -648,6 +669,8 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       generateButtonsEvaluation()
        document.getElementById('customIconsGoBack').style.display = 'initial';
+       document.getElementById('customIconsMap').style.display = 'none';
+
        // document.getElementById('customIconsCancel').style.display = 'initial';
      }else{
        document.getElementById('customIconsMap').click()
@@ -670,6 +693,8 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       generateButtonsEvaluation()
        document.getElementById('customIconsGoBack').style.display = 'initial';
+       document.getElementById('customIconsMap').style.display = 'none';
+
        // document.getElementById('customIconsCancel').style.display = 'initial';
      }else{
        document.getElementById('customIconsMap').click()
@@ -692,6 +717,8 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       generateButtonsEvaluation()
        document.getElementById('customIconsGoBack').style.display = 'initial';
+       document.getElementById('customIconsMap').style.display = 'none';
+
        // document.getElementById('customIconsCancel').style.display = 'initial';
      }else{
        document.getElementById('customIconsMap').click()
@@ -755,6 +782,8 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       generateButtonsEvaluation()
        document.getElementById('customIconsGoBack').style.display = 'initial';
+       document.getElementById('customIconsMap').style.display = 'none';
+
        // document.getElementById('customIconsCancel').style.display = 'initial';
      }else{
        document.getElementById('customIconsMap').click()
@@ -821,6 +850,8 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       generateButtonsEvaluation()
        document.getElementById('customIconsGoBack').style.display = 'initial';
+       document.getElementById('customIconsMap').style.display = 'none';
+
        // document.getElementById('customIconsCancel').style.display = 'initial';
      }else{
        document.getElementById('customIconsMap').click()
@@ -907,6 +938,8 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       generateButtonsEvaluation()
        document.getElementById('customIconsGoBack').style.display = 'initial';
+       document.getElementById('customIconsMap').style.display = 'none';
+
        // document.getElementById('customIconsCancel').style.display = 'initial';
      }else{
        document.getElementById('customIconsMap').click()
@@ -929,6 +962,8 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       generateButtonsEvaluation()
        document.getElementById('customIconsGoBack').style.display = 'initial';
+       document.getElementById('customIconsMap').style.display = 'none';
+
        // document.getElementById('customIconsCancel').style.display = 'initial';
      }else{
        document.getElementById('customIconsMap').click()
@@ -972,6 +1007,8 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       generateButtonsEvaluation()
        document.getElementById('customIconsGoBack').style.display = 'initial';
+       document.getElementById('customIconsMap').style.display = 'none';
+
        // document.getElementById('customIconsCancel').style.display = 'initial';
      }else{
        document.getElementById('customIconsMap').click()
@@ -1101,6 +1138,8 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       generateButtonsEvaluation()
        document.getElementById('customIconsGoBack').style.display = 'initial';
+       document.getElementById('customIconsMap').style.display = 'none';
+
        // document.getElementById('customIconsCancel').style.display = 'initial';
      }else{
        document.getElementById('customIconsMap').click()
