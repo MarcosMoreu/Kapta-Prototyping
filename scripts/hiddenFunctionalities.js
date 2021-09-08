@@ -274,12 +274,13 @@ document.getElementById('rose').onclick = function(e){
         fileInput.onchange = () => {
           const selectedFile = fileInput.files[0];
           console.log(selectedFile);
+
           // new FileReader object
           	let reader = new FileReader();
           	// event fired when file reading finished
           	reader.addEventListener('load', function(e) {
           	   // contents of the file
-          	    let text = e.target.result; ///////////////////////////////////////////this is the imported file /////////////////
+          	    let text = this.result; ///////////////////////////////////////////this is the imported file /////////////////
           	    // document.querySelector("#file-contents").textContent = text;
                 console.log(text)
                 // buttonForImportGeometries.disabled = true
