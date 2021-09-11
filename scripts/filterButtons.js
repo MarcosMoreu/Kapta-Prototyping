@@ -8,8 +8,28 @@ var numberOfKeys
 var cellFilter
 var filterIconOpen = false
 var dateFilterValueLocalStorage
+
+var lastBoxContent = null
+var checkIfInputChanges
 //script for apply filters
 document.getElementById("applyFilter").onclick = function(e) {
+
+  //script to refresh apply filter in case input box changes (focused again)
+  checkIfInputChanges = setInterval(function(){
+    var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
+    var emojioneareaeditor0 = emojioneareaeditor[0]
+    if(lastBoxContent != emojioneareaeditor0.innerHTML && lastBoxContent != null){
+      document.getElementById("clearFilter").style.display = "none";
+      document.getElementById("applyFilter").style.display = "initial";
+      document.getElementById("applyFilter").style.opacity = '1'
+      document.getElementById("applyFilter").disabled = true
+      console.log('the input box has been updated')
+    }
+    lastBoxContent = emojioneareaeditor0.innerHTML
+
+
+    return lastBoxContent
+  },300)
 
   if(whichLayerIsOn == 'deflated'){  // to differentiate between filtering carto or localstorage
     filter_Button.button.style.borderColor = 'green'
@@ -243,12 +263,14 @@ document.getElementById("applyFilter").onclick = function(e) {
 
 }
 
+
 //script for remove filters
 document.getElementById("clearFilter").onclick = function(e) {
   document.getElementById("clearFilter").style.display = "none";
   document.getElementById("applyFilter").style.display = "initial";
   document.getElementById("applyFilter").style.opacity = '0.4'
   document.getElementById("applyFilter").disabled = true
+  clearInterval(checkIfInputChanges)
 
 
   // document.getElementById("clearFilter").style.opacity = '0.4'
@@ -350,7 +372,10 @@ document.getElementById("filterByDate").onclick = function(e) {
     alert('🚧 Filter by date functionality not available yet for iOS')
   }else{
 
-
+    document.getElementById("clearFilter").style.display = "none";
+    document.getElementById("applyFilter").style.display = "initial";
+    document.getElementById("applyFilter").style.opacity = '1'
+    document.getElementById("applyFilter").disabled = true
 
 
       var calcDatePeriodAgo = function(period){
