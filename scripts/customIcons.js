@@ -31,6 +31,7 @@ document.getElementById('customIconsMap').onclick = function(e){
   // cell.style.display = 'none'
 
   // hideAll()
+  // var contentInTextbox = document.getElementById('emojionearea').value;
   var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
   var emojioneareaeditor0 = emojioneareaeditor[0]
 
@@ -71,13 +72,13 @@ document.getElementById('customIconsMap').onclick = function(e){
 
 
       if(evaluation == null && croptype == null){
-        emojioneareaeditor0.innerHTML =  landUse
+        emojioneareaeditor0.innerHTML =  landUse + ' 🟨 ' + emojioneareaeditor0.innerHTML
       }else if(evaluation != null && croptype == null){
-        emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + evaluation
+        emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + evaluation +  ' 🟨 ' + emojioneareaeditor0.innerHTML
       }else if(evaluation == null && croptype != null){
-        emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + croptype
+        emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + croptype +  ' 🟨 ' + emojioneareaeditor0.innerHTML
       }else if(evaluation != null && croptype != null){
-        emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + croptype + ' ▪️ ' + evaluation
+        emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + croptype + ' ▪️ ' + evaluation +  ' 🟨 ' + emojioneareaeditor0.innerHTML
       }
 
     }
@@ -506,7 +507,7 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       setTimeout(function(){
         document.getElementById('share-download').click()
-      },600)
+      },400)
     }
 
     console.log(landUse)
@@ -743,7 +744,7 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       setTimeout(function(){
         document.getElementById('share-download').click()
-      },600)
+      },400)
     }
   },400)
 
@@ -764,7 +765,7 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       setTimeout(function(){
         document.getElementById('share-download').click()
-      },600)
+      },400)
     }
   },400)
 
@@ -809,7 +810,7 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       setTimeout(function(){
         document.getElementById('share-download').click()
-      },600)
+      },400)
     }
   },400)
 
@@ -831,7 +832,7 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       setTimeout(function(){
         document.getElementById('share-download').click()
-      },600)
+      },400)
     }
   },400)
 
@@ -876,7 +877,7 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       setTimeout(function(){
         document.getElementById('share-download').click()
-      },600)
+      },400)
     }
   },400)
 
@@ -897,7 +898,7 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       setTimeout(function(){
         document.getElementById('share-download').click()
-      },600)
+      },400)
     }
   },400)
 
@@ -919,7 +920,7 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       setTimeout(function(){
         document.getElementById('share-download').click()
-      },600)
+      },400)
     }
   },400)
 
@@ -989,7 +990,7 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       setTimeout(function(){
         document.getElementById('share-download').click()
-      },600)
+      },400)
     }
   },400)
 
@@ -1034,7 +1035,7 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       setTimeout(function(){
         document.getElementById('share-download').click()
-      },600)
+      },400)
     }
   },400)
 
@@ -1055,7 +1056,7 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       setTimeout(function(){
         document.getElementById('share-download').click()
-      },600)
+      },400)
     }
   },400)
 
@@ -1077,7 +1078,7 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       setTimeout(function(){
         document.getElementById('share-download').click()
-      },600)
+      },400)
     }
   },400)
 
@@ -1098,7 +1099,7 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       setTimeout(function(){
         document.getElementById('share-download').click()
-      },600)
+      },400)
     }
   },400)
 
@@ -1119,7 +1120,7 @@ var generateButtonsLandUse = function(){
     if(filterIsOn == false){
       setTimeout(function(){
         document.getElementById('share-download').click()
-      },600)
+      },400)
     }
   },400)
 
@@ -1174,7 +1175,7 @@ var generateButtonsCropType = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },600)
+    },400)
   },400)
 
   }
@@ -1226,7 +1227,7 @@ var generateButtonsCropType = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },600)
+    },400)
   },400)
 
   }
@@ -1255,7 +1256,7 @@ var generateButtonsEvaluation = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },600)
+    },400)
   },400)
 
   }
@@ -1276,7 +1277,7 @@ var generateButtonsEvaluation = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },600)
+    },400)
   },400)
 
   }
@@ -1296,7 +1297,7 @@ var generateButtonsEvaluation = function(){
     document.getElementById('customIconsMap').click()
     setTimeout(function(){
       document.getElementById('share-download').click()
-    },600)
+    },400)
   },400)
   }
 

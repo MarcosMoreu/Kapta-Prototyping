@@ -3084,13 +3084,22 @@ var startCheckingText = function() {
                   if(attachPhoto == true){
                     // console.log('attach photo')
                     var imgPhoto = '<img src="images/cameraIcon.png"'+ 'height="50px" width="50px" border="0" bordercolor="grey" backgroundcolor="green"/>'
-                    clearInterval(refreshPopup)
+                    // clearInterval(refreshPopup)
 
                   }else{
                     var imgPhoto = '<img src="images/omoIcons/' + imageName1 + '.png"'+ 'height="0px" width="0px" border="0" bordercolor="green"/>'
-                    clearInterval(refreshPopup)
+                    // clearInterval(refreshPopup)
 
                   }
+                  // if(evaluation == null && croptype == null){
+                  //   emojioneareaeditor0innerHTML =  landUse + ' - ' + emojioneareaeditor0.innerHTML
+                  // }else if(evaluation != null && croptype == null){
+                  //   emojioneareaeditor0innerHTML =  landUse + ' ▪️ ' + evaluation +  ' - ' + emojioneareaeditor0.innerHTML
+                  // }else if(evaluation == null && croptype != null){
+                  //   emojioneareaeditor0innerHTML =  landUse + ' ▪️ ' + croptype +  ' - ' + emojioneareaeditor0.innerHTML
+                  // }else if(evaluation != null && croptype != null){
+                  //   emojioneareaeditor0innerHTML =  landUse + ' ▪️ ' + croptype + ' ▪️ ' + evaluation +  ' - ' + emojioneareaeditor0.innerHTML
+                  // }
                   var emojioneareaeditor0innerHTMLAndImages = emojioneareaeditor0innerHTML + '</br>' + '</br>' + imgPopup1 + ' ' +imgPopup2 + ' ' + imgPopup3 + ' ' + imgPhoto
                   layer.bindPopup(emojioneareaeditor0innerHTMLAndImages).addTo(map);
                   layer.bindPopup(emojioneareaeditor0innerHTMLAndImages).openPopup(); ///automatically shows the pop up!
