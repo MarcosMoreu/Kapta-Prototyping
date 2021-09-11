@@ -91,6 +91,26 @@ function error(err) {
   return currentLocation
 }
 
+// let intViewportHeight = window.innerHeight;
+// console.log("height", intViewportHeight)
+// var getBodyHeight = document.body.style.height
+// console.log('bodyheight',getBodyHeight)
+// if(window.navigator.standAlone || window.fullScreen || (!window.screenTop && !window.screenY) ){
+//   // document.body.style.height = '100vh'
+//   console.log("checkIfStandalone")
+//
+// }
+
+
+function isRunningStandalone() {
+    return (window.matchMedia('(display-mode: standalone)').matches);
+}
+
+if (isRunningStandalone()) {
+    document.body.style.height = '100vh'
+}
+// var checkIfStandalone = window.navigator.standAlone
+// console.log("checkIfStandalone",checkIfStandalone)
 
 
 // //var miniMap
