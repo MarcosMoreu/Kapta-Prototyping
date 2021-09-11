@@ -545,12 +545,13 @@ map.on('draw:created', function(e) {
     }
     //////////////////////////////////////////
 
-    function onEachFeatureBlank(feature, layer) {
-        var popupContent = '...'; //+ '    ' +dateTimeRandomID
-
-        layer.bindPopup(popupContent).addTo(map);
-        layer.bindPopup(popupContent).openPopup(); ///automatically shows the pop up!
-    }
+    // function onEachFeatureBlank(feature, layer) {
+    //     // var popupContent = '...'; //+ '    ' +dateTimeRandomID
+    //
+    //     // startCheckingText()
+    //     // layer.bindPopup(popupContent).addTo(map);
+    //     // layer.bindPopup(popupContent).openPopup(); ///automatically shows the pop up!
+    // }
 
     tempLayer = L.geoJSON(data, {
         pointToLayer: function(feature, latlng) { //to change the icon of the marker (i.e. avoid default)
@@ -565,7 +566,7 @@ map.on('draw:created', function(e) {
         },
         color: '#ffff00',
         icon: markerIconLocalStorage,
-        onEachFeature: onEachFeatureBlank,
+        // onEachFeature: onEachFeatureBlank,
 
     }).addTo(map);
     //to locate the feature at the center of the map. This must go right after creating the geojson file tempLayer

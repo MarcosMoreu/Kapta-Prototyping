@@ -1906,6 +1906,19 @@ myLayer_Button.button.style.border= '1px solid transparent';
 
 //myLayer_Button.addTo(map); //always on as there will always be features in the map, even when first load
 
+//to activate the localstorage layer on load
+// window.addEventListener('load', (event) => {
+//   console.log('page is fully loaded');
+//   if(localStorageLayer != null && whichLayerIsOn == 'deflated'){
+//     setTimeout(function(){
+//       document.getElementById('myLayerButton').click()
+//
+//     },2000)
+//
+//   }
+// });
+
+
 var filterApplied = false;
 var alertAlreadyShown = false
 var startCheckAttrDateContent
@@ -3022,7 +3035,7 @@ var startCheckingText = function() {
         //    ////console.log(emojioneareaeditor[0].textContent.lenght)
             if (emojioneareaeditor0innerHTML.length == 0) { //to show '...' while the textbox is empty of characters (both letter and emojis)
                 layer.bindPopup(popupContent).addTo(map);
-                layer.bindPopup(popupContent).openPopup(); ///automatically shows the pop up!
+                layer.bindPopup(popupContent).closePopup(); ///automatically shows the pop up!
               //  ////console.log('innerhtml is null')
 
                 if (audioRecorded == false) {
