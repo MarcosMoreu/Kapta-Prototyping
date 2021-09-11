@@ -727,6 +727,22 @@ document.getElementById('shareWorldButton').onclick = function(e) {
             gps_Button.button.style.opacity = '1';
             gps_Button.button.disabled = false;
 
+            planet_Button.button.style.opacity = '1';
+            planet_Button.button.disabled = false;
+            googleSat_Button.button.style.opacity = '1';
+            googleSat_Button.button.disabled = false;
+            osm_Button.button.style.opacity = '1';
+            osm_Button.button.disabled = false;
+
+            map.dragging.enable();
+            map.touchZoom.enable();
+            map.doubleClickZoom.enable();
+            map.scrollWheelZoom.enable();
+            map.boxZoom.enable();
+            map.keyboard.enable();
+            if (map.tap) map.tap.enable();
+            document.getElementById('map').style.cursor='grab';
+
             document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
             document.body.style.color = "white"; //cheating here, this is to hide a f** 'undefined' that appear on top of the video. Anyway, solved
             document.getElementById("shareWorldButtonImage").src = 'images/shareworld.png'
@@ -918,6 +934,22 @@ document.getElementById('DownloadButton').onclick = function(e) {
         gps_Button.button.disabled = false;
         filterLocalStorage_Button.button.style.opacity = '1';
         filterLocalStorage_Button.button.disabled = false;
+
+        planet_Button.button.style.opacity = '1';
+        planet_Button.button.disabled = false;
+        googleSat_Button.button.style.opacity = '1';
+        googleSat_Button.button.disabled = false;
+        osm_Button.button.style.opacity = '1';
+        osm_Button.button.disabled = false;
+
+        map.dragging.enable();
+        map.touchZoom.enable();
+        map.doubleClickZoom.enable();
+        map.scrollWheelZoom.enable();
+        map.boxZoom.enable();
+        map.keyboard.enable();
+        if (map.tap) map.tap.enable();
+        document.getElementById('map').style.cursor='grab';
 
         elementJustAddedToLocalStorage = true
 

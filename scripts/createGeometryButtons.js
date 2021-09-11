@@ -202,6 +202,15 @@ document.getElementById('point').onclick = function(e) {
 
 document.getElementById('polyline').onclick = function(e) {
 
+  document.getElementById("deleteLastVertexLine").style.opacity = "0.35";
+  document.getElementById("deleteLastVertexLine").disabled = true;
+  document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
+  document.getElementById("deleteAllVertexsLine").disabled = true;
+
+  document.getElementById('completeFeature').style.display = 'none';
+  document.getElementById("completeFeature").style.opacity = "0.35";
+  document.getElementById("completeFeature").disabled = true;
+
   finalAreaHa2Decimals = null
   finalAreaAcres2Decimals = null
   finalLength2Decimals = null
@@ -266,6 +275,13 @@ document.getElementById('polyline').onclick = function(e) {
 };
 
 document.getElementById('polygon').onclick = function(e) {
+  document.getElementById("deleteLastVertex").style.opacity = "0.35";
+  document.getElementById("deleteLastVertex").disabled = true;
+  document.getElementById("deleteAllVertexs").style.opacity = "0.35";
+  document.getElementById("deleteAllVertexs").disabled = true;
+  document.getElementById('completeFeature').style.display = 'none';
+  document.getElementById("completeFeature").style.opacity = "0.35";
+  document.getElementById("completeFeature").disabled = true;
 
   finalAreaHa2Decimals = null
   finalAreaAcres2Decimals = null
@@ -475,6 +491,13 @@ map.on('draw:created', function(e) {
     filter_Button.button.disabled = true;
     filterLocalStorage_Button.button.style.opacity = '0.4';
     filterLocalStorage_Button.button.disabled = true;
+
+    planet_Button.button.style.opacity = '0.4';
+    planet_Button.button.disabled = true;
+    googleSat_Button.button.style.opacity = '0.4';
+    googleSat_Button.button.disabled = true;
+    osm_Button.button.style.opacity = '0.4';
+    osm_Button.button.disabled = true;
     document.getElementById("deleteAllVertexs").style.display = "none";
     document.getElementById("deleteLastVertex").style.display = "none";
     document.getElementById("goBack2").style.display = "none";
@@ -587,12 +610,22 @@ map.on('draw:created', function(e) {
     startCheckingText() // to call the function to start checking the input text
     //console.log(data)
 
+    map.dragging.disable();
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    map.scrollWheelZoom.disable();
+    map.boxZoom.disable();
+    map.keyboard.disable();
+    if (map.tap) map.tap.disable();
+    document.getElementById('map').style.cursor='default';
+
     return created && data && typeOfFeature && field;
 
 });
 
 
 var boxContent;
+var justCancelled = false
 
 document.getElementById('Cancel').onclick = function(e) {
 
@@ -665,6 +698,15 @@ document.getElementById('Cancel').onclick = function(e) {
       filter_Button.button.disabled = false;
       filterLocalStorage_Button.button.style.opacity = '1';
       filterLocalStorage_Button.button.disabled = false;
+
+      planet_Button.button.style.opacity = '1';
+      planet_Button.button.disabled = false;
+      googleSat_Button.button.style.opacity = '1';
+      googleSat_Button.button.disabled = false;
+      osm_Button.button.style.opacity = '1';
+      osm_Button.button.disabled = false;
+      justCancelled = true
+
       document.getElementById('myLayerButton').click()
       document.getElementById('myLayerButton').click()
       if(localStorageLayer != null){  // because first time app is used mylayer_button has only two positions (local storage is empty)
@@ -689,5 +731,14 @@ document.getElementById('Cancel').onclick = function(e) {
       field = false
       finalLength = 0 //to set to cero the length distance
 
-  return created & featureType && field && finalLength;
+      map.dragging.enable();
+      map.touchZoom.enable();
+      map.doubleClickZoom.enable();
+      map.scrollWheelZoom.enable();
+      map.boxZoom.enable();
+      map.keyboard.enable();
+      if (map.tap) map.tap.enable();
+      document.getElementById('map').style.cursor='grab';
+
+  return created & featureType && field && finalLength && justCancelled;
 }

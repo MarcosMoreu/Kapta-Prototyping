@@ -1707,6 +1707,9 @@ var myLayer_Button = L.easyButton({
         stateName: 'check-mark',
         onClick: function(btn, map) {
 
+          justCancelled = false
+
+
 
           // changeBGColor()
 
@@ -1734,7 +1737,7 @@ var myLayer_Button = L.easyButton({
                     filter_Button.removeFrom(map)
                     filterLocalStorage_Button.addTo(map);
                     var mapCurrentZoom = map.getZoom();
-                    if(mapCurrentZoom <= 11){
+                    if(mapCurrentZoom <= 11 && justCancelled == false){
                       try{
                       var boundsLocalStorageLayer = deflatedLocalStorage.getBounds()
                       map.flyToBounds(boundsLocalStorageLayer)
@@ -1888,7 +1891,8 @@ var myLayer_Button = L.easyButton({
                   featureSent = false
               }
             }
-          return featureSent && whichLayerIsOn
+          return featureSent && whichLayerIsOn && justCancelled
+
         }
     }]
 })
@@ -2871,8 +2875,10 @@ document.getElementById("armchair").onclick = function(e) {
   filter_Button.button.style.opacity = '0.5'
 
   finalLength = 0 //to set to cero the length distance
+  justCancelled = false
+
   armchairOrGPS = 'a'
-  return finalLength && armchairOrGPS
+  return finalLength && armchairOrGPS && justCancelled
 }
 
 
@@ -2985,7 +2991,8 @@ document.getElementById("field").onclick = function(e) {
     }
 
     armchairOrGPS = 'g'
-  return drawingPoint && featureType && field && armchairOrGPS
+    justCancelled = false
+  return drawingPoint && featureType && field && armchairOrGPS && justCancelled
 }
 ///////////////////////////////////////////draw screen////////////////////////////////////////////////
 
