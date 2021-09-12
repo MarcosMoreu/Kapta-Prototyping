@@ -234,6 +234,15 @@ document.getElementById("applyFilter").onclick = function(e) {
 
     });
 
+    if(period == 3650){
+      var loadInfoDateFilter = boxContentFiltering // not encoded here as we want the emoji displayed in the alert
+    }else{
+      var loadInfoDateFilter = period + ' ☀️🌙 </br>'+ boxContentFiltering // not encoded here as we want the emoji displayed in the alert
+    }
+   document.getElementById("Alert").style.fontSize = "20px";
+   document.getElementById("Alert").innerHTML = loadInfoDateFilter
+   document.getElementById("Alert").style.display = 'initial'
+
 
     // geoJSONLocalforageDB.length().then(function(numberOfKeys){
     //   console.log(numberOfKeys)

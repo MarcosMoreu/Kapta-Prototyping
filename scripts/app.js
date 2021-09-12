@@ -1,5 +1,6 @@
 
 // var pageLoaded = false
+var subDOMAIN = 'omo'
 var isIOS = /iPad|iPhone|iPod|Mac OS X/.test(navigator.userAgent) && !window.MSStream; // Mac OS X correct???
 var isOnline = navigator.onLine
 var isOnlineGlobal = isOnline
