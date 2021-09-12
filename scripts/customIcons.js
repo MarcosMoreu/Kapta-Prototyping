@@ -22,10 +22,13 @@ var croptype = null
 
 //to return to the map
 document.getElementById('customIconsMap').onclick = function(e){
+  // scrollToTop()
+  // document.getElementById('map').scrollTop = 0;
+// $(window).scrollTop(0)  // map.on('map-container-resize', function () {
+  //
+  //   setTimeout(function(){ map.invalidateSize()}, 400);
 
-
-
-
+  // });
   // cell.style.visibility = 'hidden'
   //FUCK, the grid doesn't need to be hidden!!!
   // cell.style.display = 'none'
@@ -40,7 +43,10 @@ document.getElementById('customIconsMap').onclick = function(e){
     document.getElementById('customIconsCancel').style.display = 'none';
     document.getElementById('customIconsGoBack').style.display = 'none';
 
+    // document.getElementById("map").style.bottom = '0px'
     document.getElementById("map").style.height = "100%";
+    map.invalidateSize(); // doesn't seem to do anything
+
     document.getElementById("Cancel").style.display = "initial";
     document.getElementById("sapelliProjects").style.display = "initial";
     document.getElementById('emoji').style.display = 'initial';
@@ -72,13 +78,13 @@ document.getElementById('customIconsMap').onclick = function(e){
 
 
       if(evaluation == null && croptype == null){
-        emojioneareaeditor0.innerHTML =  landUse + ' 🟨 ' + emojioneareaeditor0.innerHTML
+        emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + emojioneareaeditor0.innerHTML
       }else if(evaluation != null && croptype == null){
-        emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + evaluation +  ' 🟨 ' + emojioneareaeditor0.innerHTML
+        emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + evaluation +  ' ▪️ ' + emojioneareaeditor0.innerHTML
       }else if(evaluation == null && croptype != null){
-        emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + croptype +  ' 🟨 ' + emojioneareaeditor0.innerHTML
+        emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + croptype +  ' ▪️ ' + emojioneareaeditor0.innerHTML
       }else if(evaluation != null && croptype != null){
-        emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + croptype + ' ▪️ ' + evaluation +  ' 🟨 ' + emojioneareaeditor0.innerHTML
+        emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + croptype + ' ▪️ ' + evaluation +  ' ▪️ ' + emojioneareaeditor0.innerHTML
       }
 
     }
@@ -194,6 +200,7 @@ function hideAll(){
 function scrollToTop() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  // document.map.scrollTop = 0
 }
 var totalPreloaded = 0
 // var preloadedCompleted
@@ -313,7 +320,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
           'images/omoIcons/manualPump.png','images/omoIcons/medicinalPlants.png','images/omoIcons/noFarming.png','images/omoIcons/pondFarming.png','images/omoIcons/Questionmark.png','images/omoIcons/recreationCenter.png',
           'images/omoIcons/reehive.png','images/omoIcons/saltlick.png','images/omoIcons/school.png','images/omoIcons/sorghum.png','images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
           'images/omoIcons/timber.png','images/omoIcons/treeForGathering.png','images/omoIcons/unknownOther.png','images/omoIcons/veterinary.png','images/omoIcons/waterPoint.png','images/omoIcons/waterPondAnimal.png',
-          'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png',
+          'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png',"images/omoIcons/pathTrack.png",
         ]);
 
   }
@@ -439,7 +446,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
 }
 
 var  iconOMO,iconOMO_8,iconOMO_9,iconOMO_10,iconOMO_11,iconOMO_12,iconOMO_13,iconOMO_14,iconOMO_15,iconOMO_16,iconOMO_17,iconOMO_18,iconOMO_19,iconOMO_20,iconOMO_21,iconOMO_22,iconOMO_22,iconOMO_23,iconOMO_24,iconOMO_25,iconOMO_26,
-icon27,iconOMO_28,iconOMO_29,iconOMO_30,iconOMO_31,iconOMO_32,iconOMO_33,iconOMO_34,iconOMO_35,iconOMO_36,
+icon27,iconOMO_28,iconOMO_29,iconOMO_30,iconOMO_31,iconOMO_32,iconOMO_33,iconOMO_34,iconOMO_35,iconOMO_36,iconOMO_41,
 
 iconCT1,iconCT2, iconCT3, iconCT4, iconE1,iconE2, iconE3
 
@@ -1125,6 +1132,27 @@ var generateButtonsLandUse = function(){
   },400)
 
   }
+  iconOMO_41 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_41);
+  iconOMO_41.innerHTML = '<img src="images/omoIcons/pathTrack.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br> ኤሮት / መንገድ';
+  iconOMO_41.className = 'buttonsSapelli'
+  iconOMO_41.onclick = function(){
+
+    setTimeout(function(){
+
+     hideAll()
+     landUse = 'ኤሮት / መንገድ'
+     imageName1 = 'pathTrack'
+     document.getElementById('customIconsMap').click()
+     if(filterIsOn == false){
+       setTimeout(function(){
+         document.getElementById('share-download').click()
+       },400)
+     }
+   },400)
+
+   }
+
  iconOMO_36 = document.createElement("BUTTON");
   cell.appendChild(iconOMO_36);
  iconOMO_36.innerHTML = '<img src="images/omoIcons/unknownOther.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ɔ̂ቺየ / ሌላ';
