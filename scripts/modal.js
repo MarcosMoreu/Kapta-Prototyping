@@ -161,10 +161,14 @@ var initialiseMap = function(){
     ).done(function(){
       // console.log('all script loaded')
       //place your code here, the scripts are all loaded
+
       document.getElementById("map").style.display = "initial";
-      document.getElementById("tutorial").style.display = "initial";
-      document.getElementById("armchair").style.display = "initial";
-      document.getElementById("field").style.display = "initial";
+      setTimeout(function(){
+        document.getElementById("tutorial").style.display = "initial";
+        document.getElementById("armchair").style.display = "initial";
+        document.getElementById("field").style.display = "initial";
+      },500)
+
       // document.getElementById("gobackArmchairField").style.display = "initial";
 
       // document.getElementById("polygon").style.display = "initial";

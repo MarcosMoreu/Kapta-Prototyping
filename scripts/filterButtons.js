@@ -18,7 +18,7 @@ document.getElementById("applyFilter").onclick = function(e) {
   checkIfInputChanges = setInterval(function(){
     var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
     var emojioneareaeditor0 = emojioneareaeditor[0]
-    if(lastBoxContent != emojioneareaeditor0.innerHTML && lastBoxContent != null){
+    if(lastBoxContent != emojioneareaeditor0.innerHTML && lastBoxContent != null && filterIsOn == true){
       document.getElementById("clearFilter").style.display = "none";
       document.getElementById("applyFilter").style.display = "initial";
       document.getElementById("applyFilter").style.opacity = '1'
