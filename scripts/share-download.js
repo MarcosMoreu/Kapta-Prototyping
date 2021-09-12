@@ -91,7 +91,7 @@ document.getElementById('share-download').onclick = function(e) {
     var time = timeEnd.getHours() + ":" + timeEnd.getMinutes() + ":" + timeEnd.getSeconds();
     var dateTime = date + 'T' + time + 'Z';
 
-    console.log(randomID)
+    console.log(randomID,"randomID. -a- refers to Armchair mapping, -f- refers to field mapping")
     console.log(dateTime)
 
     // var date1 = new Date(date)
@@ -257,6 +257,7 @@ document.getElementById('share-download').onclick = function(e) {
         document.getElementById('camera').style.backgroundColor = '#C6C6C5'
         // var boxContentString = boxContent[0]
         console.log('TIP: the shareWorld button is disabled by default to prevent unintended open data contributions. To enable it, simply start the string in the input box in the previous screen with the emoji 🌐')
+        console.log('Also, in the initial screen, click 10 times in the rose to open the hidden functionalities')
 
         // if(boxContentString.charAt(0) == '🌐'){ //🌐
           if(boxContentToString[1] == 'g' && boxContentToString[2] == 'l' && boxContentToString[3] == 'o' && boxContentToString[4] == 'b' && boxContentToString[5] == 'e'){ //🌐 to prevent unintended submissions as opendata
