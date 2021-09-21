@@ -92,6 +92,15 @@ function error(err) {
   return currentLocation
 }
 
+setTimeout(function(){
+  if (navigator.storage && navigator.storage.persist)
+    navigator.storage.persist().then(function(persistent) {
+      if (persistent)
+        console.log("Storage will not be cleared except by explicit user action");
+      else
+        console.log("Storage may be cleared by the UA under storage pressure.");
+    });
+},2000)
 // let intViewportHeight = window.innerHeight;
 // console.log("height", intViewportHeight)
 // var getBodyHeight = document.body.style.height
@@ -166,7 +175,7 @@ setTimeout(function(){
   }),
   $.getScript({
      cache:true,
-    url:'scripts/customIcons.js'
+    url:'scripts/customIcons_v2.js'
   })
 
 },3000)
@@ -857,7 +866,7 @@ if(isIOS == false){
 }
 
 var sentinelHubKey = '82b5a4e7-b887-40b2-949b-1b47a2aa9774';
-
+console.log('mosaicRequestedLatest',mosaicRequestedLatest)
 // a script to automate the update of these global mosaics is needed. At the moment, this needs to be done manually, both here to update the attributes and in the SentinelHub platfrom
 var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year + '_' + mosaicRequestedLatest + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
   attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaicLatest + ' ' + year
