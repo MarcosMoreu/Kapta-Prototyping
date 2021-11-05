@@ -383,9 +383,11 @@ document.getElementById('goBackClassification').onclick = function(e){
 
 
   clickedshareMessagingAppsDirect = false
+  photoAccepted = null //this is to not attach a picture taken in the previous mapping in the same session
+
 
 showButtons()
-return landUse && clickedshareMessagingAppsDirect && imageName1 && imageName2 && imageName3 && attachPhoto
+return landUse && clickedshareMessagingAppsDirect && imageName1 && imageName2 && imageName3 && attachPhoto && photoAccepted
 }
 
 var mapposLat = mappos.center.lat
