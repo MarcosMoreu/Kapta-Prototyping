@@ -1,6 +1,6 @@
 
 // var pageLoaded = false
-var subDOMAIN = 'omo'
+var subDOMAIN = 'testing'
 var isIOS = /iPad|iPhone|iPod|Mac OS X/.test(navigator.userAgent) && !window.MSStream; // Mac OS X correct???
 var isOnline = navigator.onLine
 var isOnlineGlobal = isOnline
@@ -3223,3 +3223,26 @@ function onEachFeatureAudioLocalStorage(feature, layer) { // function duplicated
 return feature
 }
 /////////////////LEAFLET DRAW////////
+//tiles are stored in the cahce storage v22.4.8
+
+var storageUsed
+(async () => {
+  // Storage API support
+  if (!navigator.storage) return;
+  const storage = await navigator.storage.estimate();
+  storageUsed = Math.round((storage.usage / storage.quota) * 100)
+  console.log('% used   : ',storageUsed)
+  console.log(`permitted: ${ storage.quota / 1024 } Kb`);
+  console.log(`used     : ${ storage.usage / 1024 } Kb`);
+  // console.log(`% used   : ${ Math.round((storage.usage / storage.quota) * 100) }%`);
+  console.log(`remaining: ${ Math.floor((storage.quota - storage.usage) / 1024) } Kb`);
+
+  if(storageUsed >= 90){ // we clear at 90%, but could be higher...
+    //this is to clear the non-fundamental cache. Not the best approach at all, but this is to avoid indexeddb being cleared -
+    // instead of the cache map tiles. There are nicer ways of doing this, but let's see if the issue is solved with "persistence", this is a patch...
+    //version var is declared in sw.js
+    caches.delete(version).then(function(response) {
+      console.log('cache deleted')
+    })
+  }
+})();
