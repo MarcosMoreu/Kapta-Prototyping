@@ -11,6 +11,7 @@ var processAndAddToMap
 var geometriesUploaded
 var nameFileAdded
 var buttonForDeleteAllGeom
+
 document.getElementById('rose').onclick = function(e){
     clicksRose += 1;
     // //console.log(clicksRose)
@@ -282,7 +283,7 @@ document.getElementById('rose').onclick = function(e){
           	   // contents of the file
           	    let text = this.result; ///////////////////////////////////////////this is the imported file /////////////////
           	    // document.querySelector("#file-contents").textContent = text;
-                console.log(text)
+                // console.log(text)
                 // buttonForImportGeometries.disabled = true
                 choosefile.style.color = 'black'
                 processAndAddToMap = document.createElement("BUTTON");
@@ -308,17 +309,134 @@ document.getElementById('rose').onclick = function(e){
                 nameFileAdded.style.gridRow = '6';
 
                 processAndAddToMap.onclick = function(){
-                /////////////////////////   function to read the input file and process and add to map
+
+                  //1-take only urls, and put them in an array of objects
+                  //2-keep only the encoded geojson in each array element (ie remove https...)
+                  //3-decode each object
+                  //4-create a feature collection with all the geojson (objects)
+                  //5-assign this feature collection to 'text variable'
+
+                  ////1-
+                  // var mySubString = str.substring(
+                  //   str.indexOf("?") + 1,
+                  //   str.lastIndexOf("/")
+                  // );
+
+
+
+                //   var mySubString = str.substring(
+                //   str.split('?').pop().split('/')[0] // returns 'two'
+                // );
+
+                // var str1 = str.replace('/?%','¬')
+                // var str2 = str1.replace('D/#','_')
+                // console.log(str2)
+                // let sentences = str2.split(/[¬,_]/);
+
+
+                // var arrStr = str.split(/[?#]/);
+                //
+                //   console.log('substring',arrStr)
+
+                //First we detect if the input file is a geojson or needs processing (ie whatsapp exported txt file)
+                var firstCharacterInput = text.charAt(0)
+                var str = text
+                if(firstCharacterInput != '{'){
+                  var getFromBetween = {
+                    results:[],
+                    string:"",
+                    getFromBetween:function (sub1,sub2) {
+                        if(this.string.indexOf(sub1) < 0 || this.string.indexOf(sub2) < 0) return false;
+                        var SP = this.string.indexOf(sub1)+sub1.length;
+                        var string1 = this.string.substr(0,SP);
+                        var string2 = this.string.substr(SP);
+                        var TP = string1.length + string2.indexOf(sub2);
+                        return this.string.substring(SP,TP);
+                    },
+                    removeFromBetween:function (sub1,sub2) {
+                        if(this.string.indexOf(sub1) < 0 || this.string.indexOf(sub2) < 0) return false;
+                        var removal = sub1+this.getFromBetween(sub1,sub2)+sub2;
+                        this.string = this.string.replace(removal,"");
+                    },
+                    getAllResults:function (sub1,sub2) {
+                        // first check to see if we do have both substrings
+                        if(this.string.indexOf(sub1) < 0 || this.string.indexOf(sub2) < 0) return;
+
+                        // find one result
+                        var result = this.getFromBetween(sub1,sub2);
+                        // push it to the results array
+                        this.results.push(result);
+                        // remove the most recently found one from the string
+                        this.removeFromBetween(sub1,sub2);
+
+                        // if there's more substrings
+                        if(this.string.indexOf(sub1) > -1 && this.string.indexOf(sub2) > -1) {
+                            this.getAllResults(sub1,sub2);
+                        }
+                        else return;
+                    },
+                    get:function (string,sub1,sub2) {
+                        this.results = [];
+                        this.string = string;
+                        this.getAllResults(sub1,sub2);
+                        return this.results;
+                    }
+                  };
+                  var result = getFromBetween.get(str,"?","/#");
+                  // console.log(result);
+                  // console.log('result 0',result[0])
+                  // console.log('result 1',result[1])
+                  var arrayGeojson = []
+                  // console.log(result.length)
+                  for(i = 0; i < result.length-1; i++ ){
+
+                    var decodedGeojson = decodeURIComponent(result[i])
+                    try{
+                      var geojson = JSON.parse(decodedGeojson)
+                    }catch(e){
+                      console.log('error',e)
+                    }
+                    // console.log(geojson)
+                    // console.log(decodedGeojson)
+
+                    //apply this condition to avoid non geojson being added to the array (in case the ? # are included somewhere in the properties)
+                    if (decodedGeojson[0] == '{' && decodedGeojson[1] == '"' && decodedGeojson[2] == 't') {
+                      // console.log('decoded',decodedGeojson)
+                       arrayGeojson.push(geojson)
+                      // console.log('arrayGeojson',arrayGeojson)
+                      // console.log('is a textgeojson')
+                    }
+
+
+                  }
+                  // console.log('arrayGeojsonFINAL',arrayGeojson)
+                  var arrayGeojsonToString = JSON.stringify(arrayGeojson)
+                  // console.log('arrayGeojsonToString',arrayGeojsonToString)
+                  // var featureCollectionToExport = "{'type': 'FeatureCollection','features':"+ geojsonToString + '}'
+                  var featureCollectionToUpload = '{"type": "FeatureCollection","features":'+ arrayGeojsonToString + '}'
+                  // console.log('featureCollection1',featureCollection1)
+                  // var featureCollection2 = featureCollection1.replace(/\\/g, '')
+                  // var featureCollection3 = featureCollection2.replace('["{','[{')
+                  // var featureCollection4 = featureCollection3.replace('}"]','}]')
+                  // var featureCollectionToUpload = featureCollection4.replace(']}}","',']}},')
+
+                  console.log('featureCollectionToUpload',featureCollectionToUpload)
+                  text = featureCollectionToUpload
+
+                }
+
+                ///////////////////////   function to read the input file and process and add to map
+                // console.log('text',text)
                 var toGeojson = JSON.parse(text)
-                console.log(toGeojson)
+                // console.log(toGeojson)
 
                 var lengthGeojson = toGeojson.features.length
-                console.log('lengthgeojson',lengthGeojson)
+                // console.log('lengthgeojson',lengthGeojson)
                 for(i = 0; i < lengthGeojson; i++){
                   var feature = toGeojson.features[i]
                   var featureStringified = JSON.stringify(feature)
                   geoJSONLocalforageDB.setItem(feature.properties.randomID, featureStringified)
-                  console.log(feature)
+                  // console.log(feature)
 
                   if(i == lengthGeojson -1){
                     buttonForExportGeometries.style.display = 'none'
@@ -335,7 +453,7 @@ document.getElementById('rose').onclick = function(e){
                     processAndAddToMap.innerHTML = 'Adding, wait...'
                     setTimeout(function(){
                       location.reload()
-                    },3000)
+                    },4000)
 
                     geometriesUploaded = true
                   }
