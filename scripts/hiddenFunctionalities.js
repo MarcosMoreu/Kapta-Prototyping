@@ -390,8 +390,8 @@ document.getElementById('rose').onclick = function(e){
                   // console.log(result.length)
                   for(i = 0; i < result.length-1; i++ ){
 
-                    var decodedGeojson = decodeURIComponent(result[i])
                     try{
+                      var decodedGeojson = decodeURIComponent(result[i])
                       var geojson = JSON.parse(decodedGeojson)
                     }catch(e){
                       console.log('error',e)

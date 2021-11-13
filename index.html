@@ -102,6 +102,7 @@
   </h4>
 
 <body style='background-color:black'>
+  <!-- <canvas id='mycanvas' style='position:fixed; bottom:5px;width:500px;height:500px;'></canvas> -->
 
 <!-- <div id='loadingPage'  style='height:100%; background-color:black'>
 </div> -->
@@ -308,9 +309,13 @@
   </div>
 
   <!-- <div  style='z-index:2; position:absolute'> -->
-      <button id="camera"  aria-label = 'camera' style='position:fixed; display:none;width:50px;left:calc(50% - 25px);height:50px;bottom:150px;background-color:#C6C6C5;  border-radius: 50px'>
+      <button id="camera"  aria-label = 'camera' style='position:fixed; display:none;width:50px;left:calc(50% + 10px);height:50px;bottom:150px;background-color:#C6C6C5;  border-radius: 50px'>
         <!-- <input type='file' accept='image/' capture='camera' id='cameraInput' /> -->
-        <img src="images/cameraIcon.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
+        <img id='imagecamera' src="images/cameraIcon.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
+      </button>
+      <button id="screenshot"  aria-label = 'screenshot' style='position:fixed; display:none;width:50px;right:calc(50% + 10px);height:50px;bottom:150px;background-color:#C6C6C5;  border-radius: 50px'>
+        <!-- <input type='file' accept='image/' capture='camera' id='cameraInput' /> -->
+        <img id='imagescreenshot' src="images/screenshot.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
       </button>
       <!-- <button id="storeAudio" disabled aria-label = 'storeAudio' style='display:none;margin-top: 15px;width:80px;height:60px;background-color:yellow; '></button> -->
   <!-- </div> -->
@@ -521,6 +526,9 @@
 <!-- <script  defer src="scripts/audioButton.js"></script> -->
 <script  defer src="scripts/camera.js"></script>
 <script defer src="scripts/share-download.js"></script>
+<!-- <script defer src="scripts/lib/html2canvas.min.js"></script> -->
+
+<!-- <script defer src='https://github.com/blueimp/JavaScript-Canvas-to-Blob/blob/master/js/canvas-to-blob.js'></script> -->
 
 <script defer src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
 <!-- <script defer src="https://www.gstatic.com/firebasejs/8.2.1/firebase-storage.js"></script> -->

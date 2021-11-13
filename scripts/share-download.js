@@ -29,7 +29,7 @@ var hideButtons = function(){
     // document.getElementById('voice').style.opacity = '0';
     // document.getElementById('activatePlay').style.display = 'none';
     // document.getElementById('showAreaHa').style.display = 'none';
-    document.getElementById('showAreaAcres').style.display = 'none'
+    // document.getElementById('showAreaAcres').style.display = 'none'
     // document.getElementById('showLength').style.display = 'none'
     document.getElementById('emoji').style.display = 'none';
 }
@@ -255,6 +255,8 @@ document.getElementById('share-download').onclick = function(e) {
         document.getElementById('DownloadButton').style.display = 'initial';
         document.getElementById('camera').style.display = 'initial'
         document.getElementById('camera').style.backgroundColor = '#C6C6C5'
+        document.getElementById('screenshot').style.display = 'initial'
+
         // var boxContentString = boxContent[0]
         console.log('TIP: the shareWorld button is disabled by default to prevent unintended open data contributions. To enable it, simply start the string in the input box in the previous screen with the emoji 🌐')
         console.log('Also, in the initial screen, click 10 times in the rose to open the hidden functionalities')
@@ -364,11 +366,19 @@ document.getElementById('goBackClassification').onclick = function(e){
   document.getElementById('DownloadButton').style.display = 'none';
   document.getElementById('camera').style.display = 'none';
   document.getElementById('camera').style.backgroundColor = '#C6C6C5'
+  document.getElementById('screenshot').style.display = 'none'
   document.getElementById("shareWorldButtonImage").src = 'images/shareworld.png'
   document.getElementById("shareWorldButton").style.backgroundColor = 'white'
   document.getElementById("shareWorldButton").style.borderColor = 'white'
   document.getElementById("shareWorldButton").style.opacity = '0.5'
   document.getElementById("shareWorldButton").disabled = true
+
+  document.getElementById('screenshot').style.opactiy = '1'
+  document.getElementById('screenshot').disabled = false
+  document.getElementById('camera').style.opactiy = '1'
+  document.getElementById('camera').disabled = false
+  document.getElementById('camera').style.backgroundColor = '#C6C6C5'
+
 
 
   landUse = 'emojiNoSapelli'
@@ -384,10 +394,11 @@ document.getElementById('goBackClassification').onclick = function(e){
 
   clickedshareMessagingAppsDirect = false
   photoAccepted = null //this is to not attach a picture taken in the previous mapping in the same session
+  screenshotOn = false
 
 
 showButtons()
-return landUse && clickedshareMessagingAppsDirect && imageName1 && imageName2 && imageName3 && attachPhoto && photoAccepted
+return landUse && clickedshareMessagingAppsDirect && imageName1 && imageName2 && imageName3 && attachPhoto && photoAccepted && screenshotOn
 }
 
 var mapposLat = mappos.center.lat
@@ -490,7 +501,7 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
     // var url
     // console.log(url)
 
-      if(navigator.share && photoAccepted == null){
+      if(navigator.share && photoAccepted == null && screenshotOn == false){
         console.log('without photo')
         navigator.share({
           text: link,
@@ -505,6 +516,16 @@ document.getElementById('shareMessagingAppsDirect').onclick = function(e){
         navigator.share({
           text: link,
           files:filesArray, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          // url:encodeURIComponent('?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+        }).then(() => console.log('Successful share'))
+          .catch((error) => console.log('Error sharing', error));
+
+      }else if(navigator.share && photoAccepted == null && screenshotOn == true){
+        console.log('with photo')
+
+        navigator.share({
+          text: link,
+          files:filesArrayScreenshot, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
           // url:encodeURIComponent('?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
         }).then(() => console.log('Successful share'))
           .catch((error) => console.log('Error sharing', error));
@@ -630,6 +651,8 @@ document.getElementById('shareWorldButton').onclick = function(e) {
               document.getElementById('DownloadButton').style.display = 'none';
               document.getElementById('camera').style.display = 'none'
               document.getElementById('camera').style.backgroundColor = '#C6C6C5'
+              document.getElementById('screenshot').style.display = 'none'
+
 
               document.getElementById('Sent').style.display = 'initial';
               document.getElementById('sentVideo').pause();
@@ -753,6 +776,13 @@ document.getElementById('shareWorldButton').onclick = function(e) {
             document.getElementById("shareWorldButton").style.borderColor = 'white'
             clickCountSendButton = 0
 
+            document.getElementById('screenshot').style.opactiy = '1'
+            document.getElementById('screenshot').disabled = false
+            document.getElementById('camera').style.opactiy = '1'
+            document.getElementById('camera').disabled = false
+            document.getElementById('camera').style.backgroundColor = '#C6C6C5'
+
+
             try{
               localStorageLayer.removeFrom(map)
             }catch(err){}
@@ -850,6 +880,8 @@ document.getElementById('DownloadButton').onclick = function(e) {
       document.getElementById('DownloadButton').style.display = 'none';
       document.getElementById('camera').style.display = 'none'
       document.getElementById('camera').style.backgroundColor = '#C6C6C5'
+      document.getElementById('screenshot').style.display = 'none'
+
 
 
     },200)
@@ -957,6 +989,15 @@ document.getElementById('DownloadButton').onclick = function(e) {
         elementJustAddedToLocalStorage = true
 
         document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
+
+        document.getElementById('screenshot').style.opactiy = '1'
+        document.getElementById('screenshot').disabled = false
+        document.getElementById('camera').style.opactiy = '1'
+        document.getElementById('camera').disabled = false
+        document.getElementById('camera').style.backgroundColor = '#C6C6C5'
+
+
+
         try{
           cell.style.backgroundColor = 'black'
 

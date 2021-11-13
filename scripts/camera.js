@@ -4,6 +4,7 @@ var imgSrc
 
 document.getElementById('camera').addEventListener('click', async function init(e) {
 document.getElementById('camera').style.display = 'none'
+document.getElementById('screenshot').style.display = 'none'
 document.getElementById("map").style.height = "0px";
 
 
@@ -273,6 +274,8 @@ return photoAccepted
 
     document.getElementById("map").style.height = "100%";
     document.getElementById('camera').style.display = 'initial'
+    document.getElementById('screenshot').style.display = 'initial'
+
     photoAccepted = null
     $('#screenshots').empty() // this is to clear the cancelled screenshots
     attachPhoto = true
@@ -301,6 +304,9 @@ return photoAccepted
 
     document.getElementById("map").style.height = "100%";
     document.getElementById('camera').style.display = 'initial'
+    document.getElementById('screenshot').style.display = 'initial'
+    // document.getElementById('screenshot').style.opactiy = '0.3'
+    document.getElementById('screenshot').disabled = true
     // document.getElementById('camera').style.backgroundColor = 'green'
 
     //to convert to blob
@@ -359,4 +365,59 @@ return photoAccepted
   initializeCamera();
 })();
 
+})
+
+
+//this script is for automatically taking a screenshot of the canvas (not with the camera) 'screenshot'
+var screenshotOn = false
+// var newImg
+var filesArrayScreenshot
+var dataURL
+document.getElementById('screenshot').addEventListener('click', async function init(e) {
+  if(screenshotOn == true){
+    document.getElementById('screenshot').style.backgroundColor = '#C6C6C5'
+    document.getElementById('camera').style.opactiy = '1'
+    document.getElementById('camera').disabled = false
+    document.getElementById('camera').style.backgroundColor = '#C6C6C5'
+
+    screenshotOn = false
+
+  }else{
+    document.getElementById('screenshot').style.backgroundColor = 'green'
+    document.getElementById('camera').style.opactiy = '0.3'
+    document.getElementById('camera').disabled = true
+    document.getElementById('camera').style.backgroundColor = 'black'
+
+    screenshotOn = true
+    const img = document.createElement("img");
+
+    html2canvas(document.getElementById("map"), {
+      // allowTaint: true,
+      useCORS: true,
+    })
+    .then(function (canvas) {
+      // It will return a canvas element
+      // let image = canvas.toDataURL("image/png", 0.5);
+      canvas.toBlob(function(blob){
+        url = URL.createObjectURL(blob);
+        // console.log('screenshot', blob)
+        // console.log('url',url)
+        testBlob = blob
+        // console.log(testBlob.type)
+        var nameFile = 'screenshot.png'
+        var file = new File([testBlob],nameFile, {type: testBlob.type });
+        filesArrayScreenshot = [file];
+        // console.log(file)
+        // console.log(filesArrayScreenshot)
+
+      })
+      // console.log(image)
+    })
+    .catch((e) => {
+      // Handle errors
+      console.log(e);
+    });
+
+  }
+  return filesArrayScreenshot && screenshotOn
 })

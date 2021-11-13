@@ -176,6 +176,10 @@ setTimeout(function(){
   $.getScript({
      cache:true,
     url:'scripts/customIcons_v2.js'
+  }),
+  $.getScript({
+     cache:true,
+    url:'scripts/lib/html2canvas.min.js'
   })
 
 },3000)

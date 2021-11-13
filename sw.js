@@ -3,7 +3,7 @@
 
 // Set a name for the current cache. Note that when version is changed, the pwa only updates autmotically after reloading!
 //Note that for automatic update, at one change need to be made in the app.js file (or in other files...)
-var version = 'v22.4.8';
+var version = 'v22.4.9';
 //console.log(version)
 
 // Default files to always cache
@@ -62,6 +62,7 @@ self.addEventListener("install", function(event) {
    comprehends even the request for the HTML page on first load, as well as JS and
    CSS resources, fonts, any images, etc.
 */
+var isOnlineSW = navigator.online
 self.addEventListener("fetch", function(event) {
 
   //console.log('WORKER: fetch event in progress.');
@@ -102,13 +103,16 @@ self.addEventListener("fetch", function(event) {
 
 ///////////// approach 3  >> after testing other people's approach, I've created this one which actually works, because approach 2 didn't work, and approach 1 caused
 /////////... error with when post CARTO. This way, I ensure that only the URLgeojson request takes ignoreSearch as TRUE, the rest are false.
-  var ignore
-
-  if(event.request.url.includes('#') && event.request.url.includes('/?') && event.request.url.includes('z')){
-    ignore = true
-  }else{
-    ignore = false
+  var ignore = false
+  if(isOnlineSW == false){
+    if(event.request.url.includes('#') && event.request.url.includes('/?') && event.request.url.includes('z')){
+      ignore = true
+    }
   }
+
+  //else{
+  //  ignore = false
+//  }
 
   event.respondWith(
     caches
