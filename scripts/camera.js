@@ -1,4 +1,3 @@
-var attachPhoto = false
 var photoAccepted
 var imgSrc
 
@@ -424,16 +423,43 @@ document.getElementById('screenshot').addEventListener('click',function (){
     setTimeout(function(){  // to make the button transition immediate, and also disapear easybuttons for ms
 
     const img = document.createElement("img");
-
+    //get transform value
+    // var mapNodes = ".leaflet-map-pane";
+    // var transform = $(mapNodes).css('transform');
+    // console.log(transform)
+    // var comp = transform.split(',');
+    // // var transform = $(".gm-style>div:first>div:first>div:last>div").css("transform")
+    // // var comp = transform.split(",") //split up the transform matrix
+    // var mapleft = parseFloat(comp[4]) //get left value
+    // var maptop = parseFloat(comp[5])  //get top value
+    // $(".leaflet-map-pane").css({ //get the map container. not sure if stable
+    //   "transform": "none",
+    //   "left": mapleft,
+    //   "top": maptop,
+    // })
     html2canvas(document.getElementById("map"), {
-      // allowTaint: true,
+      allowTaint: true,
       useCORS: true,
+      imageTimeout:20000,
+      removeContainer:true,
+    //   ignoreElements: (node) => {
+    //   return node.nodeName === 'IFRAME';
+    // }
+      // onrendered:function(canvas){
+      //   $(".leaflet-map-pane").css({
+      //        left: 0,
+      //        top: 0,
+      //        "transform": transform
+      //    })
+      // },
+      // proxy: 'https://mt.google.com/vt/'
     })
     .then(function (canvas) {
       // It will return a canvas element
       // let image = canvas.toDataURL("image/png", 0.5);
       canvas.toBlob(function(blob){
         url = URL.createObjectURL(blob);
+
         // console.log('screenshot', blob)
         // console.log('url',url)
         testBlob = blob
@@ -444,7 +470,7 @@ document.getElementById('screenshot').addEventListener('click',function (){
         // console.log(file)
         // console.log(filesArrayScreenshot)
 
-      }, 'image/png',0.5)  // this is to define the quality of the image screenshot (keep in mind the size due to data bundles)
+      })  // this is to define the quality of the image screenshot (keep in mind the size due to data bundles)
       // console.log(image)
     })
     .catch((e) => {

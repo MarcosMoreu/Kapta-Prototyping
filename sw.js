@@ -176,7 +176,7 @@ self.addEventListener("fetch", function(event) {
                  for cached responses.
               */
               // console.log('put cache successful',cache)
-              cache.put(event.request,cacheCopy);
+              cache.put(response,cacheCopy);
               // console.log('cache put')
               self.addEventListener('error', function(e) {
                 console.log('error put cach catched');

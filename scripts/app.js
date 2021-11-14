@@ -79,6 +79,8 @@ var circleLT250Added = false
 var circleGT250Added = false
 var cartoGeometriesInitial = null
 var elementJustAddedToLocalStorage = false
+var attachPhoto = false
+
 
 var watchPositionOptions = {
   enableHighAccuracy: true,
@@ -732,7 +734,7 @@ var markerIconLocalStorage = new L.icon({
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-var googleSat = L.tileLayer.offline('https://mt.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb, {
+var googleSat = L.tileLayer.offline('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb, {
     minZoom: 2,
     maxZoom: 21,
     maxNativeZoom: 21,
