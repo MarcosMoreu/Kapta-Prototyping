@@ -453,7 +453,7 @@ document.getElementById('rose').onclick = function(e){
                     processAndAddToMap.innerHTML = 'Adding, wait...'
                     setTimeout(function(){
                       location.reload()
-                    },4000)
+                    },8000)
 
                     geometriesUploaded = true
                   }

@@ -1710,6 +1710,7 @@ var refreshClusterBlueColor = setInterval(function(){
     // }
   }
 },100)
+var notFirstClickHere = false
 var myLayer_Button = L.easyButton({
     id: 'myLayerButton',
     class: 'easyButton',
@@ -1722,8 +1723,13 @@ var myLayer_Button = L.easyButton({
         onClick: function(btn, map) {
 
           justCancelled = false
-
-
+          if (whichLayerIsOn == 'deflated' && notFirstClickHere == false && (localStorageLayer != null || elementJustAddedToLocalStorage ==true)) {
+          myLayer_Button.button.style.backgroundColor = 'white';
+          notFirstClickHere = true
+        }
+          setTimeout(function(){ // to avoid the 1-2 sec waiting while local storage layer is loading
+            myLayer_Button.button.style.backgroundColor = 'black';
+          // },500)
 
           // changeBGColor()
 
@@ -1905,7 +1911,8 @@ var myLayer_Button = L.easyButton({
                   featureSent = false
               }
             }
-          return featureSent && whichLayerIsOn && justCancelled
+          },300)
+          return featureSent && whichLayerIsOn && justCancelled && notFirstClickHere
 
         }
     }]
