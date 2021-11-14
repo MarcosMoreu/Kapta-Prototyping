@@ -252,6 +252,8 @@ return photoAccepted
       document.getElementById('screenshots').style.display = 'none'
       document.getElementById('btnConfirmPhoto').style.display = 'none'
       document.getElementById('btnCancelPhoto').style.display = 'none'
+      document.getElementById('camera').style.borderWidth = '0px'
+
   //     console.log(screenshotsContainer.innerHTML)
   // screenshotsContainer.innerHTML=''
   // document.getElementById('screenshots').empty()
@@ -285,6 +287,7 @@ return photoAccepted
 
   //confirm photo
   btnConfirmPhoto.addEventListener("click", function () {
+
     console.log('photo confirmed')
     // $('#screenshots').empty() // this is to clear the cancelled screenshots
     //
@@ -307,6 +310,11 @@ return photoAccepted
     document.getElementById('screenshot').style.display = 'initial'
     // document.getElementById('screenshot').style.opactiy = '0.3'
     document.getElementById('screenshot').disabled = true
+    document.getElementById('screenshot').style.borderWidth = '0px'
+    document.getElementById('camera').style.borderWidth = '2px'
+
+    // document.getElementById('screenshot').style.opacity = '0.2'
+
     // document.getElementById('camera').style.backgroundColor = 'green'
 
     //to convert to blob
@@ -334,7 +342,7 @@ return photoAccepted
     attachPhoto = true
     // imgSrc = photoAccepted.src
     // console.log(imgSrc)
-    startCheckingText()
+    // startCheckingText()
     // clearInterval(refreshPopup)
     return attachPhoto
 
@@ -373,22 +381,48 @@ var screenshotOn = false
 // var newImg
 var filesArrayScreenshot
 var dataURL
-document.getElementById('screenshot').addEventListener('click', async function init(e) {
+document.getElementById('screenshot').addEventListener('click',function (){
   if(screenshotOn == true){
-    document.getElementById('screenshot').style.backgroundColor = '#C6C6C5'
-    document.getElementById('camera').style.opactiy = '1'
+
+    // document.getElementById('camera').style.opactiy = '1'
+    // document.getElementById('camera').style.borderColor = 'black'
+    // document.getElementById('screenshot').style.backgroundColor = '#C6C6C5'
+    // document.getElementById('screenshot').style.borderWidth = '0px'
     document.getElementById('camera').disabled = false
-    document.getElementById('camera').style.backgroundColor = '#C6C6C5'
+    document.getElementById('screenshot').style.borderWidth = '0px'
+    document.getElementById('camera').style.borderWidth = '0px'
+    // document.getElementById('camera').style.backgroundColor = '#C6C6C5'
+
 
     screenshotOn = false
+    console.log(screenshotOn)
+
 
   }else{
-    document.getElementById('screenshot').style.backgroundColor = 'green'
-    document.getElementById('camera').style.opactiy = '0.3'
+    // console.log(screenshotOn)
+    document.getElementById('screenshot').style.borderWidth = '2px'
+    document.getElementById('camera').style.borderWidth = '0px'
+
+    // document.getElementById('screenshot').style.borderColor = 'black'
+    // document.getElementById('camera').style.borderColor = '#7c7c7c'
+    // document.getElementById('camera').style.opactiy = '0.3'
     document.getElementById('camera').disabled = true
-    document.getElementById('camera').style.backgroundColor = 'black'
+    // document.getElementById('camera').style.backgroundColor = 'black'
+    // document.getElementById('camera').style.opacity = '0.3'
+
 
     screenshotOn = true
+    console.log(screenshotOn)
+    myLayer_Button.button.style.display = 'none';
+    filter_Button.button.style.display = 'none';
+    filterLocalStorage_Button.button.style.display = 'none';
+    gps_Button.button.style.display = 'none';
+
+    planet_Button.button.style.display = 'none';
+    googleSat_Button.button.style.display = 'none';
+    osm_Button.button.style.display = 'none';
+    setTimeout(function(){  // to make the button transition immediate, and also disapear easybuttons for ms
+
     const img = document.createElement("img");
 
     html2canvas(document.getElementById("map"), {
@@ -410,14 +444,24 @@ document.getElementById('screenshot').addEventListener('click', async function i
         // console.log(file)
         // console.log(filesArrayScreenshot)
 
-      })
+      }, 'image/png',0.5)  // this is to define the quality of the image screenshot (keep in mind the size due to data bundles)
       // console.log(image)
     })
     .catch((e) => {
       // Handle errors
       console.log(e);
     });
+      myLayer_Button.button.style.display = 'initial';
+      filter_Button.button.style.display = 'initial';
+      filterLocalStorage_Button.button.style.display = 'initial';
+      gps_Button.button.style.display = 'initial';
 
+      planet_Button.button.style.display = 'initial';
+      googleSat_Button.button.style.display = 'initial';
+      osm_Button.button.style.display = 'initial';
+    },600)
   }
+
+
   return filesArrayScreenshot && screenshotOn
 })

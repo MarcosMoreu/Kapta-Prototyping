@@ -256,3 +256,18 @@ border-radius:50%;
 
 
 }
+.buttonsCameraScreenshot{
+
+  border: 0px solid yellow;
+  /* background-color:#C6C6C5; */
+  /* position:relative; */
+  outline:none;
+  transition: 0.7s all;
+  /* border-color: black; */
+  background: linear-gradient(180deg,#e6e6e6 0%,rgba(0, 0, 0, 0.25) 65%, rgba(38, 38, 38, 0.6) 67%,rgba(0, 0, 0, 0.25) 100%);
+border-radius: 5px;
+}
+.buttonsCameraScreenshot:active{
+  transform: scale(0.6);
+
+}

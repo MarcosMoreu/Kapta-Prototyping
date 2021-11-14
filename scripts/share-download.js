@@ -29,7 +29,7 @@ var hideButtons = function(){
     // document.getElementById('voice').style.opacity = '0';
     // document.getElementById('activatePlay').style.display = 'none';
     // document.getElementById('showAreaHa').style.display = 'none';
-    // document.getElementById('showAreaAcres').style.display = 'none'
+    document.getElementById('showAreaAcres').style.display = 'none'
     // document.getElementById('showLength').style.display = 'none'
     document.getElementById('emoji').style.display = 'none';
 }
@@ -254,8 +254,11 @@ document.getElementById('share-download').onclick = function(e) {
         document.getElementById('shareWorldButton').style.display = 'initial';
         document.getElementById('DownloadButton').style.display = 'initial';
         document.getElementById('camera').style.display = 'initial'
-        document.getElementById('camera').style.backgroundColor = '#C6C6C5'
+        document.getElementById('camera').style.opacity = '1'
+        // document.getElementById('camera').style.backgroundColor = '#C6C6C5'
         document.getElementById('screenshot').style.display = 'initial'
+        document.getElementById('screenshot').style.opacity = '1'
+
 
         // var boxContentString = boxContent[0]
         console.log('TIP: the shareWorld button is disabled by default to prevent unintended open data contributions. To enable it, simply start the string in the input box in the previous screen with the emoji 🌐')
@@ -364,20 +367,25 @@ document.getElementById('goBackClassification').onclick = function(e){
   document.getElementById('shareMessagingAppsDirect').style.display = 'none';
   document.getElementById('shareWorldButton').style.display = 'none';
   document.getElementById('DownloadButton').style.display = 'none';
-  document.getElementById('camera').style.display = 'none';
-  document.getElementById('camera').style.backgroundColor = '#C6C6C5'
-  document.getElementById('screenshot').style.display = 'none'
+
   document.getElementById("shareWorldButtonImage").src = 'images/shareworld.png'
   document.getElementById("shareWorldButton").style.backgroundColor = 'white'
   document.getElementById("shareWorldButton").style.borderColor = 'white'
   document.getElementById("shareWorldButton").style.opacity = '0.5'
   document.getElementById("shareWorldButton").disabled = true
 
-  document.getElementById('screenshot').style.opactiy = '1'
-  document.getElementById('screenshot').disabled = false
-  document.getElementById('camera').style.opactiy = '1'
+  document.getElementById('camera').style.display = 'none';
+  document.getElementById('camera').style.opacity = '1'
   document.getElementById('camera').disabled = false
-  document.getElementById('camera').style.backgroundColor = '#C6C6C5'
+  document.getElementById('screenshot').style.display = 'none'
+  // document.getElementById('screenshot').style.opactiy = '1'
+  document.getElementById('screenshot').disabled = false
+  document.getElementById('camera').style.borderWidth = '0px'
+  document.getElementById('screenshot').style.borderWidth = '0px'
+
+  // document.getElementById('screenshot').style.backgroundColor = '#C6C6C5'
+  // document.getElementById('camera').style.opactiy = '1'
+  // document.getElementById('camera').style.backgroundColor = '#C6C6C5'
 
 
 
@@ -650,8 +658,14 @@ document.getElementById('shareWorldButton').onclick = function(e) {
               document.getElementById('shareWorldButton').style.display = 'none';
               document.getElementById('DownloadButton').style.display = 'none';
               document.getElementById('camera').style.display = 'none'
-              document.getElementById('camera').style.backgroundColor = '#C6C6C5'
+              // document.getElementById('camera').style.opacity = '1'
               document.getElementById('screenshot').style.display = 'none'
+              // document.getElementById('screenshot').style.backgroundColor = '#C6C6C5'
+              // document.getElementById('screenshot').style.opacity = '1'
+              document.getElementById('camera').style.borderWidth = '0px'
+              document.getElementById('screenshot').style.borderWidth = '0px'
+
+
 
 
               document.getElementById('Sent').style.display = 'initial';
@@ -776,11 +790,12 @@ document.getElementById('shareWorldButton').onclick = function(e) {
             document.getElementById("shareWorldButton").style.borderColor = 'white'
             clickCountSendButton = 0
 
-            document.getElementById('screenshot').style.opactiy = '1'
+            // document.getElementById('screenshot').style.opactiy = '1'
             document.getElementById('screenshot').disabled = false
-            document.getElementById('camera').style.opactiy = '1'
+            // document.getElementById('screenshot').style.backgroundColor = '#C6C6C5'
+            // document.getElementById('camera').style.opactiy = '1'
             document.getElementById('camera').disabled = false
-            document.getElementById('camera').style.backgroundColor = '#C6C6C5'
+            // document.getElementById('camera').style.opacity = '1'
 
 
             try{
@@ -879,8 +894,15 @@ document.getElementById('DownloadButton').onclick = function(e) {
       document.getElementById('shareWorldButton').style.display = 'none';
       document.getElementById('DownloadButton').style.display = 'none';
       document.getElementById('camera').style.display = 'none'
-      document.getElementById('camera').style.backgroundColor = '#C6C6C5'
+      // document.getElementById('camera').style.opacity = '1'
       document.getElementById('screenshot').style.display = 'none'
+      // document.getElementById('screenshot').style.backgroundColor = '#C6C6C5'
+      // document.getElementById('screenshot').style.opacity = '1'
+      document.getElementById('camera').style.borderWidth = '0px'
+      document.getElementById('screenshot').style.borderWidth = '0px'
+
+
+
 
 
 
@@ -990,11 +1012,12 @@ document.getElementById('DownloadButton').onclick = function(e) {
 
         document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
 
-        document.getElementById('screenshot').style.opactiy = '1'
+        // document.getElementById('screenshot').style.opactiy = '1'
         document.getElementById('screenshot').disabled = false
-        document.getElementById('camera').style.opactiy = '1'
+        // document.getElementById('screenshot').style.backgroundColor = '#C6C6C5'
+        // document.getElementById('camera').style.opactiy = '1'
         document.getElementById('camera').disabled = false
-        document.getElementById('camera').style.backgroundColor = '#C6C6C5'
+        // document.getElementById('camera').style.backgroundColor = '#C6C6C5'
 
 
 
