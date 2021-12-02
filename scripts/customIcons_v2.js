@@ -22,19 +22,7 @@ var croptype = null
 
 //to return to the map
 document.getElementById('customIconsMap').onclick = function(e){
-  // scrollToTop()
-  // document.getElementById('map').scrollTop = 0;
-// $(window).scrollTop(0)  // map.on('map-container-resize', function () {
-  //
-  //   setTimeout(function(){ map.invalidateSize()}, 400);
 
-  // });
-  // cell.style.visibility = 'hidden'
-  //FUCK, the grid doesn't need to be hidden!!!
-  // cell.style.display = 'none'
-
-  // hideAll()
-  // var contentInTextbox = document.getElementById('emojionearea').value;
   var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
   var emojioneareaeditor0 = emojioneareaeditor[0]
 
@@ -69,13 +57,6 @@ document.getElementById('customIconsMap').onclick = function(e){
         document.getElementById('emoji').style.opacity = '1'
         // document.getElementById('share-download').style.opacity = '1'
       },2000)
-
-    //  ////console.log(emojioneareaeditor0)
-      // emojioneareaeditor0.innerHTML =  crop + ' x ' + stage + ' x ' + landUse + ' x ' + askHelpOrIHelp + ' x ' + evaluation + ' x ' + evaluation
-      // if(croptype == null){
-      //   croptype = ''
-      // }
-
 
       if(evaluation == null && croptype == null){
         emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + emojioneareaeditor0.innerHTML

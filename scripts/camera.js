@@ -405,7 +405,10 @@ document.getElementById('screenshot').addEventListener('click',function (){
 
   }else{
     // console.log(screenshotOn)
+    document.getElementById("imageScreenshot").src = 'images/checkingPw.gif'
+
     document.getElementById('screenshot').style.borderWidth = '2px'
+    document.getElementById('screenshot').style.borderColor = '#39F70F'
     document.getElementById('camera').style.borderWidth = '0px'
 
     // document.getElementById('screenshot').style.borderColor = 'black'
@@ -426,14 +429,23 @@ document.getElementById('screenshot').addEventListener('click',function (){
     planet_Button.button.style.display = 'none';
     googleSat_Button.button.style.display = 'none';
     osm_Button.button.style.display = 'none';
+
     document.getElementById("showAreaAcres").style.display = 'none'
+    document.getElementById("goBackClassification").disabled = true
+    document.getElementById("shareMessagingAppsDirect").disabled = true
+    document.getElementById("shareWorldButton").disabled = true
+    document.getElementById("DownloadButton").disabled = true
+    document.getElementById("screenshot").disabled = true
+    document.getElementById("camera").disabled = true
+
+
 
 
 //we adding this because in order to show in the canvas, this need to be a map element. We could do 'body' instead of 'map', but performance...
     document.getElementById("showAreaAcresScreenshot").innerHTML = document.getElementById("showAreaAcres").innerHTML
     document.getElementById("showAreaAcresScreenshot").style.display = 'initial'
     // console.log('testtttttttttttt')
-    setTimeout(function(){  // to make the button transition immediate, and also disapear easybuttons for ms
+    // setTimeout(function(){  // to make the button transition immediate, and also disapear easybuttons for ms
 
     const img = document.createElement("img");
     //get transform value
@@ -480,29 +492,42 @@ document.getElementById('screenshot').addEventListener('click',function (){
         var nameFile = 'screenshot.png'
         var file = new File([testBlob],nameFile, {type: testBlob.type });
         filesArrayScreenshot = [file];
+        console.log('finished html2canvas')
         // console.log(file)
         // console.log(filesArrayScreenshot)
 
       })  // this is to define the quality of the image screenshot (keep in mind the size due to data bundles)
       // console.log(image)
+
+        //here to ensure that buttons appear when html2canvas is ready
+
+        document.getElementById("showAreaAcresScreenshot").style.display = 'none'
+        myLayer_Button.button.style.display = 'initial';
+        filter_Button.button.style.display = 'initial';
+        filterLocalStorage_Button.button.style.display = 'initial';
+        gps_Button.button.style.display = 'initial';
+
+        planet_Button.button.style.display = 'initial';
+        googleSat_Button.button.style.display = 'initial';
+        osm_Button.button.style.display = 'initial';
+        document.getElementById("imageScreenshot").src = 'images/screenshot.png'
+        document.getElementById("goBackClassification").disabled = false
+        document.getElementById("shareMessagingAppsDirect").disabled = false
+        document.getElementById("shareWorldButton").disabled = false
+        document.getElementById("DownloadButton").disabled = false
+        document.getElementById("screenshot").disabled = false
+        document.getElementById("camera").disabled = false
+        document.getElementById("showAreaAcres").style.display = 'initial'
+        document.getElementById('screenshot').style.borderColor = 'yellow'
+
     })
     .catch((e) => {
       // Handle errors
       console.log(e);
     });
-    document.getElementById("showAreaAcresScreenshot").style.display = 'none'
 
-      myLayer_Button.button.style.display = 'initial';
-      filter_Button.button.style.display = 'initial';
-      filterLocalStorage_Button.button.style.display = 'initial';
-      gps_Button.button.style.display = 'initial';
 
-      planet_Button.button.style.display = 'initial';
-      googleSat_Button.button.style.display = 'initial';
-      osm_Button.button.style.display = 'initial';
-      document.getElementById("showAreaAcres").style.display = 'initial'
-
-    },1200)
+    // },1200)
   }
 
 
