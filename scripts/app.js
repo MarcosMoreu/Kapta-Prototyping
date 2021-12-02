@@ -2882,7 +2882,7 @@ document.getElementById("gobackArmchairField").onclick = function(e) {
 }
 document.getElementById("armchair").onclick = function(e) {
 
-  document.getElementById("Alert").style.display = 'none'
+  // document.getElementById("Alert").style.display = 'none'
 
   document.getElementById("tutorial").style.display = "none";
   document.getElementById("armchair").style.display = "none";

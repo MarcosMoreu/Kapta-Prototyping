@@ -5,6 +5,8 @@ document.getElementById('camera').addEventListener('click', async function init(
 document.getElementById('camera').style.display = 'none'
 document.getElementById('screenshot').style.display = 'none'
 document.getElementById("map").style.height = "0px";
+document.getElementById('showAreaAcres').style.display = 'none'
+
 
 
 document.getElementById('cameraDiv').style.display = 'initial'
@@ -276,6 +278,8 @@ return photoAccepted
     document.getElementById("map").style.height = "100%";
     document.getElementById('camera').style.display = 'initial'
     document.getElementById('screenshot').style.display = 'initial'
+    document.getElementById('showAreaAcres').style.display = 'initial'
+
 
     photoAccepted = null
     $('#screenshots').empty() // this is to clear the cancelled screenshots
@@ -307,6 +311,8 @@ return photoAccepted
     document.getElementById("map").style.height = "100%";
     document.getElementById('camera').style.display = 'initial'
     document.getElementById('screenshot').style.display = 'initial'
+    document.getElementById('showAreaAcres').style.display = 'initial'
+
     // document.getElementById('screenshot').style.opactiy = '0.3'
     document.getElementById('screenshot').disabled = true
     document.getElementById('screenshot').style.borderWidth = '0px'
@@ -420,6 +426,13 @@ document.getElementById('screenshot').addEventListener('click',function (){
     planet_Button.button.style.display = 'none';
     googleSat_Button.button.style.display = 'none';
     osm_Button.button.style.display = 'none';
+    document.getElementById("showAreaAcres").style.display = 'none'
+
+
+//we adding this because in order to show in the canvas, this need to be a map element. We could do 'body' instead of 'map', but performance...
+    document.getElementById("showAreaAcresScreenshot").innerHTML = document.getElementById("showAreaAcres").innerHTML
+    document.getElementById("showAreaAcresScreenshot").style.display = 'initial'
+    // console.log('testtttttttttttt')
     setTimeout(function(){  // to make the button transition immediate, and also disapear easybuttons for ms
 
     const img = document.createElement("img");
@@ -477,6 +490,8 @@ document.getElementById('screenshot').addEventListener('click',function (){
       // Handle errors
       console.log(e);
     });
+    document.getElementById("showAreaAcresScreenshot").style.display = 'none'
+
       myLayer_Button.button.style.display = 'initial';
       filter_Button.button.style.display = 'initial';
       filterLocalStorage_Button.button.style.display = 'initial';
@@ -485,7 +500,9 @@ document.getElementById('screenshot').addEventListener('click',function (){
       planet_Button.button.style.display = 'initial';
       googleSat_Button.button.style.display = 'initial';
       osm_Button.button.style.display = 'initial';
-    },600)
+      document.getElementById("showAreaAcres").style.display = 'initial'
+
+    },1200)
   }
 
 

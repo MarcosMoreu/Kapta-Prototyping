@@ -29,7 +29,7 @@ var hideButtons = function(){
     // document.getElementById('voice').style.opacity = '0';
     // document.getElementById('activatePlay').style.display = 'none';
     // document.getElementById('showAreaHa').style.display = 'none';
-    document.getElementById('showAreaAcres').style.display = 'none'
+    // document.getElementById('showAreaAcres').style.display = 'none'
     // document.getElementById('showLength').style.display = 'none'
     document.getElementById('emoji').style.display = 'none';
 }
@@ -258,6 +258,12 @@ document.getElementById('share-download').onclick = function(e) {
         // document.getElementById('camera').style.backgroundColor = '#C6C6C5'
         document.getElementById('screenshot').style.display = 'initial'
         document.getElementById('screenshot').style.opacity = '1'
+        document.getElementById('myRange').style.display = 'none'
+        document.getElementById('Alert').style.display = 'none'
+        document.getElementById('Alert').style.opacity = '1'
+
+
+
 
 
         // var boxContentString = boxContent[0]
@@ -664,6 +670,8 @@ document.getElementById('shareWorldButton').onclick = function(e) {
               // document.getElementById('screenshot').style.opacity = '1'
               document.getElementById('camera').style.borderWidth = '0px'
               document.getElementById('screenshot').style.borderWidth = '0px'
+              document.getElementById('showAreaAcres').style.display = 'none'
+
 
 
 
@@ -900,6 +908,8 @@ document.getElementById('DownloadButton').onclick = function(e) {
       // document.getElementById('screenshot').style.opacity = '1'
       document.getElementById('camera').style.borderWidth = '0px'
       document.getElementById('screenshot').style.borderWidth = '0px'
+      document.getElementById('showAreaAcres').style.display = 'none'
+
 
 
 
@@ -949,6 +959,7 @@ document.getElementById('DownloadButton').onclick = function(e) {
 
     setTimeout(function() {
         document.getElementById('Downloaded').style.display = 'none';
+
         // document.getElementById('uploading').style.display = 'none'
         // document.getElementById('progress').style.display = 'none'
 

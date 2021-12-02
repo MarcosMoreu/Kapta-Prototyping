@@ -472,7 +472,8 @@ map.on('draw:created', function(e) {
   field = false
   //console.log(drawnItems)
 
-  document.getElementById("Alert").style.display = 'none'
+  document.getElementById('myRange').style.display = 'none'
+  document.getElementById('Alert').style.opacity = '0'
 
     myLayer_Button.button.style.opacity = '0.4';
     myLayer_Button.button.disabled = true;
@@ -630,6 +631,8 @@ var justCancelled = false
 document.getElementById('Cancel').onclick = function(e) {
 
   document.getElementById("Alert").style.display = 'none'
+  document.getElementById('Alert').style.opacity = '1'
+
 
     document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
     myLayer_Button.button.style.opacity = '1';
