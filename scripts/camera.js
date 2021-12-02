@@ -405,11 +405,12 @@ document.getElementById('screenshot').addEventListener('click',function (){
 
   }else{
     // console.log(screenshotOn)
-    document.getElementById("imageScreenshot").src = 'images/checkingPw.gif'
 
     document.getElementById('screenshot').style.borderWidth = '2px'
     document.getElementById('screenshot').style.borderColor = '#39F70F'
     document.getElementById('camera').style.borderWidth = '0px'
+    document.getElementById("imageScreenshot").src = 'images/checkingPw.gif'
+
 
     // document.getElementById('screenshot').style.borderColor = 'black'
     // document.getElementById('camera').style.borderColor = '#7c7c7c'
@@ -417,6 +418,8 @@ document.getElementById('screenshot').addEventListener('click',function (){
     document.getElementById('camera').disabled = true
     // document.getElementById('camera').style.backgroundColor = 'black'
     // document.getElementById('camera').style.opacity = '0.3'
+
+setTimeout(function(){ //this is simply to improve button interaction with 300ms before processing stuff below
 
 
     screenshotOn = true
@@ -467,6 +470,8 @@ document.getElementById('screenshot').addEventListener('click',function (){
       useCORS: true,
       imageTimeout:20000,
       removeContainer:true,
+      // dpi: 144,
+      // scale: 1,
     //   ignoreElements: (node) => {
     //   return node.nodeName === 'IFRAME';
     // }
@@ -496,7 +501,7 @@ document.getElementById('screenshot').addEventListener('click',function (){
         // console.log(file)
         // console.log(filesArrayScreenshot)
 
-      })  // this is to define the quality of the image screenshot (keep in mind the size due to data bundles)
+      },'image/jpeg', 0.1)  // this is to define the quality of the image screenshot (keep in mind the size due to data bundles) - jpeg offers the best compression value as far as I've tried
       // console.log(image)
 
         //here to ensure that buttons appear when html2canvas is ready
@@ -526,7 +531,7 @@ document.getElementById('screenshot').addEventListener('click',function (){
       console.log(e);
     });
 
-
+},300)
     // },1200)
   }
 
