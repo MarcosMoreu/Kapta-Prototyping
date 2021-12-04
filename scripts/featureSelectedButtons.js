@@ -140,59 +140,108 @@ document.getElementById("backDeleteFeature").onclick = function() {
 
 }
 document.getElementById("shareMessagingApp").onclick = function() {
-  if(window.location.href.includes('/?')){ // to avoid shareing geojson if url still contains geojson
-    function getSecondPart(str) {
-      return str.split('#')[1];
-    }
-    var urlAfterHash = getSecondPart(window.location.href)
-      // window.location.href = 'https://wa.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
-      var link = '🗺️ 👇🏿'+ "\n" + "\n" + 'https://' + subDOMAIN + '.amappingprototype.xyz/'+'#'+urlAfterHash
-      if(navigator.share){
-        navigator.share({
-          text: link,
-          // url:url,
-        }).then(() => console.log('Successful share'))
-          .catch((error) => console.log('Error sharing', error));
-      }else{
-        // console.log(url)
-        navigator.clipboard.writeText(link).then(function() {
-          alert("Copied to clipboard!");
-        }, function() {
-          alert("Unable to copy");
-        });
-      }
 
-    // //console.log(window.location.href)
+    alreadyClicked = true
+    document.getElementById("shareMessagingAppImage").src = 'images/checkingPw.gif'
 
-  }else{
-    var link = '🗺️ 👇🏿'+ "\n" + "\n" + window.location.href
-    if(navigator.share){
-      navigator.share({
-        text: link,
-        // url:url,
-      }).then(() => console.log('Successful share'))
-        .catch((error) => console.log('Error sharing', error));
-    }else{
-      // console.log(url)
-      navigator.clipboard.writeText(link).then(function() {
-        alert("Copied to clipboard!");
-      }, function() {
-        alert("Unable to copy");
-      });
-    }
-  }
-  // document.getElementById("backDeleteFeature").style.display = "none";
-  // document.getElementById("shareMessagingApp").style.display = "none";
-  // document.getElementById("deleteFeature").style.display = "none";
-  // document.getElementById("randomSuggestion").style.display = "none";
-  // document.getElementById('weChatImage').src = 'images/wechat.png'
+    setTimeout(function(){ //this is simply to improve button interaction with 300ms before processing stuff below
 
-  // document.getElementById("whatsApp").style.display = "initial";
-  // document.getElementById("telegram").style.display = "initial";
-  // document.getElementById("weChat").style.display = "initial";
-  // document.getElementById("goBackMessagingApps").style.display = "initial";
-  shareURL = 'coords'
-  return shareURL
+    screenshotOn = true
+    console.log(screenshotOn)
+    myLayer_Button.button.style.display = 'none';
+    filter_Button.button.style.display = 'none';
+    filterLocalStorage_Button.button.style.display = 'none';
+    gps_Button.button.style.display = 'none';
+    planet_Button.button.style.display = 'none';
+    googleSat_Button.button.style.display = 'none';
+    osm_Button.button.style.display = 'none';
+
+    const img = document.createElement("img");
+
+    html2canvas(document.getElementById("map"), {
+      allowTaint: true,
+      useCORS: true,
+      imageTimeout:20000,
+      removeContainer:true,
+    })
+    .then(function (canvas) {
+      // It will return a canvas element
+      // let image = canvas.toDataURL("image/png", 0.5);
+      canvas.toBlob(function(blob){
+        url = URL.createObjectURL(blob);
+        testBlob = blob
+        var nameFile = 'screenshot.png'
+        var file = new File([testBlob],nameFile, {type: testBlob.type });
+        filesArrayScreenshot = [file];
+        console.log('finished html2canvas')
+
+        //here to ensure that buttons appear when html2canvas is ready
+        myLayer_Button.button.style.display = 'initial';
+        filter_Button.button.style.display = 'initial';
+        filterLocalStorage_Button.button.style.display = 'initial';
+        gps_Button.button.style.display = 'initial';
+        planet_Button.button.style.display = 'initial';
+        googleSat_Button.button.style.display = 'initial';
+        osm_Button.button.style.display = 'initial';
+        //to open the apps menu
+        if(window.location.href.includes('/?')){ // to avoid shareing geojson if url still contains geojson
+          function getSecondPart(str) {
+            return str.split('#')[1];
+          }
+          var urlAfterHash = getSecondPart(window.location.href)
+            // window.location.href = 'https://wa.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
+            var link = '🗺️ 👇🏿'+ "\n" + "\n" + 'https://' + subDOMAIN + '.amappingprototype.xyz/'+'#'+urlAfterHash
+            if(navigator.share){
+              navigator.share({
+                text: link,
+                files:filesArrayScreenshot,
+              }).then(() => console.log('Successful share'))
+                .catch((error) => console.log('Error sharing', error));
+            }else{
+              // console.log(url)
+              navigator.clipboard.writeText(link).then(function() {
+                alert("Copied to clipboard!");
+              }, function() {
+                alert("Unable to copy");
+              });
+            }
+
+          // //console.log(window.location.href)
+
+        }else{
+          var link = '🗺️ 👇🏿'+ "\n" + "\n" + window.location.href
+          if(navigator.share){
+            navigator.share({
+              text: link,
+              files:filesArrayScreenshot,
+            }).then(() => console.log('Successful share'))
+              .catch((error) => console.log('Error sharing', error));
+          }else{
+            // console.log(url)
+            navigator.clipboard.writeText(link).then(function() {
+              alert("Copied to clipboard!");
+            }, function() {
+              alert("Unable to copy");
+            });
+          }
+        }
+
+        document.getElementById("shareMessagingAppImage").src = 'images/shareMessagingApps.png'
+        screenshotOn = false
+
+      },'image/jpeg', 0.1)  // this is to define the quality of the image screenshot (keep in mind the size due to data bundles) - jpeg offers the best compression value as far as I've tried
+
+    })
+    .catch((e) => {
+      // Handle errors
+      console.log(e);
+    })
+    },300)
+
+    shareURL = 'coords'
+
+  return shareURL && screenshotOn// && alreadyClicked
+
 }
 
 // document.getElementById("goBackMessagingApps").onclick = function() {
