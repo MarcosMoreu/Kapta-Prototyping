@@ -61,6 +61,10 @@ document.getElementById('rose').onclick = function(e){
       }
       if(clicksRose >= 10){ //this is to download the feature collection from the local storage
 
+        //to prevent the custom screen top buttons to show... this is a patch
+        document.getElementById('customIconsMap').style.display = 'none';
+        document.getElementById('customIconsCancel').style.display = 'none';
+        document.getElementById('customIconsGoBack').style.display = 'none';
         setTimeout(function(){ //this is to refresh click counts, so they don't accumulate
           clicksRose = 0;
         },20000)
