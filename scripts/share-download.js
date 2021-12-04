@@ -271,7 +271,8 @@ document.getElementById('share-download').onclick = function(e) {
         console.log('Also, in the initial screen, click 10 times in the rose to open the hidden functionalities')
 
         // if(boxContentString.charAt(0) == '🌐'){ //🌐
-          if(boxContentToString[1] == 'g' && boxContentToString[2] == 'l' && boxContentToString[3] == 'o' && boxContentToString[4] == 'b' && boxContentToString[5] == 'e'){ //🌐 to prevent unintended submissions as opendata
+          // if(boxContentToString[1] == 'g' && boxContentToString[2] == 'l' && boxContentToString[3] == 'o' && boxContentToString[4] == 'b' && boxContentToString[5] == 'e'){ //🌐 to prevent unintended submissions as opendata
+          if(boxContentToString.includes("🌐") || boxContentToString.includes("globe")){ //🌐 to prevent unintended submissions as opendata
 
           document.getElementById('shareWorldButton').disabled = false;
           document.getElementById('shareWorldButton').style.opacity = 1
