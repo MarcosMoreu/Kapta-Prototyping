@@ -1778,7 +1778,7 @@ var myLayer_Button = L.easyButton({
                   document.getElementById("Alert").style.display = 'none'
                   document.getElementById("Alert").style.color = 'yellow'
 
-                },1500)
+                },3000)
                 // myLayer_Button.button.style.backgroundColor = '#00FFFB';
                 // document.getElementById('myLayerButton').src = 'images/osm.png'
                 if(isIOS == false){
@@ -1805,7 +1805,7 @@ var myLayer_Button = L.easyButton({
                   document.getElementById("Alert").style.display = 'none'
                   document.getElementById("Alert").style.color = 'yellow'
 
-                },1500)
+                },3000)
 
                 deflated.removeFrom(map)
                 filter_Button.button.style.opacity = '0.4';
@@ -1837,7 +1837,7 @@ var myLayer_Button = L.easyButton({
                   document.getElementById("Alert").style.display = 'none'
                   document.getElementById("Alert").style.color = 'yellow'
 
-                },1500)
+                },3000)
 
                 //  localStorageLayer.addTo(map)
                 if (finalLayer != null) {
@@ -1870,7 +1870,7 @@ var myLayer_Button = L.easyButton({
                   document.getElementById("Alert").style.display = 'none'
                   document.getElementById("Alert").style.color = 'yellow'
 
-                },1500)
+                },3000)
 
                 if (finalLayer != null) {
                     finalLayer.removeFrom(map)
@@ -3073,19 +3073,34 @@ var startCheckingText = function() {
                     document.getElementById("share-download").disabled = true;
                 }
             } else {
+              // if(landUse == 'emojiNoSapelli'){
+              //   if(attachPhoto == false){
+              //     layer.bindPopup(emojioneareaeditor0innerHTML).addTo(map);
+              //     layer.bindPopup(emojioneareaeditor0innerHTML).openPopup(); ///automatically shows the pop up!
+              //   }else{
+              //
+              //     var imgPhoto = '<img src="images/cameraIcon.png"'+ 'height="50px" width="50px" border="0" bordercolor="grey" backgroundcolor="green"/>'
+              //     clearInterval(refreshPopup)
+              //     var emojioneareaeditor0innerHTMLwithPhoto = emojioneareaeditor0innerHTML + '</br>' + imgPhoto
+              //     layer.bindPopup(emojioneareaeditor0innerHTMLwithPhoto).addTo(map);
+              //     layer.bindPopup(emojioneareaeditor0innerHTMLwithPhoto).openPopup(); ///automatically shows the pop up!
+              //   }
+
+
+
 
                 if(landUse == 'emojiNoSapelli'){
-                  if(attachPhoto == false){
+                  // if(attachPhoto == false){
                     layer.bindPopup(emojioneareaeditor0innerHTML).addTo(map);
                     layer.bindPopup(emojioneareaeditor0innerHTML).openPopup(); ///automatically shows the pop up!
-                  }else{
+                  // }else{
 
-                    var imgPhoto = '<img src="images/cameraIcon.png"'+ 'height="50px" width="50px" border="0" bordercolor="grey" backgroundcolor="green"/>'
-                    clearInterval(refreshPopup)
-                    var emojioneareaeditor0innerHTMLwithPhoto = emojioneareaeditor0innerHTML + '</br>' + imgPhoto
-                    layer.bindPopup(emojioneareaeditor0innerHTMLwithPhoto).addTo(map);
-                    layer.bindPopup(emojioneareaeditor0innerHTMLwithPhoto).openPopup(); ///automatically shows the pop up!
-                  }
+                    // var imgPhoto = '<img src="images/cameraIcon.png"'+ 'height="50px" width="50px" border="0" bordercolor="grey" backgroundcolor="green"/>'
+                    // clearInterval(refreshPopup)
+                  //   var emojioneareaeditor0innerHTMLwithPhoto = emojioneareaeditor0innerHTML + '</br>' + imgPhoto
+                  //   layer.bindPopup(emojioneareaeditor0innerHTMLwithPhoto).addTo(map);
+                  //   layer.bindPopup(emojioneareaeditor0innerHTMLwithPhoto).openPopup(); ///automatically shows the pop up!
+                  // }
 
                 }else{
                   var imgPopup1 = '<img src="images/omoIcons/' + imageName1 + '.png"'+ 'height="50px"  width="50px" border="2" bordercolor="grey"/>'
@@ -3104,16 +3119,16 @@ var startCheckingText = function() {
                   }else{
                     var imgPopup3 = '<img src="images/omoIcons/ThumbsUp.png"'+ 'height="0px" width="0px" border="0" bordercolor="grey"/>'
                   }
-                  if(attachPhoto == true){
-                    // console.log('attach photo')
-                    var imgPhoto = '<img src="images/cameraIcon.png"'+ 'height="50px" width="50px" border="0" bordercolor="grey" backgroundcolor="green"/>'
-                    // clearInterval(refreshPopup)
-
-                  }else{
-                    var imgPhoto = '<img src="images/omoIcons/' + imageName1 + '.png"'+ 'height="0px" width="0px" border="0" bordercolor="green"/>'
-                    // clearInterval(refreshPopup)
-
-                  }
+                  // if(attachPhoto == true){
+                  //   // console.log('attach photo')
+                  //   var imgPhoto = '<img src="images/cameraIcon.png"'+ 'height="50px" width="50px" border="0" bordercolor="grey" backgroundcolor="green"/>'
+                  //   // clearInterval(refreshPopup)
+                  //
+                  // }else{
+                  //   var imgPhoto = '<img src="images/omoIcons/' + imageName1 + '.png"'+ 'height="0px" width="0px" border="0" bordercolor="green"/>'
+                  //   // clearInterval(refreshPopup)
+                  //
+                  // }
                   // if(evaluation == null && croptype == null){
                   //   emojioneareaeditor0innerHTML =  landUse + ' - ' + emojioneareaeditor0.innerHTML
                   // }else if(evaluation != null && croptype == null){
@@ -3123,7 +3138,7 @@ var startCheckingText = function() {
                   // }else if(evaluation != null && croptype != null){
                   //   emojioneareaeditor0innerHTML =  landUse + ' ▪️ ' + croptype + ' ▪️ ' + evaluation +  ' - ' + emojioneareaeditor0.innerHTML
                   // }
-                  var emojioneareaeditor0innerHTMLAndImages = emojioneareaeditor0innerHTML + '</br>' + '</br>' + imgPopup1 + ' ' +imgPopup2 + ' ' + imgPopup3 + ' ' + imgPhoto
+                  var emojioneareaeditor0innerHTMLAndImages = emojioneareaeditor0innerHTML + '</br>' + '</br>' + imgPopup1 + ' ' +imgPopup2 + ' ' + imgPopup3// + ' ' + imgPhoto
                   layer.bindPopup(emojioneareaeditor0innerHTMLAndImages).addTo(map);
                   layer.bindPopup(emojioneareaeditor0innerHTMLAndImages).openPopup(); ///automatically shows the pop up!
 
@@ -3239,23 +3254,25 @@ return feature
 //tiles are stored in the cahce storage v22.4.8
 
 var storageUsed
-(async () => {
-  // Storage API support
-  if (!navigator.storage) return;
-  const storage = await navigator.storage.estimate();
-  storageUsed = Math.round((storage.usage / storage.quota) * 100)
-  console.log('% used   : ',storageUsed)
-  console.log(`permitted: ${ storage.quota / 1024 } Kb`);
-  console.log(`used     : ${ storage.usage / 1024 } Kb`);
-  // console.log(`% used   : ${ Math.round((storage.usage / storage.quota) * 100) }%`);
-  console.log(`remaining: ${ Math.floor((storage.quota - storage.usage) / 1024) } Kb`);
+setTimeout(function(){ //for performance
+  (async () => {
+    // Storage API support
+    if (!navigator.storage) return;
+    const storage = await navigator.storage.estimate();
+    storageUsed = Math.round((storage.usage / storage.quota) * 100)
+    console.log('% used   : ',storageUsed)
+    console.log(`permitted: ${ storage.quota / 1024 } Kb`);
+    console.log(`used     : ${ storage.usage / 1024 } Kb`);
+    // console.log(`% used   : ${ Math.round((storage.usage / storage.quota) * 100) }%`);
+    console.log(`remaining: ${ Math.floor((storage.quota - storage.usage) / 1024) } Kb`);
 
-  if(storageUsed >= 60){ // we clear at 60%, but could be higher...
-    //this is to clear the non-fundamental cache. Not the best approach at all, but this is to avoid indexeddb being cleared -
-    // instead of the cache map tiles. There are nicer ways of doing this, but let's see if the issue is solved with "persistence", this is a patch...
-    //version var is declared in sw.js
-    caches.delete(version).then(function(response) {
-      console.log('cache deleted')
-    })
-  }
-})();
+    if(storageUsed >= 60){ // we clear at 60%, but could be higher...
+      //this is to clear the non-fundamental cache. Not the best approach at all, but this is to avoid indexeddb being cleared -
+      // instead of the cache map tiles. There are nicer ways of doing this, but let's see if the issue is solved with "persistence", this is a patch...
+      //version var is declared in sw.js
+      caches.delete(version).then(function(response) {
+        console.log('cache deleted')
+      })
+    }
+  })();
+},6000)

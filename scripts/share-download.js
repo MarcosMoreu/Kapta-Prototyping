@@ -678,12 +678,17 @@ document.getElementById('shareWorldButton').onclick = function(e) {
 
 
               document.getElementById('Sent').style.display = 'initial';
-              document.getElementById('sentVideo').pause();
+              // document.getElementById('sentVideo').pause();
               document.getElementById('sentVideo').currentTime = 0
-
+              document.getElementById('sentVideo').style.opacity = '0'
               document.getElementById('sentVideo').play();
+              setTimeout(function() { //this is just to path the bad display - video shows the end image few miliseconds...
+                document.getElementById('sentVideo').style.opacity = '1'
+              },200)
               document.getElementById("sentVideo").controls = false;
               document.body.style.backgroundColor = "white";
+              document.getElementById("Alert").style.opacity = '0'
+
 
               //to fire click event of upload button !!
               ////////////////////////////       CARTO - POST DATA      //////////////////////////////////////////
@@ -758,9 +763,9 @@ document.getElementById('shareWorldButton').onclick = function(e) {
               //     recordedVideo.pause();
               //     recordedBlobs = null; // audio is removed if cancel is clicked
               // }
-              setTimeout(function(){
-                document.getElementById("Alert").style.display = 'none'
-              }, 5000)
+              // setTimeout(function(){
+                document.getElementById("Alert").style.opacity = '1'
+              // }, 5000)
 
           }, timeOfVideo);
 
@@ -892,10 +897,16 @@ document.getElementById('DownloadButton').onclick = function(e) {
 
     drawnItems.clearLayers();
     tempLayer.clearLayers()
-    document.getElementById('sentVideo').pause();
-    document.getElementById('sentVideo').currentTime = 0
+    // document.getElementById('sentVideo').pause();
+    document.getElementById('downloadedVideo').currentTime = 0
+    document.getElementById('downloadedVideo').style.opacity = '0'
     document.getElementById('downloadedVideo').play();
+    setTimeout(function() { //this is just to path the bad display - video shows the end image few miliseconds...
+      document.getElementById('downloadedVideo').style.opacity = '1'
+    },200)
     document.getElementById("downloadedVideo").controls = false;
+    document.getElementById("Alert").style.opacity = '0'
+
     setTimeout(function(){
       document.getElementById("map").style.height = "0px";
       document.getElementById('goBackClassification').style.display = 'none';
@@ -1055,6 +1066,7 @@ document.getElementById('DownloadButton').onclick = function(e) {
           document.getElementById('myLayerButton').click()
 
         }
+        document.getElementById("Alert").style.opacity = '1'
 
         // finalLayer = L.geoJSON(data, {
         //     style: function(feature) {
