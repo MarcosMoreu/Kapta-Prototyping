@@ -264,7 +264,7 @@ border-radius:50%;
   outline:none;
   transition: 0.7s all;
   /* border-color: black; */
-  background: linear-gradient(180deg,#e6e6e6 0%,rgba(0, 0, 0, 0.25) 65%, rgba(38, 38, 38, 0.6) 67%,rgba(0, 0, 0, 0.25) 100%);
+  background: linear-gradient(180deg,#e6e6e6 0%,rgba(0, 0, 0, 0.35) 65%, rgba(38, 38, 38, 0.6) 67%,rgba(0, 0, 0, 0.35) 100%);
 border-radius: 5px;
 }
 .buttonsCameraScreenshot:active{

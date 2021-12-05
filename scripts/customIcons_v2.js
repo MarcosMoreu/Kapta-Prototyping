@@ -58,6 +58,9 @@ document.getElementById('customIconsMap').onclick = function(e){
         // document.getElementById('share-download').style.opacity = '1'
       },2000)
 
+      //here we have: Always landUse, sometime croptype and sometimes evaluation. so four scenarios
+      //and 1, 2 or 3 images
+
       if(evaluation == null && croptype == null){
         emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + emojioneareaeditor0.innerHTML
       }else if(evaluation != null && croptype == null){
@@ -114,7 +117,7 @@ document.getElementById('customIconsCancel').onclick = function(e){
   landUse = null
   evaluation = null
   // croptype = 'emojiNoSapelli'
-  evaluation = 'emojiNoSapelli'
+  // evaluation = 'emojiNoSapelli'
   return  landUse && evaluation && screenChoice && imageName
 }
 document.getElementById('customIconsGoBack').onclick = function(e){
@@ -359,7 +362,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
 
                   // newProjectButton2.style.display = 'none';
                   generateButtonsLandUse()
-                  newProjectButton.innerHTML = '<img src="images/omoIcons/logoNyangatom.png" style="width:50px ; height:50px; border: 0px solid white" />';
+                  newProjectButton.innerHTML = '<img src="images/logoNyangatomReduced.png" style="width:50px ; height:50px; border: 0px solid white" />';
                   newProjectButton.disabled = false
                   newProjectButton.style.backgroundColor = 'white'
                   newProjectButton.style.borderColor = 'white'

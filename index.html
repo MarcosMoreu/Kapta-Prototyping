@@ -15,12 +15,12 @@
   <meta name="theme-color" content="#000000"/>
   <meta name="description" content="🗺️"/>
   <!-- <meta property="og:site_name" content="A Mapping Prototype"> -->
-  <meta property="og:title" content="Sapelli Nyangatom" />
-  <meta property="og:description" content="🗺️ 🇪🇹" />
+  <meta property="og:title" content="Demo SapPWA" />
+  <meta property="og:description" content="🗺️" />
   <!-- <meta property="og:type" content="website" />
   <meta property="og:url" content="https://amappingprototype.xyz" /> -->
   <!-- <meta property="og:image:secure" itemprop="image" content="https://amappingprototype.xyz/images/icons/icon-256x256.png"/> -->
-  <meta property="og:image" itemprop="image" content="https://omo.amappingprototype.xyz/images/icons/icon-256x256.png"/>
+  <meta property="og:image" itemprop="image" content="https://testing.amappingprototype.xyz/images/icons/icon-256x256.png"/>
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="476">
   <meta property="og:image:height" content="249">
@@ -30,11 +30,11 @@
   <!-- <meta property="og:type" content="website" /> -->
 
 
-  <link rel="canonical" href="https://omo.amappingprototype.xyz"/>
+  <link rel="canonical" href="https://testing.amappingprototype.xyz"/>
   <link rel="manifest" href="manifest.json"/>
   <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
   <link rel="shortcut icon" href="favicon.ico"/>
-  <title>Prototype Sapelli Nyangatom</title>
+  <title>Prototype Sapelli PWA</title>
   <link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon.png"/>
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
   <link rel="apple-touch-icon" sizes="167x167" href="apple-touch-icon.png"/>
@@ -94,7 +94,7 @@
     <h2 id='showAreaHa' style='z-index:3;position:absolute; text-align:center; width:100%;display:none;color:yellow;font-size:19px' ></h2>
 
   <!-- <h3 id='showLength' style='z-index:2;position:absolute;left:75px;display:none;color:yellow;font-size:19px;font-family:'Ubuntu'' > </h3> -->
-  <h3 id='Alert' align = 'center' style='z-index:3;position:absolute;text-align:center; width:100%;top:25px;display:none;color:yellow;font-size:15px;'>
+  <h3 id='Alert' align = 'center' style='z-index:3;position:absolute;text-align:center; width:60%;margin-left:20%;top:25px;display:none;color:yellow;font-size:15px;'>
     <!-- <img id='loading' src="images/questionmark.png"  alt="..." style='display:none;width:30px ; height:30px;' > -->
   </h3>
   <h4 id='MapLoading' align = 'center' style='display:none;z-index:3;position:absolute;left:calc(50% - 25px);top:100px;display:none'>
@@ -191,7 +191,7 @@
   </button>
 
   <button id='shareMessagingApp' class='buttonDelete'  aria-label = 'shareMessagingApp' style='display:none;z-index:3; position:relative;border-color:white;'>
-    <img src="images/shareMessagingApps.png"  loading='lazy' alt="..." style='width:30px ; height:30px'>
+    <img id='shareMessagingAppImage' src="images/shareMessagingApps.png"  loading='lazy' alt="..." style='width:30px ; height:30px'>
   </button>
 
   <button id='randomSuggestion' class='buttonDelete'  aria-label = 'randomSuggestion' style='display:none;z-index:3; position:relative;border-color:#3B96DD;background-color:#3B96DD'>
@@ -396,7 +396,7 @@
   <p><span id="demo"></span></p>
 </div>
 
-<div id='buttonSapelliNavigation' style='z-index:100; text-align:center;'>
+<div id='buttonSapelliNavigation' style='z-index:100; text-align:center;width:100%'>
   <!-- <button id='returnToMap' class='buttonCustomIcons' aria-label = 'customIconsMap' style='position:relative;display:none;margin-top:100px;margin-right:20px;width:50px ; height:50px'>
     <img src="images/customIconsMap.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
   </button> -->
@@ -404,13 +404,13 @@
     <img src="images/customIconsMap.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
   </button> -->
 
-  <button id='customIconsGoBack' class='buttonCustomIcons' aria-label = 'customIconsGoBack' style='margin-bottom:10px;position:relative;display:none;margin-top:80px;margin-right:50px;width:50px ; height:50px; border-radius:50px'>
+  <button id='customIconsGoBack' class='buttonCustomIcons' aria-label = 'customIconsGoBack' style='margin-left:15px;margin-right:15px;margin-bottom:10px;position:relative;display:none;margin-top:80px;width:50px ; height:50px; border-radius:50px'>
     <img src="images/arrowLeft.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
   </button>
-  <button id='customIconsCancel' class='buttonCustomIcons' aria-label = 'customIconsCancel' style='margin-bottom:10px;position:relative;display:none;margin-top:80px;margin-right:50px;width:50px ; height:50px; border-radius:50px' >
+  <button id='customIconsCancel' class='buttonCustomIcons' aria-label = 'customIconsCancel' style='margin-left:15px;margin-right:15px;margin-bottom:10px;position:relative;display:none;margin-top:80px;width:50px ; height:50px; border-radius:50px' >
     <img src="images/customIconsCancel.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
   </button>
-  <button id='customIconsMap' class='buttonCustomIcons' aria-label = 'customIconsMap' style='margin-bottom:10px;position:relative;display:none;margin-top:80px;width:50px ; height:50px; border-radius:50px'>
+  <button id='customIconsMap' class='buttonCustomIcons' aria-label = 'customIconsMap' style='margin-left:15px;margin-right:15px;margin-bottom:10px;position:relative;display:none;margin-top:80px;width:50px ; height:50px; border-radius:50px'>
     <img src="images/customIconsMap.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
   </button>
 </div>
