@@ -798,18 +798,44 @@ if(isIOS == false){
   const monthsArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   // console.log('month',monthNumber)
 
-  if(dayNumber >= 15){ ///////////////// because planet usually uploads the mosaics mid of the month (so 15june the May mosaic is uploaded)
-    var monthsBack = 1
-    // console.log(dayNumber)
-  }else{
-    var monthsBack = 2
 
-  }
+  //script for most recent mosaic, which needs to address the year change (change year), could be better but it works
+    if(monthNumber == 1){
+      if(dayNumber >=15){
+        mosaicRequestedLatest = 12
+        attributeMosaicLatest = 'December'
+        year = 2021
+      }else{
+        mosaicRequestedLatest = 11
+        attributeMosaicLatest = 'November'
+        year = 2021
+      }
 
+    }else if(monthNumber == 2){
+      if(dayNumber >=15){
+        mosaicRequestedLatest = 1
+        attributeMosaicLatest = 'January'
+        year = 2022
+      }else{
+        mosaicRequestedLatest = 12
+        attributeMosaicLatest = 'December'
+        year = 2021
+      }
+
+    }else{
+      var mosaicRequestedLatest = (monthNumber - monthsBack).toLocaleString('en-US', {minimumIntegerDigits: 2}) //url MONTH
+      var attributeMosaicLatest = monthsArray[mosaicRequestedLatest - 1] // attributes
+    }
     //last month
-   var mosaicRequestedLatest = (monthNumber - monthsBack).toLocaleString('en-US', {minimumIntegerDigits: 2}) //url MONTH
-   var attributeMosaicLatest = monthsArray[mosaicRequestedLatest - 1] // attributes
 
+
+    if(dayNumber >= 15){ ///////////////// because planet usually uploads the mosaics mid of the month (so 15june the May mosaic is uploaded)
+      var monthsBack = 1
+      // console.log(dayNumber)
+    }else{
+      var monthsBack = 2
+
+    }
    //4months ago
    var date4MonthsAgo = new Date(d.setMonth(d.getMonth()-(3+monthsBack))); //3 because monthsback is 1 (or 2), so 4 months ago (or 5)
    // console.log('date4MonthsAgo',date4MonthsAgo)
@@ -866,8 +892,8 @@ if(isIOS == false){
 }else{
    var monthMosaicRequested = (monthNumber - 2).toLocaleString('en-US', {minimumIntegerDigits: 2})
    year = '2021'
-   mosaicRequestedLatest = '06'
-   attributeMosaicLatest = 'July 2021'
+   mosaicRequestedLatest = '12'
+   attributeMosaicLatest = 'December 2021'
 
 }
 
