@@ -470,66 +470,74 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
       useCORS: true,
       imageTimeout:20000,
       removeContainer:true,
-      // dpi: 144,
-      // scale: 1,
-    //   ignoreElements: (node) => {
-    //   return node.nodeName === 'IFRAME';
-    // }
-      // onrendered:function(canvas){
-      //   $(".leaflet-map-pane").css({
-      //        left: 0,
-      //        top: 0,
-      //        "transform": transform
-      //    })
-      // },
-      // proxy: 'https://mt.google.com/vt/'
+    }).then(function(){
+      html2canvas(document.getElementById("map"), {
+        allowTaint: true,
+        useCORS: true,
+        imageTimeout:20000,
+        removeContainer:true,
+        // dpi: 144,
+        // scale: 1,
+      //   ignoreElements: (node) => {
+      //   return node.nodeName === 'IFRAME';
+      // }
+        // onrendered:function(canvas){
+        //   $(".leaflet-map-pane").css({
+        //        left: 0,
+        //        top: 0,
+        //        "transform": transform
+        //    })
+        // },
+        // proxy: 'https://mt.google.com/vt/'
+      })
+      .then(function (canvas) {
+        // It will return a canvas element
+        // let image = canvas.toDataURL("image/png", 0.5);
+        canvas.toBlob(function(blob){
+          url = URL.createObjectURL(blob);
+
+          // console.log('screenshot', blob)
+          // console.log('url',url)
+          testBlob = blob
+          // console.log(testBlob.type)
+          var nameFile = 'screenshot.png'
+          var file = new File([testBlob],nameFile, {type: testBlob.type });
+          filesArrayScreenshot = [file];
+          console.log('finished html2canvas')
+          // console.log(file)
+          // console.log(filesArrayScreenshot)
+
+        },'image/jpeg', 0.1)  // this is to define the quality of the image screenshot (keep in mind the size due to data bundles) - jpeg offers the best compression value as far as I've tried
+        // console.log(image)
+
+          //here to ensure that buttons appear when html2canvas is ready
+
+          document.getElementById("showAreaAcresScreenshot").style.display = 'none'
+          myLayer_Button.button.style.display = 'initial';
+          filter_Button.button.style.display = 'initial';
+          filterLocalStorage_Button.button.style.display = 'initial';
+          gps_Button.button.style.display = 'initial';
+
+          planet_Button.button.style.display = 'initial';
+          googleSat_Button.button.style.display = 'initial';
+          osm_Button.button.style.display = 'initial';
+          document.getElementById("imageScreenshot").src = 'images/screenshot.png'
+          document.getElementById("goBackClassification").disabled = false
+          document.getElementById("shareMessagingAppsDirect").disabled = false
+          document.getElementById("shareWorldButton").disabled = false
+          document.getElementById("DownloadButton").disabled = false
+          document.getElementById("screenshot").disabled = false
+          document.getElementById("camera").disabled = false
+          document.getElementById("showAreaAcres").style.display = 'initial'
+          document.getElementById('screenshot').style.borderColor = 'yellow'
+
+      })
+      .catch((e) => {
+        // Handle errors
+        console.log(e);
+      });
     })
-    .then(function (canvas) {
-      // It will return a canvas element
-      // let image = canvas.toDataURL("image/png", 0.5);
-      canvas.toBlob(function(blob){
-        url = URL.createObjectURL(blob);
 
-        // console.log('screenshot', blob)
-        // console.log('url',url)
-        testBlob = blob
-        // console.log(testBlob.type)
-        var nameFile = 'screenshot.png'
-        var file = new File([testBlob],nameFile, {type: testBlob.type });
-        filesArrayScreenshot = [file];
-        console.log('finished html2canvas')
-        // console.log(file)
-        // console.log(filesArrayScreenshot)
-
-      },'image/jpeg', 0.1)  // this is to define the quality of the image screenshot (keep in mind the size due to data bundles) - jpeg offers the best compression value as far as I've tried
-      // console.log(image)
-
-        //here to ensure that buttons appear when html2canvas is ready
-
-        document.getElementById("showAreaAcresScreenshot").style.display = 'none'
-        myLayer_Button.button.style.display = 'initial';
-        filter_Button.button.style.display = 'initial';
-        filterLocalStorage_Button.button.style.display = 'initial';
-        gps_Button.button.style.display = 'initial';
-
-        planet_Button.button.style.display = 'initial';
-        googleSat_Button.button.style.display = 'initial';
-        osm_Button.button.style.display = 'initial';
-        document.getElementById("imageScreenshot").src = 'images/screenshot.png'
-        document.getElementById("goBackClassification").disabled = false
-        document.getElementById("shareMessagingAppsDirect").disabled = false
-        document.getElementById("shareWorldButton").disabled = false
-        document.getElementById("DownloadButton").disabled = false
-        document.getElementById("screenshot").disabled = false
-        document.getElementById("camera").disabled = false
-        document.getElementById("showAreaAcres").style.display = 'initial'
-        document.getElementById('screenshot').style.borderColor = 'yellow'
-
-    })
-    .catch((e) => {
-      // Handle errors
-      console.log(e);
-    });
 
 },300)
     // },1200)
