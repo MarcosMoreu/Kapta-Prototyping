@@ -3,7 +3,7 @@
 
 // Set a name for the current cache. Note that when version is changed, the pwa only updates autmotically after reloading!
 //Note that for automatic update, at one change need to be made in the app.js file (or in other files...)
-var version = 'v22.4.15';
+var version = 'v22.5.1';
 //console.log(version)
 
 // Default files to always cache
@@ -176,10 +176,18 @@ self.addEventListener("fetch", function(event) {
                  for cached responses.
               */
               // console.log('put cache successful',cache)
-              cache.put(response,cacheCopy);
-              // console.log('cache put')
+              // this condition is to patch the issue with tiles for html2canva. Without this, the HTML2canvas plugin return errors with the tiles.
+              //this also might solve the issue that some users are experiencing with geometries cleared when too many tiles cached???
+              if(event.request.url[8] == 'm'){// this is a simple way of recognising google url tiles https://mt0....
+                cache.put(response,cacheCopy)
+              }else{
+                cache.put(event.request,cacheCopy);
+              }
+              // console.log(event.request)
+              // console.log(event.request.url)
+
               self.addEventListener('error', function(e) {
-                console.log('error put cach catched');
+                // console.log('error put cach catched');
               });
             // }catch(e){
               // console.log('error catched in sw')
