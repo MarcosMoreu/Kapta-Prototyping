@@ -620,6 +620,15 @@ map.on('draw:created', function(e) {
     if (map.tap) map.tap.disable();
     document.getElementById('map').style.cursor='default';
 
+setTimeout(function(){// this is to capture the canvas in order to avoid the error later with the tiles. not the best solution but it works
+  html2canvas(document.getElementById("map"), {
+    allowTaint: true,
+    useCORS: true,
+    imageTimeout:20000,
+    removeContainer:true,
+  })
+},500)
+
     return created && data && typeOfFeature && field;
 
 });
