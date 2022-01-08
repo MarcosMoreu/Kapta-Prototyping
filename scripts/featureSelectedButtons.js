@@ -163,6 +163,12 @@ document.getElementById("shareMessagingApp").onclick = function() {
       useCORS: true,
       imageTimeout:20000,
       removeContainer:true,
+    }).then(function(){
+    html2canvas(document.getElementById("map"), {
+      allowTaint: true,
+      useCORS: true,
+      imageTimeout:20000,
+      removeContainer:true,
     })
     .then(function (canvas) {
       // It will return a canvas element
@@ -236,6 +242,7 @@ document.getElementById("shareMessagingApp").onclick = function() {
       // Handle errors
       console.log(e);
     })
+  })
     },300)
 
     shareURL = 'coords'
