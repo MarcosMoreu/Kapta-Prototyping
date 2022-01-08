@@ -62,7 +62,8 @@ self.addEventListener("install", function(event) {
    comprehends even the request for the HTML page on first load, as well as JS and
    CSS resources, fonts, any images, etc.
 */
-var isOnlineSW = navigator.online
+// var isOnlineSW = navigator.onLine
+// console.log(isOnlineSW,'isonline sw')
 self.addEventListener("fetch", function(event) {
 
   //console.log('WORKER: fetch event in progress.');
@@ -99,16 +100,19 @@ self.addEventListener("fetch", function(event) {
   // shaved = shaved && shaved[1];
   // console.log(shaved)
 
+  ///////////// approach 3  >> after testing other people's approach, I've created this one which actually works, because approach 2 didn't work, and approach 1 caused
+  /////////... error with when post CARTO. This way, I ensure that only the URLgeojson request takes ignoreSearch as TRUE, the rest are false.
+    var ignore = false
+    if(navigator.onLine == false){  //online must have CAPTIAL L!!
+      console.log('isOnlineSW is false')
 
-
-///////////// approach 3  >> after testing other people's approach, I've created this one which actually works, because approach 2 didn't work, and approach 1 caused
-/////////... error with when post CARTO. This way, I ensure that only the URLgeojson request takes ignoreSearch as TRUE, the rest are false.
-  var ignore = false
-  if(isOnlineSW == false){
-    if(event.request.url.includes('#') && event.request.url.includes('/?') && event.request.url.includes('z')){
-      ignore = true
+      if(event.request.url.includes('#') && event.request.url.includes('/?') && event.request.url.includes('z')){
+        ignore = true
+        console.log('ignore is true')
+      }
     }
-  }
+
+
 
   //else{
   //  ignore = false
