@@ -813,7 +813,7 @@ if(isIOS == false){
 
     }else if(monthNumber == 2){
       if(dayNumber >=15){
-        mosaicRequestedLatest = 1
+        mosaicRequestedLatest = '01'
         attributeMosaicLatest = 'January'
         year = 2022
       }else{

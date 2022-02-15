@@ -3,7 +3,7 @@
 
 // Set a name for the current cache. Note that when version is changed, the pwa only updates autmotically after reloading!
 //Note that for automatic update, at one change need to be made in the app.js file (or in other files...)
-var version = 'v22.5.2';
+var version = 'v22.5.3';
 //console.log(version)
 
 // Default files to always cache

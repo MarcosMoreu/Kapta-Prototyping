@@ -468,7 +468,7 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
     html2canvas(document.getElementById("map"), {
       allowTaint: true,
       useCORS: true,
-      imageTimeout:20000,
+      imageTimeout:1,
       removeContainer:true,
     }).then(function(){
       html2canvas(document.getElementById("map"), {
