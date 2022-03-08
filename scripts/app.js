@@ -900,20 +900,23 @@ if(isIOS == false){
 var sentinelHubKey = '82b5a4e7-b887-40b2-949b-1b47a2aa9774';
 console.log('mosaicRequestedLatest',mosaicRequestedLatest)
 // a script to automate the update of these global mosaics is needed. At the moment, this needs to be done manually, both here to update the attributes and in the SentinelHub platfrom
-var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year + '_' + mosaicRequestedLatest + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_' + year + '-' + mosaicRequestedLatest + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
   attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaicLatest + ' ' + year
   })
-  var planetScopeMonthlyMosaicLatestMinus4Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year4MonthsAgo + '_' + mosaicRequested4Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+  // var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2022-01_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
+  //   attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaicLatest + ' ' + year
+  //   })
+  var planetScopeMonthlyMosaicLatestMinus4Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_' + year4MonthsAgo + '-' + mosaicRequested4Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
     attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic4Months + ' ' + year4MonthsAgo
     })
-  var planetScopeMonthlyMosaicLatestMinus8Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year8MonthsAgo + '_' + mosaicRequested8Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+  var planetScopeMonthlyMosaicLatestMinus8Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_' + year8MonthsAgo + '-' + mosaicRequested8Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
     attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic8Months + ' ' + year8MonthsAgo
     })
-  var planetScopeMonthlyMosaic1YearAgo = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year12MonthsAgo + '_' + mosaicRequested12Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+  var planetScopeMonthlyMosaic1YearAgo = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_' + year12MonthsAgo + '-' + mosaicRequested12Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
     attribution: 'Leaflet | PlanetScope Imagery  ' + attributeMosaic12Months + ' ' + year12MonthsAgo
     })
 
-  var planetMosaicLatestMinus2Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year24MonthsAgo + '_' + mosaicRequested24Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
+  var planetMosaicLatestMinus2Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2020-06_2020-08_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
         attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic24Months + ' ' + year24MonthsAgo
     });
   // var planetMosaicLatestMinus3Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year36MonthsAgo + '_' + mosaicRequested36Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
