@@ -3295,13 +3295,21 @@ setTimeout(function(){ //for performance
     // console.log(`% used   : ${ Math.round((storage.usage / storage.quota) * 100) }%`);
     console.log(`remaining: ${ Math.floor((storage.quota - storage.usage) / 1024) } Kb`);
 
-    if(storageUsed >= 60){ // we clear at 60%, but could be higher...
+    if(storageUsed > 60){ // we clear at 60%, but could be higher...
+      console.log('cache deleted')
+
       //this is to clear the non-fundamental cache. Not the best approach at all, but this is to avoid indexeddb being cleared -
       // instead of the cache map tiles. There are nicer ways of doing this, but let's see if the issue is solved with "persistence", this is a patch...
       //version var is declared in sw.js
-      caches.delete(version).then(function(response) {
-        console.log('cache deleted')
-      })
+      caches.delete('CACHETILES').then(function(response) {
+          console.log('cache deleted')
+        })
+      // caches.open('CACHETILES').then(function(cache){
+      //   cache.delete(version).then(function(response) {
+      //     console.log('cache deleted')
+      //   })
+      // })
+      //
     }
   })();
 },6000)
