@@ -80,6 +80,8 @@ var localStorageToGeoJSON = function(){
   ////console.log(groupGeoJSON)
 
 var polygonColor = function(feature){
+
+  if(feature.geometry.type == 'Polygon'){ //to appy this only to polygons
     // console.log(feature)
     if(!feature.properties.landUsesEmoji){
       var attribute = feature.properties.LU
@@ -193,9 +195,10 @@ var polygonColor = function(feature){
           fillColor: fillColor,
           weight: 0,
           opacity: 1,
-          color: fillColor,  //Outline color
-          fillOpacity: 0.3
+          color: '#33FFFF',  //Outline color  OR  #00FFFB !!!!!!!!!!
+          fillOpacity: 0.4
       }// && feature.properties && feature.properties.style;
+  }
 }
 
 
@@ -209,7 +212,9 @@ var polygonColor = function(feature){
                     draggable:false
                 });
             },
-            // color: '#33FFFF',
+            color: 'black',
+            // color: 'black',
+
             autopan: false,
             //  icon: markerIconLocalStorage,
             onEachFeature: function(feature, layer) {
@@ -299,10 +304,22 @@ var polygonColor = function(feature){
                 //selectedFeature.setStyle({color: 'red'})
 
                   if(aFeatureIsSelected == true ){
+                    console.log(selectedFeature)
+
+                    if(selectedFeature.feature.geometry.type == 'Polygon'){
+                      selectedFeature.setStyle({weight: 0})
+                    }else{
+                      console.log(selectedFeature)
+                      selectedFeature.setStyle({fillColor: 'black'})
+                    }
                     document.getElementById("backDeleteFeature").click() //!!!!!!!!
+
                     if(editButtonClicked == true){
+                      // selectedFeature.setStyle({weight: 0})
+
                       clearInterval(refreshPopupComment)
                       document.getElementById('backEditDelete').click()
+
                     }
 
 
@@ -501,7 +518,14 @@ var polygonColor = function(feature){
                           //to deselect feature if user changes zooms or pans, to avoid deletion without looking at the feature.
                           map.on('zoomend', function(e) {
                               try {
+                                if(selectedFeature.feature.geometry.type == 'Polygon'){
+                                  selectedFeature.setStyle({weight: 0})
+                                }else{
+                                  console.log(selectedFeature)
+                                  selectedFeature.setStyle({fillColor: 'black'})
+                                }
                                 localStorageLayer.editing.disable();
+
 
                               } catch (e) {}
 
@@ -523,7 +547,14 @@ var polygonColor = function(feature){
                           map.on('moveend', function(e) {
                             if(editButtonClicked == false){  // this condition is to prevent this when commenting the cartolayer, like with creating the geometry with drawnitems
                               try {
+                                if(selectedFeature.feature.geometry.type == 'Polygon'){
+                                  selectedFeature.setStyle({weight: 0})
+                                }else{
+                                  console.log(selectedFeature)
+                                  selectedFeature.setStyle({fillColor: 'black'})
+                                }
                                 localStorageLayer.editing.disable();
+
                               } catch (e) {}
 
                               clickCountDeleteButton = 0
@@ -545,7 +576,14 @@ var polygonColor = function(feature){
                             // cartoGeometries.color = 'red'
                             if(editButtonClicked == false){  // this condition is to prevent this when commenting the cartolayer, like with creating the geometry with drawnitems
                               try {
+                                if(selectedFeature.feature.geometry.type == 'Polygon'){
+                                  selectedFeature.setStyle({weight: 0})
+                                }else{
+                                  console.log(selectedFeature)
+                                  selectedFeature.setStyle({fillColor: 'black'})
+                                }
                                 localStorageLayer.editing.disable();
+
                               } catch (e) {}
 
                               clickCountDeleteButton = 0

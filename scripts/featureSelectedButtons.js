@@ -59,14 +59,13 @@ document.getElementById("backDeleteFeature").onclick = function() {
     try { //sometimes this fails
       if (selectedFeature.feature.geometry.type != 'Point') {
         if(whichLayerIsOn == 'localStorage'){
-          selectedFeature.setStyle({
-              color: '#00FFFB'
-          })
+          if (selectedFeature.feature.geometry.type == 'Polygon') {
+            selectedFeature.setStyle({color: '#00FFFB'})
+          }else{
+            selectedFeature.setStyle({color: 'black'})
+          }
         }else{
-          selectedFeature.setStyle({
-            color: '#AFFDA7'
-
-          })
+          selectedFeature.setStyle({color: '#AFFDA7'})
           isLocalStorage = false
         }
 
