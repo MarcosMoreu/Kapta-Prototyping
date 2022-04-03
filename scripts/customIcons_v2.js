@@ -487,7 +487,8 @@ var generateButtonsLandUse = function(){
  iconOMO_8 = document.createElement("BUTTON");
   cell.appendChild(iconOMO_8);
  iconOMO_8.className = 'buttonsSapelli'
- iconOMO_8.innerHTML = '<img src="images/omoIcons/hutVillage.png" style="height: 150px; width: 150px; border: 0px solid white;" /> </br>አዊ / መንደር';
+ iconOMO_8.innerHTML = '<img src="images/omoIcons/hutVillage.png" style="height: 150px; width: 150px; border: 4px solid colorPaletteArray[0];" /> </br>አዊ / መንደር';
+iconOMO_8.style.backgroundColor = colorPaletteArray[0]
  iconOMO_8.onclick = function(){
    setTimeout(function(){
     hideAll()
@@ -509,6 +510,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_9);
  iconOMO_9.innerHTML = '<img src="images/omoIcons/manualPump.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አፕሪች / ቧንቧ';
  iconOMO_9.className = 'buttonsSapelli'
+ iconOMO_9.style.backgroundColor = colorPaletteArray[1]
  iconOMO_9.onclick = function(){
    setTimeout(function(){
 
@@ -534,6 +536,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_10);
  iconOMO_10.className = 'buttonsSapelli'
  iconOMO_10.innerHTML = '<img src="images/omoIcons/pondFarming.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አክታረ አታፓር / ኽልኩሬ ሸሽ';
+ iconOMO_10.style.backgroundColor = colorPaletteArray[2]
  iconOMO_10.onclick = function(){
    setTimeout(function(){
 
@@ -557,6 +560,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_11);
  iconOMO_11.innerHTML = '<img src="images/omoIcons/lakeRecession.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አሳክ / ሀይቅ እርሻ';
  iconOMO_11.className = 'buttonsSapelli'
+ iconOMO_11.style.backgroundColor = colorPaletteArray[3]
  iconOMO_11.onclick = function(){
    setTimeout(function(){
 
@@ -580,6 +584,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_12);
  iconOMO_12.className = 'buttonsSapelli'
  iconOMO_12.innerHTML = '<img src="images/omoIcons/irrigationPump.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤሪያቻ / መስኖ';
+ iconOMO_12.style.backgroundColor = colorPaletteArray[4]
  iconOMO_12.onclick = function(){
    setTimeout(function(){
 
@@ -603,6 +608,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_13);
  iconOMO_13.innerHTML = '<img src="images/omoIcons/floodRecessionFlat.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤመራ / ኦሞሸሽ';
  iconOMO_13.className = 'buttonsSapelli'
+ iconOMO_13.style.backgroundColor = colorPaletteArray[5]
  iconOMO_13.onclick = function(){
    setTimeout(function(){
 
@@ -627,6 +633,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_14);
  iconOMO_14.className = 'buttonsSapelli'
  iconOMO_14.innerHTML = '<img src="images/omoIcons/floodRecessionSteep.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤቴሎ / ኦሞ ሸሽ';
+ iconOMO_14.style.backgroundColor = colorPaletteArray[6]
  iconOMO_14.onclick = function(){
    setTimeout(function(){
 
@@ -652,6 +659,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_15);
  iconOMO_15.innerHTML = '<img src="images/omoIcons/cattleGrazing.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አዳካሩ አɔ̂ቱክ / የከብት ግጦሽ';
  iconOMO_15.className = 'buttonsSapelli'
+ iconOMO_15.style.backgroundColor = colorPaletteArray[7]
  iconOMO_15.onclick = function(){
    setTimeout(function(){
 
@@ -676,6 +684,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_38);
  iconOMO_38.innerHTML = '<img src="images/omoIcons/goatSheepGrazing.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አዳካሩ አɔ̂ክኔይ / ፍየል ግጦሽ';
  iconOMO_38.className = 'buttonsSapelli'
+ iconOMO_38.style.backgroundColor = colorPaletteArray[8]
  iconOMO_38.onclick = function(){
    setTimeout(function(){
 
@@ -700,6 +709,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_16);
  iconOMO_16.innerHTML = '<img src="images/omoIcons/waterPondAnimal.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አክፒ አታፓር / ኩሬ ውሃ';
  iconOMO_16.className = 'buttonsSapelli'
+ iconOMO_16.style.backgroundColor = colorPaletteArray[9]
  iconOMO_16.onclick = function(){
    setTimeout(function(){
 
@@ -724,6 +734,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_17);
  iconOMO_17.innerHTML = '<img src="images/omoIcons/waterRiverAnimal.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አይፒ አናም / የኦሞ ውሃ';
  iconOMO_17.className = 'buttonsSapelli'
+ iconOMO_17.style.backgroundColor = colorPaletteArray[10]
  iconOMO_17.onclick = function(){
    setTimeout(function(){
 
@@ -744,6 +755,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_18);
  iconOMO_18.className = 'buttonsSapelli'
  iconOMO_18.innerHTML = '<img src="images/omoIcons/saltlick.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤዶት / ጨው';
+ iconOMO_18.style.backgroundColor = colorPaletteArray[11]
  iconOMO_18.onclick = function(){
    setTimeout(function(){
 
@@ -765,6 +777,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_19);
  iconOMO_19.innerHTML = '<img src="images/omoIcons/wildFruits.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አጌዎር / የአከባቢ የምበላ ቅጠል';
  iconOMO_19.className = 'buttonsSapelli'
+ iconOMO_19.style.backgroundColor = colorPaletteArray[12]
  iconOMO_19.onclick = function(){
    setTimeout(function(){
 
@@ -789,6 +802,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_20);
  iconOMO_20.innerHTML = '<img src="images/omoIcons/hunting.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤርካ / አደን';
  iconOMO_20.className = 'buttonsSapelli'
+ iconOMO_20.style.backgroundColor = colorPaletteArray[13]
  iconOMO_20.onclick = function(){
    setTimeout(function(){
 
@@ -811,6 +825,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_21);
  iconOMO_21.className = 'buttonsSapelli'
  iconOMO_21.innerHTML = '<img src="images/omoIcons/fishing.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አክሎክ / አሳ ማጥመድ';
+ iconOMO_21.style.backgroundColor = colorPaletteArray[13]
  iconOMO_21.onclick = function(){
    setTimeout(function(){
 
@@ -833,6 +848,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_22);
  iconOMO_22.innerHTML = '<img src="images/omoIcons/reehive.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አሙሉጅ / የንብ ቀፎ';
  iconOMO_22.className = 'buttonsSapelli'
+ iconOMO_22.style.backgroundColor = colorPaletteArray[14]
  iconOMO_22.onclick = function(){
    setTimeout(function(){
 
@@ -857,6 +873,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_23);
  iconOMO_23.className = 'buttonsSapelli'
  iconOMO_23.innerHTML = '<img src="images/omoIcons/medicinalPlants.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤደዋ / ባህላዊ ጨው';
+ iconOMO_23.style.backgroundColor = colorPaletteArray[15]
  iconOMO_23.onclick = function(){
    setTimeout(function(){
 
@@ -877,6 +894,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_24);
  iconOMO_24.innerHTML = '<img src="images/omoIcons/timber.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አኩቶይ አክም / ማገዶ';
  iconOMO_24.className = 'buttonsSapelli'
+ iconOMO_24.style.backgroundColor = colorPaletteArray[16]
  iconOMO_24.onclick = function(){
    setTimeout(function(){
 
@@ -899,6 +917,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_25);
  iconOMO_25.className = 'buttonsSapelli'
  iconOMO_25.innerHTML = '<img src="images/omoIcons/hotSpring.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤሩስ / ፍል ውሃ';
+ iconOMO_25.style.backgroundColor = colorPaletteArray[17]
  iconOMO_25.onclick = function(){
    setTimeout(function(){
 
@@ -921,6 +940,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_27);
  iconOMO_27.innerHTML = '<img src="images/omoIcons/waterPoint.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አቦኖ / ቦኖ';
  iconOMO_27.className = 'buttonsSapelli'
+ iconOMO_27.style.backgroundColor = colorPaletteArray[18]
  iconOMO_27.onclick = function(){
    setTimeout(function(){
 
@@ -945,6 +965,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_28);
  iconOMO_28.innerHTML = '<img src="images/omoIcons/healthStation.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አካይ ኤደዋ / ጤና ጣቢያ';
  iconOMO_28.className = 'buttonsSapelli'
+ iconOMO_28.style.backgroundColor = colorPaletteArray[19]
  iconOMO_28.onclick = function(){
    setTimeout(function(){
 
@@ -969,6 +990,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_29);
  iconOMO_29.className = 'buttonsSapelli'
  iconOMO_29.innerHTML = '<img src="images/omoIcons/school.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አካይ ኤሱኩል / ትምህርት ቤት';
+ iconOMO_29.style.backgroundColor = colorPaletteArray[20]
  iconOMO_29.onclick = function(){
    setTimeout(function(){
 
@@ -980,7 +1002,7 @@ var generateButtonsLandUse = function(){
     document.getElementById('customIconsMap').click()
     if(filterIsOn == false){
       setTimeout(function(){
-        document.getElementById('share-download').click()
+        document.getElmentById('share-download').click()
       },400)
     }
   },400)
@@ -990,6 +1012,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_30);
  iconOMO_30.innerHTML = '<img src="images/omoIcons/veterinary.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አካይ ኤደዋ አግባረን / የከብት ህክምና';
  iconOMO_30.className = 'buttonsSapelli'
+ iconOMO_30.style.backgroundColor = colorPaletteArray[21]
  iconOMO_30.onclick = function(){
    setTimeout(function(){
 
@@ -1014,6 +1037,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_31);
  iconOMO_31.innerHTML = '<img src="images/omoIcons/treeForGathering.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤኩቶይ / መሰብሰቢያ ዛፍ';
  iconOMO_31.className = 'buttonsSapelli'
+ iconOMO_31.style.backgroundColor = colorPaletteArray[23]
  iconOMO_31.onclick = function(){
    setTimeout(function(){
 
@@ -1035,6 +1059,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_32);
  iconOMO_32.innerHTML = '<img src="images/omoIcons/eldersHut.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤካፓ / የሽማግሌ መሰባሰቢያ';
  iconOMO_32.className = 'buttonsSapelli'
+ iconOMO_32.style.backgroundColor = colorPaletteArray[24]
  iconOMO_32.onclick = function(){
    setTimeout(function(){
 
@@ -1057,6 +1082,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_33);
  iconOMO_33.className = 'buttonsSapelli'
  iconOMO_33.innerHTML = '<img src="images/omoIcons/recreationCenter.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አፓክ ንቦልያት / መዝናኛ';
+ iconOMO_33.style.backgroundColor = colorPaletteArray[24]
  iconOMO_33.onclick = function(){
    setTimeout(function(){
 
@@ -1078,6 +1104,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_34);
  iconOMO_34.innerHTML = '<img src="images/omoIcons/church.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አካይ አኩጅ / ቤተ ክርስቲያን';
  iconOMO_34.className = 'buttonsSapelli'
+ iconOMO_34.style.backgroundColor = colorPaletteArray[25]
  iconOMO_34.onclick = function(){
    setTimeout(function(){
 
@@ -1099,6 +1126,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_35);
  iconOMO_35.className = 'buttonsSapelli'
  iconOMO_35.innerHTML = '<img src="images/omoIcons/boatCrossing.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤዶከት አቱቧ / ጀልባ መሻገሪያ';
+ iconOMO_35.style.backgroundColor = colorPaletteArray[26]
  iconOMO_35.onclick = function(){
    setTimeout(function(){
 
@@ -1120,6 +1148,7 @@ var generateButtonsLandUse = function(){
    cell.appendChild(iconOMO_41);
   iconOMO_41.innerHTML = '<img src="images/omoIcons/pathTrack.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br> ኤሮት / መንገድ';
   iconOMO_41.className = 'buttonsSapelli'
+  iconOMO_41.style.backgroundColor = colorPaletteArray[27]
   iconOMO_41.onclick = function(){
 
     setTimeout(function(){
@@ -1141,6 +1170,7 @@ var generateButtonsLandUse = function(){
   cell.appendChild(iconOMO_36);
  iconOMO_36.innerHTML = '<img src="images/omoIcons/unknownOther.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ɔ̂ቺየ / ሌላ';
  iconOMO_36.className = 'buttonsSapelli'
+ iconOMO_36.style.backgroundColor = colorPaletteArray[28]
  iconOMO_36.onclick = function(){
 
    setTimeout(function(){

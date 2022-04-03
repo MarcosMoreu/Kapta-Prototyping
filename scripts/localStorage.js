@@ -72,16 +72,136 @@ var deflatedLocalStorage = L.deflate({
 
 var isLocalStorage
 var localStorageLayer
+var fillColor
+var colorPaletteArray = ['#E7A605','#9D9D9C','#04BD9E','#04BD69','#0488BD','#028B1D','#026716','#670F02','#4F0C01','#0461F9','#023EA0',
+                          '#FB05DD','#05FB2E','#E70434','#8A94F7','#F7F78A','#8AF7F7','#966302','#3A519F','#BFBFC0','#CFCFCC','#B0B0AE',
+                          '#939392','#04F80C','#939392','#939392','#939392','#939392']
 var localStorageToGeoJSON = function(){
   ////console.log(groupGeoJSON)
 
+var polygonColor = function(feature){
+    // console.log(feature)
+    if(!feature.properties.landUsesEmoji){
+      var attribute = feature.properties.LU
+    }else{
+      var attribute = feature.properties.landUsesEmoji
+    }
+
+  switch(true){
+
+    case (attribute.includes('አዊ')): //hutvillage 1
+      fillColor = colorPaletteArray[0]
+      break
+    case (attribute.includes('አፕሪች')): //manual pump 2
+      fillColor = colorPaletteArray[1]
+      break
+    case (attribute.includes('አክታረ አታፓር')): //pondfarming 3
+      fillColor = colorPaletteArray[2]
+      break
+    case (attribute.includes('አሳክ')): //lake recession 4
+      fillColor = colorPaletteArray[3]
+      break
+    case (attribute.includes('ኤሪያቻ')): //irrigationpump 5
+      fillColor = colorPaletteArray[4]
+      break
+    case (attribute.includes('ኤመራ')): //flood recession flat 6
+      fillColor = colorPaletteArray[5]
+      break
+    case (attribute.includes('ኤቴሎ')): //flood recession steep 7
+      fillColor = colorPaletteArray[6]
+      break
+    case (attribute.includes('አዳካሩ አɔ̂ቱክ')): //cattle grazing 8
+      fillColor = colorPaletteArray[7]
+      break
+    case (attribute.includes('አዳካሩ አɔ̂ክኔይ')): //goatsheetpgrazing 9
+      fillColor = colorPaletteArray[8]
+      break
+    case (attribute.includes('አክፒ አታፓር')): //wateranimal 10
+      fillColor = colorPaletteArray[9]
+      break
+    case (attribute.includes('አይፒ አናም')): //water river animal 11
+      fillColor = colorPaletteArray[10]
+      break
+    case (attribute.includes('ኤዶት'))://saltlick 12
+      fillColor = colorPaletteArray[11]
+      break
+    case (attribute.includes('አጌዎር')): //wildfruits 13
+      fillColor = colorPaletteArray[12]
+      break
+    case (attribute.includes('ኤርካ')): //hunting 14
+      fillColor = colorPaletteArray[13]
+      break
+    case (attribute.includes('አክሎክ')): //fishing 15
+      fillColor = colorPaletteArray[14]
+      break
+    case (attribute.includes('አሙሉጅ')): //reehive 16
+      fillColor = colorPaletteArray[15]
+      break
+    case (attribute.includes('ኤደዋ')): //medicinal plants 17
+      fillColor = colorPaletteArray[16]
+      break
+    case (attribute.includes('አኩቶይ አክም')): //timber 18
+      fillColor = colorPaletteArray[17]
+      break
+    case (attribute.includes('ኤሩስ')): //hotspring 19
+      fillColor = colorPaletteArray[18]
+      break
+    case (attribute.includes('አቦኖ')): //waterpoint 20
+      fillColor = colorPaletteArray[19]
+      break
+    case (attribute.includes('አካይ ኤደዋ')): //healtstation 21
+      fillColor = colorPaletteArray[20]
+      break
+    case (attribute.includes('አካይ ኤሱኩል')): //school 22
+      fillColor = colorPaletteArray[21]
+      break
+    case (attribute.includes('አካይ ኤደዋ አግባረን')): //veterinary 23
+      fillColor = colorPaletteArray[22]
+      break
+    case (attribute.includes('ኤኩቶይ')): //tree gathering 24
+      fillColor = colorPaletteArray[23]
+      break
+    case (attribute.includes('ኤካፓ')): //eldershut 25
+      fillColor = colorPaletteArray[24]
+      break
+    case (attribute.includes('አፓክ ንቦልያት')): //recreation center 26
+      fillColor = colorPaletteArray[25]
+      break
+    case (attribute.includes('አካይ አኩጅ')): //church 27
+      fillColor = colorPaletteArray[26]
+      break
+    case (attribute.includes('ኤዶከት አቱቧ')): //boat crossing 28
+      fillColor = colorPaletteArray[27]
+      break
+    case (attribute.includes('ɔ̂ቺየ')): //unknown 29
+      fillColor = colorPaletteArray[28]
+      break
+
+
+//in case the sap project was not used
+    case (attribute != null):
+      fillColor = 'white'
+      break
+  }
+    // if(aFeatureIsSelected == true){
+    //   var weight = 3
+    // }else{
+    //   var weight = 0
+    // }
+
+    return {
+          fillColor: fillColor,
+          weight: 0,
+          opacity: 1,
+          color: fillColor,  //Outline color
+          fillOpacity: 0.3
+      }// && feature.properties && feature.properties.style;
+}
+
+
     if (isJson(groupGeoJSON) == false) {
         localStorageLayer = L.geoJSON(groupGeoJSON, {
-            style: function(feature) {
-                //myLayerIsOn = true;
-                ////console.log(myLayerIsOn)
-                return feature.properties && feature.properties.style;
-            },
+            style: polygonColor,
             pointToLayer: function(feature, latlng) {
 
                 return L.marker(latlng, {
@@ -89,7 +209,7 @@ var localStorageToGeoJSON = function(){
                     draggable:false
                 });
             },
-            color: '#33FFFF',
+            // color: '#33FFFF',
             autopan: false,
             //  icon: markerIconLocalStorage,
             onEachFeature: function(feature, layer) {
@@ -313,7 +433,7 @@ var localStorageToGeoJSON = function(){
                          document.getElementById("gobackArmchairField").style.display = "none";
 
                         // random_Button.addTo(map)
-                         selectedFeature.setStyle({color: '#F70573'})
+                         selectedFeature.setStyle({weight: 3})
                        }
                          //condition below is at is is to avoid deflated symbol to show as selected after polygon/line have been selected
                          if (selectedFeature.feature.geometry.type == 'Point') {
