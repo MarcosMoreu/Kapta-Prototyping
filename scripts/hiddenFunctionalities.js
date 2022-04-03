@@ -393,12 +393,18 @@ document.getElementById('rose').onclick = function(e){
                   var arrayGeojson = []
                   // console.log(result.length)
                   for(i = 0; i < result.length-1; i++ ){
+                    console.log('i',i)
 
                     try{
                       var decodedGeojson = decodeURIComponent(result[i])
                       var geojson = JSON.parse(decodedGeojson)
                     }catch(e){
                       console.log('error',e)
+                      console.log('error file',decodedGeojson)
+                      //the error identified are:
+                      //1-url too long >> nothing can be done except from limiting share interval
+                      //2-URI malformed>> only with the ones shared by Lopodo
+                      //3-
                     }
                     // console.log(geojson)
                     // console.log(decodedGeojson)
@@ -457,7 +463,7 @@ document.getElementById('rose').onclick = function(e){
                     processAndAddToMap.innerHTML = 'Adding, wait...'
                     setTimeout(function(){
                       location.reload()
-                    },8000)
+                    },5000)
 
                     geometriesUploaded = true
                   }
