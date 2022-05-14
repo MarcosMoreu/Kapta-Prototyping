@@ -46,7 +46,7 @@ document.getElementById('cutomiseButton').onclick = function(e){
     setTimeout(function(){
       document.getElementById("infoGoBackButton").style.display = "initial";
       document.getElementById('TextRequest').style.display = 'initial'
-      document.getElementById("cognitoForm").style.display = "initial";
+      // document.getElementById("cognitoForm").style.display = "initial";
       document.body.style.overflow = 'visible';
       document.getElementById('dropDown').style.display = "none";
       document.getElementById('cutomiseButton').style.display = "none";
@@ -59,35 +59,46 @@ document.getElementById('cutomiseButton').onclick = function(e){
      document.getElementById("english").style.display = "none";
      document.getElementById("swahili").style.display = "none";
      document.getElementById("other1").style.display = "none";
+     if(cognitoFormLoaded == false){
+       document.getElementById("loadingCognito").style.display = "initial";
+     }
+
    },100)
+         Cognito.load("forms", { id: "2" })
+         cognitoFormLoaded = true
+
     // document.getElementById("youtubeImage").src = '../images/checkingPw.gif'
-    setTimeout(function(){
-      if(cognitoFormLoaded == false){
-
-        var target = document.getElementById('cognitoForm');
-        // create an observer instance
-        var observer = new MutationObserver(function (mutations) {
-            mutations.forEach(function (mutation) {
-                if (Cognito.config.isReady){
-                    // stop observing
-                    observer.disconnect();
-                    cognitoFormLoaded = true
-                   document.getElementById("loadingCognito").style.display = "none";
-                   // document.getElementById("youtubeImage").src = '../images/youtube.png'
-                };
-            });
-        });
-
-        // configuration of the observer:
-        var config = { attributes: true, childList: true };
-        // pass in the target node, as well as the observer options
-        observer.observe(target, config);
-        Cognito.load("forms", { id: "2" })
-      }else{
-        document.getElementById("loadingCognito").style.display = "none";
-      }
-
-  },300)
+  //   setTimeout(function(){
+  //     if(cognitoFormLoaded == false){
+  //
+  //       var target = document.getElementById('cognitoForm');
+  //       // create an observer instance
+  //       var observer = new MutationObserver(function (mutations) {
+  //           mutations.forEach(function (mutation) {
+  //               if (Cognito.config.isReady){
+  //                   // stop observing
+  //                   observer.disconnect();
+  //                   cognitoFormLoaded = true
+  //                  document.getElementById("loadingCognito").style.display = "none";
+  //                  // document.getElementById("youtubeImage").src = '../images/youtube.png'
+  //               };
+  //           });
+  //       });
+  //
+  //       // configuration of the observer:
+  //       var config = { attributes: true, childList: true };
+  //       // pass in the target node, as well as the observer options
+  //       observer.observe(target, config);
+  //       Cognito.load("forms", { id: "2" })
+  //     }else{
+  //       document.getElementById("loadingCognito").style.display = "none";
+  //     }
+  //
+  // },300)
+  // return cognitoFormLoaded
+  setTimeout(function(){
+    document.getElementById("loadingCognito").style.display = "none";
+  },4000)
   return cognitoFormLoaded
 }
 
@@ -217,7 +228,7 @@ document.getElementById('infoGoBackButton').onclick = function(e){
      document.getElementById("infoGoBackButton").style.display = "none";
      document.getElementById("infoCont").style.display = "none";
      document.getElementById("iconsCont").style.display = "none";
-     document.getElementById("cognitoForm").style.display = "none";
+     // document.getElementById("cognitoForm").style.display = "none";
 
      document.getElementById("youtubeVideo").setAttribute('src','')
      document.getElementById("youtubeVideo").setAttribute('src',storeIframeURL)
