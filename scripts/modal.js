@@ -62,6 +62,18 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
     // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
     if (typeof window.localStorage !== "undefined" && !localStorage.getItem('visited')) {
         // Set visited flag in local storage
+        try{
+          $.getScript({
+             cache:false,
+            url:'https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js'
+          }),
+          $.getScript({
+             cache:false,
+            url:'https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js'
+          })
+        }catch(e){
+          location.reload
+        }
         localStorage.setItem('visited', true);
         isFirstTime = true;
         // console.log('stored in local sotrage')
@@ -77,7 +89,18 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
 
 
     }else if(!localStorage.getItem('pwCorrect')){  //condition to ensure that if in first load pw was incorrect, pw is requested until correct !!!!!!!!!!!!!!!!!!!!!!!
-
+      try{
+        $.getScript({
+           cache:false,
+          url:'https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js'
+        }),
+        $.getScript({
+           cache:false,
+          url:'https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js'
+        })
+      }catch(e){
+        location.reload
+      }
         // console.log('!localStorage.getItem(pwCorrect')
         requestPw()
     }else {
@@ -110,7 +133,7 @@ var requestCartoData = function() {
             })
             return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
         };
-      // getGeoJSON(); //////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      getGeoJSON(); //////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         //funtion to get geojson with 🌐 to be used in random suggestion
         function getGeoJSONRandom(){ ///RANDOM!!!!!!!!!!!!!!!
@@ -122,7 +145,7 @@ var requestCartoData = function() {
             url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQueryRandom + cartoapiSELECT
           })
         }
-        // getGeoJSONRandom() ////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        getGeoJSONRandom() ////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
     return cartousername
 }
@@ -155,6 +178,7 @@ var initialiseMap = function(){
             cache:true,
             url:'scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/Control.GlobeMiniMap.js'
           }),
+
       $.Deferred(function( deferred ){
           $( deferred.resolve );
       })
@@ -191,7 +215,7 @@ var initialiseMap = function(){
           opacity: 1
       }).addTo(map)
       document.getElementById('rose').style.marginBottom = '5px' // to avoid extra margin, visible when offline buttons appear
-      emojiRequest()
+      // emojiRequest()
       //rose.addTo(map)
       startSearchingLocation()
       deflated.addTo(map) // to initialize //////////////////////!!!!!!!!
@@ -226,7 +250,7 @@ var initialiseMap = function(){
             'images/questionmark.png','images/random.png','images/shareMessagingApps.png','images/shareworld.png','images/shareworldConfirm.png',
             'images/uk.png','images/ethiopiaTutorial.png','images/other1.png','images/underConstruction.png','images/youtube.png','images/youtubeOffline.png',
             'images/shareMessagingAppsYellow.png','images/sendComment.png',
-            'images/sent.mp4','images/downloaded.mp4','images/LocalStorageRecenter.png',
+            'images/LocalStorageRecenter.png',
             'images/excitesTree.png','images/logoNyangatomReduced.png',
             'images/customIconsMap.png','images/customIconsCancel.png',
 

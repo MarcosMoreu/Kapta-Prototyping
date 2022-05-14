@@ -27,3 +27,8 @@ RewriteRule (.*)_lg\.(jpg|png|gif) $1@2x.$2 [L]
 # Fall back to base image file if no @2x
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule (.*)@2x\.(jpg|png|gif) $1.$2 [L]
+
+# BROWSER CACHING USING CACHE-CONTROL HEADERS
+    <FilesMatch ".(flv|gif|ico|jpg|jpeg|mp4|mpeg|png|svg|swf|webp|js|css)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>

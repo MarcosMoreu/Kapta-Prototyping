@@ -174,17 +174,11 @@ setTimeout(function(){
   $.getScript({
      cache:true,
     url:'scripts/hiddenFunctionalities.js'
-  }),
-  $.getScript({
-     cache:true,
-    url:'scripts/customIcons_v2.js'
-  }),
-  $.getScript({
-     cache:true,
-    url:'scripts/lib/html2canvas.min.js'
   })
 
 },3000)
+document.getElementById('downloadedVideo').src = "images/downloaded.mp4"
+document.getElementById('sentVideo').src = "images/sent.mp4"
 
 //to check if offline so some elements can be disabled
 var checkIfOffline = setInterval(function() {
@@ -897,15 +891,34 @@ if(isIOS == false){
 
 }
 
+// var postSuccessPlanetKey = function(data){
+//   console.log('planetkey',data)
+//    return data
+// }
+//
+//
+// var getPlanetAPIKey = function() {
+//     $.ajax({ //
+//         type: 'GET',
+//         url: '.env/processPlanet.php',
+//         // geojson:data,
+//         // cache: false,
+//         // timeStamp: new Date().getTime(),
+//         data:thekey,
+//         success:postSuccessPlanetKey()
+//     });
+// };
+
+
 var sentinelHubKey = '82b5a4e7-b887-40b2-949b-1b47a2aa9774';
 console.log('mosaicRequestedLatest',mosaicRequestedLatest)
 // a script to automate the update of these global mosaics is needed. At the moment, this needs to be done manually, both here to update the attributes and in the SentinelHub platfrom
-var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_' + year + '-' + mosaicRequestedLatest + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
-  attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaicLatest + ' ' + year
-  })
-  // var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2022-01_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
-  //   attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaicLatest + ' ' + year
-  //   })
+// var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_' + year + '-' + mosaicRequestedLatest + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=' + getPlanetAPIKey(),{
+//   attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaicLatest + ' ' + year
+//   })
+  var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2022-01_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
+    attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaicLatest + ' ' + year
+    })
   var planetScopeMonthlyMosaicLatestMinus4Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_' + year4MonthsAgo + '-' + mosaicRequested4Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
     attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic4Months + ' ' + year4MonthsAgo
     })
@@ -2746,6 +2759,13 @@ var submitToProxy = function(q) {
         success:postSuccess()
     });
 };
+
+
+
+
+
+// getPlanetAPIKey()
+
 var pURL
 //this function is called both when feature is deleted or feature is created and sent.
 function setData() {
@@ -2910,7 +2930,18 @@ document.getElementById("gobackArmchairField").onclick = function(e) {
 
 }
 document.getElementById("armchair").onclick = function(e) {
-
+  $.getScript({
+     cache:true,
+    url:'scripts/customIcons_v2.js'
+  }),
+  $.getScript({
+     cache:true,
+    url:'scripts/lib/html2canvas.min.js'
+  }),
+  $.getScript({
+    cache:true,
+    url:'https://webrtc.github.io/adapter/adapter-latest.js'
+  })
   // document.getElementById("Alert").style.display = 'none'
 
   document.getElementById("tutorial").style.display = "none";
@@ -2935,7 +2966,18 @@ document.getElementById("armchair").onclick = function(e) {
 
 
 document.getElementById("field").onclick = function(e) {
-
+  $.getScript({
+     cache:true,
+    url:'scripts/customIcons_v2.js'
+  }),
+  $.getScript({
+     cache:true,
+    url:'scripts/lib/html2canvas.min.js'
+  }),
+  $.getScript({
+    cache:true,
+    url:'https://webrtc.github.io/adapter/adapter-latest.js'
+  })
   //console.log(currentLocation)
 //  console.log(accuracy)
 
