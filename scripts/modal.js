@@ -1,3 +1,20 @@
+window.onload = function(){
+  preload([
+    'images/checkingPw.gif','images/gpsSearching.gif',
+
+    'images/armchair.png','images/field.png','images/tvSmall.png',
+    'images/osm.png','images/myPrivateLayer.png','images/filterIcon.png',
+    'images/myLayerOpen.png',
+    'https://mt3.google.com/vt/lyrs=s,h&x=2&y=1&z=2',
+    'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
+    'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
+    'https://mt0.google.com/vt/lyrs=s,h&x=2&y=2&z=2',
+    'https://mt1.google.com/vt/lyrs=s,h&x=1&y=0&z=2',
+    'https://mt2.google.com/vt/lyrs=s,h&x=2&y=0&z=2',
+    'https://mt0.google.com/vt/lyrs=s,h&x=1&y=3&z=2',
+    'https://mt1.google.com/vt/lyrs=s,h&x=2&y=3&z=2',
+  ])
+}
 
 //the map is initialised if not first load or when key is clicked
 
@@ -36,6 +53,62 @@ document.getElementById('loginKey').onclick = function(e){
   document.getElementById('enteredPw').style.display = 'initial';
   document.getElementById('enteredPw').focus() //to open keyboard!!!
   document.getElementById('login').style.display = 'initial';
+  function preload(arrayOfImages) {
+    $(arrayOfImages).each(function(){
+        try{
+            $('<img/>')[0].src = this;
+        }catch(e){
+          //console.log('image failed to preload')
+        }
+
+        // Alternatively you could use:
+        // (new Image()).src = this;
+    });
+  }
+    // Usage:
+
+    preload([
+      'images/ThumbsUpGreen.png','images/checkingPw.gif',
+
+      'images/armchair.png','images/field.png','images/tvSmall.png',
+      // 'https://mt3.google.com/vt/lyrs=s,h&x=2&y=1&z=2',
+      // 'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
+      // 'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
+      // 'https://mt0.google.com/vt/lyrs=s,h&x=2&y=2&z=2',
+      // 'https://mt1.google.com/vt/lyrs=s,h&x=1&y=0&z=2',
+      // 'https://mt2.google.com/vt/lyrs=s,h&x=2&y=0&z=2',
+      // 'https://mt0.google.com/vt/lyrs=s,h&x=1&y=3&z=2',
+      // 'https://mt1.google.com/vt/lyrs=s,h&x=2&y=3&z=2',
+
+
+        'images/drawPolygon.png','images/line.png','images/point.png',
+        'images/applyFilter.png','images/arrowLeft.png', 'images/arrowRight.png', 'images/backButton.png','images/bin.png','images/binOriginal.png','images/binpost.png',
+        'images/binpre.png','images/burger.png','images/burgerBlack.png','images/cancel.png','images/clearFilter.png','images/commentFeature.png',
+        'images/dateAll.png','images/dateDay.png','images/dateMonth.png','images/dateWeek.png','images/dateYear.png','images/deleteAllVertex.png',
+        'images/deleteLastVertex.png','images/devicedownload.png','images/download.png','images/filterIcon.png',
+        'images/google.png','images/googleHistorical.png','images/gps.png','images/gpsOff.png','images/gpsSearching.gif','images/gpsSearchingIOS.gif',
+        'images/infoGoBack.png','images/key.png','images/lineDeleteAll.png','images/lineDeleteVertex.png',
+        'images/locked.png','images/man.png','images/marker-icon.png','images/marker-icon-2x.png','images/marker-icon-cian.png','images/markerPolygonBlue.png','images/markerLine.png','images/markerPolygon.png',
+        'images/markerLocalStorage.png','images/myLayerOpen.png','images/myLayerPrivate.png','images/myLayerEmpty.png','images/nautical.svg','images/osm.png',
+        'images/other1.png','images/play.png','images/PlusSign.png','images/cameraIcon.png','images/changeCamera.png','images/screenshot.png',
+        'images/questionmark.png','images/random.png','images/shareMessagingApps.png','images/shareworld.png','images/shareworldConfirm.png',
+        'images/uk.png','images/ethiopiaTutorial.png','images/other1.png','images/underConstruction.png','images/youtube.png','images/youtubeOffline.png',
+        'images/shareMessagingAppsYellow.png','images/sendComment.png',
+        'images/LocalStorageRecenter.png',
+        'images/excitesTree.png','images/logoNyangatomReduced.png',
+        'images/customIconsMap.png','images/customIconsCancel.png',
+
+        //sapelli project images
+        'images/omoIcons/banana.png','images/omoIcons/boatCrossing.png','images/omoIcons/cattleGrazing.png','images/omoIcons/church.png','images/omoIcons/eldersHut.png','images/omoIcons/fishing.png',
+        'images/omoIcons/floodRecessionFlat.png','images/omoIcons/floodRecessionSteep.png','images/omoIcons/goatSheepGrazing.png','images/omoIcons/healthStation.png','images/omoIcons/hotSpring.png','images/omoIcons/hunting.png',
+        'images/omoIcons/hutVillage.png','images/omoIcons/irrigationPump.png','images/omoIcons/kraal.png','images/omoIcons/lakeRecession.png','images/omoIcons/maize.png',
+        'images/omoIcons/manualPump.png','images/omoIcons/medicinalPlants.png','images/omoIcons/noFarming.png','images/omoIcons/pondFarming.png','images/omoIcons/Questionmark.png','images/omoIcons/recreationCenter.png',
+        'images/omoIcons/reehive.png','images/omoIcons/saltlick.png','images/omoIcons/school.png','images/omoIcons/sorghum.png','images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
+        'images/omoIcons/timber.png','images/omoIcons/treeForGathering.png','images/omoIcons/unknownOther.png','images/omoIcons/veterinary.png','images/omoIcons/waterPoint.png','images/omoIcons/waterPondAnimal.png',
+        'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png','images/omoIcons/pathTrack.png',
+
+
+    ]);
   initialiseMap() //map initialised but not shown
 
   try{
@@ -60,7 +133,14 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
   // console.log('isfirstload??')
   //$.getScript("lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.Draw.Event.js")
     // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
-    if (typeof window.localStorage !== "undefined" && !localStorage.getItem('visited')) {
+    if(localStorage.getItem('pwCorrect')){
+      initialiseMap() //map initialised AND LOADED (no modal)
+        isFirstTime = false;
+        try{
+        //  fetchFromLocalStorage()
+        //  localStorageToGeoJSON()
+        }catch(e){}
+    }else if(typeof window.localStorage !== "undefined" && !localStorage.getItem('visited')) {
         // Set visited flag in local storage
         try{
           $.getScript({
@@ -103,17 +183,6 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
       }
         // console.log('!localStorage.getItem(pwCorrect')
         requestPw()
-    }else {
-      // console.log('recognised not first time')
-
-      initialiseMap() //map initialised AND LOADED (no modal)
-      requestCartoData()
-        isFirstTime = false;
-        try{
-        //  fetchFromLocalStorage()
-        //  localStorageToGeoJSON()
-        }catch(e){}
-
     }
     return isFirstTime;
 }
@@ -152,6 +221,28 @@ var requestCartoData = function() {
 
 
 var initialiseMap = function(){
+  googleSat.addTo(map)
+
+    // preload([
+    //   'images/ThumbsUpGreen.png','images/checkingPw.gif',
+    //
+    //   'images/armchair.png','images/field.png','images/tvSmall.png',
+    //   'https://mt3.google.com/vt/lyrs=s,h&x=2&y=1&z=2',
+    //   'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
+    //   'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
+    //   'https://mt0.google.com/vt/lyrs=s,h&x=2&y=2&z=2',
+    //   'https://mt1.google.com/vt/lyrs=s,h&x=1&y=0&z=2',
+    //   'https://mt2.google.com/vt/lyrs=s,h&x=2&y=0&z=2',
+    //   'https://mt0.google.com/vt/lyrs=s,h&x=1&y=3&z=2',
+    //   'https://mt1.google.com/vt/lyrs=s,h&x=2&y=3&z=2',
+    //   'images/gpsSearching.gif',
+    //   'images/osm.png',
+    //   'images/myLayerPrivate',
+    //   'images/filterIcon.png',
+    // ])
+    document.getElementById("map").style.display = "initial";
+
+
   document.getElementById("app-css").disabled = false
   document.getElementById("customIcons-css").disabled = false
   document.getElementById("slider-css").disabled = false
@@ -163,30 +254,17 @@ var initialiseMap = function(){
   document.getElementById("cluster-css").disabled = false
   document.getElementById("clusterDefault-css").disabled = false
   // $.getScript( "scripts/app.js" , function(){console.log('script gotten')});
-      $.when(
-
-          $.getScript({
-            cache:true,
-            url:'scripts/lib/d3.min.js',
-             // success: console.log('d3 fetched')
-          }),
-          $.getScript({
-            cache:true,
-            url:'scripts/lib/topojson.min.js'
-          }),
-          $.getScript({
-            cache:true,
-            url:'scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/Control.GlobeMiniMap.js'
-          }),
-
-      $.Deferred(function( deferred ){
-          $( deferred.resolve );
-      })
-    ).done(function(){
+    //   $.when(
+    //
+    //
+    //
+    //   $.Deferred(function( deferred ){
+    //       $( deferred.resolve );
+    //   })
+    // ).done(function(){
       // console.log('all script loaded')
       //place your code here, the scripts are all loaded
 
-      document.getElementById("map").style.display = "initial";
       setTimeout(function(){
         document.getElementById("tutorial").style.display = "initial";
         document.getElementById("armchair").style.display = "initial";
@@ -201,70 +279,52 @@ var initialiseMap = function(){
       document.getElementById("map").style.display = "block";
       //addLeafletAttribute()
 
-      osm_Button.addTo(map);
-      myLayer_Button.addTo(map); //always on as there will always be features in the map, even when first load
-      filter_Button.addTo(map);
-      googleSat.addTo(map)
-      scale.addTo(map)
-      gps_Button.addTo(map);
 
-      var rose = L.control.rose('rose', {
-          position: 'topleft',
-          icon: 'nautical',
-          iSize: 'medium',
-          opacity: 1
-      }).addTo(map)
       document.getElementById('rose').style.marginBottom = '5px' // to avoid extra margin, visible when offline buttons appear
-      // emojiRequest()
-      //rose.addTo(map)
-      startSearchingLocation()
-      deflated.addTo(map) // to initialize //////////////////////!!!!!!!!
-
-      function preload(arrayOfImages) {
-        $(arrayOfImages).each(function(){
-            try{
-                $('<img/>')[0].src = this;
-            }catch(e){
-              //console.log('image failed to preload')
-            }
-
-            // Alternatively you could use:
-            // (new Image()).src = this;
-        });
-      }
-        // Usage:
-
-        preload([
-            'images/ThumbsUpGreen.png','images/checkingPw.gif',
-            'images/armchair.png','images/field.png', 'images/tvSmall.png',
-            'images/drawPolygon.png','images/line.png','images/point.png',
-            'images/applyFilter.png','images/arrowLeft.png', 'images/arrowRight.png', 'images/backButton.png','images/bin.png','images/binOriginal.png','images/binpost.png',
-            'images/binpre.png','images/burger.png','images/burgerBlack.png','images/cancel.png','images/clearFilter.png','images/commentFeature.png',
-            'images/dateAll.png','images/dateDay.png','images/dateMonth.png','images/dateWeek.png','images/dateYear.png','images/deleteAllVertex.png',
-            'images/deleteLastVertex.png','images/devicedownload.png','images/download.png','images/filterIcon.png',
-            'images/google.png','images/googleHistorical.png','images/gps.png','images/gpsOff.png','images/gpsSearching.gif','images/gpsSearchingIOS.gif',
-            'images/infoGoBack.png','images/key.png','images/lineDeleteAll.png','images/lineDeleteVertex.png',
-            'images/locked.png','images/man.png','images/marker-icon.png','images/marker-icon-2x.png','images/marker-icon-cian.png','images/markerPolygonBlue.png','images/markerLine.png','images/markerPolygon.png',
-            'images/markerLocalStorage.png','images/myLayerOpen.png','images/myLayerPrivate.png','images/myLayerEmpty.png','images/nautical.svg','images/osm.png',
-            'images/other1.png','images/play.png','images/PlusSign.png','images/cameraIcon.png','images/changeCamera.png','images/screenshot.png',
-            'images/questionmark.png','images/random.png','images/shareMessagingApps.png','images/shareworld.png','images/shareworldConfirm.png',
-            'images/uk.png','images/ethiopiaTutorial.png','images/other1.png','images/underConstruction.png','images/youtube.png','images/youtubeOffline.png',
-            'images/shareMessagingAppsYellow.png','images/sendComment.png',
-            'images/LocalStorageRecenter.png',
-            'images/excitesTree.png','images/logoNyangatomReduced.png',
-            'images/customIconsMap.png','images/customIconsCancel.png',
-
-            //sapelli project images
-            'images/omoIcons/banana.png','images/omoIcons/boatCrossing.png','images/omoIcons/cattleGrazing.png','images/omoIcons/church.png','images/omoIcons/eldersHut.png','images/omoIcons/fishing.png',
-            'images/omoIcons/floodRecessionFlat.png','images/omoIcons/floodRecessionSteep.png','images/omoIcons/goatSheepGrazing.png','images/omoIcons/healthStation.png','images/omoIcons/hotSpring.png','images/omoIcons/hunting.png',
-            'images/omoIcons/hutVillage.png','images/omoIcons/irrigationPump.png','images/omoIcons/kraal.png','images/omoIcons/lakeRecession.png','images/omoIcons/maize.png',
-            'images/omoIcons/manualPump.png','images/omoIcons/medicinalPlants.png','images/omoIcons/noFarming.png','images/omoIcons/pondFarming.png','images/omoIcons/Questionmark.png','images/omoIcons/recreationCenter.png',
-            'images/omoIcons/reehive.png','images/omoIcons/saltlick.png','images/omoIcons/school.png','images/omoIcons/sorghum.png','images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
-            'images/omoIcons/timber.png','images/omoIcons/treeForGathering.png','images/omoIcons/unknownOther.png','images/omoIcons/veterinary.png','images/omoIcons/waterPoint.png','images/omoIcons/waterPondAnimal.png',
-            'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png','images/omoIcons/pathTrack.png',
+    // window.addEventListener('DOMContentLoaded', function(){
+  // $('rose').ready(function(){
 
 
-        ]);
+
+  var rose = L.control.rose('rose', {
+      position: 'topleft',
+      icon: 'nautical',
+      iSize: 'medium',
+      opacity: 1
+  })//.addTo(map)
+  var fieldImageCheck = document.getElementById("fieldImage")
+  fieldImageCheck.src = 'images/field.png'
+  fieldImageCheck.onload = function(){
+    osm_Button.addTo(map);
+    myLayer_Button.addTo(map); //always on as there will always be features in the map, even when first load
+    filter_Button.addTo(map);
+    scale.addTo(map)
+    gps_Button.addTo(map);
+    rose.addTo(map)
+    requestCartoData()
+
+    emojiRequest()
+    //rose.addTo(map)
+    startSearchingLocation()
+    deflated.addTo(map) // to initialize //////////////////////!!!!!!!!
+    $.getScript({
+      cache:true,
+      url:'scripts/lib/d3.min.js',
+       // success: console.log('d3 fetched')
+    }),
+    $.getScript({
+      cache:true,
+      url:'scripts/lib/topojson.min.js'
+    }),
+    $.getScript({
+      cache:true,
+      url:'scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/Control.GlobeMiniMap.js'
+    })
+
+    } //if the container is visible on the page
+
+
+
       // var images = new Array()
       //       function preload() {
       //         for (i = 0; i < preload.arguments.length; i++) {
@@ -290,7 +350,7 @@ var initialiseMap = function(){
 
       done = true
       return done
-    });
+    // });
 }
 var loaded
 var authentication
@@ -368,7 +428,7 @@ var requestPw = function(){
                 clearInterval(checkDoneAndFirebasePW)
                 document.getElementById('enteredPw').style.backgroundColor = '#39F70F' //green color
 
-                requestCartoData()
+                // requestCartoData()
 
                 setTimeout(function(){
                     document.getElementById('modal').style.display='none';
