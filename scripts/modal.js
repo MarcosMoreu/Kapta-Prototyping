@@ -1,20 +1,20 @@
-window.onload = function(){
-  preload([
-    'images/checkingPw.gif','images/gpsSearching.gif',
-
-    'images/armchair.png','images/field.png','images/tvSmall.png',
-    'images/osm.png','images/myPrivateLayer.png','images/filterIcon.png',
-    'images/myLayerOpen.png',
-    'https://mt3.google.com/vt/lyrs=s,h&x=2&y=1&z=2',
-    'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
-    'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
-    'https://mt0.google.com/vt/lyrs=s,h&x=2&y=2&z=2',
-    'https://mt1.google.com/vt/lyrs=s,h&x=1&y=0&z=2',
-    'https://mt2.google.com/vt/lyrs=s,h&x=2&y=0&z=2',
-    'https://mt0.google.com/vt/lyrs=s,h&x=1&y=3&z=2',
-    'https://mt1.google.com/vt/lyrs=s,h&x=2&y=3&z=2',
-  ])
-}
+// window.onload = function(){
+//   preload([
+//     'images/checkingPw.gif','images/gpsSearching.gif',
+//
+//     'images/armchair.png','images/field.png','images/tvSmall.png',
+//     'images/osm.png','images/myPrivateLayer.png','images/filterIcon.png',
+//     'images/myLayerOpen.png',
+//     'https://mt3.google.com/vt/lyrs=s,h&x=2&y=1&z=2',
+//     'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
+//     'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
+//     'https://mt0.google.com/vt/lyrs=s,h&x=2&y=2&z=2',
+//     'https://mt1.google.com/vt/lyrs=s,h&x=1&y=0&z=2',
+//     'https://mt2.google.com/vt/lyrs=s,h&x=2&y=0&z=2',
+//     'https://mt0.google.com/vt/lyrs=s,h&x=1&y=3&z=2',
+//     'https://mt1.google.com/vt/lyrs=s,h&x=2&y=3&z=2',
+//   ])
+// }
 
 //the map is initialised if not first load or when key is clicked
 
@@ -53,62 +53,7 @@ document.getElementById('loginKey').onclick = function(e){
   document.getElementById('enteredPw').style.display = 'initial';
   document.getElementById('enteredPw').focus() //to open keyboard!!!
   document.getElementById('login').style.display = 'initial';
-  function preload(arrayOfImages) {
-    $(arrayOfImages).each(function(){
-        try{
-            $('<img/>')[0].src = this;
-        }catch(e){
-          //console.log('image failed to preload')
-        }
 
-        // Alternatively you could use:
-        // (new Image()).src = this;
-    });
-  }
-    // Usage:
-
-    preload([
-      'images/ThumbsUpGreen.png','images/checkingPw.gif',
-
-      'images/armchair.png','images/field.png','images/tvSmall.png',
-      // 'https://mt3.google.com/vt/lyrs=s,h&x=2&y=1&z=2',
-      // 'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
-      // 'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
-      // 'https://mt0.google.com/vt/lyrs=s,h&x=2&y=2&z=2',
-      // 'https://mt1.google.com/vt/lyrs=s,h&x=1&y=0&z=2',
-      // 'https://mt2.google.com/vt/lyrs=s,h&x=2&y=0&z=2',
-      // 'https://mt0.google.com/vt/lyrs=s,h&x=1&y=3&z=2',
-      // 'https://mt1.google.com/vt/lyrs=s,h&x=2&y=3&z=2',
-
-
-        'images/drawPolygon.png','images/line.png','images/point.png',
-        'images/applyFilter.png','images/arrowLeft.png', 'images/arrowRight.png', 'images/backButton.png','images/bin.png','images/binOriginal.png','images/binpost.png',
-        'images/binpre.png','images/burger.png','images/burgerBlack.png','images/cancel.png','images/clearFilter.png','images/commentFeature.png',
-        'images/dateAll.png','images/dateDay.png','images/dateMonth.png','images/dateWeek.png','images/dateYear.png','images/deleteAllVertex.png',
-        'images/deleteLastVertex.png','images/devicedownload.png','images/download.png','images/filterIcon.png',
-        'images/google.png','images/googleHistorical.png','images/gps.png','images/gpsOff.png','images/gpsSearching.gif','images/gpsSearchingIOS.gif',
-        'images/infoGoBack.png','images/key.png','images/lineDeleteAll.png','images/lineDeleteVertex.png',
-        'images/locked.png','images/man.png','images/marker-icon.png','images/marker-icon-2x.png','images/marker-icon-cian.png','images/markerPolygonBlue.png','images/markerLine.png','images/markerPolygon.png',
-        'images/markerLocalStorage.png','images/myLayerOpen.png','images/myLayerPrivate.png','images/myLayerEmpty.png','images/nautical.svg','images/osm.png',
-        'images/other1.png','images/play.png','images/PlusSign.png','images/cameraIcon.png','images/changeCamera.png','images/screenshot.png',
-        'images/questionmark.png','images/random.png','images/shareMessagingApps.png','images/shareworld.png','images/shareworldConfirm.png',
-        'images/uk.png','images/ethiopiaTutorial.png','images/other1.png','images/underConstruction.png','images/youtube.png','images/youtubeOffline.png',
-        'images/shareMessagingAppsYellow.png','images/sendComment.png',
-        'images/LocalStorageRecenter.png',
-        'images/excitesTree.png','images/logoNyangatomReduced.png',
-        'images/customIconsMap.png','images/customIconsCancel.png',
-
-        //sapelli project images
-        'images/omoIcons/banana.png','images/omoIcons/boatCrossing.png','images/omoIcons/cattleGrazing.png','images/omoIcons/church.png','images/omoIcons/eldersHut.png','images/omoIcons/fishing.png',
-        'images/omoIcons/floodRecessionFlat.png','images/omoIcons/floodRecessionSteep.png','images/omoIcons/goatSheepGrazing.png','images/omoIcons/healthStation.png','images/omoIcons/hotSpring.png','images/omoIcons/hunting.png',
-        'images/omoIcons/hutVillage.png','images/omoIcons/irrigationPump.png','images/omoIcons/kraal.png','images/omoIcons/lakeRecession.png','images/omoIcons/maize.png',
-        'images/omoIcons/manualPump.png','images/omoIcons/medicinalPlants.png','images/omoIcons/noFarming.png','images/omoIcons/pondFarming.png','images/omoIcons/Questionmark.png','images/omoIcons/recreationCenter.png',
-        'images/omoIcons/reehive.png','images/omoIcons/saltlick.png','images/omoIcons/school.png','images/omoIcons/sorghum.png','images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
-        'images/omoIcons/timber.png','images/omoIcons/treeForGathering.png','images/omoIcons/unknownOther.png','images/omoIcons/veterinary.png','images/omoIcons/waterPoint.png','images/omoIcons/waterPondAnimal.png',
-        'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png','images/omoIcons/pathTrack.png',
-
-
-    ]);
   initialiseMap() //map initialised but not shown
 
   try{
@@ -320,7 +265,62 @@ var initialiseMap = function(){
       cache:true,
       url:'scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/Control.GlobeMiniMap.js'
     })
+    function preload(arrayOfImages) {
+      $(arrayOfImages).each(function(){
+          try{
+              $('<img/>')[0].src = this;
+          }catch(e){
+            //console.log('image failed to preload')
+          }
 
+          // Alternatively you could use:
+          // (new Image()).src = this;
+      });
+    }
+      // Usage:
+
+      preload([
+        'images/ThumbsUpGreen.png','images/checkingPw.gif',
+
+        'images/armchair.png','images/field.png','images/tvSmall.png',
+        // 'https://mt3.google.com/vt/lyrs=s,h&x=2&y=1&z=2',
+        // 'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
+        // 'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
+        // 'https://mt0.google.com/vt/lyrs=s,h&x=2&y=2&z=2',
+        // 'https://mt1.google.com/vt/lyrs=s,h&x=1&y=0&z=2',
+        // 'https://mt2.google.com/vt/lyrs=s,h&x=2&y=0&z=2',
+        // 'https://mt0.google.com/vt/lyrs=s,h&x=1&y=3&z=2',
+        // 'https://mt1.google.com/vt/lyrs=s,h&x=2&y=3&z=2',
+
+
+          'images/drawPolygon.png','images/line.png','images/point.png',
+          'images/applyFilter.png','images/arrowLeft.png', 'images/arrowRight.png', 'images/backButton.png','images/bin.png','images/binOriginal.png','images/binpost.png',
+          'images/binpre.png','images/burger.png','images/burgerBlack.png','images/cancel.png','images/clearFilter.png','images/commentFeature.png',
+          'images/dateAll.png','images/dateDay.png','images/dateMonth.png','images/dateWeek.png','images/dateYear.png','images/deleteAllVertex.png',
+          'images/deleteLastVertex.png','images/devicedownload.png','images/download.png','images/filterIcon.png',
+          'images/google.png','images/googleHistorical.png','images/gps.png','images/gpsOff.png','images/gpsSearching.gif','images/gpsSearchingIOS.gif',
+          'images/infoGoBack.png','images/key.png','images/lineDeleteAll.png','images/lineDeleteVertex.png',
+          'images/locked.png','images/man.png','images/marker-icon.png','images/marker-icon-2x.png','images/marker-icon-cian.png','images/markerPolygonBlue.png','images/markerLine.png','images/markerPolygon.png',
+          'images/markerLocalStorage.png','images/myLayerOpen.png','images/myLayerPrivate.png','images/myLayerEmpty.png','images/nautical.svg','images/osm.png',
+          'images/other1.png','images/play.png','images/PlusSign.png','images/cameraIcon.png','images/changeCamera.png','images/screenshot.png',
+          'images/questionmark.png','images/random.png','images/shareMessagingApps.png','images/shareworld.png','images/shareworldConfirm.png',
+          'images/uk.png','images/ethiopiaTutorial.png','images/other1.png','images/underConstruction.png','images/youtube.png','images/youtubeOffline.png',
+          'images/shareMessagingAppsYellow.png','images/sendComment.png',
+          'images/LocalStorageRecenter.png',
+          'images/excitesTree.png','images/logoNyangatomReduced.png',
+          'images/customIconsMap.png','images/customIconsCancel.png',
+
+          //sapelli project images
+          'images/omoIcons/banana.png','images/omoIcons/boatCrossing.png','images/omoIcons/cattleGrazing.png','images/omoIcons/church.png','images/omoIcons/eldersHut.png','images/omoIcons/fishing.png',
+          'images/omoIcons/floodRecessionFlat.png','images/omoIcons/floodRecessionSteep.png','images/omoIcons/goatSheepGrazing.png','images/omoIcons/healthStation.png','images/omoIcons/hotSpring.png','images/omoIcons/hunting.png',
+          'images/omoIcons/hutVillage.png','images/omoIcons/irrigationPump.png','images/omoIcons/kraal.png','images/omoIcons/lakeRecession.png','images/omoIcons/maize.png',
+          'images/omoIcons/manualPump.png','images/omoIcons/medicinalPlants.png','images/omoIcons/noFarming.png','images/omoIcons/pondFarming.png','images/omoIcons/Questionmark.png','images/omoIcons/recreationCenter.png',
+          'images/omoIcons/reehive.png','images/omoIcons/saltlick.png','images/omoIcons/school.png','images/omoIcons/sorghum.png','images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
+          'images/omoIcons/timber.png','images/omoIcons/treeForGathering.png','images/omoIcons/unknownOther.png','images/omoIcons/veterinary.png','images/omoIcons/waterPoint.png','images/omoIcons/waterPondAnimal.png',
+          'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png','images/omoIcons/pathTrack.png',
+
+
+      ]);
     } //if the container is visible on the page
 
 
