@@ -1,6 +1,6 @@
 L.Control.Rose = L.Control.extend({
 	includes: L.Mixin.Events,
-    
+
     options: {
         icon: 'default',
         iSize: 'small',

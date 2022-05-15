@@ -2199,7 +2199,7 @@
   		last = now;
   	}
 
-  	obj.addEventListener('click', simDblclick);
+  	// obj.addEventListener('click', simDblclick);
 
   	return {
   		dblclick: handler,
@@ -2209,7 +2209,7 @@
 
   function removeDoubleTapListener(obj, handlers) {
   	obj.removeEventListener('dblclick', handlers.dblclick);
-  	obj.removeEventListener('click', handlers.simDblclick);
+  	obj.removeEventListener('click', handlers.simDblclick,false);
   }
 
   /*

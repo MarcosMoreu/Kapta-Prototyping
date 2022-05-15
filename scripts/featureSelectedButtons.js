@@ -60,7 +60,7 @@ document.getElementById("backDeleteFeature").onclick = function() {
       if (selectedFeature.feature.geometry.type != 'Point') {
         if(whichLayerIsOn == 'localStorage'){
           if (selectedFeature.feature.geometry.type == 'Polygon') {
-            selectedFeature.setStyle({color: '#00FFFB'})
+            selectedFeature.setStyle({weight: 0})
           }else{
             selectedFeature.setStyle({color: 'black'})
           }

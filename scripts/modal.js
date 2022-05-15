@@ -166,6 +166,8 @@ var requestCartoData = function() {
 
 
 var initialiseMap = function(){
+   //  var mapListerner = document.getElementById("map")
+   // mapListerner.addEventListener('touchstart', {passive: true});
   googleSat.addTo(map)
 
     // preload([
