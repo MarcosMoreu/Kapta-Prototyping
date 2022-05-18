@@ -1,3 +1,17 @@
+// var imagesToPreload = new Array()
+// function preload() {
+// 				for (i = 0; i < preload.arguments.length; i++) {
+// 				  imagesToPreload[i] = new Image()
+// 					imagesToPreload[i].src = preload.arguments[i]
+//           console.log('image preloaded')
+// 				}
+// 			}
+// 			preload(
+//         'images/checkingPw.gif','images/gpsSearching.gif',
+//         'images/armchair.png','images/field.png','images/tvSmall.png',
+//         'images/osm.png','images/myLayerPrivate.png','images/filterIcon.png',
+//         'images/myLayerOpen.png',
+// 			)
 // window.onload = function(){
 //   preload([
 //     'images/checkingPw.gif','images/gpsSearching.gif',
@@ -5,73 +19,66 @@
 //     'images/armchair.png','images/field.png','images/tvSmall.png',
 //     'images/osm.png','images/myPrivateLayer.png','images/filterIcon.png',
 //     'images/myLayerOpen.png',
-//     'https://mt3.google.com/vt/lyrs=s,h&x=2&y=1&z=2',
-//     'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
-//     'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
-//     'https://mt0.google.com/vt/lyrs=s,h&x=2&y=2&z=2',
-//     'https://mt1.google.com/vt/lyrs=s,h&x=1&y=0&z=2',
-//     'https://mt2.google.com/vt/lyrs=s,h&x=2&y=0&z=2',
-//     'https://mt0.google.com/vt/lyrs=s,h&x=1&y=3&z=2',
-//     'https://mt1.google.com/vt/lyrs=s,h&x=2&y=3&z=2',
+//     // 'https://mt3.google.com/vt/lyrs=s,h&x=2&y=1&z=2',
+//     // 'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
+//     // 'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
+//     // 'https://mt0.google.com/vt/lyrs=s,h&x=2&y=2&z=2',
+//     // 'https://mt1.google.com/vt/lyrs=s,h&x=1&y=0&z=2',
+//     // 'https://mt2.google.com/vt/lyrs=s,h&x=2&y=0&z=2',
+//     // 'https://mt0.google.com/vt/lyrs=s,h&x=1&y=3&z=2',
+//     // 'https://mt1.google.com/vt/lyrs=s,h&x=2&y=3&z=2',
 //   ])
 // }
 
 //the map is initialised if not first load or when key is clicked
 
-setTimeout(function(){
-  document.getElementById('loginInfo').style.opacity = '1'
-  document.getElementById('loginInfo').disabled = false
-  document.getElementById('loginKey').style.opacity = '1'
-  document.getElementById('loginKey').disabled = false
-  // if(isIOS == true){
-  //   document.getElementById('AlertModalIOS').style.display = 'initial'
-  // }
-    document.getElementById('AlertModalIOS').style.display = 'initial'
-    document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
+// window.onload = function(){
+//   var basemapClass = document.getElementsByClassName('leaflet-layer')
+//   basemapClass[0].style.opacity = 1
+// }
+
+var arrayOfImages = [
+  'images/ThumbsUpGreen.png','images/checkingPw.gif',
+
+  'images/armchair.png','images/field.png','images/tvSmall.png',
+  // 'https://mt3.google.com/vt/lyrs=s,h&x=2&y=1&z=2',
+  // 'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
+  // 'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
+  // 'https://mt0.google.com/vt/lyrs=s,h&x=2&y=2&z=2',
+  // 'https://mt1.google.com/vt/lyrs=s,h&x=1&y=0&z=2',
+  // 'https://mt2.google.com/vt/lyrs=s,h&x=2&y=0&z=2',
+  // 'https://mt0.google.com/vt/lyrs=s,h&x=1&y=3&z=2',
+  // 'https://mt1.google.com/vt/lyrs=s,h&x=2&y=3&z=2',
 
 
-},1900)
+    'images/drawPolygon.png','images/line.png','images/point.png',
+    'images/applyFilter.png','images/arrowLeft.png', 'images/arrowRight.png', 'images/backButton.png','images/bin.png','images/binOriginal.png','images/binpost.png',
+    'images/binpre.png','images/burger.png','images/burgerBlack.png','images/cancel.png','images/clearFilter.png','images/commentFeature.png',
+    'images/dateAll.png','images/dateDay.png','images/dateMonth.png','images/dateWeek.png','images/dateYear.png','images/deleteAllVertex.png',
+    'images/deleteLastVertex.png','images/devicedownload.png','images/download.png','images/filterIcon.png',
+    'images/google.png','images/googleHistorical.png','images/gps.png','images/gpsOff.png','images/gpsSearching.gif','images/gpsSearchingIOS.gif',
+    'images/infoGoBack.png','images/key.png','images/lineDeleteAll.png','images/lineDeleteVertex.png',
+    'images/locked.png','images/man.png','images/marker-icon.png','images/marker-icon-2x.png','images/marker-icon-cian.png','images/markerPolygonBlue.png','images/markerLine.png','images/markerPolygon.png',
+    'images/markerLocalStorage.png','images/myLayerOpen.png','images/myLayerPrivate.png','images/myLayerEmpty.png','images/nautical.svg','images/osm.png',
+    'images/other1.png','images/play.png','images/PlusSign.png','images/cameraIcon.png','images/changeCamera.png','images/screenshot.png',
+    'images/questionmark.png','images/random.png','images/shareMessagingApps.png','images/shareworld.png','images/shareworldConfirm.png',
+    'images/uk.png','images/ethiopiaTutorial.png','images/other1.png','images/underConstruction.png','images/youtube.png','images/youtubeOffline.png',
+    'images/shareMessagingAppsYellow.png','images/sendComment.png',
+    'images/LocalStorageRecenter.png',
+    'images/excitesTree.png','images/logoNyangatomReduced.png',
+    'images/customIconsMap.png','images/customIconsCancel.png',
 
-document.getElementById('loginInfo').onclick = function(){
-  window.location.href = 'pages/tutorial.html';
-}
-document.getElementById('loginKey').onclick = function(e){
-  e.preventDefault() //to avoid reload
-  document.getElementById('loginKey').disabled = true
-  document.getElementById('loginKey').style.display = 'none'
-  document.getElementById('loginInfo').style.display = 'none'
-
-  // setTimeout(function(){
-  //   document.getElementById('loginKey').style.opacity = '1'
-  //   document.getElementById('loginInfo').style.opacity = '1'
-  // },100)
-
-  // document.getElementById('textPwScreen').style.display = 'initial';
-
-  //runJSselectFeature()
-  document.getElementById('loginKey').style.backgroundColor = '#D5D6D5'
-  document.getElementById('enteredPw').style.display = 'initial';
-  document.getElementById('enteredPw').focus() //to open keyboard!!!
-  document.getElementById('login').style.display = 'initial';
-
-  initialiseMap() //map initialised but not shown
-
-  try{
-    $(document).keypress(
-      function(event){
-        if (event.which == '13') {
-          event.preventDefault();
-        }
-    });
-  }catch(e){
-    console.log('error disable enter key catched')
-  }
-
- //console.log(loaded)
-//return loaded
-}
+    //sapelli project images
+    'images/omoIcons/banana.png','images/omoIcons/boatCrossing.png','images/omoIcons/cattleGrazing.png','images/omoIcons/church.png','images/omoIcons/eldersHut.png','images/omoIcons/fishing.png',
+    'images/omoIcons/floodRecessionFlat.png','images/omoIcons/floodRecessionSteep.png','images/omoIcons/goatSheepGrazing.png','images/omoIcons/healthStation.png','images/omoIcons/hotSpring.png','images/omoIcons/hunting.png',
+    'images/omoIcons/hutVillage.png','images/omoIcons/irrigationPump.png','images/omoIcons/kraal.png','images/omoIcons/lakeRecession.png','images/omoIcons/maize.png',
+    'images/omoIcons/manualPump.png','images/omoIcons/medicinalPlants.png','images/omoIcons/noFarming.png','images/omoIcons/pondFarming.png','images/omoIcons/Questionmark.png','images/omoIcons/recreationCenter.png',
+    'images/omoIcons/reehive.png','images/omoIcons/saltlick.png','images/omoIcons/school.png','images/omoIcons/sorghum.png','images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
+    'images/omoIcons/timber.png','images/omoIcons/treeForGathering.png','images/omoIcons/unknownOther.png','images/omoIcons/veterinary.png','images/omoIcons/waterPoint.png','images/omoIcons/waterPondAnimal.png',
+    'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png','images/omoIcons/pathTrack.png',
 
 
+]
 
 
 var firstLoad = function() { //fucntion to determine if the site is visited for first time
@@ -79,7 +86,22 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
   //$.getScript("lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.Draw.Event.js")
     // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
     if(localStorage.getItem('pwCorrect')){
+      document.getElementById('MapLoading').style.display = 'initial'
       initialiseMap() //map initialised AND LOADED (no modal)
+      var imagesToPreload = new Array()
+      function preload() {
+      				for (i = 0; i < preload.arguments.length; i++) {
+      				  imagesToPreload[i] = new Image()
+      					imagesToPreload[i].src = preload.arguments[i]
+                console.log('image preloaded')
+      				}
+      			}
+      			preload(
+              'images/checkingPw.gif','images/gpsSearching.gif',
+              'images/armchair.png','images/field.png','images/tvSmall.png',
+              'images/osm.png','images/myLayerPrivate.png','images/filterIcon.png',
+              'images/myLayerOpen.png',
+      			)
         isFirstTime = false;
         try{
         //  fetchFromLocalStorage()
@@ -133,7 +155,72 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
 }
 window.onload = firstLoad;  /// to launch the root function XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXS
 var done = false
+setTimeout(function(){
+  document.getElementById('loginInfo').style.opacity = '1'
+  document.getElementById('loginInfo').disabled = false
+  document.getElementById('loginKey').style.opacity = '1'
+  document.getElementById('loginKey').disabled = false
+  // if(isIOS == true){
+  //   document.getElementById('AlertModalIOS').style.display = 'initial'
+  // }
+    document.getElementById('AlertModalIOS').style.display = 'initial'
+    document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
 
+
+},1900)
+
+document.getElementById('loginInfo').onclick = function(){
+  window.location.href = 'pages/tutorial.html';
+}
+document.getElementById('loginKey').onclick = function(e){
+  e.preventDefault() //to avoid reload
+  document.getElementById('loginKey').disabled = true
+  document.getElementById('loginKey').style.display = 'none'
+  document.getElementById('loginInfo').style.display = 'none'
+
+  // setTimeout(function(){
+  //   document.getElementById('loginKey').style.opacity = '1'
+  //   document.getElementById('loginInfo').style.opacity = '1'
+  // },100)
+
+  // document.getElementById('textPwScreen').style.display = 'initial';
+
+  //runJSselectFeature()
+  document.getElementById('loginKey').style.backgroundColor = '#D5D6D5'
+  document.getElementById('enteredPw').style.display = 'initial';
+  document.getElementById('enteredPw').focus() //to open keyboard!!!
+  document.getElementById('login').style.display = 'initial';
+
+  initialiseMap() //map initialised but not shown
+  function preload(arrayOfImages) {
+    $(arrayOfImages).each(function(){
+        try{
+            $('<img/>')[0].src = this;
+        }catch(e){
+          //console.log('image failed to preload')
+        }
+
+        // Alternatively you could use:
+        // (new Image()).src = this;
+    });
+  }
+    // Usage:
+
+    preload(arrayOfImages);
+  try{
+    $(document).keypress(
+      function(event){
+        if (event.which == '13') {
+          event.preventDefault();
+        }
+    });
+  }catch(e){
+    console.log('error disable enter key catched')
+  }
+
+ //console.log(loaded)
+//return loaded
+}
 var requestCartoData = function() {
     if (isOnline == true && cartousername != null) {
       sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date, commentone, commentoneaudioavailable FROM lumblu";
@@ -166,9 +253,12 @@ var requestCartoData = function() {
 
 
 var initialiseMap = function(){
+
+  googleSat.addTo(map)
+var basemapClass = document.getElementsByClassName('leaflet-layer')
+basemapClass[0].style.opacity = 0
    //  var mapListerner = document.getElementById("map")
    // mapListerner.addEventListener('touchstart', {passive: true});
-  googleSat.addTo(map)
 
     // preload([
     //   'images/ThumbsUpGreen.png','images/checkingPw.gif',
@@ -188,6 +278,9 @@ var initialiseMap = function(){
     //   'images/filterIcon.png',
     // ])
     document.getElementById("map").style.display = "initial";
+    // googleSat.addTo(map)
+    // googleSat.removeFrom(map)
+
 
 
   document.getElementById("app-css").disabled = false
@@ -239,91 +332,20 @@ var initialiseMap = function(){
       iSize: 'medium',
       opacity: 1
   })//.addTo(map)
-  var fieldImageCheck = document.getElementById("fieldImage")
-  fieldImageCheck.src = 'images/field.png'
-  fieldImageCheck.onload = function(){
+  // var fieldImageCheck = document.getElementById("fieldImage")
+  // fieldImageCheck.src = 'images/field.png'
+  // var roseid = document.getElementById("rose")
+  // roseid.src = 'images/osm.png'
+
+  // fieldImageCheck.onload = function(){
     osm_Button.addTo(map);
     myLayer_Button.addTo(map); //always on as there will always be features in the map, even when first load
     filter_Button.addTo(map);
     scale.addTo(map)
     gps_Button.addTo(map);
     rose.addTo(map)
-    requestCartoData()
+    deflated.addTo(map)
 
-    emojiRequest()
-    //rose.addTo(map)
-    startSearchingLocation()
-    deflated.addTo(map) // to initialize //////////////////////!!!!!!!!
-    $.getScript({
-      cache:true,
-      url:'scripts/lib/d3.min.js',
-       // success: console.log('d3 fetched')
-    }),
-    $.getScript({
-      cache:true,
-      url:'scripts/lib/topojson.min.js'
-    }),
-    $.getScript({
-      cache:true,
-      url:'scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/Control.GlobeMiniMap.js'
-    })
-    function preload(arrayOfImages) {
-      $(arrayOfImages).each(function(){
-          try{
-              $('<img/>')[0].src = this;
-          }catch(e){
-            //console.log('image failed to preload')
-          }
-
-          // Alternatively you could use:
-          // (new Image()).src = this;
-      });
-    }
-      // Usage:
-
-      preload([
-        'images/ThumbsUpGreen.png','images/checkingPw.gif',
-
-        'images/armchair.png','images/field.png','images/tvSmall.png',
-        // 'https://mt3.google.com/vt/lyrs=s,h&x=2&y=1&z=2',
-        // 'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
-        // 'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
-        // 'https://mt0.google.com/vt/lyrs=s,h&x=2&y=2&z=2',
-        // 'https://mt1.google.com/vt/lyrs=s,h&x=1&y=0&z=2',
-        // 'https://mt2.google.com/vt/lyrs=s,h&x=2&y=0&z=2',
-        // 'https://mt0.google.com/vt/lyrs=s,h&x=1&y=3&z=2',
-        // 'https://mt1.google.com/vt/lyrs=s,h&x=2&y=3&z=2',
-
-
-          'images/drawPolygon.png','images/line.png','images/point.png',
-          'images/applyFilter.png','images/arrowLeft.png', 'images/arrowRight.png', 'images/backButton.png','images/bin.png','images/binOriginal.png','images/binpost.png',
-          'images/binpre.png','images/burger.png','images/burgerBlack.png','images/cancel.png','images/clearFilter.png','images/commentFeature.png',
-          'images/dateAll.png','images/dateDay.png','images/dateMonth.png','images/dateWeek.png','images/dateYear.png','images/deleteAllVertex.png',
-          'images/deleteLastVertex.png','images/devicedownload.png','images/download.png','images/filterIcon.png',
-          'images/google.png','images/googleHistorical.png','images/gps.png','images/gpsOff.png','images/gpsSearching.gif','images/gpsSearchingIOS.gif',
-          'images/infoGoBack.png','images/key.png','images/lineDeleteAll.png','images/lineDeleteVertex.png',
-          'images/locked.png','images/man.png','images/marker-icon.png','images/marker-icon-2x.png','images/marker-icon-cian.png','images/markerPolygonBlue.png','images/markerLine.png','images/markerPolygon.png',
-          'images/markerLocalStorage.png','images/myLayerOpen.png','images/myLayerPrivate.png','images/myLayerEmpty.png','images/nautical.svg','images/osm.png',
-          'images/other1.png','images/play.png','images/PlusSign.png','images/cameraIcon.png','images/changeCamera.png','images/screenshot.png',
-          'images/questionmark.png','images/random.png','images/shareMessagingApps.png','images/shareworld.png','images/shareworldConfirm.png',
-          'images/uk.png','images/ethiopiaTutorial.png','images/other1.png','images/underConstruction.png','images/youtube.png','images/youtubeOffline.png',
-          'images/shareMessagingAppsYellow.png','images/sendComment.png',
-          'images/LocalStorageRecenter.png',
-          'images/excitesTree.png','images/logoNyangatomReduced.png',
-          'images/customIconsMap.png','images/customIconsCancel.png',
-
-          //sapelli project images
-          'images/omoIcons/banana.png','images/omoIcons/boatCrossing.png','images/omoIcons/cattleGrazing.png','images/omoIcons/church.png','images/omoIcons/eldersHut.png','images/omoIcons/fishing.png',
-          'images/omoIcons/floodRecessionFlat.png','images/omoIcons/floodRecessionSteep.png','images/omoIcons/goatSheepGrazing.png','images/omoIcons/healthStation.png','images/omoIcons/hotSpring.png','images/omoIcons/hunting.png',
-          'images/omoIcons/hutVillage.png','images/omoIcons/irrigationPump.png','images/omoIcons/kraal.png','images/omoIcons/lakeRecession.png','images/omoIcons/maize.png',
-          'images/omoIcons/manualPump.png','images/omoIcons/medicinalPlants.png','images/omoIcons/noFarming.png','images/omoIcons/pondFarming.png','images/omoIcons/Questionmark.png','images/omoIcons/recreationCenter.png',
-          'images/omoIcons/reehive.png','images/omoIcons/saltlick.png','images/omoIcons/school.png','images/omoIcons/sorghum.png','images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
-          'images/omoIcons/timber.png','images/omoIcons/treeForGathering.png','images/omoIcons/unknownOther.png','images/omoIcons/veterinary.png','images/omoIcons/waterPoint.png','images/omoIcons/waterPondAnimal.png',
-          'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png','images/omoIcons/pathTrack.png',
-
-
-      ]);
-    } //if the container is visible on the page
 
 
 
@@ -354,6 +376,66 @@ var initialiseMap = function(){
       return done
     // });
 }
+
+// window.onload = function(){
+// window.addEventListener("click", function(){
+
+document.onreadystatechange = function () {
+  var state = document.readyState
+  console.log(state,'state')
+  if (document.readyState === 'complete' && localStorage.getItem('pwCorrect')) {
+    startSearchingLocation()
+  // document.getElementById('rose').click()
+    setTimeout(function(){
+      requestCartoData()
+    },1000)
+  }
+}
+  window.addEventListener("click", function(){
+    console.log('click to load more stuff')
+      // window.addEventListener("click", () => {
+      emojiRequest()
+
+    //   console.log("emoji script called");
+    // }, { once: true });
+    //rose.addTo(map)
+    // deflated.addTo(map) // to initialize //////////////////////!!!!!!!!
+    $.getScript({
+      cache:true,
+      url:'scripts/lib/d3.min.js',
+       // success: console.log('d3 fetched')
+    }),
+    $.getScript({
+      cache:true,
+      url:'scripts/lib/topojson.min.js'
+    }),
+    $.getScript({
+      cache:true,
+      url:'scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/Control.GlobeMiniMap.js'
+    })
+    function preload(arrayOfImages) {
+      $(arrayOfImages).each(function(){
+          try{
+              $('<img/>')[0].src = this;
+          }catch(e){
+            //console.log('image failed to preload')
+          }
+
+          // Alternatively you could use:
+          // (new Image()).src = this;
+      });
+    }
+      // Usage:
+
+      preload(arrayOfImages);
+    // } //if the container is visible on the page
+
+
+
+}, {once : true});
+// var basemapClass = document.getElementsByClassName('leaflet-layer')
+// basemapClass[0].style.opacity = 1
+
 var loaded
 var authentication
 var requestPw = function(){
@@ -437,6 +519,10 @@ var requestPw = function(){
                     document.getElementById('pwForm').style.display='none';
                     document.getElementById('AlertModalIOS').style.display = 'none'
                     navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
+                    requestCartoData()
+                    startSearchingLocation()
+
+
 
                 },1000)
                 //in case first load is with url geoJSON -- not the best approach ever, but it works.

@@ -732,7 +732,7 @@ var googleSat = L.tileLayer.offline('https://{s}.google.com/vt/lyrs=s,h&x={x}&y=
     minZoom: 2,
     maxZoom: 21,
     maxNativeZoom: 21,
-    //transparent: false,
+    opacity: 1,
     //border: 'solid black 5px',
     subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
     attribution: 'Leaflet | Google'
