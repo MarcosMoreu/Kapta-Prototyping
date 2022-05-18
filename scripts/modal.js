@@ -87,26 +87,39 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
     // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
     if(localStorage.getItem('pwCorrect')){
       document.getElementById('MapLoading').style.display = 'initial'
-      initialiseMap() //map initialised AND LOADED (no modal)
-      var imagesToPreload = new Array()
-      function preload() {
-      				for (i = 0; i < preload.arguments.length; i++) {
-      				  imagesToPreload[i] = new Image()
-      					imagesToPreload[i].src = preload.arguments[i]
-                console.log('image preloaded')
-      				}
-      			}
-      			preload(
-              'images/checkingPw.gif','images/gpsSearching.gif',
-              'images/armchair.png','images/field.png','images/tvSmall.png',
-              'images/osm.png','images/myLayerPrivate.png','images/filterIcon.png',
-              'images/myLayerOpen.png',
-      			)
-        isFirstTime = false;
-        try{
-        //  fetchFromLocalStorage()
-        //  localStorageToGeoJSON()
-        }catch(e){}
+      jQuery(document).ready(checkContainer);
+
+      function checkContainer () {
+        if($('#MapLoading').is(':visible')){ //if the container is visible on the page
+            initialiseMap() //map initialised AND LOADED (no modal)
+            var imagesToPreload = new Array()
+            function preload() {
+                    for (i = 0; i < preload.arguments.length; i++) {
+                      imagesToPreload[i] = new Image()
+                      imagesToPreload[i].src = preload.arguments[i]
+                      console.log('image preloaded')
+                    }
+                  }
+                  preload(
+                    'images/checkingPw.gif','images/gpsSearching.gif',
+                    'images/armchair.png','images/field.png','images/tvSmall.png',
+                    'images/osm.png','images/myLayerPrivate.png','images/filterIcon.png',
+                    'images/myLayerOpen.png',
+                  )
+              isFirstTime = false;
+
+        } else {
+          setTimeout(checkContainer, 50); //wait 50 ms, then try again
+        }
+      }
+      // var fieldImageCheck = document.getElementById("MapLoading")
+      // fieldImageCheck.src = 'images/field.png'
+      // var roseid = document.getElementById("rose")
+      // roseid.src = 'images/osm.png'
+      //
+      // fieldImageCheck.onload = function(){
+
+
     }else if(typeof window.localStorage !== "undefined" && !localStorage.getItem('visited')) {
         // Set visited flag in local storage
         try{
@@ -287,7 +300,6 @@ basemapClass[0].style.opacity = 0
   document.getElementById("customIcons-css").disabled = false
   document.getElementById("slider-css").disabled = false
   document.getElementById("leaflet-css").disabled = false
-  document.getElementById("emojionearea-css").disabled = false
   document.getElementById("easybutton-css").disabled = false
   document.getElementById("rose-css").disabled = false
   document.getElementById("draw-css").disabled = false
@@ -394,6 +406,8 @@ document.onreadystatechange = function () {
   window.addEventListener("click", function(){
     console.log('click to load more stuff')
       // window.addEventListener("click", () => {
+      document.getElementById("emojionearea-css").disabled = false
+
       emojiRequest()
 
     //   console.log("emoji script called");
