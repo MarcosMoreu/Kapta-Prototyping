@@ -15,6 +15,7 @@ var imageName3
 var evaluation = null
 
 var croptype = null
+var sapelliProjectIdentifier = 'nyangatom' //this variable is need to put the sap project identifier in the geojson
 // var isMARAorMAU
 
 // console.log('url', url)

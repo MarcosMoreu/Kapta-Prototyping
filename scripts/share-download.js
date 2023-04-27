@@ -35,7 +35,7 @@ var testBlob = null
 
 
 document.getElementById('share-download').onclick = function(e) {
-
+console.log('sapelliProjectIdentifier',sapelliProjectIdentifier)
     sameSession = true;
     alreadyMovedUp = false;
     audioRecorded = false;
@@ -180,7 +180,8 @@ var finalGeoJSON = function(){
         'dist_m_Participant_Feature': distanceObfTrunc,
         'randomID': randomID,
         'geometrystring':data.toString(),
-        'screensize':screensize
+        'screensize':screensize,
+        'sapProjID': sapelliProjectIdentifier
     };
 
       propertiesGeoJSONURL = {
@@ -211,6 +212,7 @@ var finalGeoJSON = function(){
           'I1':imageName1,
           'I2':imageName2,
           'I3':imageName3,
+          'sapProjID': sapelliProjectIdentifier
       };
       propertiesGeoJSONURL = {
           'randomID': randomID,
@@ -408,6 +410,7 @@ document.getElementById('ShareFinalButton').style.opacity = 0.5;
 
 
 document.getElementById('ShareFinalButton').onclick = function(e) {
+  console.log('sap id', sapelliProjectIdentifier)
   if(openOrPrivate == 'open' || openOrPrivate == 'private'  || openOrPrivate == 'offlineOpen'){
 
 
@@ -617,7 +620,7 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
         }if(whichLayerIsOn == 'localStorage'){
           document.getElementById('myLayerButton').click()
         }
-        
+
         clickCountSendButton = 0 //!!!!!!!!!!!
         //finalLayer is added at the end as the properties are different depending on if share or download
 

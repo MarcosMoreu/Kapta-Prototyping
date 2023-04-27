@@ -751,9 +751,9 @@ function fetchFromLocalStorage(){
                         var dataGeometryString = JSON.stringify(dataGeometry)
                         ////console.log(dataGeometryString)
                         var commentAudioDefault = '.'
-                        var sql = "INSERT INTO lumblu_private (the_geom, randomid, landuses, landusesemoji, areapolygon, lengthline, timespent, distance, geometrystring, screensize, date, phonenumber) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
+                        var sql = "INSERT INTO lumblu_private (the_geom, randomid, landuses, landusesemoji, areapolygon, lengthline, timespent, distance, geometrystring, screensize, date, phonenumber, sapprojid) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
                         var sql2 = dataGeometryString;
-                        var sql3 = "'),4326),'" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "','" + dateTime + "','" + phoneNumber + "')";
+                        var sql3 = "'),4326),'" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "','" + dateTime + "','" + phoneNumber + "','" + sapelliProjectIdentifier + "')";
                         pURL = sql + sql2 + sql3;
                         console.log(pURL)
                         submitToProxy(pURL);
@@ -2888,9 +2888,9 @@ function setData() {
         var dataGeometryString = JSON.stringify(dataGeometry)
         ////console.log(dataGeometryString)
         var commentAudioDefault = '.'
-        var sql = "INSERT INTO lumblu_private (the_geom, randomid, landuses, landusesemoji, areapolygon, lengthline, timespent, distance, geometrystring, screensize, date, phonenumber) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
+        var sql = "INSERT INTO lumblu_private (the_geom, randomid, landuses, landusesemoji, areapolygon, lengthline, timespent, distance, geometrystring, screensize, date, phonenumber, sapprojid) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
         var sql2 = dataGeometryString;
-        var sql3 = "'),4326),'" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "','" + dateTime + "','" + phoneNumber + "')";
+        var sql3 = "'),4326),'" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "','" + dateTime + "','" + phoneNumber + "','" + sapelliProjectIdentifier + "')";
         pURL = sql + sql2 + sql3;
         //console.log(pURL)
 
