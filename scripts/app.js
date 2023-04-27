@@ -3011,9 +3011,22 @@ document.getElementById("gobackArmchairField").onclick = function(e) {
   filter_Button.button.disabled = false
   filterLocalStorage_Button.button.style.opacity = '1'
   filter_Button.button.style.opacity = '1'
+  filter_Button.button.style.opacity = '0.4';
+  filter_Button.button.disabled = true;
+
+
 
 }
 document.getElementById("armchair").onclick = function(e) {
+
+  //to disable layer to create a geometry
+  if(whichLayerIsOn == 'deflated'){
+    document.getElementById('myLayerButton').click()
+    document.getElementById('myLayerButton').click()
+  }if(whichLayerIsOn == 'localStorage'){
+    document.getElementById('myLayerButton').click()
+  }
+
   $.getScript({
      cache:true,
     url:'scripts/customIcons_v2.js'
@@ -3050,6 +3063,15 @@ document.getElementById("armchair").onclick = function(e) {
 
 
 document.getElementById("field").onclick = function(e) {
+//to disable layer to create a geometry
+  if(whichLayerIsOn == 'deflated'){
+    document.getElementById('myLayerButton').click()
+    document.getElementById('myLayerButton').click()
+  }if(whichLayerIsOn == 'localStorage'){
+    document.getElementById('myLayerButton').click()
+  }
+
+
   $.getScript({
      cache:true,
     url:'scripts/customIcons_v2.js'

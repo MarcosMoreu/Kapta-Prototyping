@@ -413,6 +413,7 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
 
   try{
     cell.style.backgroundColor = 'white'
+    cell.style.display = 'none' //to avoid that the sapprojct icon disapears
     newProjectButton.style.display = 'none'
     newProjectButton2.style.display = 'none'
   }catch(e){}
@@ -612,15 +613,11 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
 
         if(whichLayerIsOn == 'deflated'){
           document.getElementById('myLayerButton').click()
-        }if(whichLayerIsOn == 'none'){
-          document.getElementById('myLayerButton').click()
           document.getElementById('myLayerButton').click()
         }if(whichLayerIsOn == 'localStorage'){
           document.getElementById('myLayerButton').click()
-          document.getElementById('myLayerButton').click()
-          document.getElementById('myLayerButton').click()
-
         }
+        
         clickCountSendButton = 0 //!!!!!!!!!!!
         //finalLayer is added at the end as the properties are different depending on if share or download
 
