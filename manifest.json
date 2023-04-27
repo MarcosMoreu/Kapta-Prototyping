@@ -8,7 +8,25 @@
   "display": "standalone",
   "orientation": "portrait",
   "start_url": "/",
-  "prefer_related_applications": false,
+
+  "share_target": {
+      "action": "/pwa-results?share-target=1",
+      "method": "POST",
+      "enctype": "multipart/form-data",
+      "params": {
+        "title": "name",
+        "text": "description",
+        "url": "link",
+        "files": [
+          {
+            "name": "file",
+            "accept": [
+              "*/*"
+            ]
+          }
+        ]
+      }
+    },
     "icons": [
     {
       "src": "images/icons/icon-72x72.png",

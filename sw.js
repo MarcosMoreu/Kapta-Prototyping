@@ -17,48 +17,6 @@ var offlineFundamentals = [
   "/styles/tutorialPage.css",
   "/images/icons/icon-72x72.png",
 
-  // "/scripts/lib/leaflet/leaflet-src.js",
-  // "/scripts/lib/jquery-3.5.1.min.js",
-  // "/scripts/lib/leaflet/plugins/leaflet.Permalink-master/leaflet.permalink.js",
-  // "/scripts/emojionearea-master/dist/emojionearea.js",
-  //
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.draw.js" ,
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.Draw.Event.js" ,
-  //
-  // "/scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.js",
-  // "/scripts/lib/leaflet/plugins/localForage-master/dist/localforage.js",
-  // "/scripts/lib/leaflet/plugins/leaflet-offline-master/dist/leaflet-offline.min.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/leaflet.markercluster-src.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet.Deflate-master/dist/L.Deflate.js",
-  // "/scripts/lib/leaflet/plugins/L.Control.Rose-master/dist/L.Control.Rose.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.Poly.js" ,
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.SimpleShape.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.Marker.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Feature.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Polyline.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Polygon.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Marker.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/TouchEvents.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/GeometryUtil.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/LineUtil.Intersect.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/Polyline.Intersect.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/Polygon.Intersect.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Control.Draw.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Tooltip.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Toolbar.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/DrawToolbar.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/EditToolbar.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Edit.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Delete.js",
-  // "/scripts/lib/leaflet/plugins/Leaflet-rotateMarker/leaflet.rotatedMarker.js",
-  // "/scripts/createGeometryButtons.js",
-  // "/scripts/featureSelectedButtons.js",
-  // "/scripts/commentFeature.js",
-  // "/scripts/filterButtons.js",
-  // "/scripts/cartoLayer.js",
-  // "/scripts/localStorage.js",
-  // "/scripts/camera.js",
-  // "/scripts/share-download.js",
 ];
 
 self.addEventListener("install", function(event) {
@@ -83,6 +41,7 @@ self.addEventListener("install", function(event) {
 const cacheName = 'CACHEALL';
 const cacheNameTiles = 'CACHETILES';
 
+
     // var ignore = false
 self.addEventListener('fetch', (event) => {
 
@@ -94,6 +53,19 @@ self.addEventListener('fetch', (event) => {
     return;
   }
   // console.log(event.request.type)
+  const url = new URL(event.request.url);
+
+  // Don't care about other-origin URLs
+  if (url.origin !== location.origin) return;
+
+  if (
+    url.pathname === "/pwa-results" &&
+    url.searchParams.has("share-target") &&
+    event.request.method === "POST"
+  ) {
+    serveShareTarget(event);
+    return;
+  }
 
   if (navigator.onLine == false && event.request.url.includes('#') && event.request.url.includes('/?') && event.request.url.includes('z')) { //to allow urlgeojson to open when offline
     event.respondWith(caches.open(cacheName).then((cache) => {
@@ -111,13 +83,29 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(caches.open(cacheNameTiles).then((cache) => {
       return cache.match(event.request)
         .then((cachedResponse) => {
-        const fetchedResponse = fetch(event.request).then((networkResponse) => {
-          cache.put(event.request, networkResponse.clone())//.catch(unableToResolve);
-          return networkResponse;
+          if (cachedResponse){
+            return cachedResponse;
+          }
+          //otherwise hit the network
+          return fetch(event.request).then((fetchedResponse)=>{
+            //add the network request to the cache for later visits
+            cache.put(event.request, fetchedResponse.clone())//.catch(unableToResolve);
+            //return the network response
+            return fetchedResponse
         });
-        return cachedResponse || fetchedResponse;
       });
     }));
+  // }else if(event.request.url.includes('.google')){ //to put the google tiles in a different cache so it can be cleared easily
+  //   event.respondWith(caches.open(cacheNameTiles).then((cache) => {
+  //     return cache.match(event.request)
+  //       .then((cachedResponse) => {
+  //       const fetchedResponse = fetch(event.request).then((networkResponse) => {
+  //         cache.put(event.request, networkResponse.clone())//.catch(unableToResolve);
+  //         return networkResponse;
+  //       });
+  //       return cachedResponse || fetchedResponse;
+  //     });
+  //   }));
   }else{//this is where most of the request pass
     event.respondWith(caches.open(cacheName).then((cache) => {
       return cache.match(event.request)
@@ -130,6 +118,75 @@ self.addEventListener('fetch', (event) => {
       });
     }));
   }
+  // }else{//this is where most of the request pass
+  //   event.respondWith(caches.open(cacheName).then((cache) => {
+  //     return cache.match(event.request)
+  //       .then((cachedResponse) => {
+  //       const fetchedResponse = fetch(event.request).then((networkResponse) => {
+  //         cache.put(event.request, networkResponse.clone())//.catch(unableToResolve);
+  //         return networkResponse;
+  //       });
+  //       return cachedResponse || fetchedResponse;
+  //     });
+  //   }));
+  // }
+
+});
+function serveShareTarget(event, wait = true) {
+  const dataPromise = event.request.formData();
+
+  // Redirect so the user can refresh the page without resending data.
+  event.respondWith(Response.redirect("/pwa-results?receiving-file-share=1"));
+
+  event.waitUntil(
+    (async function () {
+      // The page sends this message to tell the service worker it's ready to receive the file.
+      console.log("wait for share ready");
+      if (wait) await nextMessage("SHARE_READY");
+
+      const client = await self.clients.get(
+        event.resultingClientId || event.clientId
+      );
+      console.log("client in wait until", client);
+      const data = await dataPromise;
+      console.log("data in wait until", data);
+      data.forEach((b, c) => {
+        console.log(b, c);
+      });
+      const file = data.getAll("file");
+      console.log("files in wait until", file);
+      client.postMessage({ file });
+    })()
+  );
+}
+
+const nextMessageResolveMap = new Map();
+
+/**
+ * Wait on a message with a particular event.data value.
+ *
+ * @param dataVal The event.data value.
+ */
+function nextMessage(dataVal) {
+  return new Promise((resolve) => {
+    if (!nextMessageResolveMap.has(dataVal)) {
+      nextMessageResolveMap.set(dataVal, []);
+    }
+    nextMessageResolveMap.get(dataVal).push(resolve);
+  });
+}
+
+self.addEventListener("message", (event) => {
+  console.log("log all messages");
+  console.log(event);
+  if (event.data === "SHARE_READY") {
+    console.log("yuhu ready");
+  }
+  const resolvers = nextMessageResolveMap.get(event.data);
+  console.log("here are the resolvers", resolvers);
+  if (!resolvers) return;
+  nextMessageResolveMap.delete(event.data);
+  for (const resolve of resolvers) resolve();
 });
 self.addEventListener("activate", function(event) {
 
