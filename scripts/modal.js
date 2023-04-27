@@ -177,8 +177,8 @@ setTimeout(function(){
   // if(isIOS == true){
   //   document.getElementById('AlertModalIOS').style.display = 'initial'
   // }
-    document.getElementById('AlertModalIOS').style.display = 'initial'
-    document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
+  document.getElementById('AlertModalIOS').style.display = 'initial'
+  document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
 
 
 },1900)
@@ -186,7 +186,10 @@ setTimeout(function(){
 document.getElementById('loginInfo').onclick = function(){
   window.location.href = 'pages/tutorial.html';
 }
+
 document.getElementById('loginKey').onclick = function(e){
+  document.getElementById('AlertModalIOS').style.display = 'initial'
+  document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
   e.preventDefault() //to avoid reload
   document.getElementById('loginKey').disabled = true
   document.getElementById('loginKey').style.display = 'none'
@@ -454,6 +457,8 @@ document.onreadystatechange = function () {
 
 var loaded
 var authentication
+var num1
+var confirmphonebuttonclicked = 0
 var requestPw = function(){
 
       //setTimeout(function(){
@@ -462,7 +467,8 @@ var requestPw = function(){
       //},10000)
 
       var checkPw = setInterval(function(){
-        var pwPlaceholder = document.getElementById('enteredPw').value
+        var firstFour = document.getElementById('enteredPw').value.substr(0, 4)
+        var pwPlaceholder = firstFour
 
         if(pwPlaceholder.length == 4){
           document.getElementById('login').style.borderColor= 'grey'
@@ -484,7 +490,8 @@ var requestPw = function(){
         document.getElementById('login').style.borderColor= 'white'
 
         e.preventDefault() // to avoid page reload on first load!
-        var pwPlaceholder = document.getElementById('enteredPw').value
+        var firstFour = document.getElementById('enteredPw').value.substr(0, 4)
+        var pwPlaceholder = firstFour
 
         var checkDoneAndFirebasePW = setInterval(function(){
 
@@ -520,9 +527,16 @@ var requestPw = function(){
           //   //console.log(promise)
         var openAppPwSuccesful = function(){
               if(authentication == 'successful' && done == true){  //map loads after this
+                document.getElementById('AlertModalIOS').innerHTML = ''
+                document.getElementById('AlertModalIOS').style.display = 'initial'
+                document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
                 document.getElementById('login').disabled = true // to avoid that user clicks twice while waiting, in which case carto layer would load twice
                  //console.log('both')
                  localStorage.setItem('pwCorrect', true);
+                 var phoneNumberNoprefix = document.getElementById('enteredPw').value.substr(4, 13)
+                 console.log('phonenumber',phoneNumberNoprefix)
+                 localStorage.setItem('phoneNumber', phoneNumberNoprefix);
+
 
                 clearInterval(checkPw)
                 clearInterval(checkDoneAndFirebasePW)
@@ -535,10 +549,6 @@ var requestPw = function(){
                     document.getElementById('pwForm').style.display='none';
                     document.getElementById('AlertModalIOS').style.display = 'none'
                     navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
-                    requestCartoData()
-                    startSearchingLocation()
-
-
 
                 },1000)
                 //in case first load is with url geoJSON -- not the best approach ever, but it works.
@@ -559,7 +569,9 @@ var requestPw = function(){
               }
               else if(authentication == 'failed'){
                 clearInterval(checkDoneAndFirebasePW)
-
+                document.getElementById('AlertModalIOS').innerHTML = '⚠️ </br></br>The app is temporarily </br> password protected'
+                document.getElementById('AlertModalIOS').style.display = 'initial'
+                document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
 
                 // console.log('none')
 

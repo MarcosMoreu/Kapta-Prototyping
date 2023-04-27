@@ -138,9 +138,10 @@
 </div> -->
 
 <div id="modal" class='modal' style='z-index:30;background-color:black'>
-  <form id='pwForm'  class="modal-content animate" style='margin-top:80px; width:200px; border-radius:50px' >
+  <form id='pwForm'  class="modal-content animate" style='margin-top:80px; width:300px; border-radius:50px' >
 
-    <img src="images/locked.png"  alt="..." style='margin-left: calc(50% - 20px);margin-top:20px;width: 40px; height:50px' >
+    <img id='lockorphone' src="images/icons/icon-512x512.png"  alt="..." style='margin-left: calc(50% - 45px);margin-top:20px;width: 90px; height:90px' >
+    <!-- <p id='AlertModalIOS' align = 'center' style='z-index:0;display:none;position:absolute;left:calc(50% - 120px);top:15px;color:yellow;font-size:14px; width:240px;font-family:'Ubuntu' '> Please introduce your phone number </b> to identify your open contributions</br></p> -->
 
     <!-- <div id='textPwScreen' align='center' style='display:none;margin-bottom:20px;left:50%;width:100%; color:grey;font-size:12px;font-family:'Ubuntu''>
     <p>This is a mapping prototype with a <b>basic and temporary</b> password protection.</p>
@@ -151,14 +152,21 @@
         <img src="images/questionmark.png"  alt="..." style=' width:30px ; height:30px;' >
       </button>
       <button id='loginKey' class='button' disabled style='opacity:0.3;outline:none; position:relative;margin-top:3px;margin-bottom:10px;width:50px ; height:50px; border: 1px solid white; border-color:black; border-radius:50px' >
-        <img src="images/key.png"  alt="..." style=' width:30px ; height:30px;' >
+        <img src="images/phoneicon.png"  alt="..." style=' width:30px ; height:30px;' >
       </button>
+      <!-- <button id='confirmphone' class='button' style='display:none; outline:none;position:relative;margin-right:30px;margin-top:3px; margin-bottom:10px;width:50px ; height:50px; border: 1px solid white; border-color:black; border-radius:50px' >
+        <img src="images/ThumbsUpGreen.png"  alt="..." style=' width:30px ; height:30px;' >
+      </button>
+      <button id='skipphone' class='button' style='display:none; outline:none; position:relative;margin-top:3px;margin-bottom:10px;width:50px ; height:50px; border: 1px solid white; border-color:black; border-radius:50px' >
+        <img  src="images/skipphone.png"  alt="..." style=' width:30px ; height:30px;' >
+      </button> -->
 
     </div>
     <div class="container" >
-      <input id='enteredPw'  type="number" novalidate value='Validate'oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = '4'
-        style='display:none;margin-left:4px;border-color:grey;background-color: white;color:grey; text-align:center;letter-spacing: 10px;font-size:20px;'placeholder = " ----" required>
-      <!-- <img id='gifLoading' src="images/questionmark.png"  alt="..." style=' display:none;width:30px ; height:30px;' > -->
+      <input id='enteredPw'  type="number" novalidate value='Validate'oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = '14'
+        style='display:none;margin-left:4px;border-color:grey;background-color: white;color:grey; text-align:center;letter-spacing: 5px;font-size:17px;'placeholder = "----------" required>
+
+
       <button id='login' class='button'style='display:none;outline:none;margin-left:calc(50% - 25px); margin-bottom:10px;width:50px ; height:50px; border: 1px solid white; border-color:white; border-radius:50px' >
         <img id = 'loginIcon' src="images/ThumbsUpGreen.png"  loading='lazy' alt="..." style=' width:30px ; height:30px;' >
       </button>
@@ -175,10 +183,19 @@
 
     </div>
   </form>
-  <p id='AlertModalIOS' align = 'center' style='z-index:0;display:none;position:absolute;left:calc(50% - 120px);top:15px;color:yellow;font-size:14px; width:240px;font-family:'Ubuntu' '>⚠️ Note that this prototype is <b>TEMPORARILY</b> password-protected.</br>⚠️ Please open it using the <b>LATEST Chrome, Chromium </b>or <b>Brave Browser</b> in <b>non-iOS devices</b> </p>
+  <p id='AlertModalIOS' align = 'center' style='z-index:0;display:none;position:absolute;left:calc(50% - 120px);top:15px;color:yellow;font-size:14px; width:240px;font-family:'Ubuntu' '> Introduce your phone number </br> to identify your open contributions</b>
+  </br> Note that your number will not</br> be visible to others </p>
 
 </div>
 
+<!-- <form id='phonematching' align = 'center' style='display:none'>
+  <img id = 'phonenumbericon' src="images/ThumbsUpGreen.png"  loading='lazy' alt="..." style=' width:30px ; height:30px;display:none' >
+      <input type="text" id="phone1" name="phone1" style='display:none' required>
+      <button type="button" id="submit1" style='display:none'>Submit</button>
+      <br>
+      <input type="text" id="phone2" name="phone2" style='display:none' required>
+      <button type="button" id="submit2" style='display:none' >Submit</button>
+</form> -->
 
 <div id="map" style='height:100%; z-index:2; position:relative;'>
     <div id="rose" style='margin-bottom:80px; margin-left:-8px; width:40px; height:40px'>

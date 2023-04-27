@@ -2040,16 +2040,12 @@ myLayer_Button.button.style.transitionDuration = '.3s';
 myLayer_Button.button.style.backgroundColor = 'black';
 myLayer_Button.button.style.border= '1px solid transparent';
 
-setTimeout(function() {
-// window.addEventListener("load", (event) => {
-// document.getElementById("Alert").style.display = 'none'
-
-  document.getElementById('myLayerButton').click()
-  document.getElementById('myLayerButton').click()
-
-
-// });
-},1000)
+if(localStorage.getItem('pwCorrect')){
+    setTimeout(function() {
+      document.getElementById('myLayerButton').click()
+      document.getElementById('myLayerButton').click()
+    },3000)
+}
 // myLayer_Button.button.style.borderColor = 'white';
 
 // myLayer_Button.button.style.border = '3px'
