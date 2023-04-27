@@ -387,6 +387,9 @@ var screenshotOn = false
 var filesArrayScreenshot
 var dataURL
 document.getElementById('screenshot').addEventListener('click',function (){
+  try{// to catch the error in case the screenshot doesn't work here
+
+
   if(screenshotOn == true){
 
     // document.getElementById('camera').style.opactiy = '1'
@@ -437,7 +440,7 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
     document.getElementById("goBackClassification").disabled = true
     document.getElementById("shareMessagingAppsDirect").disabled = true
     document.getElementById("shareWorldButton").disabled = true
-    document.getElementById("DownloadButton").disabled = true
+    document.getElementById("ShareFinalButton").disabled = true
     document.getElementById("screenshot").disabled = true
     document.getElementById("camera").disabled = true
 
@@ -525,7 +528,7 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
           document.getElementById("goBackClassification").disabled = false
           document.getElementById("shareMessagingAppsDirect").disabled = false
           document.getElementById("shareWorldButton").disabled = false
-          document.getElementById("DownloadButton").disabled = false
+          document.getElementById("ShareFinalButton").disabled = false
           document.getElementById("screenshot").disabled = false
           document.getElementById("camera").disabled = false
           document.getElementById("showAreaAcres").style.display = 'initial'
@@ -542,7 +545,9 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
 },300)
     // },1200)
   }
-
+}catch(err){
+  console.log('screenshot not working in this device')
+}
 
   return filesArrayScreenshot && screenshotOn
 })

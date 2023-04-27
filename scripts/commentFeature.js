@@ -1,4 +1,6 @@
 
+// import * as exports from './filterButtons.js';
+
 var cartoDbIdOfFeatureToEdit
 var toCheckIfAudio = document.getElementById("toCommentPopup").innerHTML[0]
 

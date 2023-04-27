@@ -36,7 +36,7 @@
 //   var basemapClass = document.getElementsByClassName('leaflet-layer')
 //   basemapClass[0].style.opacity = 1
 // }
-
+var phoneNumber = 123456
 var arrayOfImages = [
   'images/ThumbsUpGreen.png','images/checkingPw.gif',
 
@@ -57,7 +57,7 @@ var arrayOfImages = [
     'images/dateAll.png','images/dateDay.png','images/dateMonth.png','images/dateWeek.png','images/dateYear.png','images/deleteAllVertex.png',
     'images/deleteLastVertex.png','images/devicedownload.png','images/download.png','images/filterIcon.png',
     'images/google.png','images/googleHistorical.png','images/gps.png','images/gpsOff.png','images/gpsSearching.gif','images/gpsSearchingIOS.gif',
-    'images/infoGoBack.png','images/key.png','images/lineDeleteAll.png','images/lineDeleteVertex.png',
+    'images/infoGoBack.png','images/key.png','images/lineDeleteAll.png','images/lineDeleteVertex.png','images/padlockclosed.png','images/padlockopen.png',
     'images/locked.png','images/man.png','images/marker-icon.png','images/marker-icon-2x.png','images/marker-icon-cian.png','images/markerPolygonBlue.png','images/markerLine.png','images/markerPolygon.png',
     'images/markerLocalStorage.png','images/myLayerOpen.png','images/myLayerPrivate.png','images/myLayerEmpty.png','images/nautical.svg','images/osm.png',
     'images/other1.png','images/play.png','images/PlusSign.png','images/cameraIcon.png','images/changeCamera.png','images/screenshot.png',
@@ -82,6 +82,7 @@ var arrayOfImages = [
 
 
 var firstLoad = function() { //fucntion to determine if the site is visited for first time
+
   // console.log('isfirstload??')
   //$.getScript("lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.Draw.Event.js")
     // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
@@ -247,7 +248,7 @@ var requestCartoData = function() {
             })
             return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
         };
-      getGeoJSON(); //////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      // getGeoJSON(); //////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         //funtion to get geojson with 🌐 to be used in random suggestion
         function getGeoJSONRandom(){ ///RANDOM!!!!!!!!!!!!!!!
@@ -259,7 +260,7 @@ var requestCartoData = function() {
             url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQueryRandom + cartoapiSELECT
           })
         }
-        getGeoJSONRandom() ////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // getGeoJSONRandom() ////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
     return cartousername
 }
@@ -356,7 +357,7 @@ basemapClass[0].style.opacity = 0
     scale.addTo(map)
     gps_Button.addTo(map);
     rose.addTo(map)
-    deflated.addTo(map)
+    // deflated.addTo(map)
 
 
 
@@ -403,6 +404,7 @@ document.onreadystatechange = function () {
     },1000)
   }
 }
+
   window.addEventListener("click", function(){
     console.log('click to load more stuff')
       // window.addEventListener("click", () => {

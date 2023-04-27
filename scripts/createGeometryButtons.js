@@ -507,8 +507,8 @@ map.on('draw:created', function(e) {
     document.getElementById("deleteAllVertexsLine").style.display = "none";
     document.getElementById("completeFeature").style.display = "none";
 
-    document.getElementById("share-download").style.display = "initial";
-    document.getElementById("share-download").style.opacity = "0.35"; //to disable button until user adds attributes, either with audio or text
+    // document.getElementById("share-download").style.display = "initial";
+    // document.getElementById("share-download").style.opacity = "0.35"; //to disable button until user adds attributes, either with audio or text
     document.getElementById("share-download").disabled = true;
     document.getElementById("Cancel").style.display = "initial";
     document.getElementById("classification").style.display = "initial";
@@ -682,7 +682,7 @@ document.getElementById('Cancel').onclick = function(e) {
         document.getElementById("Cancel").style.display = "none";
 
         // document.getElementById("Download").style.display = "none";
-        document.getElementById("DownloadButton").style.display = "none";
+        document.getElementById("ShareFinalButton").style.display = "none";
 
         // document.getElementById('record').style.display = 'none';
         document.getElementById("sapelliProjects").style.display = "none";

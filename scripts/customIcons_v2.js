@@ -39,7 +39,7 @@ document.getElementById('customIconsMap').onclick = function(e){
     document.getElementById("sapelliProjects").style.display = "initial";
     document.getElementById('emoji').style.display = 'initial';
     document.getElementById('showAreaAcres').style.display = 'initial';
-    document.getElementById('share-download').style.display = 'initial';
+    // document.getElementById('share-download').style.display = 'initial';
     if(screenChoice == 'sapprojectsscreen'){
       landUse = 'emojiNoSapelli'
       // document.getElementById('share-download').style.opacity = '0.5'

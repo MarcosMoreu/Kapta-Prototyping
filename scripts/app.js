@@ -103,6 +103,8 @@ setTimeout(function(){
         console.log("Storage may be cleared by the UA under storage pressure.");
     });
 },2000)
+
+
 // let intViewportHeight = window.innerHeight;
 // console.log("height", intViewportHeight)
 // var getBodyHeight = document.body.style.height
@@ -177,15 +179,15 @@ setTimeout(function(){
   })
 
 },3000)
-document.getElementById('downloadedVideo').src = "images/downloaded.mp4"
-document.getElementById('sentVideo').src = "images/sent.mp4"
+// document.getElementById('downloadedVideo').src = "images/downloaded.mp4"
+// document.getElementById('sentVideo').src = "images/sent.mp4"
 
 //to check if offline so some elements can be disabled
 var checkIfOffline = setInterval(function() {
   isOnline = navigator.onLine
   if(isOnline == false){
-    document.getElementById('shareWorldButton').style.opacity = '0.2';
-    document.getElementById('shareWorldButton').disabled = 'true';
+    // document.getElementById('shareWorldButton').style.opacity = '0.2';
+    // document.getElementById('shareWorldButton').disabled = 'true';
     // filter_Button.button.style.opacity = '0.4';
     // filter_Button.button.disabled = true;
     // filter_Button.button.style.opacity = '0.4';
@@ -353,8 +355,17 @@ var mappos = L.Permalink.getMapLocation();
 //////////////////////////////////////////////  MAP  //////////////////////////////////////////////////////
 var randomIDtest
 var geoJSONLocalforageDB
+var geoJSONofflineCARTO
+
+// try{
+  geoJSONofflineCARTO = localforage.createInstance({ //to create a separate DB in IndexedDB, so geojsons are not mixed with TilesDB
+  name: "offlineCARTO"});
+// }catch(err){
+//   console.log(err,'error new db')
+// }
 //this function will be called only if geojson is found in url
 var storeURLGeoJSON = function(data){
+
   try{
     var randomID = data.properties.randomID
     geoJSONLocalforageDB = localforage.createInstance({ //to create a separate DB in IndexedDB, so geojsons are not mixed with TilesDB
@@ -381,6 +392,7 @@ var storeURLGeoJSON = function(data){
     });
     randomIDtest = randomID
   }
+
 
 
   return randomIDtest
@@ -536,8 +548,23 @@ else if (urlContainsHash == true){  // if only coords are in the url
 map.on('zoomend', function(e) {
   var currentZoom = map.getZoom()
   console.log('zoom level',currentZoom)
-
+  //to activate carto based on zoom level
+  if(whichLayerIsOn == 'deflated' && currentZoom >= 12){
+    deflated.addTo(map)
+    console.log('carto open layer added to the map')
+  }
+  if(whichLayerIsOn == 'deflated' && currentZoom < 12){
+    deflated.removeFrom(map)
+    console.log('carto open layer hidden from the map')
+  }
 })
+
+if(document.getElementById("emojionearea-css").disabled == true){
+  map.on('zoomend', function(e) {
+    document.getElementById("emojionearea-css").disabled = false
+    emojiRequest()
+  })
+}
 
 L.Permalink.setup(map);
 
@@ -690,12 +717,57 @@ function fetchFromLocalStorage(){
 
           (function(key) {
             geoJSONLocalforageDB.getItem(key).then(function (value) {
-                //console.log(key, value);
+
                 isJson(value);
                 if (isJson(value) == true) {
-                  // //console.log(isJson('this is geojson',value))
+                  // console.log(isJson('this is geojson',value))
                     var getItemToJSON = JSON.parse(value);
                     isJson(getItemToJSON)
+
+                    //to submit to CARTO the contributions submitted while offline
+                    if(getItemToJSON.properties.OP == 'offlineOpen'){ //////////////////11111111111111111111111111111111!!!!!!!111CHANGE TO OFFLINEOPEN
+                      console.log(getItemToJSON)
+                      // console.log(getItemToJSON.properties.OP)
+                      // console.log(data)
+                        dataGeometry = getItemToJSON.geometry
+
+                        // propertiesGeoJSON = data.properties
+                        //to assign each attribute to a variable, which will be added as columns to the DB
+                        landUses = getItemToJSON.properties.landUses;
+                        landUsesEmoji = getItemToJSON.properties.landUsesEmoji;
+                        openOrPrivate = getItemToJSON.properties.openOrPrivate;
+                        phoneNumber = getItemToJSON.properties.phoneNumber;
+                        areaPolygon = getItemToJSON.properties.areaPolygon;
+                        lengthLine = getItemToJSON.properties.lengthLine;
+                        dateTime = getItemToJSON.properties.dateTime;
+                        timeSpendSeconds = getItemToJSON.properties.timeSpendSeconds;
+                        dist_m_Participant_Feature = getItemToJSON.properties.dist_m_Participant_Feature;
+                        randomID = getItemToJSON.properties.randomID;
+                        console.log(screensize)
+                        phoneNumber = '1233241'
+                        audioAvailable = 'false'
+                        commentAudioDefault = '.'
+                        console.log(randomID)
+                        var dataGeometryString = JSON.stringify(dataGeometry)
+                        ////console.log(dataGeometryString)
+                        var commentAudioDefault = '.'
+                        var sql = "INSERT INTO lumblu_private (the_geom, randomid, landuses, landusesemoji, areapolygon, lengthline, timespent, distance, geometrystring, screensize, date, phonenumber) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
+                        var sql2 = dataGeometryString;
+                        var sql3 = "'),4326),'" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "','" + dateTime + "','" + phoneNumber + "')";
+                        pURL = sql + sql2 + sql3;
+                        console.log(pURL)
+                        submitToProxy(pURL);
+
+                      ////////////change the property so it is only sent once
+
+                      getItemToJSON.properties.OP = 'submittedOpen';
+                      var getItemToJSONstringified = JSON.stringify(getItemToJSON);
+
+                        // var getItemToJSON = JSON.parse(value);
+                      // geoJSONLocalforageDB.setItem(tempName, dataStringified)
+                      geoJSONLocalforageDB.setItem(key, getItemToJSONstringified);
+
+                    }
                     //add each json to an array-------------------------
                   //  groupGeoJSON[i] = getItemToJSON
                   groupGeoJSON.push(getItemToJSON)
@@ -916,8 +988,8 @@ console.log('mosaicRequestedLatest',mosaicRequestedLatest)
 // var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_' + year + '-' + mosaicRequestedLatest + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=' + getPlanetAPIKey(),{
 //   attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaicLatest + ' ' + year
 //   })
-  var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2022-01_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
-    attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaicLatest + ' ' + year
+  var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2022-12_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
+    attribution: 'Leaflet | PlanetScope Imagery ' + 'December 2021'
     })
   var planetScopeMonthlyMosaicLatestMinus4Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_' + year4MonthsAgo + '-' + mosaicRequested4Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
     attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic4Months + ' ' + year4MonthsAgo
@@ -1804,7 +1876,7 @@ var myLayer_Button = L.easyButton({
                     if(mapCurrentZoom <= 11 && justCancelled == false){
                       try{
                       var boundsLocalStorageLayer = deflatedLocalStorage.getBounds()
-                      map.flyToBounds(boundsLocalStorageLayer)
+                      // map.flyToBounds(boundsLocalStorageLayer)
                     }catch(e){}
                   }
                 }
@@ -1873,7 +1945,7 @@ var myLayer_Button = L.easyButton({
                 whichLayerIsOn = 'none'
                 document.getElementById("Alert").style.fontSize = "30px";
                 document.getElementById("Alert").style.color = 'black'
-                document.getElementById("Alert").innerHTML = 'NO <img src="images/myLayerEmpty.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
+                document.getElementById("Alert").innerHTML = ' <img src="images/myLayerEmpty.png" text-align="center" alt="..." width=0px; height=0px style="top:50%; margin-left:-2px" > '
                 document.getElementById("Alert").style.display = 'initial'
                 setTimeout(function(){
                   document.getElementById("Alert").style.display = 'none'
@@ -1968,6 +2040,16 @@ myLayer_Button.button.style.transitionDuration = '.3s';
 myLayer_Button.button.style.backgroundColor = 'black';
 myLayer_Button.button.style.border= '1px solid transparent';
 
+setTimeout(function() {
+// window.addEventListener("load", (event) => {
+// document.getElementById("Alert").style.display = 'none'
+
+  document.getElementById('myLayerButton').click()
+  document.getElementById('myLayerButton').click()
+
+
+// });
+},1000)
 // myLayer_Button.button.style.borderColor = 'white';
 
 // myLayer_Button.button.style.border = '3px'
@@ -2799,14 +2881,16 @@ function setData() {
         //console.log(pURL)
     }
     else { //TO INSERT THE CREATED FEATURE INTO THE CARTO DB
+      console.log(data)
+
         dataGeometry = data.geometry
-        ////console.log(dataGeometry)
+        console.log(dataGeometry)
         var dataGeometryString = JSON.stringify(dataGeometry)
         ////console.log(dataGeometryString)
         var commentAudioDefault = '.'
-        var sql = "INSERT INTO lumblu (the_geom, randomid, landuses, landusesemoji, audioavailable, areapolygon, lengthline, timespent, distance, geometrystring, screensize, date, commentoneaudioavailable) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
+        var sql = "INSERT INTO lumblu_private (the_geom, randomid, landuses, landusesemoji, areapolygon, lengthline, timespent, distance, geometrystring, screensize, date, phonenumber) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
         var sql2 = dataGeometryString;
-        var sql3 = "'),4326),'" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + audioAvailable + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "','" + dateTime + "','" + commentAudioDefault + "')";
+        var sql3 = "'),4326),'" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "','" + dateTime + "','" + phoneNumber + "')";
         pURL = sql + sql2 + sql3;
         //console.log(pURL)
 
@@ -2848,7 +2932,7 @@ document.getElementById("completeFeature").style.display = "none";
 
 // document.getElementById("Download").style.display = "none";
 document.getElementById("Cancel").style.display = "none";
-document.getElementById("DownloadButton").style.display = "none";
+document.getElementById("ShareFinalButton").style.display = "none";
 
 // document.getElementById('record').style.display = 'none';
 document.getElementById("sapelliProjects").style.display = "none";
