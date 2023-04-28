@@ -562,7 +562,6 @@ map.on('zoomend', function(e) {
 if(document.getElementById("emojionearea-css").disabled == true){
   map.on('zoomend', function(e) {
     document.getElementById("emojionearea-css").disabled = false
-    emojiRequest()
   })
 }
 
@@ -655,7 +654,7 @@ var deflated = L.deflate({
     markerType: L.marker,
     markerOptions: customDeflateMarkers
 })
-deflated.addTo(map) // to initialize //////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// deflated.addTo(map) // to initialize //////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 function isJson(str) {
     try {
@@ -1139,7 +1138,11 @@ if (isIOS == true) {
     var iconOSM = '<img src="images/osm.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-top:2px; margin-left:-5px" > ';
     var iconGOOGLE = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-5px" > ';
     var iconPLANET = '<img src="images/googleHistorical.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-top:2px;margin-left:-3px" > ';
-    var iconLAYERS = '<img src="images/myLayerPrivate.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > ';
+    if(isOnline == true){
+      var iconLAYERS = '<img src="images/myLayerOpen.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > ';
+    }else{
+      var iconLAYERS = '<img src="images/myLayerPrivate.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > ';
+    }
     var iconFILTER = '<img src="images/filterIcon.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px;margin-top:2px" > ';
     var iconFILTERlocalStorage = '<img src="images/filterIcon.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px;margin-top:2px" > ';
     var iconRANDOM = '<img src="images/gps.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
@@ -1151,7 +1154,11 @@ if (isIOS == true) {
     var iconOSM = '<img src="images/osm.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%; margin-top:2px" > ';
     var iconGOOGLE = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%"> ';
     var iconPLANET = '<img src="images/googleHistorical.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-top:2px"> ';
-    var iconLAYERS = '<img src="images/myLayerPrivate.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-2px" > ';
+    if(isOnline == true){
+      var iconLAYERS = '<img src="images/myLayerOpen.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-2px" > ';
+    }else{
+      var iconLAYERS = '<img src="images/myLayerPrivate.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-2px" > ';
+    }
     var iconFILTER = '<img src="images/filterIcon.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px;margin-top:2px" > ';
     var iconFILTERlocalStorage = '<img src="images/filterIcon.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px;margin-top:2px" > ';
     var iconRANDOM = '<img src="images/gps.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
@@ -1837,16 +1844,20 @@ var myLayer_Button = L.easyButton({
         //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn, map) {
-
+          console.log('whichLayerIsOn',whichLayerIsOn)
           justCancelled = false
-          if (whichLayerIsOn == 'deflated' && notFirstClickHere == false && (localStorageLayer != null || elementJustAddedToLocalStorage ==true)) {
+  if (whichLayerIsOn == 'deflated' && notFirstClickHere == false && (localStorageLayer != null || elementJustAddedToLocalStorage ==true)) {
           myLayer_Button.button.style.backgroundColor = 'white';
           notFirstClickHere = true
+          whichLayerIsOn = 'localStorage'
         }
           setTimeout(function(){ // to avoid the 1-2 sec waiting while local storage layer is loading
             myLayer_Button.button.style.backgroundColor = 'black';
-          // },500)
-
+          },300)
+          // document.getElementById("Alert").style.fontSize = "30px";
+          // document.getElementById("Alert").style.color = 'black'
+          // document.getElementById("Alert").innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > ON'
+          // document.getElementById("Alert").style.display = 'initial'
           // changeBGColor()
 
                     // //console.log('which layer is on', whichLayerIsOn)
@@ -1855,39 +1866,46 @@ var myLayer_Button = L.easyButton({
             // //console.log(groupGeoJSON)
             //  deflated.removeFrom(map)
             // whichLayerIsOn = 'deflated'
-            if (whichLayerIsOn == 'deflated' && (localStorageLayer != null || elementJustAddedToLocalStorage ==true)) {
+  if (whichLayerIsOn == 'deflated' && (localStorageLayer != null || elementJustAddedToLocalStorage ==true)) {
+        whichLayerIsOn = 'localStorage'
+        console.log('whichLayerIsOn',whichLayerIsOn)
+
+
                 deflated.removeFrom(map)
                 if (localStorageLayer != null || geometriesUploaded == true) {
                     // leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive"
                     // document.getElementsByClassName('.marker-cluster-small').style.backgroundColor = 'rgba(12, 244, 179, 1)'
+                    setTimeout(function(){
+                      deflatedLocalStorage.addTo(map) // to initialize //////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                      // var refreshClusterBlueColor = setInterval(function(){
+                        var cols = document.getElementsByClassName('marker-cluster-small');
+                        for(i = 0; i < cols.length; i++) {
+                          cols[i].style.backgroundColor = '#00FFFB';
+                        }
+                      // },300)
 
-                    deflatedLocalStorage.addTo(map) // to initialize //////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    // var refreshClusterBlueColor = setInterval(function(){
-                      var cols = document.getElementsByClassName('marker-cluster-small');
-                      for(i = 0; i < cols.length; i++) {
-                        cols[i].style.backgroundColor = '#00FFFB';
-                      }
-                    // },300)
 
+                      filter_Button.removeFrom(map)
+                      filterLocalStorage_Button.addTo(map);
+                      var mapCurrentZoom = map.getZoom();
+                      if(mapCurrentZoom <= 11 && justCancelled == false){
+                        try{
+                        var boundsLocalStorageLayer = deflatedLocalStorage.getBounds()
+                        // map.flyToBounds(boundsLocalStorageLayer)
+                      }catch(e){}
+                    }
+                    document.getElementById("Alert").style.fontSize = "30px";
+                    document.getElementById("Alert").style.color = 'black'
+                    document.getElementById("Alert").innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > ON'
+                    document.getElementById("Alert").style.display = 'initial'
+                  },300)
 
-                    filter_Button.removeFrom(map)
-                    filterLocalStorage_Button.addTo(map);
-                    var mapCurrentZoom = map.getZoom();
-                    if(mapCurrentZoom <= 11 && justCancelled == false){
-                      try{
-                      var boundsLocalStorageLayer = deflatedLocalStorage.getBounds()
-                      // map.flyToBounds(boundsLocalStorageLayer)
-                    }catch(e){}
-                  }
                 }
                 if (finalLayer != null) {
                     finalLayer.addTo(map)
                 }
-                whichLayerIsOn = 'localStorage'
-                document.getElementById("Alert").style.fontSize = "30px";
-                document.getElementById("Alert").style.color = 'black'
-                document.getElementById("Alert").innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > ON'
-                document.getElementById("Alert").style.display = 'initial'
+                // whichLayerIsOn = 'localStorage'
+
                 setTimeout(function(){
                   document.getElementById("Alert").style.display = 'none'
                   document.getElementById("Alert").style.color = 'yellow'
@@ -1907,14 +1925,21 @@ var myLayer_Button = L.easyButton({
                 myLayer_Button.button.style.borderColor = '#00FFFB';
 
 
-            } else if (whichLayerIsOn == 'deflated' && localStorageLayer == null) { // to avoid three click when localstorage is limited on first load
+    } else if (whichLayerIsOn == 'deflated' && localStorageLayer == null) { // to avoid three click when localstorage is limited on first load
+          whichLayerIsOn = 'none'
+          console.log('whichLayerIsOn',whichLayerIsOn)
+
+
               // rose.remove()
               // rose.addTo(map)
-                whichLayerIsOn = 'none'
-                document.getElementById("Alert").style.fontSize = "30px";
-                document.getElementById("Alert").style.color = 'black'
-                document.getElementById("Alert").innerHTML = 'NO <img src="images/myLayerEmpty.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
-                document.getElementById("Alert").style.display = 'initial'
+                // whichLayerIsOn = 'none'
+              //   setTimeout(function(){
+              //
+              //   document.getElementById("Alert").style.fontSize = "30px";
+              //   document.getElementById("Alert").style.color = 'black'
+              //   document.getElementById("Alert").innerHTML = 'NO <img src="images/myLayerEmpty.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
+              //   document.getElementById("Alert").style.display = 'initial'
+              // },300)
                 setTimeout(function(){
                   document.getElementById("Alert").style.display = 'none'
                   document.getElementById("Alert").style.color = 'yellow'
@@ -1933,7 +1958,11 @@ var myLayer_Button = L.easyButton({
                   document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
                 }
 
-            } else if (whichLayerIsOn == 'localStorage') {
+  } else if (whichLayerIsOn == 'localStorage') {
+      whichLayerIsOn = 'none'
+      console.log('whichLayerIsOn',whichLayerIsOn)
+
+
                 if (localStorageLayer != null) {
                     deflatedLocalStorage.removeFrom(map)
 
@@ -1942,11 +1971,15 @@ var myLayer_Button = L.easyButton({
                     }catch(e){}
 
                 }
-                whichLayerIsOn = 'none'
-                document.getElementById("Alert").style.fontSize = "30px";
-                document.getElementById("Alert").style.color = 'black'
-                document.getElementById("Alert").innerHTML = ' <img src="images/myLayerEmpty.png" text-align="center" alt="..." width=0px; height=0px style="top:50%; margin-left:-2px" > '
-                document.getElementById("Alert").style.display = 'initial'
+                // whichLayerIsOn = 'none'
+                // setTimeout(function(){
+                //   document.getElementById("Alert").style.fontSize = "30px";
+                //   document.getElementById("Alert").style.color = 'black'
+                //   document.getElementById("Alert").innerHTML = ' <img src="images/myLayerEmpty.png" text-align="center" alt="..." width=0px; height=0px style="top:50%; margin-left:-2px" > '
+                //   document.getElementById("Alert").style.display = 'initial'
+                // },300)
+
+
                 setTimeout(function(){
                   document.getElementById("Alert").style.display = 'none'
                   document.getElementById("Alert").style.color = 'yellow'
@@ -1962,24 +1995,32 @@ var myLayer_Button = L.easyButton({
                 }
                 filterLocalStorage_Button.removeFrom(map);
                 filter_Button.addTo(map)
+                setTimeout(function(){
+                  if(isIOS == false){
+                    document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
+                  }else{
+                    document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
+                  }
+                },300)
 
-                if(isIOS == false){
-                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
-                }else{
-                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
-                }
                 filter_Button.button.style.opacity = '0.4';
                 filter_Button.button.disabled = true;
                 myLayer_Button.button.style.borderColor = 'transparent';
 
 
 
-            } else if (whichLayerIsOn == 'none') {
-                whichLayerIsOn = 'deflated'
+    } else if (whichLayerIsOn == 'none') {
+            whichLayerIsOn = 'deflated'
+            console.log('whichLayerIsOn',whichLayerIsOn)
+
+                setTimeout(function(){
+
                 document.getElementById("Alert").style.fontSize = "30px";
                 document.getElementById("Alert").style.color = 'black'
                 document.getElementById("Alert").innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > ON'
                 document.getElementById("Alert").style.display = 'initial'
+              },300)
+
                 setTimeout(function(){
                   document.getElementById("Alert").style.display = 'none'
                   document.getElementById("Alert").style.color = 'yellow'
@@ -1991,17 +2032,26 @@ var myLayer_Button = L.easyButton({
                 }
                 if(isOnline == false){
                   // myLayer_Button.button.style.backgroundColor = 'black'
-                  if(isIOS == false){
-                    document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..." width=40px; height=40px style="top:50%;  margin-left:-2px" > '
-                  }else{
-                    document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
-                  }
+                  setTimeout(function(){
+                    if(isIOS == false){
+                      document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerEmpty.png" text-align="center" alt="..." width=40px; height=40px style="top:50%;  margin-left:-2px" > '
+                    }else{
+                      document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerEmpty.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
+                    }
+                  },300)
+
                   filter_Button.button.style.opacity = '0.4';
                   filter_Button.button.disabled = true;
                   myLayer_Button.button.style.borderColor = 'transparent';
 
                   }else{
-                    deflated.addTo(map);
+                    var currentZoom = map.getZoom()
+                    if(whichLayerIsOn == 'deflated' && currentZoom >= 12){
+                      deflated.addTo(map)
+                      console.log('carto open layer added to the map')
+                    }
+
+                    // deflated.addTo(map);
                     var cols = document.getElementsByClassName('marker-cluster-small');
                     for(i = 0; i < cols.length; i++) {
                       cols[i].style.backgroundColor = 'white';
@@ -2009,11 +2059,14 @@ var myLayer_Button = L.easyButton({
 
                     // document.getElementsByClassName('marker-cluster-small')[0].style.color = 'red'
                     // myLayer_Button.button.style.backgroundColor = 'black'
-                    if(isIOS == false){
-                      document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
-                    }else{
-                      document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
-                    }
+                    setTimeout(function(){
+                      if(isIOS == false){
+                        document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..." width=40px; height=40px style="top:50%;  margin-left:-2px" > '
+                      }else{
+                        document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
+                      }
+                    },300)
+
                     filter_Button.button.style.opacity = '1';
                     filter_Button.button.disabled = false;
                     myLayer_Button.button.style.borderColor = 'transparent';
@@ -2026,8 +2079,8 @@ var myLayer_Button = L.easyButton({
                   getGeoJSON()
                   featureSent = false
               }
-            }
-          },300)
+    }
+          // },300)
           return featureSent && whichLayerIsOn && justCancelled && notFirstClickHere
 
         }
@@ -2040,12 +2093,30 @@ myLayer_Button.button.style.transitionDuration = '.3s';
 myLayer_Button.button.style.backgroundColor = 'black';
 myLayer_Button.button.style.border= '1px solid transparent';
 
-if(localStorage.getItem('pwCorrect')){
-    setTimeout(function() {
-      document.getElementById('myLayerButton').click()
-      document.getElementById('myLayerButton').click()
-    },3000)
-}
+
+$(document).ready(function() {
+
+
+  setTimeout(function() {
+        document.getElementById('myLayerButton').click()
+  },2000)
+  emojiRequest()
+});
+// map.on('load', function() {
+//   console.log('whichLayerIsOn-onload',whichLayerIsOn)
+//   console.log('urlContainsGeoJSON-onload',urlContainsGeoJSON)
+
+// })
+// }
+
+// if(localStorage.getItem('pwCorrect')){
+//     setTimeout(function() {
+//       document.getElementById('myLayerButton').click()
+//       document.getElementById('myLayerButton').click()
+//     },3000)
+// }
+
+
 // myLayer_Button.button.style.borderColor = 'white';
 
 // myLayer_Button.button.style.border = '3px'
@@ -2078,6 +2149,9 @@ var filter_Button = L.easyButton({
         stateName: 'check-mark',
         onClick: function(btn, map) {
           emojiRequest()
+          const element = document.getElementById('span6');
+          element.style.width = 'calc(100% - 200px)';
+
           document.getElementById("backDeleteFeature").style.display = "none";
           document.getElementById("deleteFeature").style.display = 'none';
           // document.getElementById("goBackMessagingApps").style.display = "none";
@@ -3425,6 +3499,7 @@ return feature
 }
 /////////////////LEAFLET DRAW////////
 //tiles are stored in the cahce storage v22.4.8
+
 
 var storageUsed
 setTimeout(function(){ //for performance
