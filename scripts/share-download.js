@@ -36,6 +36,8 @@ var testBlob = null
 
 document.getElementById('share-download').onclick = function(e) {
 console.log('sapelliProjectIdentifier',sapelliProjectIdentifier)
+console.log('sharedownload clickeeeeeeeeeeeeeeeeeed'  )
+
     sameSession = true;
     alreadyMovedUp = false;
     audioRecorded = false;
@@ -517,12 +519,6 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
     filterLocalStorage_Button.button.disabled = false;
 
 
-
-        // geoJSONLocalforageDB.setItem(tempName, dataStringified)
-        // var newGeom = JSON.parse(dataStringified)
-        // groupGeoJSON = newGeom
-        // localStorageToGeoJSON()
-
       landUse = 'emojiNoSapelli'
       hideButtons()
 
@@ -532,23 +528,6 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
 
     document.getElementById("Alert").style.opacity = '0'
 
-    // setTimeout(function(){
-    //   document.getElementById("map").style.height = "0px";
-    //   document.getElementById('goBackClassification').style.display = 'none';
-    //   document.getElementById('shareMessagingAppsDirect').style.display = 'none';
-    //   document.getElementById('shareWorldButton').style.display = 'none';
-    //   document.getElementById('DownloadButton').style.display = 'none';
-    //   document.getElementById('camera').style.display = 'none'
-    //   // document.getElementById('camera').style.opacity = '1'
-    //   document.getElementById('screenshot').style.display = 'none'
-    //   // document.getElementById('screenshot').style.backgroundColor = '#C6C6C5'
-    //   // document.getElementById('screenshot').style.opacity = '1'
-    //   document.getElementById('camera').style.borderWidth = '0px'
-    //   document.getElementById('screenshot').style.borderWidth = '0px'
-    //   document.getElementById('showAreaAcres').style.display = 'none'
-    //
-    //
-    // },200)
 
     document.body.style.backgroundColor = "white";
     document.body.style.color = "white"; //cheating here, this is to hide a f** 'undefined' that appear on top of the video. Anyway, solved
@@ -638,22 +617,6 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
         document.getElementById('screenshot').disabled = false
         document.getElementById('camera').disabled = false
 
-        // try{
-        //   cell.style.backgroundColor = 'black'
-        //
-        // }catch(e){}
-
-        // if(whichLayerIsOn == 'deflated'){
-        //   document.getElementById('myLayerButton').click()
-        // }if(whichLayerIsOn == 'none'){
-        //   document.getElementById('myLayerButton').click()
-        //   document.getElementById('myLayerButton').click()
-        // }if(whichLayerIsOn == 'localStorage'){
-        //   document.getElementById('myLayerButton').click()
-        //   document.getElementById('myLayerButton').click()
-        //   document.getElementById('myLayerButton').click()
-        //
-        // }
         document.getElementById("Alert").style.opacity = '1'
 
           clickedshareMessagingAppsDirect = false
@@ -663,8 +626,9 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
           imageName2 = null
           imageName3 = null
           attachPhoto = false
+          screenshotOn = false
     } //for the first because the fucking disable doesn't work
-    return finished && whichLayerIsOn && localStorageLayer && elementJustAddedToLocalStorage && field && landUse && fetchLast && groupGeoJSON && clickedshareMessagingAppsDirect && imageName1 && imageName2 && imageName3 && attachPhoto
+    return finished && whichLayerIsOn && localStorageLayer && elementJustAddedToLocalStorage && field && landUse && fetchLast && groupGeoJSON && clickedshareMessagingAppsDirect && imageName1 && imageName2 && imageName3 && attachPhoto && screenshotOn
           && shareURL && mapposLat  && mapposLng && mapposZoom && urlX && urlLatX && urlLngX && urlZoomX && groupGeoJSON && clickedshareMessagingAppsDirect && clickCountSendButton && landUse && groupGeoJSON && imageName1 && imageName2 && imageName3 && attachPhoto
 }
 

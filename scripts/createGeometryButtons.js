@@ -636,8 +636,17 @@ map.on('draw:created', function(e) {
 
 var boxContent;
 var justCancelled = false
-
 document.getElementById('Cancel').onclick = function(e) {
+  // projectsCreated = true
+  const celltohide = document.querySelectorAll('.gridCell')
+  for (const el of celltohide) {
+    el.parentNode.removeChild(el);
+  }
+  localStorage.setItem('sapelliProjectAccessed', false);
+
+  // try{
+  //   hideAll()
+  // }catch(e){}
 
   document.getElementById("Alert").style.display = 'none'
   document.getElementById('Alert').style.opacity = '1'
@@ -752,5 +761,6 @@ document.getElementById('Cancel').onclick = function(e) {
       if (map.tap) map.tap.enable();
       document.getElementById('map').style.cursor='grab';
 
-  return created & featureType && field && finalLength && justCancelled;
+  return created & featureType && field && finalLength && justCancelle && projectsCreated
+
 }

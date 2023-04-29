@@ -412,6 +412,8 @@ var southWest = L.latLng(-70, -180);
 var northEast = L.latLng(80, 180);
 if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains geojson (and coords)
   //console.log('hash and geojson')
+  console.log('zzzzzzzzzzzzzzzzzzzzzzzzzz')
+
   //to set mapview
     var keepOnlyLatLngZoom = url.split('#').pop();
     var splittedLatLngZoom = keepOnlyLatLngZoom.split(',');
@@ -458,13 +460,22 @@ if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains 
         if(localStorageLayer != null){
           try{
             document.getElementById('myLayerButton').click()
+            document.getElementById('myLayerButton').click()
+            console.log('zzzzzzzzzzzzzzzzzzzzzzzzzz')
+
             clearInterval(activateLocalStorageLayer)
           }catch(e){}
 
         }
       },500) // really don't know why this timeout, but keep it for now
     }
-
+    // if(isFirstTime == true){
+    //   try{
+    //     document.getElementById('myLayerButton').click()
+    //     clearInterval(activateLocalStorageLayer)
+    //     console.log('zzzzzzzzzzzzzzzzzzzzzzzzzz')
+    //   }catch(e){}
+    // }
 
 }
 else if (urlContainsHash == true){  // if only coords are in the url
@@ -493,6 +504,8 @@ else if (urlContainsHash == true){  // if only coords are in the url
     });
     setTimeout(function accessLocalStorage(){
           fetchFromLocalStorage()
+
+
           //console.log('after fetch and convert',localStorageLayer)
     },300) // really don't know why this timeout, but keep it for now
   //////////////////////
@@ -1135,13 +1148,13 @@ var clickButtonCount = 0;
 
 if (isIOS == true) {
     var iconGPS = '<img src="images/gpsOff.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%; margin-left:-5px" > ';
-    var iconOSM = '<img src="images/osm.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-top:2px; margin-left:-5px" > ';
+    var iconOSM = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-top:2px; margin-left:-5px" > ';
     var iconGOOGLE = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-5px" > ';
-    var iconPLANET = '<img src="images/googleHistorical.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-top:2px;margin-left:-3px" > ';
+    var iconPLANET = '<img src="images/google.png" alt="..." width=35px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-5px" > ';
     if(isOnline == true){
-      var iconLAYERS = '<img src="images/myLayerOpen.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > ';
+      var iconLAYERS = '<img src="images/onionlayericon.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > ';
     }else{
-      var iconLAYERS = '<img src="images/myLayerPrivate.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > ';
+      var iconLAYERS = '<img src="images/onionlayericon.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > ';
     }
     var iconFILTER = '<img src="images/filterIcon.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px;margin-top:2px" > ';
     var iconFILTERlocalStorage = '<img src="images/filterIcon.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px;margin-top:2px" > ';
@@ -1151,13 +1164,13 @@ if (isIOS == true) {
 
 } else {
     var iconGPS = '<img src="images/gpsOff.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;"> ';
-    var iconOSM = '<img src="images/osm.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%; margin-top:2px" > ';
-    var iconGOOGLE = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%"> ';
-    var iconPLANET = '<img src="images/googleHistorical.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-top:2px"> ';
+    var iconOSM = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%; margin-left:-1px" > ';
+    var iconGOOGLE = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;  margin-left:-1px"> ';
+    var iconPLANET = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;  margin-left:-1px"> ';
     if(isOnline == true){
-      var iconLAYERS = '<img src="images/myLayerOpen.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-2px" > ';
+      var iconLAYERS = '<img src="images/onionlayericon.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-2px" > ';
     }else{
-      var iconLAYERS = '<img src="images/myLayerPrivate.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-2px" > ';
+      var iconLAYERS = '<img src="images/onionlayericon.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-2px" > ';
     }
     var iconFILTER = '<img src="images/filterIcon.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px;margin-top:2px" > ';
     var iconFILTERlocalStorage = '<img src="images/filterIcon.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px;margin-top:2px" > ';
@@ -1398,6 +1411,11 @@ var osm_Button = L.easyButton({
         //  background:"images/forest.png",
         stateName: 'check-mark',
         onClick: function(btn, map) {
+          planet_Button.button.style.backgroundColor = 'white';
+          setTimeout(function(){ // to avoid the 1-2 sec waiting while local storage layer is loading
+            planet_Button.button.style.backgroundColor = 'black';
+          },300)
+
           startSearchingLocation()
           // document.getElementById("Alert").style.fontSize = "25px";
           // document.getElementById('Alert').innerHTML = '⌛'
@@ -1467,6 +1485,10 @@ var googleSat_Button = L.easyButton({
           document.getElementById("Alert").style.display = 'none'
           document.getElementById("MapLoading").style.display = 'none'
 
+          osm_Button.button.style.backgroundColor = 'white';
+          setTimeout(function(){
+            osm_Button.button.style.backgroundColor = 'black';
+          },300)
           clearInterval(checkSliderPosition)
 
           // document.getElementById("Alert").style.fontSize = "25px";
@@ -1520,7 +1542,7 @@ var googleSat_Button = L.easyButton({
 googleSat_Button.button.style.width = '50px';
 googleSat_Button.button.style.height = '50px';
 googleSat_Button.button.style.transitionDuration = '.3s';
-googleSat_Button.button.style.backgroundColor = 'black';
+// googleSat_Button.button.style.backgroundColor = 'black';
 
 // var month = new Date().getMonth()
 
@@ -1537,7 +1559,10 @@ var planet_Button = L.easyButton({
           // document.getElementById("Alert").style.display = 'initial'
           document.getElementById("MapLoading").style.display = 'initial'
 
-
+          googleSat_Button.button.style.backgroundColor = 'white';
+          setTimeout(function(){ // to avoid the 1-2 sec waiting while local storage layer is loading
+            googleSat_Button.button.style.backgroundColor = 'black';
+          },300)
             /////////////////////// to load planet tiles manually  /////////////
             document.getElementById('myRange').style.display = 'initial'
             // document.getElementById("Alert").style.fontSize = "20px";
@@ -1846,6 +1871,10 @@ var myLayer_Button = L.easyButton({
         onClick: function(btn, map) {
           console.log('whichLayerIsOn',whichLayerIsOn)
           justCancelled = false
+          myLayer_Button.button.style.backgroundColor = 'white';
+          setTimeout(function(){ // to avoid the 1-2 sec waiting while local storage layer is loading
+            myLayer_Button.button.style.backgroundColor = 'black';
+          },300)
   if (whichLayerIsOn == 'deflated' && notFirstClickHere == false && (localStorageLayer != null || elementJustAddedToLocalStorage ==true)) {
           myLayer_Button.button.style.backgroundColor = 'white';
           notFirstClickHere = true
@@ -1896,7 +1925,7 @@ var myLayer_Button = L.easyButton({
                     }
                     document.getElementById("Alert").style.fontSize = "30px";
                     document.getElementById("Alert").style.color = 'black'
-                    document.getElementById("Alert").innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > ON'
+                    document.getElementById("Alert").innerHTML = '<img src="images/padlockclosed.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > ON'
                     document.getElementById("Alert").style.display = 'initial'
                   },300)
 
@@ -1914,15 +1943,16 @@ var myLayer_Button = L.easyButton({
                 // myLayer_Button.button.style.backgroundColor = '#00FFFB';
                 // document.getElementById('myLayerButton').src = 'images/osm.png'
                 if(isIOS == false){
-                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerEmpty.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
+                  document.getElementById('myLayerButton').innerHTML = '<img src="images/onionlayericon.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
                 }else{
-                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerEmpty.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
+                  document.getElementById('myLayerButton').innerHTML = '<img src="images/onionlayericon.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
                 }
                 // var iconLAYERS = '<img src="images/osm.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px" > ';
 
                 filter_Button.button.style.opacity = '0.4';
                 filter_Button.button.disabled = true;
-                myLayer_Button.button.style.borderColor = '#00FFFB';
+                filter_Button.button.style.backgroundColor = 'black'
+                // myLayer_Button.button.style.borderColor = '#00FFFB';
 
 
     } else if (whichLayerIsOn == 'deflated' && localStorageLayer == null) { // to avoid three click when localstorage is limited on first load
@@ -1950,12 +1980,12 @@ var myLayer_Button = L.easyButton({
                 filter_Button.button.style.opacity = '0.4';
                 filter_Button.button.disabled = true;
                 // myLayer_Button.button.style.backgroundColor = 'white'
-                myLayer_Button.button.style.borderColor = '#00FFFB';
+                myLayer_Button.button.style.borderColor = 'transparent';
 
                 if(isIOS == false){
-                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
+                  document.getElementById('myLayerButton').innerHTML = '<img src="images/onionlayericon.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
                 }else{
-                  document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
+                  document.getElementById('myLayerButton').innerHTML = '<img src="images/onionlayericon.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
                 }
 
   } else if (whichLayerIsOn == 'localStorage') {
@@ -1997,9 +2027,9 @@ var myLayer_Button = L.easyButton({
                 filter_Button.addTo(map)
                 setTimeout(function(){
                   if(isIOS == false){
-                    document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
+                    document.getElementById('myLayerButton').innerHTML = '<img src="images/onionlayericon.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
                   }else{
-                    document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
+                    document.getElementById('myLayerButton').innerHTML = '<img src="images/onionlayericon.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
                   }
                 },300)
 
@@ -2017,7 +2047,7 @@ var myLayer_Button = L.easyButton({
 
                 document.getElementById("Alert").style.fontSize = "30px";
                 document.getElementById("Alert").style.color = 'black'
-                document.getElementById("Alert").innerHTML = '<img src="images/myLayerOpen.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > ON'
+                document.getElementById("Alert").innerHTML = '<img src="images/padlockopen.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > ON'
                 document.getElementById("Alert").style.display = 'initial'
               },300)
 
@@ -2034,9 +2064,9 @@ var myLayer_Button = L.easyButton({
                   // myLayer_Button.button.style.backgroundColor = 'black'
                   setTimeout(function(){
                     if(isIOS == false){
-                      document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerEmpty.png" text-align="center" alt="..." width=40px; height=40px style="top:50%;  margin-left:-2px" > '
+                      document.getElementById('myLayerButton').innerHTML = '<img src="images/onionlayericon.png" text-align="center" alt="..." width=40px; height=40px style="top:50%;  margin-left:-2px" > '
                     }else{
-                      document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerEmpty.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
+                      document.getElementById('myLayerButton').innerHTML = '<img src="images/onionlayericon.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
                     }
                   },300)
 
@@ -2061,9 +2091,9 @@ var myLayer_Button = L.easyButton({
                     // myLayer_Button.button.style.backgroundColor = 'black'
                     setTimeout(function(){
                       if(isIOS == false){
-                        document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..." width=40px; height=40px style="top:50%;  margin-left:-2px" > '
+                        document.getElementById('myLayerButton').innerHTML = '<img src="images/onionlayericon.png" text-align="center" alt="..." width=40px; height=40px style="top:50%;  margin-left:-2px" > '
                       }else{
-                        document.getElementById('myLayerButton').innerHTML = '<img src="images/myLayerPrivate.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
+                        document.getElementById('myLayerButton').innerHTML = '<img src="images/onionlayericon.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
                       }
                     },300)
 
@@ -2071,6 +2101,16 @@ var myLayer_Button = L.easyButton({
                     filter_Button.button.disabled = false;
                     myLayer_Button.button.style.borderColor = 'transparent';
 
+                  }
+                  if(localStorageLayer == null){
+                    // myLayer_Button.button.style.backgroundColor = 'black'
+                    setTimeout(function(){
+                      if(isIOS == false){
+                        document.getElementById('myLayerButton').innerHTML = '<img src="images/onionlayericon.png" text-align="center" alt="..." width=40px; height=40px style="top:50%;  margin-left:-2px" > '
+                      }else{
+                        document.getElementById('myLayerButton').innerHTML = '<img src="images/onionlayericon.png" text-align="center" alt="..."width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > '
+                      }
+                    },300)
                   }
 
                if (featureSent == true) { //to update the carto layer with recently created feature. This is fired after DB update has been checked
@@ -2094,14 +2134,6 @@ myLayer_Button.button.style.backgroundColor = 'black';
 myLayer_Button.button.style.border= '1px solid transparent';
 
 
-$(document).ready(function() {
-
-
-  setTimeout(function() {
-        document.getElementById('myLayerButton').click()
-  },2000)
-  emojiRequest()
-});
 // map.on('load', function() {
 //   console.log('whichLayerIsOn-onload',whichLayerIsOn)
 //   console.log('urlContainsGeoJSON-onload',urlContainsGeoJSON)
@@ -2135,7 +2167,6 @@ $(document).ready(function() {
 //
 //   }
 // });
-
 
 var filterApplied = false;
 var alertAlreadyShown = false
@@ -2220,6 +2251,8 @@ var filter_Button = L.easyButton({
 
         }else{
             landUse = 'emojiNoSapelli'
+            const element = document.getElementById('span6');
+            element.style.width = 'calc(100% - 125px)';
             clearInterval(startCheckAttrDateContent)
             //console.log('filterisontrue')
             filter_Button.button.style.border= '2px solid transparent';
@@ -2802,7 +2835,7 @@ var filterLocalStorage_Button = L.easyButton({
 filterLocalStorage_Button.button.style.width = '50px';
 filterLocalStorage_Button.button.style.height = '50px';
 filterLocalStorage_Button.button.style.transitionDuration = '.3s';
-filterLocalStorage_Button.button.style.backgroundColor = '#00FFFB';
+filterLocalStorage_Button.button.style.backgroundColor = 'black';
 filterLocalStorage_Button.button.style.border= '2px solid transparent';
 
 filterLocalStorage_Button.removeFrom(map);
@@ -2841,7 +2874,6 @@ document.getElementById('rose').style.marginBottom = '5px' // to avoid extra mar
 // var selectedFeature
 // var getTotalFeaturesInDB
 var template = document.getElementById('popup')
-
 
 function getGeoJSON() {
     $.getJSON({
@@ -3090,12 +3122,14 @@ document.getElementById("gobackArmchairField").onclick = function(e) {
 document.getElementById("armchair").onclick = function(e) {
 
   //to disable layer to create a geometry
-  if(whichLayerIsOn == 'deflated'){
-    document.getElementById('myLayerButton').click()
-    document.getElementById('myLayerButton').click()
-  }if(whichLayerIsOn == 'localStorage'){
-    document.getElementById('myLayerButton').click()
-  }
+  // if(whichLayerIsOn == 'deflated' && localStorage == null){
+  //   document.getElementById('myLayerButton').click()
+  // }else if(whichLayerIsOn == 'deflated' && localStorage != null){
+  //   document.getElementById('myLayerButton').click()
+  //   document.getElementById('myLayerButton').click()
+  // }else if(whichLayerIsOn == 'localStorage'){
+  //   document.getElementById('myLayerButton').click()
+  // }
 
   $.getScript({
      cache:true,
@@ -3134,13 +3168,15 @@ document.getElementById("armchair").onclick = function(e) {
 
 document.getElementById("field").onclick = function(e) {
 //to disable layer to create a geometry
-  if(whichLayerIsOn == 'deflated'){
-    document.getElementById('myLayerButton').click()
-    document.getElementById('myLayerButton').click()
-  }if(whichLayerIsOn == 'localStorage'){
-    document.getElementById('myLayerButton').click()
-  }
-
+    // //to disable layer to create a geometry
+    // if(whichLayerIsOn == 'deflated' && localStorage == null){
+    //   document.getElementById('myLayerButton').click()
+    // }else if(whichLayerIsOn == 'deflated' && localStorage != null){
+    //   document.getElementById('myLayerButton').click()
+    //   document.getElementById('myLayerButton').click()
+    // }else if(whichLayerIsOn == 'localStorage'){
+    //   document.getElementById('myLayerButton').click()
+    // }
 
   $.getScript({
      cache:true,

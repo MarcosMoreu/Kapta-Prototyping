@@ -251,7 +251,7 @@ var requestCartoData = function() {
             })
             return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
         };
-      getGeoJSON(); //////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      // getGeoJSON(); //////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         //funtion to get geojson with 🌐 to be used in random suggestion
         function getGeoJSONRandom(){ ///RANDOM!!!!!!!!!!!!!!!
@@ -263,7 +263,7 @@ var requestCartoData = function() {
             url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQueryRandom + cartoapiSELECT
           })
         }
-        getGeoJSONRandom() ////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // getGeoJSONRandom() ////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
     return cartousername
 }
@@ -362,7 +362,18 @@ basemapClass[0].style.opacity = 0
     rose.addTo(map)
     // deflated.addTo(map)
 
+    var mylayerready = document.getElementById('myLayerButton')
 
+    $(mylayerready).ready(function() {
+      console.log('mylayerbutton is ready')
+      setTimeout(function() {
+            // document.getElementById('myLayerButton').click()
+            document.getElementById('myLayerButton').click()
+
+
+      },2000)
+      emojiRequest()
+    });
 
 
       // var images = new Array()
