@@ -111,12 +111,12 @@ document.getElementById("goBack2").onclick = function(e) {
     //to enable doubleclick zoom that is disabled while drawing
     map.doubleClickZoom.enable();
     //to add filter button if carto layer on
-    if(myLayer_Button.button.style.backgroundColor == 'black'){
+    // if(myLayer_Button.button.style.backgroundColor == 'black'){
       filter_Button.button.style.opacity = '1';
       filter_Button.button.disabled = false;
       filterLocalStorage_Button.button.style.opacity = '1';
       filterLocalStorage_Button.button.disabled = false;
-    }
+    // }
 
     clickMapCount = 0;
     map.zoomOut(1); //decreases the zoom level when click
@@ -714,7 +714,7 @@ document.getElementById('Cancel').onclick = function(e) {
 
 
   //to load the layer that was there before creating the geometry (2 clicks if localstorage empty, 3 if not). Not best approach but works...:)
-    if(myLayer_Button.button.style.backgroundColor == 'black'){
+    // if(myLayer_Button.button.style.backgroundColor == 'black'){
       filter_Button.button.style.opacity = '1';
       filter_Button.button.disabled = false;
       filterLocalStorage_Button.button.style.opacity = '1';
@@ -728,26 +728,24 @@ document.getElementById('Cancel').onclick = function(e) {
       osm_Button.button.disabled = false;
       justCancelled = true
 
-      document.getElementById('myLayerButton').click()
-      document.getElementById('myLayerButton').click()
-      if(localStorageLayer != null){  // because first time app is used mylayer_button has only two positions (local storage is empty)
-        document.getElementById('myLayerButton').click()
-      }
-    }
-    if(myLayer_Button.button.style.backgroundColor == 'white'){
-      document.getElementById('myLayerButton').click()
-      document.getElementById('myLayerButton').click()
-      if(localStorageLayer != null){  // because first time app is used mylayer_button has only two positions (local storage is empty)
-        document.getElementById('myLayerButton').click()
-      }
-    }
-    if(myLayer_Button.button.style.backgroundColor == 'grey'){
-      document.getElementById('myLayerButton').click()
-      document.getElementById('myLayerButton').click()
-      if(localStorageLayer != null){  // because first time app is used mylayer_button has only two positions (local storage is empty)
-        document.getElementById('myLayerButton').click()
-      }
-    }
+    //   if(localStorageLayer != null){  // because first time app is used mylayer_button has only two positions (local storage is empty)
+    //     document.getElementById('myLayerButton').click()
+    //   }
+    // // }
+    // // if(myLayer_Button.button.style.backgroundColor == 'white'){
+    //   document.getElementById('myLayerButton').click()
+    //   document.getElementById('myLayerButton').click()
+    //   if(localStorageLayer != null){  // because first time app is used mylayer_button has only two positions (local storage is empty)
+    //     document.getElementById('myLayerButton').click()
+    //   }
+    // // }
+    // // if(myLayer_Button.button.style.backgroundColor == 'grey'){
+    //   document.getElementById('myLayerButton').click()
+    //   document.getElementById('myLayerButton').click()
+    //   if(localStorageLayer != null){  // because first time app is used mylayer_button has only two positions (local storage is empty)
+    //     document.getElementById('myLayerButton').click()
+    //   }
+    // }
 
       field = false
       finalLength = 0 //to set to cero the length distance
