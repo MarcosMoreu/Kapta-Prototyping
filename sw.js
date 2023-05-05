@@ -3,7 +3,7 @@
 
 // Set a name for the current cache. Note that when version is changed, the pwa only updates autmotically after reloading!
 //Note that for automatic update, at one change need to be made in the app.js file (or in other files...)
-var version = 'v23.1';
+var version = 'v25.5';
 //console.log(version)
 
 // Default files to always cache
@@ -16,6 +16,15 @@ var offlineFundamentals = [
   "/scripts/tutorialPage.js",
   "/styles/tutorialPage.css",
   "/images/icons/icon-72x72.png",
+  // 'https://mt2.google.com/vt/lyrs=s,h&x=1&y=1&z=2',
+  // 'https://mt3.google.com/vt/lyrs=s,h&x=2&y=1&z=2',
+  // 'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
+  // 'https://mt0.google.com/vt/lyrs=s,h&x=2&y=2&z=2',
+  // 'https://mt1.google.com/vt/lyrs=s,h&x=1&y=0&z=2',
+  // 'https://mt2.google.com/vt/lyrs=s,h&x=2&y=0&z=2',
+  // 'https://mt0.google.com/vt/lyrs=s,h&x=1&y=3&z=2',
+  // 'https://mt1.google.com/vt/lyrs=s,h&x=2&y=3&z=2',
+
 
 ];
 
@@ -56,7 +65,9 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
   // Don't care about other-origin URLs
-  if (url.origin !== location.origin) return;
+  // if (url.origin !== location.origin) return;
+  // console.log(url.origin)
+  // console.log(location.origin)
 
   if (
     url.pathname === "/pwa-results" &&
@@ -79,7 +90,21 @@ self.addEventListener('fetch', (event) => {
         return cachedResponse || fetchedResponse;
       });
     }));
-  }else if(event.request.url.includes('.google')){ //to put the google tiles in a different cache so it can be cleared easily
+  }else if(event.request.url.includes('s,h&x')){ //to put the google tiles in a different cache so it can be cleared easily
+    console.log(event.request.url)
+    console.log('google tiles')
+    // localforage.setItem(key, value)
+
+    // if (event.request.readyState === XMLHttpRequest.DONE) {
+        // if (event.request.status === 200) {
+          // event.respondWith(self._saveTile(url.key, event.request.response));
+    //     } else {
+    //         reject({
+    //             status: event.request.status,
+    //             statusText: event.request.statusText
+    //         });
+    //     }
+    // }
     event.respondWith(caches.open(cacheNameTiles).then((cache) => {
       return cache.match(event.request)
         .then((cachedResponse) => {
@@ -95,28 +120,100 @@ self.addEventListener('fetch', (event) => {
         });
       });
     }));
-  // }else if(event.request.url.includes('.google')){ //to put the google tiles in a different cache so it can be cleared easily
-  //   event.respondWith(caches.open(cacheNameTiles).then((cache) => {
-  //     return cache.match(event.request)
-  //       .then((cachedResponse) => {
-  //       const fetchedResponse = fetch(event.request).then((networkResponse) => {
-  //         cache.put(event.request, networkResponse.clone())//.catch(unableToResolve);
-  //         return networkResponse;
+  // }else if(event.request.url.includes('s&x') || event.request.url.includes('.openstreetmap')){ //to put the google tiles in a different cache so it can be cleared easily
+  //     // console.log(event.request.url)
+  //     // console.log('google tiles')
+  //
+  //     event.respondWith(caches.open(cacheNameTiles).then((cache) => {
+  //       return cache.match(event.request)
+  //         .then((cachedResponse) => {
+  //           if (cachedResponse){
+  //             return cachedResponse;
+  //           }
+  //           //otherwise hit the network
+  //           return fetch(event.request).then((fetchedResponse)=>{
+  //             //add the network request to the cache for later visits
+  //             cache.put(event.request, fetchedResponse.clone())//.catch(unableToResolve);
+  //             //return the network response
+  //             return fetchedResponse
+  //         });
   //       });
-  //       return cachedResponse || fetchedResponse;
-  //     });
-  //   }));
-  }else{//this is where most of the request pass
-    event.respondWith(caches.open(cacheName).then((cache) => {
-      return cache.match(event.request)
-        .then((cachedResponse) => {
-        const fetchedResponse = fetch(event.request).then((networkResponse) => {
-          cache.put(event.request, networkResponse.clone())//.catch(unableToResolve);
-          return networkResponse;
-        });
-        return cachedResponse || fetchedResponse;
-      });
-    }));
+  //     }));
+
+}else if(event.request.url.includes('s&x')){
+  console.log(event.request.url)
+  console.log('do not cache google sat only')
+
+}else{//this is where most of the request pass
+
+        // Is this one of our precached assets?
+      // const isPrecachedRequest = cacheName.includes(url.pathname);
+      //
+      // if (isPrecachedRequest) {
+      //   console.log('precacheddddddddddddddddddddddddd')
+      //
+      //   // Grab the precached asset from the cache
+      //   event.respondWith(caches.open(cacheName).then((cache) => {
+      //     return cache.match(event.request.url);
+      //   }));
+      // } else {
+      //     return fetch(event.request).then((fetchedResponse) => {
+      //     // Add the network response to the cache for later visits
+      //     caches.put(event.request, fetchedResponse.clone());
+      //     console.log('hitted the networkkkkkkkkkkkkkkkkkkkkkkkk')
+      //     // Return the network response
+      //     return fetchedResponse;
+      //
+      // })
+      // };
+      event.respondWith(caches.open(cacheName).then((cache) => {
+        // console.log(event.request.url)
+
+        return cache.match(event.request).then((cachedResponse) => {
+            if(cachedResponse){
+              console.log('from cacheeeeeeeeeeeeeeeeee')
+              return cachedResponse
+            }else{
+              console.log('from networkkkkkkkkkkkkkkkkkk')
+
+              return fetch(event.request).then((fetchedResponse) => {
+          // Add the network response to the cache for later visits
+          cache.put(event.request, fetchedResponse.clone());
+
+          // Return the network response
+          return fetchedResponse;
+        })
+      }
+    })
+        //   const fetchedResponse = fetch(event.request).then((networkResponse) => {
+        //
+        //     cache.put(event.request, networkResponse.clone())//.catch(unableToResolve);
+        //     return networkResponse;
+        //   });
+        //   console.log('cachedResponse',cachedResponse)
+        //   console.log('fetchedResponse',fetchedResponse)
+        //
+        //
+        //   return cachedResponse || fetchedResponse;
+        // });
+      }))
+    // event.respondWith(caches.open(cacheName).then((cache) => {
+    //   // console.log(event.request.url)
+    //
+    //   return cache.match(event.request)
+    //     .then((cachedResponse) => {
+    //     const fetchedResponse = fetch(event.request).then((networkResponse) => {
+    //
+    //       cache.put(event.request, networkResponse.clone())//.catch(unableToResolve);
+    //       return networkResponse;
+    //     });
+    //     console.log('cachedResponse',cachedResponse)
+    //     console.log('fetchedResponse',fetchedResponse)
+    //
+    //
+    //     return cachedResponse || fetchedResponse;
+    //   });
+    // }));
   }
   // }else{//this is where most of the request pass
   //   event.respondWith(caches.open(cacheName).then((cache) => {
