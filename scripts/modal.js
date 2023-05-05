@@ -36,7 +36,7 @@
 //   var basemapClass = document.getElementsByClassName('leaflet-layer')
 //   basemapClass[0].style.opacity = 1
 // }
-var phoneNumber = 123456
+var phoneNumber
 var arrayOfImages = [
   'images/ThumbsUpGreen.png','images/checkingPw.gif',
 
@@ -55,7 +55,7 @@ var arrayOfImages = [
     'images/applyFilter.png','images/arrowLeft.png', 'images/arrowRight.png', 'images/backButton.png','images/bin.png','images/binOriginal.png','images/binpost.png',
     'images/binpre.png','images/burger.png','images/burgerBlack.png','images/cancel.png','images/clearFilter.png','images/commentFeature.png',
     'images/dateAll.png','images/dateDay.png','images/dateMonth.png','images/dateWeek.png','images/dateYear.png','images/deleteAllVertex.png',
-    'images/deleteLastVertex.png','images/devicedownload.png','images/download.png','images/filterIcon.png',
+    'images/deleteLastVertex.png','images/devicedownload.png','images/download.png','images/filterIcon.png','images/dtm.png',
     'images/google.png','images/googleHistorical.png','images/gps.png','images/gpsOff.png','images/gpsSearching.gif','images/gpsSearchingIOS.gif',
     'images/infoGoBack.png','images/key.png','images/lineDeleteAll.png','images/lineDeleteVertex.png','images/padlockclosed.png','images/padlockopen.png',
     'images/locked.png','images/man.png','images/marker-icon.png','images/marker-icon-2x.png','images/marker-icon-cian.png','images/markerPolygonBlue.png','images/markerLine.png','images/markerPolygon.png',
@@ -69,14 +69,23 @@ var arrayOfImages = [
     'images/customIconsMap.png','images/customIconsCancel.png',
 
     //sapelli project images
-    'images/omoIcons/banana.png','images/omoIcons/boatCrossing.png','images/omoIcons/cattleGrazing.png','images/omoIcons/church.png','images/omoIcons/eldersHut.png','images/omoIcons/fishing.png',
-    'images/omoIcons/floodRecessionFlat.png','images/omoIcons/floodRecessionSteep.png','images/omoIcons/goatSheepGrazing.png','images/omoIcons/healthStation.png','images/omoIcons/hotSpring.png','images/omoIcons/hunting.png',
-    'images/omoIcons/hutVillage.png','images/omoIcons/irrigationPump.png','images/omoIcons/kraal.png','images/omoIcons/lakeRecession.png','images/omoIcons/maize.png',
-    'images/omoIcons/manualPump.png','images/omoIcons/medicinalPlants.png','images/omoIcons/noFarming.png','images/omoIcons/pondFarming.png','images/omoIcons/Questionmark.png','images/omoIcons/recreationCenter.png',
-    'images/omoIcons/reehive.png','images/omoIcons/saltlick.png','images/omoIcons/school.png','images/omoIcons/sorghum.png','images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
-    'images/omoIcons/timber.png','images/omoIcons/treeForGathering.png','images/omoIcons/unknownOther.png','images/omoIcons/veterinary.png','images/omoIcons/waterPoint.png','images/omoIcons/waterPondAnimal.png',
-    'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png','images/omoIcons/pathTrack.png',
+    // 'images/omoIcons/banana.png','images/omoIcons/boatCrossing.png','images/omoIcons/cattleGrazing.png','images/omoIcons/church.png','images/omoIcons/eldersHut.png','images/omoIcons/fishing.png',
+    // 'images/omoIcons/floodRecessionFlat.png','images/omoIcons/floodRecessionSteep.png','images/omoIcons/goatSheepGrazing.png','images/omoIcons/healthStation.png','images/omoIcons/hotSpring.png','images/omoIcons/hunting.png',
+    // 'images/omoIcons/hutVillage.png','images/omoIcons/irrigationPump.png','images/omoIcons/kraal.png','images/omoIcons/lakeRecession.png','images/omoIcons/maize.png',
+    // 'images/omoIcons/manualPump.png','images/omoIcons/medicinalPlants.png','images/omoIcons/noFarming.png','images/omoIcons/pondFarming.png','images/omoIcons/Questionmark.png','images/omoIcons/recreationCenter.png',
+    // 'images/omoIcons/reehive.png','images/omoIcons/saltlick.png','images/omoIcons/school.png','images/omoIcons/sorghum.png','images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
+    // 'images/omoIcons/timber.png','images/omoIcons/treeForGathering.png','images/omoIcons/unknownOther.png','images/omoIcons/veterinary.png','images/omoIcons/waterPoint.png','images/omoIcons/waterPondAnimal.png',
+    // 'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png','images/omoIcons/pathTrack.png',
 
+    //sapelli project images
+    'images/omoIcons/Shelter.png','images/omoIcons/dtm.png','images/omoIcons/pluistorrentielles.png','images/omoIcons/camera.png','images/omoIcons/coutlocation.png',
+    'images/omoIcons/confirm.png',
+    'images/omoIcons/personnesaffectees.png','images/omoIcons/maisonsdetruites.png','images/omoIcons/femmesnevontpas1.png','images/omoIcons/hommesnevontpas1.png',
+    'images/omoIcons/regimefoncierchamps.png','images/omoIcons/ventsviolents.png',
+    'images/omoIcons/seul.png','images/omoIcons/protection.png','images/omoIcons/proprietaire.png','images/omoIcons/mangues.png','images/omoIcons/maize.png',
+    'images/omoIcons/location.png','images/omoIcons/inondations.png','images/omoIcons/ett.png','images/omoIcons/documentation.png','images/omoIcons/champs.png',
+    // 'images/omoIcons/numbers.png',
+     'images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
 
 ]
 
@@ -133,7 +142,7 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
             url:'https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js'
           })
         }catch(e){
-          location.reload
+          location.reload()
         }
         localStorage.setItem('visited', true);
         isFirstTime = true;
@@ -160,7 +169,7 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
           url:'https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js'
         })
       }catch(e){
-        location.reload
+        location.reload()
       }
         // console.log('!localStorage.getItem(pwCorrect')
         requestPw()
@@ -169,6 +178,7 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
 }
 window.onload = firstLoad;  /// to launch the root function XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXS
 var done = false
+
 setTimeout(function(){
   document.getElementById('loginInfo').style.opacity = '1'
   document.getElementById('loginInfo').disabled = false
@@ -181,7 +191,7 @@ setTimeout(function(){
   document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
 
 
-},1900)
+},2900)
 
 document.getElementById('loginInfo').onclick = function(){
   window.location.href = 'pages/tutorial.html';
@@ -205,7 +215,6 @@ document.getElementById('loginKey').onclick = function(e){
   //runJSselectFeature()
   document.getElementById('loginKey').style.backgroundColor = '#D5D6D5'
   document.getElementById('enteredPw').style.display = 'initial';
-  document.getElementById('enteredPw').focus() //to open keyboard!!!
   document.getElementById('login').style.display = 'initial';
 
   initialiseMap() //map initialised but not shown
@@ -234,7 +243,10 @@ document.getElementById('loginKey').onclick = function(e){
   }catch(e){
     console.log('error disable enter key catched')
   }
-
+//   setTimeout(function(){
+//
+//   document.getElementById('enteredPw').focus() //to open keyboard!!!
+// },100)
  //console.log(loaded)
 //return loaded
 }
@@ -362,18 +374,37 @@ basemapClass[0].style.opacity = 0
     rose.addTo(map)
     // deflated.addTo(map)
 
-    var mylayerready = document.getElementById('myLayerButton')
-
-    $(mylayerready).ready(function() {
-      console.log('mylayerbutton is ready')
-      setTimeout(function() {
-            // document.getElementById('myLayerButton').click()
-            document.getElementById('myLayerButton').click()
-
-
-      },2000)
-      emojiRequest()
-    });
+    // var mylayerready = document.getElementById('myLayerButton')
+    //
+    // $(mylayerready).ready(function() {
+    //   console.log('mylayerbutton is ready')
+    //   setTimeout(function() {
+    //         // document.getElementById('myLayerButton').click()
+    //         document.getElementById('myLayerButton').click()
+    //         // document.getElementById("emojionearea-css").disabled = false
+    //         console.log('clicksimulated')
+    //
+    //           // emojiRequest()
+    //           $.getScript({
+    //              cache:true,
+    //             url:'scripts/customIcons_v3.js'
+    //           }),
+    //           $.getScript({
+    //              cache:true,
+    //             url:'scripts/lib/html2canvas.js'
+    //           }),
+    //           $.getScript({
+    //             cache:true,
+    //             url:'scripts/lib/adapter-latest.min.js'
+    //           })
+    //
+    //
+    //   },1000)
+    //   map.fireEvent('click', {
+    //   latlng: L.latLng(0, 0)
+    // },100);
+    //
+    // });
 
 
       // var images = new Array()
@@ -422,9 +453,9 @@ document.onreadystatechange = function () {
   window.addEventListener("click", function(){
     console.log('click to load more stuff')
       // window.addEventListener("click", () => {
-      document.getElementById("emojionearea-css").disabled = false
+      // document.getElementById("emojionearea-css").disabled = false
 
-      emojiRequest()
+      // emojiRequest()
 
     //   console.log("emoji script called");
     // }, { once: true });
@@ -442,6 +473,18 @@ document.onreadystatechange = function () {
     $.getScript({
       cache:true,
       url:'scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/Control.GlobeMiniMap.js'
+    }),
+    $.getScript({
+       cache:true,
+      url:'scripts/customIcons_v3.js'
+    }),
+    $.getScript({
+       cache:true,
+      url:'scripts/lib/html2canvas.min.js'
+    }),
+    $.getScript({
+      cache:true,
+      url:'scripts/lib/adapter-latest.min.js'
     })
     function preload(arrayOfImages) {
       $(arrayOfImages).each(function(){
@@ -559,9 +602,10 @@ var requestPw = function(){
                     document.getElementById('modal').style.display='none';
                     document.getElementById('pwForm').style.display='none';
                     document.getElementById('AlertModalIOS').style.display = 'none'
-                    navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
+                    location.reload() //to activate the sw so it can be used offline afterwards
+                    // navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
 
-                },1000)
+                },4000)
                 //in case first load is with url geoJSON -- not the best approach ever, but it works.
                 if(urlContainsGeoJSON == true){
                   var activateLocalStorageLayer = setInterval(function(){
