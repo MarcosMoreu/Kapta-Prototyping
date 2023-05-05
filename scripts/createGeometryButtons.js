@@ -8,18 +8,18 @@ map.addLayer(drawnItems);
 var editableLayers = new L.FeatureGroup();
 map.addLayer(editableLayers);
 
-var emojiRequest = function(){
-  $("#emojionearea").emojioneArea({
-      pickerPosition: "top",
-      filtersPosition: "bottom",
-      tones: false,
-      autocomplete: false,
-      inline: false, //text box resizes with text input
-      hidePickerOnBlur: false,
-      search: false,
-      placeholder: "..."
-  });
-}
+// var emojiRequest = function(){
+//   $("#emojionearea").emojioneArea({
+//       pickerPosition: "top",
+//       filtersPosition: "bottom",
+//       tones: false,
+//       autocomplete: false,
+//       inline: false, //text box resizes with text input
+//       hidePickerOnBlur: false,
+//       search: false,
+//       placeholder: "..."
+//   });
+// }
 
 var editableLayers = new L.FeatureGroup();
 var options = {
@@ -101,6 +101,8 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
 var clickMapCount = 0;
 var clickDelVertCount = 0;
 document.getElementById("goBack2").onclick = function(e) {
+  googleSatOnly.removeFrom(map)
+  googleSat.addTo(map)
   finalAreaHa2Decimals = null
   finalAreaAcres2Decimals = null
   finalLength2Decimals = null
@@ -170,7 +172,7 @@ document.getElementById('point').onclick = function(e) {
     gps_Button.button.style.opacity = '0.4';
     gps_Button.button.disabled = true;
 
-    emojiRequest()
+    // emojiRequest()
 
     if (isIOS == false) {
         recordedBlobs = null; //to empty recorded blobs from previous map in this session
@@ -220,7 +222,7 @@ document.getElementById('polyline').onclick = function(e) {
     gps_Button.button.style.opacity = '0.4';
     gps_Button.button.disabled = true;
 
-    emojiRequest()
+    // emojiRequest()
 
     if (isIOS == false) {
         recordedBlobs = null; //to empty recorded blobs from previous map in this session
@@ -292,7 +294,7 @@ document.getElementById('polygon').onclick = function(e) {
       gps_Button.button.style.opacity = '0.4';
       gps_Button.button.disabled = true;
 
-      emojiRequest()
+      // emojiRequest()
 
     if (isIOS == false) {
         recordedBlobs = null; //to empty recorded blobs from previous map in this session
@@ -470,6 +472,11 @@ map.on('draw:deleted', function(e) {
 var typeOfFeature;
 map.on('draw:created', function(e) {
   field = false
+
+  googleSat.removeFrom(map)
+  googleSatOnly.addTo(map)
+  // googleSat.addTo(map)
+
   //console.log(drawnItems)
 
   document.getElementById('myRange').style.display = 'none'
@@ -547,9 +554,7 @@ map.on('draw:created', function(e) {
         // document.getElementById("showAreaHa").innerHTML = finalAreaHa2Decimals;
         document.getElementById('showAreaAcres').style.display = 'initial';
         document.getElementById("showAreaAcres").innerHTML = finalAreaAcres2Decimals;
-    }
-    ////////    length    ///////////
-    if (type == 'polyline') {
+    }else if (type == 'polyline') {
         typeOfFeature = 'polyline'
         //to remove decimals ....
         finalLength2Decimals = (finalLength/1000).toFixed(2) + ' ' + 'Km'
@@ -560,12 +565,12 @@ map.on('draw:created', function(e) {
         //to show the final length on the top
         // document.getElementById('showLength').style.display = 'initial';
         //document.getElementById("showLength").innerHTML = finalLength2Decimals;
-    }
-    if (featureType == 'point') {
-        //console.log('featuretype    ' + featureType)
-        setTimeout(function() {
-            map.zoomOut(3)
-        }, 100)
+    }else{
+      typeOfFeature = 'point'
+  document.getElementById("showAreaAcres").innerHTML = ''
+        //to show the final length on the top
+        // document.getElementById('showLength').style.display = 'initial';
+        //document.getElementById("showLength").innerHTML = finalLength2Decimals;
     }
     //////////////////////////////////////////
 
@@ -597,6 +602,15 @@ map.on('draw:created', function(e) {
     var boundsPolygon = drawnItems.getBounds()
     var centerBoundsPolygon = boundsPolygon.getCenter()
     var mapNewBounds = map.getBounds();
+
+    if (featureType == 'point') {
+        //console.log('featuretype    ' + featureType)
+        setTimeout(function() {
+          // if(isOnline == true){
+            map.zoomOut(3)
+          // }else{
+        }, 100)
+    }
     map.fitBounds(drawnItems.getBounds(), {
         //  maxZoom:30,
         paddingBottomRight: [0, 0]
@@ -604,8 +618,8 @@ map.on('draw:created', function(e) {
     //console.log(typeOfFeature)
     //console.log(created)
 
-    document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null // to empty text box
-    document.getElementsByClassName('emojionearea-wrapper').innerHTML = null // to empty text box
+    document.getElementsByClassName('emojionearea').value = null // to empty text box
+    // document.getElementsByClassName('emojionearea-wrapper').innerHTML = null // to empty text box
     //console.log(document.getElementsByClassName('emojionearea').value)
 
     startCheckingText() // to call the function to start checking the input text
@@ -617,6 +631,7 @@ map.on('draw:created', function(e) {
     map.scrollWheelZoom.disable();
     map.boxZoom.disable();
     map.keyboard.disable();
+    // googleSatOnly.addTo(map)
     if (map.tap) map.tap.disable();
     document.getElementById('map').style.cursor='default';
 
@@ -638,6 +653,8 @@ var boxContent;
 var justCancelled = false
 document.getElementById('Cancel').onclick = function(e) {
   // projectsCreated = true
+  googleSatOnly.removeFrom(map)
+  googleSat.addTo(map)
   const celltohide = document.querySelectorAll('.gridCell')
   for (const el of celltohide) {
     el.parentNode.removeChild(el);
@@ -652,7 +669,7 @@ document.getElementById('Cancel').onclick = function(e) {
   document.getElementById('Alert').style.opacity = '1'
 
 
-    document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
+    document.getElementById('emojionearea').value = null
     myLayer_Button.button.style.opacity = '1';
     myLayer_Button.button.disabled = false;
     // myLayer_Button.button.style.backgroundColor = 'grey';
@@ -756,6 +773,8 @@ document.getElementById('Cancel').onclick = function(e) {
       map.scrollWheelZoom.enable();
       map.boxZoom.enable();
       map.keyboard.enable();
+      googleSatOnly.removeFrom(map)
+
       if (map.tap) map.tap.enable();
       document.getElementById('map').style.cursor='grab';
 

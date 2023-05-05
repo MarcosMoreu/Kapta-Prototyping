@@ -5,7 +5,7 @@
 //var runJSselectFeature = function(){
 document.getElementById("backDeleteFeature").onclick = function() {
   console.log(whichLayerIsOn)
-  document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
+  document.getElementById('emojionearea').value = null
 
   aFeatureIsSelected = false
   try{
