@@ -387,6 +387,12 @@ var screenshotOn = false
 var filesArrayScreenshot
 var dataURL
 document.getElementById('screenshot').addEventListener('click',function (){
+  $('#screenshots').empty()
+  console.log('screensht clicked')
+  // console.log(img)
+
+
+
   try{// to catch the error in case the screenshot doesn't work here
 
 
@@ -414,13 +420,13 @@ document.getElementById('screenshot').addEventListener('click',function (){
     document.getElementById('camera').style.borderWidth = '0px'
     document.getElementById("imageScreenshot").src = 'images/checkingPw.gif'
 
-
     // document.getElementById('screenshot').style.borderColor = 'black'
     // document.getElementById('camera').style.borderColor = '#7c7c7c'
     // document.getElementById('camera').style.opactiy = '0.3'
     document.getElementById('camera').disabled = true
     // document.getElementById('camera').style.backgroundColor = 'black'
     // document.getElementById('camera').style.opacity = '0.3'
+    // googleSat.removeFrom(map)
 
 setTimeout(function(){ //this is simply to improve button interaction with 300ms before processing stuff below
 
@@ -446,7 +452,6 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
 
 
 
-
 //we adding this because in order to show in the canvas, this need to be a map element. We could do 'body' instead of 'map', but performance...
     document.getElementById("showAreaAcresScreenshot").innerHTML = document.getElementById("showAreaAcres").innerHTML
     document.getElementById("showAreaAcresScreenshot").style.display = 'initial'
@@ -454,48 +459,77 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
     // setTimeout(function(){  // to make the button transition immediate, and also disapear easybuttons for ms
 
     const img = document.createElement("img");
-    //get transform value
-    // var mapNodes = ".leaflet-map-pane";
-    // var transform = $(mapNodes).css('transform');
-    // console.log(transform)
-    // var comp = transform.split(',');
-    // // var transform = $(".gm-style>div:first>div:first>div:last>div").css("transform")
-    // // var comp = transform.split(",") //split up the transform matrix
-    // var mapleft = parseFloat(comp[4]) //get left value
-    // var maptop = parseFloat(comp[5])  //get top value
-    // $(".leaflet-map-pane").css({ //get the map container. not sure if stable
-    //   "transform": "none",
-    //   "left": mapleft,
-    //   "top": maptop,
-    // })
-    html2canvas(document.getElementById("map"), {
-      allowTaint: true,
-      useCORS: true,
-      imageTimeout:1,
-      removeContainer:true,
-    }).then(function(){
-      html2canvas(document.getElementById("map"), {
+//     const captureScreenshot = async () => {
+//         const canvas = document.createElement("canvas");
+//         const context = canvas.getContext("2d");
+//         const screenshot = document.createElement("screenshot");
+//
+//         try {
+//             const captureStream = await navigator.mediaDevices.getDisplayMedia();
+//             screenshot.srcObject = captureStream;
+//             context.drawImage(screenshot, 0, 0, window.width, window.height);
+//             const frame = canvas.toDataURL("image/png");
+//             captureStream.getTracks().forEach(track => track.stop());
+//             console.log(frame)
+//             window.location.href = frame;
+//         } catch (err) {
+//             console.error("Error: " + err);
+//         }
+//     };
+// captureScreenshot()
+//       //
+  var heightscreen = window.innerHeight
+  console.log('heightscreen',heightscreen)
+  var heightscreenshot = heightscreen - 200
+
+      html2canvas(document.getElementById('map'), {
         allowTaint: true,
         useCORS: true,
-        imageTimeout:20000,
+        imageTimeout:10000,
         removeContainer:true,
-        // dpi: 144,
-        // scale: 1,
-      //   ignoreElements: (node) => {
-      //   return node.nodeName === 'IFRAME';
-      // }
-        // onrendered:function(canvas){
-        //   $(".leaflet-map-pane").css({
-        //        left: 0,
-        //        top: 0,
-        //        "transform": transform
-        //    })
-        // },
-        // proxy: 'https://mt.google.com/vt/'
+        logging:true,
+        foreignObjectRendering: false,
+        height: heightscreenshot,
+        ignoreElements: function( element ) {
+          // console.log(element.src)
+          var src = element.src
+          // console.log(src)
+          // var srcString = src.toString()
+          // console.log(srcString)
+
+           /* Remove element with id="MyElementIdHere" */
+           if( 'button' == element.type || 'submit' == element.type) {
+             // console.log('ignored button,submit or link', element.id)
+               return true;
+           }
+           // if(element.id.includes('png')) {
+           //   console.log('ignored png', element.id)
+           //     return true;
+           // }
+
+           /* Remove all elements with class="MyClassNameHere" */
+           if( element.classList.contains( 'buttons' ) ) {
+               return true;
+           }
+           // try{
+           //   if( src.indexOf('s,h&x')) {
+           //     console.log('contains mtttttttttttttttttt')
+           //       return true;
+           //   }
+           // }catch(e){
+           //   console.log('cached error ignoring google hybrid')
+           // }
+
+         }
+        // width: 200,
+        // height:200,
+        // proxy:'./html2canvasproxy.php',
+
       })
       .then(function (canvas) {
         // It will return a canvas element
         // let image = canvas.toDataURL("image/png", 0.5);
+        // canvas.crossOrigin = 'anonymous'
         canvas.toBlob(function(blob){
           url = URL.createObjectURL(blob);
 
@@ -507,8 +541,8 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
           var file = new File([testBlob],nameFile, {type: testBlob.type });
           filesArrayScreenshot = [file];
           console.log('finished html2canvas')
-          // console.log(file)
-          // console.log(filesArrayScreenshot)
+          console.log(file)
+          console.log(filesArrayScreenshot)
 
         },'image/jpeg', 0.1)  // this is to define the quality of the image screenshot (keep in mind the size due to data bundles) - jpeg offers the best compression value as far as I've tried
         // console.log(image)
@@ -533,13 +567,15 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
           document.getElementById("camera").disabled = false
           document.getElementById("showAreaAcres").style.display = 'initial'
           document.getElementById('screenshot').style.borderColor = 'yellow'
+          googleSat.addTo(map)
+          googleSatOnly.removeFrom(map)
 
       })
       .catch((e) => {
         // Handle errors
         console.log(e);
       });
-    })
+
 
 
 },300)
