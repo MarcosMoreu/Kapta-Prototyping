@@ -1,6 +1,7 @@
 
 // var pageLoaded = false
 var subDOMAIN = 'testing'
+var sapelliProjectIdentifier = 'DTM' //this variable is need to put the sap project identifier in the geojson
 var isIOS = /iPad|iPhone|iPod|Mac OS X/.test(navigator.userAgent) && !window.MSStream; // Mac OS X correct???
 var isOnline = navigator.onLine
 var isOnlineGlobal = isOnline
@@ -11,6 +12,7 @@ var firebaseKey;
 var firebaseConfig;
 var cartousername;
 var cartoapiSELECT;
+var opencamera
 
 var isFirstTime; //var to store if the site is visited for the first time
 //var oneMapCompleted; // to know if in this session this is the first map or not
@@ -234,7 +236,7 @@ var findFirebaseCredentials = setInterval(function() {
 if ('serviceWorker' in navigator) {
 
     navigator.serviceWorker
-        .register('./sw.js')
+        .register('./sw.js',{ scope: '/' })
         .then(function(registration) {
 
             registration.update() //to update the sw and caches if version has changed
@@ -282,16 +284,96 @@ var get = function(url) {
 };
 
 var tilesDb = {
-    getItem: function(key) {
-        return localforage.getItem(key);
+    // setItem:function(key, value) {
+    //   console.log('tilesdb calleeeeeeeeeeeed  SAVE')
+    //
+    //     return localforage.setItem(key, value)
+    // },
+    getItem: function(key, value) {
+      // key = key.replace("hmt0.ps", "https");
+      // console.log(key)
+      //
+      // caches.match(key).then(function(response) {
+      //   if(response != null){
+      //     var itemfromthecache = caches.getItem(key)
+      //     console.log(response)
+      //       console.log(itemfromthecache)
+      //        localforage.setItem(key, response);
+      //   }
+      //
+      //
+      //   })
+
+      // key.value
+      // console.log(value)
+      // console.log(value)
+      // var tileURL = localforage.getItem(key)
+      //   console.log(tileURL.blob())
+// localforage.setItem(key);
+
+        return localforage.getItem(key)
+        // .then(function() {
+        //   if(value == null){
+        //
+        //     // var urltile = key.replace("hmt0.ps", "https");
+        //
+        //
+        //     console.log(key)
+        //     // console.log(urltile)
+        //     //setitem...............
+        //   }else{
+        //     console.log('elseseeeeeeeeeeeeeeee')
+        //
+        //   }
+        //
+        //
+        //     return localforage.setItem(key, value);
+        // });
+
+    //       console.log('tilesdb calleeeeeeeeeeeed  SAVE')
+    // localforage.setItem(key, value);
+            // var self = this;
+            // var promise
+            //
+            // // for (var i = 0; i < tileUrls.length; i++) {
+            //     // var tileUrl = tileUrls[i];
+            //
+            //     (function(key) {
+            //         promise = new Promise(function(resolve, reject) {
+            //             var request = new XMLHttpRequest();
+            //             request.open('GET', key.url, true);
+            //             request.responseType = 'blob';
+            //             request.onreadystatechange = function() {
+            //                 if (request.readyState === XMLHttpRequest.DONE) {
+            //                     if (request.status === 200) {
+            //                         resolve(self._saveTile(key, request.response));
+            //                     } else {
+            //                         reject({
+            //                             status: request.status,
+            //                             statusText: request.statusText
+            //                         });
+            //                     }
+            //                 }
+            //             };
+            //             request.send();
+            //         });
+            //     })
+            // // }
+            // return Promise
+          // )
     },
 
     saveTiles: function(tileUrls) {
+      console.log('tilesdb calleeeeeeeeeeeed  SAVE')
+// localforage.setItem(key);
         var self = this;
         var promises = [];
 
         for (var i = 0; i < tileUrls.length; i++) {
             var tileUrl = tileUrls[i];
+            if(i==tileUrls.length-1){
+              alert('All tiles have been downloaded.')
+            }
 
             (function(i, tileUrl) {
                 promises[i] = new Promise(function(resolve, reject) {
@@ -322,7 +404,10 @@ var tilesDb = {
     },
 
     _saveTile: function(key, value) {
+      console.log('tilesdb calleeeeeeeeeeeed  ____SAVE')
+
         return this._removeItem(key).then(function() {
+
             return localforage.setItem(key, value);
         });
     },
@@ -461,6 +546,8 @@ if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains 
           try{
             document.getElementById('myLayerButton').click()
             document.getElementById('myLayerButton').click()
+            document.getElementById('myLayerButton').click()
+
             console.log('zzzzzzzzzzzzzzzzzzzzzzzzzz')
 
             clearInterval(activateLocalStorageLayer)
@@ -572,11 +659,11 @@ map.on('zoomend', function(e) {
   }
 })
 
-if(document.getElementById("emojionearea-css").disabled == true){
-  map.on('zoomend', function(e) {
-    document.getElementById("emojionearea-css").disabled = false
-  })
-}
+// if(document.getElementById("emojionearea-css").disabled == true){
+//   map.on('zoomend', function(e) {
+//     document.getElementById("emojionearea-css").disabled = false
+//   })
+// }
 
 L.Permalink.setup(map);
 
@@ -762,10 +849,18 @@ function fetchFromLocalStorage(){
                         console.log(randomID)
                         var dataGeometryString = JSON.stringify(dataGeometry)
                         ////console.log(dataGeometryString)
+                        console.log('cluster',cluster)
+                        console.log('ett_type',ett_type)
+                        console.log('maisonsdetruites_number',maisonsdetruites_number)
+                        console.log('personnesaffectees_number',personnesaffectees_number)
+                        console.log('evaluation_updown',evaluation_updown)
+                        console.log('landownership_type',landownership_type)
+                        console.log('male_or_female',male_or_female)
                         var commentAudioDefault = '.'
-                        var sql = "INSERT INTO lumblu_private (the_geom, randomid, landuses, landusesemoji, areapolygon, lengthline, timespent, distance, geometrystring, screensize, date, phonenumber, sapprojid) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
+                        var sql = "INSERT INTO lumblu_private (the_geom, randomid, landuses, landusesemoji, areapolygon, lengthline, timespent, distance, geometrystring, screensize, date, phonenumber, sapprojid, cluster, ett_type, maisons_detruites, personnes_affectees, crop_hectares_affected, landownership_type, male_or_female) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
                         var sql2 = dataGeometryString;
-                        var sql3 = "'),4326),'" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "','" + dateTime + "','" + phoneNumber + "','" + sapelliProjectIdentifier + "')";
+                        var sql3 = "'),4326),'" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "','" + dateTime + "','" + phoneNumber
+                         + "','" + sapelliProjectIdentifier + "','" + cluster + "','" + ett_type + "','" + maisonsdetruites_number + "','" + personnesaffectees_number + "','" + crop_hectares_afected + "','" + landownership_type + "','" + male_or_female + "')";
                         pURL = sql + sql2 + sql3;
                         console.log(pURL)
                         submitToProxy(pURL);
@@ -817,9 +912,11 @@ var googleSat = L.tileLayer.offline('https://{s}.google.com/vt/lyrs=s,h&x={x}&y=
     maxZoom: 21,
     maxNativeZoom: 21,
     opacity: 1,
+    savetileend:true,
+    // cache:true,
     //border: 'solid black 5px',
     subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-    attribution: 'Leaflet | Google'
+    attribution: 'Leaflet | Google',
 })//.addTo(map);
 
 var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', tilesDb, {
@@ -830,12 +927,16 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
     attribution: 'Leaflet | OpenStreetMap Contributors'
 
 });
-
+var googleSatOnly = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
 var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
     saveButtonHtml: '<img src="images/download.png" alt="..." width=15px ; height=15px>',
     removeButtonHtml: '<img src="images/bin.png" alt="..." width=15px ; height=15px>',
+
     confirmSavingCallback: function(nTilesToSave, continueSaveTiles) {
-        if (window.confirm('Save ' + nTilesToSave + '?')) {
+        if (window.confirm('Save ' + nTilesToSave + ' tiles? PLEASE READ. 1) Note that more than 1000 tiles might cause errors (click cancel, zoom in to reduce the number and click download again). 2) After clicking OK, wait a few seconds for a confirmation message.')) {
             continueSaveTiles();
         }
     },
@@ -845,7 +946,7 @@ var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
         }
     },
     minZoom: 0,
-    maxZoom: 21
+    maxZoom: 16
 });
 var offlineControlOSM = L.control.offline(osm, tilesDb, {
     saveButtonHtml: '<img src="images/download.png" alt="..." width=15px ; height=15px>',
@@ -862,8 +963,10 @@ var offlineControlOSM = L.control.offline(osm, tilesDb, {
         }
     },
     minZoom: 0,
-    maxZoom: 21
+    maxZoom: 16
 });
+
+
 
 //script to refresh planet mosaics based on the date (assuming new monthly mosaics is updated around the 10th of each month)
 if(isIOS == false){
@@ -888,22 +991,22 @@ if(isIOS == false){
       if(dayNumber >=15){
         mosaicRequestedLatest = 12
         attributeMosaicLatest = 'December'
-        year = 2021
+        year = 2023
       }else{
         mosaicRequestedLatest = 11
         attributeMosaicLatest = 'November'
-        year = 2021
+        year = 2023
       }
 
     }else if(monthNumber == 2){
       if(dayNumber >=15){
         mosaicRequestedLatest = '01'
         attributeMosaicLatest = 'January'
-        year = 2022
+        year = 2024
       }else{
         mosaicRequestedLatest = 12
         attributeMosaicLatest = 'December'
-        year = 2021
+        year = 2023
       }
 
     }else{
@@ -971,80 +1074,61 @@ if(isIOS == false){
    var monthMosaicRequested = (monthNumber - 2).toLocaleString('en-US', {minimumIntegerDigits: 2})
    year = '2021'
    mosaicRequestedLatest = '12'
-   attributeMosaicLatest = 'December 2021'
+   attributeMosaicLatest = 'December 2022'
 
 }
 
-// var postSuccessPlanetKey = function(data){
-//   console.log('planetkey',data)
-//    return data
-// }
-//
-//
-// var getPlanetAPIKey = function() {
-//     $.ajax({ //
-//         type: 'GET',
-//         url: '.env/processPlanet.php',
-//         // geojson:data,
-//         // cache: false,
-//         // timeStamp: new Date().getTime(),
-//         data:thekey,
-//         success:postSuccessPlanetKey()
-//     });
-// };
-
-
 var sentinelHubKey = '82b5a4e7-b887-40b2-949b-1b47a2aa9774';
 console.log('mosaicRequestedLatest',mosaicRequestedLatest)
-// a script to automate the update of these global mosaics is needed. At the moment, this needs to be done manually, both here to update the attributes and in the SentinelHub platfrom
-// var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_' + year + '-' + mosaicRequestedLatest + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=' + getPlanetAPIKey(),{
-//   attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaicLatest + ' ' + year
-//   })
-  var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2022-12_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
-    attribution: 'Leaflet | PlanetScope Imagery ' + 'December 2021'
-    })
-  var planetScopeMonthlyMosaicLatestMinus4Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_' + year4MonthsAgo + '-' + mosaicRequested4Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
-    attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic4Months + ' ' + year4MonthsAgo
-    })
-  var planetScopeMonthlyMosaicLatestMinus8Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_' + year8MonthsAgo + '-' + mosaicRequested8Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
-    attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic8Months + ' ' + year8MonthsAgo
-    })
-  var planetScopeMonthlyMosaic1YearAgo = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_' + year12MonthsAgo + '-' + mosaicRequested12Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
-    attribution: 'Leaflet | PlanetScope Imagery  ' + attributeMosaic12Months + ' ' + year12MonthsAgo
-    })
 
-  var planetMosaicLatestMinus2Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2020-06_2020-08_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
-        attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic24Months + ' ' + year24MonthsAgo
-    });
-  // var planetMosaicLatestMinus3Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year36MonthsAgo + '_' + mosaicRequested36Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-  //       attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic36Months + ' ' + year36MonthsAgo
+  // var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_' + mosaicRequestedLatest + '-' + mosaicRequested4Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
+  //   attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaicLatest + ' ' + year
+  //   })
+  // var planetScopeMonthlyMosaicLatestMinus4Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_' + year4MonthsAgo + '-' + mosaicRequested4Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
+  //   attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic4Months + ' ' + year4MonthsAgo
+  //   })
+  // var planetScopeMonthlyMosaicLatestMinus8Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_' + year8MonthsAgo + '-' + mosaicRequested8Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
+  //   attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic8Months + ' ' + year8MonthsAgo
+  //   })
+  // var planetScopeMonthlyMosaic1YearAgo = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_' + year12MonthsAgo + '-' + mosaicRequested12Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
+  //   attribution: 'Leaflet | PlanetScope Imagery  ' + attributeMosaic12Months + ' ' + year12MonthsAgo
+  //   })
+  // var planetMosaicLatestMinus2Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2020-06_2020-08_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
+  //       attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic24Months + ' ' + year24MonthsAgo
   //   });
-  // var planetMosaicLatestMinus5Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/global_monthly_' + year60MonthsAgo + '_' + mosaicRequested60Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=2b11aafd06e2464a85d2e97c5a176a9a',{
-  //       attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaic60Months + ' ' + year60MonthsAgo
+  //
+  // var  planetMosaicLatestMinus3Years = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelHubKey + "?REQUEST=GetMap&PREVIEW=2", {
+  //       layers: '2017SENTINEL2',
+  //       attribution: 'Leaflet | Sentinel 2 Imagery August 2015'
   //   });
-    var  planetMosaicLatestMinus3Years = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelHubKey + "?REQUEST=GetMap&PREVIEW=2", {
-          layers: '2017SENTINEL2',
-          attribution: 'Leaflet | Sentinel 2 Imagery August 2015'
+
+    var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2023-03_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
+      attribution: 'Leaflet | PlanetScope Imagery March 2023'
+      })
+    var planetScopeMonthlyMosaicLatestMinus4Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2023-01_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
+      attribution: 'Leaflet | PlanetScope Imagery January 2023'
+      })
+    var planetScopeMonthlyMosaicLatestMinus8Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2022-09_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
+      attribution: 'Leaflet | PlanetScope Imagery September 2022'
+      })
+    var planetScopeMonthlyMosaic1YearAgo = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2022-05_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
+      attribution: 'Leaflet | PlanetScope Imagery May 2022'
+      })
+    var planetMosaicLatestMinus2Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2021-05_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
+          attribution: 'Leaflet | PlanetScope Imagery May 2021'
       });
 
-      // var  planetMosaicLatestMinus5Years = L.tileLayer.wms("https://services-uswest2.sentinel-hub.com/api/v1/catalog/collections/landsat-ot-l2/" + sentinelHubKey, {
-      //       layers: '2015LANDSAT',
-      //       attribution: 'Leaflet | Landsat Imagery 2013'
-      //   });
-        // var  planetMosaicLatestMinus5Years = L.tileLayer.wms("https://services.sentinel-hub.com/ogc/wms/" + sentinelHubKey + "?REQUEST=GetMap", {
-        //       layers: '2015LANDSAT',
-        //       attribution: 'Leaflet | Landsat Imagery 2013'
-        //   });
 
+    var  planetMosaicLatestMinus3Years = L.tileLayer.wms("https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2020-06_2020-08_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b", {
+          // layers: '2017SENTINEL2',
+          attribution: 'Leaflet | PlanetScope Imagery ~May 2020'
+      });
+    //here we just need to copy the instance ID from the dashboard, and set the bounding box
 
-
-
-        //here we just need to copy the instance ID from the dashboard, and set the bounding box
-
-        var  planetMosaicLatestMinus5Years = L.tileLayer.wms("https://services-uswest2.sentinel-hub.com/ogc/wms/09235d3c-8c31-4b0e-abdf-213a9f622639?REQUEST=GetMap&PREVIEW=2", {
-              layers: '2013LANDSAT',
-              attribution: 'Leaflet | Landsat Imagery 2013'
-          });
+    var  planetMosaicLatestMinus5Years = L.tileLayer.wms("https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2018-06_2018-11_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b", {
+          // layers: '2013LANDSAT',
+          attribution: 'Leaflet | PlanetScope Imagery 2018'
+      });
 
 
 
@@ -1082,24 +1166,24 @@ console.log('mosaicRequestedLatest',mosaicRequestedLatest)
 // googleSat.on('offline:save-start', function(data) {
 //     ////console.log('Saving ' + data.nTilesToSave + ' tiles.');
 // });
-// googleSat.on('offline:save-end', function() {
-//     alert('All the tiles were saved.');
-// });
-// googleSat.on('offline:save-error', function(err) {
-//     ////console.error('Error when saving tiles: ' + err);
-// });
-// googleSat.on('offline:remove-start', function() {
-//     ////console.log('Removing tiles.');
-// });
-// googleSat.on('offline:remove-end', function() {
-//     alert('All the tiles were removed.');
-// });
-// googleSat.on('offline:remove-error', function(err) {
-//     ////console.error('Error when removing tiles: ' + err);
-// });
-// googleSat.on('offline:below-min-zoom-error', function() {
-//     alert('Can not save tiles below minimum zoom level.');
-// });
+googleSat.on('offline:save-end', function() {
+    // alert('All the tiles were saved.');
+});
+googleSat.on('offline:save-error', function(err) {
+    ////console.error('Error when saving tiles: ' + err);
+});
+googleSat.on('offline:remove-start', function() {
+    ////console.log('Removing tiles.');
+});
+googleSat.on('offline:remove-end', function() {
+    alert('All the tiles were removed.');
+});
+googleSat.on('offline:remove-error', function(err) {
+    ////console.error('Error when removing tiles: ' + err);
+});
+googleSat.on('offline:below-min-zoom-error', function() {
+    alert('Can not save tiles below minimum zoom level.');
+});
 // ////////////////
 //
 // osm.on('offline:save-start', function(data) {
@@ -1243,6 +1327,8 @@ osm.on("tileerror",function() {
   document.getElementById("Alert").style.textAlign = "center"
   document.getElementById('Alert').innerHTML = '<br> ❗ 📶 ❗'
   document.getElementById("Alert").style.display = 'initial'
+  map.setZoom(0)
+
 });
 googleSat.on("load",function() {
 
@@ -1255,6 +1341,8 @@ googleSat.on("tileerror",function() {
   document.getElementById("Alert").style.textAlign = "center"
   document.getElementById('Alert').innerHTML = '<br> ❗ 📶 ❗'
   document.getElementById("Alert").style.display = 'initial'
+  map.setZoom(0)
+
 });
 planetScopeMonthlyMosaicLatest.on("load",function() {
   //console.log("all visible planet tiles have been loaded")
@@ -1365,7 +1453,7 @@ planetMosaicLatestMinus3Years.on("load",function() {
   document.getElementById("MapLoading").style.display = 'none'
 
   document.getElementById("Alert").style.fontSize = "20px";
-  document.getElementById('Alert').innerHTML = '2015<br>'
+  document.getElementById('Alert').innerHTML = '2020<br>'
   document.getElementById("Alert").style.display = 'initial'
 });
 planetMosaicLatestMinus3Years.on("tileerror",function() {
@@ -1384,7 +1472,7 @@ planetMosaicLatestMinus5Years.on("load",function() {
   document.getElementById("MapLoading").style.display = 'none'
 
   document.getElementById("Alert").style.fontSize = "20px";
-  document.getElementById('Alert').innerHTML = '2013<br>'
+  document.getElementById('Alert').innerHTML = '2018<br>'
   document.getElementById("Alert").style.display = 'initial'
 
 });
@@ -2179,9 +2267,9 @@ var filter_Button = L.easyButton({
         icon: iconFILTER,
         stateName: 'check-mark',
         onClick: function(btn, map) {
-          emojiRequest()
-          const element = document.getElementById('span6');
-          element.style.width = 'calc(100% - 200px)';
+          // document.getElementById("emojionearea-css").disabled = false
+          // emojiRequest()
+
 
           document.getElementById("backDeleteFeature").style.display = "none";
           document.getElementById("deleteFeature").style.display = 'none';
@@ -2193,6 +2281,8 @@ var filter_Button = L.easyButton({
           document.getElementById("randomSuggestion").style.display = "none";
 
           if(filterIsOn == false){
+            const element = document.getElementById('span6');
+            element.style.width = 'calc(100% - 200px)';
             filter_Button.button.style.borderColor = 'white'
             startCheckAttrDateContent = setInterval(checkAttrDateContent,300)
             //console.log('filterisonfalse')
@@ -2250,6 +2340,8 @@ var filter_Button = L.easyButton({
             // }
 
         }else{
+          console.log('filterbutton and filter off')
+
             landUse = 'emojiNoSapelli'
             const element = document.getElementById('span6');
             element.style.width = 'calc(100% - 125px)';
@@ -2294,7 +2386,7 @@ var filter_Button = L.easyButton({
 
 var checkAttrDateContent = function(){
 
-  boxContentFiltering = document.getElementsByClassName('emojionearea-editor')[0].innerHTML
+  boxContentFiltering = document.getElementById('emojionearea')
   var img =  document.getElementById("imgFilterByDate")
 
       if(!(img.src.match("dateAll")) || boxContentFiltering.length != 0){
@@ -2721,8 +2813,8 @@ var filterLocalStorage_Button = L.easyButton({
             //
             //
             // }
-
-            emojiRequest()
+            // document.getElementById("emojionearea-css").disabled = false
+            // emojiRequest()
             document.getElementById("backDeleteFeature").style.display = "none";
             document.getElementById("deleteFeature").style.display = 'none';
             // document.getElementById("goBackMessagingApps").style.display = "none";
@@ -2733,6 +2825,8 @@ var filterLocalStorage_Button = L.easyButton({
             document.getElementById("randomSuggestion").style.display = "none";
 
             if(filterIsOn == false){
+              const element = document.getElementById('span6');
+              element.style.width = 'calc(100% - 200px)';
               filterLocalStorage_Button.button.style.borderColor = 'white'
 
               startCheckAttrDateContent = setInterval(checkAttrDateContent,300)
@@ -2790,6 +2884,8 @@ var filterLocalStorage_Button = L.easyButton({
               // }
 
           }else{
+            const element = document.getElementById('span6');
+            element.style.width = 'calc(100% - 125px)';
             filterLocalStorage_Button.button.style.border= '2px solid transparent';
             landUse = 'emojiNoSapelli'  // to refresh the popup content while creating geom incease filter applied before
 
@@ -2988,13 +3084,51 @@ function setData() {
         dataGeometry = data.geometry
         console.log(dataGeometry)
         var dataGeometryString = JSON.stringify(dataGeometry)
-        ////console.log(dataGeometryString)
+        console.log('cluster',cluster)
+        console.log('ett_type',ett_type)
+        console.log('maisonsdetruites_number',maisonsdetruites_number)
+        console.log('personnesaffectees_number',personnesaffectees_number)
+        console.log('crop_hectares_afected',crop_hectares_afected)
+        console.log('landownership_type',landownership_type)
+        console.log('male_or_female',male_or_female)
+        // phoneNumber = 123456789
+        if(croptype != null && evaluation_updown.includes('👎🏿')){
+          function extractNumbers(str) {
+            return str.replace(/\D/g, '');
+          }
+          crop_hectares_afected = extractNumbers(areaPolygon)
+          console.log('crop_hectares_afected acres',crop_hectares_afected)
+          crop_hectares_afected =crop_hectares_afected.slice(0, -2)
+          crop_hectares_afected = crop_hectares_afected*0.404686
+        }else{
+          crop_hectares_afected = 0
+        }
+        // landownership_type = null
+        // male_or_female = null
+
+        // var lu_final =landUsesEmoji.replace(/<br>/g, '');
+        // lu_final ='test'
+        // cluster = 'test'
+        // ett_type = 'test'
+        // maisonsdetruites_number = 11
+        // personnesaffectees_number = 12
+        // crop_hectares_afected = 0
+        // landownership_type = null
+        // male_or_female = null
+        // console.log(lu_final)
         var commentAudioDefault = '.'
-        var sql = "INSERT INTO lumblu_private (the_geom, randomid, landuses, landusesemoji, areapolygon, lengthline, timespent, distance, geometrystring, screensize, date, phonenumber, sapprojid) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
+        var sql = "INSERT INTO lumblu_private (the_geom, randomid, contribution, areapolygon, lengthline, timespent, distance, date, phone, sapprojid, cluster, ett, maisons, personnes, crop_ha, ownership, gender) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
         var sql2 = dataGeometryString;
-        var sql3 = "'),4326),'" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "','" + dateTime + "','" + phoneNumber + "','" + sapelliProjectIdentifier + "')";
+var sql3 = "'),4326),'"+randomID+"','"+landUsesEmoji+"','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dateTime + "','" + phoneNumber + "','" + sapelliProjectIdentifier + "','" + cluster + "','" + ett_type + "','" + maisonsdetruites_number + "','" + personnesaffectees_number + "','" + crop_hectares_afected + "','" + landownership_type + "','" + male_or_female + "')";
         pURL = sql + sql2 + sql3;
-        //console.log(pURL)
+        console.log(pURL)
+        // ////console.log(dataGeometryString)
+        // var commentAudioDefault = '.'
+        // var sql = "INSERT INTO lumblu_private (the_geom, randomid, landuses, landusesemoji, areapolygon, lengthline, timespent, distance, geometrystring, screensize, date, phonenumber, sapprojid) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
+        // var sql2 = dataGeometryString;
+        // var sql3 = "'),4326),'" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "','" + dateTime + "','" + phoneNumber + "','" + sapelliProjectIdentifier + "')";
+        // pURL = sql + sql2 + sql3;
+        // //console.log(pURL)
 
     }
 
@@ -3120,6 +3254,10 @@ document.getElementById("gobackArmchairField").onclick = function(e) {
 
 }
 document.getElementById("armchair").onclick = function(e) {
+  attachPhoto = false
+  photoAccepted = null //this is to not attach a picture taken in the previous mapping in the same session
+  screenshotOn = false
+  $('#screenshots').empty()
 
   //to disable layer to create a geometry
   // if(whichLayerIsOn == 'deflated' && localStorage == null){
@@ -3131,18 +3269,18 @@ document.getElementById("armchair").onclick = function(e) {
   //   document.getElementById('myLayerButton').click()
   // }
 
-  $.getScript({
-     cache:true,
-    url:'scripts/customIcons_v2.js'
-  }),
-  $.getScript({
-     cache:true,
-    url:'scripts/lib/html2canvas.min.js'
-  }),
-  $.getScript({
-    cache:true,
-    url:'https://webrtc.github.io/adapter/adapter-latest.js'
-  })
+  // $.getScript({
+  //    cache:true,
+  //   url:'scripts/customIcons_v3.1.js'
+  // }),
+  // $.getScript({
+  //    cache:true,
+  //   url:'scripts/lib/html2canvas.min.js'
+  // }),
+  // $.getScript({
+  //   cache:true,
+  //   url:'https://webrtc.github.io/adapter/adapter-latest.js'
+  // })
   // document.getElementById("Alert").style.display = 'none'
 
   document.getElementById("tutorial").style.display = "none";
@@ -3162,11 +3300,15 @@ document.getElementById("armchair").onclick = function(e) {
   justCancelled = false
 
   armchairOrGPS = 'a'
-  return finalLength && armchairOrGPS && justCancelled
+  return finalLength && armchairOrGPS && justCancelled && attachPhoto && photoAccepted && screenshotOn
 }
 
 
 document.getElementById("field").onclick = function(e) {
+  attachPhoto = false
+  photoAccepted = null //this is to not attach a picture taken in the previous mapping in the same session
+  screenshotOn = false
+  $('#screenshots').empty()
 //to disable layer to create a geometry
     // //to disable layer to create a geometry
     // if(whichLayerIsOn == 'deflated' && localStorage == null){
@@ -3178,18 +3320,18 @@ document.getElementById("field").onclick = function(e) {
     //   document.getElementById('myLayerButton').click()
     // }
 
-  $.getScript({
-     cache:true,
-    url:'scripts/customIcons_v2.js'
-  }),
-  $.getScript({
-     cache:true,
-    url:'scripts/lib/html2canvas.min.js'
-  }),
-  $.getScript({
-    cache:true,
-    url:'https://webrtc.github.io/adapter/adapter-latest.js'
-  })
+  // $.getScript({
+  //    cache:true,
+  //   url:'scripts/customIcons_v3.1.js'
+  // }),
+  // $.getScript({
+  //    cache:true,
+  //   url:'scripts/lib/html2canvas.min.js'
+  // }),
+  // $.getScript({
+  //   cache:true,
+  //   url:'https://webrtc.github.io/adapter/adapter-latest.js'
+  // })
   //console.log(currentLocation)
 //  console.log(accuracy)
 
@@ -3264,8 +3406,8 @@ document.getElementById("field").onclick = function(e) {
       filter_Button.button.style.opacity = '0.5'
         gps_Button.button.style.opacity = '0.4';
         gps_Button.button.disabled = true;
-
-        emojiRequest()
+        // document.getElementById("emojionearea-css").disabled = false
+        // emojiRequest()
 
         // if (isIOS == false) {
         //     recordedBlobs = null; //to empty recorded blobs from previous map in this session
@@ -3298,7 +3440,7 @@ document.getElementById("field").onclick = function(e) {
 
     armchairOrGPS = 'g'
     justCancelled = false
-  return drawingPoint && featureType && field && armchairOrGPS && justCancelled
+  return drawingPoint && featureType && field && armchairOrGPS && justCancelled && attachPhoto && photoAccepted && screenshotOn
 }
 ///////////////////////////////////////////draw screen////////////////////////////////////////////////
 
@@ -3329,7 +3471,7 @@ var moveMaptoTop = function() {
 // var refreshPopup;
 var startCheckingText = function() {
     var popupContent = '...';
-
+    imageName1 = 'dtm'
     tempLayer.removeFrom(map);
 
     function onEachFeatureConfirm(feature, layer) {
@@ -3338,15 +3480,16 @@ var startCheckingText = function() {
         refreshPopup = setInterval(function() {
             //the problem with document.getElementById('emojionearea').value is that it only updates when the text box is not selected, which is as issue. TextContent methodworks
             //well, except that it does not capture emojis
-            var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
+            var emojioneareaeditor0 = document.getElementById('emojionearea')
           //  ////console.log(emojioneareaeditor)
-            var emojioneareaeditor0 = emojioneareaeditor[0]
+            // var emojioneareaeditor0 = emojioneareaeditor[0]
           //  ////console.log(emojioneareaeditor0)
-            var emojioneareaeditor0innerHTML = emojioneareaeditor0.innerHTML /////////////////////////////////////////////11111111111111111111111ddddddddddddddddddddddddddddddESTE!!!
-          //  ////console.log(emojioneareaeditor0innerHTML)
+            // var emojioneareaeditor0innerHTML = emojioneareaeditor0.innerHTML /////////////////////////////////////////////11111111111111111111111ddddddddddddddddddddddddddddddESTE!!!
+           console.log(emojioneareaeditor0.value)
+           emojioneareaeditor0.value = emojioneareaeditor0.value.replace(/<br>|null/g, "")
 
         //    ////console.log(emojioneareaeditor[0].textContent.lenght)
-            if (emojioneareaeditor0innerHTML.length == 0) { //to show '...' while the textbox is empty of characters (both letter and emojis)
+            if (emojioneareaeditor0.value.length == 0) { //to show '...' while the textbox is empty of characters (both letter and emojis)
                 layer.bindPopup(popupContent).addTo(map);
                 layer.bindPopup(popupContent).closePopup(); ///automatically shows the pop up!
               //  ////console.log('innerhtml is null')
@@ -3374,8 +3517,9 @@ var startCheckingText = function() {
 
                 if(landUse == 'emojiNoSapelli'){
                   // if(attachPhoto == false){
-                    layer.bindPopup(emojioneareaeditor0innerHTML).addTo(map);
-                    layer.bindPopup(emojioneareaeditor0innerHTML).openPopup(); ///automatically shows the pop up!
+                    layer.bindPopup(emojioneareaeditor0.value).addTo(map);
+                    layer.bindPopup(emojioneareaeditor0.value).openPopup(); ///automatically shows the pop up!
+                    console.log('no emoji sapelli')
                   // }else{
 
                     // var imgPhoto = '<img src="images/cameraIcon.png"'+ 'height="50px" width="50px" border="0" bordercolor="grey" backgroundcolor="green"/>'
@@ -3421,7 +3565,7 @@ var startCheckingText = function() {
                   // }else if(evaluation != null && croptype != null){
                   //   emojioneareaeditor0innerHTML =  landUse + ' ▪️ ' + croptype + ' ▪️ ' + evaluation +  ' - ' + emojioneareaeditor0.innerHTML
                   // }
-                  var emojioneareaeditor0innerHTMLAndImages = emojioneareaeditor0innerHTML + '</br>' + '</br>' + imgPopup1 + ' ' +imgPopup2 + ' ' + imgPopup3// + ' ' + imgPhoto
+                  var emojioneareaeditor0innerHTMLAndImages = emojioneareaeditor0.value + '</br>' + '</br>' + imgPopup1 + ' ' +imgPopup2 + ' ' + imgPopup3// + ' ' + imgPhoto
                   layer.bindPopup(emojioneareaeditor0innerHTMLAndImages).addTo(map);
                   layer.bindPopup(emojioneareaeditor0innerHTMLAndImages).openPopup(); ///automatically shows the pop up!
 
