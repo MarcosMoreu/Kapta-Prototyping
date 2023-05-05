@@ -35,6 +35,12 @@ var testBlob = null
 
 
 document.getElementById('share-download').onclick = function(e) {
+  googleSat.removeFrom(map)
+
+finalAttributes = document.getElementById('emojionearea').value
+console.log(finalAttributes)
+
+
 console.log('sapelliProjectIdentifier',sapelliProjectIdentifier)
 console.log('sharedownload clickeeeeeeeeeeeeeeeeeed'  )
 
@@ -49,8 +55,19 @@ console.log('sharedownload clickeeeeeeeeeeeeeeeeeed'  )
 
     //here we generate a random ID so when offline the downloaded file is not duplicated
 
+    if(opencamera == 'yes'){
+      document.getElementById('camera').click()
+      document.getElementById('camera').style.display = 'none'
+      document.getElementById('screenshot').style.display = 'none'
 
-    screenshot.click()
+      opencamera = null
+    }else{
+      screenshot.click()
+      document.getElementById('camera').style.display = 'initial'
+      document.getElementById('camera').style.opacity = '1'
+      document.getElementById('screenshot').style.display = 'initial'
+      document.getElementById('screenshot').style.opacity = '1'
+    }
 
     //defining the final screen
     setTimeout(function() {
@@ -60,11 +77,9 @@ console.log('sharedownload clickeeeeeeeeeeeeeeeeeed'  )
         document.getElementById('shareMessagingAppsDirect').style.display = 'initial';
         document.getElementById('shareWorldButton').style.display = 'initial';
         document.getElementById('ShareFinalButton').style.display = 'initial';
-        document.getElementById('camera').style.display = 'initial'
-        document.getElementById('camera').style.opacity = '1'
+
         // document.getElementById('camera').style.backgroundColor = '#C6C6C5'
-        document.getElementById('screenshot').style.display = 'initial'
-        document.getElementById('screenshot').style.opacity = '1'
+
         document.getElementById('myRange').style.display = 'none'
         document.getElementById('Alert').style.display = 'none'
         document.getElementById('Alert').style.opacity = '1'
@@ -82,7 +97,7 @@ console.log('sharedownload clickeeeeeeeeeeeeeeeeeed'  )
     myLayerIsOn = true;
     myLayer_Button.button.style.backgroundColor = 'black';
 
-    return created && data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType && convertedDataShareDirect  //&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
+    return created && data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType && convertedDataShareDirect && opencamera  //&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
 }
 ////console.log(finalLayer)
 var finalGeoJSON = function(){
@@ -135,26 +150,27 @@ var finalGeoJSON = function(){
   //System 1984 (WGS 84) [WGS84] datum, with longitude and latitude units of decimal degrees.
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-  var allLandUses = [1]
-  //land uses array filtered.
-  var allLandUsesFiltered = allLandUses.filter(noNull => noNull != null);
-  ////console.log(allLandUsesFiltered)
-  var landUses = allLandUsesFiltered.toString();
-  //to convert emojis from unicode to short name, before the data is transmitted
-  //value of boxcontent is obtained again (was obtained in 'confirm'), in case user click on 'confirm' before filling in the box
-  //console.log('issuespecific',issueSpecific)
-  if(landUse == 'emojiNoSapelli'){
-    boxContent = document.getElementById('emojionearea').value;
-    var boxContentToShortname = emojione.toShort(boxContent)
-    //console.log(boxContent)
-  }else{
-    var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
-    var emojioneareaeditor0 = emojioneareaeditor[0]
-    boxContent = emojioneareaeditor0.innerHTML
-    var boxContentToShortname = emojione.toShort(boxContent)
-  }
-
-  var boxContentToString = boxContentToShortname.toString();
+  // var allLandUses = [1]
+  // //land uses array filtered.
+  // var allLandUsesFiltered = allLandUses.filter(noNull => noNull != null);
+  // ////console.log(allLandUsesFiltered)
+  // var landUses = allLandUsesFiltered.toString();
+  // //to convert emojis from unicode to short name, before the data is transmitted
+  // //value of boxcontent is obtained again (was obtained in 'confirm'), in case user click on 'confirm' before filling in the box
+  // //console.log('issuespecific',issueSpecific)
+  // if(landUse == 'emojiNoSapelli'){
+  //   // boxContent = document.getElementById('emojionearea').value;
+  //   var boxContentToShortname = document.getElementById('emojionearea').value;
+  //   //console.log(boxContent)
+  // }else{
+  //   // var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
+  //   // var emojioneareaeditor0 = emojioneareaeditor[0]
+  //   // boxContent = document.getElementById('emojionearea').value
+  //   var boxContentToShortname = document.getElementById('emojionearea').value
+  //
+  // }
+  var boxContent = finalAttributes
+  var boxContentToString = finalAttributes.toString();
   //attributes added to Geojson file properties
   if (finalAreaAcres2Decimals == null && finalLength2Decimals == null) {
       finalAreaAcres2Decimals = 'Point'
@@ -298,7 +314,25 @@ document.getElementById('goBackClassification').onclick = function(e){
   imageName2 = null
   imageName3 = null
   attachPhoto = false
-  document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
+  try{
+    iconCT1.style.display = 'none'
+    iconCT2.style.display = 'none'
+    iconCT3.style.display = 'none'
+    iconCT4.style.display = 'none'
+    iconE1.style.display = 'none'
+    iconE2.style.display = 'none'
+    landUse =''
+    ett =''
+    maisonsdetruites =''
+    personnesaffectees =''
+    croptype =''
+    evaluation =''
+    landownership =''
+    ownershipprice =''
+    malefemale =''
+  }catch(e){}
+
+  document.getElementById('emojionearea').value = null
 
   startCheckingText()
 
@@ -412,6 +446,7 @@ document.getElementById('ShareFinalButton').style.opacity = 0.5;
 
 
 document.getElementById('ShareFinalButton').onclick = function(e) {
+  console.log(boxContent)
   console.log('sap id', sapelliProjectIdentifier)
   if(openOrPrivate == 'open' || openOrPrivate == 'private'  || openOrPrivate == 'offlineOpen'){
 
@@ -465,10 +500,17 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
 
     // }else if(shareURL == 'encodedGeoJSON'){
       // console.log(propertiesGeoJSONURL.landUsesEmoji)
-      var attributes = propertiesGeoJSONURL.LU
+      var attributes =  document.getElementById('emojionearea').value
       // var clickableText = 'click me'
       // var clickableTextHyperlinked = clickableText.link(convertedDataShareDirect)
       // var url = encodeURIComponent(attributes+ ' '+'   🗺️ 👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+      // try{
+        attributes = attributes.replace(/<br>|<\/br>|<br\/>|null/g, "");
+        // attributes = attributes.replace(/null/g, "");
+        console.log(attributes)
+
+      // }catch(e){}
+      console.log('attribute',attributes)
       var link = attributes + "\n" + '🗺️ 👇🏿'+ "\n" + 'https://' + subDOMAIN + '.amappingprototype.xyz/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
       // var url
       // console.log(url)
@@ -610,10 +652,14 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
         map.scrollWheelZoom.enable();
         map.boxZoom.enable();
         map.keyboard.enable();
+        googleSatOnly.removeFrom(map)
+        googleSat.addTo(map)
+
+
         if (map.tap) map.tap.enable();
         document.getElementById('map').style.cursor='grab';
         elementJustAddedToLocalStorage = true
-        document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null
+        document.getElementById('emojionearea').value = null
         document.getElementById('screenshot').disabled = false
         document.getElementById('camera').disabled = false
 
