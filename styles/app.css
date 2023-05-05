@@ -131,8 +131,18 @@ map {
 .span6 {
   /* the bar is 100% of its size minus the 190px space used for the other 3 buttons and their margins */
   width: calc(100% - 125px);
+  height:40px;
+  border-radius: 2px;
   display: inline-block;
   z-index: 10;
+  margin-top:-7px;
+}
+.inputtext {
+  background-color: white;
+  border:none;
+}
+.inputtext:focus{
+outline:none
 }
 
 .emojionearea-editor:not(.inline) {
