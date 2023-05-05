@@ -163,8 +163,12 @@
     right: 28px;
     padding: 6px 0; }
   .emojionearea.emojionearea-inline > .emojionearea-button {
+    display: none;
+
     top: 4px; }
 .emojionearea .emojionearea-button {
+  display: none;
+
   z-index: 5;
   position: absolute;
   /* margins of the emoji button */
@@ -181,8 +185,12 @@
   -webkit-transition: opacity 300ms ease-in-out;
   transition: opacity 300ms ease-in-out; }
   .emojionearea .emojionearea-button:hover {
+    display: none;
+
     opacity: 1; }
   .emojionearea .emojionearea-button > div {
+    display: none;
+
     display: block;
     width: 24px;
     height: 24px;
@@ -193,6 +201,8 @@
     transition: all 400ms ease-in-out; }
     .emojionearea .emojionearea-button > div.emojionearea-button-open {
       /* background-color:green; */
+      display: none;
+
       width:24px;
       height:24px;
 
@@ -204,6 +214,7 @@
     .emojionearea .emojionearea-button > div.emojionearea-button-close {
       /* background-color:red; */
       /* background-image:url('images/bing.png'); */
+      display: none;
       background-position: 0 0;
       -webkit-transform: rotate(-45deg);
       -o-transform: rotate(-45deg);
@@ -211,12 +222,16 @@
       filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
       opacity: 0; }
   .emojionearea .emojionearea-button.active > div.emojionearea-button-open {
+    display: none;
+
     -webkit-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
     opacity: 0; }
   .emojionearea .emojionearea-button.active > div.emojionearea-button-close {
+    display: none;
+
     -webkit-transform: rotate(0deg);
     -o-transform: rotate(0deg);
     transform: rotate(0deg);
