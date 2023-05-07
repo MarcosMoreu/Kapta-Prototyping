@@ -39,6 +39,7 @@
 var phoneNumber
 var arrayOfImages = [
   'images/ThumbsUpGreen.png','images/checkingPw.gif',
+  'images/talk.png','images/listen.png',
 
   'images/armchair.png','images/field.png','images/tvSmall.png',
   // 'https://mt3.google.com/vt/lyrs=s,h&x=2&y=1&z=2',
@@ -51,7 +52,7 @@ var arrayOfImages = [
   // 'https://mt1.google.com/vt/lyrs=s,h&x=2&y=3&z=2',
 
 
-    'images/drawPolygon.png','images/line.png','images/point.png',
+    'images/drawPolygon.png','images/line.png','images/point.png','images/onionlayericon.png',
     'images/applyFilter.png','images/arrowLeft.png', 'images/arrowRight.png', 'images/backButton.png','images/bin.png','images/binOriginal.png','images/binpost.png',
     'images/binpre.png','images/burger.png','images/burgerBlack.png','images/cancel.png','images/clearFilter.png','images/commentFeature.png',
     'images/dateAll.png','images/dateDay.png','images/dateMonth.png','images/dateWeek.png','images/dateYear.png','images/deleteAllVertex.png',
@@ -139,7 +140,15 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
           }),
           $.getScript({
              cache:false,
-            url:'https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js'
+            url:'https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js',
+            success:function(){
+              console.log('firebase loaded')
+              document.getElementById('login').style.opacity='1';
+              document.getElementById('login').disabled = false;
+              document.getElementById('login').style.borderColor= 'grey'
+
+
+            }
           })
         }catch(e){
           location.reload()
@@ -282,6 +291,21 @@ var requestCartoData = function() {
 
 
 var initialiseMap = function(){
+  document.body.style.backgroundColor = "black";
+  setTimeout(function(){
+      if (document.readyState === 'complete' && localStorage.getItem('pwCorrect')) {
+
+    document.getElementById('initialscreen2options').style.display = 'initial'
+    console.log('initialise map')
+    if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains geojson (and coords)
+      document.getElementById('talk').click()
+  }
+}
+},100)
+
+
+
+document.getElementById("map").style.opacity = 0;
 
   googleSat.addTo(map)
 var basemapClass = document.getElementsByClassName('leaflet-layer')
@@ -333,11 +357,7 @@ basemapClass[0].style.opacity = 0
       // console.log('all script loaded')
       //place your code here, the scripts are all loaded
 
-      setTimeout(function(){
-        document.getElementById("tutorial").style.display = "initial";
-        document.getElementById("armchair").style.display = "initial";
-        document.getElementById("field").style.display = "initial";
-      },500)
+
 
       // document.getElementById("gobackArmchairField").style.display = "initial";
 
@@ -435,6 +455,32 @@ basemapClass[0].style.opacity = 0
     // });
 }
 
+document.getElementById('talk').onclick = function(){
+  document.getElementById('initialscreen2options').style.display = 'none'
+  // document.getElementById("map").style.display = "block";
+  document.getElementById("map").style.opacity = 1;
+  // document.getElementById('map').style.cursor='grab';
+
+  setTimeout(function(){
+    document.getElementById("tutorial").style.display = "initial";
+    document.getElementById("armchair").style.display = "initial";
+    document.getElementById("field").style.display = "initial";
+  },500)
+}
+document.getElementById('listen').onclick = function(){
+  document.getElementById('initialscreen2options').style.display = 'none'
+  document.getElementById("map").style.opacity = 1;
+
+
+  setTimeout(function(){
+    // document.getElementById("tutorial").style.display = "initial";
+    // document.getElementById("armchair").style.display = "initial";
+    // document.getElementById("field").style.display = "initial";
+    document.getElementById('filter').click()
+  },500)
+}
+
+
 // window.onload = function(){
 // window.addEventListener("click", function(){
 
@@ -525,14 +571,14 @@ var requestPw = function(){
         var pwPlaceholder = firstFour
 
         if(pwPlaceholder.length == 4){
-          document.getElementById('login').style.borderColor= 'grey'
-          document.getElementById('login').disabled = false
-          document.getElementById('login').style.opacity='1';
+          // document.getElementById('login').style.borderColor= 'grey'
+          // document.getElementById('login').disabled = false
+          // document.getElementById('login').style.opacity='1';
         }
         if(pwPlaceholder.length < 4){
-          document.getElementById('login').style.borderColor= 'white'
-          document.getElementById('login').style.opacity='0.3';
-         document.getElementById('login').disabled = true
+          // document.getElementById('login').style.borderColor= 'white'
+          // document.getElementById('login').style.opacity='0.3';
+         // document.getElementById('login').disabled = true
         }
       },200)
 
@@ -602,8 +648,9 @@ var requestPw = function(){
                     document.getElementById('modal').style.display='none';
                     document.getElementById('pwForm').style.display='none';
                     document.getElementById('AlertModalIOS').style.display = 'none'
-                    location.reload() //to activate the sw so it can be used offline afterwards
-                    // navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
+                    document.getElementById('initialscreen2options').style.display = 'initial'
+                    // location.reload() //to activate the sw so it can be used offline afterwards
+                    navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
 
                 },4000)
                 //in case first load is with url geoJSON -- not the best approach ever, but it works.

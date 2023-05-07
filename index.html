@@ -20,7 +20,7 @@
   <!-- <meta property="og:type" content="website" />
   <meta property="og:url" content="https://amappingprototype.xyz" /> -->
   <!-- <meta property="og:image:secure" itemprop="image" content="https://amappingprototype.xyz/images/icons/icon-256x256.png"/> -->
-  <meta property="og:image" itemprop="image" content="https://iomdtm.amappingprototype.xyz/images/icons/icon-256x256.png"/>
+  <meta property="og:image" itemprop="image" content="https://testing.amappingprototype.xyz/images/icons/icon-256x256.png"/>
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="476">
   <meta property="og:image:height" content="249">
@@ -51,7 +51,7 @@
   <link rel="dns-prefetch" href= "https://mt3.google.com">
   <link rel="dns-prefetch" href= "https://cdn.jsdelivr.net">
 
-  <link rel="canonical" href="https://iomdtm.amappingprototype.xyz"/>
+  <link rel="canonical" href="https://testing.amappingprototype.xyz"/>
   <link rel="manifest" href="manifest.json"/>
   <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
   <link rel="shortcut icon" href="favicon.ico"/>
@@ -127,7 +127,7 @@
   <h3 id='Alert' align = 'center' style='z-index:3;position:absolute;text-align:center; width:60%;margin-left:20%;top:25px;display:none;color:yellow;font-size:15px;'>
     <!-- <img id='loading' src="images/questionmark.png"  alt="..." style='display:none;width:30px ; height:30px;' > -->
   </h3>
-  <h4 id='MapLoading' align = 'center' style='display:none;z-index:3;position:absolute;left:calc(50% - 25px);top:100px;display:none'>
+  <h4 id='MapLoading' align = 'center' style='display:none;z-index:3;position:absolute;left:calc(50% - 25px);top:200px;display:none; z-index:3'>
     <img src="images/checkingPw.gif"  loading='lazy' alt="..." style='width:50px ; height:50px;' >
   </h4>
 
@@ -136,6 +136,7 @@
 
 <!-- <div id='loadingPage'  style='height:100%; background-color:black'>
 </div> -->
+
 
 <div id="modal" class='modal' style='z-index:30;background-color:black'>
   <form id='pwForm'  class="modal-content animate" style='margin-top:80px; width:300px; border-radius:50px' >
@@ -203,8 +204,42 @@
 
      </div>
 </div>
-
-
+<div id='initialscreen2options' class='full-height' style='display:none; z-index:100;'>
+  <button id='talk' class='buttonInitial'style='z-index:100;outline:none;margin-left:calc(50% - 75px); top:calc(50% - 200px);width:150px ; height:150px; border: 1px solid white; border-color:white; border-radius:50px' >
+    <img src="images/talk.png"  loading='lazy' alt="..." style=' width:90px ; height:90px;' >
+  </button>
+  <button id='listen' class='buttonInitial'style='z-index:100;outline:none;margin-left:calc(50% - 75px); bottom:calc(50% - 200px);width:150px ; height:150px; border: 1px solid white; border-color:white; border-radius:50px' >
+    <img src="images/listen.png"  loading='lazy' alt="..." style=' width:90px ; height:90px;' >
+  </button>
+</div>
+<!-- <div id='progress-wrapper' class='collapse-pb2'>
+  <div class='d-flex'>
+    <div class>Download Progress</div>
+    <div class='flex-grow-1 ml-2 my-1'>
+      <div id='progress' class='progress'>
+        <div id='progressbar' class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- <div id="progress-wrapper" class="collapse pb-2">
+  <div class="d-flex">
+    <div class="">Download Progress</div>
+    <div class="flex-grow-1 ml-2 my-1">
+      <div id="progress" class="progress">
+        <div
+          id="progressbar"
+          class="progress-bar progress-bar-striped progress-bar-animated"
+          role="progressbar"
+          style="width: 0%;"
+          aria-valuenow="0"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div> -->
 <div align='center' style='z-index:2; position:relative; margin-top:-90px' >
   <button id='tutorial' class='button' aria-label = 'goBack1' style='display:none;z-index:3; position:relative;' >
     <img  src="images/tvSmall.png"  alt="..." style='width:30px ; height:30px'>
@@ -264,12 +299,12 @@
   <button id="goBackClassification" class='button' aria-label = 'shareWorldButton' style='display:none'>
     <img src="images/backButton.png" loading='lazy'  alt="..." style='width:30px ; height:30px; '>
   </button>
-  <button id="shareMessagingAppsDirect" class='button' aria-label = 'shareWorldButton' style='display:none'>
+  <button id="shareMessagingAppsDirect" class='button' aria-label = 'shareWorldButton' style='display:none; border-radius: 10px;'>
     <img src="images/padlockclosed.png" loading='lazy'  alt="..." style='width:30px ; height:30px; '>
   </button>
 
-  <button id="shareWorldButton" class='button' aria-label = 'shareWorldButton' style='display:none; opacity:1'>
-    <img src="images/dtm.png" loading='lazy'  alt="..." style='margin-left:0px; width:30px ; height:30px; '>
+  <button id="shareWorldButton" class='button' aria-label = 'shareWorldButton' style='display:none; opacity:1;border-radius: 10px;'>
+    <img src="images/padlockopen.png" loading='lazy'  alt="..." style='margin-left:0px; width:30px ; height:30px; '>
   </button>
   <button id='ShareFinalButton' class='button' disabled aria-label = 'ShareFinalButton' style='display:none'>
         <img  src="images/sendComment.png" loading='lazy'  alt="..." style=' margin-left:-2px;width:30px ; height:30px'></img>
@@ -307,7 +342,7 @@
   </button>
 
   <button id='filterWithIcons' class='button' aria-label = 'filterWithIcons' style='display:none;' >
-    <img src="images/dtm.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
+    <img src="images/logoNyangatomReduced.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
   </button>
 
   <div id='emoji' class="span6"  >
@@ -328,7 +363,7 @@
     <img src="images/record.png" loading='lazy'  alt="..." style='width:30px ; height:30px; '>
   </button> -->
   <button id='sapelliProjects' class='button' aria-label = 'CustomIcons'style='display:none;margin-left:0px' >
-    <img src="images/dtm.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
+    <img src="images/logoNyangatomReduced.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
   </button>
   <button id='share-download' class='button' aria-label = 'share-download' style='display:none;margin-left:0px'>
     <img src="images/ThumbsUpGreen.png"  loading='lazy' alt="..." style='margin-left:2px; width:30px ; height:30px'>
@@ -547,6 +582,8 @@
 <script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Edit.js"></script>
 <script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Delete.js"></script>
 <script defer src="scripts/lib/leaflet/plugins/Leaflet-rotateMarker/leaflet.rotatedMarker.js"></script>
+<!-- <script defer type='module' src="scripts/lib/leaflet/plugins/leaflet.offline-master_v3/src/index.js"></script> -->
+
 
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" ></script> -->
 <!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js" ></script> -->
