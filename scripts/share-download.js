@@ -35,7 +35,7 @@ var testBlob = null
 
 
 document.getElementById('share-download').onclick = function(e) {
-  googleSat.removeFrom(map)
+  // googleSat.removeFrom(map)
 
 finalAttributes = document.getElementById('emojionearea').value
 console.log(finalAttributes)
@@ -487,6 +487,7 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
     // if(clickedshareMessagingAppsDirect == false){
       geoJSONLocalforageDB.setItem(tempName, dataStringified)
       var newGeom = JSON.parse(dataStringified)
+      console.log(newGeom)
       groupGeoJSON = newGeom
       localStorageToGeoJSON()
       clickedshareMessagingAppsDirect = true
@@ -652,8 +653,8 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
         map.scrollWheelZoom.enable();
         map.boxZoom.enable();
         map.keyboard.enable();
-        googleSatOnly.removeFrom(map)
-        googleSat.addTo(map)
+        // googleSatOnly.removeFrom(map)
+        // googleSat.addTo(map)
 
 
         if (map.tap) map.tap.enable();

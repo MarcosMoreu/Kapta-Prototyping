@@ -82,9 +82,18 @@ document.getElementById('customIconsMap').onclick = function(e){
       //and 1, 2 or 3 images
 
 
-        // emojioneareaeditor0.innerHTML =  landUse + ' ▪️ ' + ett + ' ▪️ ' + maisonsdetruites +  ' ▪️ '  + personnesaffectees +  ' ▪️ '  + croptype +  ' ▪️ '  + evaluation +
-        // ' ▪️ '  + landownership + ' ▪️ '  + ownershipprice  + ' ▪️ '  + malefemale +' ▪️ ' + emojioneareaeditor0.innerHTML
+        // emojioneareaeditor0.value =  landUse + ' ▪️ ' + ett + ' ▪️ ' + maisonsdetruites +  ' ▪️ '  + personnesaffectees +  ' ▪️ '  + croptype +  ' ▪️ '  + evaluation +
+        // ' ▪️ '  + landownership + ' ▪️ '  + ownershipprice  + ' ▪️ '  + malefemale +' ▪️ ' + emojioneareaeditor0.value
         emojioneareaeditor0 =   document.getElementById('emojionearea')
+        if(evaluation == null && croptype == null){
+          emojioneareaeditor0.value =  landUse + ' ▪️ ' + emojioneareaeditor0.value
+        }else if(evaluation != null && croptype == null){
+          emojioneareaeditor0.value =  landUse + ' ▪️ ' + evaluation +  ' ▪️ ' + emojioneareaeditor0.value
+        }else if(evaluation == null && croptype != null){
+          emojioneareaeditor0.value =  landUse + ' ▪️ ' + croptype +  ' ▪️ ' + emojioneareaeditor0.value
+        }else if(evaluation != null && croptype != null){
+          emojioneareaeditor0.value =  landUse + ' ▪️ ' + croptype + ' ▪️ ' + evaluation +  ' ▪️ ' + emojioneareaeditor0.value
+        }
         emojioneareaeditor0.value = landUse + ett + maisonsdetruites + personnesaffectees + croptype + evaluation + landownership + ownershipprice  + malefemale + emojioneareaeditor0.value
       // finalAttributes =  landUse + ett + maisonsdetruites + personnesaffectees + croptype + evaluation + landownership + ownershipprice  + malefemale + emojioneareaeditor0.value
 
@@ -176,7 +185,7 @@ document.getElementById('customIconsMap').onclick = function(e){
     }
     projectsCreated = false
   }
-  return landUse && cluster && ett_type && maisonsdetruites_number && personnesaffectees_number && crop_hectares_afected && landownership_type && male_or_female && evaluation_updown && projectsCreated
+  return landUse //&& cluster && ett_type && maisonsdetruites_number && personnesaffectees_number && crop_hectares_afected && landownership_type && male_or_female && evaluation_updown && projectsCreated
 
 }
 
@@ -205,23 +214,23 @@ document.getElementById('customIconsGoBack').onclick = function(e){
       imageName2 = null
       imageName3 = null
       console.log('screenChoice',screenChoice)
-      try{
-        iconCT1.style.display = 'none'
-        iconCT2.style.display = 'none'
-        iconCT3.style.display = 'none'
-        iconCT4.style.display = 'none'
-        iconE1.style.display = 'none'
-        iconE2.style.display = 'none'
-      }catch(e){}
-      landUse =''
-      ett =''
-      maisonsdetruites =''
-      personnesaffectees =''
-      croptype =''
-      evaluation =''
-      landownership =''
-      ownershipprice =''
-      malefemale =''
+      // try{
+      //   iconCT1.style.display = 'none'
+      //   iconCT2.style.display = 'none'
+      //   iconCT3.style.display = 'none'
+      //   iconCT4.style.display = 'none'
+      //   iconE1.style.display = 'none'
+      //   iconE2.style.display = 'none'
+      // }catch(e){}
+      // landUse =''
+      // ett =''
+      // maisonsdetruites =''
+      // personnesaffectees =''
+      // croptype =''
+      // evaluation =''
+      // landownership =''
+      // ownershipprice =''
+      // malefemale =''
 
 
   // if(screenChoice == 'initial'){
@@ -234,7 +243,7 @@ document.getElementById('customIconsGoBack').onclick = function(e){
 
       screenChoice = 'sapprojectsscreen'
 
-  return screenChoice && imageName1 && imageName2 && imageName3
+  return screenChoice //&& imageName1 && imageName2 && imageName3
 }
 
 function hideAll(){
@@ -280,7 +289,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
   }
   projectsCreated = false
   preload([
-    'images/dtm.png','images/omoIcons/unknownOther.png',
+    'images/logoNyangatomReduced.png','images/omoIcons/unknownOther.png',
 
   ])
   setTimeout(function(){
@@ -331,7 +340,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
         newProjectButton = document.createElement("BUTTON");
         cell.appendChild(newProjectButton);
         newProjectButton.className = 'sapelliProjectsLogo'
-        newProjectButton.innerHTML = '<img src="images/dtm.png" style="width:50px ; height:50px; border: 0px solid white" />';
+        newProjectButton.innerHTML = '<img src="images/logoNyangatomReduced.png" style="width:50px ; height:50px; border: 0px solid white" />';
         newProjectButton.style.gridColumn = '1'
         newProjectButton.style.gridRow = '1';
         hideAll() // to prevent grid showing together with sapelli project icons
@@ -361,13 +370,13 @@ document.getElementById('sapelliProjects').onclick = function(e){
 
 
         preload([
-          'images/omoIcons/Shelter.png','images/omoIcons/dtm.png','images/omoIcons/pluistorrentielles.png','images/omoIcons/camera.png','images/omoIcons/coutlocation.png',
-          'images/omoIcons/confirm.png',
-          'images/omoIcons/personnesaffectees.png','images/omoIcons/maisonsdetruites.png','images/omoIcons/femmesnevontpas1.png','images/omoIcons/hommesnevontpas1.png',
-          'images/omoIcons/regimefoncierchamps.png','images/omoIcons/ventsviolents.png',
-          'images/omoIcons/seul.png','images/omoIcons/protection.png','images/omoIcons/proprietaire.png','images/omoIcons/mangues.png','images/omoIcons/maize.png',
-          'images/omoIcons/location.png','images/omoIcons/inondations.png','images/omoIcons/ett.png','images/omoIcons/documentation.png','images/omoIcons/champs.png',
-           'images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
+          // 'images/omoIcons/Shelter.png','images/omoIcons/dtm.png','images/omoIcons/pluistorrentielles.png','images/omoIcons/camera.png','images/omoIcons/coutlocation.png',
+          // 'images/omoIcons/confirm.png',
+          // 'images/omoIcons/personnesaffectees.png','images/omoIcons/maisonsdetruites.png','images/omoIcons/femmesnevontpas1.png','images/omoIcons/hommesnevontpas1.png',
+          // 'images/omoIcons/regimefoncierchamps.png','images/omoIcons/ventsviolents.png',
+          // 'images/omoIcons/seul.png','images/omoIcons/protection.png','images/omoIcons/proprietaire.png','images/omoIcons/mangues.png','images/omoIcons/maize.png',
+          // 'images/omoIcons/location.png','images/omoIcons/inondations.png','images/omoIcons/ett.png','images/omoIcons/documentation.png','images/omoIcons/champs.png',
+          //  'images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
 
           'images/omoIcons/banana.png','images/omoIcons/boatCrossing.png','images/omoIcons/cattleGrazing.png','images/omoIcons/church.png','images/omoIcons/eldersHut.png','images/omoIcons/fishing.png',
           'images/omoIcons/floodRecessionFlat.png','images/omoIcons/floodRecessionSteep.png','images/omoIcons/goatSheepGrazing.png','images/omoIcons/healthStation.png','images/omoIcons/hotSpring.png','images/omoIcons/hunting.png',
@@ -419,7 +428,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
 
                   // newProjectButton2.style.display = 'none';
                   generateButtonslandUse()
-                  newProjectButton.innerHTML = '<img src="images/dtm.png" style="width:50px ; height:50px; border: 0px solid white" />';
+                  newProjectButton.innerHTML = '<img src="images/logoNyangatomReduced.png" style="width:50px ; height:50px; border: 0px solid white" />';
                   newProjectButton.disabled = false
                   newProjectButton.style.backgroundColor = 'white'
                   newProjectButton.style.borderColor = 'white'
@@ -461,142 +470,19 @@ var generateButtonslandUse = function(){
 
   screenChoice = 'initial'
 
- iconOMO_8 = document.createElement("BUTTON"); ////////the house
-  cell.appendChild(iconOMO_8);
- iconOMO_8.className = 'buttonsSapelli'
- iconOMO_8.innerHTML = '<img src="images/omoIcons/Shelter.png" style="height: 150px; width: 150px; border: 4px solid colorPaletteArray[0];" /> </br>Shelter';
-iconOMO_8.style.backgroundColor = 'white'
- iconOMO_8.onclick = function(){
-   setTimeout(function(){
-    hideAll()
-    landUse = '▪️ Shelter ▪️</br> '
-    imageName1 = 'Shelter'
-
-    document.getElementById('customIconsMap').click()
-    if(filterIsOn == false){
-      setTimeout(function(){
-        document.getElementById('share-download').click()
-      },400)
-    }
-
-    console.log(landUse)
-
-  },400)
-  }
-
- iconOMO_10 = document.createElement("BUTTON"); ///// ETT
-  cell.appendChild(iconOMO_10);
- iconOMO_10.className = 'buttonsSapelli'
- iconOMO_10.innerHTML = '<img src="images/omoIcons/ett.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ETT.';
- iconOMO_10.style.backgroundColor = 'white'
- iconOMO_10.onclick = function(){
-   setTimeout(function(){
-
-    hideAll()
-    landUse = '▪️ ETT ▪️</br> '
-    imageName1 = 'ett'
-    if(filterIsOn == false){
-      generateButtonsETT()
-       document.getElementById('customIconsGoBack').style.display = 'initial';
-       document.getElementById('customIconsMap').style.display = 'none';
-
-       // document.getElementById('customIconsCancel').style.display = 'initial';
-     }else{
-       document.getElementById('customIconsMap').click()
-     }
-
-  },400)
-
-  }
- iconOMO_11 = document.createElement("BUTTON"); //////////field
-  cell.appendChild(iconOMO_11);
- iconOMO_11.innerHTML = '<img src="images/omoIcons/champs.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>Champs';
- iconOMO_11.className = 'buttonsSapelli'
- iconOMO_11.style.backgroundColor = 'white'
- iconOMO_11.onclick = function(){
-   setTimeout(function(){
-
-    hideAll()
-    landUse = '▪️ Champs ▪️</br> '
-    imageName1 = 'champs'
-    if(filterIsOn == false){
-      generateButtonsField()
-       document.getElementById('customIconsGoBack').style.display = 'initial';
-       document.getElementById('customIconsMap').style.display = 'none';
-
-       // document.getElementById('customIconsCancel').style.display = 'initial';
-     }else{
-       document.getElementById('customIconsMap').click()
-     }
-
-  },400)
-
-  }
-
- iconOMO_15 = document.createElement("BUTTON"); /////land ownership
-  cell.appendChild(iconOMO_15);
- iconOMO_15.innerHTML = '<img src="images/omoIcons/regimefoncierchamps.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>Regime Foncier Champs';
- iconOMO_15.className = 'buttonsSapelli'
- iconOMO_15.style.backgroundColor = 'white'
- iconOMO_15.onclick = function(){
-   setTimeout(function(){
-
-    hideAll()
-    landUse = '▪️ Regime Foncier Champs ▪️</br> '
-    imageName1 = 'regimefoncierchamps'
-    if(filterIsOn == false){
-      generateButtonsLandOwnership()
-       document.getElementById('customIconsGoBack').style.display = 'initial';
-       document.getElementById('customIconsMap').style.display = 'none';
-
-       // document.getElementById('customIconsCancel').style.display = 'initial';
-     }else{
-       document.getElementById('customIconsMap').click()
-     }
-
-  },400)
-  }
-
- iconOMO_38 = document.createElement("BUTTON"); //////male female
-  cell.appendChild(iconOMO_38);
- iconOMO_38.innerHTML = '<img src="images/omoIcons/protection.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>Protection';
- iconOMO_38.className = 'buttonsSapelli'
- iconOMO_38.style.backgroundColor = 'white'
- iconOMO_38.onclick = function(){
-   setTimeout(function(){
-
-    hideAll()
-    landUse = '▪️ Protection ▪️</br> '
-    imageName1 = 'protection'
-    if(filterIsOn == false){
-      generateButtonsMaleFemale()
-       document.getElementById('customIconsGoBack').style.display = 'initial';
-       document.getElementById('customIconsMap').style.display = 'none';
-
-       // document.getElementById('customIconsCancel').style.display = 'initial';
-     }else{
-       document.getElementById('customIconsMap').click()
-     }
-
-  },400)
- }
-
-  iconOMO_9 = document.createElement("BUTTON");
-   cell.appendChild(iconOMO_9);
-  iconOMO_9.innerHTML = '<img src="images/omoIcons/unknownOther.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>Autre';
-  iconOMO_9.className = 'buttonsSapelli'
-  iconOMO_9.style.backgroundColor = 'white'
-  iconOMO_9.onclick = function(){
+  iconOMO_8 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_8);
+  iconOMO_8.className = 'buttonsSapelli'
+  iconOMO_8.innerHTML = '<img src="images/omoIcons/hutVillage.png" style="height: 150px; width: 150px; border: 0px solid white;" /> </br>አዊ / መንደር';
+  iconOMO_8.onclick = function(){
     setTimeout(function(){
      hideAll()
-     landUse = '▪️ Autre ▪️</br> '
-     imageName1 = 'unknownOther'
-     document.getElementById('share-download').click()
+     landUse = 'አዊ / መንደር'
+     imageName1 = 'hutVillage'
 
      document.getElementById('customIconsMap').click()
      if(filterIsOn == false){
        setTimeout(function(){
-         console.log('sharedownload clicked')
          document.getElementById('share-download').click()
        },400)
      }
@@ -604,330 +490,815 @@ iconOMO_8.style.backgroundColor = 'white'
      console.log(landUse)
 
    },400)
+   }
+  iconOMO_9 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_9);
+  iconOMO_9.innerHTML = '<img src="images/omoIcons/manualPump.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አፕሪች / ቧንቧ';
+  iconOMO_9.className = 'buttonsSapelli'
+  iconOMO_9.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+
+   // document.getElementById('customIconsCancel').style.display = 'initial';
+     landUse = 'አፕሪች / ቧንቧ'
+     imageName1 = 'manualPump'
+     if(filterIsOn == false){
+       generateButtonsEvaluation()
+       document.getElementById('customIconsGoBack').style.display = 'initial';
+       document.getElementById('customIconsMap').style.display = 'none';
+
+     }else{
+       document.getElementById('customIconsMap').click()
+     }
+
+   },400)
 
    }
 
-  return screenChoice && landUse && imageName1
-}
-
-/////////////////////////////////////////////////                    ///////////////////////////////////////
-var generateButtonsETT = function(){
-  scrollToTop()
-
-  screenChoice = 'ett'
-
-  iconCT1 = document.createElement("BUTTON");
-  cell.appendChild(iconCT1);
-  iconCT1.innerHTML = '<img src="images/omoIcons/pluistorrentielles.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>Pluies Torrentielles';
-  iconCT1.className = 'buttonsSapelli'
-  iconCT1.onclick = function(){
+  iconOMO_10 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_10);
+  iconOMO_10.className = 'buttonsSapelli'
+  iconOMO_10.innerHTML = '<img src="images/omoIcons/pondFarming.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አክታረ አታፓር / ኽልኩሬ ሸሽ';
+  iconOMO_10.onclick = function(){
     setTimeout(function(){
 
-    hideAll()
-    ett = '▪️ Pluies Torrentielles ▪️</br> '
-    imageName2 = 'pluistorrentielles'
+     hideAll()
+     landUse = 'አክታረ አታፓር / ኽልኩሬ ሸሽ'
+     imageName1 = 'pondFarming'
+     if(filterIsOn == false){
+       generateButtonsCropType()
+        document.getElementById('customIconsGoBack').style.display = 'initial';
+        document.getElementById('customIconsMap').style.display = 'none';
 
-    generateScreenETTNumber()  /////////screen with 2 input text fields
-  },400)
+        // document.getElementById('customIconsCancel').style.display = 'initial';
+      }else{
+        document.getElementById('customIconsMap').click()
+      }
 
-  }
+   },400)
 
-  iconCT2 = document.createElement("BUTTON");
-  cell.appendChild(iconCT2);
-  iconCT2.className = 'buttonsSapelli'
-  iconCT2.innerHTML = '<img src="images/omoIcons/ventsviolents.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>Vents Violents';
-  iconCT2.onclick = function(){
+   }
+  iconOMO_11 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_11);
+  iconOMO_11.innerHTML = '<img src="images/omoIcons/lakeRecession.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አሳክ / ሀይቅ እርሻ';
+  iconOMO_11.className = 'buttonsSapelli'
+  iconOMO_11.onclick = function(){
     setTimeout(function(){
 
-    hideAll()
-    ett = '▪️ Vents Violents ▪️</br> '
-    imageName2 = 'ventsviolents'
+     hideAll()
+     landUse = 'አሳክ / ሀይቅ እርሻ'
+     imageName1 = 'lakeRecession'
+     if(filterIsOn == false){
+       generateButtonsCropType()
+        document.getElementById('customIconsGoBack').style.display = 'initial';
+        document.getElementById('customIconsMap').style.display = 'none';
 
-    generateScreenETTNumber()  /////////screen with 2 input text fields
-  },400)
+        // document.getElementById('customIconsCancel').style.display = 'initial';
+      }else{
+        document.getElementById('customIconsMap').click()
+      }
 
-  }
+   },400)
 
-  iconCT3 = document.createElement("BUTTON");
-  cell.appendChild(iconCT3);
-  iconCT3.className = 'buttonsSapelli'
-  iconCT3.innerHTML = '<img src="images/omoIcons/inondations.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>Inondations';
-  iconCT3.onclick = function(){
+   }
+  iconOMO_12 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_12);
+  iconOMO_12.className = 'buttonsSapelli'
+  iconOMO_12.innerHTML = '<img src="images/omoIcons/irrigationPump.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤሪያቻ / መስኖ';
+  iconOMO_12.onclick = function(){
     setTimeout(function(){
 
-    hideAll()
-    ett = '▪️ Inondations ▪️</br> '
-    imageName2 = 'inondations'
+     hideAll()
+     landUse = 'ኤሪያቻ / መስኖ'
+     imageName1 = 'irrigationPump'
+     if(filterIsOn == false){
+       generateButtonsCropType()
+        document.getElementById('customIconsGoBack').style.display = 'initial';
+        document.getElementById('customIconsMap').style.display = 'none';
 
-    generateScreenETTNumber()  /////////screen with 2 input text fields
-  },400)
+        // document.getElementById('customIconsCancel').style.display = 'initial';
+      }else{
+        document.getElementById('customIconsMap').click()
+      }
 
-  }
+   },400)
 
-return screenChoice && ett && imageName2
-}
-
-
-var generateScreenETTNumber = function(){/////////////////////////////////////////////////////////////////////////
-  iconCT1 = document.createElement("IMAGE");
-  cell.appendChild(iconCT1);
-  iconCT1.innerHTML = '<img src="images/omoIcons/maisonsdetruites.png" style="height: 150px; width: 150px; border: 0px solid white;" />';
-
-
-  iconCT2 = document.createElement("INPUT");
-  cell.appendChild(iconCT2);
-  iconCT2.style.height = '45px'
-  iconCT2.type = 'number'
-  iconCT2.placeholder = 'Combien?'
-
-
-  iconCT3 = document.createElement("IMAGE");
-  cell.appendChild(iconCT3);
-  iconCT3.innerHTML = '<img src="images/omoIcons/personnesaffectees.png" style="height: 150px; width: 150px; border: 0px solid white;" />';
-
-
-  iconCT4 = document.createElement("INPUT");
-  cell.appendChild(iconCT4);
-  iconCT4.style.height = '45px'
-  iconCT4.type = 'number'
-  iconCT4.placeholder = 'Combien?'
-
-  iconE1 = document.createElement("IMAGE");
-  cell.appendChild(iconE1);
-
-  iconE2 = document.createElement("BUTTON");
-  cell.appendChild(iconE2);
-  iconE2.innerHTML = '<img src="images/omoIcons/confirm.png" style="height: 120px; width: 120px; border: 0px solid black; background: black" /> ';
-  iconE2.style.backgroundColor = 'black'
-  iconE2.style.borderColor = 'grey'
-  iconE2.onclick = function(){
-    maisonsdetruites = '▪️ ' + iconCT2.value + ' Maisons detruites ▪️</br> '
-    personnesaffectees = '▪️ ' + iconCT4.value + ' Personnes affectees ▪️</br> '
-    console.log('maisonsdetruites',maisonsdetruites)
-
+   }
+  iconOMO_13 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_13);
+  iconOMO_13.innerHTML = '<img src="images/omoIcons/floodRecessionFlat.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤመራ / ኦሞሸሽ';
+  iconOMO_13.className = 'buttonsSapelli'
+  iconOMO_13.onclick = function(){
     setTimeout(function(){
 
-    hideAll()
+     hideAll()
+     landUse = 'ኤመራ / ኦሞሸሽ'
+     imageName1 = 'floodRecessionFlat'
+     if(filterIsOn == false){
+       generateButtonsCropType()
+        document.getElementById('customIconsGoBack').style.display = 'initial';
+        document.getElementById('customIconsMap').style.display = 'none';
 
-    document.getElementById('customIconsMap').click()
+        // document.getElementById('customIconsCancel').style.display = 'initial';
+      }else{
+        document.getElementById('customIconsMap').click()
+      }
+
+   },400)
+
+
+   }
+  iconOMO_14 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_14);
+  iconOMO_14.className = 'buttonsSapelli'
+  iconOMO_14.innerHTML = '<img src="images/omoIcons/floodRecessionSteep.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤቴሎ / ኦሞ ሸሽ';
+  iconOMO_14.onclick = function(){
     setTimeout(function(){
-      document.getElementById('share-download').click()
+
+     hideAll()
+     landUse = 'ኤቴሎ / ኦሞ ሸሽ'
+     imageName1 = 'floodRecessionSteep'
+   generateButtonsCropType()
+   if(filterIsOn == false){
+     generateButtonsCropType()
+      document.getElementById('customIconsGoBack').style.display = 'initial';
+      document.getElementById('customIconsMap').style.display = 'none';
+
+      // document.getElementById('customIconsCancel').style.display = 'initial';
+    }else{
+      document.getElementById('customIconsMap').click()
+    }
+
+   },400)
+
+
+   }
+  iconOMO_15 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_15);
+  iconOMO_15.innerHTML = '<img src="images/omoIcons/cattleGrazing.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አዳካሩ አɔ̂ቱክ / የከብት ግጦሽ';
+  iconOMO_15.className = 'buttonsSapelli'
+  iconOMO_15.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+     landUse = 'አዳካሩ አɔ̂ቱክ / የከብት ግጦሽ'
+     imageName1 = 'cattleGrazing'
+     if(filterIsOn == false){
+       generateButtonsEvaluation()
+        document.getElementById('customIconsGoBack').style.display = 'initial';
+        document.getElementById('customIconsMap').style.display = 'none';
+
+        // document.getElementById('customIconsCancel').style.display = 'initial';
+      }else{
+        document.getElementById('customIconsMap').click()
+      }
+
+   },400)
+
+
+   }
+  iconOMO_38 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_38);
+  iconOMO_38.innerHTML = '<img src="images/omoIcons/goatSheepGrazing.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አዳካሩ አɔ̂ክኔይ / ፍየል ግጦሽ';
+  iconOMO_38.className = 'buttonsSapelli'
+  iconOMO_38.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+     landUse = 'አዳካሩ አɔ̂ክኔይ / ፍየል ግጦሽ'
+     imageName1 = 'goatSheepGrazing'
+     if(filterIsOn == false){
+       generateButtonsEvaluation()
+        document.getElementById('customIconsGoBack').style.display = 'initial';
+        document.getElementById('customIconsMap').style.display = 'none';
+
+        // document.getElementById('customIconsCancel').style.display = 'initial';
+      }else{
+        document.getElementById('customIconsMap').click()
+      }
+
+   },400)
+
+
+   }
+  iconOMO_16 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_16);
+  iconOMO_16.innerHTML = '<img src="images/omoIcons/waterPondAnimal.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አክፒ አታፓር / ኩሬ ውሃ';
+  iconOMO_16.className = 'buttonsSapelli'
+  iconOMO_16.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+     landUse = 'አክፒ አታፓር / ኩሬ ውሃ'
+     imageName1 = 'waterPondAnimal'
+     if(filterIsOn == false){
+       generateButtonsEvaluation()
+        document.getElementById('customIconsGoBack').style.display = 'initial';
+        document.getElementById('customIconsMap').style.display = 'none';
+
+        // document.getElementById('customIconsCancel').style.display = 'initial';
+      }else{
+        document.getElementById('customIconsMap').click()
+      }
+
+   },400)
+
+
+   }
+  iconOMO_17 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_17);
+  iconOMO_17.innerHTML = '<img src="images/omoIcons/waterRiverAnimal.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አይፒ አናም / የኦሞ ውሃ';
+  iconOMO_17.className = 'buttonsSapelli'
+  iconOMO_17.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+
+     landUse = 'አይፒ አናም / የኦሞ ውሃ'
+     imageName1 = 'waterRiverAnimal'
+     document.getElementById('customIconsMap').click()
+     if(filterIsOn == false){
+       setTimeout(function(){
+         document.getElementById('share-download').click()
+       },400)
+     }
+   },400)
+
+   }
+  iconOMO_18 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_18);
+  iconOMO_18.className = 'buttonsSapelli'
+  iconOMO_18.innerHTML = '<img src="images/omoIcons/saltlick.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤዶት / ጨው';
+  iconOMO_18.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+
+     landUse = 'ኤዶት / ጨው'
+     imageName1 = 'saltlick'
+
+     document.getElementById('customIconsMap').click()
+     if(filterIsOn == false){
+       setTimeout(function(){
+         document.getElementById('share-download').click()
+       },400)
+     }
+   },400)
+
+   }
+  iconOMO_19 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_19);
+  iconOMO_19.innerHTML = '<img src="images/omoIcons/wildFruits.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አጌዎር / የአከባቢ የምበላ ቅጠል';
+  iconOMO_19.className = 'buttonsSapelli'
+  iconOMO_19.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+     landUse = 'አጌዎር / የአከባቢ የምበላ ቅጠል'
+     imageName1 = 'wildFruits'
+     if(filterIsOn == false){
+       generateButtonsEvaluation()
+        document.getElementById('customIconsGoBack').style.display = 'initial';
+        document.getElementById('customIconsMap').style.display = 'none';
+
+        // document.getElementById('customIconsCancel').style.display = 'initial';
+      }else{
+        document.getElementById('customIconsMap').click()
+      }
+
+   },400)
+
+
+   }
+  iconOMO_20 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_20);
+  iconOMO_20.innerHTML = '<img src="images/omoIcons/hunting.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤርካ / አደን';
+  iconOMO_20.className = 'buttonsSapelli'
+  iconOMO_20.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+
+     landUse = 'ኤርካ / አደን'
+     imageName1 = 'hunting'
+
+     document.getElementById('customIconsMap').click()
+     if(filterIsOn == false){
+       setTimeout(function(){
+         document.getElementById('share-download').click()
+       },400)
+     }
+   },400)
+
+   }
+
+  iconOMO_21 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_21);
+  iconOMO_21.className = 'buttonsSapelli'
+  iconOMO_21.innerHTML = '<img src="images/omoIcons/fishing.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አክሎክ / አሳ ማጥመድ';
+  iconOMO_21.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+
+     landUse = 'አክሎክ / አሳ ማጥመድ'
+     imageName1 = 'fishing'
+
+     document.getElementById('customIconsMap').click()
+     if(filterIsOn == false){
+       setTimeout(function(){
+         document.getElementById('share-download').click()
+       },400)
+     }
+   },400)
+
+   }
+
+  iconOMO_22 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_22);
+  iconOMO_22.innerHTML = '<img src="images/omoIcons/reehive.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አሙሉጅ / የንብ ቀፎ';
+  iconOMO_22.className = 'buttonsSapelli'
+  iconOMO_22.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+     landUse = 'አሙሉጅ / የንብ ቀፎ'
+     imageName1 = 'reehive'
+     if(filterIsOn == false){
+       generateButtonsEvaluation()
+        document.getElementById('customIconsGoBack').style.display = 'initial';
+        document.getElementById('customIconsMap').style.display = 'none';
+
+        // document.getElementById('customIconsCancel').style.display = 'initial';
+      }else{
+        document.getElementById('customIconsMap').click()
+      }
+
+   },400)
+
+   }
+
+  iconOMO_23 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_23);
+  iconOMO_23.className = 'buttonsSapelli'
+  iconOMO_23.innerHTML = '<img src="images/omoIcons/medicinalPlants.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤደዋ / ባህላዊ ጨው';
+  iconOMO_23.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+
+     landUse = 'ኤደዋ / ባህላዊ ጨው'
+     imageName1 = 'medicinalPlants'
+     document.getElementById('customIconsMap').click()
+     if(filterIsOn == false){
+       setTimeout(function(){
+         document.getElementById('share-download').click()
+       },400)
+     }
+   },400)
+
+   }
+  iconOMO_24 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_24);
+  iconOMO_24.innerHTML = '<img src="images/omoIcons/timber.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አኩቶይ አክም / ማገዶ';
+  iconOMO_24.className = 'buttonsSapelli'
+  iconOMO_24.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+
+     landUse = 'አኩቶይ አክም / ማገዶ'
+     imageName1 = 'timber'
+
+     document.getElementById('customIconsMap').click()
+     if(filterIsOn == false){
+       setTimeout(function(){
+         document.getElementById('share-download').click()
+       },400)
+     }
+   },400)
+
+
+   }
+  iconOMO_25 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_25);
+  iconOMO_25.className = 'buttonsSapelli'
+  iconOMO_25.innerHTML = '<img src="images/omoIcons/hotSpring.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤሩስ / ፍል ውሃ';
+  iconOMO_25.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+
+     landUse = 'ኤሩስ / ፍል ውሃ'
+     imageName1 = 'hotSpring'
+
+     document.getElementById('customIconsMap').click()
+     if(filterIsOn == false){
+       setTimeout(function(){
+         document.getElementById('share-download').click()
+       },400)
+     }
+   },400)
+
+   }
+
+  iconOMO_27 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_27);
+  iconOMO_27.innerHTML = '<img src="images/omoIcons/waterPoint.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አቦኖ / ቦኖ';
+  iconOMO_27.className = 'buttonsSapelli'
+  iconOMO_27.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+     landUse = 'አቦኖ / ቦኖ'
+     imageName1 = 'waterPoint'
+     if(filterIsOn == false){
+       generateButtonsEvaluation()
+        document.getElementById('customIconsGoBack').style.display = 'initial';
+        document.getElementById('customIconsMap').style.display = 'none';
+
+        // document.getElementById('customIconsCancel').style.display = 'initial';
+      }else{
+        document.getElementById('customIconsMap').click()
+      }
+
+   },400)
+
+
+   }
+  iconOMO_28 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_28);
+  iconOMO_28.innerHTML = '<img src="images/omoIcons/healthStation.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አካይ ኤደዋ / ጤና ጣቢያ';
+  iconOMO_28.className = 'buttonsSapelli'
+  iconOMO_28.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+     landUse = 'አካይ ኤደዋ / ጤና ጣቢያ'
+     imageName1 = 'healthStation'
+     if(filterIsOn == false){
+       generateButtonsEvaluation()
+        document.getElementById('customIconsGoBack').style.display = 'initial';
+        document.getElementById('customIconsMap').style.display = 'none';
+
+        // document.getElementById('customIconsCancel').style.display = 'initial';
+      }else{
+        document.getElementById('customIconsMap').click()
+      }
+
+   },400)
+
+
+   }
+  iconOMO_29 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_29);
+  iconOMO_29.className = 'buttonsSapelli'
+  iconOMO_29.innerHTML = '<img src="images/omoIcons/school.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አካይ ኤሱኩል / ትምህርት ቤት';
+  iconOMO_29.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+
+     landUse = 'አካይ ኤሱኩል / ትምህርት ቤት'
+     imageName1 = 'school'
+
+     document.getElementById('customIconsMap').click()
+     if(filterIsOn == false){
+       setTimeout(function(){
+         document.getElementById('share-download').click()
+       },400)
+     }
+   },400)
+
+   }
+  iconOMO_30 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_30);
+  iconOMO_30.innerHTML = '<img src="images/omoIcons/veterinary.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አካይ ኤደዋ አግባረን / የከብት ህክምና';
+  iconOMO_30.className = 'buttonsSapelli'
+  iconOMO_30.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+     landUse = 'አካይ ኤደዋ አግባረን / የከብት ህክምና'
+     imageName1 = 'veterinary'
+     if(filterIsOn == false){
+       generateButtonsEvaluation()
+        document.getElementById('customIconsGoBack').style.display = 'initial';
+        document.getElementById('customIconsMap').style.display = 'none';
+
+        // document.getElementById('customIconsCancel').style.display = 'initial';
+      }else{
+        document.getElementById('customIconsMap').click()
+      }
+
+   },400)
+
+
+   }
+  iconOMO_31 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_31);
+  iconOMO_31.innerHTML = '<img src="images/omoIcons/treeForGathering.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤኩቶይ / መሰብሰቢያ ዛፍ';
+  iconOMO_31.className = 'buttonsSapelli'
+  iconOMO_31.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+
+     landUse = 'ኤኩቶይ / መሰብሰቢያ ዛፍ'
+     imageName1 = 'treeForGathering'
+
+     document.getElementById('customIconsMap').click()
+     if(filterIsOn == false){
+       setTimeout(function(){
+         document.getElementById('share-download').click()
+       },400)
+     }
+   },400)
+
+   }
+  iconOMO_32 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_32);
+  iconOMO_32.innerHTML = '<img src="images/omoIcons/eldersHut.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤካፓ / የሽማግሌ መሰባሰቢያ';
+  iconOMO_32.className = 'buttonsSapelli'
+  iconOMO_32.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+
+     landUse = 'ኤካፓ / የሽማግሌ መሰባሰቢያ'
+     imageName1 = 'eldersHut'
+
+     document.getElementById('customIconsMap').click()
+     if(filterIsOn == false){
+       setTimeout(function(){
+         document.getElementById('share-download').click()
+       },400)
+     }
+   },400)
+
+   }
+
+  iconOMO_33 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_33);
+  iconOMO_33.className = 'buttonsSapelli'
+  iconOMO_33.innerHTML = '<img src="images/omoIcons/recreationCenter.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አፓክ ንቦልያት / መዝናኛ';
+  iconOMO_33.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+
+     landUse = 'አፓክ ንቦልያት / መዝናኛ'
+     imageName1 = 'recreationCenter'
+
+     document.getElementById('customIconsMap').click()
+     if(filterIsOn == false){
+       setTimeout(function(){
+         document.getElementById('share-download').click()
+       },400)
+     }
+   },400)
+
+   }
+  iconOMO_34 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_34);
+  iconOMO_34.innerHTML = '<img src="images/omoIcons/church.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አካይ አኩጅ / ቤተ ክርስቲያን';
+  iconOMO_34.className = 'buttonsSapelli'
+  iconOMO_34.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+
+     landUse = 'አካይ አኩጅ / ቤተ ክርስቲያን'
+     imageName1 = 'church'
+
+     document.getElementById('customIconsMap').click()
+     if(filterIsOn == false){
+       setTimeout(function(){
+         document.getElementById('share-download').click()
+       },400)
+     }
+   },400)
+
+   }
+  iconOMO_35 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_35);
+  iconOMO_35.className = 'buttonsSapelli'
+  iconOMO_35.innerHTML = '<img src="images/omoIcons/boatCrossing.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤዶከት አቱቧ / ጀልባ መሻገሪያ';
+  iconOMO_35.onclick = function(){
+    setTimeout(function(){
+
+     hideAll()
+
+     landUse = 'ኤዶከት አቱቧ / ጀልባ መሻገሪያ'
+     imageName1 = 'boatCrossing'
+
+     document.getElementById('customIconsMap').click()
+     if(filterIsOn == false){
+       setTimeout(function(){
+         document.getElementById('share-download').click()
+       },400)
+     }
+   },400)
+
+   }
+   iconOMO_41 = document.createElement("BUTTON");
+    cell.appendChild(iconOMO_41);
+   iconOMO_41.innerHTML = '<img src="images/omoIcons/pathTrack.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br> ኤሮት / መንገድ';
+   iconOMO_41.className = 'buttonsSapelli'
+   iconOMO_41.onclick = function(){
+
+     setTimeout(function(){
+
+      hideAll()
+      landUse = 'ኤሮት / መንገድ'
+      imageName1 = 'pathTrack'
+      document.getElementById('customIconsMap').click()
+      if(filterIsOn == false){
+        setTimeout(function(){
+          document.getElementById('share-download').click()
+        },400)
+      }
     },400)
-  },400)
 
-  }
-return screenChoice && maisonsdetruites && personnesaffectees
-}
+    }
 
-var generateButtonsField = function(){
-  scrollToTop()
-
-  screenChoice = 'croptype'
-  iconCT2 = document.createElement("BUTTON");
-  cell.appendChild(iconCT2);
-  iconCT2.className = 'buttonsSapelli'
-  iconCT2.innerHTML = '<img src="images/omoIcons/maize.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>maize';
-  iconCT2.onclick = function(){
-    setTimeout(function(){
-
-    hideAll()
-    croptype = '▪️ Maïs ▪️</br> '
-    imageName2 = 'maize'
-
-    generateButtonsEvaluation()
-  },400)
-
-  }
-
-  iconCT3 = document.createElement("BUTTON");
-  cell.appendChild(iconCT3);
-  iconCT3.className = 'buttonsSapelli'
-  iconCT3.innerHTML = '<img src="images/omoIcons/mangues.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>mangues';
-  iconCT3.onclick = function(){
-    setTimeout(function(){
-
-    hideAll()
-    croptype = '▪️ Mangues ▪️</br> '
-    imageName2 = 'mangues'
-
-    generateButtonsEvaluation()
-  },400)
-
-  }
-
- return screenChoice && croptype && imageName2
-}
-
-var generateButtonsEvaluation = function(){
-  scrollToTop()
-  screenChoice = 'evaluation'
-
-//other issues
-  iconE2 = document.createElement("BUTTON");
-  cell.appendChild(iconE2);
-  iconE2.innerHTML = '<img src="images/omoIcons/ThumbsUp.png" style="height: 150px; width: 150px; border: 0px solid white" /> ';
-  iconE2.className = 'buttonsSapelli'
-  iconE2.onclick = function(){
-    setTimeout(function(){
-
-    hideAll()
-    evaluation = '▪️ 👍🏿 ▪️</br> '
-    imageName3 = 'ThumbsUp'
-
-    document.getElementById('customIconsMap').click()
-    setTimeout(function(){
-      document.getElementById('share-download').click()
-    },400)
-  },400)
-
-  }
-
-  iconE3 = document.createElement("BUTTON");
-  cell.appendChild(iconE3);
-  iconE3.className = 'buttonsSapelli'
-  iconE3.innerHTML = '<img src="images/omoIcons/ThumbsDown.png" style="height: 150px; width: 150px; border: 0px solid white" /> ';
-  iconE3.onclick = function(){
-    setTimeout(function(){
-
-    hideAll()
-    evaluation = '▪️ 👎🏿 ▪️</br> '
-    imageName3 = 'ThumbsDown'
-
-
-    document.getElementById('customIconsMap').click()
-    setTimeout(function(){
-      document.getElementById('share-download').click()
-    },400)
-  },400)
-  }
-
-    return screenChoice && evaluation && imageName2
-
-}
-
-var generateButtonsLandOwnership = function(){
-  scrollToTop()
-  screenChoice = 'landownership'
-
-//other issues
-  iconE2 = document.createElement("BUTTON");
-  cell.appendChild(iconE2);
-  iconE2.innerHTML = '<img src="images/omoIcons/proprietaire.png" style="height: 150px; width: 150px; border: 0px solid white" /></br>proprietaire ';
-  iconE2.className = 'buttonsSapelli'
-  iconE2.onclick = function(){
-    setTimeout(function(){
-
-    hideAll()
-    landownership = '▪️ Proprietaire ▪️</br> '
-    imageName2 = 'proprietaire'
-
-    generateScreenOwnershipNumber()  /////////screen with 1 input text field and hand icon, then triger camera automatically
-  },400)
-
-  }
-
-  iconE3 = document.createElement("BUTTON");
-  cell.appendChild(iconE3);
-  iconE3.className = 'buttonsSapelli'
-  iconE3.innerHTML = '<img src="images/omoIcons/location.png" style="height: 150px; width: 150px; border: 0px solid white" /></br>location ';
-  iconE3.onclick = function(){
-    setTimeout(function(){
-
-    hideAll()
-    landownership = '▪️ Location ▪️</br> '
-    imageName2 = 'location'
-
-    generateScreenOwnershipNumber()  /////////screen with 1 input text field and hand icon, then triger camera automatically
-  },400)
-  }
-    return screenChoice && landownership && imageName2
-}
-
-var opencamera = null
-var generateScreenOwnershipNumber = function(){
-  iconCT1 = document.createElement("IMAGE");
-  cell.appendChild(iconCT1);
-  iconCT1.innerHTML = '<img src="images/omoIcons/coutlocation.png" style="height: 80px; width: 80px; border: 0px solid white;" />';
-
-
-  iconCT2 = document.createElement("INPUT");
-  cell.appendChild(iconCT2);
-  iconCT2.style.height = '45px'
-  iconCT2.type = 'number'
-  iconCT2.placeholder = 'Combien?'
-
-  iconE1 = document.createElement("IMAGE");
-  cell.appendChild(iconE1);
-
-  iconE2 = document.createElement("BUTTON");
-  cell.appendChild(iconE2);
-  iconE2.innerHTML = '<img src="images/omoIcons/camera.png" style="height: 60px; width: 80px; border: 0px solid black; background: black" /> ';
-  iconE2.style.backgroundColor = 'black'
-  iconE2.style.borderColor = 'grey'
-  iconE2.onclick = function(){
-    ownershipprice = '▪️ ' + iconCT2.value +' BIF ▪️</br> '
-    console.log('ownershipprice',ownershipprice)
+  iconOMO_36 = document.createElement("BUTTON");
+   cell.appendChild(iconOMO_36);
+  iconOMO_36.innerHTML = '<img src="images/omoIcons/unknownOther.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ɔ̂ቺየ / ሌላ';
+  iconOMO_36.className = 'buttonsSapelli'
+  iconOMO_36.onclick = function(){
 
     setTimeout(function(){
 
-    hideAll()
+     hideAll()
+     landUse = 'ɔ̂ቺየ / ሌላ'
+     imageName1 = 'unknownOther'
+     if(filterIsOn == false){
+       generateButtonsEvaluation()
+        document.getElementById('customIconsGoBack').style.display = 'initial';
+        document.getElementById('customIconsMap').style.display = 'none';
 
-    document.getElementById('customIconsMap').click()
-    setTimeout(function(){
-      opencamera = 'yes'
-      document.getElementById('share-download').click()
-    },400)
-
-  },400)
-  }
-  return screenChoice && ownershipprice && opencamera
-}
-
-var generateButtonsMaleFemale = function(){
-
-  scrollToTop()
-  screenChoice = 'landownership'
-
-//other issues
-  iconE2 = document.createElement("BUTTON");
-  cell.appendChild(iconE2);
-  iconE2.innerHTML = '<img src="images/omoIcons/femmesnevontpas1.png" style="height: 150px; width: 150px; border: 0px solid white" /> ';
-  iconE2.className = 'buttonsSapelli'
-  iconE2.onclick = function(){
-    setTimeout(function(){
-
-    hideAll()
-    malefemale = '▪️ Femmes ne vont pas ▪️</br> '
-    imageName2 = 'femmesnevontpas1'
+        // document.getElementById('customIconsCancel').style.display = 'initial';
+      }else{
+        document.getElementById('customIconsMap').click()
+      }
 
 
-    document.getElementById('customIconsMap').click()
-    setTimeout(function(){
-      document.getElementById('share-download').click()
-    },400)
-  },400)
+   },400)
+
+   }
+
+   return screenChoice && landUse && imageName1
+ }
+
+ /////////////////////////////////////////////////         EVALUATION           ///////////////////////////////////////
+ var generateButtonsCropType = function(){
+   scrollToTop()
+
+   screenChoice = 'croptype'
+
+   iconCT1 = document.createElement("BUTTON");
+   cell.appendChild(iconCT1);
+   iconCT1.innerHTML = '<img src="images/omoIcons/noFarming.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ማም አክታረ / እርሻ የለም';
+   iconCT1.className = 'buttonsSapelli'
+   iconCT1.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     croptype = 'ማም አክታረ / እርሻ የለም'
+     imageName2 = 'noFarming'
 
 
-  }
+     document.getElementById('customIconsMap').click()
+     setTimeout(function(){
+       document.getElementById('share-download').click()
+     },400)
+   },400)
 
-  iconE3 = document.createElement("BUTTON");
-  cell.appendChild(iconE3);
-  iconE3.className = 'buttonsSapelli'
-  iconE3.innerHTML = '<img src="images/omoIcons/hommesnevontpas1.png" style="height: 150px; width: 150px; border: 0px solid white" /> ';
-  iconE3.onclick = function(){
-    setTimeout(function(){
+   }
 
-    hideAll()
-    malefemale = '▪️ Hommes ne vont pas ▪️</br> '
-    imageName2 = 'hommesnevontpas1'
+   iconCT2 = document.createElement("BUTTON");
+   cell.appendChild(iconCT2);
+   iconCT2.className = 'buttonsSapelli'
+   iconCT2.innerHTML = '<img src="images/omoIcons/maize.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤሮመፖ / በቆሎ';
+   iconCT2.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     croptype = 'ኤሮመፖ / በቆሎ'
+     imageName2 = 'maize'
+
+     generateButtonsEvaluation()
+   },400)
+
+   }
+
+   iconCT3 = document.createElement("BUTTON");
+   cell.appendChild(iconCT3);
+   iconCT3.className = 'buttonsSapelli'
+   iconCT3.innerHTML = '<img src="images/omoIcons/sorghum.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤሟይ / ማሽላ';
+   iconCT3.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     croptype = 'ኤሟይ / ማሽላ'
+     imageName2 = 'sorghum'
+
+     generateButtonsEvaluation()
+   },400)
+
+   }
+
+   iconCT4 = document.createElement("BUTTON");
+   cell.appendChild(iconCT4);
+   iconCT4.className = 'buttonsSapelli'
+   iconCT4.innerHTML = '<img src="images/omoIcons/unknownOther.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ɔ̂ቺየ / ሌላ';
+   iconCT4.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     croptype = 'ɔ̂ቺየ / ሌላ'
+     imageName2 = 'unknownOther'
 
 
-    document.getElementById('customIconsMap').click()
-    setTimeout(function(){
-      document.getElementById('share-download').click()
-    },400)
-  },400)
-  }
+     document.getElementById('customIconsMap').click()
+     setTimeout(function(){
+       document.getElementById('share-download').click()
+     },400)
+   },400)
 
-    return screenChoice && malefemale && imageName2
-}
+   }
+
+ return screenChoice && evaluation && imageName2
+ }
+
+ var generateButtonsEvaluation = function(){
+   scrollToTop()
+
+
+   screenChoice = 'evaluation'
+
+ // human issue
+   iconE1 = document.createElement("BUTTON");
+   cell.appendChild(iconE1);
+   iconE1.className = 'buttonsSapelli'
+   iconE1.innerHTML = '<img src="images/omoIcons/Questionmark.png" style="height: 150px; width: 150px; border: 0px solid white" /> ';
+   iconE1.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     evaluation = '❓'
+     imageName3 = 'Questionmark'
+
+     document.getElementById('customIconsMap').click()
+     setTimeout(function(){
+       document.getElementById('share-download').click()
+     },400)
+   },400)
+
+   }
+
+
+ //other issues
+   iconE2 = document.createElement("BUTTON");
+   cell.appendChild(iconE2);
+   iconE2.innerHTML = '<img src="images/omoIcons/ThumbsUp.png" style="height: 150px; width: 150px; border: 0px solid white" /> ';
+   iconE2.className = 'buttonsSapelli'
+   iconE2.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     evaluation = '👍🏿'
+     imageName3 = 'ThumbsUp'
+
+     document.getElementById('customIconsMap').click()
+     setTimeout(function(){
+       document.getElementById('share-download').click()
+     },400)
+   },400)
+
+   }
+
+   iconE3 = document.createElement("BUTTON");
+   cell.appendChild(iconE3);
+   iconE3.className = 'buttonsSapelli'
+   iconE3.innerHTML = '<img src="images/omoIcons/ThumbsDown.png" style="height: 150px; width: 150px; border: 0px solid white" /> ';
+   iconE3.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     evaluation = '👎🏿'
+     imageName3 = 'ThumbsDown'
+
+
+     document.getElementById('customIconsMap').click()
+     setTimeout(function(){
+       document.getElementById('share-download').click()
+     },400)
+   },400)
+   }
+
+     return screenChoice && evaluation && imageName2
+
+ }
