@@ -426,7 +426,9 @@ document.getElementById('screenshot').addEventListener('click',function (){
     document.getElementById('camera').disabled = true
     // document.getElementById('camera').style.backgroundColor = 'black'
     // document.getElementById('camera').style.opacity = '0.3'
-    // googleSat.removeFrom(map)
+    // googleSat.addTo(map)
+    // googleSatOnly.removeFrom(map)
+
 
 setTimeout(function(){ //this is simply to improve button interaction with 300ms before processing stuff below
 
@@ -439,7 +441,7 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
     gps_Button.button.style.display = 'none';
 
     planet_Button.button.style.display = 'none';
-    googleSat_Button.button.style.display = 'none';
+    // googleSat_Button.button.style.display = 'none';
     osm_Button.button.style.display = 'none';
 
     document.getElementById("showAreaAcres").style.display = 'none'
@@ -485,7 +487,7 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
       html2canvas(document.getElementById('map'), {
         allowTaint: true,
         useCORS: true,
-        imageTimeout:10000,
+        imageTimeout:5000,
         removeContainer:true,
         logging:true,
         foreignObjectRendering: false,
@@ -567,8 +569,8 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
           document.getElementById("camera").disabled = false
           document.getElementById("showAreaAcres").style.display = 'initial'
           document.getElementById('screenshot').style.borderColor = 'yellow'
-          googleSat.addTo(map)
-          googleSatOnly.removeFrom(map)
+          // googleSat.addTo(map)
+          // googleSatOnly.removeFrom(map)
 
       })
       .catch((e) => {
