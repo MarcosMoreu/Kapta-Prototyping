@@ -93,54 +93,25 @@ self.addEventListener('fetch', (event) => {
   }else if(event.request.url.includes('s,h&x')){ //to put the google tiles in a different cache so it can be cleared easily
     console.log(event.request.url)
     console.log('google tiles')
-    // localforage.setItem(key, value)
 
-    // if (event.request.readyState === XMLHttpRequest.DONE) {
-        // if (event.request.status === 200) {
-          // event.respondWith(self._saveTile(url.key, event.request.response));
-    //     } else {
-    //         reject({
-    //             status: event.request.status,
-    //             statusText: event.request.statusText
-    //         });
-    //     }
-    // }
-    event.respondWith(caches.open(cacheNameTiles).then((cache) => {
-      return cache.match(event.request)
-        .then((cachedResponse) => {
-          if (cachedResponse){
-            return cachedResponse;
-          }
-          //otherwise hit the network
-          return fetch(event.request).then((fetchedResponse)=>{
-            //add the network request to the cache for later visits
-            cache.put(event.request, fetchedResponse.clone())//.catch(unableToResolve);
-            //return the network response
-            return fetchedResponse
-        });
-      });
-    }));
-  // }else if(event.request.url.includes('s&x') || event.request.url.includes('.openstreetmap')){ //to put the google tiles in a different cache so it can be cleared easily
-  //     // console.log(event.request.url)
-  //     // console.log('google tiles')
-  //
-  //     event.respondWith(caches.open(cacheNameTiles).then((cache) => {
-  //       return cache.match(event.request)
-  //         .then((cachedResponse) => {
-  //           if (cachedResponse){
-  //             return cachedResponse;
-  //           }
-  //           //otherwise hit the network
-  //           return fetch(event.request).then((fetchedResponse)=>{
-  //             //add the network request to the cache for later visits
-  //             cache.put(event.request, fetchedResponse.clone())//.catch(unableToResolve);
-  //             //return the network response
-  //             return fetchedResponse
-  //         });
-  //       });
-  //     }));
+    // event.respondWith(caches.open(cacheNameTiles).then((cache) => {
+    //   return cache.match(event.request)
+    //     .then((cachedResponse) => {
+    //       if (cachedResponse){
+    //         return cachedResponse;
+    //       }
+    //       //otherwise hit the network
+    //       return fetch(event.request).then((fetchedResponse)=>{
+    //         //add the network request to the cache for later visits
+    //         cache.put(event.request, fetchedResponse.clone())//.catch(unableToResolve);
+    //         //return the network response
+    //         return fetchedResponse
+    //     });
+    //   });
+    // }));
 
-}else if(event.request.url.includes('s&x')){
+
+}else if(event.request.url.includes('.google') || event.request.url.includes('.openstreetmap')  || event.request.url.includes('.planet')){
   console.log(event.request.url)
   console.log('do not cache google sat only')
 
