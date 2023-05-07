@@ -101,8 +101,8 @@ var drawMarker = new L.Draw.Marker(map, drawControl.options.draw.marker);
 var clickMapCount = 0;
 var clickDelVertCount = 0;
 document.getElementById("goBack2").onclick = function(e) {
-  googleSatOnly.removeFrom(map)
-  googleSat.addTo(map)
+  // googleSatOnly.removeFrom(map)
+  // googleSat.addTo(map)
   finalAreaHa2Decimals = null
   finalAreaAcres2Decimals = null
   finalLength2Decimals = null
@@ -473,8 +473,8 @@ var typeOfFeature;
 map.on('draw:created', function(e) {
   field = false
 
-  googleSat.removeFrom(map)
-  googleSatOnly.addTo(map)
+  // googleSat.removeFrom(map)
+  // googleSatOnly.addTo(map)
   // googleSat.addTo(map)
 
   //console.log(drawnItems)
@@ -653,8 +653,8 @@ var boxContent;
 var justCancelled = false
 document.getElementById('Cancel').onclick = function(e) {
   // projectsCreated = true
-  googleSatOnly.removeFrom(map)
-  googleSat.addTo(map)
+  // googleSatOnly.removeFrom(map)
+  // googleSat.addTo(map)
   const celltohide = document.querySelectorAll('.gridCell')
   for (const el of celltohide) {
     el.parentNode.removeChild(el);
@@ -773,7 +773,7 @@ document.getElementById('Cancel').onclick = function(e) {
       map.scrollWheelZoom.enable();
       map.boxZoom.enable();
       map.keyboard.enable();
-      googleSatOnly.removeFrom(map)
+      // googleSatOnly.removeFrom(map)
 
       if (map.tap) map.tap.enable();
       document.getElementById('map').style.cursor='grab';
