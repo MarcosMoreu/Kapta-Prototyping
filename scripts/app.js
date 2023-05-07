@@ -927,13 +927,13 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
     attribution: 'Leaflet | OpenStreetMap Contributors'
 
 });
-var googleSatOnly = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
-    maxZoom: 20,
-    subdomains:['mt0','mt1','mt2','mt3']
-});
+// var googleSatOnly = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+//     maxZoom: 20,
+//     subdomains:['mt0','mt1','mt2','mt3']
+// });
 var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
-    saveButtonHtml: '<img src="images/download.png" alt="..." width=15px ; height=15px>',
-    removeButtonHtml: '<img src="images/bin.png" alt="..." width=15px ; height=15px>',
+    saveButtonHtml: '<img src="images/download.png" alt="..." width=30px ; height=30px>',
+    removeButtonHtml: '<img src="images/bin.png" alt="..." width=30px ; height=30px>',
 
     confirmSavingCallback: function(nTilesToSave, continueSaveTiles) {
         if (window.confirm('Save ' + nTilesToSave + ' tiles? PLEASE READ. 1) Note that more than 1000 tiles might cause errors (click cancel, zoom in to reduce the number and click download again). 2) After clicking OK, wait a few seconds for a confirmation message.')) {
@@ -946,24 +946,7 @@ var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
         }
     },
     minZoom: 0,
-    maxZoom: 16
-});
-var offlineControlOSM = L.control.offline(osm, tilesDb, {
-    saveButtonHtml: '<img src="images/download.png" alt="..." width=15px ; height=15px>',
-    removeButtonHtml: '<img src="images/bin.png" alt="..." width=15px ; height=15px>',
-    //  icon: '<img src="images/OSM.png" width=50px ; height=50px>',
-    confirmSavingCallback: function(nTilesToSave, continueSaveTiles) {
-        if (window.confirm('Save ' + nTilesToSave + '?')) {
-            continueSaveTiles();
-        }
-    },
-    confirmRemovalCallback: function(continueRemoveTiles) {
-        if (window.confirm('Remove all the tiles?')) {
-            continueRemoveTiles();
-        }
-    },
-    minZoom: 0,
-    maxZoom: 16
+    maxZoom: 16 // to set the max zoom level in the tiles
 });
 
 
@@ -1327,7 +1310,7 @@ osm.on("tileerror",function() {
   document.getElementById("Alert").style.textAlign = "center"
   document.getElementById('Alert').innerHTML = '<br> ❗ 📶 ❗'
   document.getElementById("Alert").style.display = 'initial'
-  map.setZoom(0)
+  // map.setZoom(0)
 
 });
 googleSat.on("load",function() {
@@ -1341,7 +1324,7 @@ googleSat.on("tileerror",function() {
   document.getElementById("Alert").style.textAlign = "center"
   document.getElementById('Alert').innerHTML = '<br> ❗ 📶 ❗'
   document.getElementById("Alert").style.display = 'initial'
-  map.setZoom(0)
+  // map.setZoom(0)
 
 });
 planetScopeMonthlyMosaicLatest.on("load",function() {
@@ -2039,7 +2022,7 @@ var myLayer_Button = L.easyButton({
 
                 filter_Button.button.style.opacity = '0.4';
                 filter_Button.button.disabled = true;
-                filter_Button.button.style.backgroundColor = 'black'
+                // filter_Button.button.style.backgroundColor = 'black'
                 // myLayer_Button.button.style.borderColor = '#00FFFB';
 
 
@@ -2077,6 +2060,8 @@ var myLayer_Button = L.easyButton({
                 }
 
   } else if (whichLayerIsOn == 'localStorage') {
+    filter_Button.button.style.opacity = '0.4';
+    filter_Button.button.disabled = true;
       whichLayerIsOn = 'none'
       console.log('whichLayerIsOn',whichLayerIsOn)
 
@@ -2128,6 +2113,8 @@ var myLayer_Button = L.easyButton({
 
 
     } else if (whichLayerIsOn == 'none') {
+      filter_Button.button.style.opacity = '0.4';
+      filter_Button.button.disabled = true;
             whichLayerIsOn = 'deflated'
             console.log('whichLayerIsOn',whichLayerIsOn)
 
@@ -2283,7 +2270,7 @@ var filter_Button = L.easyButton({
           if(filterIsOn == false){
             const element = document.getElementById('span6');
             element.style.width = 'calc(100% - 200px)';
-            filter_Button.button.style.borderColor = 'white'
+            filter_Button.button.style.borderColor = 'yellow'
             startCheckAttrDateContent = setInterval(checkAttrDateContent,300)
             //console.log('filterisonfalse')
             filterIsOn = true
@@ -2549,7 +2536,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
         // localStorage.setItem('lastPositionStoredLOCALLY', currentLocation)
         locationFound = true
         //once the position has been found, we stop checking if the user deactivates again (the position will be recorded anyway)
-        if (accuracy <= 50) {
+        if (accuracy <= 100) {
 
             gps_Button.button.style.backgroundColor = '#3AFB06';
             //to change the icon of the Easybutton based on accuracy... (first gif then static image)
@@ -2602,7 +2589,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
               // clearInterval(refreshGPSbutton) //stop searching once accuracy <50
 
 
-        } else if (accuracy > 50 && accuracy <= 250) {
+        } else if (accuracy > 100 && accuracy <= 250) {
 
             gps_Button.button.style.backgroundColor = 'yellow';
             if (isIOS == true) {
@@ -2675,7 +2662,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
             }
         }
     } else {
-        gps_Button.button.style.backgroundColor = 'red';
+        gps_Button.button.style.backgroundColor = '#7F0000';
         if (isIOS == true) {
           document.getElementById('gps').innerHTML = '<img src="images/gpsOff.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px" > '
         }else{
@@ -2735,7 +2722,7 @@ var gps_Button = L.easyButton({
               //   },2500)
 
 
-                if (accuracy <= 50) {
+                if (accuracy <= 100) {
                   //  gps_Button.button.style.backgroundColor = 'green';
                   //  gps_Button.button.src = 'images/gpsSearching.gif';
                   var mapCurrentZoom = map.getZoom();
@@ -2748,7 +2735,7 @@ var gps_Button = L.easyButton({
                     // startSearchingLocation()
                     ////console.log(currentLocation)
 
-                } else if (accuracy > 50 && accuracy <= 250) {
+                } else if (accuracy > 100 && accuracy <= 250) {
                   //  gps_Button.button.style.backgroundColor = 'yellow';
                 //    gps_Button.button.src = 'images/gpsSearching.gif';
 
@@ -2792,7 +2779,7 @@ var gps_Button = L.easyButton({
 gps_Button.button.style.width = '50px';
 gps_Button.button.style.height = '50px';
 gps_Button.button.style.transitionDuration = '.3s';
-gps_Button.button.style.backgroundColor = 'red';
+gps_Button.button.style.backgroundColor = '#7F0000';
 //gps_Button.addTo(map);
 
 ////console.log(currentLocation[0]ddddddd)
@@ -2904,7 +2891,7 @@ var filterLocalStorage_Button = L.easyButton({
                 // console.log('emojinosapelli')
 
               }else{
-                filter_Button.button.style.backgroundColor = 'black'
+                // filter_Button.button.style.backgroundColor = 'black'
                 document.getElementById("Alert").style.display = 'none'
               }
 
@@ -2933,6 +2920,10 @@ filterLocalStorage_Button.button.style.height = '50px';
 filterLocalStorage_Button.button.style.transitionDuration = '.3s';
 filterLocalStorage_Button.button.style.backgroundColor = 'black';
 filterLocalStorage_Button.button.style.border= '2px solid transparent';
+filterLocalStorage_Button.button.disabled = true
+filterLocalStorage_Button.button.style.opacity = '0.4';
+
+
 
 filterLocalStorage_Button.removeFrom(map);
 
@@ -3107,28 +3098,30 @@ function setData() {
         // male_or_female = null
 
         // var lu_final =landUsesEmoji.replace(/<br>/g, '');
-        // lu_final ='test'
-        // cluster = 'test'
-        // ett_type = 'test'
-        // maisonsdetruites_number = 11
-        // personnesaffectees_number = 12
-        // crop_hectares_afected = 0
-        // landownership_type = null
-        // male_or_female = null
+        landUsesEmoji ='test'
+        phoneNumber = 123123
+        cluster = 'test'
+        ett_type = 'test'
+        maisonsdetruites_number = 11
+        personnesaffectees_number = 12
+        crop_hectares_afected = 0
+        landownership_type = null
+        male_or_female = null
+        sapelliProjectIdentifier = 111
+        dist_m_Participant_Feature = 74067170
+        var dist_m_Participant_FeatureInt64 = parseInt(dist_m_Participant_Feature,10)
+        // timeSpendSeconds = 3.14159265358979323846264338327950288400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001
+        // timeSpendSeconds = BigInt(timeSpendSeconds)
+
         // console.log(lu_final)
+        /////////////////////////////////////////LOCAL STORAGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE///////////////////////////////////////////////
         var commentAudioDefault = '.'
-        var sql = "INSERT INTO lumblu_private (the_geom, randomid, contribution, areapolygon, lengthline, timespent, distance, date, phone, sapprojid, cluster, ett, maisons, personnes, crop_ha, ownership, gender) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
+        var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.lumblu_private3` (geom, randomid, contribution, areapolygon, lengthline, distance, date, phone, sapprojid, cluster, ett, maisons, personnes, crop_ha, ownership, gender) VALUES (ST_GeogFromGeoJSON('";
         var sql2 = dataGeometryString;
-var sql3 = "'),4326),'"+randomID+"','"+landUsesEmoji+"','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dateTime + "','" + phoneNumber + "','" + sapelliProjectIdentifier + "','" + cluster + "','" + ett_type + "','" + maisonsdetruites_number + "','" + personnesaffectees_number + "','" + crop_hectares_afected + "','" + landownership_type + "','" + male_or_female + "')";
+var sql3 = "',make_valid => true),'"+randomID+"','"+landUsesEmoji+"','" + areaPolygon + "','" + lengthLine + "',CAST('" + dist_m_Participant_FeatureInt64 + "' AS INT64),'" + dateTime + "',CAST('" + phoneNumber + "' AS INT64),'" + sapelliProjectIdentifier + "','" + cluster + "','" + ett_type + "','" + maisonsdetruites_number + "','" + personnesaffectees_number + "','" + crop_hectares_afected + "','" + landownership_type + "','" + male_or_female + "')";
         pURL = sql + sql2 + sql3;
         console.log(pURL)
-        // ////console.log(dataGeometryString)
-        // var commentAudioDefault = '.'
-        // var sql = "INSERT INTO lumblu_private (the_geom, randomid, landuses, landusesemoji, areapolygon, lengthline, timespent, distance, geometrystring, screensize, date, phonenumber, sapprojid) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
-        // var sql2 = dataGeometryString;
-        // var sql3 = "'),4326),'" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "','" + dateTime + "','" + phoneNumber + "','" + sapelliProjectIdentifier + "')";
-        // pURL = sql + sql2 + sql3;
-        // //console.log(pURL)
+        // console.log(timeSpendSeconds)
 
     }
 
