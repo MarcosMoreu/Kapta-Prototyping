@@ -371,9 +371,7 @@ var tilesDb = {
 
         for (var i = 0; i < tileUrls.length; i++) {
             var tileUrl = tileUrls[i];
-            if(i==tileUrls.length-1){
-              alert('All tiles have been downloaded.')
-            }
+
 
             (function(i, tileUrl) {
                 promises[i] = new Promise(function(resolve, reject) {
@@ -384,6 +382,9 @@ var tilesDb = {
                         if (request.readyState === XMLHttpRequest.DONE) {
                             if (request.status === 200) {
                                 resolve(self._saveTile(tileUrl.key, request.response));
+                                if(i==tileUrls.length-1){
+                                  alert('All tiles have been downloaded.')
+                                }
                             } else {
                                 reject({
                                     status: request.status,
@@ -930,15 +931,22 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
 // var googleSatOnly = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
 //     maxZoom: 20,
 //     subdomains:['mt0','mt1','mt2','mt3']
-// });
+// var currentZoomdownloadfunction = map.getZoom()
+// var zoomlimittodownload = currentZoomdownloadfunction + 3
+
 var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
     saveButtonHtml: '<img src="images/download.png" alt="..." width=30px ; height=30px>',
-    removeButtonHtml: '<img src="images/bin.png" alt="..." width=30px ; height=30px>',
+    removeButtonHtml: '<img src="images/bin.png" alt="..." width=25px ; height=25px>',
 
     confirmSavingCallback: function(nTilesToSave, continueSaveTiles) {
-        if (window.confirm('Save ' + nTilesToSave + ' tiles? PLEASE READ. 1) Note that more than 1000 tiles might cause errors (click cancel, zoom in to reduce the number and click download again). 2) After clicking OK, wait a few seconds for a confirmation message.')) {
+
+     // console.log('zoomlimittodownload',zoomlimittodownload)
+        if (window.confirm('Save ' + nTilesToSave + ' tiles?')) {
             continueSaveTiles();
         }
+        console.log('map.getZoom()+3',map.getZoom()+3)
+
+        // return zoomlimittodownload
     },
     confirmRemovalCallback: function(continueRemoveTiles) {
         if (window.confirm('Remove all the tiles?')) {
@@ -946,7 +954,7 @@ var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
         }
     },
     minZoom: 0,
-    maxZoom: 16 // to set the max zoom level in the tiles
+    maxZoom: map.getZoom()+3
 });
 
 
@@ -1251,7 +1259,7 @@ var basemapOn = 'googleSat'
 // document.getElementById("Alert").style.fontSize = "25px";
 // document.getElementById('Alert').innerHTML = '⌛'
 // document.getElementById("Alert").style.display = 'initial'
-document.getElementById("MapLoading").style.display = 'initial'
+// document.getElementById("MapLoading").style.display = 'initial'
 
 // to show the clock while tiles are loading when zoom in/out, not only when toggling the basemap
 //everytime the user zoomIn/Out or pan, the clock is shown, and only disapear when tiles are loaded

@@ -14,7 +14,7 @@ var buttonForDeleteAllGeom
 
 document.getElementById('rose').onclick = function(e){
     clicksRose += 1;
-    // //console.log(clicksRose)
+    console.log(clicksRose)
     //this is to avoid zoom in with doubleClick if rose is clicked too quickly
     map.doubleClickZoom.disable();
     setTimeout(function(){
@@ -25,37 +25,35 @@ document.getElementById('rose').onclick = function(e){
     var toRemoveDeflated = deflated._layers
     //console.log('toremovedeflated',toRemoveDeflated)
 
-      if(clicksRose == 5){ //this is to refresh the carto layer
+      if(clicksRose == 3 && map.getZoom()>10){ //this is to refresh the carto layer
         // document.getElementById("Alert").style.fontSize = "40px";
         // document.getElementById('Alert').innerHTML = '<br>⌛'
         // document.getElementById("Alert").style.display = 'initial'
 
 
-        setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
-          if(clicksRose == 5){ //this is to check that the user actually want to click 5 times, not 10
-            document.getElementById("Alert").style.fontSize = "40px";
-            document.getElementById('Alert').innerHTML = '<br>🔄'
-            document.getElementById("Alert").style.display = 'initial'
-              setTimeout(function(){
-                document.getElementById("Alert").style.display = 'none'
-             },1000)
-            //console.log('refreshed')
 
-            for (i = 0; i < deflated._layers.length; i++) { // not the optimal solution, but couldn't find the way to empty deflated
-              try{ // because array not starts with 1,2,3
-                deflated.removeLayer(deflated._layers[i])
-                //console.log('forr ',i)
-              }catch(e){}
-            }
+        setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
+          if(clicksRose ==3){ //this is to check that the user actually want to click 5 times, not 10
+            offlineControlGoogle.addTo(map);
+
+            console.log('refreshed')
+
+            // for (i = 0; i < deflated._layers.length; i++) { // not the optimal solution, but couldn't find the way to empty deflated
+            //   try{ // because array not starts with 1,2,3
+            //     deflated.removeLayer(deflated._layers[i])
+            //     //console.log('forr ',i)
+            //   }catch(e){}
+            // }
             //sqlquery specified below to avoid interferance with SELECT after INSERT
-            sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date, commentone, commentoneaudioavailable FROM lumblu"
-            getGeoJSON()
+            // sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date, commentone, commentoneaudioavailable FROM lumblu"
+            // getGeoJSON()
             // location.reload();
 
 
-          clicksRose = 0;
         }
-      },2000)
+        clicksRose = 0;
+
+      },1500)
       return clicksRose
 
       }
@@ -187,7 +185,7 @@ document.getElementById('rose').onclick = function(e){
 
         // clicksRose = 0;
         offlineControlGoogle.addTo(map);
-        offlineControlOSM.addTo(map);
+        // offlineControlOSM.addTo(map);
         clicksRose = 0;
       }
       buttonForExportGeometries.onclick = function(){
