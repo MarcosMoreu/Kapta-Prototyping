@@ -90,10 +90,33 @@ self.addEventListener('fetch', (event) => {
         return cachedResponse || fetchedResponse;
       });
     }));
-  }else if(event.request.url.includes('s,h&x')){ //to put the google tiles in a different cache so it can be cleared easily
-    console.log(event.request.url)
-    console.log('google tiles')
+  }else if(event.request.url.includes('.google') || event.request.url.includes('.openstreetmap')  || event.request.url.includes('.planet')){ //to put the google tiles in a different cache so it can be cleared easily
 
+      if(event.request.url.includes('.google') && event.request.url.includes('&z=4')){ //to cache the global map tiles
+        event.respondWith(caches.open(cacheName).then((cache) => {
+          // console.log(event.request.url)
+
+          return cache.match(event.request).then((cachedResponse) => {
+              if(cachedResponse){
+                console.log('from cacheeeeeeeeeeeeeeeeee')
+                return cachedResponse
+              }else{
+                console.log('from networkkkkkkkkkkkkkkkkkk')
+
+                return fetch(event.request).then((fetchedResponse) => {
+            // Add the network response to the cache for later visits
+            cache.put(event.request, fetchedResponse.clone());
+
+            // Return the network response
+            return fetchedResponse;
+          })
+        }
+      })
+        }))
+      }else{
+        console.log(event.request.url)
+    console.log('google tiles')
+  }
     // event.respondWith(caches.open(cacheNameTiles).then((cache) => {
     //   return cache.match(event.request)
     //     .then((cachedResponse) => {
@@ -110,10 +133,6 @@ self.addEventListener('fetch', (event) => {
     //   });
     // }));
 
-
-}else if(event.request.url.includes('.google') || event.request.url.includes('.openstreetmap')  || event.request.url.includes('.planet')){
-  console.log(event.request.url)
-  console.log('do not cache google sat only')
 
 }else{//this is where most of the request pass
 
@@ -156,17 +175,6 @@ self.addEventListener('fetch', (event) => {
         })
       }
     })
-        //   const fetchedResponse = fetch(event.request).then((networkResponse) => {
-        //
-        //     cache.put(event.request, networkResponse.clone())//.catch(unableToResolve);
-        //     return networkResponse;
-        //   });
-        //   console.log('cachedResponse',cachedResponse)
-        //   console.log('fetchedResponse',fetchedResponse)
-        //
-        //
-        //   return cachedResponse || fetchedResponse;
-        // });
       }))
     // event.respondWith(caches.open(cacheName).then((cache) => {
     //   // console.log(event.request.url)

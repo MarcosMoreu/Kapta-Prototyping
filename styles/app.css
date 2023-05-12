@@ -27,7 +27,12 @@ left:0px;
 
 }
 .buttonInitial{
-position:absolute
+position:absolute;
+transition: 0.5s all;
+}
+.buttonInitial:active{
+  transform: scale(0.6);
+
 }
 .easyButton1 {
   background-color:yellow;
