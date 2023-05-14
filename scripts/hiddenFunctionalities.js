@@ -34,6 +34,7 @@ document.getElementById('rose').onclick = function(e){
 
         setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
           if(clicksRose ==3){ //this is to check that the user actually want to click 5 times, not 10
+            document.getElementById('rose').style.display = 'none'
             offlineControlGoogle.addTo(map);
 
             console.log('refreshed')

@@ -387,7 +387,12 @@ console.log(feature.properties.landUsesEmoji)
                 isLocalStorage = true
                 // selectedFeature = e.target;
                 //selectedFeature.setStyle({color: 'red'})
+                // console.log(selectedFeature)
+                // console.log(selectedFeature.feature)
 
+                // if(selectedFeature.feature.geometry.type == 'Polygon'){
+                //
+                // }
                   if(aFeatureIsSelected == true ){
                     console.log(selectedFeature)
 
@@ -503,6 +508,12 @@ console.log(feature.properties.landUsesEmoji)
 
                          document.getElementById("backDeleteFeature").style.display = "initial";
                          document.getElementById("deleteFeatureLocalStorage").style.display = "initial";
+                         console.log(selectedFeature.feature)
+                         if(selectedFeature.feature.properties.OP == 'open' && isOnline == true){
+                           document.getElementById("deleteFeatureOpenDB").style.display = "initial";
+                         }
+
+
                          // document.getElementById("deleteFeature").style.display = "initial";
                          // document.getElementById("deleteFeature").style.opacity = "1";
                          // document.getElementById("deleteFeature").disabled = false;
@@ -561,6 +572,10 @@ console.log(feature.properties.landUsesEmoji)
 
                               document.getElementById("backDeleteFeature").style.display = "initial";
                               document.getElementById("deleteFeatureLocalStorage").style.display = "initial";
+                              if(selectedFeature.feature.properties.OP == 'open' && isOnline == true){
+                                document.getElementById("deleteFeatureOpenDB").style.display = "initial";
+                              }
+
                               // document.getElementById("deleteFeature").style.display = "initial";
                               // document.getElementById("deleteFeature").style.opacity = "1";
                               // document.getElementById("deleteFeature").disabled = false;
@@ -717,6 +732,8 @@ selectedFeature.removeFrom(localStorageLayer)
 
 geoJSONLocalforageDB.removeItem(getRandomID)
   document.getElementById('deleteFeatureLocalStorage').style.display = 'none'
+  document.getElementById("deleteFeatureOpenDB").style.display = "none";
+
   document.getElementById("backDeleteFeature").click()
   document.getElementById('backDeleteFeature').style.display = 'none'
   filterLocalStorage_Button.addTo(map);
