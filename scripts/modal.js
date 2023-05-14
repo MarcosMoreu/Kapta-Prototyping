@@ -98,6 +98,7 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
     // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
     if(localStorage.getItem('pwCorrect')){
       document.getElementById('MapLoading').style.display = 'initial'
+      document.getElementById('MapLoading').style.opacity = 0
       jQuery(document).ready(checkContainer);
 
       function checkContainer () {
@@ -259,45 +260,22 @@ document.getElementById('loginKey').onclick = function(e){
  //console.log(loaded)
 //return loaded
 }
-var requestCartoData = function() {
-    if (isOnline == true && cartousername != null) {
-      sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date, commentone, commentoneaudioavailable FROM lumblu";
-
-        clearInterval(requestCartoData);
-        function getGeoJSON() {
-            $.getJSON({
-              cache:false,
-              success:cartoGeoJSONLayer,
-              url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
-            })
-            return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
-        };
-      // getGeoJSON(); //////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-        //funtion to get geojson with 🌐 to be used in random suggestion
-        function getGeoJSONRandom(){ ///RANDOM!!!!!!!!!!!!!!!
-
-          var sqlQueryRandom = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date, commentone, commentoneaudioavailable FROM lumblu WHERE LEFT(landusesemoji,1)='🌐'";
-          $.getJSON({
-            cache:false,
-            success:randomLayer,
-            url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQueryRandom + cartoapiSELECT
-          })
-        }
-        // getGeoJSONRandom() ////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    }
-    return cartousername
-}
-
 
 var initialiseMap = function(){
   document.body.style.backgroundColor = "black";
   setTimeout(function(){
       if (document.readyState === 'complete' && localStorage.getItem('pwCorrect')) {
+      phoneNumber = localStorage.getItem('phoneNumber');
+      console.log('phonenumber', phoneNumber)
 
     document.getElementById('initialscreen2options').style.display = 'initial'
     console.log('initialise map')
     if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains geojson (and coords)
+      document.getElementById('talk').style.display = 'none'
+      document.getElementById('listen').style.display = 'none'
+      document.getElementById('map').style.opacity = 1
+
+
       document.getElementById('talk').click()
   }
 }
@@ -451,11 +429,13 @@ basemapClass[0].style.opacity = 0
 
 
       done = true
-      return done
+      return done && phoneNumber
     // });
 }
 
 document.getElementById('talk').onclick = function(){
+  setTimeout(function(){
+
   document.getElementById('initialscreen2options').style.display = 'none'
   // document.getElementById("map").style.display = "block";
   document.getElementById("map").style.opacity = 1;
@@ -466,8 +446,15 @@ document.getElementById('talk').onclick = function(){
     document.getElementById("armchair").style.display = "initial";
     document.getElementById("field").style.display = "initial";
   },500)
+  document.getElementById('MapLoading').style.opacity = 1
+  document.getElementById('myLayerButton').click()
+
+},500)
+
 }
 document.getElementById('listen').onclick = function(){
+  setTimeout(function(){
+
   document.getElementById('initialscreen2options').style.display = 'none'
   document.getElementById("map").style.opacity = 1;
 
@@ -476,8 +463,15 @@ document.getElementById('listen').onclick = function(){
     // document.getElementById("tutorial").style.display = "initial";
     // document.getElementById("armchair").style.display = "initial";
     // document.getElementById("field").style.display = "initial";
+    document.getElementById('myLayerButton').click()
+    document.getElementById('myLayerButton').click()
     document.getElementById('filter').click()
   },500)
+  document.getElementById('MapLoading').style.opacity = 1
+
+
+},500)
+
 }
 
 
@@ -491,7 +485,7 @@ document.onreadystatechange = function () {
     startSearchingLocation()
   // document.getElementById('rose').click()
     setTimeout(function(){
-      requestCartoData()
+      // requestCartoData()
     },1000)
   }
 }
@@ -636,6 +630,7 @@ var requestPw = function(){
                  var phoneNumberNoprefix = document.getElementById('enteredPw').value.substr(4, 13)
                  console.log('phonenumber',phoneNumberNoprefix)
                  localStorage.setItem('phoneNumber', phoneNumberNoprefix);
+
 
 
                 clearInterval(checkPw)

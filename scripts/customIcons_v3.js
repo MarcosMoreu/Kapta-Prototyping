@@ -36,6 +36,8 @@ var male_or_female= null
 var crop_hectares_afected = null
 var updateproject
 var finalAttributes
+var sapelliProjectIdentifier = 'nTxrPZWdUhRVVjwszTFoSywAhZfNkRtzrUcwNnhK'
+localStorage.setItem('sapelliProjectIdentifier', sapelliProjectIdentifier);
 // var isMARAorMAU
 
 // console.log('url', url)
