@@ -91,6 +91,8 @@ document.getElementById("backDeleteFeature").onclick = function() {
     document.getElementById("backDeleteFeature").style.display = "none";
     document.getElementById("deleteFeature").style.display = 'none';
     document.getElementById('deleteFeatureLocalStorage').style.display = 'none'
+    document.getElementById("deleteFeatureOpenDB").style.display = "none";
+
 
     document.getElementById("deleteFeature").style.backgroundColor = 'white';
     document.getElementById("deleteFeature").style.borderColor = 'white';
@@ -126,7 +128,7 @@ document.getElementById("backDeleteFeature").onclick = function() {
 
     //to ensure filter button remains green if filter applied
     if(filterApplied == true){ //to avoid that if dilterby date is all, color is not green
-      filter_Button.button.style.backgroundColor = 'green'
+      // filter_Button.button.style.backgroundColor = 'green'
       filterIsOn = false
 
 
@@ -531,7 +533,14 @@ document.getElementById("deleteFeature").onclick = function() {
         planet_Button.button.disabled = false;
 
         myLayer_Button.button.style.opacity = '1';
-        myLayer_Button.button.disabled = false
+        myLayer_Button.button.style.borderColor = 'black';
+        myLayer_Button.button.disabled = false;
+        document.getElementById('myLayerButton').click()
+        document.getElementById('myLayerButton').click()
+        document.getElementById('emojionearea').value = null
+
+
+
         filter_Button.button.style.opacity = '1';
         filter_Button.button.disabled = false;
 
@@ -541,6 +550,8 @@ document.getElementById("deleteFeature").onclick = function() {
         document.getElementById("tutorial").style.display = "initial";
         document.getElementById("field").style.display = "initial";
         document.getElementById("armchair").style.display = "initial";
+        const element = document.getElementById('span6');
+        element.style.width = 'calc(100% - 125px)';
         // document.getElementById("point").style.display = "initial";
         //removeMiniMap()
         //miniMap.remove()
@@ -556,6 +567,8 @@ document.getElementById("deleteFeature").onclick = function() {
         document.getElementById("randomSuggestion").disabled = false;
         document.getElementById("shareMessagingApp").style.display = "none";
         document.getElementById("randomSuggestion").style.display = "none";
+        document.getElementById("applyFilter").style.display = "none";
+
 
 
 
@@ -569,4 +582,53 @@ document.getElementById("deleteFeature").onclick = function() {
         setData()
     }
     return selectedFeature && clickCountDeleteButton && clickCountDelete && aFeatureIsSelected
+}
+//to delete the feature from CARTO
+
+document.getElementById('deleteFeatureOpenDB').onclick = function(){
+console.log('clickCountDeleteButton',clickCountDeleteButton)
+  if (clickCountDeleteButton == 0) {
+      document.getElementById("deleteFeatureOpenDB").style.backgroundColor = 'red';
+      document.getElementById("deleteFeatureOpenDB").style.borderColor = 'black';
+      document.getElementById("imageDeleteFeatureOpenDB").src = 'images/binpost.png';
+      // document.getElementById("shareMessagingApp").style.opacity = '0.4';
+      // document.getElementById("shareMessagingApp").disabled = true;
+      // document.getElementById("randomSuggestion").style.opacity = '0.4';
+      // document.getElementById("randomSuggestion").disabled = true;
+
+      clickCountDeleteButton = 1
+  } else {
+    // deleteFromcartoimmediate = true
+      console.log(selectedFeature)
+      console.log(selectedFeature.feature)
+      console.log(selectedFeature.feature.properties)
+      console.log(selectedFeature.feature.properties.randomID)
+
+
+
+    //to find the item in the local storage we use randomID, as is the same as keyvalue
+    deleteFromcartoimmediate = selectedFeature.feature.properties.randomID
+    console.log('deleteFromcartoimmediate',deleteFromcartoimmediate)
+    key = selectedFeature.feature.properties.randomID
+    selectedFeature.feature.properties.OP = 'Private';
+
+    var getItemToJSONstringified = JSON.stringify(selectedFeature.feature);
+    geoJSONLocalforageDB.setItem(key, getItemToJSONstringified);
+    // console.log(getRandomID)
+
+    // geoJSONLocalforageDB.removeItem(getRandomID)
+    document.getElementById('deleteFeatureLocalStorage').style.display = 'none'
+    document.getElementById("deleteFeatureOpenDB").style.display = "none";
+
+    document.getElementById("backDeleteFeature").click()
+    document.getElementById('backDeleteFeature').style.display = 'none'
+    // filterLocalStorage_Button.addTo(map);
+    // filter_Button.removeFrom(map)
+    clickCountDeleteButton = 0
+
+
+
+    setData()
+  }
+return clickCountDeleteButton && deleteFromcartoimmediate
 }
