@@ -1,7 +1,7 @@
 
 // var pageLoaded = false
 var subDOMAIN = 'testing'
-var sapelliProjectIdentifier = 'DTM' //this variable is need to put the sap project identifier in the geojson
+// var sapelliProjectIdentifier = 'DTM' //this variable is need to put the sap project identifier in the geojson
 var isIOS = /iPad|iPhone|iPod|Mac OS X/.test(navigator.userAgent) && !window.MSStream; // Mac OS X correct???
 var isOnline = navigator.onLine
 var isOnlineGlobal = isOnline
@@ -83,6 +83,33 @@ var cartoGeometriesInitial = null
 var elementJustAddedToLocalStorage = false
 var attachPhoto = false
 
+var areaPolygon = 0
+var lengthLine = 0
+var dist_m_Participant = 0
+var attribute3s = null
+var attribute1s = null
+var attribute2s = null
+var attribute3s = null
+var attribute4s = null
+var attribute5s = null
+var attribute6s = null
+var attribute7s = null
+var attribute8s = null
+var attribute9s = null
+var attribute10s = null
+var attribute11n = 0
+var attribute12n =  0
+var attribute13n = 0
+var attribute14n = 0
+var attribute15n = 0
+var attribute16n = 0
+var attribute17n = 0
+var attribute18n = 0
+var attribute19n = 0
+var attribute20n = 0
+var sqlQuerySelect
+var sqlQuerySelectEncoded
+var deleteFromcartoimmediate = null
 
 var watchPositionOptions = {
   enableHighAccuracy: true,
@@ -651,11 +678,11 @@ map.on('zoomend', function(e) {
   console.log('zoom level',currentZoom)
   //to activate carto based on zoom level
   if(whichLayerIsOn == 'deflated' && currentZoom >= 12){
-    deflated.addTo(map)
+    // deflated.addTo(map)
     console.log('carto open layer added to the map')
   }
   if(whichLayerIsOn == 'deflated' && currentZoom < 12){
-    deflated.removeFrom(map)
+    // deflated.removeFrom(map)
     console.log('carto open layer hidden from the map')
   }
 })
@@ -814,18 +841,24 @@ function fetchFromLocalStorage(){
 
     geoJSONLocalforageDB.keys(function(err, keys) {
       for (var i = 0; i < keys.length; i++) {
+        // console.log('fetching from local storage')
 
           (function(key) {
+
             geoJSONLocalforageDB.getItem(key).then(function (value) {
+              // console.log(value)
 
                 isJson(value);
                 if (isJson(value) == true) {
                   // console.log(isJson('this is geojson',value))
                     var getItemToJSON = JSON.parse(value);
                     isJson(getItemToJSON)
+                    console.log(getItemToJSON.properties.OP)
 
                     //to submit to CARTO the contributions submitted while offline
                     if(getItemToJSON.properties.OP == 'offlineOpen'){ //////////////////11111111111111111111111111111111!!!!!!!111CHANGE TO OFFLINEOPEN
+                      console.log('sbumitted to carto from local storage', getItemToJSON)
+
                       console.log(getItemToJSON)
                       // console.log(getItemToJSON.properties.OP)
                       // console.log(data)
@@ -843,28 +876,61 @@ function fetchFromLocalStorage(){
                         timeSpendSeconds = getItemToJSON.properties.timeSpendSeconds;
                         dist_m_Participant_Feature = getItemToJSON.properties.dist_m_Participant_Feature;
                         randomID = getItemToJSON.properties.randomID;
-                        console.log(screensize)
-                        phoneNumber = '1233241'
-                        audioAvailable = 'false'
-                        commentAudioDefault = '.'
-                        console.log(randomID)
                         var dataGeometryString = JSON.stringify(dataGeometry)
                         ////console.log(dataGeometryString)
-                        console.log('cluster',cluster)
-                        console.log('ett_type',ett_type)
-                        console.log('maisonsdetruites_number',maisonsdetruites_number)
-                        console.log('personnesaffectees_number',personnesaffectees_number)
-                        console.log('evaluation_updown',evaluation_updown)
-                        console.log('landownership_type',landownership_type)
-                        console.log('male_or_female',male_or_female)
-                        var commentAudioDefault = '.'
-                        var sql = "INSERT INTO lumblu_private (the_geom, randomid, landuses, landusesemoji, areapolygon, lengthline, timespent, distance, geometrystring, screensize, date, phonenumber, sapprojid, cluster, ett_type, maisons_detruites, personnes_affectees, crop_hectares_affected, landownership_type, male_or_female) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
+                        if(areaPolygon == 'Line' || areaPolygon == 'Point'){
+                          var areaPolygonNumeric = 0
+                        }else{
+                          var areaPolygonNumeric = parseFloat(areaPolygon)
+                        }
+                        console.log('lengthLine',lengthLine)
+
+                        if(lengthLine == 'Polygon' || lengthLine == 'Point'){
+                          var lengthLineNumeric = 0
+
+                        }else{
+                          var lengthLineNumeric = parseFloat(lengthLine)
+
+                        }
+                        attribute1s = 'test'
+                        attribute2s = 'test'
+                        attribute3s = 'test'
+
+                      dist_m_Participant = 74067170
+
+                        attribute20n = 1111111111
+                        phoneNumber = 0000000
+                        areaPolygonNumeric = 10
+                        lengthLineNumeric = 10
+                        // console.log('attribute1s',attribute1s)
+                        // console.log('attribute2s',attribute2s)
+                        // console.log('attribute3s',attribute3s)
+                        // console.log('attribute4s',attribute4s)
+                        // console.log('attribute5s',attribute5s)
+                        // console.log('attribute6s',attribute6s)
+                        // console.log('attribute7s',attribute7s)
+                        // console.log('attribute8s',attribute8s)
+                        // console.log('attribute9s',attribute9s)
+                        // console.log('attribute10s',attribute10s)
+                        // console.log('attribute11n',attribute11n)
+                        // console.log('attribute12n',attribute12n)
+                        // console.log('attribute13n',attribute13n)
+                        // console.log('attribute14n',attribute14n)
+                        // console.log('attribute15n',attribute15n)
+                        // console.log('attribute16n',attribute16n)
+                        // console.log('attribute17n',attribute17n)
+                        // console.log('attribute18n',attribute18n)
+                        // console.log('attribute19n',attribute19n)
+                        // console.log('attribute19n',attribute19n)
+                        /////////////////////////////////////////LOCAL STORAGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE///////////////////////////////////////////////
+                        // var commentAudioDefault = '.'
+                        var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n) VALUES (ST_GeogFromGeoJSON('";
                         var sql2 = dataGeometryString;
-                        var sql3 = "'),4326),'" + randomID + "','" + landUses + "','" + landUsesEmoji + "','" + areaPolygon + "','" + lengthLine + "','" + timeSpendSeconds + "','" + dist_m_Participant_Feature + "','" + dataGeometryString + "','" + screensize + "','" + dateTime + "','" + phoneNumber
-                         + "','" + sapelliProjectIdentifier + "','" + cluster + "','" + ett_type + "','" + maisonsdetruites_number + "','" + personnesaffectees_number + "','" + crop_hectares_afected + "','" + landownership_type + "','" + male_or_female + "')";
+                      var sql3 = "',make_valid => true),'"+randomID+ "',CAST('" + phoneNumber + "' AS INT64),'" + sapelliProjectIdentifier + "',CAST('" + areaPolygonNumeric + "' AS NUMERIC),CAST('" + lengthLineNumeric + "' AS NUMERIC),CAST('" + dist_m_Participant + "' AS INT64),'" + dateTime +"','"+attribute1s+ "','" + attribute2s + "','" + attribute3s + "','" + attribute4s + "','" + attribute5s + "','" + attribute6s + "','" + attribute7s + "','" + attribute8s + "','"+attribute9s+ "','" + attribute10s + "',CAST('"+ attribute11n + "' AS INT64),CAST('" + attribute12n + "' AS INT64),CAST('" + attribute13n + "' AS INT64),CAST('" + attribute14n + "' AS INT64),CAST('" + attribute15n + "' AS INT64),CAST('" + attribute16n + "' AS INT64),CAST('" +attribute17n+ "' AS INT64),CAST('" + attribute18n + "' AS INT64),CAST('" + attribute19n + "' AS INT64),CAST('" + attribute20n + "' AS INT64))";
                         pURL = sql + sql2 + sql3;
-                        console.log(pURL)
+                        console.log('submited to carto from local storage',pURL)
                         submitToProxy(pURL);
+
 
                       ////////////change the property so it is only sent once
 
@@ -908,6 +974,7 @@ var markerIconLocalStorage = new L.icon({
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
 var googleSat = L.tileLayer.offline('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb, {
     minZoom: 2,
     maxZoom: 21,
@@ -1988,7 +2055,7 @@ var myLayer_Button = L.easyButton({
                       // var refreshClusterBlueColor = setInterval(function(){
                         var cols = document.getElementsByClassName('marker-cluster-small');
                         for(i = 0; i < cols.length; i++) {
-                          cols[i].style.backgroundColor = '#00FFFB';
+                          cols[i].style.backgroundColor = '#00FFFB'; //bluelight
                         }
                       // },300)
 
@@ -2121,6 +2188,11 @@ var myLayer_Button = L.easyButton({
 
 
     } else if (whichLayerIsOn == 'none') {
+      // sqlQuerySelect = "select%20*%20from%20%60carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0%60&cache=1683980483065&v=3.0"
+
+      // sqlQuerySelect = "SELECT * FROM `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0`"
+      // sqlQuerySelectEncoded = encodeURI(sqlQuerySelect)
+      //   requestCartoData(sqlQuerySelectEncoded)
       filter_Button.button.style.opacity = '0.4';
       filter_Button.button.disabled = true;
             whichLayerIsOn = 'deflated'
@@ -2160,7 +2232,7 @@ var myLayer_Button = L.easyButton({
                   }else{
                     var currentZoom = map.getZoom()
                     if(whichLayerIsOn == 'deflated' && currentZoom >= 12){
-                      deflated.addTo(map)
+                      // deflated.addTo(map)
                       console.log('carto open layer added to the map')
                     }
 
@@ -2970,14 +3042,14 @@ document.getElementById('rose').style.marginBottom = '5px' // to avoid extra mar
 // var getTotalFeaturesInDB
 var template = document.getElementById('popup')
 
-function getGeoJSON() {
-    $.getJSON({
-      cache:false,
-      success:cartoGeoJSONLayer,
-      url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
-    })
-    return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
-};
+// function getGeoJSON() {
+//     $.getJSON({
+//       cache:false,
+//       success:cartoGeoJSONLayer,
+//       url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
+//     })
+//     return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
+// };
 
 //function to activate carto layer once feature has been submitted successfully. It's fired when the share-world button is clicked
 var postSuccess = function(){
@@ -3018,11 +3090,11 @@ var postSuccess = function(){
               }
             }
             //request to check when feature has reached the DB
-            $.get({
-              cache:false,
-              success:countRowsInDB,// if success the function above is called
-              url:"https://" + cartousername + ".cartodb.com/api/v2/sql?q=" + "SELECT COUNT(cartodb_id) FROM lumblu" + cartoapiSELECT
-            })
+            // $.get({
+            //   cache:false,
+            //   success:countRowsInDB,// if success the function above is called
+            //   url:"https://" + cartousername + ".cartodb.com/api/v2/sql?q=" + "SELECT COUNT(cartodb_id) FROM lumblu" + cartoapiSELECT
+            // })
 
        },500)
    }
@@ -3048,11 +3120,21 @@ var submitToProxy = function(q) {
 var pURL
 //this function is called both when feature is deleted or feature is created and sent.
 function setData() {
+  console.log('cartoIdFeatureSelected',cartoIdFeatureSelected)
+  console.log('created',created)
+  console.log('clickCountDeleteButton',clickCountDeleteButton)
+
     ////console.log("setdata function called");
-    if (cartoIdFeatureSelected != null && created == false && clickCountDeleteButton == 1) { //TO DELETE THE SELECTED FEATURE FROM THE CARTO DB
-        pURL = "DELETE FROM lumblu WHERE cartodb_id='" + cartoIdFeatureSelected + "'";
+    if ((cartoIdFeatureSelected != null && created == false && clickCountDeleteButton == 1) || deleteFromcartoimmediate != null) { //TO DELETE THE SELECTED FEATURE FROM THE CARTO DB
+        if(deleteFromcartoimmediate != null){
+          console.log('deleteFromcartoimmediate',deleteFromcartoimmediate)
+
+          cartoIdFeatureSelected = deleteFromcartoimmediate
+        }
+        pURL = "DELETE FROM `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` WHERE contributionid='" + cartoIdFeatureSelected + "'";
         clickCountDeleteButton = 0
         cartoIdFeatureSelected = null
+        deleteFromcartoimmediate = null
         //console.log(pURL)
 
     }else if (cartoIdFeatureSelected != null && created == false && editButtonClicked == true){ //TO INSERT COMMENT IN EXISTING FEATURE
@@ -3102,41 +3184,85 @@ function setData() {
         }else{
           crop_hectares_afected = 0
         }
+
+        console.log('areaPolygon',areaPolygon)
+
+        if(areaPolygon == 'Line' || areaPolygon == 'Point'){
+          var areaPolygonNumeric = 0
+        }else{
+          var areaPolygonNumeric = parseFloat(areaPolygon)
+        }
+        console.log('lengthLine',lengthLine)
+
+        if(lengthLine == 'Polygon' || lengthLine == 'Point'){
+          var lengthLineNumeric = 0
+
+        }else{
+          var lengthLineNumeric = parseFloat(lengthLine)
+
+        }
+
+        console.log('areaPolygonNumeric',areaPolygonNumeric)
+        console.log('lengthLineNumeric',lengthLineNumeric)
+
         // landownership_type = null
         // male_or_female = null
 
         // var lu_final =landUsesEmoji.replace(/<br>/g, '');
-        landUsesEmoji ='test'
-        phoneNumber = 123123
-        cluster = 'test'
-        ett_type = 'test'
-        maisonsdetruites_number = 11
-        personnesaffectees_number = 12
-        crop_hectares_afected = 0
-        landownership_type = null
-        male_or_female = null
-        sapelliProjectIdentifier = 111
-        dist_m_Participant_Feature = 74067170
-        var dist_m_Participant_FeatureInt64 = parseInt(dist_m_Participant_Feature,10)
+        attribute1s = landUsesEmoji
+        attribute2s = croptype
+        attribute3s = evaluation
+        // if(areaPolygon != null){
+        //   areaPolygon = extractNumbers(areaPolygon)
+        // }
+
+        console.log('attribute1s',attribute1s)
+        console.log('attribute2s',attribute2s)
+        console.log('attribute3s',attribute3s)
+        console.log('attribute4s',attribute4s)
+        console.log('attribute5s',attribute5s)
+        console.log('attribute6s',attribute6s)
+        console.log('attribute7s',attribute7s)
+        console.log('attribute8s',attribute8s)
+        console.log('attribute9s',attribute9s)
+        console.log('attribute10s',attribute10s)
+        console.log('attribute11n',attribute11n)
+        console.log('attribute12n',attribute12n)
+        console.log('attribute13n',attribute13n)
+        console.log('attribute14n',attribute14n)
+        console.log('attribute15n',attribute15n)
+        console.log('attribute16n',attribute16n)
+        console.log('attribute17n',attribute17n)
+        console.log('attribute18n',attribute18n)
+        console.log('attribute19n',attribute19n)
+        console.log('attribute19n',attribute19n)
+
+        dist_m_Participant = 74067170
+        // var dist_m_Participant_FeatureInt64 = parseInt(dist_m_Participant_Feature,10)
         // timeSpendSeconds = 3.14159265358979323846264338327950288400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001
         // timeSpendSeconds = BigInt(timeSpendSeconds)
+        attribute20n = 1111111111
 
         // console.log(lu_final)
         /////////////////////////////////////////LOCAL STORAGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE///////////////////////////////////////////////
-        var commentAudioDefault = '.'
-        var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.lumblu_private3` (geom, randomid, contribution, areapolygon, lengthline, distance, date, phone, sapprojid, cluster, ett, maisons, personnes, crop_ha, ownership, gender) VALUES (ST_GeogFromGeoJSON('";
+        // var commentAudioDefault = '.'
+        var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n) VALUES (ST_GeogFromGeoJSON('";
         var sql2 = dataGeometryString;
-var sql3 = "',make_valid => true),'"+randomID+"','"+landUsesEmoji+"','" + areaPolygon + "','" + lengthLine + "',CAST('" + dist_m_Participant_FeatureInt64 + "' AS INT64),'" + dateTime + "',CAST('" + phoneNumber + "' AS INT64),'" + sapelliProjectIdentifier + "','" + cluster + "','" + ett_type + "','" + maisonsdetruites_number + "','" + personnesaffectees_number + "','" + crop_hectares_afected + "','" + landownership_type + "','" + male_or_female + "')";
+var sql3 = "',make_valid => true),'"+randomID+ "',CAST('" + phoneNumber + "' AS INT64),'" + sapelliProjectIdentifier + "',CAST('" + areaPolygonNumeric + "' AS NUMERIC),CAST('" + lengthLineNumeric + "' AS NUMERIC),CAST('" + dist_m_Participant + "' AS INT64),'" + dateTime +"','"+attribute1s+ "','" + attribute2s + "','" + attribute3s + "','" + attribute4s + "','" + attribute5s + "','" + attribute6s + "','" + attribute7s + "','" + attribute8s + "','"+attribute9s+ "','" + attribute10s + "',CAST('"+ attribute11n + "' AS INT64),CAST('" + attribute12n + "' AS INT64),CAST('" + attribute13n + "' AS INT64),CAST('" + attribute14n + "' AS INT64),CAST('" + attribute15n + "' AS INT64),CAST('" + attribute16n + "' AS INT64),CAST('" +attribute17n+ "' AS INT64),CAST('" + attribute18n + "' AS INT64),CAST('" + attribute19n + "' AS INT64),CAST('" + attribute20n + "' AS INT64))";
         pURL = sql + sql2 + sql3;
         console.log(pURL)
         // console.log(timeSpendSeconds)
-
+//         var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n) VALUES (ST_GeogFromGeoJSON('";
+//         var sql2 = dataGeometryString;
+// var sql3 = "',make_valid => true),'"+randomID+"','" + "',CAST('" + phoneNumber + "' AS INT64),'" + sapelliProjectIdentifier + "','" + areaPolygon + "','" + lengthLine + "',CAST('" + dist_m_Participant + "' AS INT64),'" + dateTime +"','"+attribute1s+ "','" + attribute2s + "','" + attribute3s + "','" + attribute4s + "','" + attribute5s + "','" + attribute6s + "','" + attribute7s + "','" + attribute8s + "','"+attribute9s+ "','" + attribute10s + "','" + attribute11n + "','" + attribute12n + "','" + attribute13n + "','" + attribute14n + "','" + attribute15n + "','" + attribute16n + "','" +attribute17n+ "','" + attribute18n + "','" + attribute19n + "','" + attribute20n + "')";
+//         pURL = sql + sql2 + sql3;
+//         console.log(pURL)
     }
 
     //////console.log(pURL)
     submitToProxy(pURL);
     ////console.log("Feature has been submitted to the Proxy");
-    return pURL && editButtonClicked && clickCountDeleteButton
+    return pURL && editButtonClicked && clickCountDeleteButton && deleteFromcartoimmediate
 };
 
 //cartoGeoJSONLayer()
@@ -3283,6 +3409,7 @@ document.getElementById("armchair").onclick = function(e) {
   //   url:'https://webrtc.github.io/adapter/adapter-latest.js'
   // })
   // document.getElementById("Alert").style.display = 'none'
+  document.getElementById("applyFilter").style.display = "none";
 
   document.getElementById("tutorial").style.display = "none";
   document.getElementById("armchair").style.display = "none";
@@ -3418,6 +3545,7 @@ document.getElementById("field").onclick = function(e) {
         map.doubleClickZoom.disable();
         currentZoom = map.getZoom();
         drawMarker.enable();
+        document.getElementById("applyFilter").style.display = "none";
 
             document.getElementById("tutorial").style.display = "none";
             document.getElementById("polygon").style.display = "none";

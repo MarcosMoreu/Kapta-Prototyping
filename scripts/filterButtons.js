@@ -16,56 +16,58 @@ document.getElementById("applyFilter").onclick = function(e) {
 
   //script to refresh apply filter in case input box changes (focused again)
   checkIfInputChanges = setInterval(function(){
-    var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
-    var emojioneareaeditor0 = emojioneareaeditor[0]
-    if(lastBoxContent != emojioneareaeditor0.innerHTML && lastBoxContent != null && filterIsOn == true){
+    var emojioneareaeditor0 = document.getElementById('emojionearea')
+    // var emojioneareaeditor0 = emojioneareaeditor[0]
+    if(lastBoxContent != emojioneareaeditor0.value && lastBoxContent != null && filterIsOn == true){
       document.getElementById("clearFilter").style.display = "none";
       document.getElementById("applyFilter").style.display = "initial";
       document.getElementById("applyFilter").style.opacity = '1'
       document.getElementById("applyFilter").disabled = true
       console.log('the input box has been updated')
     }
-    lastBoxContent = emojioneareaeditor0.innerHTML
+    lastBoxContent = emojioneareaeditor0.value
 
 
     return lastBoxContent
   },300)
 
   if(whichLayerIsOn == 'deflated'){  // to differentiate between filtering carto or localstorage
-    filter_Button.button.style.borderColor = 'green'
+    filter_Button.button.style.borderColor = 'yellow'
 
 
 
 
     boxContent = document.getElementById('emojionearea').value;
-    var boxContentToShortname = emojione.toShort(boxContent)
-    console.log(boxContentToShortname)
+    console.log('boxContent',boxContent)
+
+    // var boxContentToShortname = emojione.toShort(boxContent)
+    // console.log(boxContentToShortname)
     document.getElementById("applyFilter").style.display = "none";
     document.getElementById("clearFilter").style.display = "initial";
     document.getElementById("clearFilter").style.opacity = '1'
     document.getElementById("clearFilter").disabled = false
-    filter_Button.button.style.borderColor = 'green'
-    if(landUse != 'emojiNoSapelli'){// we use innerHTML only when populated with sapelli (see below else)
-      var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
-      var emojioneareaeditor0 = emojioneareaeditor[0]
-      boxContentFiltering = emojioneareaeditor0.innerHTML
-    }else{
-      // boxContentFiltering = document.getElementsByClassName('emojionearea-editor')[0].innerHTML  // use this instead of .value!!!
-      boxContentFiltering = document.getElementById('emojionearea').value; // we use value instead because innerhtml takes emojis as images, which is a problem for the sql query
-      boxContentFilteringEncoded = emojione.toShort(boxContentFiltering)
-      console.log('box',boxContentFilteringEncoded)
-    }
+    // filter_Button.button.style.borderColor = 'green'
+    // if(landUse != 'emojiNoSapelli'){// we use innerHTML only when populated with sapelli (see below else)
+    //   var emojioneareaeditor0 = document.getElementById('emojionearea')
+    //   // var emojioneareaeditor0 = emojioneareaeditor[0]
+    //   boxContentFiltering = emojioneareaeditor0.value
+    // }else{
+    //   // boxContentFiltering = document.getElementsByClassName('emojionearea-editor')[0].innerHTML  // use this instead of .value!!!
+    //   boxContentFilteringEncoded = document.getElementById('emojionearea').value; // we use value instead because innerhtml takes emojis as images, which is a problem for the sql query
+    //   // boxContentFilteringEncoded = emojione.toShort(boxContentFiltering)
+    //   console.log('box',boxContentFilteringEncoded)
+    // }
 
 
 
-      if(boxContentFilteringEncoded ==='' && period == 3650){
+      if(boxContent ==='' && period == 3650){
         filterApplied = false
         // console.log('do nothing')
       }
 
-      else if(boxContentFilteringEncoded ==='' && period != 3650){
+      else if(boxContent ==='' && period != 3650){
         filterApplied = true
-        // console.log('do only date')
+        console.log('do only date')
 
             try {
               deflated.clearLayers() // clearLayers instead of cartoGeometries, as this doesn't contain all geometries after 'sent'
@@ -73,10 +75,12 @@ document.getElementById("applyFilter").onclick = function(e) {
             } catch (err) {
               // console.log('error sql catched due to empty layer after filter applied')
             }
-           var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE date>'";
+           var sqlQueryWithoutCondition = "SELECT geom, contributionid, attribute1s, date FROM `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` WHERE date>'";
            var sqlCondition = datePeriodAgoReplaceComaInvert +"'";
-           sqlQuery = sqlQueryWithoutCondition + sqlCondition
-           getGeoJSON()
+           sqlQuerySelect = sqlQueryWithoutCondition + sqlCondition
+           // sqlQuerySelect = "SELECT * FROM `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0`"
+           sqlQuerySelectEncoded = encodeURI(sqlQuerySelect)
+             requestCartoData(sqlQuerySelectEncoded)
 
            var loadInfoDateFilter = period + ' ☀️🌙 </br> ...'
            document.getElementById("Alert").style.fontSize = "20px";
@@ -85,7 +89,7 @@ document.getElementById("applyFilter").onclick = function(e) {
 
       }else{
         filterApplied = true
-        // console.log('do both')
+        console.log('do both')
 
             try {
               deflated.clearLayers() // clearLayers instead of cartoGeometries, as this doesn't contain all geometries after 'sent'
@@ -96,23 +100,29 @@ document.getElementById("applyFilter").onclick = function(e) {
 
 
 
-           var sqlQueryWithoutCondition = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu WHERE landuses ";
+           var sqlQueryWithoutCondition = "SELECT geom, contributionid, attribute1s, date FROM `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` WHERE (attribute1s ";
            var sqlCondition =
-            "ILIKE '" + boxContentFilteringEncoded +"'" //exact value
+            // "LIKE '" + boxContent +"'" //exact value
+            //
+            // + " OR landuses LIKE N'%" + boxContent +"%')" //xxxxxxxx%%%%%%%%%%%
 
-            + " OR landuses ILIKE N'%" + boxContentFilteringEncoded +"%'" //xxxxxxxx%%%%%%%%%%%
+            "LIKE '%" + boxContent +"%')" //exact value
+
+
+            // + " OR landuses LIKE N'%" + boxContent +"%')" //xxxxxxxx%%%%%%%%%%%
 
             +" AND (date>'"+datePeriodAgoReplaceComaInvert +"')";
-           var sqlQueryEncoded = sqlQueryWithoutCondition + sqlCondition
-           console.log(sqlQueryEncoded)
-           sqlQuery = encodeURIComponent(sqlQueryEncoded)
-           console.log(sqlQuery)
+           var sqlQuerySelect = sqlQueryWithoutCondition + sqlCondition
+           // console.log(sqlQueryEncoded)
+           // sqlQuery = encodeURIComponent(sqlQueryEncoded)
+           console.log(sqlQuerySelect)
 
-           getGeoJSON()
+           sqlQuerySelectEncoded = encodeURI(sqlQuerySelect)
+             requestCartoData(sqlQuerySelectEncoded)
             if(period == 3650){
-              var loadInfoDateFilter = boxContentFiltering // not encoded here as we want the emoji displayed in the alert
+              var loadInfoDateFilter = boxContent // not encoded here as we want the emoji displayed in the alert
             }else{
-              var loadInfoDateFilter = period + ' ☀️🌙 </br>'+ boxContentFiltering // not encoded here as we want the emoji displayed in the alert
+              var loadInfoDateFilter = period + ' ☀️🌙 </br>'+ boxContent // not encoded here as we want the emoji displayed in the alert
             }
            document.getElementById("Alert").style.fontSize = "20px";
            document.getElementById("Alert").innerHTML = loadInfoDateFilter
@@ -149,9 +159,9 @@ document.getElementById("applyFilter").onclick = function(e) {
         // boxContent = document.getElementById('emojionearea').value;
         // console.log(boxContent,'boxcontent')
 
-        var emojioneareaeditor = document.getElementsByClassName('emojionearea-editor')
-        var emojioneareaeditor0 = emojioneareaeditor[0]
-        boxContent = emojioneareaeditor0.innerHTML
+        var emojioneareaeditor0 = document.getElementById('emojionearea')
+        // var emojioneareaeditor0 = emojioneareaeditor[0]
+        boxContent = emojioneareaeditor0.value
         //to get the box value in case this is filled with icons
         if(boxContent == null){
           boxContent = landUse
@@ -284,7 +294,7 @@ document.getElementById("clearFilter").onclick = function(e) {
 
   // document.getElementById("clearFilter").style.opacity = '0.4'
   // document.getElementById("clearFilter").disabled = true
-  document.getElementsByClassName('emojionearea-editor')[0].innerHTML = null;
+  // document.getElementById('emojionearea').innerHTML = null;
   document.getElementById('emojionearea').value = null
   boxContentFilteringEncoded = null
   // document.getElementById('emojionearea').value = null
@@ -295,8 +305,8 @@ document.getElementById("clearFilter").onclick = function(e) {
   document.getElementById("Alert").style.display = 'none'
 
   if(whichLayerIsOn == 'deflated'){
-    filter_Button.button.style.backgroundColor = 'black'
-    filter_Button.button.style.borderColor = 'white'
+    // filter_Button.button.style.backgroundColor = 'black'
+    // filter_Button.button.style.borderColor = 'white'
 
     // filter_Button.button.style.borderColor = 'transparent'
 
@@ -310,8 +320,8 @@ document.getElementById("clearFilter").onclick = function(e) {
             // console.log('error sql catched due to empty layer after filter applied  ')
 
           }
-          sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu"
-          getGeoJSON()
+          // sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date FROM lumblu"
+          // getGeoJSON()
      }
 
 

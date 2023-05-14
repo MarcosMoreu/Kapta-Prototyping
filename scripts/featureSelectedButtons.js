@@ -622,6 +622,8 @@ console.log('clickCountDeleteButton',clickCountDeleteButton)
 
     document.getElementById("backDeleteFeature").click()
     document.getElementById('backDeleteFeature').style.display = 'none'
+    document.getElementById("imageDeleteFeatureOpenDB").src = 'images/shareworld.png';
+
     // filterLocalStorage_Button.addTo(map);
     // filter_Button.removeFrom(map)
     clickCountDeleteButton = 0

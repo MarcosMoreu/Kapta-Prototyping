@@ -1,4 +1,155 @@
 var aFeatureIsSelected = false
+
+var requestCartoData = function(sqlQuerySelectEncoded) {
+  console.log('requestCartoDataaaaaaaaaaaaaaaaaaaaaaaa')
+    if (isOnline == true) {
+      // url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
+      // const sqlQuery = `
+      // SELECT
+      //     json_build_object(
+      //         'type', 'FeatureCollection',
+      //         'features', json_agg(feature)
+      //     ) AS geojson
+      // FROM (
+      //     SELECT
+      //         'Feature' AS type,
+      //         ST_AsGeoJSON(geom)::json AS geometry,
+      //         json_build_object(
+      //             'contributionid', contributionid,
+      //             'phone', phone,
+      //             'sapprojid', sapprojid,
+      //             'areapolygon', areapolygon,
+      //             'lengthline', lengthline,
+      //             'distance', distance,
+      //             'date', date,
+      //             'attribute1s', attribute1s,
+      //             'attribute2s', attribute2s,
+      //             'attribute3s', attribute3s,
+      //             'attribute4s', attribute4s,
+      //             'attribute5s', attribute5s,
+      //             'attribute6s', attribute6s,
+      //             'attribute7s', attribute7s,
+      //             'attribute8s', attribute8s,
+      //             'attribute9s', attribute9s,
+      //             'attribute10s', attribute10s,
+      //             'attribute11n', attribute11n,
+      //             'attribute12n', attribute12n,
+      //             'attribute13n', attribute13n,
+      //             'attribute14n', attribute14n,
+      //             'attribute15n', attribute15n,
+      //             'attribute16n', attribute16n,
+      //             'attribute17n', attribute17n,
+      //             'attribute18n', attribute18n,
+      //             'attribute19n', attribute19n,
+      //             'attribute20n', attribute20n
+      //         ) AS properties
+      //     FROM \`carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0\`
+      // ) AS feature;
+      // `;
+      // sqlQuery = "SELECT geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n FROM `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` FOR JSON PATH AUTO";
+//       const sqlQuery = `SELECT
+//   ST_AsGeoJSON(geom) AS geojson,
+//   contributionid,
+//   phone,
+//   sapprojid,
+//   areapolygon,
+//   lengthline,
+//   distance,
+//   date,
+//   attribute1s,
+//   attribute2s,
+//   attribute3s,
+//   attribute4s,
+//   attribute5s,
+//   attribute6s,
+//   attribute7s,
+//   attribute8s,
+//   attribute9s,
+//   attribute10s,
+//   attribute11n,
+//   attribute12n,
+//   attribute13n,
+//   attribute14n,
+//   attribute15n,
+//   attribute16n,
+//   attribute17n,
+//   attribute18n,
+//   attribute19n,
+//   attribute20n
+// FROM \`carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0\``
+// https://gcp-europe-west1.api.carto.com/v3/maps/carto_dw/query?format=geojson&q=select%20*%20from%20%60carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0%60&cache=1683980483065&v=3.0
+
+      // sqlQuery = "SELECT geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n FROM `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0`";
+      var settings = {
+        "url":"https://gcp-europe-west1.api.carto.com/v3/maps/carto_dw/query?format=geojson&q=" + sqlQuerySelectEncoded,
+        // "url": "https://gcp-europe-west1.api.carto.com/v3/sql/carto_dw/query? q="+sqlQuery,
+        "method": "GET",
+        "timeout": 0,
+        "cache":false,
+        "success":cartoGeoJSONLayer,
+        "headers": {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer "+cartoapiSELECT,
+          "Cache-Control": "max-age=300"
+        },
+      };
+        clearInterval(requestCartoData);
+        // function getGeoJSON() {
+        //     $.getJSON(settings)
+        //     return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
+        // };
+        function getGeoJSON() {
+          $.getJSON(settings, function(data) {
+            $.each(data.rows, function(key, val) {
+              console.log(val)
+              // do something!
+            });
+          });
+        };
+      getGeoJSON(); //////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      deflated.addTo(map)
+
+
+
+
+
+
+//////////////////////////// WORKS AS IN THE PAST --- REMEMBER
+
+      // if (isOnline == true && cartousername != null) {
+      //   sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date, commentone, commentoneaudioavailable FROM lumblu";
+      //
+      //     // clearInterval(requestCartoData);
+  //  cartoapiSELECT =  &api_key=alVnPiIu77RNtS0VOq5z6Q
+      //     function getGeoJSON() {
+      //         $.getJSON({
+      //           cache:false,
+      //           success:cartoGeoJSONLayer,
+      //           url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
+      //         })
+      //         return cartoLoaded && cartoIdFeatureSelected && selectedFeature && cartoGeometries;
+      //     };
+      //   getGeoJSON(); //////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      //   deflated.addTo(map)
+
+
+
+
+
+        //funtion to get geojson with 🌐 to be used in random suggestion
+        // function getGeoJSONRandom(){ ///RANDOM!!!!!!!!!!!!!!!
+        //
+        //   var sqlQueryRandom = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date, commentone, commentoneaudioavailable FROM lumblu WHERE LEFT(landusesemoji,1)='🌐'";
+        //   $.getJSON({
+        //     cache:false,
+        //     success:randomLayer,
+        //     url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQueryRandom + cartoapiSELECT
+        //   })
+        // }
+        // getGeoJSONRandom() ////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    }
+    return cartousername
+}
 var cartoGeoJSONLayer = function(data) {
     getTotalFeaturesInDB = data.features.length
   //  console.log('cartolayer',data)
@@ -7,11 +158,19 @@ var cartoGeoJSONLayer = function(data) {
     cartoLoaded = true;
     cartoGeometries = L.geoJson(data, {
         cache:false,
-        color: '#AFFDA7',
+        fillColor: '#AFFDA7',
+        weight: 1.5,
+        opacity: 0.2,
+        color: '#AFFDA7',  //Outline color
+        fillOpacity: 0.2,
+        // color: '#AFFDA7',
+        // border:'red',
         //icon: markerIconLocalStorage,
         onEachFeature: function(feature, layer) {
             var audioAvailable = feature.properties.audioavailable
 
+
+            console.log(feature)
             if (feature.geometry.type == 'Point') {
               // document.getElementById('popupAreaLength').style.display = 'none'
               // document.getElementById('popupArea').onclick = function(){
@@ -21,22 +180,19 @@ var cartoGeoJSONLayer = function(data) {
                 //layer.bindPopup(feature.properties.landusesemoji + feature.properties.audioavailable);
                 // document.getElementById('popupAreaLength').textContent = '-'
 
-                layer.bindPopup(template,{minWidth:200});
+                layer.bindPopup(feature.properties.attribute1s + '</br>' + feature.properties.attribute2s + '</br>' + feature.properties.attribute3s);
 
             }
             if (feature.geometry.type == 'Polygon') {
-              //document.getElementById('popupAreaLength').style.display = 'initial'
-              // document.getElementById('popupAreaLength').textContent = feature.properties.areapolygon
 
-                layer.bindPopup(template,{minWidth:200});
+                layer.bindPopup(feature.properties.areapolygon + '</br>' + feature.properties.attribute1s + '</br>' + feature.properties.attribute2s + '</br>' + feature.properties.attribute3s);
 
-
-                //layer.bindPopup(feature.properties.landusesemoji + feature.properties.audioavailable);
             }
             if (feature.geometry.type == 'LineString') {
               // document.getElementById('popupAreaLength').textContent = feature.properties.lengthline
 
-              layer.bindPopup(template,{minWidth:200});
+              layer.bindPopup(feature.properties.lengthline + '</br>' + feature.properties.attribute1s + '</br>' + feature.properties.attribute2s + '</br>' + feature.properties.attribute3s);
+
 
 
                 // layer.bindPopup(feature.properties.landusesemoji + feature.properties.audioavailable);
@@ -44,6 +200,7 @@ var cartoGeoJSONLayer = function(data) {
 
             /////////////////////////////
           layer.on('click', function(e) {
+
               if(aFeatureIsSelected == true ){
                 document.getElementById("backDeleteFeature").click() //!!!!!!!!
                 if(editButtonClicked == true){
@@ -88,6 +245,9 @@ var cartoGeoJSONLayer = function(data) {
                   var currentZoom = map.getZoom()
                   var geometryString = e.target.feature.properties.geometrystring
                   var geometryStringGeoJSON = L.geoJSON(JSON.parse(geometryString))
+                  // selectedFeature = e.target;
+                  cartoIdFeatureSelected = e.target.properties.contributionid
+                  console.log('cartoIdFeatureSelected',cartoIdFeatureSelected)
                 //  console.log(geometryStringGeoJSON)
 
                   map.flyToBounds(geometryStringGeoJSON.getBounds());
@@ -99,6 +259,8 @@ var cartoGeoJSONLayer = function(data) {
                   var geometryStringGeoJSON = L.geoJSON(JSON.parse(geometryString))
                   var coord = e.target.feature.geometry.coordinates;
                   var latLng = L.GeoJSON.coordsToLatLng(coord);
+                  cartoIdFeatureSelected = e.target.feature.properties.contributionid
+                  console.log('cartoIdFeatureSelected',cartoIdFeatureSelected)
 
                   map.flyTo(latLng,17)
                   // map.setView(latLng, 15);
@@ -114,6 +276,8 @@ var cartoGeoJSONLayer = function(data) {
                    if (selectedFeature.feature.geometry.type != 'Point') {
                      //to populate the area/length field in the popup
                       if(selectedFeature.feature.geometry.type == 'Polygon'){
+                        cartoIdFeatureSelected = selectedFeature.feature.properties.contributionid
+                        console.log('cartoIdFeatureSelected',cartoIdFeatureSelected)
                         aFeatureIsSelected = true
 
                         document.getElementById('popupAreaLength').style.display = 'initial'
@@ -139,32 +303,32 @@ var cartoGeoJSONLayer = function(data) {
                           // }
 
                           //to add bluebox if comment Available
-                          if(selectedFeature.feature.properties.commentone != null){
-                            // if(selectedFeature.feature.properties.commentoneaudioavailable !='.'){
-                            //   document.getElementById('toCommentPopup').disabled = false
-                            //     document.getElementById('toCommentPopup').onclick = function(){
-                            //
-                            //       var audioUrl = feature.properties.commentoneaudioavailable
-                            //       var audioControls = document.getElementById('audioControls')
-                            //       audioControls.src = audioUrl
-                            //       document.getElementById('audioControls').style.display = 'initial'
-                            //
-                            //     }
-                              document.getElementById('toCommentPopup').style.display = 'initial';
-                              document.getElementById('toCommentPopup').textContent = feature.properties.commentone
-                            //
-                            //   }
-                            //   else{
-                                document.getElementById('toCommentPopup').onclick = function(){
-                                  document.getElementById('audioControls').style.display = 'none'
-                                // }
-                              document.getElementById('audioControls').style.display = 'none'
-                              document.getElementById('toCommentPopup').style.display = 'initial';
-                              document.getElementById('toCommentPopup').textContent = feature.properties.commentone
-                            }
-                         }else{
-                           document.getElementById('toCommentPopup').style.display = 'none';
-                         }
+                         //  if(selectedFeature.feature.properties.commentone != null){
+                         //    // if(selectedFeature.feature.properties.commentoneaudioavailable !='.'){
+                         //    //   document.getElementById('toCommentPopup').disabled = false
+                         //    //     document.getElementById('toCommentPopup').onclick = function(){
+                         //    //
+                         //    //       var audioUrl = feature.properties.commentoneaudioavailable
+                         //    //       var audioControls = document.getElementById('audioControls')
+                         //    //       audioControls.src = audioUrl
+                         //    //       document.getElementById('audioControls').style.display = 'initial'
+                         //    //
+                         //    //     }
+                         //      document.getElementById('toCommentPopup').style.display = 'initial';
+                         //      document.getElementById('toCommentPopup').textContent = feature.properties.commentone
+                         //    //
+                         //    //   }
+                         //    //   else{
+                         //        document.getElementById('toCommentPopup').onclick = function(){
+                         //          document.getElementById('audioControls').style.display = 'none'
+                         //        // }
+                         //      document.getElementById('audioControls').style.display = 'none'
+                         //      document.getElementById('toCommentPopup').style.display = 'initial';
+                         //      document.getElementById('toCommentPopup').textContent = feature.properties.commentone
+                         //    }
+                         // }else{
+                         //   document.getElementById('toCommentPopup').style.display = 'none';
+                         // }
 
                       }else{ //it a line
                         aFeatureIsSelected = true
@@ -172,7 +336,8 @@ var cartoGeoJSONLayer = function(data) {
                          // document.getElementById('popupAreaLength').style.display = 'initial'
                          // document.getElementById('popupAreaLength').textContent = '〰️'
                          document.getElementById('popupAreaLength').style.display = 'none'
-
+                         cartoIdFeatureSelected = selectedFeature.feature.properties.contributionid
+                         console.log('cartoIdFeatureSelected',cartoIdFeatureSelected)
 
                          // if(selectedFeature.feature.properties.audioavailable !='.'){
                          //   document.getElementById('commentPopup').disabled = false
@@ -190,28 +355,28 @@ var cartoGeoJSONLayer = function(data) {
                            document.getElementById('commentPopup').style.display = 'initial';
                            document.getElementById('commentPopup').textContent = feature.properties.landusesemoji
                          // }
-                         if(selectedFeature.feature.properties.commentone != null){
-                           // if(selectedFeature.feature.properties.commentoneaudioavailable !='.'){
-                           //   document.getElementById('toCommentPopup').disabled = false
-                           //   document.getElementById('toCommentPopup').onclick = function(){
-                           //
-                           //     var audioUrl = feature.properties.commentoneaudioavailable
-                           //     var audioControls = document.getElementById('audioControls')
-                           //     audioControls.src = audioUrl
-                           //     document.getElementById('audioControls').style.display = 'initial'
-                           //
-                           //   }
-                             document.getElementById('toCommentPopup').style.display = 'initial';
-                             document.getElementById('toCommentPopup').textContent = feature.properties.commentone
-                           //
-                           //   }else{
-                             document.getElementById('audioControls').style.display = 'none'
-                             document.getElementById('toCommentPopup').style.display = 'initial';
-                             document.getElementById('toCommentPopup').textContent = feature.properties.commentone
-                           // }
-                        }else{
-                          document.getElementById('toCommentPopup').style.display = 'none';
-                        }
+                        //  if(selectedFeature.feature.properties.commentone != null){
+                        //    // if(selectedFeature.feature.properties.commentoneaudioavailable !='.'){
+                        //    //   document.getElementById('toCommentPopup').disabled = false
+                        //    //   document.getElementById('toCommentPopup').onclick = function(){
+                        //    //
+                        //    //     var audioUrl = feature.properties.commentoneaudioavailable
+                        //    //     var audioControls = document.getElementById('audioControls')
+                        //    //     audioControls.src = audioUrl
+                        //    //     document.getElementById('audioControls').style.display = 'initial'
+                        //    //
+                        //    //   }
+                        //      document.getElementById('toCommentPopup').style.display = 'initial';
+                        //      document.getElementById('toCommentPopup').textContent = feature.properties.commentone
+                        //    //
+                        //    //   }else{
+                        //      document.getElementById('audioControls').style.display = 'none'
+                        //      document.getElementById('toCommentPopup').style.display = 'initial';
+                        //      document.getElementById('toCommentPopup').textContent = feature.properties.commentone
+                        //    // }
+                        // }else{
+                        //   document.getElementById('toCommentPopup').style.display = 'none';
+                        // }
                       }
 
                     document.getElementById('editDeletePopup').style.display = 'initial'
@@ -257,7 +422,8 @@ var cartoGeoJSONLayer = function(data) {
                          // document.getElementById('popupAreaLength').style.display = 'initial'
                          // document.getElementById('popupAreaLength').style.height = '📍';
                          document.getElementById('popupAreaLength').style.display = 'none'
-
+                         cartoIdFeatureSelected = e.target.properties.contributionid
+                         console.log('cartoIdFeatureSelected',cartoIdFeatureSelected)
 
                          // if(selectedFeature.feature.properties.audioavailable !='.'){
                          //   document.getElementById('commentPopup').disabled = false
@@ -276,28 +442,28 @@ var cartoGeoJSONLayer = function(data) {
                            document.getElementById('commentPopup').style.display = 'initial';
                            document.getElementById('commentPopup').textContent = feature.properties.landusesemoji
                          // }
-                         if(selectedFeature.feature.properties.commentone != null){
-                           // if(selectedFeature.feature.properties.commentoneaudioavailable !='.'){
-                           //   document.getElementById('toCommentPopup').disabled = false
-                           //   document.getElementById('toCommentPopup').onclick = function(){
-                           //
-                           //     var audioUrl = feature.properties.commentoneaudioavailable
-                           //     var audioControls = document.getElementById('audioControls')
-                           //     audioControls.src = audioUrl
-                           //     document.getElementById('audioControls').style.display = 'initial'
-                           //
-                           //   }
-                             document.getElementById('toCommentPopup').style.display = 'initial';
-                             document.getElementById('toCommentPopup').textContent = feature.properties.commentone
-                           //
-                           //   }else{
-                             document.getElementById('audioControls').style.display = 'none'
-                             document.getElementById('toCommentPopup').style.display = 'initial';
-                             document.getElementById('toCommentPopup').textContent = feature.properties.commentone
-                           // }
-                        }else{
-                          document.getElementById('toCommentPopup').style.display = 'none';
-                        }
+                        //  if(selectedFeature.feature.properties.commentone != null){
+                        //    // if(selectedFeature.feature.properties.commentoneaudioavailable !='.'){
+                        //    //   document.getElementById('toCommentPopup').disabled = false
+                        //    //   document.getElementById('toCommentPopup').onclick = function(){
+                        //    //
+                        //    //     var audioUrl = feature.properties.commentoneaudioavailable
+                        //    //     var audioControls = document.getElementById('audioControls')
+                        //    //     audioControls.src = audioUrl
+                        //    //     document.getElementById('audioControls').style.display = 'initial'
+                        //    //
+                        //    //   }
+                        //      document.getElementById('toCommentPopup').style.display = 'initial';
+                        //      document.getElementById('toCommentPopup').textContent = feature.properties.commentone
+                        //    //
+                        //    //   }else{
+                        //      document.getElementById('audioControls').style.display = 'none'
+                        //      document.getElementById('toCommentPopup').style.display = 'initial';
+                        //      document.getElementById('toCommentPopup').textContent = feature.properties.commentone
+                        //    // }
+                        // }else{
+                        //   document.getElementById('toCommentPopup').style.display = 'none';
+                        // }
 
                          document.getElementById('editDeletePopup').style.display = 'initial'
 
@@ -381,12 +547,12 @@ var cartoGeoJSONLayer = function(data) {
                       })
 
                       //to store the cartoID of the future selected
-                      cartoIdFeatureSelected = selectedFeature.feature.properties.cartodb_id
 
                 }//...else
 
               }
             });//...layerclick
+
         }//...oneachfeature
     })//...l.geojson
     // cartoGeometriesInitial = cartoGeometries
@@ -396,5 +562,5 @@ var cartoGeoJSONLayer = function(data) {
     }catch(err){
     // console.log('error sql catched due to empty layer after filter applied')
   }
-  return cartoGeometries && getTotalFeaturesInDB && aFeatureIsSelected
+  return cartoGeometries && getTotalFeaturesInDB && aFeatureIsSelected && cartoIdFeatureSelected
 };//...CARTO layer
