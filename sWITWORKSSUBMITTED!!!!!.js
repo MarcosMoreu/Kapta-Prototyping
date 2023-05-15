@@ -347,67 +347,6 @@ function getContactById(db, id) {
         db.close();
     };
 };
-// function insertContact(db, contact) {
-//     // create a new transaction
-//     const txn = db.transaction('Contacts', 'readwrite');
-//
-//     // get the Contacts object store
-//     const store = txn.objectStore('Contacts');
-//     //
-//     let query = store.put(contact);
-//
-//     // handle success case
-//     query.onsuccess = function (event) {
-//         console.log(event);
-//     };
-//
-//     // handle the error case
-//     query.onerror = function (event) {
-//         console.log(event.target.errorCode);
-//     }
-//
-//     // close the database once the
-//     // transaction completes
-//     txn.oncomplete = function () {
-//         db.close();
-//     };
-// }
-function addToIndexedDB(databaseName, objectStoreName, key, value) {
-  // Open a connection to the IndexedDB database
-  var request = indexedDB.open(databaseName);
-
-  // Event handler for a successful database connection
-  request.onsuccess = function(event) {
-    var db = event.target.result;
-
-    // Start a transaction and get the object store
-    var transaction = db.transaction(objectStoreName, 'readwrite');
-    var objectStore = transaction.objectStore(objectStoreName);
-
-    // Put the value into the object store with the specified key
-    var putRequest = objectStore.put(value, key);
-
-    // Event handler for a successful put operation
-    putRequest.onsuccess = function(event) {
-      console.log('Value added to IndexedDB');
-    };
-
-    // Event handler for an error during the put operation
-    putRequest.onerror = function(event) {
-      console.error('Error adding value to IndexedDB', event.target.error);
-    };
-
-    // Close the connection after the transaction is complete
-    transaction.oncomplete = function() {
-      db.close();
-    };
-  };
-
-  // Event handler for an error during the database connection
-  request.onerror = function(event) {
-    console.error('Error opening IndexedDB', event.target.error);
-  };
-}
 
 async function doTheWork() {
   console.log('do the work function called!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
@@ -423,6 +362,7 @@ async function doTheWork() {
 
   objectStore.openCursor().onsuccess = function(event) {
     var cursor = event.target.result;
+    console.log(cursor)
 
     if (cursor) {
       // Access the key and value of each record in the cursor
@@ -440,9 +380,7 @@ async function doTheWork() {
 
     //to submit to CARTO the contributions submitted while offline
     if(getItemToJSON.properties.OP == 'offlineOpen'){ //////////////////11111111111111111111111111111111!!!!!!!111CHANGE TO OFFLINEOPEN
-
-      console.log(cursor)
-  // console.log(getItemToJSON)
+      // console.log(getItemToJSON)
       // console.log(getItemToJSON.properties.OP)
       // console.log(data)
       let dataGeometry = getItemToJSON.geometry
@@ -507,25 +445,9 @@ async function doTheWork() {
       var sql3 = "',make_valid => true),'"+randomID+ "',CAST('" + phoneNumber + "' AS INT64),'" + sapelliProjectIdentifier + "',CAST('" + areaPolygonNumeric + "' AS NUMERIC),CAST('" + lengthLineNumeric + "' AS NUMERIC),CAST('" + dist_m_Participant + "' AS INT64),'" + dateTime +"','"+attribute1s+ "','" + attribute2s + "','" + attribute3s + "','" + attribute4s + "','" + attribute5s + "','" + attribute6s + "','" + attribute7s + "','" + attribute8s + "','"+attribute9s+ "','" + attribute10s + "',CAST('"+ attribute11n + "' AS INT64),CAST('" + attribute12n + "' AS INT64),CAST('" + attribute13n + "' AS INT64),CAST('" + attribute14n + "' AS INT64),CAST('" + attribute15n + "' AS INT64),CAST('" + attribute16n + "' AS INT64),CAST('" +attribute17n+ "' AS INT64),CAST('" + attribute18n + "' AS INT64),CAST('" + attribute19n + "' AS INT64),CAST('" + attribute20n + "' AS INT64))";
       var   pURL = sql + sql2 + sql3;
         console.log('submited to carto from local storage',pURL)
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-        var getItemToJSONstringified = JSON.stringify(getItemToJSON);//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        var key = randomID
-        var replacedString = getItemToJSONstringified.replace(/offlineOpen/g, 'submittedOpen');
-        var value = replacedString
-
-        addToIndexedDB('geoJSONs','keyvaluepairs',key,value)
-        // Open up a transaction as usual
-        // const objectStore = db
-        //   .transaction(["toDoList"], "readwrite")
-        //   .objectStore("toDoList");
-
-        // Get the to-do list object that has this title as it's title
-
-
-
-
-        // geoJSONLocalforageDB.setItem(key, getItemToJSONstringified);//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // getItemToJSON.properties.OP = 'submittedOpen';   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // var getItemToJSONstringified = JSON.stringify(getItemToJSON);!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // geoJSONLocalforageDB.setItem(key, getItemToJSONstringified);!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
       // var submitToProxy = function(q) {
       //       $.post("./callProxy.php", { //

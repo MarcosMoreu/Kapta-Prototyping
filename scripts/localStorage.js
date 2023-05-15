@@ -80,7 +80,7 @@ var localStorageToGeoJSON = function(){
   ////console.log(groupGeoJSON)
 
 var polygonColor = function(feature){
-console.log(feature.properties.landUsesEmoji)
+// console.log(feature.properties.landUsesEmoji)
   if(feature.geometry.type == 'Polygon'){ //to appy this only to polygons
     // console.log(feature)
     if(!feature.properties.landUsesEmoji){
