@@ -25,121 +25,13 @@ if ('serviceWorker' in navigator) {
                     }
                 };
             };
-            return registration.sync.register('myFirstSync');
+            return registration.sync.register('myFirstSync'); //to enable sync
 
         })
         .catch(function(err) {
             ////console.log('Service Worker Failed to register', err);
         })
 }
-
-// async function requestBackgroundSync() {
-//     const registration = await navigator.serviceWorker.ready;
-//     await registration.sync.register('my-tag-name');
-// }
-// navigator.serviceWorker.ready.then(function(registration) {
-//   return swRegistration.sync.register('myFirstSync');
-// });
-//
-// async function doTheWork(){
-//   console.log('do the work function called!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-//
-//     if (geoJSONLocalforageDB.key(0) != null) {
-//       console.log('fetching from local storage')
-//
-//       geoJSONLocalforageDB.keys(function(err, keys) {
-//         for (var i = 0; i < keys.length; i++) {
-//           // console.log('fetching from local storage')
-//
-//             (function(key) {
-//
-//               geoJSONLocalforageDB.getItem(key).then(function (value) {
-//                 // console.log(value)
-//
-//                   isJson(value);
-//                   if (isJson(value) == true) {
-//                     // console.log(isJson('this is geojson',value))
-//                       var getItemToJSON = JSON.parse(value);
-//                       isJson(getItemToJSON)
-//                       // console.log(getItemToJSON.properties.OP)
-//
-//                       //to submit to CARTO the contributions submitted while offline
-//                       if(getItemToJSON.properties.OP == 'offlineOpen'){ //////////////////11111111111111111111111111111111!!!!!!!111CHANGE TO OFFLINEOPEN
-//                         console.log('sbumitted to carto from local storage', getItemToJSON)
-//
-//                         console.log(getItemToJSON)
-//                         // console.log(getItemToJSON.properties.OP)
-//                         // console.log(data)
-//                           dataGeometry = getItemToJSON.geometry
-//
-//                           // propertiesGeoJSON = data.properties
-//                           //to assign each attribute to a variable, which will be added as columns to the DB
-//                           landUses = getItemToJSON.properties.landUses;
-//                           landUsesEmoji = getItemToJSON.properties.landUsesEmoji;
-//                           openOrPrivate = getItemToJSON.properties.openOrPrivate;
-//                           phoneNumber = getItemToJSON.properties.phoneNumber;
-//                           areaPolygon = getItemToJSON.properties.areaPolygon;
-//                           lengthLine = getItemToJSON.properties.lengthLine;
-//                           dateTime = getItemToJSON.properties.dateTime;
-//                           timeSpendSeconds = getItemToJSON.properties.timeSpendSeconds;
-//                           dist_m_Participant_Feature = getItemToJSON.properties.dist_m_Participant_Feature;
-//                           randomID = getItemToJSON.properties.randomID;
-//                           var dataGeometryString = JSON.stringify(dataGeometry)
-//                           ////console.log(dataGeometryString)
-//                           if(areaPolygon == 'Line' || areaPolygon == 'Point'){
-//                             var areaPolygonNumeric = 0
-//                           }else{
-//                             var areaPolygonNumeric = parseFloat(areaPolygon)
-//                           }
-//                           console.log('lengthLine',lengthLine)
-//
-//                           if(lengthLine == 'Polygon' || lengthLine == 'Point'){
-//                             var lengthLineNumeric = 0
-//
-//                           }else{
-//                             var lengthLineNumeric = parseFloat(lengthLine)
-//
-//                           }
-//                           attribute1s = 'test'
-//                           attribute2s = 'test'
-//                           attribute3s = 'test'
-//
-//                         dist_m_Participant = 74067170
-//
-//                           attribute20n = 1111111111
-//                           phoneNumber = 100000
-//                           areaPolygonNumeric = 10
-//                           lengthLineNumeric = 10
-//                             var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n) VALUES (ST_GeogFromGeoJSON('";
-//                           var sql2 = dataGeometryString;
-//                         var sql3 = "',make_valid => true),'"+randomID+ "',CAST('" + phoneNumber + "' AS INT64),'" + sapelliProjectIdentifier + "',CAST('" + areaPolygonNumeric + "' AS NUMERIC),CAST('" + lengthLineNumeric + "' AS NUMERIC),CAST('" + dist_m_Participant + "' AS INT64),'" + dateTime +"','"+attribute1s+ "','" + attribute2s + "','" + attribute3s + "','" + attribute4s + "','" + attribute5s + "','" + attribute6s + "','" + attribute7s + "','" + attribute8s + "','"+attribute9s+ "','" + attribute10s + "',CAST('"+ attribute11n + "' AS INT64),CAST('" + attribute12n + "' AS INT64),CAST('" + attribute13n + "' AS INT64),CAST('" + attribute14n + "' AS INT64),CAST('" + attribute15n + "' AS INT64),CAST('" + attribute16n + "' AS INT64),CAST('" +attribute17n+ "' AS INT64),CAST('" + attribute18n + "' AS INT64),CAST('" + attribute19n + "' AS INT64),CAST('" + attribute20n + "' AS INT64))";
-//                           pURL = sql + sql2 + sql3;
-//                           console.log('submited to carto from local storage',pURL)
-//                           submitToProxy(pURL);
-//
-//                         getItemToJSON.properties.OP = 'submittedOpen';
-//                         var getItemToJSONstringified = JSON.stringify(getItemToJSON);
-//
-//                         geoJSONLocalforageDB.setItem(key, getItemToJSONstringified);
-//
-//                       }
-//
-//                     // groupGeoJSON.push(getItemToJSON)
-//                     completedCount += 1;
-//
-//                     //call localStorageToGeoJSON() when loop ends
-//                     // if (completedCount == keys.length){
-//                     //   localStorageToGeoJSON()
-//                     // }
-//                   }
-//               });
-//             })(keys[i]);
-//         }
-//       });
-//      }
-//
-//
-// }
 
 // var pageLoaded = false
 var subDOMAIN = 'testing'

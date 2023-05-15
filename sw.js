@@ -16,14 +16,6 @@ var offlineFundamentals = [
   "/scripts/tutorialPage.js",
   "/styles/tutorialPage.css",
   "/images/icons/icon-72x72.png",
-  // 'https://mt2.google.com/vt/lyrs=s,h&x=1&y=1&z=2',
-  // 'https://mt3.google.com/vt/lyrs=s,h&x=2&y=1&z=2',
-  // 'https://mt3.google.com/vt/lyrs=s,h&x=1&y=2&z=2',
-  // 'https://mt0.google.com/vt/lyrs=s,h&x=2&y=2&z=2',
-  // 'https://mt1.google.com/vt/lyrs=s,h&x=1&y=0&z=2',
-  // 'https://mt2.google.com/vt/lyrs=s,h&x=2&y=0&z=2',
-  // 'https://mt0.google.com/vt/lyrs=s,h&x=1&y=3&z=2',
-  // 'https://mt1.google.com/vt/lyrs=s,h&x=2&y=3&z=2',
 
 
 ];
@@ -117,45 +109,11 @@ self.addEventListener('fetch', (event) => {
         console.log(event.request.url)
     console.log('google tiles')
   }
-    // event.respondWith(caches.open(cacheNameTiles).then((cache) => {
-    //   return cache.match(event.request)
-    //     .then((cachedResponse) => {
-    //       if (cachedResponse){
-    //         return cachedResponse;
-    //       }
-    //       //otherwise hit the network
-    //       return fetch(event.request).then((fetchedResponse)=>{
-    //         //add the network request to the cache for later visits
-    //         cache.put(event.request, fetchedResponse.clone())//.catch(unableToResolve);
-    //         //return the network response
-    //         return fetchedResponse
-    //     });
-    //   });
-    // }));
 
 
 }else{//this is where most of the request pass
 
-        // Is this one of our precached assets?
-      // const isPrecachedRequest = cacheName.includes(url.pathname);
-      //
-      // if (isPrecachedRequest) {
-      //   console.log('precacheddddddddddddddddddddddddd')
-      //
-      //   // Grab the precached asset from the cache
-      //   event.respondWith(caches.open(cacheName).then((cache) => {
-      //     return cache.match(event.request.url);
-      //   }));
-      // } else {
-      //     return fetch(event.request).then((fetchedResponse) => {
-      //     // Add the network response to the cache for later visits
-      //     caches.put(event.request, fetchedResponse.clone());
-      //     console.log('hitted the networkkkkkkkkkkkkkkkkkkkkkkkk')
-      //     // Return the network response
-      //     return fetchedResponse;
-      //
-      // })
-      // };
+
       event.respondWith(caches.open(cacheName).then((cache) => {
         // console.log(event.request.url)
 
@@ -176,36 +134,9 @@ self.addEventListener('fetch', (event) => {
       }
     })
       }))
-    // event.respondWith(caches.open(cacheName).then((cache) => {
-    //   // console.log(event.request.url)
-    //
-    //   return cache.match(event.request)
-    //     .then((cachedResponse) => {
-    //     const fetchedResponse = fetch(event.request).then((networkResponse) => {
-    //
-    //       cache.put(event.request, networkResponse.clone())//.catch(unableToResolve);
-    //       return networkResponse;
-    //     });
-    //     console.log('cachedResponse',cachedResponse)
-    //     console.log('fetchedResponse',fetchedResponse)
-    //
-    //
-    //     return cachedResponse || fetchedResponse;
-    //   });
-    // }));
+
   }
-  // }else{//this is where most of the request pass
-  //   event.respondWith(caches.open(cacheName).then((cache) => {
-  //     return cache.match(event.request)
-  //       .then((cachedResponse) => {
-  //       const fetchedResponse = fetch(event.request).then((networkResponse) => {
-  //         cache.put(event.request, networkResponse.clone())//.catch(unableToResolve);
-  //         return networkResponse;
-  //       });
-  //       return cachedResponse || fetchedResponse;
-  //     });
-  //   }));
-  // }
+
 
 });
 function serveShareTarget(event, wait = true) {
@@ -301,30 +232,6 @@ self.addEventListener('sync', function(event) {
   }
 });
 
-// function doBackgroundSync() {
-//   return new Promise(function(resolve, reject) {
-//     // Access IndexedDB and perform necessary operations
-//     // when online
-//
-//     // Example code to open an IndexedDB database
-//     var request = self.indexedDB.open('myDatabase');
-//
-//     request.onsuccess = function(event) {
-//       var db = event.target.result;
-//
-//       // Perform operations with the database
-//
-//       // Close the database
-//       db.close();
-//
-//       resolve();
-//     };
-//
-//     request.onerror = function(event) {
-//       reject(new Error('Failed to open IndexedDB database'));
-//     };
-//   });
-// }
 function getContactById(db, id) {
     const txn = db.transaction('Contacts', 'readonly');
     const store = txn.objectStore('Contacts');
@@ -347,31 +254,7 @@ function getContactById(db, id) {
         db.close();
     };
 };
-// function insertContact(db, contact) {
-//     // create a new transaction
-//     const txn = db.transaction('Contacts', 'readwrite');
-//
-//     // get the Contacts object store
-//     const store = txn.objectStore('Contacts');
-//     //
-//     let query = store.put(contact);
-//
-//     // handle success case
-//     query.onsuccess = function (event) {
-//         console.log(event);
-//     };
-//
-//     // handle the error case
-//     query.onerror = function (event) {
-//         console.log(event.target.errorCode);
-//     }
-//
-//     // close the database once the
-//     // transaction completes
-//     txn.oncomplete = function () {
-//         db.close();
-//     };
-// }
+
 function addToIndexedDB(databaseName, objectStoreName, key, value) {
   // Open a connection to the IndexedDB database
   var request = indexedDB.open(databaseName);
@@ -515,82 +398,31 @@ async function doTheWork() {
         var value = replacedString
 
         addToIndexedDB('geoJSONs','keyvaluepairs',key,value)
-        // Open up a transaction as usual
-        // const objectStore = db
-        //   .transaction(["toDoList"], "readwrite")
-        //   .objectStore("toDoList");
-
-        // Get the to-do list object that has this title as it's title
-
-
-
-
-        // geoJSONLocalforageDB.setItem(key, getItemToJSONstringified);//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-      // var submitToProxy = function(q) {
-      //       $.post("./callProxy.php", { //
-      //           qurl: q,
-      //           // geojson:data,
-      //           cache: false,
-      //           timeStamp: new Date().getTime(),
-      //           success:postSuccess()
-      //       });
-      //   };
-      //
-      //
-      //   submitToProxy(pURL);
-
-
-
-      //   var xhr = new XMLHttpRequest();
-      //   xhr.open("POST", "./callProxy.php");
-      //   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      //   xhr.onreadystatechange = function() {
-      //     if (xhr.readyState === XMLHttpRequest.DONE) {
-      //       if (xhr.status === 200) {
-      //         postSuccess();
-      //       } else {
-      //         // Handle error
-      //       }
-      //     }
-      //   };
-      //
-      //   var data = "qurl=" + encodeURIComponent(q) + "&cache=false&timeStamp=" + new Date().getTime();
-      //   xhr.send(data);
-      // };
-      //
-      // submitToProxy(pURL);
-
 
       var submitToProxy = function(q) {
-  var url = "./callProxy.php";
-  var data = "qurl=" + encodeURIComponent(q) + "&cache=false&timeStamp=" + new Date().getTime();
+        var url = "./callProxy.php";
+        var data = "qurl=" + encodeURIComponent(q) + "&cache=false&timeStamp=" + new Date().getTime();
 
-  fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded"
-    },
-    body: data
-  })
-  .then(function(response) {
-    if (response.ok) {
-      postSuccess();
-    } else {
-      // Handle error
-    }
-  })
-  .catch(function(error) {
-    // Handle error
-  });
-};
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: data
+        })
+        .then(function(response) {
+          if (response.ok) {
+            postSuccess();
+          } else {
+            // Handle error
+          }
+        })
+        .catch(function(error) {
+          // Handle error
+        });
+      };
 
-submitToProxy(pURL);
-
-      ////////////change the property so it is only sent once
-
-
-
+      submitToProxy(pURL);
     }
 
 // }
@@ -616,59 +448,6 @@ submitToProxy(pURL);
     reject(new Error('Failed to access the object store'));
   };
 };
-//
-    //
-    //   // const db = event.target.result;
-    //   const db = openRequest.result;
-    //
-    //   console.log(db)
-    //   console.log(db.objectStoreNames)
-    //   console.log(db.objectStoreNames[0])
-    //
-    //
-    //
-    //       // getContactById(db, 1);
-    //
-    //
-    //
-    //
-    //   // var db = event.target.result;
-    //     console.log('fetching from local storage');
-    //
-    //     db.objectStoreNames[0].keys(function (err, keys) {
-    //       for (var i = 0; i < keys.length; i++) {
-    //         (function (key) {
-    //           db.getItem(key).then(function (value) {
-    //             isJson(value);
-    //             if (isJson(value) == true) {
-    //               var getItemToJSON = JSON.parse(value);
-    //               isJson(getItemToJSON);
-    //
-    //               if (getItemToJSON.properties.OP == 'offlineOpen') {
-    //                 console.log('sbumitted to carto from local storage', getItemToJSON);
-    //
-    //                 // ... Rest of the code ...
-    //                 getItemToJSON.properties.OP = 'submittedOpen';
-    //                 var getItemToJSONstringified = JSON.stringify(getItemToJSON);
-    //
-    //                 geoJSONLocalforageDB.setItem(key, getItemToJSONstringified);
-    //                 // Resolve the promise after processing
-    //                 resolve();
-    //               }
-    //
-    //               // ... Rest of the code ...
-    //             }
-    //           });
-    //         })(keys[i]);
-    //       }
-    //
-    //       // Resolve the promise after processing all keys
-    //       resolve();
-    //     });
-    //
-    //
-    //   resolve();
-    // };
 
     openRequest.onerror = function(event) {
       reject(new Error('Failed to open IndexedDB database'));
