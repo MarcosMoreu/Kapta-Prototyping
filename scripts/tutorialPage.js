@@ -4,11 +4,20 @@ var browserLanguage = navigator.language
 var languageSelected
 
 // document.getElementById('english').src = "https://raw.githubusercontent.com/hjnilsson/country-flags/master/png100px/ad.png"
+console.log(screen.height)
+console.log('innerheight',window.innerHeight)
 
 document.getElementById('startMapping').onclick = function(e){
   document.getElementById("startMapping").style.animation = "initial";
 
+
    setTimeout(function(){
+    //  document.getElementById("startMapping").style.animation = "none";
+    // document.getElementById("english").style.display = "none";
+    // document.getElementById("swahili").style.display = "none";
+    // document.getElementById("other1").style.display = "none";
+    // document.getElementById("other1UnderDev").style.display = "none";
+    // document.getElementById("AlertTranslate").style.display = "none";
      location.href='../';
    },100)
   }

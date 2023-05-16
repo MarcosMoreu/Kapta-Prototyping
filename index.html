@@ -11,7 +11,7 @@
   <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
   <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1,user-scalable=no" />
   <meta name="theme-color" content="#000000"/>
   <meta name="description" content="🗺️"/>
   <!-- <meta property="og:site_name" content="A Mapping Prototype"> -->
@@ -131,17 +131,17 @@
     <img src="images/checkingPw.gif"  loading='lazy' alt="..." style='width:50px ; height:50px;' >
   </h4>
 
-<body style='background-color:black'>
+<body id='body' style='height:100%;background-color:black'>
   <!-- <canvas id='mycanvas' style='position:fixed; bottom:5px;width:500px;height:500px;'></canvas> -->
 
 <!-- <div id='loadingPage'  style='height:100%; background-color:black'>
 </div> -->
 
 
-<div id="modal" class='modal' style='z-index:30;background-color:black'>
+<div id="modal" class='modal' style='z-index:130;background-color:black'>
   <form id='pwForm'  class="modal-content animate" style='margin-top:80px; width:300px; border-radius:50px' >
 
-    <img id='lockorphone' src="images/icons/icon-256x256.png"  alt="..." style='margin-left: calc(50% - 45px);margin-top:20px;width: 90px; height:90px' >
+    <img id='lockorphone' src="images/icons/icon-128x128.webp"  loading='lazy' alt="..." style='margin-left: calc(50% - 45px);margin-top:20px;width: 90px; height:90px' >
     <!-- <p id='AlertModalIOS' align = 'center' style='z-index:0;display:none;position:absolute;left:calc(50% - 120px);top:15px;color:yellow;font-size:14px; width:240px;font-family:'Ubuntu' '> Please introduce your phone number </b> to identify your open contributions</br></p> -->
 
     <!-- <div id='textPwScreen' align='center' style='display:none;margin-bottom:20px;left:50%;width:100%; color:grey;font-size:12px;font-family:'Ubuntu''>
@@ -150,10 +150,10 @@
 
     <div style='margin-top:10px; text-align:center;'>
       <button id='loginInfo' class='button' disabled style='opacity:0.3;outline:none;position:relative;margin-right:30px;margin-top:3px; margin-bottom:10px;width:50px ; height:50px; border: 1px solid white; border-color:black; border-radius:50px' >
-        <img src="images/questionmark.png"  alt="..." style=' width:30px ; height:30px;' >
+        <img src="images/questionmark.png"  loading='lazy' alt="..." style=' width:30px ; height:30px;' >
       </button>
       <button id='loginKey' class='button' disabled style='opacity:0.3;outline:none; position:relative;margin-top:3px;margin-bottom:10px;width:50px ; height:50px; border: 1px solid white; border-color:black; border-radius:50px' >
-        <img src="images/phoneicon.png"  alt="..." style=' width:30px ; height:30px;' >
+        <img src="images/phoneicon.png"  loading='lazy' alt="..." style=' width:30px ; height:30px;' >
       </button>
       <!-- <button id='confirmphone' class='button' style='display:none; outline:none;position:relative;margin-right:30px;margin-top:3px; margin-bottom:10px;width:50px ; height:50px; border: 1px solid white; border-color:black; border-radius:50px' >
         <img src="images/ThumbsUpGreen.png"  alt="..." style=' width:30px ; height:30px;' >
@@ -197,21 +197,21 @@
       <input type="text" id="phone2" name="phone2" style='display:none' required>
       <button type="button" id="submit2" style='display:none' >Submit</button>
 </form> -->
-
+<div id='initialscreen2options' class='full-height' style='z-index:100;'>
+  <button id='talk' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 50px); top:calc(50% - 150px);width:100px ; height:100px; border: 1px solid white; border-color:white; border-radius:25px' >
+    <img src="images/talk.png"  alt="..." style=' width:50px ; height:50px;' >
+  </button>
+  <button id='listen' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 50px); bottom:calc(50% - 150px);width:100px ; height:100px; border: 1px solid white; border-color:white; border-radius:25px' >
+    <img src="images/listen.png"  alt="..." style=' width:50px ; height:50px;' >
+  </button>
+</div>
 <div id="map" style='height:100%; z-index:2; position:relative;'>
     <div id="rose" style='margin-bottom:80px; margin-left:-8px; width:40px; height:40px'>
       <p id='showAreaAcresScreenshot' style='z-index:3;position:fixed; text-align: center; width:100%; display:none;color:yellow;font-size:19px; font-weight:bold' ></p>
 
      </div>
 </div>
-<div id='initialscreen2options' class='full-height' style='display:none; z-index:100;'>
-  <button id='talk' class='buttonInitial'style='z-index:100;outline:none;margin-left:calc(50% - 50px); top:calc(50% - 150px);width:100px ; height:100px; border: 1px solid white; border-color:white; border-radius:25px' >
-    <img src="images/talk.png"  loading='lazy' alt="..." style=' width:50px ; height:50px;' >
-  </button>
-  <button id='listen' class='buttonInitial'style='z-index:100;outline:none;margin-left:calc(50% - 50px); bottom:calc(50% - 150px);width:100px ; height:100px; border: 1px solid white; border-color:white; border-radius:25px' >
-    <img src="images/listen.png"  loading='lazy' alt="..." style=' width:50px ; height:50px;' >
-  </button>
-</div>
+
 <!-- <div id='progress-wrapper' class='collapse-pb2'>
   <div class='d-flex'>
     <div class>Download Progress</div>
@@ -549,11 +549,9 @@
 <!-- <script src="scripts/initial.js"></script> -->
 
 <script defer src="scripts/lib/leaflet/leaflet-src.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-<!-- <script defer src='scripts/plugins.js'></script> -->
-<script defer src="scripts/lib/leaflet/plugins/leaflet.Permalink-master/leaflet.permalink.js"></script>
-<!-- <script defer src="scripts/emojionearea-master/dist/emojionearea.js"></script> -->
+<script defer src="scripts/lib/jquery-3.6.0.min.js"></script>
 
+<script defer src="scripts/lib/leaflet/plugins/leaflet.Permalink-master/leaflet.permalink.js"></script>
 
 <script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.draw.js" ></script>
 <script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.Draw.Event.js" ></script>
@@ -585,15 +583,7 @@
 <script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Edit.js"></script>
 <script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Delete.js"></script>
 <script defer src="scripts/lib/leaflet/plugins/Leaflet-rotateMarker/leaflet.rotatedMarker.js"></script>
-<!-- <script defer type='module' src="scripts/lib/leaflet/plugins/leaflet.offline-master_v3/src/index.js"></script> -->
 
-
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" ></script> -->
-<!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js" ></script> -->
-
-
-
-<!-- <script src="scripts/lib/leaflet/plugins/leaflet-control-topcenter-master/src/leaflet-control-topcenter.js"></script> -->
 <script async src="scripts/modal.js"></script>
 
 <script defer src="scripts/app.js"></script>

@@ -36,6 +36,7 @@
 //   var basemapClass = document.getElementsByClassName('leaflet-layer')
 //   basemapClass[0].style.opacity = 1
 // }
+
 var phoneNumber
 var arrayOfImages = [
   'images/ThumbsUpGreen.png','images/checkingPw.gif',
@@ -97,6 +98,11 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
   //$.getScript("lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.Draw.Event.js")
     // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
     if(localStorage.getItem('pwCorrect')){
+      setTimeout(function(){
+
+    document.getElementById('talk').style.display = 'initial'
+    document.getElementById('listen').style.display = 'initial'
+    },300)
       document.getElementById('MapLoading').style.display = 'initial'
       document.getElementById('MapLoading').style.opacity = 0
       jQuery(document).ready(checkContainer);
@@ -211,7 +217,7 @@ document.getElementById('loginKey').onclick = function(e){
   document.getElementById('AlertModalIOS').style.display = 'initial'
   document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
   e.preventDefault() //to avoid reload
-  document.getElementById('loginKey').disabled = true
+    document.getElementById('loginKey').disabled = true
   document.getElementById('loginKey').style.display = 'none'
   document.getElementById('loginInfo').style.display = 'none'
 
@@ -432,8 +438,29 @@ basemapClass[0].style.opacity = 0
       return done && phoneNumber
     // });
 }
+// console.log('innerheight',window.innerHeight)
+// document.getElementById('map').style.height = window.innerHeight
+// var innerHeight = window.innerHeight
+// var bodyheight = document.getElementById('body').clientHeight
+
+
+// console.log('bodyheight',bodyheight)
 
 document.getElementById('talk').onclick = function(){
+  document.getElementById('talk').style.backgroundColor = 'grey'
+  document.getElementById('talk').style.borderColor = 'grey'
+
+
+// mapheight.clientHeight = '80%'
+// console.log('innerheight',window.innerHeight)
+// document.body.style.height = innerHeight
+// document.getElementById("map").style.height = innerHeight
+
+  // console.log('bodyheight',bodyheight)
+  // console.log('screensheight',screen.height)
+
+  document.getElementById('myLayerButton').click()
+
   setTimeout(function(){
 
   document.getElementById('initialscreen2options').style.display = 'none'
@@ -441,36 +468,39 @@ document.getElementById('talk').onclick = function(){
   document.getElementById("map").style.opacity = 1;
   // document.getElementById('map').style.cursor='grab';
 
-  setTimeout(function(){
+  // setTimeout(function(){
     document.getElementById("tutorial").style.display = "initial";
     document.getElementById("armchair").style.display = "initial";
     document.getElementById("field").style.display = "initial";
-  },500)
+  // },100)
   document.getElementById('MapLoading').style.opacity = 1
-  document.getElementById('myLayerButton').click()
 
-},500)
+},350)
 
 }
 document.getElementById('listen').onclick = function(){
-  setTimeout(function(){
+  document.getElementById('listen').style.backgroundColor = 'grey'
+  document.getElementById('talk').style.borderColor = 'grey'
 
+
+  setTimeout(function(){
+    document.getElementById('myLayerButton').click()
+    document.getElementById('myLayerButton').click()
+    document.getElementById('filter').click()
   document.getElementById('initialscreen2options').style.display = 'none'
   document.getElementById("map").style.opacity = 1;
 
 
-  setTimeout(function(){
-    // document.getElementById("tutorial").style.display = "initial";
-    // document.getElementById("armchair").style.display = "initial";
-    // document.getElementById("field").style.display = "initial";
-    document.getElementById('myLayerButton').click()
-    document.getElementById('myLayerButton').click()
-    document.getElementById('filter').click()
-  },500)
+  // setTimeout(function(){
+  //   // document.getElementById("tutorial").style.display = "initial";
+  //   // document.getElementById("armchair").style.display = "initial";
+  //   // document.getElementById("field").style.display = "initial";
+  //
+  // },100)
   document.getElementById('MapLoading').style.opacity = 1
 
 
-},500)
+},350)
 
 }
 
@@ -644,6 +674,8 @@ var requestPw = function(){
                     document.getElementById('pwForm').style.display='none';
                     document.getElementById('AlertModalIOS').style.display = 'none'
                     document.getElementById('initialscreen2options').style.display = 'initial'
+                    document.getElementById('talk').style.display = 'initial'
+                    document.getElementById('listen').style.display = 'initial'
                     // location.reload() //to activate the sw so it can be used offline afterwards
                     navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
 

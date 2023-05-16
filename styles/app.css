@@ -6,6 +6,10 @@ html,body {
     background-color: white;
     overflow:hidden;
     font-family:Ubuntu;
+    background-color:black;
+    min-height: 100%;
+    max-height: 100%;
+
 }
 h1,h2,h3,h4,h5,p{
   font-family:Ubuntu;
@@ -28,12 +32,10 @@ left:0px;
 }
 .buttonInitial{
 position:absolute;
-transition: 0.5s all;
+/* transition: 0.5s all; */
+transition-duration: 500ms;
 }
-.buttonInitial:active{
-  transform: scale(0.6);
 
-}
 .easyButton1 {
   background-color:yellow;
   outline:none;
