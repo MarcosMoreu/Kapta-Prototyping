@@ -24,7 +24,17 @@ document.getElementById('rose').onclick = function(e){
     //console.log('deflated',deflated)
     var toRemoveDeflated = deflated._layers
     //console.log('toremovedeflated',toRemoveDeflated)
+    if(clicksRose == 3 && map.getZoom()<=13){
+      document.getElementById("Alert").style.fontSize = "30px";
+      document.getElementById("Alert").style.textAlign = "center"
+      document.getElementById('Alert').innerHTML = 'Zoom in'
+      document.getElementById("Alert").style.display = 'initial'
+      clicksRose = 0;
+      setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
+        document.getElementById("Alert").style.display = 'none'
 
+      },2000)
+    }
       if(clicksRose == 3 && map.getZoom()>10){ //this is to refresh the carto layer
         // document.getElementById("Alert").style.fontSize = "40px";
         // document.getElementById('Alert').innerHTML = '<br>⌛'
@@ -482,5 +492,5 @@ document.getElementById('rose').onclick = function(e){
 
     }
 
-  return clicksRose && sqlQuery && geometriesUploaded
+  return clicksRose && geometriesUploaded
 }

@@ -167,7 +167,6 @@ setTimeout(function(){
     });
 },2000)
 
-
 // let intViewportHeight = window.innerHeight;
 // console.log("height", intViewportHeight)
 // var getBodyHeight = document.body.style.height
@@ -1015,12 +1014,16 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
 //     subdomains:['mt0','mt1','mt2','mt3']
 // var currentZoomdownloadfunction = map.getZoom()
 // var zoomlimittodownload = currentZoomdownloadfunction + 3
-
+var mapCurrentZoomtilesdownload = map.getZoom();
+var maxzoom = mapCurrentZoomtilesdownload+3;
 var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
+      minZoom: 14,
+      maxZoom: 18,
     saveButtonHtml: '<img src="images/download.png" alt="..." width=30px ; height=30px>',
     removeButtonHtml: '<img src="images/bin.png" alt="..." width=25px ; height=25px>',
 
     confirmSavingCallback: function(nTilesToSave, continueSaveTiles) {
+
 
      // console.log('zoomlimittodownload',zoomlimittodownload)
         if (window.confirm('Save ' + nTilesToSave + ' tiles?')) {
@@ -1034,9 +1037,8 @@ var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
         if (window.confirm('Remove all the tiles?')) {
             continueRemoveTiles();
         }
-    },
-    minZoom: 0,
-    maxZoom: map.getZoom()+3
+    }
+
 });
 
 

@@ -475,7 +475,7 @@ var generateButtonslandUse = function(){
   iconOMO_8 = document.createElement("BUTTON");
    cell.appendChild(iconOMO_8);
   iconOMO_8.className = 'buttonsSapelli'
-  iconOMO_8.innerHTML = '<img src="images/omoIcons/manualPump.png" style="height: 150px; width: 150px; border: 0px solid white;" /> </br>አዊ / መንደር';
+  iconOMO_8.innerHTML = '<img src="images/omoIcons/pondFarming.png" style="height: 150px; width: 150px; border: 0px solid white;" /> </br>አዊ / መንደር';
   iconOMO_8.onclick = function(){
     setTimeout(function(){
      hideAll()
