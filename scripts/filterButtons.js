@@ -339,8 +339,8 @@ document.getElementById("clearFilter").onclick = function(e) {
 
 
   }else if(whichLayerIsOn == 'localStorage'){
-    filterLocalStorage_Button.button.style.backgroundColor = '#00FFFB'
-    filterLocalStorage_Button.button.style.borderColor = 'white'
+    // filterLocalStorage_Button.button.style.backgroundColor = '#00FFFB'
+    // filterLocalStorage_Button.button.style.borderColor = 'white'
 
     // filterLocalStorage_Button.button.style.borderColor = 'transparent'
 

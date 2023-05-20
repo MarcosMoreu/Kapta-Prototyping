@@ -116,8 +116,8 @@ document.getElementById("goBack2").onclick = function(e) {
     // if(myLayer_Button.button.style.backgroundColor == 'black'){
       filter_Button.button.style.opacity = '1';
       filter_Button.button.disabled = false;
-      filterLocalStorage_Button.button.style.opacity = '1';
-      filterLocalStorage_Button.button.disabled = false;
+      // filterLocalStorage_Button.button.style.opacity = '1';
+      // filterLocalStorage_Button.button.disabled = false;
     // }
 
     clickMapCount = 0;
@@ -605,11 +605,16 @@ document.getElementById('emojionearea').value = null
 
     if (featureType == 'point') {
         //console.log('featuretype    ' + featureType)
-        setTimeout(function() {
-          // if(isOnline == true){
-            map.zoomOut(3)
-          // }else{
-        }, 100)
+        if(isOnline == true){
+          setTimeout(function() {
+            // if(isOnline == true){
+              map.zoomOut(3)
+            // }else{
+          }, 100)
+        }else{
+          map.setZoom(17)
+        }
+
     }
     map.fitBounds(drawnItems.getBounds(), {
         //  maxZoom:30,
@@ -734,8 +739,8 @@ document.getElementById('Cancel').onclick = function(e) {
     // if(myLayer_Button.button.style.backgroundColor == 'black'){
       filter_Button.button.style.opacity = '1';
       filter_Button.button.disabled = false;
-      filterLocalStorage_Button.button.style.opacity = '1';
-      filterLocalStorage_Button.button.disabled = false;
+      // filterLocalStorage_Button.button.style.opacity = '1';
+      // filterLocalStorage_Button.button.disabled = false;
 
       planet_Button.button.style.opacity = '1';
       planet_Button.button.disabled = false;

@@ -32,8 +32,8 @@ document.getElementById("backDeleteFeature").onclick = function() {
     if(whichLayerIsOn == 'localStorage'){
       filter_Button.removeFrom(map)
       filterLocalStorage_Button.addTo(map)
-      filterLocalStorage_Button.button.style.opacity = '1';
-      filterLocalStorage_Button.button.disabled = false;
+      // filterLocalStorage_Button.button.style.opacity = '1';
+      // filterLocalStorage_Button.button.disabled = false;
     }else{
       filterLocalStorage_Button.removeFrom(map);
       filter_Button.addTo(map);

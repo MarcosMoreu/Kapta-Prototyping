@@ -85,97 +85,104 @@ var polygonColor = function(feature){
     // console.log(feature)
     // if(!feature.properties.landUsesEmoji){
       var attribute = feature.properties.I1
+      console.log('attribute',attribute)
     // }else{
     //   var attribute = feature.properties.landUsesEmoji
     // }
   switch(true){
 
-    case (attribute.includes('አዊ')): //hutvillage 1
+    case (attribute.includes('hutVillage')): //hutvillage 1
       fillColor = colorPaletteArray[0]
       break
-    case (attribute.includes('አፕሪች')): //manual pump 2
+    case (attribute.includes('manualPump')): //manual pump 2
       fillColor = colorPaletteArray[1]
       break
-    case (attribute.includes('አክታረ አታፓር')): //pondfarming 3
+    case (attribute.includes('pondFarming')): //pondfarming 3
       fillColor = colorPaletteArray[2]
       break
-    case (attribute.includes('አሳክ')): //lake recession 4
+    case (attribute.includes('lakeRecession')): //lake recession 4
       fillColor = colorPaletteArray[3]
       break
-    case (attribute.includes('ኤሪያቻ')): //irrigationpump 5
+    case (attribute.includes('irrigationPump')): //irrigationpump 5
       fillColor = colorPaletteArray[4]
       break
-    case (attribute.includes('ኤመራ')): //flood recession flat 6
+    case (attribute.includes('floodRecessionFlat')): //flood recession flat 6
       fillColor = colorPaletteArray[5]
       break
-    case (attribute.includes('ኤቴሎ')): //flood recession steep 7
+    case (attribute.includes('floodRecessionSteep')): //flood recession steep 7
       fillColor = colorPaletteArray[6]
       break
-    case (attribute.includes('አዳካሩ አɔ̂ቱክ')): //cattle grazing 8
+    case (attribute.includes('cattleGrazing')): //cattle grazing 8
       fillColor = colorPaletteArray[7]
       break
-    case (attribute.includes('አዳካሩ አɔ̂ክኔይ')): //goatsheetpgrazing 9
+    case (attribute.includes('goatSheepGrazing')): //goatsheetpgrazing 9
       fillColor = colorPaletteArray[8]
       break
-    case (attribute.includes('አክፒ አታፓር')): //wateranimal 10
+    case (attribute.includes('waterPondAnimal')): //wateranimal 10
       fillColor = colorPaletteArray[9]
       break
-    case (attribute.includes('አይፒ አናም')): //water river animal 11
+    case (attribute.includes('waterRiverAnimal')): //water river animal 11
       fillColor = colorPaletteArray[10]
       break
-    case (attribute.includes('ኤዶት'))://saltlick 12
+    case (attribute.includes('saltlick'))://saltlick 12
       fillColor = colorPaletteArray[11]
       break
-    case (attribute.includes('አጌዎር')): //wildfruits 13
+    case (attribute.includes('wildFruits')): //wildfruits 13
       fillColor = colorPaletteArray[12]
       break
-    case (attribute.includes('ኤርካ')): //hunting 14
+    case (attribute.includes('hunting')): //hunting 14
       fillColor = colorPaletteArray[13]
       break
-    case (attribute.includes('አክሎክ')): //fishing 15
+    case (attribute.includes('fishing')): //fishing 15
       fillColor = colorPaletteArray[14]
       break
-    case (attribute.includes('አሙሉጅ')): //reehive 16
+    case (attribute.includes('reehive')): //reehive 16
       fillColor = colorPaletteArray[15]
       break
-    case (attribute.includes('ኤደዋ')): //medicinal plants 17
+    case (attribute.includes('medicinalPlants')): //medicinal plants 17
       fillColor = colorPaletteArray[16]
       break
-    case (attribute.includes('አኩቶይ አክም')): //timber 18
+    case (attribute.includes('timber')): //timber 18
       fillColor = colorPaletteArray[17]
       break
-    case (attribute.includes('ኤሩስ')): //hotspring 19
+    case (attribute.includes('hotSpring')): //hotspring 19
       fillColor = colorPaletteArray[18]
       break
-    case (attribute.includes('አቦኖ')): //waterpoint 20
+    case (attribute.includes('waterPoint')): //waterpoint 20
       fillColor = colorPaletteArray[19]
       break
-    case (attribute.includes('አካይ ኤደዋ')): //healtstation 21
+    case (attribute.includes('healthStation')): //healtstation 21
       fillColor = colorPaletteArray[20]
       break
-    case (attribute.includes('አካይ ኤሱኩል')): //school 22
+    case (attribute.includes('school')): //school 22
       fillColor = colorPaletteArray[21]
       break
-    case (attribute.includes('አካይ ኤደዋ አግባረን')): //veterinary 23
+    case (attribute.includes('veterinary')): //veterinary 23
       fillColor = colorPaletteArray[22]
       break
-    case (attribute.includes('ኤኩቶይ')): //tree gathering 24
+    case (attribute.includes('treeForGathering')): //tree gathering 24
       fillColor = colorPaletteArray[23]
       break
-    case (attribute.includes('ኤካፓ')): //eldershut 25
+    case (attribute.includes('eldersHut')): //eldershut 25
       fillColor = colorPaletteArray[24]
       break
-    case (attribute.includes('አፓክ ንቦልያት')): //recreation center 26
+    case (attribute.includes('recreationCenter')): //recreation center 26
       fillColor = colorPaletteArray[25]
       break
-    case (attribute.includes('አካይ አኩጅ')): //church 27
+    case (attribute.includes('church')): //church 27
       fillColor = colorPaletteArray[26]
       break
-    case (attribute.includes('ኤዶከት አቱቧ')): //boat crossing 28
+    case (attribute.includes('boatCrossing')): //boat crossing 28
       fillColor = colorPaletteArray[27]
       break
-    case (attribute.includes('ɔ̂ቺየ')): //unknown 29
+    case (attribute.includes('pathTrack')): //unknown 29
       fillColor = colorPaletteArray[28]
+      break
+    case (attribute.includes('ldgeneric')): //unknown 29
+      fillColor = colorPaletteArray[25]
+      break
+    case (attribute.includes('conflictgeneric')): //unknown 29
+      fillColor = colorPaletteArray[24]
       break
 
     // case (attribute.includes('shelter')): //hutvillage 1
@@ -638,8 +645,8 @@ var polygonColor = function(feature){
                               document.getElementById("backDeleteFeature").click() // !!!!!!!!
                                   if(whichLayerIsOn == 'localStorage'){
                                     filterLocalStorage_Button.addTo(map);
-                                    filterLocalStorage_Button.button.style.opacity = '1';
-                                    filterLocalStorage_Button.button.disabled = false;
+                                    // filterLocalStorage_Button.button.style.opacity = '1';
+                                    // filterLocalStorage_Button.button.disabled = false;
                                     filter_Button.removeFrom(map)
                                   }
 
@@ -668,8 +675,8 @@ var polygonColor = function(feature){
                                 if(whichLayerIsOn == 'localStorage'){
 
                                     filterLocalStorage_Button.addTo(map);
-                                    filterLocalStorage_Button.button.style.opacity = '1';
-                                    filterLocalStorage_Button.button.disabled = false;
+                                    // filterLocalStorage_Button.button.style.opacity = '1';
+                                    // filterLocalStorage_Button.button.disabled = false;
                                     filter_Button.removeFrom(map)
                                 }
                               }
@@ -697,8 +704,8 @@ var polygonColor = function(feature){
                                     if(whichLayerIsOn == 'localStorage'){
 
                                     filterLocalStorage_Button.addTo(map);
-                                    filterLocalStorage_Button.button.style.opacity = '1';
-                                    filterLocalStorage_Button.button.disabled = false;
+                                    // filterLocalStorage_Button.button.style.opacity = '1';
+                                    // filterLocalStorage_Button.button.disabled = false;
                                     filter_Button.removeFrom(map)
                                   }
                               }

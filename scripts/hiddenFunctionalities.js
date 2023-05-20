@@ -24,7 +24,7 @@ document.getElementById('rose').onclick = function(e){
     //console.log('deflated',deflated)
     var toRemoveDeflated = deflated._layers
     //console.log('toremovedeflated',toRemoveDeflated)
-    if(clicksRose == 3 && map.getZoom()<=11){
+    if(clicksRose == 2 && map.getZoom()<=11){
       document.getElementById("Alert").style.fontSize = "30px";
       document.getElementById("Alert").style.textAlign = "center"
       document.getElementById('Alert').innerHTML = 'Zoom in'
@@ -35,7 +35,7 @@ document.getElementById('rose').onclick = function(e){
 
       },2000)
     }
-      if(clicksRose == 3 && map.getZoom()>10){ //this is to refresh the carto layer
+      if(clicksRose == 2 && map.getZoom()>10){ //this is to refresh the carto layer
         // document.getElementById("Alert").style.fontSize = "40px";
         // document.getElementById('Alert').innerHTML = '<br>⌛'
         // document.getElementById("Alert").style.display = 'initial'
@@ -43,7 +43,7 @@ document.getElementById('rose').onclick = function(e){
 
 
         setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
-          if(clicksRose ==3){ //this is to check that the user actually want to click 5 times, not 10
+          if(clicksRose ==2){ //this is to check that the user actually want to click 5 times, not 10
             document.getElementById('rose').style.display = 'none'
             offlineControlGoogle.addTo(map);
 

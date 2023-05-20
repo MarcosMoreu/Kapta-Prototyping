@@ -41,6 +41,14 @@
 //   document.getElementById('AlertModalIOS').innerHTML = ''
 //
 // },)
+var isOnline = navigator.onLine
+if(isOnline == false){
+  document.getElementById('listen').style.opacity = '0.4';
+  document.getElementById('listen').style.borderColor = 'black'
+    document.getElementById('listen').disabled = true
+}
+
+
 var phoneNumber
 var arrayOfImages = [
   'images/ThumbsUpGreen.png','images/checkingPw.gif',
@@ -82,10 +90,13 @@ var arrayOfImages = [
     'images/omoIcons/reehive.png','images/omoIcons/saltlick.png','images/omoIcons/school.png','images/omoIcons/sorghum.png','images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
     'images/omoIcons/timber.png','images/omoIcons/treeForGathering.png','images/omoIcons/unknownOther.png','images/omoIcons/veterinary.png','images/omoIcons/waterPoint.png','images/omoIcons/waterPondAnimal.png',
     'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png','images/omoIcons/pathTrack.png',
+      'images/omoIcons/kidsmale.png','images/omoIcons/kidsfemale.png','images/omoIcons/adultsmale.png','images/omoIcons/adultsfemale.png',
+        'images/omoIcons/households.png','images/omoIcons/confirm.png',
 
+        // 'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png'
+        // ,  'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png'
     //sapelli project images
     // 'images/omoIcons/Shelter.png','images/omoIcons/dtm.png','images/omoIcons/pluistorrentielles.png','images/omoIcons/camera.png','images/omoIcons/coutlocation.png',
-    // 'images/omoIcons/confirm.png',
     // 'images/omoIcons/personnesaffectees.png','images/omoIcons/maisonsdetruites.png','images/omoIcons/femmesnevontpas1.png','images/omoIcons/hommesnevontpas1.png',
     // 'images/omoIcons/regimefoncierchamps.png','images/omoIcons/ventsviolents.png',
     // 'images/omoIcons/seul.png','images/omoIcons/protection.png','images/omoIcons/proprietaire.png','images/omoIcons/mangues.png','images/omoIcons/maize.png',
@@ -127,7 +138,7 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
                     for (i = 0; i < preload.arguments.length; i++) {
                       imagesToPreload[i] = new Image()
                       imagesToPreload[i].src = preload.arguments[i]
-                      console.log('image preloaded')
+                      //console.('image preloaded')
                     }
                   }
                   preload(
@@ -284,10 +295,10 @@ var initialiseMap = function(){
   setTimeout(function(){
       if (document.readyState === 'complete' && localStorage.getItem('pwCorrect')) {
       phoneNumber = localStorage.getItem('phoneNumber');
-      console.log('phonenumber', phoneNumber)
+      //console.('phonenumber', phoneNumber)
 
     document.getElementById('initialscreen2options').style.display = 'initial'
-    console.log('initialise map')
+    //console.('initialise map')
     if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains geojson (and coords)
       document.getElementById('initialscreen2options').style.display = 'none'
       document.getElementById('talk').style.display = 'none'
@@ -464,8 +475,8 @@ basemapClass[0].style.opacity = 0
 // console.log('bodyheight',bodyheight)
 
 document.getElementById('talk').onclick = function(){
-  document.getElementById('talk').style.backgroundColor = 'grey'
-  document.getElementById('talk').style.borderColor = 'grey'
+  document.getElementById('talk').style.backgroundColor = '#404040'
+  document.getElementById('talk').style.borderColor = '#404040'
   setTimeout(function(){
     document.getElementById("Alert").style.display = 'none'
   },2000)
@@ -495,12 +506,12 @@ document.getElementById('talk').onclick = function(){
   // },100)
   document.getElementById('MapLoading').style.opacity = 1
 
-},350)
+},200)
 
 }
 document.getElementById('listen').onclick = function(){
-  document.getElementById('listen').style.backgroundColor = 'grey'
-  document.getElementById('listen').style.borderColor = 'grey'
+  document.getElementById('listen').style.backgroundColor = '#404040'
+  document.getElementById('listen').style.borderColor = '#404040'
 
 
   setTimeout(function(){
@@ -520,7 +531,7 @@ document.getElementById('listen').onclick = function(){
   document.getElementById('MapLoading').style.opacity = 1
 
 
-},350)
+},200)
 
 }
 
@@ -530,7 +541,7 @@ document.getElementById('listen').onclick = function(){
 
 document.onreadystatechange = function () {
   var state = document.readyState
-  console.log(state,'state')
+  //console.(state,'state')
   if (document.readyState === 'complete' && localStorage.getItem('pwCorrect')) {
     $.getScript({
        cache:true,
@@ -545,7 +556,7 @@ document.onreadystatechange = function () {
 }
 
   window.addEventListener("click", function(){
-    console.log('click to load more stuff')
+    //console.('click to load more stuff')
       // window.addEventListener("click", () => {
       // document.getElementById("emojionearea-css").disabled = false
 
@@ -707,7 +718,7 @@ var requestPw = function(){
                 //in case first load is with url geoJSON -- not the best approach ever, but it works.
                 if(urlContainsGeoJSON == true){
                   var activateLocalStorageLayer = setInterval(function(){
-                    console.log('checking encodedgeojsonurl')
+                    //console.('checking encodedgeojsonurl')
                     if(localStorageLayer != null){
                       try{
                         document.getElementById('myLayerButton').click()
