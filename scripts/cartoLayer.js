@@ -1,7 +1,7 @@
 var aFeatureIsSelected = false
 
 var requestCartoData = function(sqlQuerySelectEncoded) {
-  console.log('requestCartoDataaaaaaaaaaaaaaaaaaaaaaaa')
+  //console.('requestCartoDataaaaaaaaaaaaaaaaaaaaaaaa')
     if (isOnline == true) {
       // url:"https://" + cartousername + ".cartodb.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + cartoapiSELECT
       // const sqlQuery = `
@@ -101,7 +101,7 @@ var requestCartoData = function(sqlQuerySelectEncoded) {
         function getGeoJSON() {
           $.getJSON(settings, function(data) {
             $.each(data.rows, function(key, val) {
-              console.log(val)
+              //console.(val)
               // do something!
             });
           });
@@ -171,7 +171,7 @@ var cartoGeoJSONLayer = function(data) {
             var audioAvailable = feature.properties.audioavailable
 
 
-            console.log(feature)
+            //console.(feature)
             if (feature.geometry.type == 'Point') {
               // document.getElementById('popupAreaLength').style.display = 'none'
               // document.getElementById('popupArea').onclick = function(){
@@ -273,7 +273,7 @@ var cartoGeoJSONLayer = function(data) {
                   var geometryStringGeoJSON = L.geoJSON(JSON.parse(geometryString))
                   // selectedFeature = e.target;
                   cartoIdFeatureSelected = e.target.properties.contributionid
-                  console.log('cartoIdFeatureSelected',cartoIdFeatureSelected)
+                  //console.('cartoIdFeatureSelected',cartoIdFeatureSelected)
                 //  console.log(geometryStringGeoJSON)
 
                   map.flyToBounds(geometryStringGeoJSON.getBounds());
@@ -286,7 +286,7 @@ var cartoGeoJSONLayer = function(data) {
                   var coord = e.target.feature.geometry.coordinates;
                   var latLng = L.GeoJSON.coordsToLatLng(coord);
                   cartoIdFeatureSelected = e.target.feature.properties.contributionid
-                  console.log('cartoIdFeatureSelected',cartoIdFeatureSelected)
+                  //console.('cartoIdFeatureSelected',cartoIdFeatureSelected)
 
                   map.flyTo(latLng,17)
                   // map.setView(latLng, 15);
@@ -303,7 +303,7 @@ var cartoGeoJSONLayer = function(data) {
                      //to populate the area/length field in the popup
                       if(selectedFeature.feature.geometry.type == 'Polygon'){
                         cartoIdFeatureSelected = selectedFeature.feature.properties.contributionid
-                        console.log('cartoIdFeatureSelected',cartoIdFeatureSelected)
+                        //console.('cartoIdFeatureSelected',cartoIdFeatureSelected)
                         aFeatureIsSelected = true
 
                         document.getElementById('popupAreaLength').style.display = 'initial'
@@ -363,7 +363,7 @@ var cartoGeoJSONLayer = function(data) {
                          // document.getElementById('popupAreaLength').textContent = '〰️'
                          document.getElementById('popupAreaLength').style.display = 'none'
                          cartoIdFeatureSelected = selectedFeature.feature.properties.contributionid
-                         console.log('cartoIdFeatureSelected',cartoIdFeatureSelected)
+                         //console.('cartoIdFeatureSelected',cartoIdFeatureSelected)
 
                          // if(selectedFeature.feature.properties.audioavailable !='.'){
                          //   document.getElementById('commentPopup').disabled = false
@@ -451,7 +451,7 @@ var cartoGeoJSONLayer = function(data) {
                          // document.getElementById('popupAreaLength').style.height = '📍';
                          document.getElementById('popupAreaLength').style.display = 'none'
                          cartoIdFeatureSelected = e.target.properties.contributionid
-                         console.log('cartoIdFeatureSelected',cartoIdFeatureSelected)
+                         //console.('cartoIdFeatureSelected',cartoIdFeatureSelected)
 
                          // if(selectedFeature.feature.properties.audioavailable !='.'){
                          //   document.getElementById('commentPopup').disabled = false

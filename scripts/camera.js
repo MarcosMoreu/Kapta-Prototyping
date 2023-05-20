@@ -331,9 +331,9 @@ return photoAccepted
          .then(function (blob) {
             // resEle.innerHTML = "blob.size = " + blob.size + "<br>";
             // resEle.innerHTML += "blob.type = " + blob.type + "<br>";
-            console.log(blob)
+            //console.log(blob)
             testBlob = blob
-            console.log(testBlob.type)
+            //console.log(testBlob.type)
             var nameFile = 'test.png'
             var file = new File([testBlob],nameFile, {type: testBlob.type });
             filesArray = [file];
@@ -388,7 +388,7 @@ var filesArrayScreenshot
 var dataURL
 document.getElementById('screenshot').addEventListener('click',function (){
   $('#screenshots').empty()
-  console.log('screensht clicked')
+  //console.log('screensht clicked')
   // console.log(img)
 
 
@@ -409,7 +409,7 @@ document.getElementById('screenshot').addEventListener('click',function (){
 
 
     screenshotOn = false
-    console.log(screenshotOn)
+    //console.log(screenshotOn)
 
 
   }else{
@@ -434,7 +434,7 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
 
 
     screenshotOn = true
-    console.log(screenshotOn)
+    //console.log(screenshotOn)
     myLayer_Button.button.style.display = 'none';
     filter_Button.button.style.display = 'none';
     filterLocalStorage_Button.button.style.display = 'none';
@@ -481,7 +481,7 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
 // captureScreenshot()
 //       //
   var heightscreen = window.innerHeight
-  console.log('heightscreen',heightscreen)
+  //console.log('heightscreen',heightscreen)
   var heightscreenshot = heightscreen - 200
 
       html2canvas(document.getElementById('map'), {
@@ -549,9 +549,9 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
           var nameFile = 'screenshot.png'
           var file = new File([testBlob],nameFile, {type: testBlob.type });
           filesArrayScreenshot = [file];
-          console.log('finished html2canvas')
-          console.log(file)
-          console.log(filesArrayScreenshot)
+          //console.log('finished html2canvas')
+          //console.log(file)
+          //console.log(filesArrayScreenshot)
 
         },'image/jpeg', 0.1)  // this is to define the quality of the image screenshot (keep in mind the size due to data bundles) - jpeg offers the best compression value as far as I've tried
         // console.log(image)

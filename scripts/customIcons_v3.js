@@ -122,7 +122,7 @@ document.getElementById('customIconsMap').onclick = function(e){
         attribute19n = 0
         attribute20n = 0
 
-        console.log('attributes', emojioneareaeditor0.value)
+        //console.('attributes', emojioneareaeditor0.value)
       // finalAttributes =  screen + ett + maisonsdetruites + personnesaffectees + croptype + evaluation + landownership + ownershipprice  + malefemale + emojioneareaeditor0.value
 
           // if(screen !=null){
@@ -265,7 +265,7 @@ document.getElementById('customIconsGoBack').onclick = function(e){
       hideAll()
       newProjectButton.style.display = 'initial'
       newProjectButton2.style.display = 'initial'
-      console.log('initial')
+      //console.('initial')
       document.getElementById('customIconsGoBack').style.display = 'none'
       document.getElementById('customIconsMap').style.display = 'initial';
 
@@ -327,7 +327,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
   setTimeout(function(){
 
   isSapelliProjectLoaded = localStorage.getItem('sapelliProjectAccessed')
-  console.log(isSapelliProjectLoaded)
+  //console.(isSapelliProjectLoaded)
 
   document.getElementById("map").style.height = "0px";
   document.getElementById('MapLoading').style.display = 'none'
@@ -361,7 +361,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
 
 
     if(projectsCreated == false){
-      console.log('sapproject NOT created')
+      //console.('sapproject NOT created')
 
       projectsCreated =true
 
@@ -425,7 +425,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
   else{
 
 
-    console.log('sapproject already created')
+    //console.('sapproject already created')
     //FUCK, the grid doesn't need to be hidden!!!
     // cell.style.display = 'initial'
 
@@ -443,7 +443,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
 
     // cell.style.overflow =
         if(isSapelliProjectLoaded != 'true'){
-          console.log('sapelli project clickeeeeeeeeeeeeeeed isSapelliProjectLoaded != true')
+          //console.('sapelli project clickeeeeeeeeeeeeeeed isSapelliProjectLoaded != true')
 
 
           newProjectButton.innerHTML = '<img src="images/checkingPw.gif" style="width:50px ; height:50px; border: 0px solid white" />';
@@ -478,7 +478,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
 
             newProjectButton.style.display = 'none';
             newProjectButton2.style.display = 'none';
-            console.log('sapelli project clickeeeeeeeeeeeeeeed sapbuttonsalreadygenerated == false')
+            //console.('sapelli project clickeeeeeeeeeeeeeeed sapbuttonsalreadygenerated == false')
             cell.setAttribute("style","overflow-y:scroll");
             document.getElementById('customIconsMap').style.display = 'none';
             document.getElementById('customIconsGoBack').style.display = 'initial'
@@ -640,7 +640,7 @@ var generateButtonslandUse = function(){
      hideAll()
      screen1 = 'አዊ / መንደር'
      imageName1 = 'hutVillage'
-     console.log('filter is on?',filterIsOn)
+     //console.('filter is on?',filterIsOn)
      // document.getElementById('customIconsMap').click()
      if(filterIsOn == false){
        generateScreenPopNumber()
@@ -652,7 +652,7 @@ var generateButtonslandUse = function(){
         document.getElementById('customIconsMap').click()
       }
 
-     console.log(screen1)
+     //console.(screen1)
 
    },400)
    }

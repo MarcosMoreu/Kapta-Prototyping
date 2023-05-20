@@ -34,7 +34,7 @@ document.getElementById("applyFilter").onclick = function(e) {
       document.getElementById("applyFilter").style.display = "initial";
       document.getElementById("applyFilter").style.opacity = '1'
       document.getElementById("applyFilter").disabled = true
-      console.log('the input box has been updated')
+      //console.('the input box has been updated')
     }
     lastBoxContent = emojioneareaeditor0.value
 
@@ -49,7 +49,7 @@ document.getElementById("applyFilter").onclick = function(e) {
 
 
     boxContent = document.getElementById('emojionearea').value;
-    console.log('boxContent',boxContent)
+    //console.('boxContent',boxContent)
 
     // var boxContentToShortname = emojione.toShort(boxContent)
     // console.log(boxContentToShortname)
@@ -78,7 +78,7 @@ document.getElementById("applyFilter").onclick = function(e) {
 
       else if(boxContent ==='' && period != 3650){
         filterApplied = true
-        console.log('do only date')
+        //console.('do only date')
 
             try {
               deflated.clearLayers() // clearLayers instead of cartoGeometries, as this doesn't contain all geometries after 'sent'
@@ -89,7 +89,7 @@ document.getElementById("applyFilter").onclick = function(e) {
            var sqlQueryWithoutCondition = "SELECT geom, contributionid, areapolygon, lengthline, date, attribute1s, attribute2s, attribute3s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n FROM `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` WHERE sapprojid='" +sapelliProjectIdentifier+ "' AND timestamp>'";
            var sqlCondition = datePeriodAgoReplaceComaInvert +"'";
            sqlQuerySelect = sqlQueryWithoutCondition + sqlCondition
-           console.log('sqlQuerySelect',sqlQuerySelect)
+           //console.('sqlQuerySelect',sqlQuerySelect)
 
            // sqlQuerySelect = "SELECT * FROM `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0`"
            sqlQuerySelectEncoded = encodeURI(sqlQuerySelect)
@@ -102,7 +102,7 @@ document.getElementById("applyFilter").onclick = function(e) {
 
       }else{
         filterApplied = true
-        console.log('do both')
+        //console.('do both')
 
             try {
               deflated.clearLayers() // clearLayers instead of cartoGeometries, as this doesn't contain all geometries after 'sent'
@@ -128,7 +128,7 @@ document.getElementById("applyFilter").onclick = function(e) {
            var sqlQuerySelect = sqlQueryWithoutCondition + sqlCondition
            // console.log(sqlQueryEncoded)
            // sqlQuery = encodeURIComponent(sqlQueryEncoded)
-           console.log('sqlQuerySelect',sqlQuerySelect)
+           //console.('sqlQuerySelect',sqlQuerySelect)
 
            sqlQuerySelectEncoded = encodeURI(sqlQuerySelect)
              requestCartoData(sqlQuerySelectEncoded)
@@ -164,10 +164,10 @@ document.getElementById("applyFilter").onclick = function(e) {
         // will be executed for every item in the
         // database.
 
-        console.log([key, value]);
-        console.log(value)
+        //console.([key, value]);
+        //console.(value)
         var parsedValue = JSON.parse(value)
-        console.log(parsedValue.properties.landUsesEmoji)
+        //console.(parsedValue.properties.landUsesEmoji)
 
         // boxContent = document.getElementById('emojionearea').value;
         // console.log(boxContent,'boxcontent')
@@ -179,14 +179,14 @@ document.getElementById("applyFilter").onclick = function(e) {
         if(boxContent == null){
           boxContent = landUse
         }
-        console.log(boxContent,'boxcontentLU')
+        //console.(boxContent,'boxcontentLU')
 
         var firstWord = boxContent.split(' ')[0]
         var secondWord = boxContent.split(' ')[1]
-        console.log(firstWord,'first word')
+        //console.(firstWord,'first word')
         var dateFilterApplied = new Date(datePeriodAgoReplaceComaInvert)
           // console.log(datePeriodAgoReplaceComaInvert)
-          console.log(dateFilterApplied)
+          //console.(dateFilterApplied)
         // var reformatDate = parsedValue.properties.dateTime
 
 
@@ -199,24 +199,24 @@ document.getElementById("applyFilter").onclick = function(e) {
           var dateFeatureIterated = new Date(dateWithoutTime)
             // console.log(dateWithoutTime)
             // console.log(parsedValue.properties.dateTime)
-            console.log(dateFeatureIterated)
+            //console.(dateFeatureIterated)
 
 
           if(parsedValue.properties.landUsesEmoji.includes(firstWord) && dateFeatureIterated > dateFilterApplied){
-            console.log('filtered')
+            //console.('filtered')
 
             try{
-              console.log(value)
-              console.log(iterationNumber,'iteration number')
+              //console.(value)
+              //console.(iterationNumber,'iteration number')
               isJson(parsedValue)
               // groupGeoJSON.length = 0
               groupGeoJSON.push(parsedValue)
 
             }catch(err){
-              console.log(parsedValue, 'error when pushing in iteration')
+              //console.(parsedValue, 'error when pushing in iteration')
             }
           }else{
-            console.log('no match')
+            //console.('no match')
           }
 
       }else if(parsedValue.properties.LU){
@@ -226,13 +226,13 @@ document.getElementById("applyFilter").onclick = function(e) {
         var dateFeatureIterated = new Date(dateWithoutTime)
           // console.log(dateWithoutTime)
           // console.log(parsedValue.properties.dateTime)
-          console.log(dateFeatureIterated)
+          //console.(dateFeatureIterated)
         if(parsedValue.properties.LU.includes(firstWord) && dateFeatureIterated > dateFilterApplied){
-          console.log('filtered')
+          //console.('filtered')
 
           try{
-            console.log(value)
-            console.log(iterationNumber)
+            //console.(value)
+            //console.(iterationNumber)
             isJson(parsedValue)
             // groupGeoJSON.length = 0
             groupGeoJSON.push(parsedValue)
@@ -463,7 +463,7 @@ document.getElementById("filterByDate").onclick = function(e) {
 
       return period && filterApplied && datePeriodAgoReplaceComaInvert
     }else if(whichLayerIsOn == 'localStorage'){
-      console.log('under development')
+      //console.('under development')
       var datePeriodAgo = calcDatePeriodAgo(period)
       //console.log('datePeriodAgo ' + datePeriodAgo);
       //var datePeriodAgo = '2020-10-14'
@@ -472,7 +472,7 @@ document.getElementById("filterByDate").onclick = function(e) {
       var datePeriodAgoReplaceComa = datePeriodAgoReplace.replace(/,[^,]+$/, "")
       //console.log('datePeriodAgoReplaceComa ' + datePeriodAgoReplaceComa);
       datePeriodAgoReplaceComaInvert = datePeriodAgoReplaceComa.split("-").reverse().join("-");
-      console.log(datePeriodAgoReplaceComaInvert)
+      //console.(datePeriodAgoReplaceComaInvert)
 
       return datePeriodAgoReplaceComaInvert
     }

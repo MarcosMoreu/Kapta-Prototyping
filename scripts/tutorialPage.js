@@ -4,8 +4,8 @@ var browserLanguage = navigator.language
 var languageSelected
 
 // document.getElementById('english').src = "https://raw.githubusercontent.com/hjnilsson/country-flags/master/png100px/ad.png"
-console.log(screen.height)
-console.log('innerheight',window.innerHeight)
+//console.(screen.height)
+//console.('innerheight',window.innerHeight)
 
 document.getElementById('startMapping').onclick = function(e){
   document.getElementById("startMapping").style.animation = "initial";

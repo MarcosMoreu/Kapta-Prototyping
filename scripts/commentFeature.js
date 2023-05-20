@@ -8,7 +8,7 @@ var toCheckIfAudio = document.getElementById("toCommentPopup").innerHTML[0]
 document.getElementById("editDeletePopup").onclick = function() {
 
   document.getElementById("toCommentPopup").innerHTML = '...'
-console.log(selectedFeature.feature.properties.cartodb_id)
+//console.(selectedFeature.feature.properties.cartodb_id)
   cartoDbIdOfFeatureToEdit = selectedFeature.feature.properties.cartodb_id
 
 
@@ -107,7 +107,7 @@ console.log(selectedFeature.feature.properties.cartodb_id)
       }
   }, 300) // time frequency to refresh the content in the comment popup
   editButtonClicked = true
-  console.log(editButtonClicked)
+  //console.(editButtonClicked)
 
   return editButtonClicked && cartoDbIdOfFeatureToEdit
 }
@@ -218,7 +218,7 @@ document.getElementById('backEditDelete').onclick = function(){
 
   selectedFeature = null;
   editButtonClicked = false
-  console.log(editButtonClicked)
+  //console.(editButtonClicked)
 
   //to ensure filter button remains green if filter applied
   if(filterApplied == true){ //to avoid that if dilterby date is all, color is not green
@@ -262,10 +262,10 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
       // }
 
       if (audioButtonClicked == true) {
-        console.log('audio clicked')
+        //console.('audio clicked')
         // document.getElementById("sendFirebase").click();
       } else { //to not show audio icon when no audio available
-        console.log('audio NOT clicked')
+        //console.('audio NOT clicked')
 
           audioAvailable = '.'
           setData(); //Call the setDdata() function!!! to post data to database. If audio is available, set data is called in sendfirebase function
@@ -367,7 +367,7 @@ document.getElementById('shareWorldButtonComment').onclick = function(){
     //Script to update the feature with the new comment: request feature in DB that matches the comment> on success call function to remove old feature from deflated then add the requested feature to deflated
       var updatedFeature = function(data) { //function to get layer from carto with 🌐
        //  updatedFeatureToAdd = data
-         console.log(data)
+         //console.(data)
        // return updatedFeatureToAdd
        deflated.removeLayer(selectedFeature)
        cartoGeoJSONLayer(data)

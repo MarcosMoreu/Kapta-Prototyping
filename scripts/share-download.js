@@ -38,11 +38,11 @@ document.getElementById('share-download').onclick = function(e) {
   // googleSat.removeFrom(map)
 
 finalAttributes = document.getElementById('emojionearea').value
-console.log(finalAttributes)
+//console.log(finalAttributes)
 
 
-console.log('sapelliProjectIdentifier',sapelliProjectIdentifier)
-console.log('sharedownload clickeeeeeeeeeeeeeeeeeed'  )
+//console.log('sapelliProjectIdentifier',sapelliProjectIdentifier)
+//console.log('sharedownload clickeeeeeeeeeeeeeeeeeed'  )
 
     sameSession = true;
     alreadyMovedUp = false;
@@ -111,7 +111,7 @@ var finalGeoJSON = function(){
   var dateTime = date + 'T' + time + 'Z';
 
   console.log(randomID,"randomID. -a- refers to Armchair mapping, -f- refers to field mapping")
-  console.log('DATETIME',dateTime)
+  //console.log('DATETIME',dateTime)
 
   // var date1 = new Date(date)
   // console.log(date1)
@@ -426,7 +426,7 @@ var shareworld = function(){
               // timeSpendSeconds = propertiesGeoJSON.timeSpendSeconds;
               // dist_m_Participant_Feature = propertiesGeoJSON.dist_m_Participant_Feature;
               // randomID = propertiesGeoJSON.randomID;
-              console.log('areaPolygon',areaPolygon)
+              //console.log('areaPolygon',areaPolygon)
                   setData(); //Call the setDdata() function!!! to post data to database. If audio is available, set data is called in sendfirebase function
 
             featureSent = true;
@@ -456,7 +456,7 @@ document.getElementById('ShareFinalButton').style.opacity = 0.5;
 
 document.getElementById('ShareFinalButton').onclick = function(e) {
   console.log(boxContent)
-  console.log('sap id', sapelliProjectIdentifier)
+  //console.log('sap id', sapelliProjectIdentifier)
   if(openOrPrivate == 'open' || openOrPrivate == 'private'  || openOrPrivate == 'offlineOpen'){
 
 
@@ -469,7 +469,7 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
   finalGeoJSON()
   if(openOrPrivate == 'open'){
     shareworld()
-    console.log('opendata!!!')
+    //console.log('opendata!!!')
   }
 
 ///////sharemessagingapp/////////////////////////////////////////
@@ -496,7 +496,7 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
     // if(clickedshareMessagingAppsDirect == false){
       geoJSONLocalforageDB.setItem(tempName, dataStringified)
       var newGeom = JSON.parse(dataStringified)
-      console.log(newGeom)
+      //console.log(newGeom)
       groupGeoJSON = newGeom
       localStorageToGeoJSON()
       clickedshareMessagingAppsDirect = true
@@ -517,10 +517,10 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
       // try{
         attributes = attributes.replace(/<br>|<\/br>|<br\/>|null/g, "");
         // attributes = attributes.replace(/null/g, "");
-        console.log(attributes)
+        //console.log(attributes)
 
       // }catch(e){}
-      console.log('attribute',attributes)
+      //console.log('attribute',attributes)
       var link = attributes + "\n" + '🗺️ 👇🏿'+ "\n" + 'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
       // var url
       // console.log(url)

@@ -47,7 +47,7 @@ document.getElementById('rose').onclick = function(e){
             document.getElementById('rose').style.display = 'none'
             offlineControlGoogle.addTo(map);
 
-            console.log('refreshed')
+            //console.('refreshed')
 
             // for (i = 0; i < deflated._layers.length; i++) { // not the optimal solution, but couldn't find the way to empty deflated
             //   try{ // because array not starts with 1,2,3
@@ -81,7 +81,7 @@ document.getElementById('rose').onclick = function(e){
         // document.getElementById('Alert').innerHTML = '<br>⌛'
         // document.getElementById("Alert").style.display = 'initial'
         // setTimeout(function(){
-        console.log('buttons loaded')
+        //console.('buttons loaded')
         document.getElementById("map").style.height = "0px";
         try{
           cell.style.display = 'none'
@@ -222,7 +222,7 @@ document.getElementById('rose').onclick = function(e){
         var featureCollectionToExport = '{"type": "FeatureCollection","features":'+ geojsonToString + '}'
 
 
-        console.log(featureCollectionToExport)
+        //console.(featureCollectionToExport)
         var dataToExport = 'data:text/json;charset=utf-8,' + encodeURIComponent(featureCollectionToExport);
         //console.log(convertedData)
 
@@ -287,7 +287,7 @@ document.getElementById('rose').onclick = function(e){
         const fileInput = document.getElementById('choosefile');
         fileInput.onchange = () => {
           const selectedFile = fileInput.files[0];
-          console.log(selectedFile);
+          //console.(selectedFile);
 
           // new FileReader object
           	let reader = new FileReader();
@@ -402,7 +402,7 @@ document.getElementById('rose').onclick = function(e){
                   var arrayGeojson = []
                   // console.log(result.length)
                   for(i = 0; i < result.length-1; i++ ){
-                    console.log('i',i)
+                    //console.('i',i)
 
                     try{
                       var decodedGeojson = decodeURIComponent(result[i])
@@ -439,7 +439,7 @@ document.getElementById('rose').onclick = function(e){
                   // var featureCollection4 = featureCollection3.replace('}"]','}]')
                   // var featureCollectionToUpload = featureCollection4.replace(']}}","',']}},')
 
-                  console.log('featureCollectionToUpload',featureCollectionToUpload)
+                  //console.('featureCollectionToUpload',featureCollectionToUpload)
                   text = featureCollectionToUpload
 
                 }

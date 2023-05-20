@@ -4,7 +4,7 @@
 
 //var runJSselectFeature = function(){
 document.getElementById("backDeleteFeature").onclick = function() {
-  console.log(whichLayerIsOn)
+  //console.(whichLayerIsOn)
   document.getElementById('emojionearea').value = null
 
   aFeatureIsSelected = false
@@ -78,10 +78,10 @@ document.getElementById("backDeleteFeature").onclick = function() {
     selectedFeature = null
     clickCountDeleteButton = 0
     cartoIdFeatureSelected = null;
-    console.log('fiter is on?',filterIsOn)
+    //console.('fiter is on?',filterIsOn)
 
     if(filterIsOn == true){
-      console.log('fiter is on?',filterIsOn)
+      //console.('fiter is on?',filterIsOn)
 setTimeout(function(){
   document.getElementById("filter").click()
 
@@ -167,7 +167,7 @@ document.getElementById("shareMessagingApp").onclick = function() {
     setTimeout(function(){ //this is simply to improve button interaction with 300ms before processing stuff below
 
     screenshotOn = true
-    console.log(screenshotOn)
+    //console.(screenshotOn)
     myLayer_Button.button.style.display = 'none';
     filter_Button.button.style.display = 'none';
     filterLocalStorage_Button.button.style.display = 'none';
@@ -199,7 +199,7 @@ document.getElementById("shareMessagingApp").onclick = function() {
         var nameFile = 'screenshot.png'
         var file = new File([testBlob],nameFile, {type: testBlob.type });
         filesArrayScreenshot = [file];
-        console.log('finished html2canvas')
+        //console.('finished html2canvas')
 
         //here to ensure that buttons appear when html2canvas is ready
         myLayer_Button.button.style.display = 'initial';
@@ -588,10 +588,10 @@ toDelete = false
         document.getElementById("randomSuggestion").style.display = "none";
         document.getElementById("applyFilter").style.display = "none";
 
-        console.log(selectedFeature)
-        console.log(selectedFeature.feature)
-        console.log(selectedFeature.feature.properties)
-        console.log(selectedFeature.feature.properties.contributionid)
+        //console.(selectedFeature)
+        //console.(selectedFeature.feature)
+        //console.(selectedFeature.feature.properties)
+        //console.(selectedFeature.feature.properties.contributionid)
 
         document.getElementById('filter').click()
         document.getElementById('filter').click()
@@ -604,9 +604,9 @@ toDelete = false
         toDelete = true
         // var selectedid = selectedFeature.feature.properties.contributionid
         cartoIdFeatureSelected = selectedFeature.feature.properties.contributionid
-        console.log('cartoIdFeatureSelected',cartoIdFeatureSelected)
-        console.log('selectedFeature',selectedFeature)
-        console.log('selectedFeaturefeature',selectedFeature.feature)
+        //console.('cartoIdFeatureSelected',cartoIdFeatureSelected)
+        //console.('selectedFeature',selectedFeature)
+        //console.('selectedFeaturefeature',selectedFeature.feature)
 
 
         clickCountDeleteButton = 0
@@ -636,7 +636,7 @@ toDelete = false
 //to delete the feature from CARTO
 
 document.getElementById('deleteFeatureOpenDB').onclick = function(){
-console.log('clickCountDeleteButton',clickCountDeleteButton)
+//console.('clickCountDeleteButton',clickCountDeleteButton)
   if (clickCountDeleteButton == 0) {
       document.getElementById("deleteFeatureOpenDB").style.backgroundColor = 'red';
       document.getElementById("deleteFeatureOpenDB").style.borderColor = 'black';
@@ -649,16 +649,16 @@ console.log('clickCountDeleteButton',clickCountDeleteButton)
       clickCountDeleteButton = 1
   } else {
     // deleteFromcartoimmediate = true
-      console.log(selectedFeature)
-      console.log(selectedFeature.feature)
-      console.log(selectedFeature.feature.properties)
-      console.log(selectedFeature.feature.properties.randomID)
+      //console.(selectedFeature)
+      //console.(selectedFeature.feature)
+      //console.(selectedFeature.feature.properties)
+      //console.(selectedFeature.feature.properties.randomID)
 
 
 
     //to find the item in the local storage we use randomID, as is the same as keyvalue
     deleteFromcartoimmediate = selectedFeature.feature.properties.randomID
-    console.log('deleteFromcartoimmediate',deleteFromcartoimmediate)
+    //console.('deleteFromcartoimmediate',deleteFromcartoimmediate)
     key = selectedFeature.feature.properties.randomID
     selectedFeature.feature.properties.OP = 'Private';
 

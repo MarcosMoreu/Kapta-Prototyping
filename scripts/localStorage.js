@@ -397,12 +397,12 @@ var polygonColor = function(feature){
                 //
                 // }
                   if(aFeatureIsSelected == true ){
-                    console.log(selectedFeature)
+                    //console.(selectedFeature)
 
                     if(selectedFeature.feature.geometry.type == 'Polygon'){
                       selectedFeature.setStyle({weight: 0})
                     }else{
-                      console.log(selectedFeature)
+                      //console.(selectedFeature)
                       selectedFeature.setStyle({fillColor: 'black'})
                     }
                     document.getElementById("backDeleteFeature").click() //!!!!!!!!
@@ -416,9 +416,9 @@ var polygonColor = function(feature){
                     }
 
 
-                    console.log('aFeatureIsSelected true')
+                    //console.('aFeatureIsSelected true')
                   }else{ // this if/else is to ensure that two features can not be selected at the same time
-                  console.log('aFeatureIsSelected false')
+                  //console.('aFeatureIsSelected false')
 
                   document.getElementById("filterWithIcons").style.display = "none";
                   document.getElementById("clearFilter").style.display = "none";
@@ -449,7 +449,7 @@ var polygonColor = function(feature){
 
                   //default option is used to check if the target is not deflated (i.e. a marker). Parenteses IMPORTANT!
                   if (!e.target.defaultOptions && e.target.feature.properties.areapolygon != 'Point' && e.target.feature.properties.lengthline != 'Point') { //to avoid enable selected feature when click on deflated polygon or line, which cause error. user must zoom in until polygon displayed. DefaultOptions is only in Points
-                    console.log('approaching?')
+                    //console.('approaching?')
                     layer.editing.disable();
                     // layer.editing.enable();
                       map.closePopup();
@@ -511,7 +511,7 @@ var polygonColor = function(feature){
 
                          document.getElementById("backDeleteFeature").style.display = "initial";
                          document.getElementById("deleteFeatureLocalStorage").style.display = "initial";
-                         console.log(selectedFeature.feature)
+                         //console.(selectedFeature.feature)
                          if(selectedFeature.feature.properties.OP == 'open' && isOnline == true){
                            document.getElementById("deleteFeatureOpenDB").style.display = "initial";
                          }
@@ -571,7 +571,7 @@ var polygonColor = function(feature){
 
                           }else{
                             aFeatureIsSelected = true
-                            console.log(aFeatureIsSelected)
+                            //console.(aFeatureIsSelected)
 
                               document.getElementById("backDeleteFeature").style.display = "initial";
                               document.getElementById("deleteFeatureLocalStorage").style.display = "initial";
@@ -624,7 +624,7 @@ var polygonColor = function(feature){
                                 if(selectedFeature.feature.geometry.type == 'Polygon'){
                                   selectedFeature.setStyle({weight: 0})
                                 }else{
-                                  console.log(selectedFeature)
+                                  //console.(selectedFeature)
                                   selectedFeature.setStyle({fillColor: 'black'})
                                 }
                                 localStorageLayer.editing.disable();
@@ -653,7 +653,7 @@ var polygonColor = function(feature){
                                 if(selectedFeature.feature.geometry.type == 'Polygon'){
                                   selectedFeature.setStyle({weight: 0})
                                 }else{
-                                  console.log(selectedFeature)
+                                  //console.(selectedFeature)
                                   selectedFeature.setStyle({fillColor: 'black'})
                                 }
                                 localStorageLayer.editing.disable();
@@ -682,7 +682,7 @@ var polygonColor = function(feature){
                                 if(selectedFeature.feature.geometry.type == 'Polygon'){
                                   selectedFeature.setStyle({weight: 0})
                                 }else{
-                                  console.log(selectedFeature)
+                                  //console.(selectedFeature)
                                   selectedFeature.setStyle({fillColor: 'black'})
                                 }
                                 localStorageLayer.editing.disable();
@@ -726,10 +726,10 @@ return localStorageLayer && isLocalStorage
 
 
 document.getElementById('deleteFeatureLocalStorage').onclick = function(){
-  console.log(selectedFeature)
+  //console.(selectedFeature)
   //to find the item in the local storage we use randomID, as is the same as keyvalue
   var getRandomID = selectedFeature.feature.properties.randomID
-  console.log(getRandomID)
+  //console.(getRandomID)
 selectedFeature.removeFrom(deflatedLocalStorage)
 selectedFeature.removeFrom(localStorageLayer)
 

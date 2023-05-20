@@ -558,7 +558,7 @@ document.getElementById('emojionearea').value = null
         typeOfFeature = 'polyline'
         //to remove decimals ....
         finalLength2Decimals = (finalLength/1000).toFixed(2) + ' ' + 'Km'
-        console.log(finalLength2Decimals,'length')
+        //console.(finalLength2Decimals,'length')
 
         document.getElementById('showAreaAcres').style.display = 'initial';
         document.getElementById("showAreaAcres").innerHTML = finalLength2Decimals;

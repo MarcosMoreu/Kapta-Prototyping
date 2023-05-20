@@ -33,7 +33,7 @@ left:0px;
 .buttonInitial{
 position:absolute;
 /* transition: 0.5s all; */
-transition-duration: 500ms;
+/* transition-duration: 500ms; */
 }
 
 .easyButton1 {
@@ -185,11 +185,6 @@ a, a:visited, a:hover, a:active {color:grey;text-decoration:none}  /* Selected l
   height:100%;
   width:100%;
   overflow-y: scroll !important;
-  /* text-align:justify; */
-  /* display: grid;
-grid-template-columns: 1fr 1fr;
-grid-auto-rows: 75px;
-grid-gap: 10px; */
 
 display: inline-grid;
 /* text-align: center; */
@@ -198,12 +193,9 @@ align-items: center;
 justify-items: center;
 row-gap:2px;
 column-gap:2px;
-/* grid-template-columns: 80px; */
 
 grid-template-columns: repeat(2, 1fr);
 grid-template-rows: repeat(6, 1fr);
-/* grid-template-columns: 1fr 1fr 1fr;
-grid-template-rows: repeat(6, 1fr); */
 
 
 }
@@ -216,15 +208,8 @@ grid-template-rows: repeat(6, 1fr); */
   height:80px;
   border-radius: 20px;
   border: 2px solid black;
-
-  /* border-radius: 80px; */
-  /* margin-left: 100px; */
-  /* margin-top:-200px; */
-  /* margin:5px; */
   background-color: grey; /* Green */
-  /* padding: 0px 0px; */
   text-decoration: none;
-  /* display: inline-block; */
   border: 2px solid white;
   position:relative;
   outline:none;
@@ -239,7 +224,6 @@ grid-template-rows: repeat(6, 1fr); */
 
 }
 .custom-file-input::before {
-  /* content: 'Choose file'; */
   width: 0.1px;
 	height: 0.1px;
 	opacity: 0;
@@ -247,17 +231,6 @@ grid-template-rows: repeat(6, 1fr); */
 	position: absolute;
 	z-index: -1;
 
-  /* display: inline-block;
-  background: linear-gradient(top, #f9f9f9, #e3e3e3);
-  border: 1px solid black;
-  border-radius: 3px;
-  padding: 5px 5px;
-  outline: none;
-  white-space: wrap;
-  -webkit-user-select: none;
-  cursor: pointer; */
-  /* text-shadow: 1px 1px #fff; */
-  /* font-weight: 700; */
   font-size: 8pt;
 }
 .custom-file-input:hover::before {
@@ -268,31 +241,16 @@ grid-template-rows: repeat(6, 1fr); */
 }
 
 .GPSIconShadow{
-  /* width:100px;
-height:100px; */
-/* border-radius:50%; */
-/* background-image: conic-gradient(transparent 0deg, transparent 45deg, white 45deg, white 315deg, transparent 315deg, transparent 360deg), radial-gradient(rgba(0, 0, 255, 0.5), rgba(0, 0, 255, 0.2) 30%, rgba(0, 0, 0, 0.1) 70%, transparent 80%); */
-
-/* background:conic-gradient(from -45deg at bottom,#0000, blue 1deg 90deg, #0000 91deg); */
-/* -webkit-mask:linear-gradient(#0000,#000); */
-/* -webkit-mask:linear-gradient(to top, #0000 25px,#000); */
-
-
-/* -webkit-mask:linear-gradient(to top, black, 20%, cyan); */
 border-radius:50%;
-
 -webkit-mask:linear-gradient(to top, black, 90%, #0000);  // this fuck!
-
 
 }
 .buttonsCameraScreenshot{
 
   border: 0px solid yellow;
-  /* background-color:#C6C6C5; */
-  /* position:relative; */
+
   outline:none;
   transition: 0.7s all;
-  /* border-color: black; */
   background: linear-gradient(180deg,#e6e6e6 0%,rgba(0, 0, 0, 0.35) 65%, rgba(38, 38, 38, 0.6) 67%,rgba(0, 0, 0, 0.35) 100%);
 border-radius: 5px;
 }
