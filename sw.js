@@ -3,7 +3,7 @@
 
 // Set a name for the current cache. Note that when version is changed, the pwa only updates autmotically after reloading!
 //Note that for automatic update, at one change need to be made in the app.js file (or in other files...)
-var version = 'v25.7';
+var version = 'v25.8';
 //console.log(version)
 
 // Default files to always cache
@@ -84,7 +84,7 @@ self.addEventListener('fetch', (event) => {
     }));
   }else if(event.request.url.includes('.google') || event.request.url.includes('.openstreetmap')  || event.request.url.includes('.planet')){ //to put the google tiles in a different cache so it can be cleared easily
 
-      if(event.request.url.includes('.google') && event.request.url.includes('&z=4')){ //to cache the global map tiles
+      if(event.request.url.includes('.google') && event.request.url.includes('&z=2')){ //to cache the global map tiles
         event.respondWith(caches.open(cacheName).then((cache) => {
           // console.log(event.request.url)
 

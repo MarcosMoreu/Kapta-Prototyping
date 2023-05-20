@@ -309,35 +309,39 @@ var youtubeVideoLoaded = false
 document.getElementById('youtube').onclick = function(e){
      // document.getElementById("textEnglish").style.display = "initial";
 
+     document.getElementById('youtubeImage').src = '../images/underConstruction.png'
+     setTimeout(function(){
+       document.getElementById('youtubeImage').src = '../images/youtube.png'
+     },2000)
 
-     if(isOnline == true){
-        var checkYoutubeLoaded = setInterval(function() {
-             if(youtubeVideoLoaded == false){
-               document.getElementById('youtubeImage').src = '../images/checkingPw.gif'
-             }else{
-               // setTimeout(function(){
-               document.getElementById("youtube").style.display = "none";
-                document.getElementById('dropDown').style.display = "none";
-                document.getElementById('dropDown').style.backgroundColor = 'black';
-                document.getElementById('cutomiseButton').style.display = "none";
-                document.getElementById('startMapping').style.display = "none";
-                document.getElementById("infoButton").style.display = "none";
-                document.getElementById("iconsButton").style.display = "none";
-                document.getElementById("infoGoBackButton").style.display = "initial";
-                document.getElementById("youtubeVideo").style.display = "initial";
-
-                dropDownOpen = false
-                clearInterval(checkYoutubeLoaded)
-             }
-
-
-       },500)
-
-
-     // },100)
-     }else{
-       document.getElementById('youtubeImage').src = '../images/youtubeOffline.png'
-     }
+     // if(isOnline == true){
+     //    var checkYoutubeLoaded = setInterval(function() {
+     //         if(youtubeVideoLoaded == false){
+     //           document.getElementById('youtubeImage').src = '../images/underConstruction.png'
+     //         }else{
+     //           // setTimeout(function(){
+     //           document.getElementById("youtube").style.display = "none";
+     //            document.getElementById('dropDown').style.display = "none";
+     //            document.getElementById('dropDown').style.backgroundColor = 'black';
+     //            document.getElementById('cutomiseButton').style.display = "none";
+     //            document.getElementById('startMapping').style.display = "none";
+     //            document.getElementById("infoButton").style.display = "none";
+     //            document.getElementById("iconsButton").style.display = "none";
+     //            document.getElementById("infoGoBackButton").style.display = "initial";
+     //            document.getElementById("youtubeVideo").style.display = "initial";
+     //
+     //            dropDownOpen = false
+     //            clearInterval(checkYoutubeLoaded)
+     //         }
+     //
+     //
+     //   },500)
+     //
+     //
+     // // },100)
+     // }else{
+     //   document.getElementById('youtubeImage').src = '../images/youtubeOffline.png'
+     // }
 
    return dropDownOpen
 
@@ -346,7 +350,7 @@ document.getElementById('youtube').onclick = function(e){
 document.getElementById('english').onclick = function(e){
 
   languageSelected = 'english'
-  document.getElementById('youtubeVideo').src = "https://www.youtube.com/embed/h6V3ykHclTo"
+  // document.getElementById('youtubeVideo').src = "https://www.youtube.com/embed/h6V3ykHclTo"
   document.getElementById('youtubeVideo').onload = function(){
        document.getElementById('youtubeImage').src = '../images/youtube.png'
        // document.getElementById('youtubeImage').style.display = 'none'
