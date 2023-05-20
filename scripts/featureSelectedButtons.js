@@ -78,13 +78,32 @@ document.getElementById("backDeleteFeature").onclick = function() {
     selectedFeature = null
     clickCountDeleteButton = 0
     cartoIdFeatureSelected = null;
+    console.log('fiter is on?',filterIsOn)
 
-    document.getElementById("tutorial").style.display = "initial";
-    // document.getElementById("polygon").style.display = "initial";
-    // document.getElementById("polyline").style.display = "initial";
-    // document.getElementById("point").style.display = "initial";
-    document.getElementById("armchair").style.display = "initial";
-    document.getElementById("field").style.display = "initial";
+    if(filterIsOn == true){
+      console.log('fiter is on?',filterIsOn)
+setTimeout(function(){
+  document.getElementById("filter").click()
+
+},500)
+      // document.getElementById("polygon").style.display = "initial";
+      // document.getElementById("polyline").style.display = "initial";
+      // document.getElementById("point").style.display = "initial";
+      // document.getElementById("filterWithIcons").style.display = "initial";
+      // document.getElementById("filterByDate").style.display = "initial";
+      // document.getElementById("clearFilter").style.display = "initial";
+      // document.getElementById("app").style.display = "initial";
+
+    }else{
+      document.getElementById("tutorial").style.display = "initial";
+      // document.getElementById("polygon").style.display = "initial";
+      // document.getElementById("polyline").style.display = "initial";
+      // document.getElementById("point").style.display = "initial";
+      document.getElementById("armchair").style.display = "initial";
+      document.getElementById("field").style.display = "initial";
+    }
+
+
     // document.getElementById("gobackArmchairField").style.display = "initial";
 
 
@@ -105,8 +124,8 @@ document.getElementById("backDeleteFeature").onclick = function() {
 
     document.getElementById("shareMessagingApp").style.opacity = '1';
     document.getElementById("shareMessagingApp").disabled = false;
-    document.getElementById("randomSuggestion").style.opacity = '1';
-    document.getElementById("randomSuggestion").disabled = false;
+    document.getElementById("randomSuggestion").style.opacity = '0.4';
+    document.getElementById("randomSuggestion").disabled = true;
     document.getElementById("shareMessagingApp").style.display = "none";
     document.getElementById("randomSuggestion").style.display = "none";
 
@@ -197,7 +216,7 @@ document.getElementById("shareMessagingApp").onclick = function() {
           }
           var urlAfterHash = getSecondPart(window.location.href)
             // window.location.href = 'https://wa.me/?text='+encodeURIComponent('https://amappingprototype.xyz/'+'#'+urlAfterHash)
-            var link = '🗺️ 👇🏿'+ "\n" + "\n" + 'https://' + subDOMAIN + '.amappingprototype.xyz/'+'#'+urlAfterHash
+            var link = '🗺️ 👇🏿'+ "\n" + "\n" + 'https://kapta.app/'+'#'+urlAfterHash
             if(navigator.share){
               navigator.share({
                 text: link,
@@ -494,10 +513,10 @@ document.getElementById("randomSuggestion").onclick = function() {
 //alert('under development')
 
 }
-
+var toDelete = false
 
 document.getElementById("deleteFeature").onclick = function() {
-
+toDelete = false
     map.touchZoom.enable();
     map.doubleClickZoom.enable();
     map.scrollWheelZoom.enable();
@@ -535,8 +554,8 @@ document.getElementById("deleteFeature").onclick = function() {
         myLayer_Button.button.style.opacity = '1';
         myLayer_Button.button.style.borderColor = 'black';
         myLayer_Button.button.disabled = false;
-        document.getElementById('myLayerButton').click()
-        document.getElementById('myLayerButton').click()
+        // document.getElementById('filter').click()
+        // document.getElementById('filter').click()
         document.getElementById('emojionearea').value = null
 
 
@@ -547,9 +566,9 @@ document.getElementById("deleteFeature").onclick = function() {
         gps_Button.button.style.opacity = '1';
         gps_Button.button.disabled = false;
 
-        document.getElementById("tutorial").style.display = "initial";
-        document.getElementById("field").style.display = "initial";
-        document.getElementById("armchair").style.display = "initial";
+        // document.getElementById("tutorial").style.display = "initial";
+        // document.getElementById("field").style.display = "initial";
+        // document.getElementById("armchair").style.display = "initial";
         const element = document.getElementById('span6');
         element.style.width = 'calc(100% - 125px)';
         // document.getElementById("point").style.display = "initial";
@@ -563,25 +582,56 @@ document.getElementById("deleteFeature").onclick = function() {
         document.getElementById("imageDeleteFeature").src = 'images/binpre.png';
         document.getElementById("shareMessagingApp").style.opacity = '1';
         document.getElementById("shareMessagingApp").disabled = false;
-        document.getElementById("randomSuggestion").style.opacity = '1';
-        document.getElementById("randomSuggestion").disabled = false;
+        document.getElementById("randomSuggestion").style.opacity = '0.4';
+        document.getElementById("randomSuggestion").disabled = true;
         document.getElementById("shareMessagingApp").style.display = "none";
         document.getElementById("randomSuggestion").style.display = "none";
         document.getElementById("applyFilter").style.display = "none";
 
+        console.log(selectedFeature)
+        console.log(selectedFeature.feature)
+        console.log(selectedFeature.feature.properties)
+        console.log(selectedFeature.feature.properties.contributionid)
 
+        document.getElementById('filter').click()
+        document.getElementById('filter').click()
 
 
         //  document.getElementById("deleteFeature").style.borderColor = 'white'
 
         //to remove feature from geoJSON
-        deflated.removeLayer(selectedFeature)
+        // deflated.removeLayer(selectedFeature)
+        toDelete = true
+        // var selectedid = selectedFeature.feature.properties.contributionid
+        cartoIdFeatureSelected = selectedFeature.feature.properties.contributionid
+        console.log('cartoIdFeatureSelected',cartoIdFeatureSelected)
+        console.log('selectedFeature',selectedFeature)
+        console.log('selectedFeaturefeature',selectedFeature.feature)
+
+
+        clickCountDeleteButton = 0
+        // var getItemToJSONstringified = JSON.stringify(selectedFeature.feature);
+        // console.log('getItemToJSONstringified',getItemToJSONstringified)
+        // var item = geoJSONLocalforageDB.getItem(cartoIdFeatureSelected)
+        //
+        // var getItemToJSONstringifiedModified = item.replace('open','deleted');
+        // geoJSONLocalforageDB.setItem(cartoIdFeatureSelected, getItemToJSONstringifiedModified);
+        // // var item = geoJSONLocalforageDB.getItem(cartoIdFeatureSelected)
+        // console.log('getItemToJSONstringifiedModified',getItemToJSONstringifiedModified)
+
+        // const newitem = item.replace('open','deleted');
+
+        // geoJSONLocalforageDB.setItem(cartoIdFeatureSelected, newitem);
+
         selectedFeature = null
+
 
         //we call the setData() function here to delete from cartodb
         setData()
+        // deflated.removeLayer(selectedFeature)
+
     }
-    return selectedFeature && clickCountDeleteButton && clickCountDelete && aFeatureIsSelected
+    return selectedFeature && clickCountDeleteButton && clickCountDelete && aFeatureIsSelected && toDelete && cartoIdFeatureSelected
 }
 //to delete the feature from CARTO
 

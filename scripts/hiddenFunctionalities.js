@@ -24,7 +24,7 @@ document.getElementById('rose').onclick = function(e){
     //console.log('deflated',deflated)
     var toRemoveDeflated = deflated._layers
     //console.log('toremovedeflated',toRemoveDeflated)
-    if(clicksRose == 3 && map.getZoom()<=13){
+    if(clicksRose == 3 && map.getZoom()<=11){
       document.getElementById("Alert").style.fontSize = "30px";
       document.getElementById("Alert").style.textAlign = "center"
       document.getElementById('Alert').innerHTML = 'Zoom in'

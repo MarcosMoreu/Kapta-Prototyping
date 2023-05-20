@@ -8,11 +8,22 @@ var numberOfKeys
 var cellFilter
 var filterIconOpen = false
 var dateFilterValueLocalStorage
+sapelliProjectIdentifier = localStorage.getItem('sapelliProjectIdentifier')
 
 var lastBoxContent = null
 var checkIfInputChanges
 //script for apply filters
 document.getElementById("applyFilter").onclick = function(e) {
+  document.getElementById('maploadinggif').src = 'images/gifcartofilter.gif'
+  document.getElementById('MapLoading').style.display = 'initial'
+
+
+  setTimeout(function(){
+    document.getElementById('MapLoading').style.display = 'none'
+    document.getElementById('maploadinggif').src = 'images/checkingPw.gif'
+
+
+  },2000)
 
   //script to refresh apply filter in case input box changes (focused again)
   checkIfInputChanges = setInterval(function(){
@@ -75,9 +86,11 @@ document.getElementById("applyFilter").onclick = function(e) {
             } catch (err) {
               // console.log('error sql catched due to empty layer after filter applied')
             }
-           var sqlQueryWithoutCondition = "SELECT geom, contributionid, attribute1s, date FROM `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` WHERE date>'";
+           var sqlQueryWithoutCondition = "SELECT geom, contributionid, areapolygon, lengthline, date, attribute1s, attribute2s, attribute3s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n FROM `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` WHERE sapprojid='" +sapelliProjectIdentifier+ "' AND timestamp>'";
            var sqlCondition = datePeriodAgoReplaceComaInvert +"'";
            sqlQuerySelect = sqlQueryWithoutCondition + sqlCondition
+           console.log('sqlQuerySelect',sqlQuerySelect)
+
            // sqlQuerySelect = "SELECT * FROM `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0`"
            sqlQuerySelectEncoded = encodeURI(sqlQuerySelect)
              requestCartoData(sqlQuerySelectEncoded)
@@ -100,7 +113,7 @@ document.getElementById("applyFilter").onclick = function(e) {
 
 
 
-           var sqlQueryWithoutCondition = "SELECT geom, contributionid, attribute1s, date FROM `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` WHERE (attribute1s ";
+           var sqlQueryWithoutCondition = "SELECT geom, contributionid, areapolygon, lengthline, date, attribute1s, attribute2s, attribute3s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n FROM `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` WHERE sapprojid='" +sapelliProjectIdentifier+ "' AND (attribute1s ";
            var sqlCondition =
             // "LIKE '" + boxContent +"'" //exact value
             //
@@ -111,11 +124,11 @@ document.getElementById("applyFilter").onclick = function(e) {
 
             // + " OR landuses LIKE N'%" + boxContent +"%')" //xxxxxxxx%%%%%%%%%%%
 
-            +" AND (date>'"+datePeriodAgoReplaceComaInvert +"')";
+            +" AND (timestamp>'"+datePeriodAgoReplaceComaInvert +"')";
            var sqlQuerySelect = sqlQueryWithoutCondition + sqlCondition
            // console.log(sqlQueryEncoded)
            // sqlQuery = encodeURIComponent(sqlQueryEncoded)
-           console.log(sqlQuerySelect)
+           console.log('sqlQuerySelect',sqlQuerySelect)
 
            sqlQuerySelectEncoded = encodeURI(sqlQuerySelect)
              requestCartoData(sqlQuerySelectEncoded)
@@ -131,7 +144,7 @@ document.getElementById("applyFilter").onclick = function(e) {
 
   }else if(whichLayerIsOn == 'localStorage'){
     // The same code, but using ES6 Promises.
-    filterLocalStorage_Button.button.style.borderColor = 'green'
+    // filterLocalStorage_Button.button.style.borderColor = 'green'
 
     document.getElementById("applyFilter").style.display = "none";
     document.getElementById("clearFilter").style.display = "initial";

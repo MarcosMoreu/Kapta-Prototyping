@@ -478,7 +478,7 @@ map.on('draw:created', function(e) {
   // googleSat.addTo(map)
 
   //console.log(drawnItems)
-
+document.getElementById('emojionearea').value = null
   document.getElementById('myRange').style.display = 'none'
   document.getElementById('Alert').style.opacity = '0'
 

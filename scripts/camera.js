@@ -495,10 +495,15 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
         ignoreElements: function( element ) {
           // console.log(element.src)
           var src = element.src
-          // console.log(src)
+          // console.log(element)
+          // console.log(element.value)
+
           // var srcString = src.toString()
           // console.log(srcString)
-
+          // if( null == element.type) {
+          //   console.log('ignoreddiv', element.id)
+          //     return true;
+          // }
            /* Remove element with id="MyElementIdHere" */
            if( 'button' == element.type || 'submit' == element.type) {
              // console.log('ignored button,submit or link', element.id)
@@ -510,7 +515,9 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
            // }
 
            /* Remove all elements with class="MyClassNameHere" */
-           if( element.classList.contains( 'buttons' ) ) {
+           if( element.classList.contains( 'buttons' ) ||  element.classList.contains( 'leaflet' )) {
+             // console.log('ignored button,submit or link or LEAFLET', element.id)
+
                return true;
            }
            // try{

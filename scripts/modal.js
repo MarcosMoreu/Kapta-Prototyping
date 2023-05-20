@@ -36,7 +36,11 @@
 //   var basemapClass = document.getElementsByClassName('leaflet-layer')
 //   basemapClass[0].style.opacity = 1
 // }
-
+// document.getElementById('AlertModalIOS').innerHTML = ''
+// setTimeout(function(){
+//   document.getElementById('AlertModalIOS').innerHTML = ''
+//
+// },)
 var phoneNumber
 var arrayOfImages = [
   'images/ThumbsUpGreen.png','images/checkingPw.gif',
@@ -71,21 +75,21 @@ var arrayOfImages = [
     'images/customIconsMap.png','images/customIconsCancel.png',
 
     //sapelli project images
-    // 'images/omoIcons/banana.png','images/omoIcons/boatCrossing.png','images/omoIcons/cattleGrazing.png','images/omoIcons/church.png','images/omoIcons/eldersHut.png','images/omoIcons/fishing.png',
-    // 'images/omoIcons/floodRecessionFlat.png','images/omoIcons/floodRecessionSteep.png','images/omoIcons/goatSheepGrazing.png','images/omoIcons/healthStation.png','images/omoIcons/hotSpring.png','images/omoIcons/hunting.png',
-    // 'images/omoIcons/hutVillage.png','images/omoIcons/irrigationPump.png','images/omoIcons/kraal.png','images/omoIcons/lakeRecession.png','images/omoIcons/maize.png',
-    // 'images/omoIcons/manualPump.png','images/omoIcons/medicinalPlants.png','images/omoIcons/noFarming.png','images/omoIcons/pondFarming.png','images/omoIcons/Questionmark.png','images/omoIcons/recreationCenter.png',
-    // 'images/omoIcons/reehive.png','images/omoIcons/saltlick.png','images/omoIcons/school.png','images/omoIcons/sorghum.png','images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
-    // 'images/omoIcons/timber.png','images/omoIcons/treeForGathering.png','images/omoIcons/unknownOther.png','images/omoIcons/veterinary.png','images/omoIcons/waterPoint.png','images/omoIcons/waterPondAnimal.png',
-    // 'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png','images/omoIcons/pathTrack.png',
+    'images/omoIcons/banana.png','images/omoIcons/boatCrossing.png','images/omoIcons/cattleGrazing.png','images/omoIcons/church.png','images/omoIcons/eldersHut.png','images/omoIcons/fishing.png',
+    'images/omoIcons/floodRecessionFlat.png','images/omoIcons/floodRecessionSteep.png','images/omoIcons/goatSheepGrazing.png','images/omoIcons/healthStation.png','images/omoIcons/hotSpring.png','images/omoIcons/hunting.png',
+    'images/omoIcons/hutVillage.png','images/omoIcons/irrigationPump.png','images/omoIcons/kraal.png','images/omoIcons/lakeRecession.png','images/omoIcons/maize.png',
+    'images/omoIcons/manualPump.png','images/omoIcons/medicinalPlants.png','images/omoIcons/noFarming.png','images/omoIcons/pondFarming.png','images/omoIcons/Questionmark.png','images/omoIcons/recreationCenter.png',
+    'images/omoIcons/reehive.png','images/omoIcons/saltlick.png','images/omoIcons/school.png','images/omoIcons/sorghum.png','images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
+    'images/omoIcons/timber.png','images/omoIcons/treeForGathering.png','images/omoIcons/unknownOther.png','images/omoIcons/veterinary.png','images/omoIcons/waterPoint.png','images/omoIcons/waterPondAnimal.png',
+    'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png','images/omoIcons/pathTrack.png',
 
     //sapelli project images
-    'images/omoIcons/Shelter.png','images/omoIcons/dtm.png','images/omoIcons/pluistorrentielles.png','images/omoIcons/camera.png','images/omoIcons/coutlocation.png',
-    'images/omoIcons/confirm.png',
-    'images/omoIcons/personnesaffectees.png','images/omoIcons/maisonsdetruites.png','images/omoIcons/femmesnevontpas1.png','images/omoIcons/hommesnevontpas1.png',
-    'images/omoIcons/regimefoncierchamps.png','images/omoIcons/ventsviolents.png',
-    'images/omoIcons/seul.png','images/omoIcons/protection.png','images/omoIcons/proprietaire.png','images/omoIcons/mangues.png','images/omoIcons/maize.png',
-    'images/omoIcons/location.png','images/omoIcons/inondations.png','images/omoIcons/ett.png','images/omoIcons/documentation.png','images/omoIcons/champs.png',
+    // 'images/omoIcons/Shelter.png','images/omoIcons/dtm.png','images/omoIcons/pluistorrentielles.png','images/omoIcons/camera.png','images/omoIcons/coutlocation.png',
+    // 'images/omoIcons/confirm.png',
+    // 'images/omoIcons/personnesaffectees.png','images/omoIcons/maisonsdetruites.png','images/omoIcons/femmesnevontpas1.png','images/omoIcons/hommesnevontpas1.png',
+    // 'images/omoIcons/regimefoncierchamps.png','images/omoIcons/ventsviolents.png',
+    // 'images/omoIcons/seul.png','images/omoIcons/protection.png','images/omoIcons/proprietaire.png','images/omoIcons/mangues.png','images/omoIcons/maize.png',
+    // 'images/omoIcons/location.png','images/omoIcons/inondations.png','images/omoIcons/ett.png','images/omoIcons/documentation.png','images/omoIcons/champs.png',
     // 'images/omoIcons/numbers.png',
      'images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
 
@@ -98,11 +102,19 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
   //$.getScript("lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.Draw.Event.js")
     // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
     if(localStorage.getItem('pwCorrect')){
+      // if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains geojson (and coords)
+      //   document.getElementById('talk').style.opacity = 0
+      //   document.getElementById('listen').style.opacity = 0
+      // }
+      // if (urlContainsHash != true && urlContainsGeoJSON != true){  // if url contains geojson (and coords)
+
       setTimeout(function(){
 
-    document.getElementById('talk').style.display = 'initial'
-    document.getElementById('listen').style.display = 'initial'
-    },300)
+        document.getElementById('talk').style.display = 'initial'
+        document.getElementById('listen').style.display = 'initial'
+        },300)
+      // }
+
       document.getElementById('MapLoading').style.display = 'initial'
       document.getElementById('MapLoading').style.opacity = 0
       jQuery(document).ready(checkContainer);
@@ -277,12 +289,17 @@ var initialiseMap = function(){
     document.getElementById('initialscreen2options').style.display = 'initial'
     console.log('initialise map')
     if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains geojson (and coords)
+      document.getElementById('initialscreen2options').style.display = 'none'
       document.getElementById('talk').style.display = 'none'
       document.getElementById('listen').style.display = 'none'
       document.getElementById('map').style.opacity = 1
+      document.getElementById('map').disabled = false
+      document.getElementById("tutorial").style.display = "initial";
+      document.getElementById("armchair").style.display = "initial";
+      document.getElementById("field").style.display = "initial";
 
 
-      document.getElementById('talk').click()
+      // document.getElementById('talk').click()
   }
 }
 },100)
@@ -449,6 +466,9 @@ basemapClass[0].style.opacity = 0
 document.getElementById('talk').onclick = function(){
   document.getElementById('talk').style.backgroundColor = 'grey'
   document.getElementById('talk').style.borderColor = 'grey'
+  setTimeout(function(){
+    document.getElementById("Alert").style.display = 'none'
+  },2000)
 
 
 // mapheight.clientHeight = '80%'
@@ -480,7 +500,7 @@ document.getElementById('talk').onclick = function(){
 }
 document.getElementById('listen').onclick = function(){
   document.getElementById('listen').style.backgroundColor = 'grey'
-  document.getElementById('talk').style.borderColor = 'grey'
+  document.getElementById('listen').style.borderColor = 'grey'
 
 
   setTimeout(function(){
@@ -512,6 +532,10 @@ document.onreadystatechange = function () {
   var state = document.readyState
   console.log(state,'state')
   if (document.readyState === 'complete' && localStorage.getItem('pwCorrect')) {
+    $.getScript({
+       cache:true,
+      url:'scripts/customIcons_v3.js'
+    })
     startSearchingLocation()
   // document.getElementById('rose').click()
     setTimeout(function(){
@@ -543,10 +567,6 @@ document.onreadystatechange = function () {
     $.getScript({
       cache:true,
       url:'scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/Control.GlobeMiniMap.js'
-    }),
-    $.getScript({
-       cache:true,
-      url:'scripts/customIcons_v3.js'
     }),
     $.getScript({
        cache:true,
@@ -650,7 +670,11 @@ var requestPw = function(){
           // promise.catch(e => console.log(e.message));
           //   //console.log(promise)
         var openAppPwSuccesful = function(){
-              if(authentication == 'successful' && done == true){  //map loads after this
+              if(authentication == 'successful' && done == true){
+                $.getScript({
+                   cache:true,
+                  url:'scripts/customIcons_v3.js'
+                })  //map loads after this
                 document.getElementById('AlertModalIOS').innerHTML = ''
                 document.getElementById('AlertModalIOS').style.display = 'initial'
                 document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
@@ -679,7 +703,7 @@ var requestPw = function(){
                     // location.reload() //to activate the sw so it can be used offline afterwards
                     navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
 
-                },4000)
+                },3000)
                 //in case first load is with url geoJSON -- not the best approach ever, but it works.
                 if(urlContainsGeoJSON == true){
                   var activateLocalStorageLayer = setInterval(function(){

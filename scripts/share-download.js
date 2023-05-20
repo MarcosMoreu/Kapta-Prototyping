@@ -111,7 +111,7 @@ var finalGeoJSON = function(){
   var dateTime = date + 'T' + time + 'Z';
 
   console.log(randomID,"randomID. -a- refers to Armchair mapping, -f- refers to field mapping")
-  console.log(dateTime)
+  console.log('DATETIME',dateTime)
 
   // var date1 = new Date(date)
   // console.log(date1)
@@ -182,43 +182,51 @@ var finalGeoJSON = function(){
   if (finalAreaAcres2Decimals == null && finalLength2Decimals != null) {
     finalAreaAcres2Decimals = 'Line'
   }
-  if(imageName1 == null){
-    propertiesGeoJSON = {
-        // 'geometryCenter':geometryCenter,
-        'landUses': boxContentToString,
-        'landUsesEmoji': boxContent,
-        'OP': openOrPrivate,
-        'phoneNumber': localStorage.getItem('phoneNumber'),
-        'audioAvailable': audioAvailable,
-        'areaPolygon': finalAreaAcres2Decimals,
-        'lengthLine': finalLength2Decimals,
-        // 'dateTime': '2021-8-10T6:9:26Z', // for testing
-        'dateTime': dateTime,
-        'timeSpendSeconds': totalTimeSpent,
-        'dist_m_Participant_Feature': distanceObfTrunc,
-        'randomID': randomID,
-        'geometrystring':data.toString(),
-        'screensize':screensize,
-        'sapProjID': sapelliProjectIdentifier
-    };
-
-      propertiesGeoJSONURL = {
-          'randomID': randomID,
-          'LU': boxContent,
-          'OP': openOrPrivate,
-          'A': finalAreaAcres2Decimals,
-          'L': finalLength2Decimals,
-          'D': dateTime,
-
-      };
-    }else{
+  // if(imageName1 == null){
+  //   propertiesGeoJSON = {
+  //       // 'geometryCenter':geometryCenter,
+  //       'landUses': boxContentToString,
+  //       'landUsesEmoji': boxContent,
+  //       'OP': openOrPrivate,
+  //       'phoneNumber': localStorage.getItem('phoneNumber'),
+  //       'audioAvailable': audioAvailable,
+  //       'areaPolygon': finalAreaAcres2Decimals,
+  //       'lengthLine': finalLength2Decimals,
+  //       // 'dateTime': '2021-8-10T6:9:26Z', // for testing
+  //       'dateTime': dateTime,
+  //       'timeSpendSeconds': totalTimeSpent,
+  //       'dist_m_Participant_Feature': distanceObfTrunc,
+  //       'randomID': randomID,
+  //       'geometrystring':data.toString(),
+  //       'screensize':screensize,
+  //       'sapProjID': sapelliProjectIdentifier
+  //   };
+  //
+  //     propertiesGeoJSONURL = {
+  //         'randomID': randomID,
+  //         'LU': boxContent,
+  //         'OP': openOrPrivate,
+  //         'A': finalAreaAcres2Decimals,
+  //         'L': finalLength2Decimals,
+  //         'D': dateTime,
+  //
+  //     };
+  //   }else{
       propertiesGeoJSON = {
           // 'geometryCenter':geometryCenter,
-          'landUses': boxContentToString,
-          'landUsesEmoji': boxContent,
+          // 'landUses': boxContentToString,
+          'Description': boxContent,
           'OP': openOrPrivate,
           'phoneNumber': localStorage.getItem('phoneNumber'),
-          'audioAvailable': audioAvailable,
+          'screen1':screen1,
+          'screen2':screen2,
+          'screen2':screen3,
+          'kidsmale':kidsmale,
+          'kidsfemale':kidsfemale,
+          'adultmale':adultmale,
+          'adultfemale':adultfemale,
+          'household':household,
+          // 'audioAvailable': audioAvailable,
           'areaPolygon': finalAreaAcres2Decimals,
           'lengthLine': finalLength2Decimals,
           'dateTime': dateTime,
@@ -243,7 +251,7 @@ var finalGeoJSON = function(){
           'I2':imageName2,
           'I3':imageName3,
       };
-    }
+    // }
 
     //  adding the properties to the geoJSON file:
     data.properties = propertiesGeoJSON;
@@ -308,7 +316,7 @@ document.getElementById('goBackClassification').onclick = function(e){
   document.getElementById('camera').style.borderWidth = '0px'
   document.getElementById('screenshot').style.borderWidth = '0px'
 
-  landUse = 'emojiNoSapelli'
+  // landUse = 'emojiNoSapelli'
   clickCountSendButton = 0
   imageName1 = null
   imageName2 = null
@@ -321,15 +329,15 @@ document.getElementById('goBackClassification').onclick = function(e){
     iconCT4.style.display = 'none'
     iconE1.style.display = 'none'
     iconE2.style.display = 'none'
-    landUse =''
-    ett =''
-    maisonsdetruites =''
-    personnesaffectees =''
-    croptype =''
-    evaluation =''
-    landownership =''
-    ownershipprice =''
-    malefemale =''
+    screen1 = null
+    screen2 = null
+    screen3 = null
+    // livestockdisseasetype = null
+    kidsmale = null
+    kidsfemale = null
+    adultmale = null
+    adultfemale = null
+    household = null
   }catch(e){}
 
   document.getElementById('emojionearea').value = null
@@ -341,7 +349,8 @@ document.getElementById('goBackClassification').onclick = function(e){
   screenshotOn = false
 
 showButtons()
-return landUse && clickedshareMessagingAppsDirect && imageName1 && imageName2 && imageName3 && attachPhoto && photoAccepted && screenshotOn
+return clickedshareMessagingAppsDirect && imageName1 && imageName2 && imageName3 && attachPhoto && photoAccepted && screenshotOn && screen1 && screen2 &&
+screen3 && kidsmale && kidsfemale && adultmale && adultfemale && household
 }
 
 var mapposLat = mappos.center.lat
@@ -405,19 +414,19 @@ var shareworld = function(){
               //to fire click event of upload button !!
               ////////////////////////////       CARTO - POST DATA      //////////////////////////////////////////
               //first, we define the variables that store the attributes
-              propertiesGeoJSON = data.properties
-              //to assign each attribute to a variable, which will be added as columns to the DB
-              landUses = propertiesGeoJSON.landUses;
-              landUsesEmoji = propertiesGeoJSON.landUsesEmoji;
-              openOrPrivate = propertiesGeoJSON.openOrPrivate;
-              phoneNumber = propertiesGeoJSON.phoneNumber;
-              areaPolygon = propertiesGeoJSON.areaPolygon;
-              lengthLine = propertiesGeoJSON.lengthLine;
-              dateTime = propertiesGeoJSON.dateTime;
-              timeSpendSeconds = propertiesGeoJSON.timeSpendSeconds;
-              dist_m_Participant_Feature = propertiesGeoJSON.dist_m_Participant_Feature;
-              randomID = propertiesGeoJSON.randomID;
-
+              // propertiesGeoJSON = data.properties
+              // //to assign each attribute to a variable, which will be added as columns to the DB
+              // landUses = propertiesGeoJSON.landUses;
+              // landUsesEmoji = propertiesGeoJSON.landUsesEmoji;
+              // openOrPrivate = propertiesGeoJSON.openOrPrivate;
+              // phoneNumber = propertiesGeoJSON.phoneNumber;
+              // areaPolygon = propertiesGeoJSON.areaPolygon;
+              // lengthLine = propertiesGeoJSON.lengthLine;
+              // dateTime = propertiesGeoJSON.dateTime;
+              // timeSpendSeconds = propertiesGeoJSON.timeSpendSeconds;
+              // dist_m_Participant_Feature = propertiesGeoJSON.dist_m_Participant_Feature;
+              // randomID = propertiesGeoJSON.randomID;
+              console.log('areaPolygon',areaPolygon)
                   setData(); //Call the setDdata() function!!! to post data to database. If audio is available, set data is called in sendfirebase function
 
             featureSent = true;
@@ -512,7 +521,7 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
 
       // }catch(e){}
       console.log('attribute',attributes)
-      var link = attributes + "\n" + '🗺️ 👇🏿'+ "\n" + 'https://' + subDOMAIN + '.amappingprototype.xyz/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
+      var link = attributes + "\n" + '🗺️ 👇🏿'+ "\n" + 'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
       // var url
       // console.log(url)
 
@@ -562,7 +571,7 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
     filterLocalStorage_Button.button.disabled = false;
 
 
-      landUse = 'emojiNoSapelli'
+      // landUse = 'emojiNoSapelli'
       hideButtons()
 
 
@@ -636,12 +645,12 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
 
         }catch(e){}
 
-        if(whichLayerIsOn == 'deflated'){
-          document.getElementById('myLayerButton').click()
-          document.getElementById('myLayerButton').click()
-        }if(whichLayerIsOn == 'localStorage'){
-          document.getElementById('myLayerButton').click()
-        }
+        // if(whichLayerIsOn == 'deflated'){
+        //   document.getElementById('myLayerButton').click()
+        //   document.getElementById('myLayerButton').click()
+        // }if(whichLayerIsOn == 'localStorage'){
+        //   document.getElementById('myLayerButton').click()
+        // }
 
         clickCountSendButton = 0 //!!!!!!!!!!!
         //finalLayer is added at the end as the properties are different depending on if share or download
@@ -674,9 +683,18 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
           imageName3 = null
           attachPhoto = false
           screenshotOn = false
+          screen1 = null
+          screen2 = null
+          screen3 = null
+          kidsmale = null
+          kidsfemale = null
+          adultmale = null
+          adultfemale = null
+          household = null
     } //for the first because the fucking disable doesn't work
-    return finished && whichLayerIsOn && localStorageLayer && elementJustAddedToLocalStorage && field && landUse && fetchLast && groupGeoJSON && clickedshareMessagingAppsDirect && imageName1 && imageName2 && imageName3 && attachPhoto && screenshotOn
-          && shareURL && mapposLat  && mapposLng && mapposZoom && urlX && urlLatX && urlLngX && urlZoomX && groupGeoJSON && clickedshareMessagingAppsDirect && clickCountSendButton && landUse && groupGeoJSON && imageName1 && imageName2 && imageName3 && attachPhoto
+    return finished && whichLayerIsOn && localStorageLayer && elementJustAddedToLocalStorage && field && fetchLast && groupGeoJSON && clickedshareMessagingAppsDirect && imageName1 && imageName2 && imageName3 && attachPhoto && screenshotOn
+          && shareURL && mapposLat  && mapposLng && mapposZoom && urlX && urlLatX && urlLngX && urlZoomX && groupGeoJSON && clickedshareMessagingAppsDirect && clickCountSendButton && screen1 && groupGeoJSON && imageName1 && imageName2 && imageName3 && attachPhoto &&
+          screen1 && screen2 && screen3 && kidsmale && kidsfemale && adultmale && adultfemale && household
 }
 
 // end

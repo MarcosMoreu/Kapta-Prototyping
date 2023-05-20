@@ -7,33 +7,36 @@ var screenChoice
 var askHelpOrIHelp
 
 //variable to populate the popup
-var landUse = 'emojiNoSapelli' //if the sapelli project is completed, then the value changes and the string is treated differently in sharedownload.js
+// var screen = 'emojiNoSapelli' //if the sapelli project is completed, then the value changes and the string is treated differently in sharedownload.js
 
 var imageName1
 var imageName2
 var imageName3
 
-var landUse =''
-var ett =''
-var maisonsdetruites =''
-var personnesaffectees =''
-var croptype =''
-var evaluation =''
-var landownership =''
-var ownershipprice =''
-var malefemale =''
-
-var cluster = null
-var ett_type= null
-var maisonsdetruites= null
-var personnesaffectees= null
-var crop_type= null
-var croptrype= null
-var evaluation_updown= null
-var landownership_type= null
-var ownership_price_bif= null
-var male_or_female= null
-var crop_hectares_afected = null
+var screen1 = null
+var screen2 = null
+var screen3 = null
+// var livestockdisseasetype = null
+var kidsmale = null
+var kidsfemale = null
+var adultmale = null
+var adultfemale = null
+var household = null
+// var landownership =''
+// var ownershipprice =''
+// var malefemale =''
+//
+// var cluster = null
+// var ett_type= null
+// var maisonsdetruites= null
+// var personnesaffectees= null
+// var crop_type= null
+// var croptrype= null
+// var evaluation_updown= null
+// var landownership_type= null
+// var ownership_price_bif= null
+// var male_or_female= null
+// var crop_hectares_afected = null
 var updateproject
 var finalAttributes
 var sapelliProjectIdentifier = 'nTxrPZWdUhRVVjwszTFoSywAhZfNkRtzrUcwNnhK'
@@ -51,7 +54,7 @@ document.getElementById('customIconsMap').onclick = function(e){
 
   if(filterIsOn == false){
     document.getElementById('customIconsMap').style.display = 'none';
-    document.getElementById('customIconsCancel').style.display = 'none';
+    // document.getElementById('customIconsCancel').style.display = 'none';
     document.getElementById('customIconsGoBack').style.display = 'none';
 
     // document.getElementById("map").style.bottom = '0px'
@@ -64,10 +67,10 @@ document.getElementById('customIconsMap').onclick = function(e){
     document.getElementById('showAreaAcres').style.display = 'initial';
     // document.getElementById('share-download').style.display = 'initial';
     if(screenChoice == 'sapprojectsscreen'){
-      landUse = 'emojiNoSapelli'
+      // screen = 'emojiNoSapelli'
       // document.getElementById('share-download').style.opacity = '0.5'
     }
-    if(landUse != 'emojiNoSapelli'){
+    if(screen1 != 'emojiNoSapelli'){
       document.getElementById("Cancel").style.opacity = '0'
       document.getElementById("sapelliProjects").style.opacity = '0'
       document.getElementById('emoji').style.opacity = '0'
@@ -80,27 +83,50 @@ document.getElementById('customIconsMap').onclick = function(e){
         // document.getElementById('share-download').style.opacity = '1'
       },2000)
 
-      //here we have: Always landUse, sometime croptype and sometimes evaluation. so four scenarios
+      //here we have: Always screen, sometime croptype and sometimes evaluation. so four scenarios
       //and 1, 2 or 3 images
 
 
-        // emojioneareaeditor0.value =  landUse + ' ▪️ ' + ett + ' ▪️ ' + maisonsdetruites +  ' ▪️ '  + personnesaffectees +  ' ▪️ '  + croptype +  ' ▪️ '  + evaluation +
+        // emojioneareaeditor0.value =  screen + ' ▪️ ' + ett + ' ▪️ ' + maisonsdetruites +  ' ▪️ '  + personnesaffectees +  ' ▪️ '  + croptype +  ' ▪️ '  + evaluation +
         // ' ▪️ '  + landownership + ' ▪️ '  + ownershipprice  + ' ▪️ '  + malefemale +' ▪️ ' + emojioneareaeditor0.value
         emojioneareaeditor0 =   document.getElementById('emojionearea')
-        if(evaluation == null && croptype == null){
-          emojioneareaeditor0.value =  landUse + ' ▪️ ' + emojioneareaeditor0.value
-        }else if(evaluation != null && croptype == null){
-          emojioneareaeditor0.value =  landUse + ' ▪️ ' + evaluation +  ' ▪️ ' + emojioneareaeditor0.value
-        }else if(evaluation == null && croptype != null){
-          emojioneareaeditor0.value =  landUse + ' ▪️ ' + croptype +  ' ▪️ ' + emojioneareaeditor0.value
-        }else if(evaluation != null && croptype != null){
-          emojioneareaeditor0.value =  landUse + ' ▪️ ' + croptype + ' ▪️ ' + evaluation +  ' ▪️ ' + emojioneareaeditor0.value
-        }
-        emojioneareaeditor0.value = landUse + ett + maisonsdetruites + personnesaffectees + croptype + evaluation + landownership + ownershipprice  + malefemale + emojioneareaeditor0.value
-      // finalAttributes =  landUse + ett + maisonsdetruites + personnesaffectees + croptype + evaluation + landownership + ownershipprice  + malefemale + emojioneareaeditor0.value
+        // if(evaluation == null && croptype == null){
+        //   emojioneareaeditor0.value =  screen + ' ▪️ ' + emojioneareaeditor0.value
+        // }else if(evaluation != null && croptype == null){
+        //   emojioneareaeditor0.value =  screen + ' ▪️ ' + evaluation +  ' ▪️ ' + emojioneareaeditor0.value
+        // }else if(evaluation == null && croptype != null){
+        //   emojioneareaeditor0.value =  screen + ' ▪️ ' + croptype +  ' ▪️ ' + emojioneareaeditor0.value
+        // }else if(evaluation != null && croptype != null){
+        //   emojioneareaeditor0.value =  screen + ' ▪️ ' + croptype + ' ▪️ ' + evaluation +  ' ▪️ ' + emojioneareaeditor0.value
+        // }
+        emojioneareaeditor0.value = screen1 + screen2 + screen3 + kidsmale + kidsfemale + adultmale + adultfemale  + household + emojioneareaeditor0.value
+        emojioneareaeditor0.value = emojioneareaeditor0.value.replace(/null/g, '')
+        attribute1s = emojioneareaeditor0.value
+        attribute2s = screen1 //evaluation
+        attribute3s = screen2
+        attribute4s = screen3
+        attribute5s = null
+        attribute6s = null
+        attribute7s = null
+        attribute8s = null
+        attribute9s = null
+        attribute10s = null
+        attribute11n = kidsmale
+        attribute12n = kidsfemale
+        attribute13n = adultmale
+        attribute14n = adultfemale
+        attribute15n = household
+        attribute16n = 0
+        attribute17n = 0
+        attribute18n = 0
+        attribute19n = 0
+        attribute20n = 0
 
-          // if(landUse !=null){
-        //   cluster = landUse.slice(0, -9)
+        console.log('attributes', emojioneareaeditor0.value)
+      // finalAttributes =  screen + ett + maisonsdetruites + personnesaffectees + croptype + evaluation + landownership + ownershipprice  + malefemale + emojioneareaeditor0.value
+
+          // if(screen !=null){
+        //   cluster = screen.slice(0, -9)
         // }else{
         //   cluster = null
         // }
@@ -131,40 +157,31 @@ document.getElementById('customIconsMap').onclick = function(e){
         // function extractNumbers(str) {
         //   return str.replace(/\D/g, '');
         // }
-        console.log('maisonsdetruites',maisonsdetruites)
-
-        cluster = landUse.slice(0, -7)
-        ett_type = ett.slice(0, -7)
-        function extractNumbers(str) {
-          return str.replace(/\D/g, '');
-        }
-        if(maisonsdetruites != null){
-          maisonsdetruites_number = extractNumbers(maisonsdetruites)
-        }else{
-          maisonsdetruites_number = 0
-        }
-
-        if(personnesaffectees != null){
-          personnesaffectees_number = extractNumbers(personnesaffectees)
-        }else{
-          personnesaffectees_number = 0
-        }
-
-
-        // crop_hectares_afected = 0
-        evaluation_updown = evaluation.slice(0, -7)
-        landownership_type = landownership.slice(0, -7)
-        ownership_price_bif = ownershipprice.slice(0, -7)
-        male_or_female = malefemale.slice(0, -7)
-        console.log('cluster',cluster)
-        console.log('ett_type',ett_type)
-        console.log('maisonsdetruites_number',maisonsdetruites_number)
-        console.log('personnesaffectees_number',personnesaffectees_number)
-        console.log('evaluation_updown',evaluation_updown)
-        console.log('landownership_type',landownership_type)
-        console.log('male_or_female',male_or_female)
-        console.log('crop_hectares_afected hectares',male_or_female)
-
+        // console.log('maisonsdetruites',maisonsdetruites)
+        //
+        // cluster = screen.slice(0, -7)
+        // ett_type = ett.slice(0, -7)
+        // function extractNumbers(str) {
+        //   return str.replace(/\D/g, '');
+        // }
+        // if(maisonsdetruites != null){
+        //   maisonsdetruites_number = extractNumbers(maisonsdetruites)
+        // }else{
+        //   maisonsdetruites_number = 0
+        // }
+        //
+        // if(personnesaffectees != null){
+        //   personnesaffectees_number = extractNumbers(personnesaffectees)
+        // }else{
+        //   personnesaffectees_number = 0
+        // }
+        //
+        //
+        // // crop_hectares_afected = 0
+        // evaluation_updown = evaluation.slice(0, -7)
+        // landownership_type = landownership.slice(0, -7)
+        // ownership_price_bif = ownershipprice.slice(0, -7)
+        // male_or_female = malefemale.slice(0, -7)
 
 
     }
@@ -178,44 +195,53 @@ document.getElementById('customIconsMap').onclick = function(e){
 
 
     document.getElementById('customIconsMap').style.display = 'none';
-    if(landUse != 'emojiNoSapelli'){
+    if(screen1 != 'emojiNoSapelli'){
       setTimeout(function(){
-       document.getElementById('emojionearea').value = landUse
+       document.getElementById('emojionearea').value = screen1
         // emojioneareaeditor0.focus()
 
       },500)
     }
     projectsCreated = false
   }
-  return landUse //&& cluster && ett_type && maisonsdetruites_number && personnesaffectees_number && crop_hectares_afected && landownership_type && male_or_female && evaluation_updown && projectsCreated
+  return projectsCreated && screen1 && screen2 && screen3 && kidsmale && kidsfemale && adultmale && adultfemale && household
 
 }
 
 
-document.getElementById('customIconsCancel').onclick = function(e){
-  hideAll()
-  screenChoice == 'landUse'
-  imageName1 = null
-  imageName2 = null
-  // document.getElementById('customIconsGoBack').style.display = 'initial'
-  document.getElementById('customIconsCancel').style.display = 'none';
-  generateButtonslandUse()
-
-  landUse = null
-  evaluation = null
-  landownership = null
-  malefemale = null
-  croptype = null
-  ett = null
-  // croptype = 'emojiNoSapelli'
-  // evaluation = 'emojiNoSapelli'
-  return  landUse && evaluation && screenChoice && imageName1 && imageName2 && landownership && malefemale && ett && croptype
-}
+// document.getElementById('customIconsCancel').onclick = function(e){
+//   hideAll()
+//   screenChoice == 'landUse'
+//   imageName1 = null
+//   imageName2 = null
+//   // document.getElementById('customIconsGoBack').style.display = 'initial'
+//   document.getElementById('customIconsCancel').style.display = 'none';
+//   generateButtonslandUse()
+//
+//   landUse = null
+//   evaluation = null
+//   landownership = null
+//   malefemale = null
+//   croptype = null
+//   ett = null
+//   // croptype = 'emojiNoSapelli'
+//   // evaluation = 'emojiNoSapelli'
+//   return  landUse && evaluation && screenChoice && imageName1 && imageName2 && landownership && malefemale && ett && croptype
+// }
 document.getElementById('customIconsGoBack').onclick = function(e){
       imageName1 = null
       imageName2 = null
       imageName3 = null
-      console.log('screenChoice',screenChoice)
+
+      screen1 = null
+      screen2 = null
+      screen3 = null
+      kidsmale = null
+      kidsfemale = null
+      adultmale = null
+      adultfemale = null
+      household = null
+      // console.log('screenChoice',screenChoice)
       // try{
       //   iconCT1.style.display = 'none'
       //   iconCT2.style.display = 'none'
@@ -253,6 +279,10 @@ function hideAll(){
    el.style.display = 'none';
 
   });
+  document.querySelectorAll('.popUI').forEach(function(el) {
+   el.style.display = 'none';
+
+  });
 
 }
 function scrollToTop() {
@@ -284,7 +314,7 @@ var screenwidth = screen.width +'px'
 // var newProjectButton
 //excites Logo in the map: to open the sapelli project
 document.getElementById('sapelliProjects').onclick = function(e){
-  landUse = 'emojiNoSapelli'
+  // screen1 = 'emojiNoSapelli'
   const celltohide = document.querySelectorAll('.gridCell')
   for (const el of celltohide) {
     el.parentNode.removeChild(el);
@@ -462,11 +492,140 @@ document.getElementById('sapelliProjects').onclick = function(e){
 }
 
 var  iconOMO,iconOMO_8,iconOMO_9,iconOMO_10,iconOMO_11,iconOMO_12,iconOMO_13,iconOMO_14,iconOMO_15,iconOMO_16,iconOMO_17,iconOMO_18,iconOMO_19,iconOMO_20,iconOMO_21,iconOMO_22,iconOMO_22,iconOMO_23,iconOMO_24,iconOMO_25,iconOMO_26,
-icon27,iconOMO_28,iconOMO_29,iconOMO_30,iconOMO_31,iconOMO_32,iconOMO_33,iconOMO_34,iconOMO_35,iconOMO_36,iconOMO_41,
+icon27,iconOMO_28,iconOMO_29,iconOMO_30,iconOMO_31,iconOMO_32,iconOMO_33,iconOMO_34,iconOMO_35,iconOMO_36,iconOMO_41,iconOMO_42,iconOMO_43,
 
-iconCT1,iconCT2, iconCT3, iconCT4, iconE1,iconE2, iconE3
+iconCT1,iconCT2, iconCT3, iconCT4, iconE1,iconE2, iconE3, iconCT5, iconCT6, iconCT7, iconC1, iconC2, iconC3, iconC4, iconC5,
+iconPop1, iconPop2, iconPop3, iconPop4, iconPop5, iconPop6, iconPop7, iconPop8, iconPop9,
+iconPop10, iconPop11, iconPop12,
+iconLD1, iconLD2, iconLD3, iconLD4, iconLD5, iconLD6, iconLD7, iconLD8, iconLD9
 
 ////////////////////////////////////////             mainS MARA       ///////////////////////////////
+var generateScreenPopNumber = function(){/////////////////////////////////////////////////////////////////////////
+  //kidsmale
+  iconPop1 = document.createElement("IMAGE");
+  cell.appendChild(iconPop1);
+  iconPop1.className = 'popUI'
+
+  iconPop1.innerHTML = '<img src="images/omoIcons/kidsmale.png" style="height: 50px; width: 50px; border: 0px solid white;" />';
+
+  iconPop2 = document.createElement("INPUT");
+  cell.appendChild(iconPop2);
+  iconPop2.className = 'popUI'
+  iconPop2.style.height = '35px'
+  iconPop2.type = 'number'
+  iconPop2.placeholder = 'How many kids male?'
+
+//kidsfemale
+  iconPop3 = document.createElement("IMAGE");
+  cell.appendChild(iconPop3);
+  iconPop3.className = 'popUI'
+  iconPop3.innerHTML = '<img src="images/omoIcons/kidsfemale.png" style="height: 50px; width: 50px; border: 0px solid white;" />';
+
+  iconPop4 = document.createElement("INPUT");
+  cell.appendChild(iconPop4);
+  iconPop4.className = 'popUI'
+  iconPop4.style.height = '35px'
+  iconPop4.type = 'number'
+  iconPop4.placeholder = 'How many kids female?'
+
+//adultmale
+  iconPop5 = document.createElement("IMAGE");
+  cell.appendChild(iconPop5);
+  iconPop5.className = 'popUI'
+  iconPop5.innerHTML = '<img src="images/omoIcons/adultsmale.png" style="height: 50px; width: 50px; border: 0px solid white;" />';
+
+  iconPop6 = document.createElement("INPUT");
+  cell.appendChild(iconPop6);
+  iconPop6.className = 'popUI'
+  iconPop6.style.height = '35px'
+  iconPop6.type = 'number'
+  iconPop6.placeholder = 'How many adults male?'
+
+//adultfemale
+  iconPop7 = document.createElement("IMAGE");
+  cell.appendChild(iconPop7);
+  iconPop7.className = 'popUI'
+  iconPop7.innerHTML = '<img src="images/omoIcons/adultsfemale.png" style="height: 50px; width: 50px; border: 0px solid white;" />';
+
+  iconPop8 = document.createElement("INPUT");
+  cell.appendChild(iconPop8);
+  iconPop8.className = 'popUI'
+  iconPop8.style.height = '35px'
+  iconPop8.type = 'number'
+  iconPop8.placeholder = 'How many adults female?'
+
+//household
+  iconPop9 = document.createElement("IMAGE");
+  iconPop9.className = 'popUI'
+  cell.appendChild(iconPop9);
+  iconPop9.innerHTML = '<img src="images/omoIcons/households.png" style="height: 50px; width: 50px; border: 0px solid white;" />';
+
+  iconPop10 = document.createElement("INPUT");
+  cell.appendChild(iconPop10);
+  iconPop10.className = 'popUI'
+  iconPop10.style.height = '43px'
+  iconPop10.type = 'number'
+  iconPop10.placeholder = 'How many households?'
+
+//confirm
+  // iconPop11 = document.createElement("IMAGE");
+  // cell.appendChild(iconPop11);
+  // iconPop11.className = 'popUI'
+
+  iconPop11 = document.createElement("BUTTON");
+  cell.appendChild(iconPop11);
+  iconPop11.className = 'popUI'
+  iconPop11.innerHTML = '<img src="images/questionmark.png" style="height: 120px; width: 120px; border: 0px solid black; background: white" /> ';
+  iconPop11.style.backgroundColor = 'black'
+  iconPop11.style.borderColor = 'grey'
+  iconPop11.onclick = function(){
+    kidsmale = '? Kids male ▪️</br> '
+    kidsfemale = '? Kids female ▪️</br> '
+    adultmale = '? Adults male ▪️</br> '
+    adultfemale = '? Adults female ▪️</br> '
+    household = '? Households ▪️</br> '
+    // console.log('maisonsdetruites',maisonsdetruites)
+
+    setTimeout(function(){
+
+    hideAll()
+
+    document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+      document.getElementById('share-download').click()
+    },400)
+  },400)
+
+  }
+
+  iconPop12 = document.createElement("BUTTON");
+  cell.appendChild(iconPop12);
+  iconPop12.className = 'popUI'
+  iconPop12.innerHTML = '<img src="images/omoIcons/confirm.png" style="height: 120px; width: 120px; border: 0px solid black; background: black" /> ';
+  iconPop12.style.backgroundColor = 'black'
+  iconPop12.style.borderColor = 'grey'
+  iconPop12.onclick = function(){
+    kidsmale = '▪️ ' + iconPop2.value + ' Kids male ▪️</br> '
+    kidsfemale = '▪️ ' + iconPop4.value + ' Kids female ▪️</br> '
+    adultmale = '▪️ ' + iconPop6.value + ' Adults male ▪️</br> '
+    adultfemale = '▪️ ' + iconPop8.value + ' Adults female ▪️</br> '
+    household = '▪️ ' + iconPop10.value + ' Households ▪️</br> '
+    // console.log('maisonsdetruites',maisonsdetruites)
+
+    setTimeout(function(){
+
+    hideAll()
+
+    document.getElementById('customIconsMap').click()
+    setTimeout(function(){
+      document.getElementById('share-download').click()
+    },400)
+  },400)
+
+  }
+return screenChoice && kidsmale && kidsfemale && adultmale && adultfemale && household
+}
+
 
 var generateButtonslandUse = function(){
 
@@ -475,21 +634,25 @@ var generateButtonslandUse = function(){
   iconOMO_8 = document.createElement("BUTTON");
    cell.appendChild(iconOMO_8);
   iconOMO_8.className = 'buttonsSapelli'
-  iconOMO_8.innerHTML = '<img src="images/omoIcons/pondFarming.png" style="height: 150px; width: 150px; border: 0px solid white;" /> </br>አዊ / መንደር';
+  iconOMO_8.innerHTML = '<img src="images/omoIcons/hutVillage.png" style="height: 150px; width: 150px; border: 0px solid white;" /> </br>አዊ / መንደር';
   iconOMO_8.onclick = function(){
     setTimeout(function(){
      hideAll()
-     landUse = 'አዊ / መንደር'
+     screen1 = 'አዊ / መንደር'
      imageName1 = 'hutVillage'
-
-     document.getElementById('customIconsMap').click()
+     console.log('filter is on?',filterIsOn)
+     // document.getElementById('customIconsMap').click()
      if(filterIsOn == false){
-       setTimeout(function(){
-         document.getElementById('share-download').click()
-       },400)
-     }
+       generateScreenPopNumber()
+        document.getElementById('customIconsGoBack').style.display = 'initial';
+        document.getElementById('customIconsMap').style.display = 'none';
 
-     console.log(landUse)
+        // document.getElementById('customIconsCancel').style.display = 'initial';
+      }else{
+        document.getElementById('customIconsMap').click()
+      }
+
+     console.log(screen1)
 
    },400)
    }
@@ -503,7 +666,7 @@ var generateButtonslandUse = function(){
      hideAll()
 
    // document.getElementById('customIconsCancel').style.display = 'initial';
-     landUse = 'አፕሪች / ቧንቧ'
+     screen1 = 'አፕሪች / ቧንቧ'
      imageName1 = 'manualPump'
      if(filterIsOn == false){
        generateButtonsEvaluation()
@@ -526,7 +689,7 @@ var generateButtonslandUse = function(){
     setTimeout(function(){
 
      hideAll()
-     landUse = 'አክታረ አታፓር / ኽልኩሬ ሸሽ'
+     screen1 = 'አክታረ አታፓር / ኽልኩሬ ሸሽ'
      imageName1 = 'pondFarming'
      if(filterIsOn == false){
        generateButtonsCropType()
@@ -549,7 +712,7 @@ var generateButtonslandUse = function(){
     setTimeout(function(){
 
      hideAll()
-     landUse = 'አሳክ / ሀይቅ እርሻ'
+     screen1 = 'አሳክ / ሀይቅ እርሻ'
      imageName1 = 'lakeRecession'
      if(filterIsOn == false){
        generateButtonsCropType()
@@ -572,7 +735,7 @@ var generateButtonslandUse = function(){
     setTimeout(function(){
 
      hideAll()
-     landUse = 'ኤሪያቻ / መስኖ'
+     screen1 = 'ኤሪያቻ / መስኖ'
      imageName1 = 'irrigationPump'
      if(filterIsOn == false){
        generateButtonsCropType()
@@ -595,7 +758,7 @@ var generateButtonslandUse = function(){
     setTimeout(function(){
 
      hideAll()
-     landUse = 'ኤመራ / ኦሞሸሽ'
+     screen1 = 'ኤመራ / ኦሞሸሽ'
      imageName1 = 'floodRecessionFlat'
      if(filterIsOn == false){
        generateButtonsCropType()
@@ -619,9 +782,8 @@ var generateButtonslandUse = function(){
     setTimeout(function(){
 
      hideAll()
-     landUse = 'ኤቴሎ / ኦሞ ሸሽ'
+     screen1 = 'ኤቴሎ / ኦሞ ሸሽ'
      imageName1 = 'floodRecessionSteep'
-   generateButtonsCropType()
    if(filterIsOn == false){
      generateButtonsCropType()
       document.getElementById('customIconsGoBack').style.display = 'initial';
@@ -644,7 +806,7 @@ var generateButtonslandUse = function(){
     setTimeout(function(){
 
      hideAll()
-     landUse = 'አዳካሩ አɔ̂ቱክ / የከብት ግጦሽ'
+     screen1 = 'አዳካሩ አɔ̂ቱክ / የከብት ግጦሽ'
      imageName1 = 'cattleGrazing'
      if(filterIsOn == false){
        generateButtonsEvaluation()
@@ -668,7 +830,7 @@ var generateButtonslandUse = function(){
     setTimeout(function(){
 
      hideAll()
-     landUse = 'አዳካሩ አɔ̂ክኔይ / ፍየል ግጦሽ'
+     screen1 = 'አዳካሩ አɔ̂ክኔይ / ፍየል ግጦሽ'
      imageName1 = 'goatSheepGrazing'
      if(filterIsOn == false){
        generateButtonsEvaluation()
@@ -692,7 +854,7 @@ var generateButtonslandUse = function(){
     setTimeout(function(){
 
      hideAll()
-     landUse = 'አክፒ አታፓር / ኩሬ ውሃ'
+     screen1 = 'አክፒ አታፓር / ኩሬ ውሃ'
      imageName1 = 'waterPondAnimal'
      if(filterIsOn == false){
        generateButtonsEvaluation()
@@ -717,7 +879,7 @@ var generateButtonslandUse = function(){
 
      hideAll()
 
-     landUse = 'አይፒ አናም / የኦሞ ውሃ'
+     screen1 = 'አይፒ አናም / የኦሞ ውሃ'
      imageName1 = 'waterRiverAnimal'
      document.getElementById('customIconsMap').click()
      if(filterIsOn == false){
@@ -737,7 +899,7 @@ var generateButtonslandUse = function(){
 
      hideAll()
 
-     landUse = 'ኤዶት / ጨው'
+     screen1 = 'ኤዶት / ጨው'
      imageName1 = 'saltlick'
 
      document.getElementById('customIconsMap').click()
@@ -757,7 +919,7 @@ var generateButtonslandUse = function(){
     setTimeout(function(){
 
      hideAll()
-     landUse = 'አጌዎር / የአከባቢ የምበላ ቅጠል'
+     screen1 = 'አጌዎር / የአከባቢ የምበላ ቅጠል'
      imageName1 = 'wildFruits'
      if(filterIsOn == false){
        generateButtonsEvaluation()
@@ -782,7 +944,7 @@ var generateButtonslandUse = function(){
 
      hideAll()
 
-     landUse = 'ኤርካ / አደን'
+     screen1 = 'ኤርካ / አደን'
      imageName1 = 'hunting'
 
      document.getElementById('customIconsMap').click()
@@ -804,7 +966,7 @@ var generateButtonslandUse = function(){
 
      hideAll()
 
-     landUse = 'አክሎክ / አሳ ማጥመድ'
+     screen1 = 'አክሎክ / አሳ ማጥመድ'
      imageName1 = 'fishing'
 
      document.getElementById('customIconsMap').click()
@@ -825,7 +987,7 @@ var generateButtonslandUse = function(){
     setTimeout(function(){
 
      hideAll()
-     landUse = 'አሙሉጅ / የንብ ቀፎ'
+     screen1 = 'አሙሉጅ / የንብ ቀፎ'
      imageName1 = 'reehive'
      if(filterIsOn == false){
        generateButtonsEvaluation()
@@ -850,7 +1012,7 @@ var generateButtonslandUse = function(){
 
      hideAll()
 
-     landUse = 'ኤደዋ / ባህላዊ ጨው'
+     screen1 = 'ኤደዋ / ባህላዊ ጨው'
      imageName1 = 'medicinalPlants'
      document.getElementById('customIconsMap').click()
      if(filterIsOn == false){
@@ -870,7 +1032,7 @@ var generateButtonslandUse = function(){
 
      hideAll()
 
-     landUse = 'አኩቶይ አክም / ማገዶ'
+     screen1 = 'አኩቶይ አክም / ማገዶ'
      imageName1 = 'timber'
 
      document.getElementById('customIconsMap').click()
@@ -892,7 +1054,7 @@ var generateButtonslandUse = function(){
 
      hideAll()
 
-     landUse = 'ኤሩስ / ፍል ውሃ'
+     screen1 = 'ኤሩስ / ፍል ውሃ'
      imageName1 = 'hotSpring'
 
      document.getElementById('customIconsMap').click()
@@ -913,7 +1075,7 @@ var generateButtonslandUse = function(){
     setTimeout(function(){
 
      hideAll()
-     landUse = 'አቦኖ / ቦኖ'
+     screen1 = 'አቦኖ / ቦኖ'
      imageName1 = 'waterPoint'
      if(filterIsOn == false){
        generateButtonsEvaluation()
@@ -937,7 +1099,7 @@ var generateButtonslandUse = function(){
     setTimeout(function(){
 
      hideAll()
-     landUse = 'አካይ ኤደዋ / ጤና ጣቢያ'
+     screen1 = 'አካይ ኤደዋ / ጤና ጣቢያ'
      imageName1 = 'healthStation'
      if(filterIsOn == false){
        generateButtonsEvaluation()
@@ -962,7 +1124,7 @@ var generateButtonslandUse = function(){
 
      hideAll()
 
-     landUse = 'አካይ ኤሱኩል / ትምህርት ቤት'
+     screen1 = 'አካይ ኤሱኩል / ትምህርት ቤት'
      imageName1 = 'school'
 
      document.getElementById('customIconsMap').click()
@@ -982,7 +1144,7 @@ var generateButtonslandUse = function(){
     setTimeout(function(){
 
      hideAll()
-     landUse = 'አካይ ኤደዋ አግባረን / የከብት ህክምና'
+     screen1 = 'አካይ ኤደዋ አግባረን / የከብት ህክምና'
      imageName1 = 'veterinary'
      if(filterIsOn == false){
        generateButtonsEvaluation()
@@ -1007,7 +1169,7 @@ var generateButtonslandUse = function(){
 
      hideAll()
 
-     landUse = 'ኤኩቶይ / መሰብሰቢያ ዛፍ'
+     screen1 = 'ኤኩቶይ / መሰብሰቢያ ዛፍ'
      imageName1 = 'treeForGathering'
 
      document.getElementById('customIconsMap').click()
@@ -1028,7 +1190,7 @@ var generateButtonslandUse = function(){
 
      hideAll()
 
-     landUse = 'ኤካፓ / የሽማግሌ መሰባሰቢያ'
+     screen1 = 'ኤካፓ / የሽማግሌ መሰባሰቢያ'
      imageName1 = 'eldersHut'
 
      document.getElementById('customIconsMap').click()
@@ -1050,7 +1212,7 @@ var generateButtonslandUse = function(){
 
      hideAll()
 
-     landUse = 'አፓክ ንቦልያት / መዝናኛ'
+     screen1 = 'አፓክ ንቦልያት / መዝናኛ'
      imageName1 = 'recreationCenter'
 
      document.getElementById('customIconsMap').click()
@@ -1071,7 +1233,7 @@ var generateButtonslandUse = function(){
 
      hideAll()
 
-     landUse = 'አካይ አኩጅ / ቤተ ክርስቲያን'
+     screen1 = 'አካይ አኩጅ / ቤተ ክርስቲያን'
      imageName1 = 'church'
 
      document.getElementById('customIconsMap').click()
@@ -1092,7 +1254,7 @@ var generateButtonslandUse = function(){
 
      hideAll()
 
-     landUse = 'ኤዶከት አቱቧ / ጀልባ መሻገሪያ'
+     screen1 = 'ኤዶከት አቱቧ / ጀልባ መሻገሪያ'
      imageName1 = 'boatCrossing'
 
      document.getElementById('customIconsMap').click()
@@ -1113,7 +1275,7 @@ var generateButtonslandUse = function(){
      setTimeout(function(){
 
       hideAll()
-      landUse = 'ኤሮት / መንገድ'
+      screen1 = 'ኤሮት / መንገድ'
       imageName1 = 'pathTrack'
       document.getElementById('customIconsMap').click()
       if(filterIsOn == false){
@@ -1125,6 +1287,55 @@ var generateButtonslandUse = function(){
 
     }
 
+    iconOMO_42 = document.createElement("BUTTON");
+     cell.appendChild(iconOMO_42);
+    iconOMO_42.innerHTML = '<img src="images/omoIcons/ldgeneric.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br> LIVESTOCK DISSEASE';
+    iconOMO_42.className = 'buttonsSapelli'
+    iconOMO_42.onclick = function(){
+
+      setTimeout(function(){
+
+        hideAll()
+        screen1 = 'LIVESTOCK_DISSEASE'
+        imageName1 = 'healthStation'
+        if(filterIsOn == false){
+          generateButtonsLivestockDissease()
+           document.getElementById('customIconsGoBack').style.display = 'initial';
+           document.getElementById('customIconsMap').style.display = 'none';
+
+           // document.getElementById('customIconsCancel').style.display = 'initial';
+         }else{
+           document.getElementById('customIconsMap').click()
+         }
+
+      },400)
+
+     }
+     iconOMO_43 = document.createElement("BUTTON");
+      cell.appendChild(iconOMO_43);
+     iconOMO_43.innerHTML = '<img src="images/omoIcons/conflictgeneric.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br> conflict';
+     iconOMO_43.className = 'buttonsSapelli'
+     iconOMO_43.onclick = function(){
+
+       setTimeout(function(){
+
+         hideAll()
+         screen1 = 'CONFLICT'
+         imageName1 = 'conflictgeneric'
+         if(filterIsOn == false){
+           generateButtonsConflict()
+            document.getElementById('customIconsGoBack').style.display = 'initial';
+            document.getElementById('customIconsMap').style.display = 'none';
+
+            // document.getElementById('customIconsCancel').style.display = 'initial';
+          }else{
+            document.getElementById('customIconsMap').click()
+          }
+
+       },400)
+
+      }
+
   iconOMO_36 = document.createElement("BUTTON");
    cell.appendChild(iconOMO_36);
   iconOMO_36.innerHTML = '<img src="images/omoIcons/unknownOther.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ɔ̂ቺየ / ሌላ';
@@ -1134,7 +1345,7 @@ var generateButtonslandUse = function(){
     setTimeout(function(){
 
      hideAll()
-     landUse = 'ɔ̂ቺየ / ሌላ'
+     screen1 = 'ɔ̂ቺየ / ሌላ'
      imageName1 = 'unknownOther'
      if(filterIsOn == false){
        generateButtonsEvaluation()
@@ -1151,10 +1362,194 @@ var generateButtonslandUse = function(){
 
    }
 
-   return screenChoice && landUse && imageName1
+   return screenChoice && screen1 && imageName1
  }
 
  /////////////////////////////////////////////////         EVALUATION           ///////////////////////////////////////
+
+ var generateButtonsLivestockDissease = function(){
+   scrollToTop()
+
+   screenChoice = 'livestockdissease'
+
+   iconLD1 = document.createElement("BUTTON");
+   cell.appendChild(iconLD1);
+   iconLD1.innerHTML = '<img src="images/omoIcons/ld1.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ማም አክታረ / እርሻ የለም';
+   iconLD1.className = 'buttonsSapelli'
+   iconLD1.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     screen2 = 'livestock disease 1'
+     imageName2 = 'ld1'
+
+
+     document.getElementById('customIconsMap').click()
+     setTimeout(function(){
+       document.getElementById('share-download').click()
+     },400)
+   },400)
+
+   }
+
+   iconLD2 = document.createElement("BUTTON");
+   cell.appendChild(iconLD2);
+   iconLD2.className = 'buttonsSapelli'
+   iconLD2.innerHTML = '<img src="images/omoIcons/ld2.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤሮመፖ / በቆሎ';
+   iconLD2.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     screen2 = 'livestock disease 2'
+     imageName2 = 'ld2'
+
+     generateButtonsEvaluation()
+   },400)
+
+   }
+
+   iconLD3 = document.createElement("BUTTON");
+   cell.appendChild(iconLD3);
+   iconLD3.className = 'buttonsSapelli'
+   iconLD3.innerHTML = '<img src="images/omoIcons/ld3.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤሟይ / ማሽላ';
+   iconLD3.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     screen2 = 'livestock disease 3'
+     imageName2 = 'ld3'
+
+     generateButtonsEvaluation()
+   },400)
+
+   }
+
+
+   iconLD4 = document.createElement("BUTTON");
+   cell.appendChild(iconLD4);
+   iconLD4.className = 'buttonsSapelli'
+   iconLD4.innerHTML = '<img src="images/omoIcons/ld4.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ɔ̂ቺየ / ሌላ';
+   iconLD4.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     screen2 = 'livestock disease 4'
+     imageName2 = 'ld4'
+
+
+     document.getElementById('customIconsMap').click()
+     setTimeout(function(){
+       document.getElementById('share-download').click()
+     },400)
+   },400)
+
+   }
+
+   iconLD5 = document.createElement("BUTTON");
+   cell.appendChild(iconLD5);
+   iconLD5.innerHTML = '<img src="images/omoIcons/ld5.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ማም አክታረ / እርሻ የለም';
+   iconLD5.className = 'buttonsSapelli'
+   iconLD5.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     screen2 = 'livestock disease 5'
+     imageName2 = 'ld5'
+
+
+     document.getElementById('customIconsMap').click()
+     setTimeout(function(){
+       document.getElementById('share-download').click()
+     },400)
+   },400)
+
+   }
+
+   iconLD6 = document.createElement("BUTTON");
+   cell.appendChild(iconLD6);
+   iconLD6.innerHTML = '<img src="images/omoIcons/ld6.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ማም አክታረ / እርሻ የለም';
+   iconLD6.className = 'buttonsSapelli'
+   iconLD6.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     screen2 = 'livestock disease 6'
+     imageName2 = 'ld6'
+
+
+     document.getElementById('customIconsMap').click()
+     setTimeout(function(){
+       document.getElementById('share-download').click()
+     },400)
+   },400)
+
+   }
+
+   iconLD7 = document.createElement("BUTTON");
+   cell.appendChild(iconLD7);
+   iconLD7.innerHTML = '<img src="images/omoIcons/ld7.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ማም አክታረ / እርሻ የለም';
+   iconLD7.className = 'buttonsSapelli'
+   iconLD7.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     screen2 = 'livestock disease 7'
+     imageName2 = 'ld7'
+
+
+     document.getElementById('customIconsMap').click()
+     setTimeout(function(){
+       document.getElementById('share-download').click()
+     },400)
+   },400)
+
+   }
+
+   iconLD8 = document.createElement("BUTTON");
+   cell.appendChild(iconLD8);
+   iconLD8.innerHTML = '<img src="images/omoIcons/ld8.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ማም አክታረ / እርሻ የለም';
+   iconLD8.className = 'buttonsSapelli'
+   iconLD8.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     screen2 = 'livestock disease 8'
+     imageName2 = 'ld8'
+
+
+     document.getElementById('customIconsMap').click()
+     setTimeout(function(){
+       document.getElementById('share-download').click()
+     },400)
+   },400)
+
+   }
+
+   iconLD9 = document.createElement("BUTTON");
+   cell.appendChild(iconLD9);
+   iconLD9.innerHTML = '<img src="images/omoIcons/ld9.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ማም አክታረ / እርሻ የለም';
+   iconLD9.className = 'buttonsSapelli'
+   iconLD9.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     screen2 = 'livestock disease 9'
+     imageName2 = 'ld9'
+
+
+     document.getElementById('customIconsMap').click()
+     setTimeout(function(){
+       document.getElementById('share-download').click()
+     },400)
+   },400)
+
+   }
+
+ return screenChoice && screen2 && imageName2
+ }
+
+
+
  var generateButtonsCropType = function(){
    scrollToTop()
 
@@ -1168,7 +1563,7 @@ var generateButtonslandUse = function(){
      setTimeout(function(){
 
      hideAll()
-     croptype = 'ማም አክታረ / እርሻ የለም'
+     screen2 = 'ማም አክታረ / እርሻ የለም'
      imageName2 = 'noFarming'
 
 
@@ -1188,7 +1583,7 @@ var generateButtonslandUse = function(){
      setTimeout(function(){
 
      hideAll()
-     croptype = 'ኤሮመፖ / በቆሎ'
+     screen2 = 'ኤሮመፖ / በቆሎ'
      imageName2 = 'maize'
 
      generateButtonsEvaluation()
@@ -1204,13 +1599,14 @@ var generateButtonslandUse = function(){
      setTimeout(function(){
 
      hideAll()
-     croptype = 'ኤሟይ / ማሽላ'
+     screen2 = 'ኤሟይ / ማሽላ'
      imageName2 = 'sorghum'
 
      generateButtonsEvaluation()
    },400)
 
    }
+
 
    iconCT4 = document.createElement("BUTTON");
    cell.appendChild(iconCT4);
@@ -1220,7 +1616,7 @@ var generateButtonslandUse = function(){
      setTimeout(function(){
 
      hideAll()
-     croptype = 'ɔ̂ቺየ / ሌላ'
+     screen2 = 'ɔ̂ቺየ / ሌላ'
      imageName2 = 'unknownOther'
 
 
@@ -1232,7 +1628,27 @@ var generateButtonslandUse = function(){
 
    }
 
- return screenChoice && evaluation && imageName2
+   iconCT5 = document.createElement("BUTTON");
+   cell.appendChild(iconCT5);
+   iconCT5.className = 'buttonsSapelli'
+   iconCT5.innerHTML = '<img src="images/omoIcons/unknownOther.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>NEW CROP';
+   iconCT5.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     screen2 = 'NEW CROP'
+     imageName2 = 'unknownOther'
+
+
+     document.getElementById('customIconsMap').click()
+     setTimeout(function(){
+       document.getElementById('share-download').click()
+     },400)
+   },400)
+
+   }
+
+ return screenChoice && screen2 && screen3 && imageName2
  }
 
  var generateButtonsEvaluation = function(){
@@ -1250,7 +1666,7 @@ var generateButtonslandUse = function(){
      setTimeout(function(){
 
      hideAll()
-     evaluation = '❓'
+     screen3 = '❓'
      imageName3 = 'Questionmark'
 
      document.getElementById('customIconsMap').click()
@@ -1271,7 +1687,7 @@ var generateButtonslandUse = function(){
      setTimeout(function(){
 
      hideAll()
-     evaluation = '👍🏿'
+     screen3 = '👍🏿'
      imageName3 = 'ThumbsUp'
 
      document.getElementById('customIconsMap').click()
@@ -1290,7 +1706,7 @@ var generateButtonslandUse = function(){
      setTimeout(function(){
 
      hideAll()
-     evaluation = '👎🏿'
+     screen3 = '👎🏿'
      imageName3 = 'ThumbsDown'
 
 
@@ -1301,6 +1717,95 @@ var generateButtonslandUse = function(){
    },400)
    }
 
-     return screenChoice && evaluation && imageName2
+     return screenChoice && screen3 && imageName3
+
+ }
+
+ var generateButtonsConflict = function(){
+   scrollToTop()
+
+
+   // screenChoice = 'evaluation'
+
+ // human issue
+   iconC1 = document.createElement("BUTTON");
+   cell.appendChild(iconC1);
+   iconC1.className = 'buttonsSapelli'
+   iconC1.innerHTML = '<img src="images/omoIcons/conflict1.png" style="height: 150px; width: 150px; border: 0px solid white" />Conflict1 ';
+   iconC1.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     screen3 = 'conflict1'
+     imageName3 = 'conflict1'
+
+     document.getElementById('customIconsMap').click()
+     setTimeout(function(){
+       document.getElementById('share-download').click()
+     },400)
+   },400)
+
+   }
+
+
+ //other issues
+   iconC2 = document.createElement("BUTTON");
+   cell.appendChild(iconC2);
+   iconC2.innerHTML = '<img src="images/omoIcons/conflict2.png" style="height: 150px; width: 150px; border: 0px solid white" />Conflict2 ';
+   iconC2.className = 'buttonsSapelli'
+   iconC2.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     screen3 = 'conflict2'
+     imageName3 = 'conflict2'
+
+     document.getElementById('customIconsMap').click()
+     setTimeout(function(){
+       document.getElementById('share-download').click()
+     },400)
+   },400)
+
+   }
+
+   iconC3 = document.createElement("BUTTON");
+   cell.appendChild(iconC3);
+   iconC3.className = 'buttonsSapelli'
+   iconC3.innerHTML = '<img src="images/omoIcons/conflict3.png" style="height: 150px; width: 150px; border: 0px solid white" /> Conflict3';
+   iconC3.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     screen3 = 'conflict3'
+     imageName3 = 'conflict3'
+
+
+     document.getElementById('customIconsMap').click()
+     setTimeout(function(){
+       document.getElementById('share-download').click()
+     },400)
+   },400)
+   }
+
+   iconC4 = document.createElement("BUTTON");
+   cell.appendChild(iconC4);
+   iconC4.className = 'buttonsSapelli'
+   iconC4.innerHTML = '<img src="images/omoIcons/unknownOther.png" style="height: 150px; width: 150px; border: 0px solid white" /> ConflictOther';
+   iconC4.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     screen3 = 'unknownOther'
+     imageName3 = 'unknownOther'
+
+
+     document.getElementById('customIconsMap').click()
+     setTimeout(function(){
+       document.getElementById('share-download').click()
+     },400)
+   },400)
+   }
+
+     return screenChoice && screen3 && imageName3
 
  }

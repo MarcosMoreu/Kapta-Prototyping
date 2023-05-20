@@ -120,7 +120,6 @@ var attachPhoto = false
 var areaPolygon = 0
 var lengthLine = 0
 var dist_m_Participant = 0
-var attribute3s = null
 var attribute1s = null
 var attribute2s = null
 var attribute3s = null
@@ -529,7 +528,7 @@ var storeURLGeoJSON = function(data){
 //script to check if url contains coordinates when loaded
 
 
-// var url = 'https://amappingprototype.xyz/?%7B%22type%22%3A%22FeatureCollection%22%2C%22features%22%3A%5B%7B%22type%22%3A%22Feature%22%2C%22properties%22%3A%7B%22randomID%22%3A1111%2C%22landUsesEmoji%22%3A%22test%22%2C%22areaPolygon%22%3A%222489831968.72%20hectares%22%2C%22lengthLine%22%3A%22Polygon%22%7D%2C%22geometry%22%3A%7B%22type%22%3A%22Polygon%22%2C%22coordinates%22%3A%5B%5B%5B-4.21875%2C-13.923404%5D%2C%5B16.875%2C-40.713956%5D%2C%5B66.09375%2C-40.713956%5D%2C%5B63.28125%2C4.214943%5D%2C%5B-4.21875%2C-13.923404%5D%5D%5D%7D%7D%5D%7D/#-15.11455,40.95703,3z'
+// var url = 'https://amappingprototype.xyz/?%7B%22type%22%3A%22FeatureCollection%22%2C%22features%22%3A%5B%7B%22type%22%3A%22Feature%22%2C%22properties%22%3A%7B%22randomID%22%3A1111%2C%22Description%22%3A%22test%22%2C%22areaPolygon%22%3A%222489831968.72%20hectares%22%2C%22lengthLine%22%3A%22Polygon%22%7D%2C%22geometry%22%3A%7B%22type%22%3A%22Polygon%22%2C%22coordinates%22%3A%5B%5B%5B-4.21875%2C-13.923404%5D%2C%5B16.875%2C-40.713956%5D%2C%5B66.09375%2C-40.713956%5D%2C%5B63.28125%2C4.214943%5D%2C%5B-4.21875%2C-13.923404%5D%5D%5D%7D%7D%5D%7D/#-15.11455,40.95703,3z'
 // var url = 'https://amappingprototype.xyz/'
 //console.log(url)
 var urlContainsHash = url.includes('#')
@@ -880,18 +879,18 @@ function fetchFromLocalStorage(){
 
                         // propertiesGeoJSON = data.properties
                         //to assign each attribute to a variable, which will be added as columns to the DB
-                        landUses = getItemToJSON.properties.landUses;
-                        landUsesEmoji = getItemToJSON.properties.landUsesEmoji;
+                        // landUses = getItemToJSON.properties.landUses;
+                        // landUsesEmoji = getItemToJSON.properties.landUsesEmoji;
                         openOrPrivate = getItemToJSON.properties.openOrPrivate;
-                        phoneNumber = getItemToJSON.properties.phoneNumber;
+                        // phoneNumber = getItemToJSON.properties.phoneNumber;
                         areaPolygon = getItemToJSON.properties.areaPolygon;
                         lengthLine = getItemToJSON.properties.lengthLine;
                         dateTime = getItemToJSON.properties.dateTime;
-                        timeSpendSeconds = getItemToJSON.properties.timeSpendSeconds;
-                        dist_m_Participant_Feature = getItemToJSON.properties.dist_m_Participant_Feature;
+                        // timeSpendSeconds = getItemToJSON.properties.timeSpendSeconds;
+                        // dist_m_Participant_Feature = getItemToJSON.properties.dist_m_Participant_Feature;
                         randomID = getItemToJSON.properties.randomID;
                         var dataGeometryString = JSON.stringify(dataGeometry)
-                        ////console.log(dataGeometryString)
+
                         if(areaPolygon == 'Line' || areaPolygon == 'Point'){
                           var areaPolygonNumeric = 0
                         }else{
@@ -906,36 +905,58 @@ function fetchFromLocalStorage(){
                           var lengthLineNumeric = parseFloat(lengthLine)
 
                         }
-                        attribute1s = 'test'
-                        attribute2s = 'test'
-                        attribute3s = 'test'
 
-                      dist_m_Participant = 74067170
+                        attribute1s = propertiesGeoJSON.Description
+                        const brRegex = /<\/?br>/gi;
+                        attribute1s = attribute1s.replace(brRegex, '');
 
-                        attribute20n = 1111111111
-                        phoneNumber = 0000000
-                        areaPolygonNumeric = 10
-                        lengthLineNumeric = 10
-                        // console.log('attribute1s',attribute1s)
-                        // console.log('attribute2s',attribute2s)
-                        // console.log('attribute3s',attribute3s)
-                        // console.log('attribute4s',attribute4s)
-                        // console.log('attribute5s',attribute5s)
-                        // console.log('attribute6s',attribute6s)
-                        // console.log('attribute7s',attribute7s)
-                        // console.log('attribute8s',attribute8s)
-                        // console.log('attribute9s',attribute9s)
-                        // console.log('attribute10s',attribute10s)
-                        // console.log('attribute11n',attribute11n)
-                        // console.log('attribute12n',attribute12n)
-                        // console.log('attribute13n',attribute13n)
-                        // console.log('attribute14n',attribute14n)
-                        // console.log('attribute15n',attribute15n)
-                        // console.log('attribute16n',attribute16n)
-                        // console.log('attribute17n',attribute17n)
-                        // console.log('attribute18n',attribute18n)
-                        // console.log('attribute19n',attribute19n)
-                        // console.log('attribute19n',attribute19n)
+                        attribute2s = getItemToJSON.properties.screen1
+                        attribute3s = getItemToJSON.properties.screen2
+                        attribute4s = getItemToJSON.properties.screen3
+                        attribute5s = null
+                        attribute6s = null
+                        attribute7s = null
+                        attribute8s = null
+                        attribute9s = null
+                        attribute10s = null
+                        dist_m_Participant = 0
+                        const numberRegex = /\d+/g;
+
+                        if(attribute11n == null){
+                          attribute11n = 0
+                        }else{
+                          attribute11nstring = kidsmale
+                          attribute11n = attribute11nstring.match(numberRegex);
+                        }
+                        if(attribute12n == null){
+                          attribute12n = 0
+                        }else{
+                          attribute12nstring = kidsfemale
+                          attribute12n = attribute12nstring.match(numberRegex);
+                        }
+                        if(attribute13n == null){
+                          attribute13n = 0
+                        }else{
+                          attribute13nstring = adultmale
+                          attribute13n = attribute13nstring.match(numberRegex);
+                        }
+                        if(attribute14n == null){
+                          attribute14n = 0
+                        }else{
+                          attribute14nstring = adultfemale
+                          attribute14n = attribute14nstring.match(numberRegex);
+                        }
+                        if(attribute15n == null){
+                          attribute15n = 0
+                        }else{
+                          attribute15nstring = household
+                          attribute15n = attribute15nstring.match(numberRegex);
+                        }
+                        attribute16n = 0
+                        attribute17n = 0
+                        attribute18n = 0
+                        attribute19n = 0
+                        attribute20n = 0
                         /////////////////////////////////////////LOCAL STORAGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE///////////////////////////////////////////////
                         // var commentAudioDefault = '.'
                         var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n) VALUES (ST_GeogFromGeoJSON('";
@@ -1017,8 +1038,8 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
 var mapCurrentZoomtilesdownload = map.getZoom();
 var maxzoom = mapCurrentZoomtilesdownload+3;
 var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
-      minZoom: 14,
-      maxZoom: 18,
+      minZoom: 12,
+      maxZoom: 16,
     saveButtonHtml: '<img src="images/download.png" alt="..." width=30px ; height=30px>',
     removeButtonHtml: '<img src="images/bin.png" alt="..." width=25px ; height=25px>',
 
@@ -1026,7 +1047,7 @@ var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
 
 
      // console.log('zoomlimittodownload',zoomlimittodownload)
-        if (window.confirm('Save ' + nTilesToSave + ' tiles?')) {
+        if (window.confirm('Save ' + nTilesToSave + ' tiles? If less than 1000, click OK and wait. Else, zoom in and click download again')) {
             continueSaveTiles();
         }
         console.log('map.getZoom()+3',map.getZoom()+3)
@@ -1177,20 +1198,20 @@ console.log('mosaicRequestedLatest',mosaicRequestedLatest)
   //       attribution: 'Leaflet | Sentinel 2 Imagery August 2015'
   //   });
 
-    var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2023-03_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
-      attribution: 'Leaflet | PlanetScope Imagery March 2023'
+    var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2023-'+mosaicRequestedLatest+'_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
+      attribution: 'Leaflet | PlanetScope Imagery '+attributeMosaicLatest+' 2023'
       })
-    var planetScopeMonthlyMosaicLatestMinus4Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2023-01_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
-      attribution: 'Leaflet | PlanetScope Imagery January 2023'
+    var planetScopeMonthlyMosaicLatestMinus4Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2023-'+mosaicRequested4Months+'_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
+      attribution: 'Leaflet | PlanetScope Imagery '+attributeMosaic4Months+' 2023'
       })
-    var planetScopeMonthlyMosaicLatestMinus8Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2022-09_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
-      attribution: 'Leaflet | PlanetScope Imagery September 2022'
+    var planetScopeMonthlyMosaicLatestMinus8Months = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2022-'+mosaicRequested8Months+'_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
+      attribution: 'Leaflet | PlanetScope Imagery '+attributeMosaic8Months+' 2022'
       })
-    var planetScopeMonthlyMosaic1YearAgo = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2022-05_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
-      attribution: 'Leaflet | PlanetScope Imagery May 2022'
+    var planetScopeMonthlyMosaic1YearAgo = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2022-'+mosaicRequested12Months+'_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
+      attribution: 'Leaflet | PlanetScope Imagery '+attributeMosaic12Months+' 2022'
       })
-    var planetMosaicLatestMinus2Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2021-05_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
-          attribution: 'Leaflet | PlanetScope Imagery May 2021'
+    var planetMosaicLatestMinus2Years = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_2021-'+mosaicRequested24Months+'_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
+          attribution: 'Leaflet | PlanetScope Imagery '+attributeMosaic24Months+' 2021'
       });
 
 
@@ -1414,7 +1435,7 @@ googleSat.on("tileerror",function() {
   document.getElementById("MapLoading").style.display = 'none'
   document.getElementById("Alert").style.fontSize = "30px";
   document.getElementById("Alert").style.textAlign = "center"
-  document.getElementById('Alert').innerHTML = '<br> ❗ 📶 ❗'
+  document.getElementById('Alert').innerHTML = ''
   document.getElementById("Alert").style.display = 'initial'
   // map.setZoom(0)
 
@@ -2123,6 +2144,7 @@ var myLayer_Button = L.easyButton({
           console.log('whichLayerIsOn',whichLayerIsOn)
 
 
+
               // rose.remove()
               // rose.addTo(map)
                 // whichLayerIsOn = 'none'
@@ -2133,6 +2155,9 @@ var myLayer_Button = L.easyButton({
               //   document.getElementById("Alert").innerHTML = 'NO <img src="images/myLayerEmpty.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
               //   document.getElementById("Alert").style.display = 'initial'
               // },300)
+              document.getElementById("Alert").style.display = 'initial'
+              document.getElementById("Alert").innerHTML = '<img src="images/talk.png" text-align="center" alt="..." width=60px; height=60px style="top:50%; margin-left:-2px" >'
+
                 setTimeout(function(){
                   document.getElementById("Alert").style.display = 'none'
                   document.getElementById("Alert").style.color = 'yellow'
@@ -2191,6 +2216,14 @@ var myLayer_Button = L.easyButton({
                 filterLocalStorage_Button.removeFrom(map);
                 filter_Button.addTo(map)
                 setTimeout(function(){
+
+                  document.getElementById("Alert").style.display = 'initial'
+                  document.getElementById("Alert").innerHTML = '<img src="images/talk.png" text-align="center" alt="..." width=60px; height=60px style="top:50%; margin-left:-2px" >'
+                  setTimeout(function(){
+                    document.getElementById("Alert").style.display = 'none'
+                    document.getElementById("Alert").style.color = 'yellow'
+
+                  },3000)
                   if(isIOS == false){
                     document.getElementById('myLayerButton').innerHTML = '<img src="images/onionlayericon.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > '
                   }else{
@@ -2219,7 +2252,7 @@ var myLayer_Button = L.easyButton({
 
                 document.getElementById("Alert").style.fontSize = "30px";
                 document.getElementById("Alert").style.color = 'black'
-                document.getElementById("Alert").innerHTML = '<img src="images/padlockopen.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > ON'
+                document.getElementById("Alert").innerHTML = '<img src="images/padlockopen.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" > ON 🔍'
                 document.getElementById("Alert").style.display = 'initial'
               },300)
 
@@ -2285,12 +2318,12 @@ var myLayer_Button = L.easyButton({
                     },300)
                   }
 
-               if (featureSent == true) { //to update the carto layer with recently created feature. This is fired after DB update has been checked
-
-                  sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date, commentone, commentoneaudioavailable FROM lumblu ORDER BY cartodb_id DESC LIMIT 1"
-                  getGeoJSON()
-                  featureSent = false
-              }
+              //  if (featureSent == true) { //to update the carto layer with recently created feature. This is fired after DB update has been checked
+              //
+              //     sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date, commentone, commentoneaudioavailable FROM lumblu ORDER BY cartodb_id DESC LIMIT 1"
+              //     getGeoJSON()
+              //     featureSent = false
+              // }
     }
           // },300)
           return featureSent && whichLayerIsOn && justCancelled && notFirstClickHere
@@ -2390,7 +2423,7 @@ var filter_Button = L.easyButton({
 
             if(filterApplied == true){
               //console.log('filterisonfalse')
-              filter_Button.button.style.borderColor = 'green'
+              // filter_Button.button.style.borderColor = 'green'
 
               document.getElementById("clearFilter").style.display = "initial";
               document.getElementById("clearFilter").style.opacity = '1'
@@ -2440,12 +2473,14 @@ var filter_Button = L.easyButton({
             filter_Button.button.disabled = false;
 
             if(filterApplied == true){ //to avoid that if dilterby date is all, color is not green
-              filter_Button.button.style.borderColor = 'green'
+              // filter_Button.button.style.borderColor = 'green'
 
             }else{
               filter_Button.button.style.backgroundColor = 'black'
               document.getElementById("Alert").style.display = 'none'
             }
+            deflated.clearLayers()
+            document.getElementById("Alert").style.display = "none";
 
             document.getElementById("tutorial").style.display = "initial";
             document.getElementById("armchair").style.display = "initial";
@@ -3139,10 +3174,14 @@ var pURL
 function setData() {
   console.log('cartoIdFeatureSelected',cartoIdFeatureSelected)
   console.log('created',created)
+  console.log('toDelete',toDelete)
   console.log('clickCountDeleteButton',clickCountDeleteButton)
 
-    ////console.log("setdata function called");
-    if ((cartoIdFeatureSelected != null && created == false && clickCountDeleteButton == 1) || deleteFromcartoimmediate != null) { //TO DELETE THE SELECTED FEATURE FROM THE CARTO DB
+    console.log('cartoIdFeatureSelected',cartoIdFeatureSelected);
+    console.log('toDelete',toDelete);
+
+    if ((cartoIdFeatureSelected != null && toDelete == true) || deleteFromcartoimmediate != null) { //TO DELETE THE SELECTED FEATURE FROM THE CARTO DB
+        toDelete = false
         if(deleteFromcartoimmediate != null){
           console.log('deleteFromcartoimmediate',deleteFromcartoimmediate)
 
@@ -3182,40 +3221,46 @@ function setData() {
         dataGeometry = data.geometry
         console.log(dataGeometry)
         var dataGeometryString = JSON.stringify(dataGeometry)
-        console.log('cluster',cluster)
-        console.log('ett_type',ett_type)
-        console.log('maisonsdetruites_number',maisonsdetruites_number)
-        console.log('personnesaffectees_number',personnesaffectees_number)
-        console.log('crop_hectares_afected',crop_hectares_afected)
-        console.log('landownership_type',landownership_type)
-        console.log('male_or_female',male_or_female)
+        ///////////////////////////////////////////////////////ha or acres !!!!!!!!!!!!!!!!!!!!!!! ??????????///////////////
         // phoneNumber = 123456789
-        if(croptype != null && evaluation_updown.includes('👎🏿')){
-          function extractNumbers(str) {
-            return str.replace(/\D/g, '');
-          }
-          crop_hectares_afected = extractNumbers(areaPolygon)
-          console.log('crop_hectares_afected acres',crop_hectares_afected)
-          crop_hectares_afected =crop_hectares_afected.slice(0, -2)
-          crop_hectares_afected = crop_hectares_afected*0.404686
-        }else{
-          crop_hectares_afected = 0
-        }
+        // if(croptype != null && evaluation_updown.includes('👎🏿')){
+        //   function extractNumbers(str) {
+        //     return str.replace(/\D/g, '');
+        //   }
+        //   crop_hectares_afected = extractNumbers(areaPolygon)
+        //   console.log('crop_hectares_afected acres',crop_hectares_afected)
+        //   crop_hectares_afected =crop_hectares_afected.slice(0, -2)
+        //   crop_hectares_afected = crop_hectares_afected*0.404686
+        // }else{
+        //   crop_hectares_afected = 0
+        // }
 
         console.log('areaPolygon',areaPolygon)
+        console.log('finalAreaAcres2Decimals',finalAreaAcres2Decimals)
+        console.log('finalLength2Decimals',finalLength2Decimals)
 
-        if(areaPolygon == 'Line' || areaPolygon == 'Point'){
+
+        if(finalAreaAcres2Decimals == 'Line' || finalAreaAcres2Decimals == 'Point'){
           var areaPolygonNumeric = 0
         }else{
-          var areaPolygonNumeric = parseFloat(areaPolygon)
+          function extractNumbers(str) {
+             return str.replace(/\D/g, '');
+           }
+           var areanumber = extractNumbers(finalAreaAcres2Decimals)
+           areanumber =areanumber.slice(0, -2)
+          var acrestoha = areanumber*0.404686
+          var acretoha2decimals = acrestoha.toFixed(2)
+          console.log('acretoha2decimals',acretoha2decimals)
+
+          var areaPolygonNumeric = parseFloat(acretoha2decimals)
         }
         console.log('lengthLine',lengthLine)
 
-        if(lengthLine == 'Polygon' || lengthLine == 'Point'){
+        if(finalLength2Decimals == 'Polygon' || finalLength2Decimals == 'Point'){
           var lengthLineNumeric = 0
 
         }else{
-          var lengthLineNumeric = parseFloat(lengthLine)
+          var lengthLineNumeric = parseFloat(finalLength2Decimals)
 
         }
 
@@ -3226,9 +3271,66 @@ function setData() {
         // male_or_female = null
 
         // var lu_final =landUsesEmoji.replace(/<br>/g, '');
-        attribute1s = landUsesEmoji
-        attribute2s = croptype
-        attribute3s = evaluation
+        // emojioneareaeditor0.value = landUse + croptype + evaluation + livestockdisseasetype + kidsmale + kidsfemale + adultmale + adultfemale  + household + emojioneareaeditor0.value
+        // emojioneareaeditor0.value = emojioneareaeditor0.value.replace(/null/g, '')
+        openOrPrivate = propertiesGeoJSON.openOrPrivate;
+        phoneNumber = propertiesGeoJSON.phoneNumber;
+        areaPolygon = propertiesGeoJSON.areaPolygon;
+        lengthLine = propertiesGeoJSON.lengthLine;
+        dateTime = propertiesGeoJSON.dateTime;
+        timeSpendSeconds = propertiesGeoJSON.timeSpendSeconds;
+        dist_m_Participant_Feature = propertiesGeoJSON.dist_m_Participant_Feature;
+        randomID = propertiesGeoJSON.randomID;
+        attribute1s = propertiesGeoJSON.Description
+        const brRegex = /<\/?br>/gi;
+        attribute1s = attribute1s.replace(brRegex, '');
+
+        attribute2s = screen1 //evaluation
+        attribute3s = screen2
+        attribute4s = screen3
+        attribute5s = null
+        attribute6s = null
+        attribute7s = null
+        attribute8s = null
+        attribute9s = null
+        attribute10s = null
+        const numberRegex = /\d+/g;
+
+        if(attribute11n == null){
+          attribute11n = 0
+        }else{
+          attribute11nstring = kidsmale
+          attribute11n = attribute11nstring.match(numberRegex);
+        }
+        if(attribute12n == null){
+          attribute12n = 0
+        }else{
+          attribute12nstring = kidsfemale
+          attribute12n = attribute12nstring.match(numberRegex);
+        }
+        if(attribute13n == null){
+          attribute13n = 0
+        }else{
+          attribute13nstring = adultmale
+          attribute13n = attribute13nstring.match(numberRegex);
+        }
+        if(attribute14n == null){
+          attribute14n = 0
+        }else{
+          attribute14nstring = adultfemale
+          attribute14n = attribute14nstring.match(numberRegex);
+        }
+        if(attribute15n == null){
+          attribute15n = 0
+        }else{
+          attribute15nstring = household
+          attribute15n = attribute15nstring.match(numberRegex);
+        }
+        attribute16n = 0
+        attribute17n = 0
+        attribute18n = 0
+        attribute19n = 0
+        attribute20n = 0
         // if(areaPolygon != null){
         //   areaPolygon = extractNumbers(areaPolygon)
         // }
@@ -3254,18 +3356,19 @@ function setData() {
         console.log('attribute19n',attribute19n)
         console.log('attribute19n',attribute19n)
 
-        dist_m_Participant = 74067170
+        dist_m_Participant = 0
+        console.log('datetime',dateTime) // 2023-5-18T16:16:13Z
         // var dist_m_Participant_FeatureInt64 = parseInt(dist_m_Participant_Feature,10)
         // timeSpendSeconds = 3.14159265358979323846264338327950288400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001
         // timeSpendSeconds = BigInt(timeSpendSeconds)
-        attribute20n = 1111111111
+        // attribute20n = 1111111111
 
         // console.log(lu_final)
         /////////////////////////////////////////LOCAL STORAGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE///////////////////////////////////////////////
         // var commentAudioDefault = '.'
-        var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n) VALUES (ST_GeogFromGeoJSON('";
+        var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n, timestamp) VALUES (ST_GeogFromGeoJSON('";
         var sql2 = dataGeometryString;
-var sql3 = "',make_valid => true),'"+randomID+ "',CAST('" + phoneNumber + "' AS INT64),'" + sapelliProjectIdentifier + "',CAST('" + areaPolygonNumeric + "' AS NUMERIC),CAST('" + lengthLineNumeric + "' AS NUMERIC),CAST('" + dist_m_Participant + "' AS INT64),'" + dateTime +"','"+attribute1s+ "','" + attribute2s + "','" + attribute3s + "','" + attribute4s + "','" + attribute5s + "','" + attribute6s + "','" + attribute7s + "','" + attribute8s + "','"+attribute9s+ "','" + attribute10s + "',CAST('"+ attribute11n + "' AS INT64),CAST('" + attribute12n + "' AS INT64),CAST('" + attribute13n + "' AS INT64),CAST('" + attribute14n + "' AS INT64),CAST('" + attribute15n + "' AS INT64),CAST('" + attribute16n + "' AS INT64),CAST('" +attribute17n+ "' AS INT64),CAST('" + attribute18n + "' AS INT64),CAST('" + attribute19n + "' AS INT64),CAST('" + attribute20n + "' AS INT64))";
+var sql3 = "',make_valid => true),'"+randomID+ "',CAST('" + phoneNumber + "' AS INT64),'" + sapelliProjectIdentifier + "',CAST('" + areaPolygonNumeric + "' AS NUMERIC),CAST('" + lengthLineNumeric + "' AS NUMERIC),CAST('" + dist_m_Participant + "' AS INT64),'" + dateTime +"','"+attribute1s+ "','" + attribute2s + "','" + attribute3s + "','" + attribute4s + "','" + attribute5s + "','" + attribute6s + "','" + attribute7s + "','" + attribute8s + "','"+attribute9s+ "','" + attribute10s + "',CAST('"+ attribute11n + "' AS INT64),CAST('" + attribute12n + "' AS INT64),CAST('" + attribute13n + "' AS INT64),CAST('" + attribute14n + "' AS INT64),CAST('" + attribute15n + "' AS INT64),CAST('" + attribute16n + "' AS INT64),CAST('" +attribute17n+ "' AS INT64),CAST('" + attribute18n + "' AS INT64),CAST('" + attribute19n + "' AS INT64),CAST('" + attribute20n + "' AS INT64),CAST('" +dateTime+"' AS TIMESTAMP))";
         pURL = sql + sql2 + sql3;
         console.log(pURL)
         // console.log(timeSpendSeconds)
@@ -3279,7 +3382,7 @@ var sql3 = "',make_valid => true),'"+randomID+ "',CAST('" + phoneNumber + "' AS 
     //////console.log(pURL)
     submitToProxy(pURL);
     ////console.log("Feature has been submitted to the Proxy");
-    return pURL && editButtonClicked && clickCountDeleteButton && deleteFromcartoimmediate
+    return pURL && editButtonClicked && clickCountDeleteButton && deleteFromcartoimmediate && toDelete
 };
 
 //cartoGeoJSONLayer()
@@ -3401,6 +3504,9 @@ document.getElementById("armchair").onclick = function(e) {
   attachPhoto = false
   photoAccepted = null //this is to not attach a picture taken in the previous mapping in the same session
   screenshotOn = false
+  deflated.clearLayers()
+    document.getElementById("Alert").style.display = 'none';
+
   $('#screenshots').empty()
 
   //to disable layer to create a geometry
@@ -3453,6 +3559,8 @@ document.getElementById("field").onclick = function(e) {
   attachPhoto = false
   photoAccepted = null //this is to not attach a picture taken in the previous mapping in the same session
   screenshotOn = false
+  deflated.clearLayers()
+    document.getElementById("Alert").style.display = 'none';
   $('#screenshots').empty()
 //to disable layer to create a geometry
     // //to disable layer to create a geometry
@@ -3636,7 +3744,9 @@ var startCheckingText = function() {
 
         //    ////console.log(emojioneareaeditor[0].textContent.lenght)
             if (emojioneareaeditor0.value.length == 0) { //to show '...' while the textbox is empty of characters (both letter and emojis)
-                layer.bindPopup(popupContent).addTo(map);
+                layer.bindPopup(popupContent,{
+                  maxWidth : 150
+                }).addTo(map);
                 layer.bindPopup(popupContent).closePopup(); ///automatically shows the pop up!
               //  ////console.log('innerhtml is null')
 
@@ -3661,11 +3771,11 @@ var startCheckingText = function() {
 
 
 
-                if(landUse == 'emojiNoSapelli'){
-                  // if(attachPhoto == false){
-                    layer.bindPopup(emojioneareaeditor0.value).addTo(map);
-                    layer.bindPopup(emojioneareaeditor0.value).openPopup(); ///automatically shows the pop up!
-                    console.log('no emoji sapelli')
+                // if(landUse == 'emojiNoSapelli'){
+                //   // if(attachPhoto == false){
+                //     layer.bindPopup(emojioneareaeditor0.value).addTo(map);
+                //     layer.bindPopup(emojioneareaeditor0.value).openPopup(); ///automatically shows the pop up!
+                //     console.log('no emoji sapelli')
                   // }else{
 
                     // var imgPhoto = '<img src="images/cameraIcon.png"'+ 'height="50px" width="50px" border="0" bordercolor="grey" backgroundcolor="green"/>'
@@ -3675,7 +3785,7 @@ var startCheckingText = function() {
                   //   layer.bindPopup(emojioneareaeditor0innerHTMLwithPhoto).openPopup(); ///automatically shows the pop up!
                   // }
 
-                }else{
+                // }else{
                   var imgPopup1 = '<img src="images/omoIcons/' + imageName1 + '.png"'+ 'height="50px"  width="50px" border="2" bordercolor="grey"/>'
 
                   // var imgPopup2 = '<img src="images/omoIcons/' + feature.properties.I2 + '.png"'+ 'height="50px" width="50px" border="2" bordercolor="grey"/>'
@@ -3712,10 +3822,12 @@ var startCheckingText = function() {
                   //   emojioneareaeditor0innerHTML =  landUse + ' ▪️ ' + croptype + ' ▪️ ' + evaluation +  ' - ' + emojioneareaeditor0.innerHTML
                   // }
                   var emojioneareaeditor0innerHTMLAndImages = emojioneareaeditor0.value + '</br>' + '</br>' + imgPopup1 + ' ' +imgPopup2 + ' ' + imgPopup3// + ' ' + imgPhoto
-                  layer.bindPopup(emojioneareaeditor0innerHTMLAndImages).addTo(map);
+                  layer.bindPopup(emojioneareaeditor0innerHTMLAndImages,{
+                    maxWidth : 150
+                  }).addTo(map);
                   layer.bindPopup(emojioneareaeditor0innerHTMLAndImages).openPopup(); ///automatically shows the pop up!
 
-                }
+                // }
               //  ////console.log('innerhtml is not null')
                 document.getElementById("share-download").style.opacity = "1"; //to disable button until user adds attributes, either with audio or text
                 document.getElementById("share-download").disabled = false;
@@ -3755,29 +3867,31 @@ function onEachFeature(feature, layer) {
             if (isOnline == true) { //condition to only hyperlink the audiolinktext if online
                 clickableFinalUrlAudio = audioLinkText.link(finalUrlAudio)
                 if(feature.properties.areaPolygon == 'Point' || feature.properties.areaPolygon == 'Line'){
-                  var popupContent = feature.properties.landUsesEmoji + '</br>' + '</br>' + '⏳...' + clickableFinalUrlAudio; //+ '    ' +dateTimeRandomID
+                  var popupContent = feature.properties.Description + '</br>' + '</br>' + '⏳...' + clickableFinalUrlAudio; //+ '    ' +dateTimeRandomID
                 }else{
-                  var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.landUsesEmoji + '</br>' + '</br>' + '⏳...' + clickableFinalUrlAudio; //+ '    ' +dateTimeRandomID
+                  var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.Description + '</br>' + '</br>' + '⏳...' + clickableFinalUrlAudio; //+ '    ' +dateTimeRandomID
                 }
             } else {
                 if(feature.properties.areaPolygon == 'Point' || feature.properties.areaPolygon == 'Line'){
-                  var popupContent = feature.properties.landUsesEmoji + '</br>' + '</br>' + '⏳...' + 'AUDIO';
+                  var popupContent = feature.properties.Description + '</br>' + '</br>' + '⏳...' + 'AUDIO';
                 }else{
-                  var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.landUsesEmoji + '</br>' + '</br>' + '⏳...' + 'AUDIO';
+                  var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.Description + '</br>' + '</br>' + '⏳...' + 'AUDIO';
                 }
             }
         } else {
             if(feature.properties.areaPolygon == 'Point' || feature.properties.areaPolygon == 'Line'){
-              var popupContent = feature.properties.landUsesEmoji
+              var popupContent = feature.properties.Description
             }else{
-              var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.landUsesEmoji
+              var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.Description
             }
         }
         if (feature.properties && feature.properties.popupContent) {
             popupContent += feature.properties.popupContent;
         }
 
-        layer.bindPopup(popupContent).addTo(map);
+        layer.bindPopup(popupContent,{
+          maxWidth : 150
+        }).addTo(map);
         layer.bindPopup(popupContent).openPopup();
 
     }, 1600)
@@ -3795,21 +3909,23 @@ function onEachFeatureAudioLocalStorage(feature, layer) { // function duplicated
         //conditions to avoid showing audio link if no audio has been recorded
         if (audioAvailable == true) {
             if(feature.properties.areaPolygon == 'Point' || feature.properties.areaPolygon == 'Line'){
-              var popupContent = feature.properties.landUsesEmoji + '</br>' + '</br>' + '🔊 🚧';
+              var popupContent = feature.properties.Description + '</br>' + '</br>' + '🔊 🚧';
             }else{
-              var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.landUsesEmoji + '</br>' + '</br>' + '🔊 🚧';
+              var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.Description + '</br>' + '</br>' + '🔊 🚧';
             }
         } else {
           if(feature.properties.areaPolygon == 'Point' || feature.properties.areaPolygon == 'Line'){
-            var popupContent = feature.properties.landUsesEmoji
+            var popupContent = feature.properties.Description
           }else{
-            var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.landUsesEmoji
+            var popupContent = '📐 ' + '<i>' + feature.properties.areaPolygon + '</i>' + '</br>' + '</br>' + feature.properties.Description
           }
         }
         if (feature.properties && feature.properties.popupContent) {
             popupContent += feature.properties.popupContent;
         }
-        layer.bindPopup(popupContent) //.addTo(map); // removed otherwise the layer is automatically added to the map when oneachfeaturelocl.. is called
+        layer.bindPopup(popupContent,{
+          maxWidth : 150
+        }) //.addTo(map); // removed otherwise the layer is automatically added to the map when oneachfeaturelocl.. is called
 
         if (finished == true) {
             layer.bindPopup(popupContent).openPopup();
