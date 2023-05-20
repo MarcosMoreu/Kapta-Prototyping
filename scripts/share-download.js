@@ -233,7 +233,6 @@ var finalGeoJSON = function(){
           'timeSpendSeconds': totalTimeSpent,
           'dist_m_Participant_Feature': distanceObfTrunc,
           'randomID': randomID,
-          'geometrystring':data.toString(),
           'screensize':screensize,
           'I1':imageName1,
           'I2':imageName2,
@@ -241,15 +240,20 @@ var finalGeoJSON = function(){
           'sapProjID': sapelliProjectIdentifier
       };
       propertiesGeoJSONURL = {
-          'randomID': randomID,
-          'LU': boxContent,
-          'OP': openOrPrivate,
-          'A': finalAreaAcres2Decimals,
-          'L': finalLength2Decimals,
-          'D': dateTime,
-          'I1':imageName1,
-          'I2':imageName2,
-          'I3':imageName3,
+        'Description': boxContent,
+        'OP': openOrPrivate,
+        'phoneNumber': localStorage.getItem('phoneNumber'),
+        // 'sapProjID': sapelliProjectIdentifier,
+        'screen1':screen1,
+        'screen2':screen2,
+        'screen2':screen3,
+        'areaPolygon': finalAreaAcres2Decimals,
+        'lengthLine': finalLength2Decimals,
+        'dateTime': dateTime,
+        'randomID': randomID,
+        'I1':imageName1,
+        'I2':imageName2,
+        'I3':imageName3,
       };
     // }
 

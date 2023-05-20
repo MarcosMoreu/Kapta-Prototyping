@@ -106,8 +106,8 @@ self.addEventListener('fetch', (event) => {
       })
         }))
       }else{
-        console.log(event.request.url)
-    console.log('google tiles')
+    //     console.log(event.request.url)
+    // console.log('google tiles')
   }
 
 
@@ -119,10 +119,10 @@ self.addEventListener('fetch', (event) => {
 
         return cache.match(event.request).then((cachedResponse) => {
             if(cachedResponse){
-              console.log('from cacheeeeeeeeeeeeeeeeee')
+              //console.log('from cacheeeeeeeeeeeeeeeeee')
               return cachedResponse
             }else{
-              console.log('from networkkkkkkkkkkkkkkkkkk')
+              //console.log('from networkkkkkkkkkkkkkkkkkk')
 
               return fetch(event.request).then((fetchedResponse) => {
           // Add the network response to the cache for later visits
@@ -148,20 +148,20 @@ function serveShareTarget(event, wait = true) {
   event.waitUntil(
     (async function () {
       // The page sends this message to tell the service worker it's ready to receive the file.
-      console.log("wait for share ready");
+      //console.log("wait for share ready");
       if (wait) await nextMessage("SHARE_READY");
 
       const client = await self.clients.get(
         event.resultingClientId || event.clientId
       );
-      console.log("client in wait until", client);
+      //console.log("client in wait until", client);
       const data = await dataPromise;
-      console.log("data in wait until", data);
+      //console.log("data in wait until", data);
       data.forEach((b, c) => {
-        console.log(b, c);
+        //console.log(b, c);
       });
       const file = data.getAll("file");
-      console.log("files in wait until", file);
+      //console.log("files in wait until", file);
       client.postMessage({ file });
     })()
   );
@@ -184,13 +184,13 @@ function nextMessage(dataVal) {
 }
 
 self.addEventListener("message", (event) => {
-  console.log("log all messages");
-  console.log(event);
+  //console.log("log all messages");
+  //console.log(event);
   if (event.data === "SHARE_READY") {
-    console.log("yuhu ready");
+    //console.log("yuhu ready");
   }
   const resolvers = nextMessageResolveMap.get(event.data);
-  console.log("here are the resolvers", resolvers);
+  //console.log("here are the resolvers", resolvers);
   if (!resolvers) return;
   nextMessageResolveMap.delete(event.data);
   for (const resolve of resolvers) resolve();
@@ -214,7 +214,7 @@ self.addEventListener("activate", function(event) {
         );
       })
       .then(function() {
-        //console.log('WORKER: activate completed.');
+        ////console.log('WORKER: activate completed.');
       })
   );
 });
@@ -232,28 +232,28 @@ self.addEventListener('sync', function(event) {
   }
 });
 
-function getContactById(db, id) {
-    const txn = db.transaction('Contacts', 'readonly');
-    const store = txn.objectStore('Contacts');
-
-    let query = store.get(id);
-
-    query.onsuccess = (event) => {
-        if (!event.target.result) {
-            console.log(`The contact with ${id} not found`);
-        } else {
-            console.table(event.target.result);
-        }
-    };
-
-    query.onerror = (event) => {
-        console.log(event.target.errorCode);
-    }
-
-    txn.oncomplete = function () {
-        db.close();
-    };
-};
+// function getContactById(db, id) {
+//     const txn = db.transaction(db, 'readonly');
+//     const store = txn.objectStore(db);
+//
+//     let query = store.get(id);
+//
+//     query.onsuccess = (event) => {
+//         if (!event.target.result) {
+//             console.log(`The contact with ${id} not found`);
+//         } else {
+//             console.table(event.target.result);
+//         }
+//     };
+//
+//     query.onerror = (event) => {
+//         //console.log(event.target.errorCode);
+//     }
+//
+//     txn.oncomplete = function () {
+//         db.close();
+//     };
+// };
 
 function addToIndexedDB(databaseName, objectStoreName, key, value) {
   // Open a connection to the IndexedDB database
@@ -272,7 +272,7 @@ function addToIndexedDB(databaseName, objectStoreName, key, value) {
 
     // Event handler for a successful put operation
     putRequest.onsuccess = function(event) {
-      console.log('Value added to IndexedDB');
+      //console.log('Value added to IndexedDB');
     };
 
     // Event handler for an error during the put operation
@@ -293,7 +293,7 @@ function addToIndexedDB(databaseName, objectStoreName, key, value) {
 }
 
 async function doTheWork() {
-  console.log('do the work function called!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+  //console.log('do the work function called!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
 
   return new Promise((resolve, reject) => {
     let openRequest = indexedDB.open("geoJSONs", 2);
@@ -311,85 +311,137 @@ async function doTheWork() {
       // Access the key and value of each record in the cursor
       var key = cursor.key;
       var value = cursor.value;
-      console.log(value)
-      console.log(key)
+      //console.log(value)
+      //console.log(key)
 //////////////////////////////////////////////
 // isJson(value);
 // if (isJson(value) == true) {
-  // console.log(isJson('this is geojson',value))
+  // //console.log(isJson('this is geojson',value))
     var getItemToJSON = JSON.parse(value);
     // isJson(getItemToJSON)
-    // console.log(getItemToJSON.properties.OP)
+    // //console.log(getItemToJSON.properties.OP)
 
     //to submit to CARTO the contributions submitted while offline
     if(getItemToJSON.properties.OP == 'offlineOpen'){ //////////////////11111111111111111111111111111111!!!!!!!111CHANGE TO OFFLINEOPEN
+      console.log('sbumitted to carto from local storage', getItemToJSON)
 
-      console.log(cursor)
-  // console.log(getItemToJSON)
+      //console.(getItemToJSON)
       // console.log(getItemToJSON.properties.OP)
       // console.log(data)
-      let dataGeometry = getItemToJSON.geometry
+      let  dataGeometry = getItemToJSON.geometry
 
         // propertiesGeoJSON = data.properties
         //to assign each attribute to a variable, which will be added as columns to the DB
-        let  landUses = getItemToJSON.properties.landUses;
-        let  landUsesEmoji = getItemToJSON.properties.landUsesEmoji;
+        // landUses = getItemToJSON.properties.landUses;
+        // landUsesEmoji = getItemToJSON.properties.landUsesEmoji;
       let  openOrPrivate = getItemToJSON.properties.openOrPrivate;
-      let  phoneNumber = getItemToJSON.properties.phoneNumber;
-      // let    areaPolygon = getItemToJSON.properties.areaPolygon;
-      // let    lengthLine = getItemToJSON.properties.lengthLine;
-      let    dateTime = getItemToJSON.properties.dateTime;
-        let  timeSpendSeconds = getItemToJSON.properties.timeSpendSeconds;
-      // let    dist_m_Participant_Feature = getItemToJSON.properties.dist_m_Participant_Feature;
-      let    randomID = getItemToJSON.properties.randomID;
-            var dataGeometryString = JSON.stringify(dataGeometry)
+        // phoneNumber = getItemToJSON.properties.phoneNumber;
+      let  areaPolygon = getItemToJSON.properties.areaPolygon;
+      let  lengthLine = getItemToJSON.properties.lengthLine;
+      let  dateTime = getItemToJSON.properties.dateTime;
+        // timeSpendSeconds = getItemToJSON.properties.timeSpendSeconds;
+        // dist_m_Participant_Feature = getItemToJSON.properties.dist_m_Participant_Feature;
+      let  randomID = getItemToJSON.properties.randomID;
+        var dataGeometryString = JSON.stringify(dataGeometry)
 
-      // let    attribute1s = landUsesEmoji
-      //   let  attribute2s = croptype
-      // let    attribute3s = evaluation
-      var areaPolygon = 4.3
-      var lengthLine = 0
-      var dist_m_Participant = 0
-      var attribute3s = null
-      var attribute1s = null
-      var attribute2s = null
-      var attribute3s = null
-      var attribute4s = null
-      var attribute5s = null
-      var attribute6s = null
-      var attribute7s = null
-      var attribute8s = null
-      var attribute9s = null
-      var attribute10s = null
-      var attribute11n = 0
-      var attribute12n =  0
-      var attribute13n = 0
-      var attribute14n = 0
-      var attribute15n = 0
-      var attribute16n = 0
-      var attribute17n = 0
-      var attribute18n = 0
-      var attribute19n = 0
-      var attribute20n = 0
-      var sqlQuerySelect
-      var sqlQuerySelectEncoded
-      var deleteFromcartoimmediate = null
-      var sapelliProjectIdentifier = 111111111
-      var datatime = '10-10-2021'
-      var areaPolygonNumeric = 10.1
-      var lengthLineNumeric = 10.1
 
-      dist_m_Participant = 74067170
 
-        attribute20n = 1111111111
+        if(areaPolygon == 'Line' || areaPolygon == 'Point'){
+          var areaPolygonNumeric = 0
+        }else{
+          function extractNumbers(str) {
+             return str.replace(/\D/g, '');
+           }
+           var areanumber = extractNumbers(areaPolygon)
+           areanumber =areanumber.slice(0, -2)
+          var acrestoha = areanumber*0.404686
+          var acretoha2decimals = acrestoha.toFixed(2)
+          //console.('acretoha2decimals',acretoha2decimals)
 
+          var areaPolygonNumeric = parseFloat(acretoha2decimals)
+        }
+        //console.('lengthLine',lengthLine)
+
+        if(lengthLine == 'Polygon' || lengthLine == 'Point'){
+          var lengthLineNumeric = 0
+
+        }else{
+          function extractNumbers(str) {
+             return str.replace(/\D/g, '');
+           }
+           var lengthnumber = extractNumbers(lengthLine)
+          var lenghtkm2decimals = lengthnumber.toFixed(2)
+          var lengthLineNumeric = parseFloat(lenghtkm2decimals)
+
+        }
+
+      let  attribute1s = getItemToJSON.properties.Description
+        const brRegex = /<\/?br>/gi;
+        attribute1s = attribute1s.replace(brRegex, '');
+
+      let attribute2s = getItemToJSON.properties.screen1
+      let attribute3s = getItemToJSON.properties.screen2
+      let attribute4s = getItemToJSON.properties.screen3
+      let attribute5s = null
+    let attribute6s = null
+    let attribute7s = null
+        let attribute8s = null
+        let attribute9s = null
+        let attribute10s = null
+        let attribute11n = null
+        let attribute12n = null
+        let attribute13n = null
+        let attribute14n = null
+        let attribute15n = null
+
+        let dist_m_Participant = 0
+        const numberRegex = /\d+/g;
+
+        if(attribute11n == null){
+          attribute11n = 0
+        }else{
+          let attribute11nstring = kidsmale
+          attribute11n = attribute11nstring.match(numberRegex);
+        }
+        if(attribute12n == null){
+          attribute12n = 0
+        }else{
+          let attribute12nstring = kidsfemale
+          attribute12n = attribute12nstring.match(numberRegex);
+        }
+        if(attribute13n == null){
+          attribute13n = 0
+        }else{
+          let attribute13nstring = adultmale
+          attribute13n = attribute13nstring.match(numberRegex);
+        }
+        if(attribute14n == null){
+          attribute14n = 0
+        }else{
+          let attribute14nstring = adultfemale
+          attribute14n = attribute14nstring.match(numberRegex);
+        }
+        if(attribute15n == null){
+          attribute15n = 0
+        }else{
+          let attribute15nstring = household
+          attribute15n = attribute15nstring.match(numberRegex);
+        }
+        let attribute16n = 0
+        let attribute17n = 0
+        let attribute18n = 0
+        let attribute19n = 0
+        let attribute20n = 0
+        let phoneNumber = getItemToJSON.properties.phoneNumber
+        let sapelliProjectIdentifier = getItemToJSON.properties.sapProjID
+        dist_m_Participant = 0
         /////////////////////////////////////////LOCAL STORAGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE///////////////////////////////////////////////
         // var commentAudioDefault = '.'
-        var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n) VALUES (ST_GeogFromGeoJSON('";
+        var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n, timestamp) VALUES (ST_GeogFromGeoJSON('";
         var sql2 = dataGeometryString;
-      var sql3 = "',make_valid => true),'"+randomID+ "',CAST('" + phoneNumber + "' AS INT64),'" + sapelliProjectIdentifier + "',CAST('" + areaPolygonNumeric + "' AS NUMERIC),CAST('" + lengthLineNumeric + "' AS NUMERIC),CAST('" + dist_m_Participant + "' AS INT64),'" + dateTime +"','"+attribute1s+ "','" + attribute2s + "','" + attribute3s + "','" + attribute4s + "','" + attribute5s + "','" + attribute6s + "','" + attribute7s + "','" + attribute8s + "','"+attribute9s+ "','" + attribute10s + "',CAST('"+ attribute11n + "' AS INT64),CAST('" + attribute12n + "' AS INT64),CAST('" + attribute13n + "' AS INT64),CAST('" + attribute14n + "' AS INT64),CAST('" + attribute15n + "' AS INT64),CAST('" + attribute16n + "' AS INT64),CAST('" +attribute17n+ "' AS INT64),CAST('" + attribute18n + "' AS INT64),CAST('" + attribute19n + "' AS INT64),CAST('" + attribute20n + "' AS INT64))";
-      var   pURL = sql + sql2 + sql3;
-        console.log('submited to carto from local storage',pURL)
+        var sql3 = "',make_valid => true),'"+randomID+ "',CAST('" + phoneNumber + "' AS INT64),'" + sapelliProjectIdentifier + "',CAST('" + areaPolygonNumeric + "' AS NUMERIC),CAST('" + lengthLineNumeric + "' AS NUMERIC),CAST('" + dist_m_Participant + "' AS INT64),'" + dateTime +"','"+attribute1s+ "','" + attribute2s + "','" + attribute3s + "','" + attribute4s + "','" + attribute5s + "','" + attribute6s + "','" + attribute7s + "','" + attribute8s + "','"+attribute9s+ "','" + attribute10s + "',CAST('"+ attribute11n + "' AS INT64),CAST('" + attribute12n + "' AS INT64),CAST('" + attribute13n + "' AS INT64),CAST('" + attribute14n + "' AS INT64),CAST('" + attribute15n + "' AS INT64),CAST('" + attribute16n + "' AS INT64),CAST('" +attribute17n+ "' AS INT64),CAST('" + attribute18n + "' AS INT64),CAST('" + attribute19n + "' AS INT64),CAST('" + attribute20n + "' AS INT64),CAST('" +dateTime+"' AS TIMESTAMP))";
+        var pURL = sql + sql2 + sql3;
+        //console.('submited to carto from local storage',pURL)
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         var getItemToJSONstringified = JSON.stringify(getItemToJSON);//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -458,7 +510,7 @@ async function doTheWork() {
 
 self.addEventListener('sync',function(event){
     if (event.tag == 'myFirstSync') {
-      console.log('swsycnfunctionnnnnnnnnnnnnnnnnnnnnnnnn')
+      //console.('swsycnfunctionnnnnnnnnnnnnnnnnnnnnnnnn')
         event.waitUntil(
             doTheWork()
           );
