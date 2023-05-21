@@ -25,46 +25,32 @@ document.getElementById('rose').onclick = function(e){
     var toRemoveDeflated = deflated._layers
     //console.log('toremovedeflated',toRemoveDeflated)
     if(clicksRose == 2 && map.getZoom()<=11){
-      document.getElementById("Alert").style.fontSize = "30px";
-      document.getElementById("Alert").style.textAlign = "center"
-      document.getElementById('Alert').innerHTML = 'Zoom in'
-      document.getElementById("Alert").style.display = 'initial'
-      clicksRose = 0;
       setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
-        document.getElementById("Alert").style.display = 'none'
+        if(clicksRose ==2){ //this is to check that the user actually want to click 5 times, not 10
 
-      },2000)
+        document.getElementById("Alert").style.fontSize = "30px";
+        document.getElementById("Alert").style.textAlign = "center"
+        document.getElementById('Alert').innerHTML = 'Zoom in'
+        document.getElementById("Alert").style.display = 'initial'
+        clicksRose = 0;
+        setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
+          document.getElementById("Alert").style.display = 'none'
+
+        },2000)
+      }
+    },1000)
+
     }
       if(clicksRose == 2 && map.getZoom()>10){ //this is to refresh the carto layer
-        // document.getElementById("Alert").style.fontSize = "40px";
-        // document.getElementById('Alert').innerHTML = '<br>⌛'
-        // document.getElementById("Alert").style.display = 'initial'
-
-
 
         setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
           if(clicksRose ==2){ //this is to check that the user actually want to click 5 times, not 10
             document.getElementById('rose').style.display = 'none'
             offlineControlGoogle.addTo(map);
-
-            //console.('refreshed')
-
-            // for (i = 0; i < deflated._layers.length; i++) { // not the optimal solution, but couldn't find the way to empty deflated
-            //   try{ // because array not starts with 1,2,3
-            //     deflated.removeLayer(deflated._layers[i])
-            //     //console.log('forr ',i)
-            //   }catch(e){}
-            // }
-            //sqlquery specified below to avoid interferance with SELECT after INSERT
-            // sqlQuery = "SELECT cartodb_id, the_geom, landuses, landusesemoji, audioavailable, areapolygon, lengthline, geometrystring, date, commentone, commentoneaudioavailable FROM lumblu"
-            // getGeoJSON()
-            // location.reload();
-
-
         }
         clicksRose = 0;
 
-      },1500)
+      },1000)
       return clicksRose
 
       }
