@@ -370,7 +370,7 @@ async function doTheWork() {
              return str.replace(/\D/g, '');
            }
            var lengthnumber = extractNumbers(lengthLine)
-          var lenghtkm2decimals = lengthnumber.toFixed(2)
+          var lenghtkm2decimals = lengthnumber.slice(0, -2)
           var lengthLineNumeric = parseFloat(lenghtkm2decimals)
 
         }
@@ -383,50 +383,117 @@ async function doTheWork() {
       let attribute3s = getItemToJSON.properties.screen2
       let attribute4s = getItemToJSON.properties.screen3
       let attribute5s = null
-    let attribute6s = null
-    let attribute7s = null
-        let attribute8s = null
-        let attribute9s = null
-        let attribute10s = null
-        let attribute11n = null
-        let attribute12n = null
-        let attribute13n = null
-        let attribute14n = null
-        let attribute15n = null
+      let attribute6s = null
+      let attribute7s = null
+      let attribute8s = null
+      let attribute9s = null
+      let attribute10s = null
+      let dist_m_Participant = 0
+      let attribute11n
+      let attribute12n
+      let attribute13n
+      let attribute14n
+      let attribute15n
+      const numberRegex = /\d+/g;
 
-        let dist_m_Participant = 0
-        const numberRegex = /\d+/g;
-
-        if(attribute11n == null){
-          attribute11n = 0
-        }else{
-          let attribute11nstring = kidsmale
+      if(attribute2s == 'አዊ / መንደር'){
+        try{
+          let attribute11nstring = getItemToJSON.properties.kidsmale
           attribute11n = attribute11nstring.match(numberRegex);
-        }
-        if(attribute12n == null){
-          attribute12n = 0
-        }else{
-          let attribute12nstring = kidsfemale
+          console.log('attribute11nstring',attribute11nstring)
+          console.log('attribute11n',attribute11n)
+          if(attribute11n == null || attribute11n == undefined){
+            attribute11n = 0
+          }else{
+            attribute11n = attribute11n[0]
+          }
+
+          let attribute12nstring = getItemToJSON.properties.kidsfemale
           attribute12n = attribute12nstring.match(numberRegex);
-        }
-        if(attribute13n == null){
-          attribute13n = 0
-        }else{
-          let attribute13nstring = adultmale
+
+          console.log('attribute12nstring',attribute12nstring)
+          console.log('attribute12n',attribute12n)
+
+          if(attribute12n == null || attribute12n == undefined){
+            attribute12n = 0
+          }else{
+            attribute12n = attribute12n[0]
+          }
+
+          let attribute13nstring = getItemToJSON.properties.adultmale
           attribute13n = attribute13nstring.match(numberRegex);
-        }
-        if(attribute14n == null){
-          attribute14n = 0
-        }else{
-          let attribute14nstring = adultfemale
+
+          if(attribute13n == null || attribute13n == undefined){
+            attribute13n = 0
+          }else{
+            attribute13n = attribute13n[0]
+          }
+          let attribute14nstring = getItemToJSON.properties.adultfemale
           attribute14n = attribute14nstring.match(numberRegex);
-        }
-        if(attribute15n == null){
-          attribute15n = 0
-        }else{
-          let attribute15nstring = household
+
+          if(attribute14n == null || attribute14n == undefined){
+            attribute14n = 0
+          }else{
+            attribute14n = attribute14n[0]
+          }
+          let attribute15nstring = getItemToJSON.properties.household
           attribute15n = attribute15nstring.match(numberRegex);
+
+          if(attribute15n == null || attribute15n == undefined){
+            attribute15n = 0
+          }else{
+            attribute15n = attribute15n[0]
+          }
+        }catch(e){
+          console.log(e)
         }
+
+      }else{
+        attribute11n = 0
+        attribute12n = 0
+        attribute13n = 0
+        attribute14n = 0
+        attribute15n = 0
+      }
+
+
+
+
+        // attribute11nstring = kidsmale
+        // attribute12nstring = kidsfemale
+        // attribute13nstring = adultmale
+        // attribute14nstring = adultfemale
+        // attribute15nstring = household
+        // try{ //to catch when value is empty
+        //   attribute11n = attribute11n[0]
+        // }catch(e){
+        //   attribute11n = 0
+        //   console.log(e)
+        // }
+        // try{ //to catch when value is empty
+        //   attribute12n = attribute12n[0]
+        // }catch(e){
+        //   attribute12n = 0
+        //   console.log(e)
+        // }
+        // try{ //to catch when value is empty
+        //   attribute13n = attribute13n[0]
+        // }catch(e){
+        //   attribute13n = 0
+        //   console.log(e)
+        // }
+        // try{ //to catch when value is empty
+        //   attribute14n = attribute14n[0]
+        // }catch(e){
+        //   attribute14n = 0
+        //   console.log(e)
+        // }
+        // try{ //to catch when value is empty
+        //   attribute15n = attribute15n[0]
+        // }catch(e){
+        //   attribute15n = 0
+        //   console.log(e)
+        // }
         let attribute16n = 0
         let attribute17n = 0
         let attribute18n = 0
@@ -435,6 +502,7 @@ async function doTheWork() {
         let phoneNumber = getItemToJSON.properties.phoneNumber
         let sapelliProjectIdentifier = getItemToJSON.properties.sapProjID
         dist_m_Participant = 0
+
         /////////////////////////////////////////LOCAL STORAGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE///////////////////////////////////////////////
         // var commentAudioDefault = '.'
         var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n, timestamp) VALUES (ST_GeogFromGeoJSON('";
