@@ -459,6 +459,36 @@ document.getElementById('completeFeature').onclick = function(e) {
     }
 }
 
+// document.getElementById('completeFeature').onclick = function(e) {
+//     if (featureType == 'polyline' && drawPolyline._markers.length < 60) {
+//         drawPolyline.completeShape();
+//
+//     }else if(featureType == 'polyline' && drawPolyline._markers.length > 60){
+//       document.getElementById('Alert').innerHTML = 'Too many vertexes'
+//       document.getElementById("Alert").style.display = 'initial'
+//       setTimeout(function(){
+//         document.getElementById("Alert").style.display = 'none'
+//       },3000)
+//
+//     }else if(featureType == 'polygon' && numofvertexpolygon < 60 && finalArea < 1) { //1sqkm
+//     drawPolygon.completeShape()
+//
+//     }else if(featureType == 'polygon' && numofvertexpolygon > 6 && finalArea <1){
+//       document.getElementById('Alert').innerHTML = 'Too big'
+//       document.getElementById("Alert").style.display = 'initial'
+//       setTimeout(function(){
+//         document.getElementById("Alert").style.display = 'none'
+//       },3000)
+//      }else if(featureType == 'polygon' && numofvertexpolygon < 6 && finalArea >1){
+//         document.getElementById('Alert').innerHTML = 'Too many vertexes'
+//         document.getElementById("Alert").style.display = 'initial'
+//         setTimeout(function(){
+//           document.getElementById("Alert").style.display = 'none'
+//         },3000)
+//       }
+//
+// }
+
 var tempLayer;
 var data;
 
