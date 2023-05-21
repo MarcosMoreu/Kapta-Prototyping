@@ -404,7 +404,7 @@ var tilesDb = {
     },
 
     saveTiles: function(tileUrls) {
-      console.log('tilesdb calleeeeeeeeeeeed  SAVE')
+      //console.log('tilesdb calleeeeeeeeeeeed  SAVE')
 // localforage.setItem(key);
         var self = this;
         var promises = [];
@@ -424,6 +424,10 @@ var tilesDb = {
                                 resolve(self._saveTile(tileUrl.key, request.response));
                                 if(i==tileUrls.length-1){
                                   alert('All tiles have been downloaded.')
+
+                                    document.getElementById('MapLoading').style.display = 'none'
+                                    document.getElementById('maploadinggif').src = 'images/checkingPw.gif'
+
                                 }
                             } else {
                                 reject({
@@ -445,7 +449,7 @@ var tilesDb = {
     },
 
     _saveTile: function(key, value) {
-      console.log('tilesdb calleeeeeeeeeeeed  ____SAVE')
+      //console.('tilesdb calleeeeeeeeeeeed  ____SAVE')
 
         return this._removeItem(key).then(function() {
 
@@ -501,7 +505,7 @@ var storeURLGeoJSON = function(data){
 
     geoJSONLocalforageDB.setItem(randomID, parsedJSONStringified).then(function(value){
     }).catch(function(err) {
-      console.log('error set item geojson url')
+      //console.('error set item geojson url')
     });
     randomIDtest = randomID
   }catch(e){
@@ -514,7 +518,7 @@ var storeURLGeoJSON = function(data){
 
     geoJSONLocalforageDB.setItem(randomID, parsedJSONStringified).then(function(value){
     }).catch(function(err) {
-      console.log('error set item geojson url')
+      //console.('error set item geojson url')
     });
     randomIDtest = randomID
   }
@@ -538,7 +542,6 @@ var southWest = L.latLng(-70, -180);
 var northEast = L.latLng(80, 180);
 if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains geojson (and coords)
   //console.log('hash and geojson')
-  console.log('zzzzzzzzzzzzzzzzzzzzzzzzzz')
 
   //to set mapview
     var keepOnlyLatLngZoom = url.split('#').pop();
@@ -582,14 +585,14 @@ if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains 
     elementJustAddedToLocalStorage = true
     if(localStorage.getItem('pwCorrect')){
       var activateLocalStorageLayer = setInterval(function(){
-        console.log('checking encodedgeojsonurl')
+        //console.('checking encodedgeojsonurl')
         if(localStorageLayer != null){
           try{
             document.getElementById('myLayerButton').click()
             document.getElementById('myLayerButton').click()
             document.getElementById('myLayerButton').click()
 
-            console.log('zzzzzzzzzzzzzzzzzzzzzzzzzz')
+            //console.('zzzzzzzzzzzzzzzzzzzzzzzzzz')
 
             clearInterval(activateLocalStorageLayer)
           }catch(e){}
@@ -692,11 +695,11 @@ map.on('zoomend', function(e) {
   //to activate carto based on zoom level
   if(whichLayerIsOn == 'deflated' && currentZoom >= 12){
     // deflated.addTo(map)
-    console.log('carto open layer added to the map')
+    //console.('carto open layer added to the map')
   }
   if(whichLayerIsOn == 'deflated' && currentZoom < 12){
     // deflated.removeFrom(map)
-    console.log('carto open layer hidden from the map')
+    //console.('carto open layer hidden from the map')
   }
 })
 
@@ -870,111 +873,132 @@ function fetchFromLocalStorage(){
 
                     //to submit to CARTO the contributions submitted while offline
                     if(getItemToJSON.properties.OP == 'offlineOpen'){ //////////////////11111111111111111111111111111111!!!!!!!111CHANGE TO OFFLINEOPEN
-                      console.log('sbumitted to carto from local storage', getItemToJSON)
-
-                      console.log(getItemToJSON)
-                      // console.log(getItemToJSON.properties.OP)
-                      // console.log(data)
-                        dataGeometry = getItemToJSON.geometry
-
-                        // propertiesGeoJSON = data.properties
-                        //to assign each attribute to a variable, which will be added as columns to the DB
-                        // landUses = getItemToJSON.properties.landUses;
-                        // landUsesEmoji = getItemToJSON.properties.landUsesEmoji;
-                        openOrPrivate = getItemToJSON.properties.openOrPrivate;
-                        // phoneNumber = getItemToJSON.properties.phoneNumber;
-                        areaPolygon = getItemToJSON.properties.areaPolygon;
-                        lengthLine = getItemToJSON.properties.lengthLine;
-                        dateTime = getItemToJSON.properties.dateTime;
-                        // timeSpendSeconds = getItemToJSON.properties.timeSpendSeconds;
-                        // dist_m_Participant_Feature = getItemToJSON.properties.dist_m_Participant_Feature;
-                        randomID = getItemToJSON.properties.randomID;
-                        var dataGeometryString = JSON.stringify(dataGeometry)
-
-                        if(areaPolygon == 'Line' || areaPolygon == 'Point'){
-                          var areaPolygonNumeric = 0
-                        }else{
-                          var areaPolygonNumeric = parseFloat(areaPolygon)
-                        }
-                        console.log('lengthLine',lengthLine)
-
-                        if(lengthLine == 'Polygon' || lengthLine == 'Point'){
-                          var lengthLineNumeric = 0
-
-                        }else{
-                          var lengthLineNumeric = parseFloat(lengthLine)
-
-                        }
-
-                        attribute1s = propertiesGeoJSON.Description
-                        const brRegex = /<\/?br>/gi;
-                        attribute1s = attribute1s.replace(brRegex, '');
-
-                        attribute2s = getItemToJSON.properties.screen1
-                        attribute3s = getItemToJSON.properties.screen2
-                        attribute4s = getItemToJSON.properties.screen3
-                        attribute5s = null
-                        attribute6s = null
-                        attribute7s = null
-                        attribute8s = null
-                        attribute9s = null
-                        attribute10s = null
-                        dist_m_Participant = 0
-                        const numberRegex = /\d+/g;
-
-                        if(attribute11n == null){
-                          attribute11n = 0
-                        }else{
-                          attribute11nstring = kidsmale
-                          attribute11n = attribute11nstring.match(numberRegex);
-                        }
-                        if(attribute12n == null){
-                          attribute12n = 0
-                        }else{
-                          attribute12nstring = kidsfemale
-                          attribute12n = attribute12nstring.match(numberRegex);
-                        }
-                        if(attribute13n == null){
-                          attribute13n = 0
-                        }else{
-                          attribute13nstring = adultmale
-                          attribute13n = attribute13nstring.match(numberRegex);
-                        }
-                        if(attribute14n == null){
-                          attribute14n = 0
-                        }else{
-                          attribute14nstring = adultfemale
-                          attribute14n = attribute14nstring.match(numberRegex);
-                        }
-                        if(attribute15n == null){
-                          attribute15n = 0
-                        }else{
-                          attribute15nstring = household
-                          attribute15n = attribute15nstring.match(numberRegex);
-                        }
-                        attribute16n = 0
-                        attribute17n = 0
-                        attribute18n = 0
-                        attribute19n = 0
-                        attribute20n = 0
-                        /////////////////////////////////////////LOCAL STORAGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE///////////////////////////////////////////////
-                        // var commentAudioDefault = '.'
-                        var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n) VALUES (ST_GeogFromGeoJSON('";
-                        var sql2 = dataGeometryString;
-                      var sql3 = "',make_valid => true),'"+randomID+ "',CAST('" + phoneNumber + "' AS INT64),'" + sapelliProjectIdentifier + "',CAST('" + areaPolygonNumeric + "' AS NUMERIC),CAST('" + lengthLineNumeric + "' AS NUMERIC),CAST('" + dist_m_Participant + "' AS INT64),'" + dateTime +"','"+attribute1s+ "','" + attribute2s + "','" + attribute3s + "','" + attribute4s + "','" + attribute5s + "','" + attribute6s + "','" + attribute7s + "','" + attribute8s + "','"+attribute9s+ "','" + attribute10s + "',CAST('"+ attribute11n + "' AS INT64),CAST('" + attribute12n + "' AS INT64),CAST('" + attribute13n + "' AS INT64),CAST('" + attribute14n + "' AS INT64),CAST('" + attribute15n + "' AS INT64),CAST('" + attribute16n + "' AS INT64),CAST('" +attribute17n+ "' AS INT64),CAST('" + attribute18n + "' AS INT64),CAST('" + attribute19n + "' AS INT64),CAST('" + attribute20n + "' AS INT64))";
-                        pURL = sql + sql2 + sql3;
-                        console.log('submited to carto from local storage',pURL)
-                        submitToProxy(pURL);
-
-
-                      ////////////change the property so it is only sent once
-
-                      getItemToJSON.properties.OP = 'submittedOpen';
-                      var getItemToJSONstringified = JSON.stringify(getItemToJSON);
-
-                        // var getItemToJSON = JSON.parse(value);
-                      // geoJSONLocalforageDB.setItem(tempName, dataStringified)
-                      geoJSONLocalforageDB.setItem(key, getItemToJSONstringified);
+                      // console.log('sbumitted to carto from local storage', getItemToJSON)
+                      //
+                      // //console.(getItemToJSON)
+                      // // console.log(getItemToJSON.properties.OP)
+                      // // console.log(data)
+                      //   dataGeometry = getItemToJSON.geometry
+                      //
+                      //   // propertiesGeoJSON = data.properties
+                      //   //to assign each attribute to a variable, which will be added as columns to the DB
+                      //   // landUses = getItemToJSON.properties.landUses;
+                      //   // landUsesEmoji = getItemToJSON.properties.landUsesEmoji;
+                      //   openOrPrivate = getItemToJSON.properties.openOrPrivate;
+                      //   // phoneNumber = getItemToJSON.properties.phoneNumber;
+                      //   areaPolygon = getItemToJSON.properties.areaPolygon;
+                      //   lengthLine = getItemToJSON.properties.lengthLine;
+                      //   dateTime = getItemToJSON.properties.dateTime;
+                      //   // timeSpendSeconds = getItemToJSON.properties.timeSpendSeconds;
+                      //   // dist_m_Participant_Feature = getItemToJSON.properties.dist_m_Participant_Feature;
+                      //   randomID = getItemToJSON.properties.randomID;
+                      //   var dataGeometryString = JSON.stringify(dataGeometry)
+                      //
+                      //
+                      //
+                      //   if(areaPolygon == 'Line' || areaPolygon == 'Point'){
+                      //     var areaPolygonNumeric = 0
+                      //   }else{
+                      //     function extractNumbers(str) {
+                      //        return str.replace(/\D/g, '');
+                      //      }
+                      //      var areanumber = extractNumbers(areaPolygon)
+                      //      areanumber =areanumber.slice(0, -2)
+                      //     var acrestoha = areanumber*0.404686
+                      //     var acretoha2decimals = acrestoha.toFixed(2)
+                      //     //console.('acretoha2decimals',acretoha2decimals)
+                      //
+                      //     var areaPolygonNumeric = parseFloat(acretoha2decimals)
+                      //   }
+                      //   //console.('lengthLine',lengthLine)
+                      //
+                      //   if(lengthLine == 'Polygon' || lengthLine == 'Point'){
+                      //     var lengthLineNumeric = 0
+                      //
+                      //   }else{
+                      //     function extractNumbers(str) {
+                      //        return str.replace(/\D/g, '');
+                      //      }
+                      //      var lengthnumber = extractNumbers(lengthLine)
+                      //     var lenghtkm2decimals = lengthnumber.toFixed(2)
+                      //     var lengthLineNumeric = parseFloat(lenghtkm2decimals)
+                      //
+                      //   }
+                      //
+                      //   attribute1s = getItemToJSON.properties.Description
+                      //   const brRegex = /<\/?br>/gi;
+                      //   attribute1s = attribute1s.replace(brRegex, '');
+                      //
+                      //   attribute2s = getItemToJSON.properties.screen1
+                      //   attribute3s = getItemToJSON.properties.screen2
+                      //   attribute4s = getItemToJSON.properties.screen3
+                      //   attribute5s = null
+                      //   attribute6s = null
+                      //   attribute7s = null
+                      //   attribute8s = null
+                      //   attribute9s = null
+                      //   attribute10s = null
+                      //   dist_m_Participant = 0
+                      //   const numberRegex = /\d+/g;
+                      //
+                      //   // if(attribute11n == null){
+                      //   //   attribute11n = 0
+                      //   // }else{
+                      //   //   attribute11nstring = kidsmale
+                      //   //   attribute11n = attribute11nstring.match(numberRegex);
+                      //   // }
+                      //   // if(attribute12n == null){
+                      //   //   attribute12n = 0
+                      //   // }else{
+                      //   //   attribute12nstring = kidsfemale
+                      //   //   attribute12n = attribute12nstring.match(numberRegex);
+                      //   // }
+                      //   // if(attribute13n == null){
+                      //   //   attribute13n = 0
+                      //   // }else{
+                      //   //   attribute13nstring = adultmale
+                      //   //   attribute13n = attribute13nstring.match(numberRegex);
+                      //   // }
+                      //   // if(attribute14n == null){
+                      //   //   attribute14n = 0
+                      //   // }else{
+                      //   //   attribute14nstring = adultfemale
+                      //   //   attribute14n = attribute14nstring.match(numberRegex);
+                      //   // }
+                      //   // if(attribute15n == null){
+                      //   //   attribute15n = 0
+                      //   // }else{
+                      //   //   attribute15nstring = household
+                      //   //   attribute15n = attribute15nstring.match(numberRegex);
+                      //   // }
+                      //   attribute11n = 0
+                      //   attribute12n = 0
+                      //   attribute13n = 0
+                      //   attribute14n = 0
+                      //   attribute15n = 0
+                      //   attribute16n = 0
+                      //   attribute17n = 0
+                      //   attribute18n = 0
+                      //   attribute19n = 0
+                      //   attribute20n = 0
+                      //   /////////////////////////////////////////LOCAL STORAGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE///////////////////////////////////////////////
+                      //   // var commentAudioDefault = '.'
+                      //   var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n) VALUES (ST_GeogFromGeoJSON('";
+                      //   var sql2 = dataGeometryString;
+                      // var sql3 = "',make_valid => true),'"+randomID+ "',CAST('" + phoneNumber + "' AS INT64),'" + sapelliProjectIdentifier + "',CAST('" + areaPolygonNumeric + "' AS NUMERIC),CAST('" + lengthLineNumeric + "' AS NUMERIC),CAST('" + dist_m_Participant + "' AS INT64),'" + dateTime +"','"+attribute1s+ "','" + attribute2s + "','" + attribute3s + "','" + attribute4s + "','" + attribute5s + "','" + attribute6s + "','" + attribute7s + "','" + attribute8s + "','"+attribute9s+ "','" + attribute10s + "',CAST('"+ attribute11n + "' AS INT64),CAST('" + attribute12n + "' AS INT64),CAST('" + attribute13n + "' AS INT64),CAST('" + attribute14n + "' AS INT64),CAST('" + attribute15n + "' AS INT64),CAST('" + attribute16n + "' AS INT64),CAST('" +attribute17n+ "' AS INT64),CAST('" + attribute18n + "' AS INT64),CAST('" + attribute19n + "' AS INT64),CAST('" + attribute20n + "' AS INT64))";
+                      //   pURL = sql + sql2 + sql3;
+                      //   console.log('submited to carto from local storage',pURL)
+                      //   submitToProxy(pURL);
+                      //
+                      //
+                      // ////////////change the property so it is only sent once
+                      //
+                      // getItemToJSON.properties.OP = 'submittedOpen';
+                      // var getItemToJSONstringified = JSON.stringify(getItemToJSON);
+                      //
+                      //   // var getItemToJSON = JSON.parse(value);
+                      // // geoJSONLocalforageDB.setItem(tempName, dataStringified)
+                      // geoJSONLocalforageDB.setItem(key, getItemToJSONstringified);
 
                     }
                     //add each json to an array-------------------------
@@ -1039,7 +1063,7 @@ var mapCurrentZoomtilesdownload = map.getZoom();
 var maxzoom = mapCurrentZoomtilesdownload+3;
 var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
       minZoom: 12,
-      maxZoom: 16,
+      maxZoom: 18,
     saveButtonHtml: '<img src="images/download.png" alt="..." width=30px ; height=30px>',
     removeButtonHtml: '<img src="images/bin.png" alt="..." width=25px ; height=25px>',
 
@@ -1048,9 +1072,11 @@ var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
 
      // console.log('zoomlimittodownload',zoomlimittodownload)
         if (window.confirm('Save ' + nTilesToSave + ' tiles? If less than 1000, click OK and wait. Else, zoom in and click download again')) {
+          document.getElementById('maploadinggif').src = 'images/gifcartofilter.gif'
+          document.getElementById('MapLoading').style.display = 'initial'
             continueSaveTiles();
         }
-        console.log('map.getZoom()+3',map.getZoom()+3)
+        //console.('map.getZoom()+3',map.getZoom()+3)
 
         // return zoomlimittodownload
     },
@@ -1175,7 +1201,7 @@ if(isIOS == false){
 }
 
 var sentinelHubKey = '82b5a4e7-b887-40b2-949b-1b47a2aa9774';
-console.log('mosaicRequestedLatest',mosaicRequestedLatest)
+//console.('mosaicRequestedLatest',mosaicRequestedLatest)
 
   // var planetScopeMonthlyMosaicLatest = L.tileLayer.wms('https://tiles.planet.com/basemaps/v1/planet-tiles/planet_medres_normalized_analytic_' + mosaicRequestedLatest + '-' + mosaicRequested4Months + '_mosaic/gmap/{z}/{x}/{y}.png?api_key=dc4d2573d7554ccd8caccc66bd542d1b',{
   //   attribution: 'Leaflet | PlanetScope Imagery ' + attributeMosaicLatest + ' ' + year
@@ -2283,7 +2309,7 @@ var myLayer_Button = L.easyButton({
                     var currentZoom = map.getZoom()
                     if(whichLayerIsOn == 'deflated' && currentZoom >= 12){
                       // deflated.addTo(map)
-                      console.log('carto open layer added to the map')
+                      //console.('carto open layer added to the map')
                     }
 
                     // deflated.addTo(map);
@@ -2417,8 +2443,8 @@ var filter_Button = L.easyButton({
             document.getElementById("armchair").style.display = "none";
             document.getElementById("field").style.display = "none";
             document.getElementById("gobackArmchairField").style.display = "none";
-            filterLocalStorage_Button.button.style.opacity = '1';
-            filterLocalStorage_Button.button.disabled = false;
+            // filterLocalStorage_Button.button.style.opacity = '1';
+            // filterLocalStorage_Button.button.disabled = false;
 
 
             if(filterApplied == true){
@@ -2457,7 +2483,7 @@ var filter_Button = L.easyButton({
             // }
 
         }else{
-          console.log('filterbutton and filter off')
+          //console.('filterbutton and filter off')
 
             landUse = 'emojiNoSapelli'
             const element = document.getElementById('span6');
@@ -2654,7 +2680,7 @@ var position
 var startSearchingLocation = function(){
 var refreshGPSbutton = setInterval(function() { ///////////////////////////////////////// function to keep searching for gps position
 
-  console.log('gps accuracy',accuracy)
+  //console.('gps accuracy',accuracy)
   if(localStorage.getItem('pwCorrect')){
     // navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
     //
@@ -2861,7 +2887,7 @@ var gps_Button = L.easyButton({
                   if(mapCurrentZoom > 17){
                     map.flyTo(currentLocation, mapCurrentZoom);
                   }else{
-                    map.flyTo(currentLocation, 17);
+                    map.flyTo(currentLocation, 16);
                   }
 
                     // startSearchingLocation()
@@ -2923,7 +2949,7 @@ var filterLocalStorage_Button = L.easyButton({
         stateName: 'check-mark',
         onClick: function(btn, map) {
           groupGeoJSON = [] // to replace groupGeoJSON = newGeom created when new feature added in local storage, which caused and error when applying the filter
-          console.log(filterApplied)
+          //console.(filterApplied)
 
             // try{
             //   var boundsLocalStorageLayer = deflatedLocalStorage.getBounds()
@@ -2946,7 +2972,7 @@ var filterLocalStorage_Button = L.easyButton({
             if(filterIsOn == false){
               const element = document.getElementById('span6');
               element.style.width = 'calc(100% - 200px)';
-              filterLocalStorage_Button.button.style.borderColor = 'white'
+              // filterLocalStorage_Button.button.style.borderColor = 'white'
 
               startCheckAttrDateContent = setInterval(checkAttrDateContent,300)
               //console.log('filterisonfalse')
@@ -2968,7 +2994,7 @@ var filterLocalStorage_Button = L.easyButton({
 
               if(filterApplied == true){
                 //console.log('filterisonfalse')
-                filterLocalStorage_Button.button.style.borderColor = 'green'
+                // filterLocalStorage_Button.button.style.borderColor = 'green'
 
                 document.getElementById("clearFilter").style.display = "initial";
                 document.getElementById("clearFilter").style.opacity = '1'
@@ -3005,7 +3031,7 @@ var filterLocalStorage_Button = L.easyButton({
           }else{
             const element = document.getElementById('span6');
             element.style.width = 'calc(100% - 125px)';
-            filterLocalStorage_Button.button.style.border= '2px solid transparent';
+            // filterLocalStorage_Button.button.style.border= '2px solid transparent';
             landUse = 'emojiNoSapelli'  // to refresh the popup content while creating geom incease filter applied before
 
               clearInterval(startCheckAttrDateContent)
@@ -3014,11 +3040,11 @@ var filterLocalStorage_Button = L.easyButton({
               filterIsOn = false
               myLayer_Button.button.style.opacity = '1';
               myLayer_Button.button.disabled = false;
-              filterLocalStorage_Button.button.style.opacity = '1';
-              filterLocalStorage_Button.button.disabled = false;
+              // filterLocalStorage_Button.button.style.opacity = '1';
+              // filterLocalStorage_Button.button.disabled = false;
 
               if(filterApplied == true){ //to avoid that if dilterby date is all, color is not green
-                filterLocalStorage_Button.button.style.borderColor = 'green'
+                // filterLocalStorage_Button.button.style.borderColor = 'green'
                 // landUse = 'emojiNoSapelli'  // to refresh the popup content while creating geom incease filter applied before
                 // console.log('emojinosapelli')
 
@@ -3172,18 +3198,18 @@ var submitToProxy = function(q) {
 var pURL
 //this function is called both when feature is deleted or feature is created and sent.
 function setData() {
-  console.log('cartoIdFeatureSelected',cartoIdFeatureSelected)
-  console.log('created',created)
-  console.log('toDelete',toDelete)
-  console.log('clickCountDeleteButton',clickCountDeleteButton)
+  //console.log('cartoIdFeatureSelected',cartoIdFeatureSelected)
+  //console.('created',created)
+  //console.('toDelete',toDelete)
+  //console.('clickCountDeleteButton',clickCountDeleteButton)
 
-    console.log('cartoIdFeatureSelected',cartoIdFeatureSelected);
-    console.log('toDelete',toDelete);
+    //console.('cartoIdFeatureSelected',cartoIdFeatureSelected);
+    //console.('toDelete',toDelete);
 
     if ((cartoIdFeatureSelected != null && toDelete == true) || deleteFromcartoimmediate != null) { //TO DELETE THE SELECTED FEATURE FROM THE CARTO DB
         toDelete = false
         if(deleteFromcartoimmediate != null){
-          console.log('deleteFromcartoimmediate',deleteFromcartoimmediate)
+          //console.('deleteFromcartoimmediate',deleteFromcartoimmediate)
 
           cartoIdFeatureSelected = deleteFromcartoimmediate
         }
@@ -3216,10 +3242,10 @@ function setData() {
         //console.log(pURL)
     }
     else { //TO INSERT THE CREATED FEATURE INTO THE CARTO DB
-      console.log(data)
+      //console.(data)
 
         dataGeometry = data.geometry
-        console.log(dataGeometry)
+        //console.(dataGeometry)
         var dataGeometryString = JSON.stringify(dataGeometry)
         ///////////////////////////////////////////////////////ha or acres !!!!!!!!!!!!!!!!!!!!!!! ??????????///////////////
         // phoneNumber = 123456789
@@ -3235,9 +3261,9 @@ function setData() {
         //   crop_hectares_afected = 0
         // }
 
-        console.log('areaPolygon',areaPolygon)
-        console.log('finalAreaAcres2Decimals',finalAreaAcres2Decimals)
-        console.log('finalLength2Decimals',finalLength2Decimals)
+        //console.('areaPolygon',areaPolygon)
+        //console.('finalAreaAcres2Decimals',finalAreaAcres2Decimals)
+        //console.('finalLength2Decimals',finalLength2Decimals)
 
 
         if(finalAreaAcres2Decimals == 'Line' || finalAreaAcres2Decimals == 'Point'){
@@ -3250,22 +3276,26 @@ function setData() {
            areanumber =areanumber.slice(0, -2)
           var acrestoha = areanumber*0.404686
           var acretoha2decimals = acrestoha.toFixed(2)
-          console.log('acretoha2decimals',acretoha2decimals)
+          //console.('acretoha2decimals',acretoha2decimals)
 
           var areaPolygonNumeric = parseFloat(acretoha2decimals)
         }
-        console.log('lengthLine',lengthLine)
+        //console.('lengthLine',lengthLine)
 
         if(finalLength2Decimals == 'Polygon' || finalLength2Decimals == 'Point'){
           var lengthLineNumeric = 0
 
         }else{
-          var lengthLineNumeric = parseFloat(finalLength2Decimals)
-
+          function extractNumbers(str) {
+             return str.replace(/\D/g, '');
+           }
+          var lengthnumber = extractNumbers(finalLength2Decimals)
+         var lenghtkm2decimals = lengthnumber.slice(0, -2)
+         var lengthLineNumeric = parseFloat(lenghtkm2decimals)
         }
 
-        console.log('areaPolygonNumeric',areaPolygonNumeric)
-        console.log('lengthLineNumeric',lengthLineNumeric)
+        //console.('areaPolygonNumeric',areaPolygonNumeric)
+        //console.('lengthLineNumeric',lengthLineNumeric)
 
         // landownership_type = null
         // male_or_female = null
@@ -3295,69 +3325,96 @@ function setData() {
         attribute9s = null
         attribute10s = null
         const numberRegex = /\d+/g;
+attribute11nstring = kidsmale
+attribute12nstring = kidsfemale
+attribute13nstring = adultmale
+attribute14nstring = adultfemale
+attribute15nstring = household
+try{ //to catch when value is empty
+  attribute11n = attribute11nstring.match(numberRegex);
+  attribute11n = attribute11n[0]
+}catch(e){
+  attribute11n = 0
+  console.log(e)
+}
+try{ //to catch when value is empty
+  attribute12n = attribute12nstring.match(numberRegex);
+  attribute12n = attribute12n[0]
+}catch(e){
+  attribute12n = 0
+  console.log(e)
+}
+try{ //to catch when value is empty
+  attribute13n = attribute13nstring.match(numberRegex);
+  attribute13n = attribute13n[0]
+}catch(e){
+  attribute13n = 0
+  console.log(e)
+}
+try{ //to catch when value is empty
+  attribute14n = attribute14nstring.match(numberRegex);
+  attribute14n = attribute14n[0]
+}catch(e){
+  attribute14n = 0
+  console.log(e)
+}
+try{ //to catch when value is empty
+  attribute15n = attribute15nstring.match(numberRegex);
+  attribute15n = attribute15n[0]
+}catch(e){
+  attribute15n = 0
+  console.log(e)
+}
 
-        if(attribute11n == null){
-          attribute11n = 0
-        }else{
-          attribute11nstring = kidsmale
-          attribute11n = attribute11nstring.match(numberRegex);
-        }
-        if(attribute12n == null){
-          attribute12n = 0
-        }else{
-          attribute12nstring = kidsfemale
-          attribute12n = attribute12nstring.match(numberRegex);
-        }
-        if(attribute13n == null){
-          attribute13n = 0
-        }else{
-          attribute13nstring = adultmale
-          attribute13n = attribute13nstring.match(numberRegex);
-        }
-        if(attribute14n == null){
-          attribute14n = 0
-        }else{
-          attribute14nstring = adultfemale
-          attribute14n = attribute14nstring.match(numberRegex);
-        }
-        if(attribute15n == null){
-          attribute15n = 0
-        }else{
-          attribute15nstring = household
-          attribute15n = attribute15nstring.match(numberRegex);
-        }
+        // if(isNaN(attribute11n) == true){ //to put zero when value is empty so no error in the xhr
+        //   console.log('attribute11n is not a number')
+        //   attribute11n = 0
+        // }
+        // if(isNaN(attribute12n) == true){
+        //   attribute12n = 0
+        // }
+        // if(isNaN(attribute13n) == true){
+        //   attribute13n = 0
+        // }
+        // if(isNaN(attribute14n) == true){
+        //   attribute14n = 0
+        // }
+        // if(isNaN(attribute15n) == true){
+        //   attribute15n = 0
+        // }
         attribute16n = 0
         attribute17n = 0
         attribute18n = 0
         attribute19n = 0
         attribute20n = 0
+
         // if(areaPolygon != null){
         //   areaPolygon = extractNumbers(areaPolygon)
         // }
 
-        console.log('attribute1s',attribute1s)
-        console.log('attribute2s',attribute2s)
-        console.log('attribute3s',attribute3s)
-        console.log('attribute4s',attribute4s)
-        console.log('attribute5s',attribute5s)
-        console.log('attribute6s',attribute6s)
-        console.log('attribute7s',attribute7s)
-        console.log('attribute8s',attribute8s)
-        console.log('attribute9s',attribute9s)
-        console.log('attribute10s',attribute10s)
-        console.log('attribute11n',attribute11n)
-        console.log('attribute12n',attribute12n)
-        console.log('attribute13n',attribute13n)
-        console.log('attribute14n',attribute14n)
-        console.log('attribute15n',attribute15n)
-        console.log('attribute16n',attribute16n)
-        console.log('attribute17n',attribute17n)
-        console.log('attribute18n',attribute18n)
-        console.log('attribute19n',attribute19n)
-        console.log('attribute19n',attribute19n)
+        //console.('attribute1s',attribute1s)
+        //console.('attribute2s',attribute2s)
+        //console.('attribute3s',attribute3s)
+        //console.('attribute4s',attribute4s)
+        //console.('attribute5s',attribute5s)
+        //console.('attribute6s',attribute6s)
+        //console.('attribute7s',attribute7s)
+        //console.('attribute8s',attribute8s)
+        //console.('attribute9s',attribute9s)
+        //console.('attribute10s',attribute10s)
+        //console.('attribute11n',attribute11n)
+        //console.('attribute12n',attribute12n)
+        //console.('attribute13n',attribute13n)
+        //console.('attribute14n',attribute14n)
+        //console.('attribute15n',attribute15n)
+        //console.('attribute16n',attribute16n)
+        //console.('attribute17n',attribute17n)
+        //console.('attribute18n',attribute18n)
+        //console.('attribute19n',attribute19n)
+        //console.('attribute19n',attribute19n)
 
         dist_m_Participant = 0
-        console.log('datetime',dateTime) // 2023-5-18T16:16:13Z
+        //console.('datetime',dateTime) // 2023-5-18T16:16:13Z
         // var dist_m_Participant_FeatureInt64 = parseInt(dist_m_Participant_Feature,10)
         // timeSpendSeconds = 3.14159265358979323846264338327950288400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001
         // timeSpendSeconds = BigInt(timeSpendSeconds)
@@ -3370,7 +3427,7 @@ function setData() {
         var sql2 = dataGeometryString;
 var sql3 = "',make_valid => true),'"+randomID+ "',CAST('" + phoneNumber + "' AS INT64),'" + sapelliProjectIdentifier + "',CAST('" + areaPolygonNumeric + "' AS NUMERIC),CAST('" + lengthLineNumeric + "' AS NUMERIC),CAST('" + dist_m_Participant + "' AS INT64),'" + dateTime +"','"+attribute1s+ "','" + attribute2s + "','" + attribute3s + "','" + attribute4s + "','" + attribute5s + "','" + attribute6s + "','" + attribute7s + "','" + attribute8s + "','"+attribute9s+ "','" + attribute10s + "',CAST('"+ attribute11n + "' AS INT64),CAST('" + attribute12n + "' AS INT64),CAST('" + attribute13n + "' AS INT64),CAST('" + attribute14n + "' AS INT64),CAST('" + attribute15n + "' AS INT64),CAST('" + attribute16n + "' AS INT64),CAST('" +attribute17n+ "' AS INT64),CAST('" + attribute18n + "' AS INT64),CAST('" + attribute19n + "' AS INT64),CAST('" + attribute20n + "' AS INT64),CAST('" +dateTime+"' AS TIMESTAMP))";
         pURL = sql + sql2 + sql3;
-        console.log(pURL)
+        //console.(pURL)
         // console.log(timeSpendSeconds)
 //         var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n) VALUES (ST_GeogFromGeoJSON('";
 //         var sql2 = dataGeometryString;
@@ -3490,9 +3547,9 @@ document.getElementById("gobackArmchairField").onclick = function(e) {
   document.getElementById("polygon").style.display = "none";
   document.getElementById("polyline").style.display = "none";
   document.getElementById("point").style.display = "none";
-  filterLocalStorage_Button.button.disabled = false
+  // filterLocalStorage_Button.button.disabled = false
   filter_Button.button.disabled = false
-  filterLocalStorage_Button.button.style.opacity = '1'
+  // filterLocalStorage_Button.button.style.opacity = '1'
   filter_Button.button.style.opacity = '1'
   filter_Button.button.style.opacity = '0.4';
   filter_Button.button.disabled = true;
@@ -3739,7 +3796,7 @@ var startCheckingText = function() {
             // var emojioneareaeditor0 = emojioneareaeditor[0]
           //  ////console.log(emojioneareaeditor0)
             // var emojioneareaeditor0innerHTML = emojioneareaeditor0.innerHTML /////////////////////////////////////////////11111111111111111111111ddddddddddddddddddddddddddddddESTE!!!
-           console.log(emojioneareaeditor0.value)
+           //console.(emojioneareaeditor0.value)
            emojioneareaeditor0.value = emojioneareaeditor0.value.replace(/<br>|null/g, "")
 
         //    ////console.log(emojioneareaeditor[0].textContent.lenght)
@@ -3821,18 +3878,33 @@ var startCheckingText = function() {
                   // }else if(evaluation != null && croptype != null){
                   //   emojioneareaeditor0innerHTML =  landUse + ' ▪️ ' + croptype + ' ▪️ ' + evaluation +  ' - ' + emojioneareaeditor0.innerHTML
                   // }
-                  var emojioneareaeditor0innerHTMLAndImages = emojioneareaeditor0.value + '</br>' + '</br>' + imgPopup1 + ' ' +imgPopup2 + ' ' + imgPopup3// + ' ' + imgPhoto
-                  layer.bindPopup(emojioneareaeditor0innerHTMLAndImages,{
-                    maxWidth : 150
-                  }).addTo(map);
-                  layer.bindPopup(emojioneareaeditor0innerHTMLAndImages).openPopup(); ///automatically shows the pop up!
+                  if(sharedownloadclicked == true){
+                    var emojioneareaeditor0innerHTMLAndImages = emojioneareaeditor0.value + '</br>' + '</br>' + imgPopup1 + ' ' +imgPopup2 + ' ' + imgPopup3// + ' ' + imgPhoto
+                    layer.bindPopup(emojioneareaeditor0innerHTMLAndImages,{
+                      maxWidth : 150
+                    }).addTo(map);
+                    layer.bindPopup(emojioneareaeditor0innerHTMLAndImages).openPopup(); ///automatically shows the pop up!
+                    console.log('keeps checking popup')
+                    sharedownloadclicked = false
+                    clearInterval(refreshPopup) //to stop searching for changes in the textbox
+
+
+                  }else{
+                    var emojioneareaeditor0innerHTMLAndImages = emojioneareaeditor0.value + '</br>' + '</br>' + imgPopup1 + ' ' +imgPopup2 + ' ' + imgPopup3// + ' ' + imgPhoto
+                    layer.bindPopup(emojioneareaeditor0innerHTMLAndImages,{
+                      maxWidth : 150
+                    })//.addTo(map);
+                    layer.bindPopup(emojioneareaeditor0innerHTMLAndImages)//.openPopup(); ///automatically shows the pop up!
+                    console.log('keeps checking popup')
+                  }
+
 
                 // }
               //  ////console.log('innerhtml is not null')
                 document.getElementById("share-download").style.opacity = "1"; //to disable button until user adds attributes, either with audio or text
                 document.getElementById("share-download").disabled = false;
             }
-        }, 300) // time frequency to refresh the content in the popup
+        }, 100) // time frequency to refresh the content in the popup
     }
 
     tempLayer = L.geoJSON(data, {
@@ -3850,7 +3922,7 @@ var startCheckingText = function() {
 
     }).addTo(map);
   //  ////console.log(tempLayer)
-    return tempLayer && refreshPopup
+    return tempLayer && refreshPopup && sharedownloadclicked
 }
 
 

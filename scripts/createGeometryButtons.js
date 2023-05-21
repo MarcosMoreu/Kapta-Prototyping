@@ -633,23 +633,33 @@ document.getElementById('emojionearea').value = null
     var centerBoundsPolygon = boundsPolygon.getCenter()
     var mapNewBounds = map.getBounds();
 
+    // if (featureType == 'point') {
+    //     //console.log('featuretype    ' + featureType)
+    //     if(isOnline == true){
+    //       setTimeout(function() {
+    //         // if(isOnline == true){
+    //         map.setZoom(16)
+    //         // }else{
+    //       }, 100)
+    //     }else{
+    //       map.setZoom(16)
+    //     }
+    //
+    // }
     if (featureType == 'point') {
         //console.log('featuretype    ' + featureType)
-        if(isOnline == true){
-          setTimeout(function() {
-            // if(isOnline == true){
-              map.zoomOut(3)
-            // }else{
-          }, 100)
-        }else{
-          map.setZoom(17)
-        }
+        map.fitBounds(drawnItems.getBounds(), {
+            maxZoom:16,
+            paddingBottomRight: [0, 0]
+        })
 
+    }else{
+      map.fitBounds(drawnItems.getBounds(), {
+          // maxZoom:16,
+          paddingBottomRight: [0, 0]
+      })
     }
-    map.fitBounds(drawnItems.getBounds(), {
-        //  maxZoom:30,
-        paddingBottomRight: [0, 0]
-    })
+
     //console.log(typeOfFeature)
     //console.log(created)
 

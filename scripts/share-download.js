@@ -32,9 +32,10 @@ var tempName
 var filesArray = []
 
 var testBlob = null
-
+var sharedownloadclicked = false
 
 document.getElementById('share-download').onclick = function(e) {
+  sharedownloadclicked = true
   // googleSat.removeFrom(map)
 
 finalAttributes = document.getElementById('emojionearea').value
@@ -49,7 +50,6 @@ finalAttributes = document.getElementById('emojionearea').value
     audioRecorded = false;
     typeOfFeature = null;
     drawingPoint = false //to reset value for this session
-    clearInterval(refreshPopup) //to stop searching for changes in the textbox
     var getUrl = window.location.href
     ////console.log(getUrl)
 
@@ -97,12 +97,12 @@ finalAttributes = document.getElementById('emojionearea').value
     myLayerIsOn = true;
     myLayer_Button.button.style.backgroundColor = 'black';
 
-    return created && data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType && convertedDataShareDirect && opencamera  //&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
+    return sharedownloadclicked && created && data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType && convertedDataShareDirect && opencamera  //&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
 }
 ////console.log(finalLayer)
 var finalGeoJSON = function(){
   var randomNumber = Math.random();
-  randomNumber = randomNumber * 10000;
+  randomNumber = randomNumber * 10000000;
   var randomID = Math.round(randomNumber)+armchairOrGPS;  // if a means mapped with armchair, if g means mapped with gps
   //here the datetime
   var timeEnd = new Date();
@@ -239,22 +239,76 @@ var finalGeoJSON = function(){
           'I3':imageName3,
           'sapProjID': sapelliProjectIdentifier
       };
-      propertiesGeoJSONURL = {
-        'Description': boxContent,
-        'OP': openOrPrivate,
-        'phoneNumber': localStorage.getItem('phoneNumber'),
-        // 'sapProjID': sapelliProjectIdentifier,
-        'screen1':screen1,
-        'screen2':screen2,
-        'screen2':screen3,
-        'areaPolygon': finalAreaAcres2Decimals,
-        'lengthLine': finalLength2Decimals,
-        'dateTime': dateTime,
-        'randomID': randomID,
-        'I1':imageName1,
-        'I2':imageName2,
-        'I3':imageName3,
-      };
+      if(kidsmale == null){
+        var privatephonenumber = localStorage.getItem('phoneNumber')
+        console.log('phonenumber', privatephonenumber)
+        privatephonenumber = privatephonenumber.substr(0, 6)
+        console.log('privatephonenumber', privatephonenumber)
+
+        propertiesGeoJSONURL = {
+          'Description': boxContent,
+          'OP': openOrPrivate,
+          'phoneNumber': privatephonenumber,
+          // 'sapProjID': sapelliProjectIdentifier,
+          'screen1':screen1,
+          'screen2':screen2,
+          'screen2':screen3,
+          'areaPolygon': finalAreaAcres2Decimals,
+          'lengthLine': finalLength2Decimals,
+          'dateTime': dateTime,
+          'randomID': randomID,
+          'I1':imageName1,
+          'I2':imageName2,
+          'I3':imageName3,
+        };
+
+      }else{
+        var privatephonenumber = localStorage.getItem('phoneNumber')
+        console.log('phonenumber', privatephonenumber)
+        privatephonenumber = privatephonenumber.substr(0, 6)
+        console.log('privatephonenumber', privatephonenumber)
+
+        function extractNumbersFromString(str) {
+          const numberRegex = /\d+/g;
+          const numbers = str.match(numberRegex);
+          return numbers ? numbers.map(Number) : [];
+        }
+        try{
+          // const kidsmalenum = extractNumbersFromString(kidsmale);
+          // const kidsfemaleenum =
+          // const adultmalenum = extractNumbersFromString(adultmale);
+          // const adultfemalenum = extractNumbersFromString(adultfemale);
+          // const householdnum = extractNumbersFromString(household);
+          // console.log('kidsmalenum',kidsmalenum)
+
+        }catch(e){
+
+        }
+        propertiesGeoJSONURL = {
+          'Description': boxContent,
+          'OP': openOrPrivate,
+          'phoneNumber': privatephonenumber,
+          // 'sapProjID': sapelliProjectIdentifier,
+          'screen1':screen1,
+          'screen2':screen2,
+          'screen2':screen3,
+          'kidsmale':extractNumbersFromString(kidsmale),
+          'kidsfemale':extractNumbersFromString(kidsfemale),
+          'adultmale':extractNumbersFromString(adultmale),
+          'adultfemale':extractNumbersFromString(adultfemale),
+          'household':extractNumbersFromString(household),
+          'areaPolygon': finalAreaAcres2Decimals,
+          'lengthLine': finalLength2Decimals,
+          'dateTime': dateTime,
+          'randomID': randomID,
+          'I1':imageName1,
+          'I2':imageName2,
+          'I3':imageName3,
+        };
+        // console.log('kidsmalenum',kidsmalenum)
+
+      }
+
     // }
 
     //  adding the properties to the geoJSON file:
@@ -299,6 +353,7 @@ var finalGeoJSON = function(){
 
 document.getElementById('goBackClassification').onclick = function(e){
   openOrPrivate = null
+  screen1 = null
   document.getElementById('goBackClassification').style.display = 'none';
   document.getElementById('shareMessagingAppsDirect').style.display = 'none';
   document.getElementById('shareWorldButton').style.display = 'none';

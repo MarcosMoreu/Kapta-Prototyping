@@ -66,126 +66,57 @@ document.getElementById('customIconsMap').onclick = function(e){
     document.getElementById('emoji').style.display = 'initial';
     document.getElementById('showAreaAcres').style.display = 'initial';
     // document.getElementById('share-download').style.display = 'initial';
-    if(screenChoice == 'sapprojectsscreen'){
+    if(screen1 == null){
+      console.log('here ')
       // screen = 'emojiNoSapelli'
       // document.getElementById('share-download').style.opacity = '0.5'
-    }
-    if(screen1 != 'emojiNoSapelli'){
-      document.getElementById("Cancel").style.opacity = '0'
-      document.getElementById("sapelliProjects").style.opacity = '0'
-      document.getElementById('emoji').style.opacity = '0'
-      document.getElementById('share-download').style.display = 'none';
+    }else{
 
-      setTimeout(function(){
-        document.getElementById("Cancel").style.opacity = '1'
-        document.getElementById("sapelliProjects").style.opacity = '1'
-        document.getElementById('emoji').style.opacity = '1'
-        // document.getElementById('share-download').style.opacity = '1'
-      },2000)
+          document.getElementById("Cancel").style.opacity = '0'
+          document.getElementById("sapelliProjects").style.opacity = '0'
+          document.getElementById('emoji').style.opacity = '0'
+          document.getElementById('share-download').style.display = 'none';
 
-      //here we have: Always screen, sometime croptype and sometimes evaluation. so four scenarios
-      //and 1, 2 or 3 images
+          setTimeout(function(){
+            document.getElementById("Cancel").style.opacity = '1'
+            document.getElementById("sapelliProjects").style.opacity = '1'
+            document.getElementById('emoji').style.opacity = '1'
+            // document.getElementById('share-download').style.opacity = '1'
+          },2000)
 
-
-        // emojioneareaeditor0.value =  screen + ' ▪️ ' + ett + ' ▪️ ' + maisonsdetruites +  ' ▪️ '  + personnesaffectees +  ' ▪️ '  + croptype +  ' ▪️ '  + evaluation +
-        // ' ▪️ '  + landownership + ' ▪️ '  + ownershipprice  + ' ▪️ '  + malefemale +' ▪️ ' + emojioneareaeditor0.value
-        emojioneareaeditor0 =   document.getElementById('emojionearea')
-        // if(evaluation == null && croptype == null){
-        //   emojioneareaeditor0.value =  screen + ' ▪️ ' + emojioneareaeditor0.value
-        // }else if(evaluation != null && croptype == null){
-        //   emojioneareaeditor0.value =  screen + ' ▪️ ' + evaluation +  ' ▪️ ' + emojioneareaeditor0.value
-        // }else if(evaluation == null && croptype != null){
-        //   emojioneareaeditor0.value =  screen + ' ▪️ ' + croptype +  ' ▪️ ' + emojioneareaeditor0.value
-        // }else if(evaluation != null && croptype != null){
-        //   emojioneareaeditor0.value =  screen + ' ▪️ ' + croptype + ' ▪️ ' + evaluation +  ' ▪️ ' + emojioneareaeditor0.value
-        // }
-        emojioneareaeditor0.value = screen1 + screen2 + screen3 + kidsmale + kidsfemale + adultmale + adultfemale  + household + emojioneareaeditor0.value
-        emojioneareaeditor0.value = emojioneareaeditor0.value.replace(/null/g, '')
-        attribute1s = emojioneareaeditor0.value
-        attribute2s = screen1 //evaluation
-        attribute3s = screen2
-        attribute4s = screen3
-        attribute5s = null
-        attribute6s = null
-        attribute7s = null
-        attribute8s = null
-        attribute9s = null
-        attribute10s = null
-        attribute11n = kidsmale
-        attribute12n = kidsfemale
-        attribute13n = adultmale
-        attribute14n = adultfemale
-        attribute15n = household
-        attribute16n = 0
-        attribute17n = 0
-        attribute18n = 0
-        attribute19n = 0
-        attribute20n = 0
-
-        //console.('attributes', emojioneareaeditor0.value)
-      // finalAttributes =  screen + ett + maisonsdetruites + personnesaffectees + croptype + evaluation + landownership + ownershipprice  + malefemale + emojioneareaeditor0.value
-
-          // if(screen !=null){
-        //   cluster = screen.slice(0, -9)
-        // }else{
-        //   cluster = null
-        // }
-        //
-        // if(ett !=null){
-        //   ett_type = ett.slice(0, -9)
-        // }else{
-        //   ett_type = null
-        // }
-        // if(evaluation !=null){
-        //   evaluation_updown = evaluation.slice(0, -9)
-        // }else{
-        //   evaluation_updown = null
-        // }
-        //
-        // if(landownership !=null){
-        //   landownership_type = landownership.slice(0, -9)
-        // }else{
-        //   landownership_type = null
-        // }
-        //
-        // if(malefemale !=null){
-        //   male_or_female = malefemale.slice(0, -9)
-        // }else{
-        //   male_or_female = null
-        // }
-        //
-        // function extractNumbers(str) {
-        //   return str.replace(/\D/g, '');
-        // }
-        // console.log('maisonsdetruites',maisonsdetruites)
-        //
-        // cluster = screen.slice(0, -7)
-        // ett_type = ett.slice(0, -7)
-        // function extractNumbers(str) {
-        //   return str.replace(/\D/g, '');
-        // }
-        // if(maisonsdetruites != null){
-        //   maisonsdetruites_number = extractNumbers(maisonsdetruites)
-        // }else{
-        //   maisonsdetruites_number = 0
-        // }
-        //
-        // if(personnesaffectees != null){
-        //   personnesaffectees_number = extractNumbers(personnesaffectees)
-        // }else{
-        //   personnesaffectees_number = 0
-        // }
-        //
-        //
-        // // crop_hectares_afected = 0
-        // evaluation_updown = evaluation.slice(0, -7)
-        // landownership_type = landownership.slice(0, -7)
-        // ownership_price_bif = ownershipprice.slice(0, -7)
-        // male_or_female = malefemale.slice(0, -7)
+          //here we have: Always screen, sometime croptype and sometimes evaluation. so four scenarios
+          //and 1, 2 or 3 images
 
 
-    }
+            // emojioneareaeditor0.value =  screen + ' ▪️ ' + ett + ' ▪️ ' + maisonsdetruites +  ' ▪️ '  + personnesaffectees +  ' ▪️ '  + croptype +  ' ▪️ '  + evaluation +
+            // ' ▪️ '  + landownership + ' ▪️ '  + ownershipprice  + ' ▪️ '  + malefemale +' ▪️ ' + emojioneareaeditor0.value
+            emojioneareaeditor0 = document.getElementById('emojionearea')
+            emojioneareaeditor0.value = screen1 + screen2 + screen3 + kidsmale + kidsfemale + adultmale + adultfemale  + household + emojioneareaeditor0.value
+            emojioneareaeditor0.value = emojioneareaeditor0.value.replace(/null/g, '')
+            attribute1s = emojioneareaeditor0.value
+            attribute2s = screen1 //evaluation
+            attribute3s = screen2
+            attribute4s = screen3
+            attribute5s = null
+            attribute6s = null
+            attribute7s = null
+            attribute8s = null
+            attribute9s = null
+            attribute10s = null
+            attribute11n = kidsmale
+            attribute12n = kidsfemale
+            attribute13n = adultmale
+            attribute14n = adultfemale
+            attribute15n = household
+            attribute16n = 0
+            attribute17n = 0
+            attribute18n = 0
+            attribute19n = 0
+            attribute20n = 0
+
+        }
   }else if(filterIsOn == true){
+
     document.getElementById("map").style.height = "100%";
     document.getElementById("filterWithIcons").style.display = 'initial'
     document.getElementById("filterByDate").style.display = 'initial'
@@ -575,15 +506,15 @@ var generateScreenPopNumber = function(){///////////////////////////////////////
   iconPop11 = document.createElement("BUTTON");
   cell.appendChild(iconPop11);
   iconPop11.className = 'popUI'
-  iconPop11.innerHTML = '<img src="images/questionmark.png" style="height: 120px; width: 120px; border: 0px solid black; background: white" /> ';
+  iconPop11.innerHTML = '<img src="images/questionmark.png" style="height: 80px; width: 80px; border: 0px solid black; background: white" /> ';
   iconPop11.style.backgroundColor = 'black'
   iconPop11.style.borderColor = 'grey'
   iconPop11.onclick = function(){
-    kidsmale = '? Kids male ▪️</br> '
-    kidsfemale = '? Kids female ▪️</br> '
-    adultmale = '? Adults male ▪️</br> '
-    adultfemale = '? Adults female ▪️</br> '
-    household = '? Households ▪️</br> '
+    kidsmale = '?'
+    kidsfemale = '?'
+    adultmale = '?'
+    adultfemale = '?'
+    household = '?'
     // console.log('maisonsdetruites',maisonsdetruites)
 
     setTimeout(function(){
@@ -601,15 +532,24 @@ var generateScreenPopNumber = function(){///////////////////////////////////////
   iconPop12 = document.createElement("BUTTON");
   cell.appendChild(iconPop12);
   iconPop12.className = 'popUI'
-  iconPop12.innerHTML = '<img src="images/omoIcons/confirm.png" style="height: 120px; width: 120px; border: 0px solid black; background: black" /> ';
+  iconPop12.innerHTML = '<img src="images/omoIcons/confirm.png" style="height: 80px; width: 80px; border: 0px solid black; background: black" /> ';
   iconPop12.style.backgroundColor = 'black'
   iconPop12.style.borderColor = 'grey'
   iconPop12.onclick = function(){
-    kidsmale = '▪️ ' + iconPop2.value + ' Kids male ▪️</br> '
-    kidsfemale = '▪️ ' + iconPop4.value + ' Kids female ▪️</br> '
-    adultmale = '▪️ ' + iconPop6.value + ' Adults male ▪️</br> '
-    adultfemale = '▪️ ' + iconPop8.value + ' Adults female ▪️</br> '
-    household = '▪️ ' + iconPop10.value + ' Households ▪️</br> '
+    // if(iconPop2.value != null){
+      kidsmale = '▪️ ' + iconPop2.value + ' Kids male ▪️</br> '
+      kidsfemale = '▪️ ' + iconPop4.value + ' Kids female ▪️</br> '
+      adultmale = '▪️ ' + iconPop6.value + ' Adults male ▪️</br> '
+      adultfemale = '▪️ ' + iconPop8.value + ' Adults female ▪️</br> '
+      household = '▪️ ' + iconPop10.value + ' Households ▪️</br> '
+    // }else{
+    //   kidsmale = ''
+    //   kidsfemale = ''
+    //   adultmale = ''
+    //   adultfemale = ''
+    //   household = ''
+    // }
+
     // console.log('maisonsdetruites',maisonsdetruites)
 
     setTimeout(function(){
@@ -1297,7 +1237,7 @@ var generateButtonslandUse = function(){
 
         hideAll()
         screen1 = 'LIVESTOCK_DISSEASE'
-        imageName1 = 'healthStation'
+        imageName1 = 'ldgeneric'
         if(filterIsOn == false){
           generateButtonsLivestockDissease()
            document.getElementById('customIconsGoBack').style.display = 'initial';

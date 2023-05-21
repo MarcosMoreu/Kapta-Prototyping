@@ -14,6 +14,7 @@ var lastBoxContent = null
 var checkIfInputChanges
 //script for apply filters
 document.getElementById("applyFilter").onclick = function(e) {
+  screen1 = null
   document.getElementById('maploadinggif').src = 'images/gifcartofilter.gif'
   document.getElementById('MapLoading').style.display = 'initial'
 
@@ -291,13 +292,14 @@ document.getElementById("applyFilter").onclick = function(e) {
 
 
     // console.log('filter applied ', filterApplied)
-    return filterApplied && boxContentFilteringEncoded
+    return filterApplied && boxContentFilteringEncoded && screen1
 
 }
 
 
 //script for remove filters
 document.getElementById("clearFilter").onclick = function(e) {
+  screen1 = null
   document.getElementById("clearFilter").style.display = "none";
   document.getElementById("applyFilter").style.display = "initial";
   document.getElementById("applyFilter").style.opacity = '0.4'
@@ -394,7 +396,7 @@ document.getElementById("clearFilter").onclick = function(e) {
 
 //  deflated.addTo(map)
   filterApplied = false
-  return filterApplied && boxContentFilteringEncoded && period
+  return filterApplied && boxContentFilteringEncoded && period && screen1
 
 };
 

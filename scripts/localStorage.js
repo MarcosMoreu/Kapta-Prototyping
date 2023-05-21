@@ -519,7 +519,7 @@ var polygonColor = function(feature){
                          document.getElementById("backDeleteFeature").style.display = "initial";
                          document.getElementById("deleteFeatureLocalStorage").style.display = "initial";
                          //console.(selectedFeature.feature)
-                         if(selectedFeature.feature.properties.OP == 'open' && isOnline == true){
+                         if((selectedFeature.feature.properties.OP == 'open' || selectedFeature.feature.properties.OP == 'submittedOpen') && isOnline == true){
                            document.getElementById("deleteFeatureOpenDB").style.display = "initial";
                          }
 
@@ -582,7 +582,7 @@ var polygonColor = function(feature){
 
                               document.getElementById("backDeleteFeature").style.display = "initial";
                               document.getElementById("deleteFeatureLocalStorage").style.display = "initial";
-                              if(selectedFeature.feature.properties.OP == 'open' && isOnline == true){
+                              if((selectedFeature.feature.properties.OP == 'open' || selectedFeature.feature.properties.OP == 'submittedOpen') && isOnline == true){
                                 document.getElementById("deleteFeatureOpenDB").style.display = "initial";
                               }
 
