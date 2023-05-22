@@ -1,4 +1,4 @@
-////////////////////////////   Service Worker   ////////////////////////////////////////
+//////////////////////////   Service Worker   ////////////////////////////////////////
 
 if ('serviceWorker' in navigator) {
 
@@ -1353,7 +1353,7 @@ var clickButtonCount = 0;
 // }
 
 if (isIOS == true) {
-    var iconGPS = '<img src="images/gpsOff.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%; margin-left:-5px" > ';
+    var iconGPS = '<img src="images/gpsSearching.gif" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%; margin-left:-5px" > ';
     var iconOSM = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-top:2px; margin-left:-5px" > ';
     var iconGOOGLE = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-5px" > ';
     var iconPLANET = '<img src="images/google.png" alt="..." width=35px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-5px" > ';
@@ -1369,7 +1369,7 @@ if (isIOS == true) {
 
 
 } else {
-    var iconGPS = '<img src="images/gpsOff.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;"> ';
+    var iconGPS = '<img src="images/gpsSearching.gif" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;"> ';
     var iconOSM = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%; margin-left:-1px" > ';
     var iconGOOGLE = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;  margin-left:-1px"> ';
     var iconPLANET = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;  margin-left:-1px"> ';
@@ -2820,11 +2820,11 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
             }
         }
     } else {
-        gps_Button.button.style.backgroundColor = '#7F0000';
+        gps_Button.button.style.backgroundColor = 'grey';
         if (isIOS == true) {
-          document.getElementById('gps').innerHTML = '<img src="images/gpsOff.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px" > '
+          document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px" > '
         }else{
-          document.getElementById('gps').innerHTML = '<img src="images/gpsOff.png" text-align="center" alt="..." width=40px; height=40px; > '
+          document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" alt="..." width=40px; height=40px; > '
         }
       //  navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
 
@@ -2918,7 +2918,7 @@ var gps_Button = L.easyButton({
             }
             if (currentLocation[0] == null) {
                 //gps_Button.button.style.backgroundColor = 'red';
-                document.getElementById('gps').src = 'images/gpsOff.png'
+                document.getElementById('gps').src = 'images/gpsSearching.gif'
                 navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
 
                 // try{
@@ -2937,7 +2937,7 @@ var gps_Button = L.easyButton({
 gps_Button.button.style.width = '50px';
 gps_Button.button.style.height = '50px';
 gps_Button.button.style.transitionDuration = '.3s';
-gps_Button.button.style.backgroundColor = '#7F0000';
+gps_Button.button.style.backgroundColor = 'grey';
 //gps_Button.addTo(map);
 
 ////console.log(currentLocation[0]ddddddd)
@@ -3662,7 +3662,7 @@ document.getElementById("field").onclick = function(e) {
       document.getElementById("Alert").style.display = 'none'
 
     },3000)
-  }else if(accuracy > 50){
+  }else if(accuracy >= 100){
     // alert('Wait until the GPS symbol is green. This might take few seconds or minutes');
     document.getElementById("Alert").style.fontSize = "40px";
     document.getElementById('Alert').innerHTML = 'GPS</br>🟠⌛</br>🟡⌛</br>🟢👍'

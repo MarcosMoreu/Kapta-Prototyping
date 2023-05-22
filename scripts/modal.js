@@ -705,14 +705,15 @@ var requestPw = function(){
                 // requestCartoData()
 
                 setTimeout(function(){
-                    document.getElementById('modal').style.display='none';
-                    document.getElementById('pwForm').style.display='none';
-                    document.getElementById('AlertModalIOS').style.display = 'none'
-                    document.getElementById('initialscreen2options').style.display = 'initial'
-                    document.getElementById('talk').style.display = 'initial'
-                    document.getElementById('listen').style.display = 'initial'
-                    // location.reload() //to activate the sw so it can be used offline afterwards
-                    navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
+                  location.reload()
+                    // document.getElementById('modal').style.display='none';
+                    // document.getElementById('pwForm').style.display='none';
+                    // document.getElementById('AlertModalIOS').style.display = 'none'
+                    // document.getElementById('initialscreen2options').style.display = 'initial'
+                    // document.getElementById('talk').style.display = 'initial'
+                    // document.getElementById('listen').style.display = 'initial'
+                    // // location.reload() //to activate the sw so it can be used offline afterwards
+                    // navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
 
                 },3000)
                 //in case first load is with url geoJSON -- not the best approach ever, but it works.

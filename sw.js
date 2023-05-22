@@ -389,76 +389,80 @@ async function doTheWork() {
       let attribute9s = null
       let attribute10s = null
       let dist_m_Participant = 0
-      let attribute11n
-      let attribute12n
-      let attribute13n
-      let attribute14n
-      let attribute15n
+      // let attribute11n
+      // let attribute12n
+      // let attribute13n
+      // let attribute14n
+      // let attribute15n
       const numberRegex = /\d+/g;
 
-      if(attribute2s == 'አዊ / መንደር'){
-        try{
-          let attribute11nstring = getItemToJSON.properties.kidsmale
-          attribute11n = attribute11nstring.match(numberRegex);
-          console.log('attribute11nstring',attribute11nstring)
-          console.log('attribute11n',attribute11n)
-          if(attribute11n == null || attribute11n == undefined){
-            attribute11n = 0
-          }else{
-            attribute11n = attribute11n[0]
-          }
-
-          let attribute12nstring = getItemToJSON.properties.kidsfemale
-          attribute12n = attribute12nstring.match(numberRegex);
-
-          console.log('attribute12nstring',attribute12nstring)
-          console.log('attribute12n',attribute12n)
-
-          if(attribute12n == null || attribute12n == undefined){
-            attribute12n = 0
-          }else{
-            attribute12n = attribute12n[0]
-          }
-
-          let attribute13nstring = getItemToJSON.properties.adultmale
-          attribute13n = attribute13nstring.match(numberRegex);
-
-          if(attribute13n == null || attribute13n == undefined){
-            attribute13n = 0
-          }else{
-            attribute13n = attribute13n[0]
-          }
-          let attribute14nstring = getItemToJSON.properties.adultfemale
-          attribute14n = attribute14nstring.match(numberRegex);
-
-          if(attribute14n == null || attribute14n == undefined){
-            attribute14n = 0
-          }else{
-            attribute14n = attribute14n[0]
-          }
-          let attribute15nstring = getItemToJSON.properties.household
-          attribute15n = attribute15nstring.match(numberRegex);
-
-          if(attribute15n == null || attribute15n == undefined){
-            attribute15n = 0
-          }else{
-            attribute15n = attribute15n[0]
-          }
-        }catch(e){
-          console.log(e)
-        }
-
-      }else{
-        attribute11n = 0
-        attribute12n = 0
-        attribute13n = 0
-        attribute14n = 0
-        attribute15n = 0
-      }
-
-
+      // if(attribute2s == 'አዊ / መንደር'){
+      //   try{
+      //     let attribute11nstring = getItemToJSON.properties.kidsmale
+      //     attribute11n = attribute11nstring.match(numberRegex);
+      //     console.log('attribute11nstring',attribute11nstring)
+      //     console.log('attribute11n',attribute11n)
+      //     if(attribute11n == null || attribute11n == undefined){
+      //       attribute11n = 0
+      //     }else{
+      //       attribute11n = attribute11n[0]
+      //     }
+      //
+      //     let attribute12nstring = getItemToJSON.properties.kidsfemale
+      //     attribute12n = attribute12nstring.match(numberRegex);
+      //
+      //     console.log('attribute12nstring',attribute12nstring)
+      //     console.log('attribute12n',attribute12n)
+      //
+      //     if(attribute12n == null || attribute12n == undefined){
+      //       attribute12n = 0
+      //     }else{
+      //       attribute12n = attribute12n[0]
+      //     }
+      //
+      //     let attribute13nstring = getItemToJSON.properties.adultmale
+      //     attribute13n = attribute13nstring.match(numberRegex);
+      //
+      //     if(attribute13n == null || attribute13n == undefined){
+      //       attribute13n = 0
+      //     }else{
+      //       attribute13n = attribute13n[0]
+      //     }
+      //     let attribute14nstring = getItemToJSON.properties.adultfemale
+      //     attribute14n = attribute14nstring.match(numberRegex);
+      //
+      //     if(attribute14n == null || attribute14n == undefined){
+      //       attribute14n = 0
+      //     }else{
+      //       attribute14n = attribute14n[0]
+      //     }
+      //     let attribute15nstring = getItemToJSON.properties.household
+      //     attribute15n = attribute15nstring.match(numberRegex);
+      //
+      //     if(attribute15n == null || attribute15n == undefined){
+      //       attribute15n = 0
+      //     }else{
+      //       attribute15n = attribute15n[0]
+      //     }
+      //   }catch(e){
+      //     console.log(e)
+      //   }
+      //
+      // }else{
+      //   attribute11n = 0
+      //   attribute12n = 0
+      //   attribute13n = 0
+      //   attribute14n = 0
+      //   attribute15n = 0
+      // }
 
 
+
+    let attribute11n = 0
+       let attribute12n = 0
+      let attribute13n = 0
+      let attribute14n = 0
+      let attribute15n = 0
         // attribute11nstring = kidsmale
         // attribute12nstring = kidsfemale
         // attribute13nstring = adultmale
