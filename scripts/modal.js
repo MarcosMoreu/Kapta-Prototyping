@@ -77,7 +77,7 @@ var arrayOfImages = [
     'images/other1.png','images/play.png','images/PlusSign.png','images/cameraIcon.png','images/changeCamera.png','images/screenshot.png',
     'images/questionmark.png','images/random.png','images/shareMessagingApps.png','images/shareworld.png','images/shareworldConfirm.png',
     'images/uk.png','images/ethiopiaTutorial.png','images/other1.png','images/underConstruction.png','images/youtube.png','images/youtubeOffline.png',
-    'images/shareMessagingAppsYellow.png','images/sendComment.png',
+    'images/shareMessagingAppsYellow.png','images/sendComment.png','images/deleteFromCarto.png',
     'images/LocalStorageRecenter.png',
     'images/excitesTree.png','images/logoNyangatomReduced.png',
     'images/customIconsMap.png','images/customIconsCancel.png',

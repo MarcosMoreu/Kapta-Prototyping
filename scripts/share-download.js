@@ -516,8 +516,14 @@ document.getElementById('ShareFinalButton').style.opacity = 0.5;
 document.getElementById('ShareFinalButton').onclick = function(e) {
   console.log(boxContent)
   //console.log('sap id', sapelliProjectIdentifier)
-  if(openOrPrivate == 'open' || openOrPrivate == 'private'  || openOrPrivate == 'offlineOpen'){
 
+  if(openOrPrivate == 'open' || openOrPrivate == 'private'  || openOrPrivate == 'offlineOpen'){
+    console.log('openorprivate',openOrPrivate)
+    if(openOrPrivate == 'open' || openOrPrivate == 'offlineOpen'){
+      var emojiprivateoropen ='🔓🌍  '
+    }else{
+      var emojiprivateoropen ='🔒🔑  '
+    }
 
   try{
     cell.style.backgroundColor = 'white'
@@ -580,7 +586,8 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
 
       // }catch(e){}
       //console.log('attribute',attributes)
-      var link = attributes + "\n" + '🗺️ 👇🏿'+ "\n" + 'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
+
+      var link = emojiprivateoropen + attributes + "\n" + '🗺️ 👇🏿'+ "\n" + 'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
       // var url
       // console.log(url)
 
@@ -750,10 +757,11 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
           adultmale = null
           adultfemale = null
           household = null
+          openOrPrivate = null
     } //for the first because the fucking disable doesn't work
     return finished && whichLayerIsOn && localStorageLayer && elementJustAddedToLocalStorage && field && fetchLast && groupGeoJSON && clickedshareMessagingAppsDirect && imageName1 && imageName2 && imageName3 && attachPhoto && screenshotOn
           && shareURL && mapposLat  && mapposLng && mapposZoom && urlX && urlLatX && urlLngX && urlZoomX && groupGeoJSON && clickedshareMessagingAppsDirect && clickCountSendButton && screen1 && groupGeoJSON && imageName1 && imageName2 && imageName3 && attachPhoto &&
-          screen1 && screen2 && screen3 && kidsmale && kidsfemale && adultmale && adultfemale && household
+          screen1 && screen2 && screen3 && kidsmale && kidsfemale && adultmale && adultfemale && household && openOrPrivate
 }
 
 // end
