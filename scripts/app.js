@@ -426,10 +426,26 @@ var tilesDb = {
                                   alert('All tiles have been downloaded.')
 
                                     document.getElementById('MapLoading').style.display = 'none'
+                                    document.getElementById('Alert').style.display = 'none'
+
                                     document.getElementById('maploadinggif').src = 'images/checkingPw.gif'
 
                                 }
                             } else {
+                              setTimeout(function(){
+
+                              document.getElementById("Alert").style.fontSize = "30px";
+                              document.getElementById("Alert").style.textAlign = "center"
+                              document.getElementById('Alert').innerHTML = 'ማውረድ አልተሟላም. በተሻለ በይነመረብ እንደገና ይሞክሩ'
+                              document.getElementById("Alert").style.display = 'initial'
+                            },10000)
+
+                              setTimeout(function(){
+
+                                document.getElementById("Alert").style.display = 'none'
+                                  document.getElementById('maploadinggif').style.display = 'none'
+                              },20000)
+                              console.log('download tiles failed')
                                 reject({
                                     status: request.status,
                                     statusText: request.statusText
@@ -690,6 +706,9 @@ else if (urlContainsHash == true){  // if only coords are in the url
 
 //to see the zoom when changing interval
 map.on('zoomend', function(e) {
+  tilesincanvasloaded = false
+  console.log('tilesincanvasloaded',tilesincanvasloaded)
+
   var currentZoom = map.getZoom()
   console.log('zoom level',currentZoom)
   //to activate carto based on zoom level
@@ -701,6 +720,8 @@ map.on('zoomend', function(e) {
     // deflated.removeFrom(map)
     //console.('carto open layer hidden from the map')
   }
+  return tilesincanvasloaded
+
 })
 
 // if(document.getElementById("emojionearea-css").disabled == true){
@@ -1062,7 +1083,7 @@ var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
 var mapCurrentZoomtilesdownload = map.getZoom();
 var maxzoom = mapCurrentZoomtilesdownload+3;
 var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
-      minZoom: 12,
+      minZoom: 14,
       maxZoom: 18,
     saveButtonHtml: '<img src="images/download.png" alt="..." width=30px ; height=30px>',
     removeButtonHtml: '<img src="images/bin.png" alt="..." width=25px ; height=25px>',
@@ -1071,9 +1092,13 @@ var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
 
 
      // console.log('zoomlimittodownload',zoomlimittodownload)
-        if (window.confirm('Save ' + nTilesToSave + ' tiles? If less than 1000, click OK and wait. Else, zoom in and click download again')) {
+        if (window.confirm(nTilesToSave + 'ይጫኑ እና ይጠብቁ። ከ 1 ደቂቃ በኋላ ምንም ምላሽ ከሌለ መተግበሪያውን ይዝጉ እና እንደገና ይክፈቱ')) {
           document.getElementById('maploadinggif').src = 'images/gifcartofilter.gif'
           document.getElementById('MapLoading').style.display = 'initial'
+          document.getElementById("Alert").style.fontSize = "30px";
+          document.getElementById("Alert").style.textAlign = "center"
+          document.getElementById('Alert').innerHTML = '⌛'
+          document.getElementById("Alert").style.display = 'initial'
             continueSaveTiles();
         }
         //console.('map.getZoom()+3',map.getZoom()+3)
@@ -1081,7 +1106,7 @@ var offlineControlGoogle = L.control.offline(googleSat, tilesDb, {
         // return zoomlimittodownload
     },
     confirmRemovalCallback: function(continueRemoveTiles) {
-        if (window.confirm('Remove all the tiles?')) {
+        if (window.confirm('ሰርዝ???????')) {
             continueRemoveTiles();
         }
     }
@@ -1452,9 +1477,15 @@ osm.on("tileerror",function() {
   // map.setZoom(0)
 
 });
+var tilesincanvasloaded = false
+
 googleSat.on("load",function() {
+  tilesincanvasloaded = true
 
  document.getElementById("MapLoading").style.display = 'none'
+ console.log('tilesincanvasloaded',tilesincanvasloaded)
+return tilesincanvasloaded
+
 });
 googleSat.on("tileerror",function() {
   console.log('error loading tiles')
@@ -2699,11 +2730,11 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
             gps_Button.button.style.backgroundColor = '#3AFB06';
             //to change the icon of the Easybutton based on accuracy... (first gif then static image)
 
-            if (isIOS == true) {
-              document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px" > '
-            }else{
-              document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" alt="..." width=40px; height=40px;" > '
-            }
+            // if (isIOS == true) {
+            //   document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px" > '
+            // }else{
+            //   document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" alt="..." width=40px; height=40px;" > '
+            // }
 
             // var gpsIconIntermitent = setTimeout(function() {
             //   if (isIOS == true) {
@@ -2750,11 +2781,11 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
         } else if (accuracy > 100 && accuracy <= 250) {
 
             gps_Button.button.style.backgroundColor = 'yellow';
-            if (isIOS == true) {
-              document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px"" > '
-            }else{
-              document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" alt="..." width=40px; height=40px; " > '
-            }            //if accuracy >50, keep searching
+            // if (isIOS == true) {
+            //   document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px"" > '
+            // }else{
+            //   document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" alt="..." width=40px; height=40px; " > '
+            // }            //if accuracy >50, keep searching
           //  navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
 
             // try {
@@ -2788,11 +2819,11 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
         } else if (accuracy > 250) {
 
             gps_Button.button.style.backgroundColor = 'orange';
-            if (isIOS == true) {
-              document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px" " > '
-            }else{
-              document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" alt="..." width=40px; height=40px; " > '
-            }
+            // if (isIOS == true) {
+            //   document.getElementById('gps').innerHTML = '<img src="images/gps.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px" " > '
+            // }else{
+            //   document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" alt="..." width=40px; height=40px; " > '
+            // }
           //  navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
 
             // try {
@@ -2821,11 +2852,11 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
         }
     } else {
         gps_Button.button.style.backgroundColor = 'grey';
-        if (isIOS == true) {
-          document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px" > '
-        }else{
-          document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" alt="..." width=40px; height=40px; > '
-        }
+        // if (isIOS == true) {
+        //   document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-top:1px; margin-left:-5px" > '
+        // }else{
+        //   document.getElementById('gps').innerHTML = '<img src="images/gpsSearching.gif" text-align="center" alt="..." width=40px; height=40px; > '
+        // }
       //  navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
 
         // try {
@@ -3562,6 +3593,14 @@ document.getElementById("armchair").onclick = function(e) {
   photoAccepted = null //this is to not attach a picture taken in the previous mapping in the same session
   screenshotOn = false
   deflated.clearLayers()
+    try{
+      offlineControlGoogle.remove();
+      document.getElementById('rose').style.display = 'initial'
+    }catch(e){
+      console.log(e)
+    }
+
+
     document.getElementById("Alert").style.display = 'none';
 
   $('#screenshots').empty()
@@ -3616,7 +3655,15 @@ document.getElementById("field").onclick = function(e) {
   attachPhoto = false
   photoAccepted = null //this is to not attach a picture taken in the previous mapping in the same session
   screenshotOn = false
+
   deflated.clearLayers()
+    try{
+      offlineControlGoogle.remove();
+      document.getElementById('rose').style.display = 'initial'
+    }catch(e){
+
+    }
+
     document.getElementById("Alert").style.display = 'none';
   $('#screenshots').empty()
 //to disable layer to create a geometry
@@ -3650,7 +3697,7 @@ document.getElementById("field").onclick = function(e) {
   if(currentLocation[0] == null){
     // alert('Turn on the GPS and wait until the GPS symbol is green. This might take few seconds or minutes');
     document.getElementById("Alert").style.fontSize = "40px";
-    document.getElementById('Alert').innerHTML = 'GPS OFF!'
+    document.getElementById('Alert').innerHTML = 'GPS ⌛'
     document.getElementById("Alert").style.display = 'initial'
     document.getElementById("field").style.background = 'red'
     document.getElementById("field").style.borderColor = 'red'
@@ -3884,7 +3931,7 @@ var startCheckingText = function() {
                       maxWidth : 150
                     }).addTo(map);
                     layer.bindPopup(emojioneareaeditor0innerHTMLAndImages).openPopup(); ///automatically shows the pop up!
-                    console.log('keeps checking popup')
+                    // console.log('keeps checking popup')
                     sharedownloadclicked = false
                     clearInterval(refreshPopup) //to stop searching for changes in the textbox
 
@@ -3895,7 +3942,7 @@ var startCheckingText = function() {
                       maxWidth : 150
                     })//.addTo(map);
                     layer.bindPopup(emojioneareaeditor0innerHTMLAndImages)//.openPopup(); ///automatically shows the pop up!
-                    console.log('keeps checking popup')
+                    // console.log('keeps checking popup')
                   }
 
 

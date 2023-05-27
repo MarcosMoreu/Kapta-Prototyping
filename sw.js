@@ -3,7 +3,7 @@
 
 // Set a name for the current cache. Note that when version is changed, the pwa only updates autmotically after reloading!
 //Note that for automatic update, at one change need to be made in the app.js file (or in other files...)
-var version = 'v25.8';
+var version = 'v26.3';
 //console.log(version)
 
 // Default files to always cache
@@ -16,7 +16,22 @@ var offlineFundamentals = [
   "/scripts/tutorialPage.js",
   "/styles/tutorialPage.css",
   "/images/icons/icon-72x72.png",
-
+  // 'styles/modal.css',
+  // 'styles/customIcons.css',
+  // 'scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.css',
+  // "scripts/lib/leaflet/plugins/L.Control.Rose-master/dist/L.Control.Rose.css",
+  // "scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/leaflet.draw.css",
+  // "scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/MarkerCluster.css",
+  // "scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css",
+  // "styles/slider.css",
+  //
+  // 'images/omoIcons/boatCrossing.png','images/omoIcons/cattleGrazing.png','images/omoIcons/church.png','images/omoIcons/eldersHut.png','images/omoIcons/fishing.png',
+  //   'images/omoIcons/floodRecessionFlat.png','images/omoIcons/floodRecessionSteep.png','images/omoIcons/goatSheepGrazing.png','images/omoIcons/healthStation.png','images/omoIcons/hotSpring.png','images/omoIcons/hunting.png',
+  //   'images/omoIcons/hutVillage.png','images/omoIcons/irrigationPump.png','images/omoIcons/lakeRecession.png','images/omoIcons/maize.png',
+  //   'images/omoIcons/manualPump.png','images/omoIcons/medicinalPlants.png','images/omoIcons/noFarming.png','images/omoIcons/pondFarming.png','images/omoIcons/Questionmark.png','images/omoIcons/recreationCenter.png',
+  //   'images/omoIcons/reehive.png','images/omoIcons/saltlick.png','images/omoIcons/school.png','images/omoIcons/sorghum.png','images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
+  //   'images/omoIcons/timber.png','images/omoIcons/treeForGathering.png','images/omoIcons/unknownOther.png','images/omoIcons/veterinary.png','images/omoIcons/waterPoint.png','images/omoIcons/waterPondAnimal.png',
+  //   'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png',"images/omoIcons/pathTrack.png", "images/omoIcons/deforestation.png",
 
 ];
 
@@ -84,7 +99,32 @@ self.addEventListener('fetch', (event) => {
     }));
   }else if(event.request.url.includes('.google') || event.request.url.includes('.openstreetmap')  || event.request.url.includes('.planet')){ //to put the google tiles in a different cache so it can be cleared easily
 
-      if(event.request.url.includes('.google') && event.request.url.includes('&z=2')){ //to cache the global map tiles
+    //this is for the html2canvas to get the tiles from the indexeddb without putting anything to the cache
+      if(event.request.url.includes('.google') && (event.request.url.includes('&z=20') || event.request.url.includes('&z=21') || event.request.url.includes('&z=22'))){
+
+        event.respondWith(caches.open(cacheName).then((cache) => {
+          // console.log(event.request.url)
+
+          return cache.match(event.request).then((cachedResponse) => {
+              if(cachedResponse){
+                //console.log('from cacheeeeeeeeeeeeeeeeee')
+                return cachedResponse
+              }else{
+                //console.log('from networkkkkkkkkkkkkkkkkkk')
+
+                return fetch(event.request).then((fetchedResponse) => {
+            // Add the network response to the cache for later visits
+            // cache.put(event.request, fetchedResponse.clone());
+
+            // Return the network response
+            return fetchedResponse;
+          })
+        }
+      })
+        }))
+
+
+      }else if(event.request.url.includes('.google') && event.request.url.includes('&z=2') && (event.request.url.includes('&x=1&') || event.request.url.includes('&x=2&') || event.request.url.includes('&x=3&'))) { //to cache the global map tiles
         event.respondWith(caches.open(cacheName).then((cache) => {
           // console.log(event.request.url)
 
@@ -106,35 +146,40 @@ self.addEventListener('fetch', (event) => {
       })
         }))
       }else{
+
     //     console.log(event.request.url)
-    // console.log('google tiles')
   }
 
 
-}else{//this is where most of the request pass
+// }else if(event.request.destination === 'style' || event.request.destination === 'image'){
+//   if(offlineFundamentals)
+//
+//   event.respondWith(caches.open(cacheName).then((cache) => {
+//         return cache.match(event.request.url);
+//       }));
+//
 
+  }else{//this is where most of the requests pass
+    event.respondWith(caches.open(cacheName).then((cache) => {
+            // console.log(event.request.url)
 
-      event.respondWith(caches.open(cacheName).then((cache) => {
-        // console.log(event.request.url)
+      return cache.match(event.request).then((cachedResponse) => {
+          if(cachedResponse){
+            // console.log(event.request.url)
+            return cachedResponse
+          }else{
+            //console.log('from networkkkkkkkkkkkkkkkkkk')
 
-        return cache.match(event.request).then((cachedResponse) => {
-            if(cachedResponse){
-              //console.log('from cacheeeeeeeeeeeeeeeeee')
-              return cachedResponse
-            }else{
-              //console.log('from networkkkkkkkkkkkkkkkkkk')
+            return fetch(event.request).then((fetchedResponse) => {
+        // Add the network response to the cache for later visits
+        cache.put(event.request, fetchedResponse.clone());
 
-              return fetch(event.request).then((fetchedResponse) => {
-          // Add the network response to the cache for later visits
-          cache.put(event.request, fetchedResponse.clone());
-
-          // Return the network response
-          return fetchedResponse;
-        })
-      }
-    })
-      }))
-
+        // Return the network response
+        return fetchedResponse;
+      })
+    }
+  })
+    }))
   }
 
 

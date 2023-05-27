@@ -601,9 +601,9 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
         if(navigator.share && photoAccepted == null && screenshotOn == false){
           console.log('without photo')
           navigator.share({
-            text: link,
+            text: emojiprivateoropen + attributes,
             //files:filesArray, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            // url:encodeURIComponent('?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+            url:'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
           }).then(() => console.log('Successful share'))
             .catch((error) => console.log('Error sharing', error));
 
@@ -611,19 +611,20 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
           console.log('with photo')
 
           navigator.share({
-            text: link,
-            files:filesArray, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            // url:encodeURIComponent('?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+            text: emojiprivateoropen + attributes,
+            files:filesArrayScreenshot, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            url:'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z',
           }).then(() => console.log('Successful share'))
             .catch((error) => console.log('Error sharing', error));
 
-        }else if(navigator.share && photoAccepted == null && screenshotOn == true){
+        }else if(navigator.canShare && navigator.canShare({ files: filesArrayScreenshot }) && photoAccepted == null && screenshotOn == true){
           console.log('with photo')
 
           navigator.share({
-            text: link,
+            title:"test",
             files:filesArrayScreenshot, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            // url:encodeURIComponent('?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+            text: emojiprivateoropen + attributes,
+            url:'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z',
           }).then(() => console.log('Successful share'))
             .catch((error) => console.log('Error sharing', error));
 

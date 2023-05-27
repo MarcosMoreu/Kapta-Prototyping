@@ -393,6 +393,7 @@ document.getElementById('screenshot').addEventListener('click',function (){
 
 
 
+
   try{// to catch the error in case the screenshot doesn't work here
 
 
@@ -415,8 +416,11 @@ document.getElementById('screenshot').addEventListener('click',function (){
   }else{
     // console.log(screenshotOn)
 
+
     document.getElementById('screenshot').style.borderWidth = '2px'
-    document.getElementById('screenshot').style.borderColor = '#39F70F'
+    document.getElementById('screenshot').style.borderColor = 'yellow'
+
+    // document.getElementById('screenshot').style.borderColor = '#39F70F'
     document.getElementById('camera').style.borderWidth = '0px'
     document.getElementById("imageScreenshot").src = 'images/checkingPw.gif'
 
@@ -435,24 +439,32 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
 
     screenshotOn = true
     //console.log(screenshotOn)
-    myLayer_Button.button.style.display = 'none';
-    filter_Button.button.style.display = 'none';
-    filterLocalStorage_Button.button.style.display = 'none';
-    gps_Button.button.style.display = 'none';
-
-    planet_Button.button.style.display = 'none';
-    // googleSat_Button.button.style.display = 'none';
-    osm_Button.button.style.display = 'none';
+    // myLayer_Button.button.style.display = 'none';
+    // filter_Button.button.style.display = 'none';
+    // filterLocalStorage_Button.button.style.display = 'none';
+    // gps_Button.button.style.display = 'none';
+    //
+    // planet_Button.button.style.display = 'none';
+    // // googleSat_Button.button.style.display = 'none';
+    // osm_Button.button.style.display = 'none';
 
     document.getElementById("showAreaAcres").style.display = 'none'
-    document.getElementById("goBackClassification").disabled = true
-    document.getElementById("shareMessagingAppsDirect").disabled = true
-    document.getElementById("shareWorldButton").disabled = true
-    document.getElementById("ShareFinalButton").disabled = true
-    document.getElementById("screenshot").disabled = true
-    document.getElementById("camera").disabled = true
+    // document.getElementById("goBackClassification").disabled = true
+    // document.getElementById("shareMessagingAppsDirect").disabled = true
+    // document.getElementById("shareWorldButton").disabled = true
+    // document.getElementById("ShareFinalButton").disabled = true
+    // document.getElementById("screenshot").disabled = true
+    // document.getElementById("camera").disabled = true
 
-
+    // setTimeout(function(){
+    //   document.getElementById("imageScreenshot").src = 'images/screenshot.png'
+    //   document.getElementById("goBackClassification").disabled = false
+    //   document.getElementById("shareMessagingAppsDirect").disabled = false
+    //   document.getElementById("shareWorldButton").disabled = false
+    //   document.getElementById("ShareFinalButton").disabled = false
+    //   document.getElementById("screenshot").disabled = false
+    //   document.getElementById("camera").disabled = false
+    // },5000)
 
 //we adding this because in order to show in the canvas, this need to be a map element. We could do 'body' instead of 'map', but performance...
     document.getElementById("showAreaAcresScreenshot").innerHTML = document.getElementById("showAreaAcres").innerHTML
@@ -496,6 +508,10 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
           // console.log(element.src)
           var src = element.src
           // console.log(element)
+          // console.log(element.type)
+          // console.log(element.classList)
+
+
           // console.log(element.value)
 
           // var srcString = src.toString()
@@ -515,12 +531,20 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
            // }
 
            /* Remove all elements with class="MyClassNameHere" */
-           if( element.classList.contains( 'buttons' ) ||  element.classList.contains( 'leaflet' )) {
+           if( element.classList.contains( 'buttons' )) {
              // console.log('ignored button,submit or link or LEAFLET', element.id)
 
                return true;
            }
-           // try{
+           // if( element.classList == 'leaflet-tile' ) {
+           //   // console.log('ignored button,submit or link or LEAFLET', element.id)
+           //
+           //     return true;
+           // }
+           if( isOnline == true &&  tilesincanvasloaded == false && element.classList == 'leaflet-tile'){
+             console.log('google tiles ignored in the screenshot')
+             return true
+           }           // try{
            //   if( src.indexOf('s,h&x')) {
            //     console.log('contains mtttttttttttttttttt')
            //       return true;
@@ -559,14 +583,14 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
           //here to ensure that buttons appear when html2canvas is ready
 
           document.getElementById("showAreaAcresScreenshot").style.display = 'none'
-          myLayer_Button.button.style.display = 'initial';
-          filter_Button.button.style.display = 'initial';
-          filterLocalStorage_Button.button.style.display = 'initial';
-          gps_Button.button.style.display = 'initial';
-
-          planet_Button.button.style.display = 'initial';
-          googleSat_Button.button.style.display = 'initial';
-          osm_Button.button.style.display = 'initial';
+          // myLayer_Button.button.style.display = 'initial';
+          // filter_Button.button.style.display = 'initial';
+          // filterLocalStorage_Button.button.style.display = 'initial';
+          // gps_Button.button.style.display = 'initial';
+          //
+          // planet_Button.button.style.display = 'initial';
+          // googleSat_Button.button.style.display = 'initial';
+          // osm_Button.button.style.display = 'initial';
           document.getElementById("imageScreenshot").src = 'images/screenshot.png'
           document.getElementById("goBackClassification").disabled = false
           document.getElementById("shareMessagingAppsDirect").disabled = false
@@ -575,7 +599,7 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
           document.getElementById("screenshot").disabled = false
           document.getElementById("camera").disabled = false
           document.getElementById("showAreaAcres").style.display = 'initial'
-          document.getElementById('screenshot').style.borderColor = 'yellow'
+          document.getElementById('screenshot').style.borderColor = 'green'
           // googleSat.addTo(map)
           // googleSatOnly.removeFrom(map)
 
