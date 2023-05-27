@@ -3217,6 +3217,21 @@ var submitToProxy = function(q) {
         cache: false,
         timeStamp: new Date().getTime(),
         success:postSuccess()
+    })
+    .done(function() {
+      console.log('submitted succesfully')
+    })
+    .fail(function() {
+      var updatedgeojson = failgeoJSON.replace(/open/g, 'offlineOpen');
+      setTimeout(function(){
+        geoJSONLocalforageDB.setItem(failRandomID, updatedgeojson)
+
+      },500)
+
+
+    })
+    .always(function() {
+
     });
 };
 
