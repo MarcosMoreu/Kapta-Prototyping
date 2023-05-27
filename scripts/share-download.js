@@ -354,6 +354,9 @@ var finalGeoJSON = function(){
 document.getElementById('goBackClassification').onclick = function(e){
   openOrPrivate = null
   screen1 = null
+  document.getElementById('showAreaAcres').style.display = 'none'
+  document.getElementById('showAreaAcresScreenshot').style.display = 'none'
+
   document.getElementById('goBackClassification').style.display = 'none';
   document.getElementById('shareMessagingAppsDirect').style.display = 'none';
   document.getElementById('shareWorldButton').style.display = 'none';
@@ -514,6 +517,10 @@ document.getElementById('ShareFinalButton').style.opacity = 0.5;
 
 
 document.getElementById('ShareFinalButton').onclick = function(e) {
+  document.getElementById('showAreaAcres').style.display = 'none'
+  document.getElementById('showAreaAcresScreenshot').style.display = 'none'
+
+
   console.log(boxContent)
   //console.log('sap id', sapelliProjectIdentifier)
 

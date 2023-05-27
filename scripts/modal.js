@@ -69,7 +69,7 @@ var arrayOfImages = [
     'images/applyFilter.png','images/arrowLeft.png', 'images/arrowRight.png', 'images/backButton.png','images/bin.png','images/binOriginal.png','images/binpost.png',
     'images/binpre.png','images/burger.png','images/burgerBlack.png','images/cancel.png','images/clearFilter.png','images/commentFeature.png',
     'images/dateAll.png','images/dateDay.png','images/dateMonth.png','images/dateWeek.png','images/dateYear.png','images/deleteAllVertex.png',
-    'images/deleteLastVertex.png','images/devicedownload.png','images/download.png','images/filterIcon.png','images/dtm.png',
+    'images/deleteLastVertex.png','images/devicedownload.png','images/download.png','images/filterIcon.png','images/dtm.png','images/gifcartofilter.gif',
     'images/google.png','images/googleHistorical.png','images/gps.png','images/gpsOff.png','images/gpsSearching.gif','images/gpsSearchingIOS.gif',
     'images/infoGoBack.png','images/key.png','images/lineDeleteAll.png','images/lineDeleteVertex.png','images/padlockclosed.png','images/padlockopen.png',
     'images/locked.png','images/man.png','images/marker-icon.png','images/marker-icon-2x.png','images/marker-icon-cian.png','images/markerPolygonBlue.png','images/markerLine.png','images/markerPolygon.png',
@@ -83,16 +83,17 @@ var arrayOfImages = [
     'images/customIconsMap.png','images/customIconsCancel.png',
 
     //sapelli project images
-    'images/omoIcons/banana.png','images/omoIcons/boatCrossing.png','images/omoIcons/cattleGrazing.png','images/omoIcons/church.png','images/omoIcons/eldersHut.png','images/omoIcons/fishing.png',
+      'images/omoIcons/banana.png','images/omoIcons/boatCrossing.png','images/omoIcons/cattleGrazing.png','images/omoIcons/church.png','images/omoIcons/eldersHut.png','images/omoIcons/fishing.png',
     'images/omoIcons/floodRecessionFlat.png','images/omoIcons/floodRecessionSteep.png','images/omoIcons/goatSheepGrazing.png','images/omoIcons/healthStation.png','images/omoIcons/hotSpring.png','images/omoIcons/hunting.png',
-    'images/omoIcons/hutVillage.png','images/omoIcons/irrigationPump.png','images/omoIcons/kraal.png','images/omoIcons/lakeRecession.png','images/omoIcons/maize.png',
+    'images/omoIcons/hutVillage.png','images/omoIcons/irrigationPump.png','images/omoIcons/lakeRecession.png','images/omoIcons/maize.png',
     'images/omoIcons/manualPump.png','images/omoIcons/medicinalPlants.png','images/omoIcons/noFarming.png','images/omoIcons/pondFarming.png','images/omoIcons/Questionmark.png','images/omoIcons/recreationCenter.png',
     'images/omoIcons/reehive.png','images/omoIcons/saltlick.png','images/omoIcons/school.png','images/omoIcons/sorghum.png','images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
     'images/omoIcons/timber.png','images/omoIcons/treeForGathering.png','images/omoIcons/unknownOther.png','images/omoIcons/veterinary.png','images/omoIcons/waterPoint.png','images/omoIcons/waterPondAnimal.png',
     'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png','images/omoIcons/pathTrack.png',
       'images/omoIcons/kidsmale.png','images/omoIcons/kidsfemale.png','images/omoIcons/adultsmale.png','images/omoIcons/adultsfemale.png',
         'images/omoIcons/households.png','images/omoIcons/confirm.png',
-
+        'images/omoIcons/conflictgeneric.png','images/omoIcons/livestockdisease.png','images/omoIcons/conflict1.png','images/omoIcons/conflict2.png',
+        'images/omoIcons/ld1.png','images/omoIcons/ld2.png','images/omoIcons/ld3.png','images/omoIcons/ld4.png','images/omoIcons/legumes.png','images/omoIcons/fire.png','images/omoIcons/deforestation.png',
         // 'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png'
         // ,  'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png'
     //sapelli project images

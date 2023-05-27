@@ -24,7 +24,7 @@ document.getElementById('rose').onclick = function(e){
     //console.log('deflated',deflated)
     var toRemoveDeflated = deflated._layers
     //console.log('toremovedeflated',toRemoveDeflated)
-    if(clicksRose == 2 && map.getZoom()<=11){
+    if(clicksRose == 2 && map.getZoom()<=14){
       setTimeout(function(){ //we delay count 0 in case user want to download tiles. count to 0 after 10secs for next time user want to reload cartolayer
         if(clicksRose ==2){ //this is to check that the user actually want to click 5 times, not 10
 
