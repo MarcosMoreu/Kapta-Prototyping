@@ -468,7 +468,7 @@ var generateScreenPopNumber = function(){///////////////////////////////////////
   iconPop5 = document.createElement("IMAGE");
   cell.appendChild(iconPop5);
   iconPop5.className = 'popUI'
-  iconPop5.innerHTML = '<img src="images/omoIcons/adultsmale.png" style="height: 80px; width: 50px; border: 0px solid white;" />';
+  iconPop5.innerHTML = '<img src="images/omoIcons/adultsmale.png" style="height: 50px; width: 50px; border: 0px solid white;" />';
 
   iconPop6 = document.createElement("INPUT");
   cell.appendChild(iconPop6);
@@ -481,7 +481,7 @@ var generateScreenPopNumber = function(){///////////////////////////////////////
   iconPop7 = document.createElement("IMAGE");
   cell.appendChild(iconPop7);
   iconPop7.className = 'popUI'
-  iconPop7.innerHTML = '<img src="images/omoIcons/adultsfemale.png" style="height: 80px; width: 50px; border: 0px solid white;" />';
+  iconPop7.innerHTML = '<img src="images/omoIcons/adultsfemale.png" style="height: 50px; width: 50px; border: 0px solid white;" />';
 
   iconPop8 = document.createElement("INPUT");
   cell.appendChild(iconPop8);
@@ -1549,6 +1549,22 @@ var generateButtonslandUse = function(){
      hideAll()
      screen2 = 'ጥራጥሬዎች'
      imageName2 = 'legumes'
+
+     generateButtonsEvaluation()
+   },400)
+
+   }
+
+   iconCT6 = document.createElement("BUTTON");
+   cell.appendChild(iconCT6);
+   iconCT6.className = 'buttonsSapelli'
+   iconCT6.innerHTML = '<img src="images/omoIcons/cropscombined.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>multiple crops';
+   iconCT6.onclick = function(){
+     setTimeout(function(){
+
+     hideAll()
+     screen2 = 'multiple crops'
+     imageName2 = 'cropscombined'
 
      generateButtonsEvaluation()
    },400)
