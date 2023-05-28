@@ -423,7 +423,7 @@ var tilesDb = {
                             if (request.status === 200) {
                                 resolve(self._saveTile(tileUrl.key, request.response));
                                 if(i==tileUrls.length-1){
-                                  alert('All tiles have been downloaded.')
+                                  alert('በተሳካ ሁኔታ ማውረድ ችለዋል። አዎን ይጫኑ')
 
                                     document.getElementById('MapLoading').style.display = 'none'
                                     document.getElementById('Alert').style.display = 'none'

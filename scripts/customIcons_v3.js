@@ -442,7 +442,7 @@ var generateScreenPopNumber = function(){///////////////////////////////////////
   cell.appendChild(iconPop1);
   iconPop1.className = 'popUI'
 
-  iconPop1.innerHTML = '<img src="images/omoIcons/kidsmale.png" style="height: 50px; width: 50px; border: 0px solid white;" />';
+  iconPop1.innerHTML = '<img src="images/omoIcons/kidsmale.png" style="height: 50px; width: 30px; border: 0px solid white;" />';
 
   iconPop2 = document.createElement("INPUT");
   cell.appendChild(iconPop2);
@@ -455,7 +455,7 @@ var generateScreenPopNumber = function(){///////////////////////////////////////
   iconPop3 = document.createElement("IMAGE");
   cell.appendChild(iconPop3);
   iconPop3.className = 'popUI'
-  iconPop3.innerHTML = '<img src="images/omoIcons/kidsfemale.png" style="height: 50px; width: 50px; border: 0px solid white;" />';
+  iconPop3.innerHTML = '<img src="images/omoIcons/kidsfemale.png" style="height: 50px; width: 30px; border: 0px solid white;" />';
 
   iconPop4 = document.createElement("INPUT");
   cell.appendChild(iconPop4);
@@ -468,7 +468,7 @@ var generateScreenPopNumber = function(){///////////////////////////////////////
   iconPop5 = document.createElement("IMAGE");
   cell.appendChild(iconPop5);
   iconPop5.className = 'popUI'
-  iconPop5.innerHTML = '<img src="images/omoIcons/adultsmale.png" style="height: 50px; width: 50px; border: 0px solid white;" />';
+  iconPop5.innerHTML = '<img src="images/omoIcons/adultsmale.png" style="height: 80px; width: 80px; border: 0px solid white;" />';
 
   iconPop6 = document.createElement("INPUT");
   cell.appendChild(iconPop6);
@@ -481,7 +481,7 @@ var generateScreenPopNumber = function(){///////////////////////////////////////
   iconPop7 = document.createElement("IMAGE");
   cell.appendChild(iconPop7);
   iconPop7.className = 'popUI'
-  iconPop7.innerHTML = '<img src="images/omoIcons/adultsfemale.png" style="height: 50px; width: 50px; border: 0px solid white;" />';
+  iconPop7.innerHTML = '<img src="images/omoIcons/adultsfemale.png" style="height: 80px; width: 80px; border: 0px solid white;" />';
 
   iconPop8 = document.createElement("INPUT");
   cell.appendChild(iconPop8);
@@ -1558,12 +1558,12 @@ var generateButtonslandUse = function(){
    iconCT6 = document.createElement("BUTTON");
    cell.appendChild(iconCT6);
    iconCT6.className = 'buttonsSapelli'
-   iconCT6.innerHTML = '<img src="images/omoIcons/cropscombined.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>multiple crops';
+   iconCT6.innerHTML = '<img src="images/omoIcons/cropscombined.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>አማን/ማሳ';
    iconCT6.onclick = function(){
      setTimeout(function(){
 
      hideAll()
-     screen2 = 'multiple crops'
+     screen2 = 'አማን/ማሳ'
      imageName2 = 'cropscombined'
 
      generateButtonsEvaluation()
@@ -1679,7 +1679,7 @@ var generateButtonslandUse = function(){
      setTimeout(function(){
 
      hideAll()
-     screen3 = 'conflict1'
+     screen3 = 'አኮኮ አንግባረን/የከብት ስርቆት'
      imageName3 = 'conflict1'
 
      document.getElementById('customIconsMap').click()
@@ -1694,13 +1694,13 @@ var generateButtonslandUse = function(){
  //other issues
    iconC2 = document.createElement("BUTTON");
    cell.appendChild(iconC2);
-   iconC2.innerHTML = '<img src="images/omoIcons/conflict2.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br> አሬዎም/ግጭት ';
+   iconC2.innerHTML = '<img src="images/omoIcons/conflict2.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br> አሬዎም/ግጭት';
    iconC2.className = 'buttonsSapelli'
    iconC2.onclick = function(){
      setTimeout(function(){
 
      hideAll()
-     screen3 = 'conflict2'
+     screen3 = 'አሬዎም/ግጭት'
      imageName3 = 'conflict2'
 
      document.getElementById('customIconsMap').click()

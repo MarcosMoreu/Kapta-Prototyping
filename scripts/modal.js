@@ -89,7 +89,7 @@ var arrayOfImages = [
     'images/omoIcons/manualPump.png','images/omoIcons/medicinalPlants.png','images/omoIcons/noFarming.png','images/omoIcons/pondFarming.png','images/omoIcons/Questionmark.png','images/omoIcons/recreationCenter.png',
     'images/omoIcons/reehive.png','images/omoIcons/saltlick.png','images/omoIcons/school.png','images/omoIcons/sorghum.png','images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
     'images/omoIcons/timber.png','images/omoIcons/treeForGathering.png','images/omoIcons/unknownOther.png','images/omoIcons/veterinary.png','images/omoIcons/waterPoint.png','images/omoIcons/waterPondAnimal.png',
-    'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png','images/omoIcons/pathTrack.png',
+    'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png','images/omoIcons/pathTrack.png','images/omoIcons/cropscombined.png',
       'images/omoIcons/kidsmale.png','images/omoIcons/kidsfemale.png','images/omoIcons/adultsmale.png','images/omoIcons/adultsfemale.png',
         'images/omoIcons/households.png','images/omoIcons/confirm.png',
         'images/omoIcons/conflictgeneric.png','images/omoIcons/livestockdisease.png','images/omoIcons/conflict1.png','images/omoIcons/conflict2.png',
