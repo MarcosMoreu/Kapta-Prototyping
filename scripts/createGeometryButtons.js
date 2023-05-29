@@ -655,7 +655,7 @@ document.getElementById('emojionearea').value = null
 
     }else{
       map.fitBounds(drawnItems.getBounds(), {
-          // maxZoom:16,
+          maxZoom:18,
           paddingBottomRight: [0, 0]
       })
     }

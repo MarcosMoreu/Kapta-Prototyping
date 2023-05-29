@@ -17,14 +17,20 @@ document.getElementById("applyFilter").onclick = function(e) {
   screen1 = null
   document.getElementById('maploadinggif').src = 'images/gifcartofilter.gif'
   document.getElementById('MapLoading').style.display = 'initial'
+  document.getElementById("Alert").style.fontSize = "30px";
+  document.getElementById("Alert").style.textAlign = "center"
+  document.getElementById('Alert').innerHTML = '⌛'
+  document.getElementById("Alert").style.display = 'initial'
 
 
   setTimeout(function(){
     document.getElementById('MapLoading').style.display = 'none'
     document.getElementById('maploadinggif').src = 'images/checkingPw.gif'
+    document.getElementById("Alert").style.display = 'initial'
 
 
-  },2000)
+
+  },8000) //in case the success doesn't work
 
   //script to refresh apply filter in case input box changes (focused again)
   checkIfInputChanges = setInterval(function(){

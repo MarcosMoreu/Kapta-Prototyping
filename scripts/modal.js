@@ -93,7 +93,7 @@ var arrayOfImages = [
       'images/omoIcons/kidsmale.png','images/omoIcons/kidsfemale.png','images/omoIcons/adultsmale.png','images/omoIcons/adultsfemale.png',
         'images/omoIcons/households.png','images/omoIcons/confirm.png',
         'images/omoIcons/conflictgeneric.png','images/omoIcons/livestockdisease.png','images/omoIcons/conflict1.png','images/omoIcons/conflict2.png',
-        'images/omoIcons/ld1.png','images/omoIcons/ld2.png','images/omoIcons/ld3.png','images/omoIcons/ld4.png','images/omoIcons/legumes.png','images/omoIcons/fire.png','images/omoIcons/deforestation.png',
+        'images/omoIcons/ld1.png','images/omoIcons/ld2.png','images/omoIcons/ld3.png','images/omoIcons/ld4.png','images/omoIcons/ld5.png','images/omoIcons/legumes.png','images/omoIcons/fire.png','images/omoIcons/deforestation.png',
         // 'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png'
         // ,  'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png'
     //sapelli project images

@@ -144,6 +144,12 @@ var sqlQuerySelect
 var sqlQuerySelectEncoded
 var deleteFromcartoimmediate = null
 
+var checkconnectivityintervals = setInterval(function() {
+  isOnline = navigator.onLine
+  console.log('isOnline',isOnline)
+  return isOnline
+}, 5000)
+
 var watchPositionOptions = {
   enableHighAccuracy: true,
   // timeout: 5000000,
@@ -3220,6 +3226,7 @@ var submitToProxy = function(q) {
     })
     .done(function() {
       console.log('submitted succesfully')
+      
     })
     .fail(function() {
       var updatedgeojson = failgeoJSON.replace(/open/g, 'offlineOpen');

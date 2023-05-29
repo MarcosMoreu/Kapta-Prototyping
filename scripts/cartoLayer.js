@@ -155,6 +155,8 @@ var cartoGeoJSONLayer = function(data) {
     getTotalFeaturesInDB = data.features.length
   //  console.log('cartolayer',data)
     //console.log('cartolayersize ',getTotalFeaturesInDB)
+    document.getElementById('MapLoading').style.display = 'none'
+    document.getElementById("Alert").style.display = 'none'
 
     cartoLoaded = true;
     cartoGeometries = L.geoJson(data, {
