@@ -27,6 +27,10 @@ document.getElementById("applyFilter").onclick = function(e) {
     document.getElementById('MapLoading').style.display = 'none'
     document.getElementById('maploadinggif').src = 'images/checkingPw.gif'
     document.getElementById("Alert").style.display = 'initial'
+    document.getElementById("applyFilter").style.display = "none";
+    document.getElementById("clearFilter").style.display = "initial";
+    document.getElementById("clearFilter").style.opacity = '1'
+    document.getElementById("clearFilter").disabled = false
 
 
 

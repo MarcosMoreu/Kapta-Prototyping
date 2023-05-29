@@ -88,43 +88,36 @@ self.addEventListener('fetch', (event) => {
   if (navigator.onLine == false && event.request.url.includes('#') && event.request.url.includes('/?') && event.request.url.includes('z')) { //to allow urlgeojson to open when offline
     event.respondWith(caches.open(cacheName).then((cache) => {
       return cache.match(event.request,
-        {ignoreSearch:true,})
-        .then((cachedResponse) => {
-        const fetchedResponse = fetch(event.request).then((networkResponse) => {
-          cache.put(event.request, networkResponse.clone())//.catch(unableToResolve);
-          return networkResponse;
-        });
-        return cachedResponse || fetchedResponse;
-      });
-    }));
+      {ignoreSearch:true,})
+      .then((cachedResponse) => {
+          if(cachedResponse){
+            // console.log(event.request.url)
+            return cachedResponse
+          }else{
+            //console.log('from networkkkkkkkkkkkkkkkkkk')
+            return fetch(event.request).then((fetchedResponse) => {
+        // Add the network response to the cache for later visits
+        cache.put(event.request, fetchedResponse.clone());
+
+        // Return the network response
+        return fetchedResponse;
+      })
+    }
+  })
+    }))
+
+
+
+
   }else if(event.request.url.includes('.google') || event.request.url.includes('.openstreetmap')  || event.request.url.includes('.planet')){ //to put the google tiles in a different cache so it can be cleared easily
 
     //this is for the html2canvas to get the tiles from the indexeddb without putting anything to the cache
-      if(event.request.url.includes('.google') && (event.request.url.includes('&z=20') || event.request.url.includes('&z=21') || event.request.url.includes('&z=22'))){
-
-        event.respondWith(caches.open(cacheName).then((cache) => {
-          // console.log(event.request.url)
-
-          return cache.match(event.request).then((cachedResponse) => {
-              if(cachedResponse){
-                //console.log('from cacheeeeeeeeeeeeeeeeee')
-                return cachedResponse
-              }else{
-                //console.log('from networkkkkkkkkkkkkkkkkkk')
-
-                return fetch(event.request).then((fetchedResponse) => {
-            // Add the network response to the cache for later visits
-            // cache.put(event.request, fetchedResponse.clone());
-
-            // Return the network response
-            return fetchedResponse;
-          })
-        }
-      })
-        }))
+      // if(event.request.url.includes('.google') && (event.request.url.includes('&z=20') || event.request.url.includes('&z=21') || event.request.url.includes('&z=22'))){
 
 
-      }else if(event.request.url.includes('.google') && event.request.url.includes('&z=2') && (event.request.url.includes('&x=1&') || event.request.url.includes('&x=2&') || event.request.url.includes('&x=3&'))) { //to cache the global map tiles
+
+
+      if(event.request.url.includes('.google') && event.request.url.includes('&z=2') && (event.request.url.includes('&x=1&') || event.request.url.includes('&x=2&') || event.request.url.includes('&x=3&'))) { //to cache the global map tiles
         event.respondWith(caches.open(cacheName).then((cache) => {
           // console.log(event.request.url)
 
@@ -146,9 +139,28 @@ self.addEventListener('fetch', (event) => {
       })
         }))
       }else{
+        event.respondWith(caches.open(cacheName).then((cache) => {
+          // console.log(event.request.url)
 
-    //     console.log(event.request.url)
-  }
+          return cache.match(event.request).then((cachedResponse) => {
+              if(cachedResponse){
+                //console.log('from cacheeeeeeeeeeeeeeeeee')
+                return cachedResponse
+              }else{
+                //console.log('from networkkkkkkkkkkkkkkkkkk')
+
+                return fetch(event.request).then((fetchedResponse) => {
+            // Add the network response to the cache for later visits
+            // cache.put(event.request, fetchedResponse.clone());
+
+            // Return the network response
+            return fetchedResponse;
+          })
+        }
+      })
+        }))
+      }
+
 
 
 // }else if(event.request.destination === 'style' || event.request.destination === 'image'){
