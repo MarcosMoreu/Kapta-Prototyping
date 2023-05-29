@@ -1,7 +1,9 @@
 var photoAccepted
 var imgSrc
+var photocaptured = false
 
 document.getElementById('camera').addEventListener('click', async function init(e) {
+  $('#screenshots').empty()
 document.getElementById('camera').style.display = 'none'
 document.getElementById('screenshot').style.display = 'none'
 document.getElementById("map").style.height = "0px";
@@ -236,8 +238,9 @@ document.getElementById('btnChangeCamera').style.display = 'initial';
 
 
     },500)
+    photocaptured = true
     photoAccepted = img
-return photoAccepted
+return photoAccepted && photocaptured
 });
 
 
@@ -314,7 +317,7 @@ return photoAccepted
     document.getElementById('showAreaAcres').style.display = 'initial'
 
     // document.getElementById('screenshot').style.opactiy = '0.3'
-    document.getElementById('screenshot').disabled = true
+    // document.getElementById('screenshot').disabled = true
     document.getElementById('screenshot').style.borderWidth = '0px'
     document.getElementById('camera').style.borderWidth = '2px'
 
@@ -388,10 +391,7 @@ var filesArrayScreenshot
 var dataURL
 document.getElementById('screenshot').addEventListener('click',function (){
   $('#screenshots').empty()
-  //console.log('screensht clicked')
   // console.log(img)
-
-
 
 
   try{// to catch the error in case the screenshot doesn't work here
@@ -422,7 +422,7 @@ document.getElementById('screenshot').addEventListener('click',function (){
 
     // document.getElementById('screenshot').style.borderColor = '#39F70F'
     document.getElementById('camera').style.borderWidth = '0px'
-    document.getElementById("imageScreenshot").src = 'images/checkingPw.gif'
+    // document.getElementById("imageScreenshot").src = 'images/checkingPw.gif'
 
     // document.getElementById('screenshot').style.borderColor = 'black'
     // document.getElementById('camera').style.borderColor = '#7c7c7c'
@@ -467,7 +467,13 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
     // },5000)
 
 //we adding this because in order to show in the canvas, this need to be a map element. We could do 'body' instead of 'map', but performance...
-    document.getElementById("showAreaAcresScreenshot").innerHTML = document.getElementById("showAreaAcres").innerHTML
+    if(openOrPrivate == 'open'){
+      document.getElementById("showAreaAcresScreenshot").innerHTML = '</br></br> 🔓🌍 ' + document.getElementById("showAreaAcres").innerHTML
+    }else{
+      document.getElementById("showAreaAcresScreenshot").innerHTML = '</br></br> 🔒🔑 ' + document.getElementById("showAreaAcres").innerHTML
+    }
+    // document.getElementById("openorprivate").style.display = 'initial'
+    // document.getElementById("showAreaAcresScreenshot").innerHTML = document.getElementById("showAreaAcres").innerHTML
     document.getElementById("showAreaAcresScreenshot").style.display = 'initial'
     // console.log('testtttttttttttt')
     // setTimeout(function(){  // to make the button transition immediate, and also disapear easybuttons for ms
@@ -495,7 +501,12 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
   var heightscreen = window.innerHeight
   //console.log('heightscreen',heightscreen)
   var heightscreenshot = heightscreen - 200
-
+   var ignoretiles = 'leaflet-tile'
+// if(isOnline == true &&  tilesincanvasloaded == false){
+//   var ignoretiles = 'leaflet-tile'
+// }else{
+//   var ignoretiles = ''
+// }
       html2canvas(document.getElementById('map'), {
         allowTaint: true,
         useCORS: true,
@@ -510,6 +521,8 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
           // console.log(element)
           // console.log(element.type)
           // console.log(element.classList)
+          // console.log('ignoretiles',ignoretiles)
+
 
 
           // console.log(element.value)
@@ -536,15 +549,16 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
 
                return true;
            }
-           // if( element.classList == 'leaflet-tile' ) {
-           //   // console.log('ignored button,submit or link or LEAFLET', element.id)
-           //
-           //     return true;
-           // }
-           if( isOnline == true &&  tilesincanvasloaded == false && element.classList == 'leaflet-tile'){
-             console.log('google tiles ignored in the screenshot')
-             return true
-           }           // try{
+           if( 'leaflet-tile' == element.classList ) {
+             // console.log('ignored button,submit or link or LEAFLET', element.id)
+             console.log(element)
+
+               return true;
+           }
+           // if( ignoretiles == element.classList){
+           //   console.log('google tiles ignored in the screenshot')
+           //   return true
+           // }           // try{
            //   if( src.indexOf('s,h&x')) {
            //     console.log('contains mtttttttttttttttttt')
            //       return true;
@@ -599,7 +613,24 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
           document.getElementById("screenshot").disabled = false
           document.getElementById("camera").disabled = false
           document.getElementById("showAreaAcres").style.display = 'initial'
-          document.getElementById('screenshot').style.borderColor = 'green'
+          document.getElementById('screenshot').style.borderColor = '#39F70F'
+          // document.getElementById("ShareFinalButton").click()
+          document.getElementById("Alert").style.display = 'none'
+          document.getElementById("Alert").style.display = 'none'
+          document.getElementById('showAreaAcresScreenshot').style.display = 'none'
+
+          document.getElementById('ShareFinalButton').disabled = false;
+          // document.getElementById('ShareFinalButton').style.backgroundColor = '#39F70F';
+          document.getElementById('ShareFinalButton').style.borderColor = 'black';
+          document.getElementById("screenshot").disabled = false
+
+
+          document.getElementById("imagesharefinalbutton").src = 'images/sendComment.png'
+          
+
+
+
+
           // googleSat.addTo(map)
           // googleSatOnly.removeFrom(map)
 

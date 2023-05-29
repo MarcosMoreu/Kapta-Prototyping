@@ -35,6 +35,11 @@ var testBlob = null
 var sharedownloadclicked = false
 
 document.getElementById('share-download').onclick = function(e) {
+  $('#screenshots').empty()
+  document.getElementById("screenshot").disabled = true
+
+
+
   sharedownloadclicked = true
   // googleSat.removeFrom(map)
 
@@ -62,7 +67,6 @@ finalAttributes = document.getElementById('emojionearea').value
 
       opencamera = null
     }else{
-      screenshot.click()
       document.getElementById('camera').style.display = 'initial'
       document.getElementById('camera').style.opacity = '1'
       document.getElementById('screenshot').style.display = 'initial'
@@ -99,6 +103,9 @@ finalAttributes = document.getElementById('emojionearea').value
 
     return sharedownloadclicked && created && data && myLayerIsOn && files && filesLength && convertedData && blob && sameSession && featureType && convertedDataShareDirect && opencamera  //&& centerPointMarker && centerPolylineMarker && centerPolygonMarker// && oneMapCompleted //&& dateTimeRandomID && data
 }
+
+var failRandomID
+var failgeoJSON
 ////console.log(finalLayer)
 var finalGeoJSON = function(){
   var randomNumber = Math.random();
@@ -353,9 +360,23 @@ var finalGeoJSON = function(){
 
 document.getElementById('goBackClassification').onclick = function(e){
   openOrPrivate = null
+  clickCountShareFinal = 0
   screen1 = null
   document.getElementById('showAreaAcres').style.display = 'none'
   document.getElementById('showAreaAcresScreenshot').style.display = 'none'
+  // document.getElementById('showpadlock').style.display = 'none'
+  document.getElementById('ShareFinalButton').style.borderColor = 'white'
+  document.getElementById('ShareFinalButton').style.backgroundColor = 'white'
+  document.getElementById("imagesharefinalbutton").src = 'images/sendComment.png'
+  document.getElementById('showAreaAcresScreenshot').style.display = 'none'
+  try{
+    $('#screenshots').empty()
+  }catch(e){
+    console.log(e)
+  }
+
+
+
 
   document.getElementById('goBackClassification').style.display = 'none';
   document.getElementById('shareMessagingAppsDirect').style.display = 'none';
@@ -412,7 +433,7 @@ document.getElementById('goBackClassification').onclick = function(e){
 
 showButtons()
 return clickedshareMessagingAppsDirect && imageName1 && imageName2 && imageName3 && attachPhoto && photoAccepted && screenshotOn && screen1 && screen2 &&
-screen3 && kidsmale && kidsfemale && adultmale && adultfemale && household
+screen3 && kidsmale && kidsfemale && adultmale && adultfemale && household && clickCountShareFinal
 }
 
 var mapposLat = mappos.center.lat
@@ -514,262 +535,311 @@ document.getElementById('ShareFinalButton').disabled = true;
 document.getElementById('ShareFinalButton').style.opacity = 0.5;
 
 
-
-
+var menuopened = false
+var clickCountShareFinal = 0
 document.getElementById('ShareFinalButton').onclick = function(e) {
-  document.getElementById('showAreaAcres').style.display = 'none'
-  document.getElementById('showAreaAcresScreenshot').style.display = 'none'
+
+    if (clickCountShareFinal == 0) {
 
 
-  console.log(boxContent)
-  //console.log('sap id', sapelliProjectIdentifier)
+        if(photoAccepted == null){
+          document.getElementById("imagesharefinalbutton").src = 'images/checkingPw.gif'
+          document.getElementById('ShareFinalButton').disabled = false;
+          console.log('screenshot clicked')
+          screenshotOn == false
+          document.getElementById('screenshot').disabled = false
 
-  if(openOrPrivate == 'open' || openOrPrivate == 'private'  || openOrPrivate == 'offlineOpen'){
-    console.log('openorprivate',openOrPrivate)
-    if(openOrPrivate == 'open' || openOrPrivate == 'offlineOpen'){
-      var emojiprivateoropen ='🔓🌍  '
-    }else{
-      var emojiprivateoropen ='🔒🔑  '
-    }
-
-  try{
-    cell.style.backgroundColor = 'white'
-    cell.style.display = 'none' //to avoid that the sapprojct icon disapears
-    newProjectButton.style.display = 'none'
-    newProjectButton2.style.display = 'none'
-  }catch(e){}
-  finalGeoJSON()
-  if(openOrPrivate == 'open'){
-    shareworld()
-    //console.log('opendata!!!')
-  }
-
-///////sharemessagingapp/////////////////////////////////////////
-    encodeGeoJSON(data,propertiesGeoJSONURL)
-      urlX = window.location.href
-      keepOnlyLatLngZoomX = urlX.split('#').pop();
-      splittedLatLngZoomX = keepOnlyLatLngZoomX.split(',');
-      urlLatX = splittedLatLngZoomX[0]
-      urlLngX = splittedLatLngZoomX[1]
-      urlZoomWithZX = splittedLatLngZoomX[2]
-      urlZoomX = urlZoomWithZX.replace('z','')
-
-    // document.getElementById('goBackClassification').style.display = 'none';
-    // document.getElementById('shareMessagingAppsDirect').style.display = 'none';
-    // document.getElementById('shareWorldButton').style.display = 'none';
-    // document.getElementById('DownloadButton').style.display = 'none';
-    document.getElementById('Cancel').style.display = 'none';
-    // document.getElementById("shareWorldButtonImage").src = 'images/shareworld.png'
-    document.getElementById("shareWorldButton").style.backgroundColor = 'white'
-    document.getElementById("shareWorldButton").style.borderColor = 'white'
-    clickCountSendButton = 0 //!!!!!!!!!!!
-    shareURL = 'encodedGeoJSON'
-
-    // if(clickedshareMessagingAppsDirect == false){
-      geoJSONLocalforageDB.setItem(tempName, dataStringified)
-      var newGeom = JSON.parse(dataStringified)
-      //console.log(newGeom)
-      groupGeoJSON = newGeom
-      localStorageToGeoJSON()
-      clickedshareMessagingAppsDirect = true
-    // }
-    //  if(isOnline == false && openOrPrivate == 'open'){
-    //   geoJSONofflineCARTO.setItem(tempName, dataStringified)
-    //   var newGeom = JSON.parse(dataStringified)
-    //   groupGeoJSON = newGeom
-    //   // localStorageToGeoJSON()
-    // }
-
-    // }else if(shareURL == 'encodedGeoJSON'){
-      // console.log(propertiesGeoJSONURL.landUsesEmoji)
-      var attributes =  document.getElementById('emojionearea').value
-      // var clickableText = 'click me'
-      // var clickableTextHyperlinked = clickableText.link(convertedDataShareDirect)
-      // var url = encodeURIComponent(attributes+ ' '+'   🗺️ 👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
-      // try{
-        attributes = attributes.replace(/<br>|<\/br>|<br\/>|null/g, "");
-        // attributes = attributes.replace(/null/g, "");
-        //console.log(attributes)
-
-      // }catch(e){}
-      //console.log('attribute',attributes)
-
-      var link = emojiprivateoropen + attributes + "\n" + '🗺️ 👇🏿'+ "\n" + 'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
-      // var url
-      // console.log(url)
-
-        if(navigator.share && photoAccepted == null && screenshotOn == false){
-          console.log('without photo')
-          navigator.share({
-            text: emojiprivateoropen + attributes,
-            //files:filesArray, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            url:'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
-          }).then(() => console.log('Successful share'))
-            .catch((error) => console.log('Error sharing', error));
-
-        }else if(navigator.share && photoAccepted != null){
-          console.log('with photo')
-
-          navigator.share({
-            text: emojiprivateoropen + attributes,
-            files:filesArrayScreenshot, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            url:'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z',
-          }).then(() => console.log('Successful share'))
-            .catch((error) => console.log('Error sharing', error));
-
-        }else if(navigator.canShare && navigator.canShare({ files: filesArrayScreenshot }) && photoAccepted == null && screenshotOn == true){
-          console.log('with photo')
-
-          navigator.share({
-            title:"test",
-            files:filesArrayScreenshot, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            text: emojiprivateoropen + attributes,
-            url:'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z',
-          }).then(() => console.log('Successful share'))
-            .catch((error) => console.log('Error sharing', error));
+          screenshot.click()
+          setTimeout(function(){
+              document.getElementById("imagesharefinalbutton").src = 'images/sendComment.png'
+              // document.getElementById('ShareFinalButton').style.backgroundColor = 'white';
+              document.getElementById('ShareFinalButton').style.borderColor = 'white';
+          },12000)
 
         }else{
 
-          // console.log(url)
-          navigator.clipboard.writeText(link).then(function() {
-            // console.log(url)
+          document.getElementById('ShareFinalButton').disabled = false;
+          // document.getElementById('ShareFinalButton').style.backgroundColor = '#39F70F';
+          document.getElementById('ShareFinalButton').style.borderColor = 'black';
+          
 
-            alert("Copied to clipboard!");
-          }, function() {
-            alert("Unable to copy");
-          });
+
+
         }
-/////////////////////////////////////////////////////////////////////////////////////////
 
-    filterLocalStorage_Button.button.style.opacity = '1';
-    filterLocalStorage_Button.button.disabled = false;
+      clickCountShareFinal = 1
 
+    }else{
+      if(openOrPrivate == 'open' || openOrPrivate == 'private'  || openOrPrivate == 'offlineOpen'){
+        console.log('openorprivate',openOrPrivate)
+        if(openOrPrivate == 'open' || openOrPrivate == 'offlineOpen'){
+          var emojiprivateoropen ='🔓🌍  '
+        }else{
+          var emojiprivateoropen ='🔒🔑  '
+        }
 
-      // landUse = 'emojiNoSapelli'
-      hideButtons()
+      try{
+        cell.style.backgroundColor = 'white'
+        cell.style.display = 'none' //to avoid that the sapprojct icon disapears
+        newProjectButton.style.display = 'none'
+        newProjectButton2.style.display = 'none'
+      }catch(e){}
+      finalGeoJSON()
+      if(openOrPrivate == 'open'){
+        shareworld()
+        //console.log('opendata!!!')
+      }
 
+    ///////sharemessagingapp/////////////////////////////////////////
+        encodeGeoJSON(data,propertiesGeoJSONURL)
+          urlX = window.location.href
+          keepOnlyLatLngZoomX = urlX.split('#').pop();
+          splittedLatLngZoomX = keepOnlyLatLngZoomX.split(',');
+          urlLatX = splittedLatLngZoomX[0]
+          urlLngX = splittedLatLngZoomX[1]
+          urlZoomWithZX = splittedLatLngZoomX[2]
+          urlZoomX = urlZoomWithZX.replace('z','')
 
-    drawnItems.clearLayers();
-    tempLayer.clearLayers()
-
-    document.getElementById("Alert").style.opacity = '0'
-
-
-    document.body.style.backgroundColor = "white";
-    document.body.style.color = "white"; //cheating here, this is to hide a f** 'undefined' that appear on top of the video. Anyway, solved
-
-    ////////////////////////  TRANSMISSION ////////////////////////////////////////
-    finished = true;
-
-
-        document.getElementById("deleteAllVertexs").style.opacity = "0.35";
-        document.getElementById("deleteAllVertexs").disabled = true;
-        document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
-        document.getElementById("deleteAllVertexsLine").disabled = true;
-        document.getElementById("completeFeature").style.opacity = "0.35";
-        document.getElementById("completeFeature").disabled = true;
-
-        document.body.style.backgroundColor = "black";
-        document.body.style.color = "black"; //cheating here, this is to hide a f** 'undefined' that appear on top of the video. Anyway, solved
-
-        document.getElementById("shareMessagingAppsDirect").style.backgroundColor = 'white'
+        // document.getElementById('goBackClassification').style.display = 'none';
+        // document.getElementById('shareMessagingAppsDirect').style.display = 'none';
+        // document.getElementById('shareWorldButton').style.display = 'none';
+        // document.getElementById('DownloadButton').style.display = 'none';
+        document.getElementById('Cancel').style.display = 'none';
+        // document.getElementById("shareWorldButtonImage").src = 'images/shareworld.png'
         document.getElementById("shareWorldButton").style.backgroundColor = 'white'
-
-        document.getElementById("shareMessagingAppsDirect").style.borderColor = 'white'
         document.getElementById("shareWorldButton").style.borderColor = 'white'
+        clickCountSendButton = 0 //!!!!!!!!!!!
+        shareURL = 'encodedGeoJSON'
 
-        document.getElementById("map").style.height = "100%";
-        document.getElementById("shareWorldButton").style.display = "none";
-        document.getElementById("shareMessagingAppsDirect").style.display = "none";
-        document.getElementById("goBackClassification").style.display = "none";
-        document.getElementById("ShareFinalButton").style.display = "none";
-        document.getElementById("ShareFinalButton").disabled = true;
-        document.getElementById('shareMessagingAppsDirect').disabled = false;
-        document.getElementById('shareWorldButton').disabled = false;
+        // if(clickedshareMessagingAppsDirect == false){
+        failRandomID = tempName
+        failgeoJSON = dataStringified
+          geoJSONLocalforageDB.setItem(tempName, dataStringified)
+          var newGeom = JSON.parse(dataStringified)
+          //console.log(newGeom)
+          groupGeoJSON = newGeom
+          localStorageToGeoJSON()
+          clickedshareMessagingAppsDirect = true
+        // }
+        //  if(isOnline == false && openOrPrivate == 'open'){
+        //   geoJSONofflineCARTO.setItem(tempName, dataStringified)
+        //   var newGeom = JSON.parse(dataStringified)
+        //   groupGeoJSON = newGeom
+        //   // localStorageToGeoJSON()
+        // }
+
+
+        // }else if(shareURL == 'encodedGeoJSON'){
+          // console.log(propertiesGeoJSONURL.landUsesEmoji)
+          var attributes =  document.getElementById('emojionearea').value
+          // var clickableText = 'click me'
+          // var clickableTextHyperlinked = clickableText.link(convertedDataShareDirect)
+          // var url = encodeURIComponent(attributes+ ' '+'   🗺️ 👇'+' '+'https://amappingprototype.xyz/'+'?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z')
+          // try{
+            attributes = attributes.replace(/<br>|<\/br>|<br\/>|null/g, "");
+            // attributes = attributes.replace(/null/g, "");
+            //console.log(attributes)
+
+          // }catch(e){}
+          //console.log('attribute',attributes)
+
+          console.log(photoAccepted)
+
+          var link = emojiprivateoropen + attributes + "\n" + '🗺️ 👇🏿'+ "\n" + 'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
+          // var url
+          // console.log(url)
+
+            if(navigator.canShare && photoAccepted == null && screenshotOn == false){
+              console.log('without photo')
+              navigator.share({
+                text: emojiprivateoropen + attributes,
+                //files:filesArray, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                url:'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
+              }).then(() => console.log('Successful share'))
+                .catch((error) => console.log('Error sharing', error));
+
+            }else if(navigator.canShare && navigator.canShare({ files: filesArrayScreenshot }) && photoAccepted == null && screenshotOn == true){
+                console.log('with sreenshot')
+
+                navigator.share({
+                  files:filesArrayScreenshot, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                  text: emojiprivateoropen + attributes,
+                  url:'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z',
+                }).then(() => console.log('Successful share'))
+                  .catch((error) => console.log('Error sharing', error));
+
+            }else if(navigator.canShare && navigator.canShare({ files: filesArray }) && photoAccepted != null){
+              console.log('with photo')
+
+              navigator.share({
+                files:filesArray, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                text: emojiprivateoropen + attributes,
+                url:'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z',
+              }).then(() => console.log('Successful share'))
+                .catch((error) => console.log('Error sharing', error));
 
 
 
-        document.getElementById('camera').style.display = 'none'
-        document.getElementById('screenshot').style.display = 'none'
-        document.getElementById('camera').style.borderWidth = '0px'
-        document.getElementById('screenshot').style.borderWidth = '0px'
-        document.getElementById('showAreaAcres').style.display = 'none'
+            }else{
 
-        document.getElementById("tutorial").style.display = "initial";
-        document.getElementById("armchair").style.display = "initial";
-        document.getElementById("field").style.display = "initial";
+              // console.log(url)
+              navigator.clipboard.writeText(link).then(function() {
+                // console.log(url)
 
-        myLayer_Button.button.style.opacity = '1';
-        myLayer_Button.button.disabled = false;
+                alert("Copied to clipboard!");
+              }, function() {
+                alert("Unable to copy");
+              });
+            }
+    /////////////////////////////////////////////////////////////////////////////////////////
 
-        gps_Button.button.style.opacity = '1';
-        gps_Button.button.disabled = false;
         filterLocalStorage_Button.button.style.opacity = '1';
         filterLocalStorage_Button.button.disabled = false;
 
-        planet_Button.button.style.opacity = '1';
-        planet_Button.button.disabled = false;
-        googleSat_Button.button.style.opacity = '1';
-        googleSat_Button.button.disabled = false;
-        osm_Button.button.style.opacity = '1';
-        osm_Button.button.disabled = false;
 
-        try{
-          cell.style.backgroundColor = 'black'
-
-        }catch(e){}
-
-        // if(whichLayerIsOn == 'deflated'){
-        //   document.getElementById('myLayerButton').click()
-        //   document.getElementById('myLayerButton').click()
-        // }if(whichLayerIsOn == 'localStorage'){
-        //   document.getElementById('myLayerButton').click()
-        // }
-
-        clickCountSendButton = 0 //!!!!!!!!!!!
-        //finalLayer is added at the end as the properties are different depending on if share or download
+          // landUse = 'emojiNoSapelli'
+          hideButtons()
 
 
-        map.dragging.enable();
-        map.touchZoom.enable();
-        map.doubleClickZoom.enable();
-        map.scrollWheelZoom.enable();
-        map.boxZoom.enable();
-        map.keyboard.enable();
-        // googleSatOnly.removeFrom(map)
-        // googleSat.addTo(map)
+        drawnItems.clearLayers();
+        tempLayer.clearLayers()
+
+        document.getElementById("Alert").style.opacity = '0'
 
 
-        if (map.tap) map.tap.enable();
-        document.getElementById('map').style.cursor='grab';
-        elementJustAddedToLocalStorage = true
-        document.getElementById('emojionearea').value = null
-        document.getElementById('screenshot').disabled = false
-        document.getElementById('camera').disabled = false
+        document.body.style.backgroundColor = "white";
+        document.body.style.color = "white"; //cheating here, this is to hide a f** 'undefined' that appear on top of the video. Anyway, solved
 
-        document.getElementById("Alert").style.opacity = '1'
+        ////////////////////////  TRANSMISSION ////////////////////////////////////////
+        finished = true;
 
-          clickedshareMessagingAppsDirect = false
-          field = false
 
-          imageName1 = null
-          imageName2 = null
-          imageName3 = null
-          attachPhoto = false
-          screenshotOn = false
-          screen1 = null
-          screen2 = null
-          screen3 = null
-          kidsmale = null
-          kidsfemale = null
-          adultmale = null
-          adultfemale = null
-          household = null
-          openOrPrivate = null
-    } //for the first because the fucking disable doesn't work
-    return finished && whichLayerIsOn && localStorageLayer && elementJustAddedToLocalStorage && field && fetchLast && groupGeoJSON && clickedshareMessagingAppsDirect && imageName1 && imageName2 && imageName3 && attachPhoto && screenshotOn
+            document.getElementById("deleteAllVertexs").style.opacity = "0.35";
+            document.getElementById("deleteAllVertexs").disabled = true;
+            document.getElementById("deleteAllVertexsLine").style.opacity = "0.35";
+            document.getElementById("deleteAllVertexsLine").disabled = true;
+            document.getElementById("completeFeature").style.opacity = "0.35";
+            document.getElementById("completeFeature").disabled = true;
+
+            document.body.style.backgroundColor = "black";
+            document.body.style.color = "black"; //cheating here, this is to hide a f** 'undefined' that appear on top of the video. Anyway, solved
+
+            document.getElementById("shareMessagingAppsDirect").style.backgroundColor = 'white'
+            document.getElementById("shareWorldButton").style.backgroundColor = 'white'
+
+            document.getElementById("shareMessagingAppsDirect").style.borderColor = 'white'
+            document.getElementById("shareWorldButton").style.borderColor = 'white'
+
+            document.getElementById("map").style.height = "100%";
+            document.getElementById("shareWorldButton").style.display = "none";
+            document.getElementById("shareMessagingAppsDirect").style.display = "none";
+            document.getElementById("goBackClassification").style.display = "none";
+            document.getElementById("ShareFinalButton").style.display = "none";
+            document.getElementById("ShareFinalButton").disabled = true;
+            document.getElementById('shareMessagingAppsDirect').disabled = false;
+            document.getElementById('shareWorldButton').disabled = false;
+            document.getElementById('showAreaAcresScreenshot').style.display = 'none'
+            // document.getElementById("openorprivate").style.display = 'none'
+            document.getElementById('showAreaAcresScreenshot').style.display = 'none'
+            try{
+              $('#screenshots').empty()
+            }catch(e){
+              console.log(e)
+            }
+
+
+
+            document.getElementById('camera').style.display = 'none'
+            document.getElementById('screenshot').style.display = 'none'
+            document.getElementById('camera').style.borderWidth = '0px'
+            document.getElementById('screenshot').style.borderWidth = '0px'
+            document.getElementById('showAreaAcres').style.display = 'none'
+
+            document.getElementById("tutorial").style.display = "initial";
+            document.getElementById("armchair").style.display = "initial";
+            document.getElementById("field").style.display = "initial";
+
+            myLayer_Button.button.style.opacity = '1';
+            myLayer_Button.button.disabled = false;
+
+            gps_Button.button.style.opacity = '1';
+            gps_Button.button.disabled = false;
+            filterLocalStorage_Button.button.style.opacity = '1';
+            filterLocalStorage_Button.button.disabled = false;
+
+            planet_Button.button.style.opacity = '1';
+            planet_Button.button.disabled = false;
+            googleSat_Button.button.style.opacity = '1';
+            googleSat_Button.button.disabled = false;
+            osm_Button.button.style.opacity = '1';
+            osm_Button.button.disabled = false;
+
+            try{
+              cell.style.backgroundColor = 'black'
+
+            }catch(e){}
+
+            // if(whichLayerIsOn == 'deflated'){
+            //   document.getElementById('myLayerButton').click()
+            //   document.getElementById('myLayerButton').click()
+            // }if(whichLayerIsOn == 'localStorage'){
+            //   document.getElementById('myLayerButton').click()
+            // }
+
+            clickCountSendButton = 0 //!!!!!!!!!!!
+            //finalLayer is added at the end as the properties are different depending on if share or download
+
+
+            map.dragging.enable();
+            map.touchZoom.enable();
+            map.doubleClickZoom.enable();
+            map.scrollWheelZoom.enable();
+            map.boxZoom.enable();
+            map.keyboard.enable();
+            // googleSatOnly.removeFrom(map)
+            // googleSat.addTo(map)
+
+
+            if (map.tap) map.tap.enable();
+            document.getElementById('map').style.cursor='grab';
+            elementJustAddedToLocalStorage = true
+            document.getElementById('emojionearea').value = null
+            document.getElementById('screenshot').disabled = false
+            document.getElementById('camera').disabled = false
+            document.getElementById('ShareFinalButton').style.backgroundColor = 'white'
+            document.getElementById('ShareFinalButton').style.borderColor = 'white';
+            document.getElementById('ShareFinalButton').disabled = false;
+
+
+
+
+            document.getElementById("Alert").style.opacity = '1'
+
+              clickedshareMessagingAppsDirect = false
+              field = false
+              clickCountShareFinal = 0
+              imageName1 = null
+              imageName2 = null
+              imageName3 = null
+              attachPhoto = false
+              screenshotOn = false
+              screen1 = null
+              screen2 = null
+              screen3 = null
+              kidsmale = null
+              kidsfemale = null
+              adultmale = null
+              adultfemale = null
+              household = null
+              openOrPrivate = null
+        } //for the first because the fucking disable doesn't work
+    }
+  // menuopened = false
+  // $('#screenshots').empty() // this is to clear the cancelled screenshots
+
+    return clickCountShareFinal && finished && whichLayerIsOn && localStorageLayer && elementJustAddedToLocalStorage && field && fetchLast && groupGeoJSON && clickedshareMessagingAppsDirect && imageName1 && imageName2 && imageName3 && attachPhoto && screenshotOn
           && shareURL && mapposLat  && mapposLng && mapposZoom && urlX && urlLatX && urlLngX && urlZoomX && groupGeoJSON && clickedshareMessagingAppsDirect && clickCountSendButton && screen1 && groupGeoJSON && imageName1 && imageName2 && imageName3 && attachPhoto &&
-          screen1 && screen2 && screen3 && kidsmale && kidsfemale && adultmale && adultfemale && household && openOrPrivate
+          screen1 && screen2 && screen3 && kidsmale && kidsfemale && adultmale && adultfemale && household && openOrPrivate && menuopened && failRandomID && failgeoJSON
 }
 
 // end
