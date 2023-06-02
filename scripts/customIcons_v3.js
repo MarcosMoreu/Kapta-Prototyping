@@ -91,7 +91,7 @@ document.getElementById('customIconsMap').onclick = function(e){
             // emojioneareaeditor0.value =  screen + ' ▪️ ' + ett + ' ▪️ ' + maisonsdetruites +  ' ▪️ '  + personnesaffectees +  ' ▪️ '  + croptype +  ' ▪️ '  + evaluation +
             // ' ▪️ '  + landownership + ' ▪️ '  + ownershipprice  + ' ▪️ '  + malefemale +' ▪️ ' + emojioneareaeditor0.value
             emojioneareaeditor0 = document.getElementById('emojionearea')
-            emojioneareaeditor0.value = screen1 + screen2 + screen3 + kidsmale + kidsfemale + adultmale + adultfemale  + household + emojioneareaeditor0.value
+            emojioneareaeditor0.value = screen1 + screen2 + screen3 + kidsmale + kidsfemale + adultmale + adultfemale  + household + ' ' + emojioneareaeditor0.value
             emojioneareaeditor0.value = emojioneareaeditor0.value.replace(/null/g, '')
             attribute1s = emojioneareaeditor0.value
             attribute2s = screen1 //evaluation
@@ -838,7 +838,7 @@ var generateButtonslandUse = function(){
   iconOMO_18 = document.createElement("BUTTON");
    cell.appendChild(iconOMO_18);
   iconOMO_18.className = 'buttonsSapelli'
-  iconOMO_18.innerHTML = '<img src="images/omoIcons/saltlick.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤዶት / ጨው';
+  iconOMO_18.innerHTML = '<img src="images/omoIcons/saltlick.png" style="height: 150px; width: 150px; border: 0px solid white" /> </br>ኤዶት / ጨው.';
   iconOMO_18.onclick = function(){
     setTimeout(function(){
 

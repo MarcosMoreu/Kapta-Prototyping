@@ -467,7 +467,7 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
     // },5000)
 
 //we adding this because in order to show in the canvas, this need to be a map element. We could do 'body' instead of 'map', but performance...
-    if(openOrPrivate == 'open'){
+    if(openOrPrivate == 'open' || openOrPrivate == 'offlineOpen'){
       document.getElementById("showAreaAcresScreenshot").innerHTML = '</br></br> 🔓🌍 ' + document.getElementById("showAreaAcres").innerHTML
     }else{
       document.getElementById("showAreaAcresScreenshot").innerHTML = '</br></br> 🔒🔑 ' + document.getElementById("showAreaAcres").innerHTML
@@ -626,7 +626,7 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
 
 
           document.getElementById("imagesharefinalbutton").src = 'images/sendComment.png'
-          
+
 
 
 
