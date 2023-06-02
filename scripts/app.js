@@ -144,11 +144,7 @@ var sqlQuerySelect
 var sqlQuerySelectEncoded
 var deleteFromcartoimmediate = null
 
-var checkconnectivityintervals = setInterval(function() {
-  isOnline = navigator.onLine
-  console.log('isOnline',isOnline)
-  return isOnline
-}, 5000)
+
 
 var watchPositionOptions = {
   enableHighAccuracy: true,
@@ -900,132 +896,141 @@ function fetchFromLocalStorage(){
 
                     //to submit to CARTO the contributions submitted while offline
                     if(getItemToJSON.properties.OP == 'offlineOpen'){ //////////////////11111111111111111111111111111111!!!!!!!111CHANGE TO OFFLINEOPEN
-                      // console.log('sbumitted to carto from local storage', getItemToJSON)
-                      //
-                      // //console.(getItemToJSON)
-                      // // console.log(getItemToJSON.properties.OP)
-                      // // console.log(data)
-                      //   dataGeometry = getItemToJSON.geometry
-                      //
-                      //   // propertiesGeoJSON = data.properties
-                      //   //to assign each attribute to a variable, which will be added as columns to the DB
-                      //   // landUses = getItemToJSON.properties.landUses;
-                      //   // landUsesEmoji = getItemToJSON.properties.landUsesEmoji;
-                      //   openOrPrivate = getItemToJSON.properties.openOrPrivate;
-                      //   // phoneNumber = getItemToJSON.properties.phoneNumber;
-                      //   areaPolygon = getItemToJSON.properties.areaPolygon;
-                      //   lengthLine = getItemToJSON.properties.lengthLine;
-                      //   dateTime = getItemToJSON.properties.dateTime;
-                      //   // timeSpendSeconds = getItemToJSON.properties.timeSpendSeconds;
-                      //   // dist_m_Participant_Feature = getItemToJSON.properties.dist_m_Participant_Feature;
-                      //   randomID = getItemToJSON.properties.randomID;
-                      //   var dataGeometryString = JSON.stringify(dataGeometry)
-                      //
-                      //
-                      //
-                      //   if(areaPolygon == 'Line' || areaPolygon == 'Point'){
-                      //     var areaPolygonNumeric = 0
-                      //   }else{
-                      //     function extractNumbers(str) {
-                      //        return str.replace(/\D/g, '');
-                      //      }
-                      //      var areanumber = extractNumbers(areaPolygon)
-                      //      areanumber =areanumber.slice(0, -2)
-                      //     var acrestoha = areanumber*0.404686
-                      //     var acretoha2decimals = acrestoha.toFixed(2)
-                      //     //console.('acretoha2decimals',acretoha2decimals)
-                      //
-                      //     var areaPolygonNumeric = parseFloat(acretoha2decimals)
-                      //   }
-                      //   //console.('lengthLine',lengthLine)
-                      //
-                      //   if(lengthLine == 'Polygon' || lengthLine == 'Point'){
-                      //     var lengthLineNumeric = 0
-                      //
-                      //   }else{
-                      //     function extractNumbers(str) {
-                      //        return str.replace(/\D/g, '');
-                      //      }
-                      //      var lengthnumber = extractNumbers(lengthLine)
-                      //     var lenghtkm2decimals = lengthnumber.toFixed(2)
-                      //     var lengthLineNumeric = parseFloat(lenghtkm2decimals)
-                      //
-                      //   }
-                      //
-                      //   attribute1s = getItemToJSON.properties.Description
-                      //   const brRegex = /<\/?br>/gi;
-                      //   attribute1s = attribute1s.replace(brRegex, '');
-                      //
-                      //   attribute2s = getItemToJSON.properties.screen1
-                      //   attribute3s = getItemToJSON.properties.screen2
-                      //   attribute4s = getItemToJSON.properties.screen3
-                      //   attribute5s = null
-                      //   attribute6s = null
-                      //   attribute7s = null
-                      //   attribute8s = null
-                      //   attribute9s = null
-                      //   attribute10s = null
-                      //   dist_m_Participant = 0
-                      //   const numberRegex = /\d+/g;
-                      //
-                      //   // if(attribute11n == null){
-                      //   //   attribute11n = 0
-                      //   // }else{
-                      //   //   attribute11nstring = kidsmale
-                      //   //   attribute11n = attribute11nstring.match(numberRegex);
-                      //   // }
-                      //   // if(attribute12n == null){
-                      //   //   attribute12n = 0
-                      //   // }else{
-                      //   //   attribute12nstring = kidsfemale
-                      //   //   attribute12n = attribute12nstring.match(numberRegex);
-                      //   // }
-                      //   // if(attribute13n == null){
-                      //   //   attribute13n = 0
-                      //   // }else{
-                      //   //   attribute13nstring = adultmale
-                      //   //   attribute13n = attribute13nstring.match(numberRegex);
-                      //   // }
-                      //   // if(attribute14n == null){
-                      //   //   attribute14n = 0
-                      //   // }else{
-                      //   //   attribute14nstring = adultfemale
-                      //   //   attribute14n = attribute14nstring.match(numberRegex);
-                      //   // }
-                      //   // if(attribute15n == null){
-                      //   //   attribute15n = 0
-                      //   // }else{
-                      //   //   attribute15nstring = household
-                      //   //   attribute15n = attribute15nstring.match(numberRegex);
-                      //   // }
-                      //   attribute11n = 0
-                      //   attribute12n = 0
-                      //   attribute13n = 0
-                      //   attribute14n = 0
-                      //   attribute15n = 0
-                      //   attribute16n = 0
-                      //   attribute17n = 0
-                      //   attribute18n = 0
-                      //   attribute19n = 0
-                      //   attribute20n = 0
-                      //   /////////////////////////////////////////LOCAL STORAGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE///////////////////////////////////////////////
-                      //   // var commentAudioDefault = '.'
-                      //   var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n) VALUES (ST_GeogFromGeoJSON('";
-                      //   var sql2 = dataGeometryString;
-                      // var sql3 = "',make_valid => true),'"+randomID+ "',CAST('" + phoneNumber + "' AS INT64),'" + sapelliProjectIdentifier + "',CAST('" + areaPolygonNumeric + "' AS NUMERIC),CAST('" + lengthLineNumeric + "' AS NUMERIC),CAST('" + dist_m_Participant + "' AS INT64),'" + dateTime +"','"+attribute1s+ "','" + attribute2s + "','" + attribute3s + "','" + attribute4s + "','" + attribute5s + "','" + attribute6s + "','" + attribute7s + "','" + attribute8s + "','"+attribute9s+ "','" + attribute10s + "',CAST('"+ attribute11n + "' AS INT64),CAST('" + attribute12n + "' AS INT64),CAST('" + attribute13n + "' AS INT64),CAST('" + attribute14n + "' AS INT64),CAST('" + attribute15n + "' AS INT64),CAST('" + attribute16n + "' AS INT64),CAST('" +attribute17n+ "' AS INT64),CAST('" + attribute18n + "' AS INT64),CAST('" + attribute19n + "' AS INT64),CAST('" + attribute20n + "' AS INT64))";
-                      //   pURL = sql + sql2 + sql3;
-                      //   console.log('submited to carto from local storage',pURL)
-                      //   submitToProxy(pURL);
-                      //
-                      //
-                      // ////////////change the property so it is only sent once
-                      //
-                      // getItemToJSON.properties.OP = 'submittedOpen';
-                      // var getItemToJSONstringified = JSON.stringify(getItemToJSON);
-                      //
-                      //   // var getItemToJSON = JSON.parse(value);
-                      // // geoJSONLocalforageDB.setItem(tempName, dataStringified)
-                      // geoJSONLocalforageDB.setItem(key, getItemToJSONstringified);
+                      console.log('sbumitted to carto from local storage', getItemToJSON)
+
+                      //console.(getItemToJSON)
+                      // console.log(getItemToJSON.properties.OP)
+                      // console.log(data)
+                        dataGeometry = getItemToJSON.geometry
+
+                        // propertiesGeoJSON = data.properties
+                        //to assign each attribute to a variable, which will be added as columns to the DB
+                        // landUses = getItemToJSON.properties.landUses;
+                        // landUsesEmoji = getItemToJSON.properties.landUsesEmoji;
+                        openOrPrivate = getItemToJSON.properties.openOrPrivate;
+                        // phoneNumber = getItemToJSON.properties.phoneNumber;
+                        areaPolygon = getItemToJSON.properties.areaPolygon;
+                        lengthLine = getItemToJSON.properties.lengthLine;
+                        dateTime = getItemToJSON.properties.dateTime;
+                        // timeSpendSeconds = getItemToJSON.properties.timeSpendSeconds;
+                        // dist_m_Participant_Feature = getItemToJSON.properties.dist_m_Participant_Feature;
+                        randomID = getItemToJSON.properties.randomID;
+                        var dataGeometryString = JSON.stringify(dataGeometry)
+
+
+
+                        if(areaPolygon == 'Line' || areaPolygon == 'Point'){
+                          var areaPolygonNumeric = 0
+                        }else{
+                          function removeCharactersAfterSpace(inputString) {
+                            var spaceIndex = inputString.indexOf(' ');
+                            if (spaceIndex !== -1) {
+                              var result = inputString.substr(0, spaceIndex);
+                              return result;
+                            } else {
+                              return inputString;
+                            }
+                          }
+                          var areanumber = removeCharactersAfterSpace(areaPolygon);
+                          console.log('areanumber',areanumber); // Output: "Hello"
+                          var acrestoha = areanumber*0.404686
+                          var acretoha2decimals = acrestoha.toFixed(2)
+                          console.log('acretoha2decimals',acretoha2decimals)
+
+                          var areaPolygonNumeric = parseFloat(acretoha2decimals)
+                        }
+                        //console.('lengthLine',lengthLine)
+
+                        if(lengthLine == 'Polygon' || lengthLine == 'Point'){
+                          var lengthLineNumeric = 0
+
+                        }else{
+                          function extractNumbers(str) {
+                             return str.replace(/\D/g, '');
+                           }
+                           var lengthnumber = extractNumbers(lengthLine)
+                          var lenghtkm2decimals = lengthnumber.toFixed(2)
+                          var lengthLineNumeric = parseFloat(lenghtkm2decimals)
+
+                        }
+
+                        attribute1s = getItemToJSON.properties.Description
+                        const brRegex = /<\/?br>/gi;
+                        attribute1s = attribute1s.replace(brRegex, '');
+
+                        attribute2s = getItemToJSON.properties.screen1
+                        attribute3s = getItemToJSON.properties.screen2
+                        attribute4s = getItemToJSON.properties.screen3
+                        attribute5s = null
+                        attribute6s = null
+                        attribute7s = null
+                        attribute8s = null
+                        attribute9s = null
+                        attribute10s = null
+                        dist_m_Participant = 0
+                        const numberRegex = /\d+/g;
+
+                        // if(attribute11n == null){
+                        //   attribute11n = 0
+                        // }else{
+                        //   attribute11nstring = kidsmale
+                        //   attribute11n = attribute11nstring.match(numberRegex);
+                        // }
+                        // if(attribute12n == null){
+                        //   attribute12n = 0
+                        // }else{
+                        //   attribute12nstring = kidsfemale
+                        //   attribute12n = attribute12nstring.match(numberRegex);
+                        // }
+                        // if(attribute13n == null){
+                        //   attribute13n = 0
+                        // }else{
+                        //   attribute13nstring = adultmale
+                        //   attribute13n = attribute13nstring.match(numberRegex);
+                        // }
+                        // if(attribute14n == null){
+                        //   attribute14n = 0
+                        // }else{
+                        //   attribute14nstring = adultfemale
+                        //   attribute14n = attribute14nstring.match(numberRegex);
+                        // }
+                        // if(attribute15n == null){
+                        //   attribute15n = 0
+                        // }else{
+                        //   attribute15nstring = household
+                        //   attribute15n = attribute15nstring.match(numberRegex);
+                        // }
+                        attribute11n = 0
+                        attribute12n = 0
+                        attribute13n = 0
+                        attribute14n = 0
+                        attribute15n = 0
+                        attribute16n = 0
+                        attribute17n = 0
+                        attribute18n = 0
+                        attribute19n = 0
+                        attribute20n = 0
+                        phoneNumber = getItemToJSON.properties.phoneNumber
+                        sapelliProjectIdentifier = getItemToJSON.properties.sapProjID
+                        dist_m_Participant = 0
+                        /////////////////////////////////////////LOCAL STORAGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE///////////////////////////////////////////////
+                        // var commentAudioDefault = '.'
+                        var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n, timestamp) VALUES (ST_GeogFromGeoJSON('";
+                        var sql2 = dataGeometryString;
+                        var sql3 = "',make_valid => true),'"+randomID+ "',CAST('" + phoneNumber + "' AS INT64),'" + sapelliProjectIdentifier + "',CAST('" + areaPolygonNumeric + "' AS NUMERIC),CAST('" + lengthLineNumeric + "' AS NUMERIC),CAST('" + dist_m_Participant + "' AS INT64),'" + dateTime +"','"+attribute1s+ "','" + attribute2s + "','" + attribute3s + "','" + attribute4s + "','" + attribute5s + "','" + attribute6s + "','" + attribute7s + "','" + attribute8s + "','"+attribute9s+ "','" + attribute10s + "',CAST('"+ attribute11n + "' AS INT64),CAST('" + attribute12n + "' AS INT64),CAST('" + attribute13n + "' AS INT64),CAST('" + attribute14n + "' AS INT64),CAST('" + attribute15n + "' AS INT64),CAST('" + attribute16n + "' AS INT64),CAST('" +attribute17n+ "' AS INT64),CAST('" + attribute18n + "' AS INT64),CAST('" + attribute19n + "' AS INT64),CAST('" + attribute20n + "' AS INT64),CAST('" +dateTime+"' AS TIMESTAMP))";
+                        var pURL = sql + sql2 + sql3;
+                        console.log('submited to carto from local storage',pURL)
+                        submitToProxy(pURL);
+
+
+                      ////////////change the property so it is only sent once
+
+                      getItemToJSON.properties.OP = 'submittedOpen';
+                      var getItemToJSONstringified = JSON.stringify(getItemToJSON);
+
+                        // var getItemToJSON = JSON.parse(value);
+                      // geoJSONLocalforageDB.setItem(tempName, dataStringified)
+                      geoJSONLocalforageDB.setItem(key, getItemToJSONstringified);
 
                     }
                     //add each json to an array-------------------------
@@ -2565,6 +2570,19 @@ var filter_Button = L.easyButton({
     }]
 })
 
+var checkconnectivityintervals = setInterval(function() {
+  isOnline = navigator.onLine
+  console.log('isOnline',isOnline)
+  if(isOnline == false){
+    filter_Button.button.style.opacity = '0.4';
+    filter_Button.button.disabled = true
+
+  }else{
+    filter_Button.button.style.opacity = '1';
+    filter_Button.button.disabled = false
+  }
+  return isOnline
+}, 5000)
 
 var checkAttrDateContent = function(){
 
@@ -2588,10 +2606,10 @@ filter_Button.button.style.backgroundColor = 'black';
 filter_Button.button.style.border= '2px solid transparent';
 
 //filter_Button.addTo(map);
-if(isOnline == false){
-  filter_Button.button.style.opacity = '0.4';
-  filter_Button.button.disabled = true;
-}
+// if(isOnline == false){
+//   filter_Button.button.style.opacity = '0.4';
+//   filter_Button.button.disabled = true;
+// }
 
 
 
@@ -3226,7 +3244,7 @@ var submitToProxy = function(q) {
     })
     .done(function() {
       console.log('submitted succesfully')
-      
+
     })
     .fail(function() {
       var updatedgeojson = failgeoJSON.replace(/open/g, 'offlineOpen');
@@ -3322,14 +3340,20 @@ function setData() {
         if(finalAreaAcres2Decimals == 'Line' || finalAreaAcres2Decimals == 'Point'){
           var areaPolygonNumeric = 0
         }else{
-          function extractNumbers(str) {
-             return str.replace(/\D/g, '');
-           }
-           var areanumber = extractNumbers(finalAreaAcres2Decimals)
-           areanumber =areanumber.slice(0, -2)
+          function removeCharactersAfterSpace(inputString) {
+            var spaceIndex = inputString.indexOf(' ');
+            if (spaceIndex !== -1) {
+              var result = inputString.substr(0, spaceIndex);
+              return result;
+            } else {
+              return inputString;
+            }
+          }
+          var areanumber = removeCharactersAfterSpace(finalAreaAcres2Decimals);
+          console.log('areanumber',areanumber); // Output: "Hello"
           var acrestoha = areanumber*0.404686
           var acretoha2decimals = acrestoha.toFixed(2)
-          //console.('acretoha2decimals',acretoha2decimals)
+          console.log('acretoha2decimals',acretoha2decimals)
 
           var areaPolygonNumeric = parseFloat(acretoha2decimals)
         }
@@ -3829,6 +3853,7 @@ document.getElementById("field").onclick = function(e) {
 var windowWidth = window.innerWidth;
 var windowHeight = window.innerHeight;
 var screenwidth = screen.width
+console.log('screenwidth',screenwidth)
 var screenwithWithMargins = screenwidth * 0.3
 var screenheight = screen.height
 var screensize = 'W'+ screenwidth + ' x ' + 'H' + screenheight
