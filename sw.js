@@ -406,14 +406,20 @@ async function doTheWork() {
         if(areaPolygon == 'Line' || areaPolygon == 'Point'){
           var areaPolygonNumeric = 0
         }else{
-          function extractNumbers(str) {
-             return str.replace(/\D/g, '');
-           }
-           var areanumber = extractNumbers(areaPolygon)
-           areanumber =areanumber.slice(0, -2)
+          function removeCharactersAfterSpace(inputString) {
+            var spaceIndex = inputString.indexOf(' ');
+            if (spaceIndex !== -1) {
+              var result = inputString.substr(0, spaceIndex);
+              return result;
+            } else {
+              return inputString;
+            }
+          }
+          var areanumber = removeCharactersAfterSpace(areaPolygon);
+          console.log('areanumber',areanumber); // Output: "Hello"
           var acrestoha = areanumber*0.404686
           var acretoha2decimals = acrestoha.toFixed(2)
-          //console.('acretoha2decimals',acretoha2decimals)
+          console.log('acretoha2decimals',acretoha2decimals)
 
           var areaPolygonNumeric = parseFloat(acretoha2decimals)
         }
@@ -573,12 +579,7 @@ async function doTheWork() {
         //console.('submited to carto from local storage',pURL)
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-        var getItemToJSONstringified = JSON.stringify(getItemToJSON);//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        var key = randomID
-        var replacedString = getItemToJSONstringified.replace(/offlineOpen/g, 'submittedOpen');
-        var value = replacedString
 
-        addToIndexedDB('geoJSONs','keyvaluepairs',key,value)
 
       var submitToProxy = function(q) {
         var url = "./callProxy.php";
@@ -593,7 +594,14 @@ async function doTheWork() {
         })
         .then(function(response) {
           if (response.ok) {
+            var getItemToJSONstringified = JSON.stringify(getItemToJSON);//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            var key = randomID
+            var replacedString = getItemToJSONstringified.replace(/offlineOpen/g, 'submittedOpen');
+            var value = replacedString
+
+            addToIndexedDB('geoJSONs','keyvaluepairs',key,value)
             postSuccess();
+
           } else {
             // Handle error
           }
