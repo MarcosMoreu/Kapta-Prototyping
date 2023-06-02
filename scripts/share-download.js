@@ -561,7 +561,7 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
           document.getElementById('ShareFinalButton').disabled = false;
           // document.getElementById('ShareFinalButton').style.backgroundColor = '#39F70F';
           document.getElementById('ShareFinalButton').style.borderColor = 'black';
-          
+
 
 
 
@@ -681,15 +681,24 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
 
 
             }else{
-
-              // console.log(url)
-              navigator.clipboard.writeText(link).then(function() {
+              try{
+                navigator.share({
+                  // files:filesArray, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                  text: link,
+                  // url:'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z',
+                }).then(() => console.log('Successful share'))
+                  .catch((error) => console.log('Error sharing', error));
+              }catch(e){
                 // console.log(url)
+                navigator.clipboard.writeText(link).then(function() {
+                  // console.log(url)
 
-                alert("Copied to clipboard!");
-              }, function() {
-                alert("Unable to copy");
-              });
+                  alert("Copied to clipboard!");
+                }, function() {
+                  alert("Unable to copy");
+                });
+              }
+
             }
     /////////////////////////////////////////////////////////////////////////////////////////
 
