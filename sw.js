@@ -3,7 +3,7 @@
 
 // Set a name for the current cache. Note that when version is changed, the pwa only updates autmotically after reloading!
 //Note that for automatic update, at one change need to be made in the app.js file (or in other files...)
-var version = 'v26.3';
+var version = 'v29.4';
 //console.log(version)
 
 // Default files to always cache
@@ -11,7 +11,7 @@ var offlineFundamentals = [
   "/index.html",
   "/styles/app.css",
   "/scripts/modal.js",
-  // // "/scripts/app.js",
+  // "/scripts/app.js",
   "/pages/tutorial.html",
   "/scripts/tutorialPage.js",
   "/styles/tutorialPage.css",
@@ -283,11 +283,11 @@ self.addEventListener('activate', function(event) {
   event.waitUntil(self.clients.claim());
 });
 
-self.addEventListener('sync', function(event) {
-  if (event.tag === 'backgroundSync') {
-    event.waitUntil(doBackgroundSync());
-  }
-});
+// self.addEventListener('sync', function(event) {
+//   if (event.tag === 'backgroundSync') {
+//     event.waitUntil(doBackgroundSync());
+//   }
+// });
 
 // function getContactById(db, id) {
 //     const txn = db.transaction(db, 'readonly');
@@ -646,8 +646,10 @@ async function doTheWork() {
 }
 
 self.addEventListener('sync',function(event){
-    if (event.tag == 'myFirstSync') {
-      //console.('swsycnfunctionnnnnnnnnnnnnnnnnnnnnnnnn')
+  console.log('background sync called before tag')
+
+    if (event.tag === 'sync-background-') {
+      console.log('background sync called')
         event.waitUntil(
             doTheWork()
           );

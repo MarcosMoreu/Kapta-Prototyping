@@ -14,6 +14,7 @@ if ('serviceWorker' in navigator) {
             ////console.log('sw has been updated')
             //to reload the page if sw version has changed. This is to provide the user the latest version without the need of reloading or clearing cache
             registration.onupdatefound = () => {
+
               //console.log('update found in SW')
                 const installingWorker = registration.installing;
                 installingWorker.onstatechange = () => {
@@ -21,11 +22,12 @@ if ('serviceWorker' in navigator) {
                         navigator.serviceWorker.controller) {
                           // $.get( "pages/tutorial.html")
                         // reload the page
+                        caches.delete('CACHEALL')
                         location.reload();
                     }
                 };
             };
-            return registration.sync.register('myFirstSync'); //to enable sync
+            return registration.sync.register('sync-background-'); //to enable sync
 
         })
         .catch(function(err) {
@@ -895,7 +897,7 @@ function fetchFromLocalStorage(){
                     // console.log(getItemToJSON.properties.OP)
 
                     //to submit to CARTO the contributions submitted while offline
-                    if(getItemToJSON.properties.OP == 'offlineOpen'){ //////////////////11111111111111111111111111111111!!!!!!!111CHANGE TO OFFLINEOPEN
+                    if(getItemToJSON.properties.OP == 'offlineOpen' && isOnline == true){ //////////////////11111111111111111111111111111111!!!!!!!111CHANGE TO OFFLINEOPEN
                       console.log('sbumitted to carto from local storage', getItemToJSON)
 
                       //console.(getItemToJSON)
@@ -2578,8 +2580,8 @@ var checkconnectivityintervals = setInterval(function() {
     filter_Button.button.disabled = true
 
   }else{
-    filter_Button.button.style.opacity = '1';
-    filter_Button.button.disabled = false
+    // filter_Button.button.style.opacity = '1';
+    // filter_Button.button.disabled = false
   }
   return isOnline
 }, 5000)
@@ -3186,51 +3188,51 @@ var template = document.getElementById('popup')
 
 //function to activate carto layer once feature has been submitted successfully. It's fired when the share-world button is clicked
 var postSuccess = function(){
-  if(pURL[0] == 'I'){ // to refer to Insert (I), not Delete!
-
-      //interval to check if #rows in carto layers after sent has incremented compared to when carto layer is loaded initially
-      var intervalCheckAndAddNewDeflated = setInterval(function(){
-          //function  to check number of items in cartodb after GET request
-            var getTotalFeaturesInDBAfterSent;
-            var countRowsInDB = function(data){
-              getTotalFeaturesInDBAfterSent = data.rows[0].count //to count the number of rows in the array returned
-
-              if(getTotalFeaturesInDBAfterSent != getTotalFeaturesInDB){ //if it's equal then we refresh (click layers button) until is different, then query SELECT last
-                //script to load the carto layer after sent, depending on which layer is on and if local storage or not
-                if(localStorageLayer == null){
-                    if(whichLayerIsOn == 'deflated'){
-                      document.getElementById('myLayerButton').click()
-                      document.getElementById('myLayerButton').click()
-                    }else if(whichLayerIsOn == 'none'){
-                      document.getElementById('myLayerButton').click() // because first time app is used mylayer_button has only two positions (local storage is empty)
-                    }
-                }
-
-                if(localStorageLayer != null){
-                  if(whichLayerIsOn == 'deflated'){
-                    document.getElementById('myLayerButton').click()
-                    document.getElementById('myLayerButton').click()
-                    document.getElementById('myLayerButton').click()
-
-                  }else if(whichLayerIsOn == 'localStorage'){
-                    document.getElementById('myLayerButton').click()
-                    document.getElementById('myLayerButton').click()
-                  }else if(whichLayerIsOn == 'none')
-                  document.getElementById('myLayerButton').click()
-
-                }
-              clearInterval(intervalCheckAndAddNewDeflated)
-              }
-            }
-            //request to check when feature has reached the DB
-            // $.get({
-            //   cache:false,
-            //   success:countRowsInDB,// if success the function above is called
-            //   url:"https://" + cartousername + ".cartodb.com/api/v2/sql?q=" + "SELECT COUNT(cartodb_id) FROM lumblu" + cartoapiSELECT
-            // })
-
-       },500)
-   }
+  // if(pURL[0] == 'I'){ // to refer to Insert (I), not Delete!
+  //
+  //     //interval to check if #rows in carto layers after sent has incremented compared to when carto layer is loaded initially
+  //     var intervalCheckAndAddNewDeflated = setInterval(function(){
+  //         //function  to check number of items in cartodb after GET request
+  //           var getTotalFeaturesInDBAfterSent;
+  //           var countRowsInDB = function(data){
+  //             getTotalFeaturesInDBAfterSent = data.rows[0].count //to count the number of rows in the array returned
+  //
+  //             if(getTotalFeaturesInDBAfterSent != getTotalFeaturesInDB){ //if it's equal then we refresh (click layers button) until is different, then query SELECT last
+  //               //script to load the carto layer after sent, depending on which layer is on and if local storage or not
+  //               if(localStorageLayer == null){
+  //                   if(whichLayerIsOn == 'deflated'){
+  //                     document.getElementById('myLayerButton').click()
+  //                     document.getElementById('myLayerButton').click()
+  //                   }else if(whichLayerIsOn == 'none'){
+  //                     document.getElementById('myLayerButton').click() // because first time app is used mylayer_button has only two positions (local storage is empty)
+  //                   }
+  //               }
+  //
+  //               if(localStorageLayer != null){
+  //                 if(whichLayerIsOn == 'deflated'){
+  //                   document.getElementById('myLayerButton').click()
+  //                   document.getElementById('myLayerButton').click()
+  //                   document.getElementById('myLayerButton').click()
+  //
+  //                 }else if(whichLayerIsOn == 'localStorage'){
+  //                   document.getElementById('myLayerButton').click()
+  //                   document.getElementById('myLayerButton').click()
+  //                 }else if(whichLayerIsOn == 'none')
+  //                 document.getElementById('myLayerButton').click()
+  //
+  //               }
+  //             clearInterval(intervalCheckAndAddNewDeflated)
+  //             }
+  //           }
+  //           //request to check when feature has reached the DB
+  //           // $.get({
+  //           //   cache:false,
+  //           //   success:countRowsInDB,// if success the function above is called
+  //           //   url:"https://" + cartousername + ".cartodb.com/api/v2/sql?q=" + "SELECT COUNT(cartodb_id) FROM lumblu" + cartoapiSELECT
+  //           // })
+  //
+  //      },500)
+  //  }
 }
 
 // Send data to  PHP using a jQuery Post method
@@ -3392,9 +3394,9 @@ function setData() {
         const brRegex = /<\/?br>/gi;
         attribute1s = attribute1s.replace(brRegex, '');
 
-        attribute2s = screen1 //evaluation
-        attribute3s = screen2
-        attribute4s = screen3
+        attribute2s = imageName1 //evaluation
+        attribute3s = imageName2
+        attribute4s = imageName3
         attribute5s = null
         attribute6s = null
         attribute7s = null
