@@ -3592,31 +3592,37 @@ document.getElementById("completeFeature").disabled = true;
 // var mapCurrentCenter;
 
 document.getElementById("tutorial").onclick = function(e) {
-  try{
-    newProjectButton.style.display = 'none'
-    newProjectButton2.style.display = 'none'
-  }catch(e){}
 
-  document.getElementById("Alert").style.display = 'none'
+  window.location.href="https://wa.me/+34678380944"
+  // try{
+  //   newProjectButton.style.display = 'none'
+  //   newProjectButton2.style.display = 'none'
+  // }catch(e){}
+  //
+  // document.getElementById("Alert").style.display = 'none'
+  //
+  //   mapCurrentBounds = map.getBounds();
+  //   mapCurrentZoom = map.getZoom();
+  //   mapCurrentCenter = map.getCenter();
+  //   setTimeout(function() {
+  //       // document.getElementById('imageryAlert').style.display = 'none'
+  //       window.location.href = 'pages/tutorial.html';
+  //       document.body.style.backgroundColor = "black";
+  //       document.getElementById("map").style.display = "none";
+  //       document.getElementById("tutorial").style.display = "none";
+  //       document.getElementById("polygon").style.display = "none";
+  //       document.getElementById("polyline").style.display = "none";
+  //       document.getElementById("point").style.display = "none";
+  //       document.getElementById("armchair").style.display = "none";
+  //       document.getElementById("field").style.display = "none";
+  //       document.getElementById("gobackArmchairField").style.display = "none";
+  //
+  //   }, 200)
+  //   return mapCurrentBounds & mapCurrentZoom & mapCurrentCenter
 
-    mapCurrentBounds = map.getBounds();
-    mapCurrentZoom = map.getZoom();
-    mapCurrentCenter = map.getCenter();
-    setTimeout(function() {
-        // document.getElementById('imageryAlert').style.display = 'none'
-        window.location.href = 'pages/tutorial.html';
-        document.body.style.backgroundColor = "black";
-        document.getElementById("map").style.display = "none";
-        document.getElementById("tutorial").style.display = "none";
-        document.getElementById("polygon").style.display = "none";
-        document.getElementById("polyline").style.display = "none";
-        document.getElementById("point").style.display = "none";
-        document.getElementById("armchair").style.display = "none";
-        document.getElementById("field").style.display = "none";
-        document.getElementById("gobackArmchairField").style.display = "none";
 
-    }, 200)
-    return mapCurrentBounds & mapCurrentZoom & mapCurrentCenter
+
+
 }
 document.getElementById("gobackArmchairField").onclick = function(e) {
   document.getElementById("tutorial").style.display = "initial";

@@ -76,77 +76,12 @@ document.getElementById('cutomiseButton').onclick = function(e){
          Cognito.load("forms", { id: "2" })
          cognitoFormLoaded = true
 
-    // document.getElementById("youtubeImage").src = '../images/checkingPw.gif'
-  //   setTimeout(function(){
-  //     if(cognitoFormLoaded == false){
-  //
-  //       var target = document.getElementById('cognitoForm');
-  //       // create an observer instance
-  //       var observer = new MutationObserver(function (mutations) {
-  //           mutations.forEach(function (mutation) {
-  //               if (Cognito.config.isReady){
-  //                   // stop observing
-  //                   observer.disconnect();
-  //                   cognitoFormLoaded = true
-  //                  document.getElementById("loadingCognito").style.display = "none";
-  //                  // document.getElementById("youtubeImage").src = '../images/youtube.png'
-  //               };
-  //           });
-  //       });
-  //
-  //       // configuration of the observer:
-  //       var config = { attributes: true, childList: true };
-  //       // pass in the target node, as well as the observer options
-  //       observer.observe(target, config);
-  //       Cognito.load("forms", { id: "2" })
-  //     }else{
-  //       document.getElementById("loadingCognito").style.display = "none";
-  //     }
-  //
-  // },300)
-  // return cognitoFormLoaded
+
   setTimeout(function(){
     document.getElementById("loadingCognito").style.display = "none";
   },4000)
   return cognitoFormLoaded
 }
-
-// document.getElementById('cutomiseButton').onclick = function(e){
-//     document.getElementById("youtubeImage").src = '../images/checkingPw.gif'
-//     var target = document.getElementById('cognitoForm');
-//     // create an observer instance
-//     var observer = new MutationObserver(function (mutations) {
-//         mutations.forEach(function (mutation) {
-//             if (Cognito.config.isReady){
-//                 // stop observing
-//                 observer.disconnect();
-//                 // alert('FORM LOADED!');
-//                 document.getElementById("infoGoBackButton").style.display = "initial";
-//                 document.getElementById("cognitoForm").style.display = "initial";
-//                 document.body.style.overflow = 'visible';
-//                 document.getElementById('dropDown').style.display = "none";
-//                 document.getElementById('cutomiseButton').style.display = "none";
-//                document.getElementById('infoButton').style.display = "none";
-//                document.getElementById("iconsButton").style.display = "none";
-//                document.getElementById('cutomiseButton').style.display = "none";
-//                document.getElementById("youtube").style.display = "none";
-//                document.getElementById("startMapping").style.display = "none";
-//
-//                document.getElementById("english").style.display = "none";
-//                document.getElementById("swahili").style.display = "none";
-//                document.getElementById("other1").style.display = "none";
-//                document.getElementById("youtubeImage").src = '../images/youtube.png'
-//             };
-//         });
-//     });
-//
-//     // configuration of the observer:
-//     var config = { attributes: true, childList: true };
-//     // pass in the target node, as well as the observer options
-//     observer.observe(target, config);
-//     Cognito.load("forms", { id: "2" })
-//
-// }
 
 document.getElementById('infoButton').onclick = function(e){
    setTimeout(function(){

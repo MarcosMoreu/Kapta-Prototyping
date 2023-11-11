@@ -234,7 +234,7 @@ setTimeout(function(){
 },2900)
 
 document.getElementById('loginInfo').onclick = function(){
-  window.location.href = 'pages/tutorial.html';
+  window.location.href="https://wa.me/+34678380944";
 }
 
 document.getElementById('loginKey').onclick = function(e){
@@ -656,7 +656,7 @@ var requestPw = function(){
           },50)
 
           var randomEmailId = Math.floor(Math.random() * 10);  // this is to prevent the situation where multiple users fail the login with the same account and it bolcks
-          var email = 'any'+ randomEmailId + '@any.com' //I've added 10 different email address in Firebase (0-9) with same Pw
+          var email = 'md'+ randomEmailId + '@md.com' //I've added 10 different email address in Firebase (0-9) with same Pw
           //console.log(randomEmailId)
 
           var password = '00' + pwPlaceholder // 00 is added as Firebase only allows for a minimum of 6 digits pws
