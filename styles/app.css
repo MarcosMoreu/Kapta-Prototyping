@@ -5,7 +5,7 @@ html,body {
     margin: 0;
     background-color: white;
     overflow:hidden;
-    font-family:Ubuntu;
+    /* font-family:Ubuntu; */
     background-color:black;
     min-height: 100%;
     max-height: 100%;
@@ -32,6 +32,8 @@ left:0px;
 }
 .buttonInitial{
 position:absolute;
+font-family:Ubuntu, Helvetica, Arial;
+
 /* transition: 0.5s all; */
 /* transition-duration: 500ms; */
 }
@@ -145,6 +147,8 @@ position:absolute;
 
 * {
   font-family: Arial, Helvetica, san-serif;
+  /* font-family: Helvetica, Tahoma, sans-serif !important; */
+
 }
 
 .span6 {

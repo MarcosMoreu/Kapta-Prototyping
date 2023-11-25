@@ -39,7 +39,7 @@ var household = null
 // var crop_hectares_afected = null
 var updateproject
 var finalAttributes
-var sapelliProjectIdentifier = 'nTxrPZWdUhRVVjwszTFoSywAhZfNkRtzrUcwNnhK'
+var sapelliProjectIdentifier = 'nTxrPZWdUhRVVjwszTFoSywAhZfNfdasfdadsa'
 localStorage.setItem('sapelliProjectIdentifier', sapelliProjectIdentifier);
 // var isMARAorMAU
 
@@ -119,7 +119,7 @@ document.getElementById('customIconsMap').onclick = function(e){
 
     document.getElementById("map").style.height = "100%";
     document.getElementById("filterWithIcons").style.display = 'initial'
-    document.getElementById("filterByDate").style.display = 'initial'
+    // document.getElementById("filterByDate").style.display = 'initial'
     document.getElementById("clearFilter").style.display = 'none'
     document.getElementById("applyFilter").style.display = 'initial'
     document.getElementById('emoji').style.display = 'initial';
@@ -257,7 +257,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
   }
   projectsCreated = false
   preload([
-    'images/logoNyangatomReduced.png','images/omoIcons/unknownOther.png',
+    'images/qmm.png','images/omoIcons/unknownOther.png',
 
   ])
   setTimeout(function(){
@@ -308,7 +308,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
         newProjectButton = document.createElement("BUTTON");
         cell.appendChild(newProjectButton);
         newProjectButton.className = 'sapelliProjectsLogo'
-        newProjectButton.innerHTML = '<img src="images/logoNyangatomReduced.png" style="width:50px ; height:50px; border: 0px solid white" />';
+        newProjectButton.innerHTML = '<img src="images/qmm.png" style="width:50px ; height:50px; border: 0px solid white" />';
         newProjectButton.style.gridColumn = '1'
         newProjectButton.style.gridRow = '1';
         hideAll() // to prevent grid showing together with sapelli project icons
@@ -396,7 +396,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
 
                   // newProjectButton2.style.display = 'none';
                   generateButtonslandUse()
-                  newProjectButton.innerHTML = '<img src="images/logoNyangatomReduced.png" style="width:50px ; height:50px; border: 0px solid white" />';
+                  newProjectButton.innerHTML = '<img src="images/qmm.png" style="width:50px ; height:50px; border: 0px solid white" />';
                   newProjectButton.disabled = false
                   newProjectButton.style.backgroundColor = 'white'
                   newProjectButton.style.borderColor = 'white'
