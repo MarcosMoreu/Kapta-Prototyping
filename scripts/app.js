@@ -663,12 +663,32 @@ else if (urlContainsHash == true){  // if only coords are in the url
 }else{
   //console.log('only map')
 
+  if(currentLocation.length == 2){
+    var urlLatLocation = currentLocation[0]
+    var urlLngLocation = currentLocation[1]
+    var zoomcenter = 13
+    // console.log(currentLocation)
+
+  }else{
+    if(localStorage.getItem('lastlocationLATITUDE')){
+      var urlLatLocation =  localStorage.getItem('lastlocationLATITUDE');
+      var urlLngLocation =  localStorage.getItem('lastlocationLONGITUDE');
+      var zoomcenter = 13
+
+    }else{
+      var urlLatLocation = 0
+      var urlLngLocation = 0
+      var zoomcenter = 0
+
+    }
+
+}
     // if (lastPositionStoredLOCALLY == null) {
         var map = L.map('map', {
             renderer: L.canvas({padding: 0.5, tolerance: 8}),
             editable: true,
-            center: [0, 0], //global center
-            zoom: 0,
+            center: [urlLatLocation, urlLngLocation], //global center
+            zoom: zoomcenter,
             minZoom: 2,
             maxZoom: 21,
             zoomControl: false,
@@ -1017,7 +1037,7 @@ function fetchFromLocalStorage(){
                         dist_m_Participant = 0
                         /////////////////////////////////////////LOCAL STORAGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE///////////////////////////////////////////////
                         // var commentAudioDefault = '.'
-                        var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n, timestamp) VALUES (ST_GeogFromGeoJSON('";
+                        var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb_QMM_Madagascar` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n, timestamp) VALUES (ST_GeogFromGeoJSON('";
                         var sql2 = dataGeometryString;
                         var sql3 = "',make_valid => true),'"+randomID+ "',CAST('" + phoneNumber + "' AS INT64),'" + sapelliProjectIdentifier + "',CAST('" + areaPolygonNumeric + "' AS NUMERIC),CAST('" + lengthLineNumeric + "' AS NUMERIC),CAST('" + dist_m_Participant + "' AS INT64),'" + dateTime +"','"+attribute1s+ "','" + attribute2s + "','" + attribute3s + "','" + attribute4s + "','" + attribute5s + "','" + attribute6s + "','" + attribute7s + "','" + attribute8s + "','"+attribute9s+ "','" + attribute10s + "',CAST('"+ attribute11n + "' AS INT64),CAST('" + attribute12n + "' AS INT64),CAST('" + attribute13n + "' AS INT64),CAST('" + attribute14n + "' AS INT64),CAST('" + attribute15n + "' AS INT64),CAST('" + attribute16n + "' AS INT64),CAST('" +attribute17n+ "' AS INT64),CAST('" + attribute18n + "' AS INT64),CAST('" + attribute19n + "' AS INT64),CAST('" + attribute20n + "' AS INT64),CAST('" +dateTime+"' AS TIMESTAMP))";
                         var pURL = sql + sql2 + sql3;
@@ -1069,6 +1089,9 @@ var markerIconLocalStorage = new L.icon({
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var googleSat = L.tileLayer.offline('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb, {
+  // var googleSat = L.tileLayer.offline('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFyY29zbW9yZXV1Y2wiLCJhIjoiY2xwZHNlbmFpMDVoZjJpcGJxOHplOGw0ZCJ9.MiHNkvMRkTcfndsLMH166w', tilesDb, {
+
+
     minZoom: 2,
     maxZoom: 21,
     maxNativeZoom: 21,
@@ -1077,7 +1100,7 @@ var googleSat = L.tileLayer.offline('https://{s}.google.com/vt/lyrs=s,h&x={x}&y=
     // cache:true,
     //border: 'solid black 5px',
     subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-    attribution: 'Leaflet | Google',
+    attribution: 'Leaflet | Mapbox',
 })//.addTo(map);
 
 var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', tilesDb, {
@@ -1400,7 +1423,7 @@ if (isIOS == true) {
     }else{
       var iconLAYERS = '<img src="images/onionlayericon.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px" > ';
     }
-    var iconFILTER = '<img src="images/filterIcon.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px;margin-top:2px" > ';
+    var iconFILTER = '<img src="images/backButton.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px;margin-top:2px" > ';
     var iconFILTERlocalStorage = '<img src="images/filterIcon.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-6px;margin-top:2px" > ';
     var iconRANDOM = '<img src="images/gps.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
     var iconLocalStorageRecenter = '<img src="images/LocalStorageRecenter.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%; margin-left:-5px" > ';
@@ -1416,7 +1439,7 @@ if (isIOS == true) {
     }else{
       var iconLAYERS = '<img src="images/onionlayericon.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-2px" > ';
     }
-    var iconFILTER = '<img src="images/filterIcon.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px;margin-top:2px" > ';
+    var iconFILTER = '<img src="images/backButton.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px;margin-top:2px" > ';
     var iconFILTERlocalStorage = '<img src="images/filterIcon.png" alt="..." width=35px; height=35px; loading="lazy" text-align="center" style="top:50%;margin-left:-1px;margin-top:2px" > ';
     var iconRANDOM = '<img src="images/gps.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%" > ';
     var iconLocalStorageRecenter = '<img src="images/LocalStorageRecenter.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;"> ';
@@ -2310,10 +2333,10 @@ var myLayer_Button = L.easyButton({
     } else if (whichLayerIsOn == 'none') {
       // sqlQuerySelect = "select%20*%20from%20%60carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0%60&cache=1683980483065&v=3.0"
 
-      // sqlQuerySelect = "SELECT * FROM `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0`"
+      // sqlQuerySelect = "SELECT * FROM `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb_QMM_Madagascar`"
       // sqlQuerySelectEncoded = encodeURI(sqlQuerySelect)
       //   requestCartoData(sqlQuerySelectEncoded)
-      filter_Button.button.style.opacity = '0.4';
+      filter_Button.button.style.opacity = '0';
       filter_Button.button.disabled = true;
             whichLayerIsOn = 'deflated'
             console.log('whichLayerIsOn',whichLayerIsOn)
@@ -2680,12 +2703,17 @@ function findBuffer(position) {
     var lat = position.coords.latitude;
     var lng = position.coords.longitude;
     accuracy = position.coords.accuracy;
+
   //  console.log(accuracy)
     // if (markerAdded == false) {
     //     // L.marker([lat, lng],{icon:gpsIcon}).addTo(map);
     //     markerAdded = true;
     // }
     currentLocation = [lat, lng];
+    localStorage.setItem('lastlocationLATITUDE', lat);
+    localStorage.setItem('lastlocationLONGITUDE', lng);
+
+
 
 
     return currentLocation & markerAdded & accuracy;
@@ -2736,6 +2764,9 @@ var field = false
 var position
 var startSearchingLocation = function(){
 var refreshGPSbutton = setInterval(function() { ///////////////////////////////////////// function to keep searching for gps position
+  console.log(currentLocation)
+  console.log(currentLocation[0])
+
 
   //console.('gps accuracy',accuracy)
   if(localStorage.getItem('pwCorrect')){
@@ -3286,7 +3317,7 @@ function setData() {
 
           cartoIdFeatureSelected = deleteFromcartoimmediate
         }
-        pURL = "DELETE FROM `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` WHERE contributionid='" + cartoIdFeatureSelected + "'";
+        pURL = "DELETE FROM `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb_QMM_Madagascar` WHERE contributionid='" + cartoIdFeatureSelected + "'";
         clickCountDeleteButton = 0
         cartoIdFeatureSelected = null
         deleteFromcartoimmediate = null
@@ -3502,13 +3533,13 @@ try{ //to catch when value is empty
         // console.log(lu_final)
         /////////////////////////////////////////LOCAL STORAGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE///////////////////////////////////////////////
         // var commentAudioDefault = '.'
-        var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n, timestamp) VALUES (ST_GeogFromGeoJSON('";
+        var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb_QMM_Madagascar` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n, timestamp) VALUES (ST_GeogFromGeoJSON('";
         var sql2 = dataGeometryString;
 var sql3 = "',make_valid => true),'"+randomID+ "',CAST('" + phoneNumber + "' AS INT64),'" + sapelliProjectIdentifier + "',CAST('" + areaPolygonNumeric + "' AS NUMERIC),CAST('" + lengthLineNumeric + "' AS NUMERIC),CAST('" + dist_m_Participant + "' AS INT64),'" + dateTime +"','"+attribute1s+ "','" + attribute2s + "','" + attribute3s + "','" + attribute4s + "','" + attribute5s + "','" + attribute6s + "','" + attribute7s + "','" + attribute8s + "','"+attribute9s+ "','" + attribute10s + "',CAST('"+ attribute11n + "' AS INT64),CAST('" + attribute12n + "' AS INT64),CAST('" + attribute13n + "' AS INT64),CAST('" + attribute14n + "' AS INT64),CAST('" + attribute15n + "' AS INT64),CAST('" + attribute16n + "' AS INT64),CAST('" +attribute17n+ "' AS INT64),CAST('" + attribute18n + "' AS INT64),CAST('" + attribute19n + "' AS INT64),CAST('" + attribute20n + "' AS INT64),CAST('" +dateTime+"' AS TIMESTAMP))";
         pURL = sql + sql2 + sql3;
         //console.(pURL)
         // console.log(timeSpendSeconds)
-//         var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb0` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n) VALUES (ST_GeogFromGeoJSON('";
+//         var sql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.gxdb_QMM_Madagascar` (geom, contributionid, phone, sapprojid, areapolygon, lengthline, distance, date, attribute1s, attribute2s, attribute3s, attribute4s, attribute5s, attribute6s, attribute7s, attribute8s, attribute9s, attribute10s, attribute11n, attribute12n, attribute13n, attribute14n, attribute15n, attribute16n, attribute17n, attribute18n, attribute19n, attribute20n) VALUES (ST_GeogFromGeoJSON('";
 //         var sql2 = dataGeometryString;
 // var sql3 = "',make_valid => true),'"+randomID+"','" + "',CAST('" + phoneNumber + "' AS INT64),'" + sapelliProjectIdentifier + "','" + areaPolygon + "','" + lengthLine + "',CAST('" + dist_m_Participant + "' AS INT64),'" + dateTime +"','"+attribute1s+ "','" + attribute2s + "','" + attribute3s + "','" + attribute4s + "','" + attribute5s + "','" + attribute6s + "','" + attribute7s + "','" + attribute8s + "','"+attribute9s+ "','" + attribute10s + "','" + attribute11n + "','" + attribute12n + "','" + attribute13n + "','" + attribute14n + "','" + attribute15n + "','" + attribute16n + "','" +attribute17n+ "','" + attribute18n + "','" + attribute19n + "','" + attribute20n + "')";
 //         pURL = sql + sql2 + sql3;
