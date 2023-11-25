@@ -68,14 +68,14 @@
 <div id="modal" class='modal' style='z-index:130;background-color:black'>
   <form id='pwForm'  class="modal-content animate" style='margin-top:80px; width:300px; border-radius:50px' >
 
-    <img id='lockorphone' src="images/icons/icon-128x128.webp"  loading='lazy' alt="..." style='margin-left: calc(50% - 45px);margin-top:20px;width: 90px; height:90px' >
+    <img id='lockorphone' src="images/icons/icon-256x256.webp"  loading='lazy' alt="..." style='margin-left: calc(50% - 45px);margin-top:20px;width: 90px; height:90px' >
 
     <div style='margin-top:10px; text-align:center;'>
-      <button id='loginInfo' class='button' disabled style='opacity:0.3;outline:none;position:relative;margin-right:30px;margin-top:3px; margin-bottom:10px;width:50px ; height:50px; border: 1px solid white; border-color:black; border-radius:50px' >
-        <img src="images/questionmark.png"  loading='lazy' alt="..." style=' width:30px ; height:30px;' >
+      <button id='loginInfo' class='button' disabled style='display:none; opacity:0.3;outline:none;position:relative;margin-right:30px;margin-top:3px; margin-bottom:10px;width:50px ; height:50px; border: 1px solid white; border-color:black; border-radius:50px' >
+        <img src="images/infohelp.png"  loading='lazy' alt="..." style=' width:30px ; height:30px;' >
       </button>
       <button id='loginKey' class='button' disabled style='opacity:0.3;outline:none; position:relative;margin-top:3px;margin-bottom:10px;width:50px ; height:50px; border: 1px solid white; border-color:black; border-radius:50px' >
-        <img src="images/phoneicon.png"  loading='lazy' alt="..." style=' width:30px ; height:30px;' >
+        <img src="images/phoneicon.png"  loading='lazy' alt="..." style=' width:30px ; height:30px;margin-top:6px' >
       </button>
 
     </div>
@@ -93,16 +93,48 @@
 
 </div>
 
-<div id='initialscreen2options' class='full-height' style='z-index:100;'>
-  <button id='talk' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 50px); top:calc(50% - 150px);width:100px ; height:100px; border: 1px solid white; border-color:white; border-radius:25px' >
-    <img src="images/talk.png"  alt="..." style=' width:50px ; height:50px;' >
+<div id='initialscreen2options' class='full-height' style='z-index:100;background-color:#c00000;'>
+  <button id='startmapping' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 70px); top:calc(50% - 275px);width:140px ; height:100px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
+    <img src="images/talk.png"  alt="..." style=' width:50px ; height:50px;' > </br>Start mapping
+
   </button>
-  <button id='listen' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 50px); bottom:calc(50% - 150px);width:100px ; height:100px; border: 1px solid white; border-color:white; border-radius:25px' >
-    <img src="images/listen.png"  alt="..." style=' width:50px ; height:50px;' >
+
+  <button id='geocredits' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 70px); top:calc(50% - 125px);width:140px ; height:100px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
+    <img id='geocreditsimage' src="images/geocredits.png"  alt="..." style=' width:50px ; height:50px;' > </br>Kapta credits
   </button>
+  <button id='askthemap' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 70px); bottom:calc(50% - 125px);width:140px ; height:100px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
+    <img src="images/listen.png"  alt="..." style=' width:50px ; height:50px;' > </br>Ask the map
+  </button>
+  <button id='asktheteam' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 70px); bottom:calc(50% - 275px);width:140px ; height:100px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
+    <img src="images/infohelp.png"  alt="..." style=' width:50px ; height:50px;' > </br>Ask the team
+  </button>
+
+  <p style='z-index:0;display:initial;text-align: center;position:fixed;width:100%;bottom:15px;color:#7E1701;font-size:16px; font-family:'Ubuntu' '> Kapta</p>
+
+
+
 </div>
+
+<!-- <div id='initialscreen2options' class='full-height' style='z-index:100;background-color:#c00000;'>
+  <button id='startmapping' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 70px); top:calc(50% - 215px);width:140px ; height:100px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
+    <img src="images/talk.png"  alt="..." style=' width:50px ; height:50px;' > </br>Start mapping
+  </button>
+  <button id='askthemap' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 70px); top:calc(50% - 70px);width:140px ; height:100px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
+    <img src="images/listen.png"  alt="..." style=' width:50px ; height:50px;' > </br>Ask the map
+  </button>
+  <button id='geocredits' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 70px); bottom:calc(50% - 175px);width:140px ; height:100px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
+    <img id='geocreditsimage' src="images/geocredits.png"  alt="..." style=' width:50px ; height:50px;' > </br>Kapta credits
+  </button>
+  <button id='asktheteam' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); bottom:calc(50% - 300px);width:200px ; height:50px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;' >
+    <img src="images/infohelp.png"  alt="..." style=' width:30px ; height:30px;' > Ask the team
+  </button>
+
+  <p style='z-index:0;display:initial;text-align: center;position:fixed;width:100%;bottom:15px;color:black;font-size:14px; font-family:'Ubuntu' '> Kapta</p>
+
+</div> -->
+
 <div id="map" style='height:100%; z-index:2; position:relative;'>
-    <div id="rose" style='margin-bottom:80px; margin-left:-8px; width:40px; height:40px'>
+    <div id="rose" style='margin-bottom:80px; margin-left:-5px; width:40px; height:40px'>
       <p id='showAreaAcresScreenshot' style='z-index:3;position:fixed; text-align: center; width:100%; margin-top:-10px;display:none;color:yellow;font-size:25px; font-weight:bold' ></p>
 
      </div>
@@ -110,7 +142,7 @@
 
 <div align='center' style='z-index:2; position:relative; margin-top:-90px' >
   <button id='tutorial' class='button' aria-label = 'goBack1' style='display:none;z-index:3; position:relative;' >
-    <img  src="images/questionmark.png"  alt="..." style='width:30px ; height:30px'>
+    <img  src="images/backButton.png"  alt="..." style='width:30px ; height:30px'>
   </button>
   <button id='gobackArmchairField' class='button' aria-label = 'field' style='display:none;z-index:3; position:relative'>
     <img src="images/backButton.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
@@ -194,16 +226,20 @@
   <button id='backEditDelete' class='button' aria-label = 'backEditDelete' style='display:none;margin-left:30px'>
     <img src="images/backButton.png" loading='lazy'  alt="..." style='margin-left:2px; width:30px ; height:30px'>
   </button>
-
-  <button id='filterWithIcons' class='button' aria-label = 'filterWithIcons' style='display:none;' >
-    <img src="images/excitesTree.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
+  <button id='backFromFilter' class='button' aria-label = 'backEditDelete' style='display:none'>
+    <img src="images/backButton.png" loading='lazy'  alt="..." style='margin-left:2px; width:30px ; height:30px'>
   </button>
+
+
 
   <div id='emoji' class="span6"  >
     <div id='span6' class="span6" style='vertical-align:middle;display:inline-block; position:flex; height:50px;'>
       <input id="emojionearea" class="inputtext" placeholder='...' style='vertical-align:middle;  width: calc(100% - 37px); height:40px;border-radius: 20px;border-color:white; font-size:15px;padding:0px 15px'></input>
     </div>
   </div>
+  <button id='filterWithIcons' class='button' aria-label = 'filterWithIcons' style='display:none;' >
+    <img src="images/excitesTree.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
+  </button>
 
   <button id='sapelliProjects' class='button' aria-label = 'CustomIcons'style='display:none;margin-left:0px' >
     <img src="images/excitesTree.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
@@ -215,16 +251,19 @@
     <img id='shareWorldButtonCommentImage' src="images/sendComment.png" loading='lazy'  alt="..." style='margin-left:-1px; width:30px ; height:30px; '>
   </button>
 
-  <button id='filterByDate' class='button' aria-label = 'clearFilter' style='display:none;border-radius:15px'>
-    <img id='imgFilterByDate'   src="images/dateAll.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
-  </button>
+
   <button id='clearFilter' class='button' aria-label = 'clearFilter' style='display:none;' >
     <img src="images/clearFilter.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
   </button>
   <button id='applyFilter' class='button' aria-label = 'applyfilter' style='display:none;'>
     <img src="images/applyFilter.png" loading='lazy'  alt="..." style='margin-left:2px; width:30px ; height:30px'>
   </button>
-
+  <!-- <button id='filterByDate' class='button' aria-label = 'clearFilter' style='display:none;border-radius:15px;left:calc(100% - 65px); bottom:calc(100% - 175px)'>
+    <img id='imgFilterByDate'   src="images/dateAll.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
+  </button> -->
+  <button id='filterByDate' class='button' aria-label = 'clearFilter' style='display:none;border-radius:15px;left:calc(50% - 25px); bottom:calc(100% - 175px)'>
+    <img id='imgFilterByDate'   src="images/dateAll.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
+  </button>
   <div id='Sent'  style='display:none; z-index:100;'>
       <video id='sentVideo' autoplay='autoplay' playsinline muted   alt="..." style='text-align:center; height:100%;width:100%; display:block; margin:auto;'>
   </div>

@@ -43,9 +43,9 @@
 // },)
 var isOnline = navigator.onLine
 if(isOnline == false){
-  document.getElementById('listen').style.opacity = '0.4';
-  document.getElementById('listen').style.borderColor = 'black'
-    document.getElementById('listen').disabled = true
+  document.getElementById('askthemap').style.opacity = '0.4';
+  document.getElementById('askthemap').style.borderColor = 'black'
+    document.getElementById('askthemap').disabled = true
 }
 
 
@@ -78,9 +78,9 @@ var arrayOfImages = [
     'images/questionmark.png','images/random.png','images/shareMessagingApps.png','images/shareworld.png','images/shareworldConfirm.png',
     'images/uk.png','images/ethiopiaTutorial.png','images/other1.png','images/underConstruction.png','images/youtube.png','images/youtubeOffline.png',
     'images/shareMessagingAppsYellow.png','images/sendComment.png','images/deleteFromCarto.png',
-    'images/LocalStorageRecenter.png',
-    'images/excitesTree.png','images/logoNyangatomReduced.png',
-    'images/customIconsMap.png','images/customIconsCancel.png',
+    'images/LocalStorageRecenter.png','images/chatquestionmark.png',
+    'images/excitesTree.png','images/qmm.png',
+    'images/customIconsMap.png','images/customIconsCancel.png','images/infohelp.png',
 
     //sapelli project images
       'images/omoIcons/banana.png','images/omoIcons/boatCrossing.png','images/omoIcons/cattleGrazing.png','images/omoIcons/church.png','images/omoIcons/eldersHut.png','images/omoIcons/fishing.png',
@@ -122,8 +122,11 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
 
       setTimeout(function(){
 
-        document.getElementById('talk').style.display = 'initial'
-        document.getElementById('listen').style.display = 'initial'
+        document.getElementById('startmapping').style.display = 'initial'
+        document.getElementById('askthemap').style.display = 'initial'
+        document.getElementById('asktheteam').style.display = 'initial'
+        document.getElementById('geocredits').style.display = 'initial'
+
         },300)
       // }
 
@@ -238,6 +241,7 @@ document.getElementById('loginInfo').onclick = function(){
 }
 
 document.getElementById('loginKey').onclick = function(e){
+  document.getElementById('AlertModalIOS').innerHTML = '</br></br> 📞 Enter your phone number 📞'
   document.getElementById('AlertModalIOS').style.display = 'initial'
   document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
   e.preventDefault() //to avoid reload
@@ -302,8 +306,11 @@ var initialiseMap = function(){
     //console.('initialise map')
     if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains geojson (and coords)
       document.getElementById('initialscreen2options').style.display = 'none'
-      document.getElementById('talk').style.display = 'none'
-      document.getElementById('listen').style.display = 'none'
+      document.getElementById('startmapping').style.display = 'none'
+      document.getElementById('askthemap').style.display = 'none'
+      document.getElementById('asktheteam').style.display = 'none'
+      document.getElementById('geocredits').style.display = 'none'
+
       document.getElementById('map').style.opacity = 1
       document.getElementById('map').disabled = false
       document.getElementById("tutorial").style.display = "initial";
@@ -385,7 +392,24 @@ basemapClass[0].style.opacity = 0
     // window.addEventListener('DOMContentLoaded', function(){
   // $('rose').ready(function(){
 
-
+  // var mainmenu_Button = L.easyButton({
+  //     id: 'mainmeny',
+  //     class: 'easyButton1',
+  //     position: 'topleft',
+  //     states: [{
+  //         icon: iconOSM,
+  //         //stateName: 'check-mark',
+  //         onClick: function(btn, map) {
+  //           document.getElementById('initialscreen2options').style.display = 'initial'
+  //
+  //         }
+  //     }]
+  // });
+  //
+  // mainmenu_Button.button.style.width = '50px';
+  // mainmenu_Button.button.style.height = '50px';
+  // mainmenu_Button.button.style.transitionDuration = '.3s';
+  // mainmenu_Button.button.style.backgroundColor = '#c00000';
 
   var rose = L.control.rose('rose', {
       position: 'topleft',
@@ -397,14 +421,14 @@ basemapClass[0].style.opacity = 0
   // fieldImageCheck.src = 'images/field.png'
   // var roseid = document.getElementById("rose")
   // roseid.src = 'images/osm.png'
-
+// mainmenu_Button.addTo(map)
   // fieldImageCheck.onload = function(){
+    gps_Button.addTo(map);
     osm_Button.addTo(map);
     myLayer_Button.addTo(map); //always on as there will always be features in the map, even when first load
-    filter_Button.addTo(map);
     scale.addTo(map)
-    gps_Button.addTo(map);
     rose.addTo(map)
+
     // deflated.addTo(map)
 
     // var mylayerready = document.getElementById('myLayerButton')
@@ -474,10 +498,49 @@ basemapClass[0].style.opacity = 0
 
 
 // console.log('bodyheight',bodyheight)
+document.getElementById("tutorial").onclick = function(e) {
+  myLayer_Button.addTo(map); //always on as there will always be features in the map, even when first load
 
-document.getElementById('talk').onclick = function(){
-  document.getElementById('talk').style.backgroundColor = '#404040'
-  document.getElementById('talk').style.borderColor = '#404040'
+//   phoneNumber = localStorage.getItem('phoneNumber');
+//   sapelliProjectIdentifier = localStorage.getItem('sapelliProjectIdentifier');
+//   var sapprojIDtest = '123456789'
+//
+// //The pre-filled message will automatically appear in the text field of a chat. Use https://wa.me/whatsappphonenumber?text=urlencodedtext where whatsappphonenumber
+// // is a full phone number in international format and urlencodedtext is the URL-encoded pre-filled message.
+//
+//
+//   window.location.href="https://wa.me/+34678380944"
+//   var textwhatsapp
+//   var textwhatsappencoded = '123456789'
+          document.getElementById('initialscreen2options').style.display = 'initial'
+          // if(whichLayerIsOn == 'deflated'){
+          //   document.getElementById('myLayerButton').click()
+          //   document.getElementById('myLayerButton').click()
+          // }if(whichLayerIsOn == 'localStorage'){
+          //   document.getElementById('myLayerButton').click()
+          // }
+          // document.getElementById('myLayerButton').click()
+
+
+}
+document.getElementById('startmapping').onclick = function(){
+  document.getElementById('startmapping').style.backgroundColor = '#a6a4a4'
+  filter_Button.removeFrom(map);
+    document.getElementById('myLayerButton').click()
+    if(whichLayerIsOn == 'deflated'){
+      document.getElementById('myLayerButton').click()
+    }else if(whichLayerIsOn == 'localStorage'){
+        document.getElementById('myLayerButton').click()
+      }
+
+    myLayer_Button.removeFrom(map); //always on as there will always be features in the map, even when first load
+
+
+
+
+
+
+  // document.getElementById('talk').style.borderColor = '#404040'
   setTimeout(function(){
     document.getElementById("Alert").style.display = 'none'
   },2000)
@@ -491,7 +554,7 @@ document.getElementById('talk').onclick = function(){
   // console.log('bodyheight',bodyheight)
   // console.log('screensheight',screen.height)
 
-  document.getElementById('myLayerButton').click()
+  // document.getElementById('myLayerButton').click()
 
   setTimeout(function(){
 
@@ -506,19 +569,38 @@ document.getElementById('talk').onclick = function(){
     document.getElementById("field").style.display = "initial";
   // },100)
   document.getElementById('MapLoading').style.opacity = 1
+  document.getElementById('startmapping').style.backgroundColor = 'white'
+
 
 },200)
 
 }
-document.getElementById('listen').onclick = function(){
-  document.getElementById('listen').style.backgroundColor = '#404040'
-  document.getElementById('listen').style.borderColor = '#404040'
+document.getElementById('askthemap').onclick = function(){
+  document.getElementById('askthemap').style.backgroundColor = '#a6a4a4'
+  // document.getElementById('listen').style.borderColor = '#BFBEBE'
+  document.getElementById('backFromFilter').style.display = 'initial'
+  document.getElementById("filterByDate").style.display = "none";
+
+
+
 
 
   setTimeout(function(){
+    filter_Button.addTo(map);
+    myLayer_Button.addTo(map); //always on as there will always be features in the map, even when first load
+
+
     document.getElementById('myLayerButton').click()
-    document.getElementById('myLayerButton').click()
+    if(whichLayerIsOn == 'none'){
+      document.getElementById('myLayerButton').click()
+    }else if(whichLayerIsOn == 'localStorage'){
+        document.getElementById('myLayerButton').click()
+      }
     document.getElementById('filter').click()
+    filter_Button.removeFrom(map);
+    myLayer_Button.removeFrom(map); //always on as there will always be features in the map, even when first load
+
+
   document.getElementById('initialscreen2options').style.display = 'none'
   document.getElementById("map").style.opacity = 1;
 
@@ -530,12 +612,36 @@ document.getElementById('listen').onclick = function(){
   //
   // },100)
   document.getElementById('MapLoading').style.opacity = 1
+  document.getElementById('askthemap').style.backgroundColor = 'white'
 
 
 },200)
 
 }
+document.getElementById('asktheteam').onclick = function(){
+  document.getElementById('asktheteam').style.backgroundColor = '#a6a4a4'
+  // document.getElementById('talk').style.borderColor = '#404040'
+  setTimeout(function(){
+    document.getElementById("Alert").style.display = 'none'
+    window.location.href="https://wa.me/+34678380944?";
+    document.getElementById('asktheteam').style.backgroundColor = 'white'
 
+
+  },500)
+  // window.location.href="https://wa.me/+34678380944?' + textwhatsappencoded + '";
+}
+
+document.getElementById('geocredits').onclick = function(){
+  document.getElementById('geocredits').style.backgroundColor = '#a6a4a4'
+
+  document.getElementById('geocreditsimage').src = '../images/underConstruction.png'
+  setTimeout(function(){
+    document.getElementById('geocreditsimage').src = '../images/geocredits.png'
+    document.getElementById('geocredits').style.backgroundColor = 'white'
+
+  },2000)
+  // window.location.href="https://wa.me/+34678380944?' + textwhatsappencoded + '";
+}
 
 // window.onload = function(){
 // window.addEventListener("click", function(){
@@ -694,8 +800,12 @@ var requestPw = function(){
                  //console.log('both')
                  localStorage.setItem('pwCorrect', true);
                  var phoneNumberNoprefix = document.getElementById('enteredPw').value.substr(4, 13)
+                 if(phoneNumberNoprefix == ''){
+                   phoneNumberNoprefix = 0123456789
+                 }else{
+                   localStorage.setItem('phoneNumber', phoneNumberNoprefix);
+                 }
                  console.log('phonenumber',phoneNumberNoprefix)
-                 localStorage.setItem('phoneNumber', phoneNumberNoprefix);
 
 
 
