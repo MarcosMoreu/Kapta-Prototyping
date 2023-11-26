@@ -197,6 +197,8 @@ document.getElementById('customIconsGoBack').onclick = function(e){
       newProjectButton.style.display = 'initial'
       newProjectButton2.style.display = 'initial'
       //console.('initial')
+
+      document.getElementById('openSapelliProject').click()
       document.getElementById('customIconsGoBack').style.display = 'none'
       document.getElementById('customIconsMap').style.display = 'initial';
 
@@ -308,6 +310,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
         newProjectButton = document.createElement("BUTTON");
         cell.appendChild(newProjectButton);
         newProjectButton.className = 'sapelliProjectsLogo'
+        newProjectButton.id = 'openSapelliProject'
         newProjectButton.innerHTML = '<img src="images/qmm.png" style="width:50px ; height:50px; border: 0px solid white" />';
         newProjectButton.style.gridColumn = '1'
         newProjectButton.style.gridRow = '1';
@@ -401,7 +404,7 @@ document.getElementById('sapelliProjects').onclick = function(e){
                   newProjectButton.style.backgroundColor = 'white'
                   newProjectButton.style.borderColor = 'white'
                   clearInterval(checkingIfPreloadCompleted)
-                  document.getElementById('customIconsGoBack').style.display = 'initial'
+                  document.getElementById('customIconsMap').style.display = 'initial'
 
                 }else{
                   document.getElementById("Alert").style.fontSize = "15px";
@@ -423,7 +426,14 @@ document.getElementById('sapelliProjects').onclick = function(e){
         }
 
     }
+    document.getElementById('openSapelliProject').click()
+    document.getElementById('customIconsGoBack').style.display = 'none'
+    document.getElementById('customIconsMap').style.display = 'initial';
+
   },400)
+    // setTimeout(function(){
+    //
+    // },410
   return projectsCreated && sapProjectFirstTime && newProjectButton && cell
 }
 

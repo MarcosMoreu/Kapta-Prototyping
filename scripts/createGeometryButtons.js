@@ -524,7 +524,7 @@ document.getElementById('emojionearea').value = null
     created = true;
     drawPolygon.disable();
     filterLocalStorage_Button.removeFrom(map);
-    filter_Button.addTo(map)
+    // filter_Button.addTo(map)
     filter_Button.button.style.opacity = '0.4';
     filter_Button.button.disabled = true;
     filterLocalStorage_Button.button.style.opacity = '0.4';

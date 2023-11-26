@@ -126,6 +126,8 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
         document.getElementById('askthemap').style.display = 'initial'
         document.getElementById('asktheteam').style.display = 'initial'
         document.getElementById('geocredits').style.display = 'initial'
+        document.getElementById('kaptainitialscreen').style.display = 'initial'
+
 
         },300)
       // }
@@ -533,7 +535,10 @@ document.getElementById('initialscreen2options').style.backgroundColor = '#c0000
 }
 document.getElementById('startmapping').onclick = function(){
   document.getElementById('startmapping').style.backgroundColor = '#a6a4a4'
+  document.getElementById('backFromFilter').style.display = 'none'
+
   filter_Button.removeFrom(map);
+  filterLocalStorage_Button.removeFrom(map);
     document.getElementById('myLayerButton').click()
     if(whichLayerIsOn == 'deflated'){
       document.getElementById('myLayerButton').click()

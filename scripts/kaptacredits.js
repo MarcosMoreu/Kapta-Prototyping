@@ -26,8 +26,8 @@ document.getElementById('exchangeCredits').onclick = function(){
   // document.getElementById('talk').style.borderColor = '#404040'
   setTimeout(function(){
     document.getElementById("Alert").style.display = 'none'
-    window.location.href="https://wa.me/+34678380944?text=hereGoesTheIdentifier";
-    document.getElementById('exchangeCredits').style.backgroundColor = 'white'
+    window.location.href="https://wa.me/+34678380944?text=HereGoesTheUniqueIdentifierToCashOut";
+    document.getElementById('exchangeCredits').style.backgroundColor = 'yellow'
 
 
   },500)
