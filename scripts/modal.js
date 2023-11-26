@@ -512,7 +512,15 @@ document.getElementById("tutorial").onclick = function(e) {
 //   window.location.href="https://wa.me/+34678380944"
 //   var textwhatsapp
 //   var textwhatsappencoded = '123456789'
+document.getElementById('initialscreen2options').style.backgroundColor = '#c00000'
+// document.getElementById('numberofcontrib').style.display = 'none'
+// document.getElementById('valueincurrency').style.display = 'none'
+//
+// document.getElementById('gobackFromCredits').style.display = 'none'
+// document.getElementById('exchangeCredits').style.display = 'none'
+
           document.getElementById('initialscreen2options').style.display = 'initial'
+
           // if(whichLayerIsOn == 'deflated'){
           //   document.getElementById('myLayerButton').click()
           //   document.getElementById('myLayerButton').click()
@@ -633,14 +641,35 @@ document.getElementById('asktheteam').onclick = function(){
 
 document.getElementById('geocredits').onclick = function(){
   document.getElementById('geocredits').style.backgroundColor = '#a6a4a4'
-
-  document.getElementById('geocreditsimage').src = '../images/underConstruction.png'
   setTimeout(function(){
-    document.getElementById('geocreditsimage').src = '../images/geocredits.png'
     document.getElementById('geocredits').style.backgroundColor = 'white'
+    document.getElementById('geocredits').style.display = 'none'
+    document.getElementById('asktheteam').style.display = 'none'
+    document.getElementById('askthemap').style.display = 'none'
+    document.getElementById('startmapping').style.display = 'none'
+    document.getElementById('kaptainitialscreen').style.display = 'none'
+    document.getElementById('initialscreen2options').style.backgroundColor = 'black'
+    document.getElementById('kaptacredits').style.display = 'initial'
+    document.getElementById('iconcredits').style.display = 'initial'
+    // document.getElementById('iconvalue').style.display = 'initial'
+    document.getElementById('numberofcredits').style.display = 'initial'
+    document.getElementById('valueincurrency').style.display = 'initial'
 
-  },2000)
-  // window.location.href="https://wa.me/+34678380944?' + textwhatsappencoded + '";
+    document.getElementById('gobackFromCredits').style.display = 'initial'
+    document.getElementById('exchangeCredits').style.display = 'initial'
+
+  },500)
+
+    // document.getElementById('geocreditsimage').src = '../images/underConstruction.png'
+    // setTimeout(function(){
+    //   document.getElementById('geocreditsimage').src = '../images/geocredits.png'
+    //   document.getElementById('geocredits').style.backgroundColor = 'white'
+    //
+    // },2000)
+
+
+
+// window.location.href="https://wa.me/+34678380944?' + textwhatsappencoded + '";
 }
 
 // window.onload = function(){

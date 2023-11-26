@@ -2943,7 +2943,7 @@ var refreshGPSbutton = setInterval(function() { ////////////////////////////////
 ////console.log(currentLocation[0]ddddddd)
 var gps_Button = L.easyButton({
     id: 'gps',
-    position: 'topleft',
+    position: 'topright',
     states: [{
         icon: iconGPS,
         stateName: 'check-mark',
