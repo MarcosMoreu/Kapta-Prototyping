@@ -383,10 +383,19 @@ document.getElementById('sapelliProjects').onclick = function(e){
     // cell.style.overflow =
         if(isSapelliProjectLoaded != 'true'){
           //console.('sapelli project clickeeeeeeeeeeeeeeed isSapelliProjectLoaded != true')
+          // newProjectButton.style.display = 'none';
+          // newProjectButton2.style.display = 'none';
+          newProjectButton.style.backgroundColor = 'black'
+          newProjectButton.style.borderColor = 'black'
+          newProjectButton2.style.backgroundColor = 'black'
+          newProjectButton2.style.borderColor = 'black'
+
 
 
           newProjectButton.innerHTML = '<img src="images/checkingPw.gif" style="width:50px ; height:50px; border: 0px solid white" />';
           newProjectButton.disabled = true
+          newProjectButton2.innerHTML = '<img src="images/checkingPw.gif" style="width:50px ; height:50px; border: 0px solid white" />';
+          newProjectButton2.disabled = true
               var checkingIfPreloadCompleted = setInterval(function(){
                 // console.log('checkingifpreload...')
                 if(totalPreloaded > 30){

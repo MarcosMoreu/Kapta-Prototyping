@@ -2774,8 +2774,8 @@ var field = false
 var position
 var startSearchingLocation = function(){
 var refreshGPSbutton = setInterval(function() { ///////////////////////////////////////// function to keep searching for gps position
-  console.log(currentLocation)
-  console.log(currentLocation[0])
+  // console.log(currentLocation)
+  // console.log(currentLocation[0])
 
 
   //console.('gps accuracy',accuracy)
