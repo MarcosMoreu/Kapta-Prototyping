@@ -126,6 +126,7 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
         document.getElementById('askthemap').style.display = 'initial'
         document.getElementById('asktheteam').style.display = 'initial'
         document.getElementById('geocredits').style.display = 'initial'
+        document.getElementById('taskthemappers').style.display = 'initial'
         document.getElementById('kaptainitialscreen').style.display = 'initial'
 
 
@@ -312,6 +313,8 @@ var initialiseMap = function(){
       document.getElementById('askthemap').style.display = 'none'
       document.getElementById('asktheteam').style.display = 'none'
       document.getElementById('geocredits').style.display = 'none'
+      document.getElementById('taskthemappers').style.display = 'none'
+
 
       document.getElementById('map').style.opacity = 1
       document.getElementById('map').disabled = false
@@ -649,6 +652,7 @@ document.getElementById('geocredits').onclick = function(){
   setTimeout(function(){
     document.getElementById('geocredits').style.backgroundColor = 'white'
     document.getElementById('geocredits').style.display = 'none'
+    document.getElementById('taskthemappers').style.display = 'none'
     document.getElementById('asktheteam').style.display = 'none'
     document.getElementById('askthemap').style.display = 'none'
     document.getElementById('startmapping').style.display = 'none'
@@ -676,6 +680,9 @@ document.getElementById('geocredits').onclick = function(){
 
 // window.location.href="https://wa.me/+34678380944?' + textwhatsappencoded + '";
 }
+
+
+
 
 // window.onload = function(){
 // window.addEventListener("click", function(){

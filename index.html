@@ -64,7 +64,16 @@
   </h4>
 
 <body id='body' style='height:100%;background-color:black'>
+  <div align='center' id = 'TextRequest' style='z-index:1000;position:relative;display:none;text-align:center;'>
+    <p style='text-align:center;color:white; margin-top:80px; font-size:10;margin-left:15px; margin-right:15px'>
+      This form allows you to task the mappers by adding/advertising text & pictorial field in the map semantics interface. For more information please get in touch.</p>
+      <img id='loadingCognito' src="../images/checkingPw.gif" loading="lazy" style='margin-left:calc(50% - 30px);width:60px; height:60px;margin-top:10px'>
 
+      <div class="cognito" id='cognitoForm' disabled style='display:none; margin-top:-120px; margin-left:30px;margin-right:30px'>
+
+        <script defer src="https://www.cognitoforms.com/s/EB26QD5cT0Cz2sSzqKJF5w"></script>
+      </div>
+  </div>
 <div id="modal" class='modal' style='z-index:130;background-color:black'>
   <form id='pwForm'  class="modal-content animate" style='margin-top:80px; width:300px; border-radius:50px' >
 
@@ -94,19 +103,28 @@
 </div>
 
 <div id='initialscreen2options' class='full-height' style='z-index:100;background-color:#c00000;'>
-  <button id='startmapping' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 70px); top:calc(50% - 275px);width:140px ; height:100px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
+  <button id='startmapping' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 160px); top:calc(50% - 200px);width:140px ; height:100px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
     <img src="images/talk.png"  alt="..." style=' width:50px ; height:50px;' > </br>Start mapping
 
   </button>
-  <button id='askthemap' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 70px); top:calc(50% - 125px);width:140px ; height:100px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
+  <button id='askthemap' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% + 20px); top:calc(50% - 200px);width:140px ; height:100px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
     <img src="images/listen.png"  alt="..." style=' width:50px ; height:50px;' > </br>Ask the map
   </button>
-  <button id='geocredits' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 70px); bottom:calc(50% - 125px);width:140px ; height:100px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
-    <img id='geocreditsimage' src="images/geocredits.png"  alt="..." style=' width:50px ; height:50px;' > </br>Kapta credits
+  <button id='geocredits' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 160px); bottom:calc(50% - 100px);width:140px ; height:100px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
+    <img id='geocreditsimage' src="images/geocredits.png"  alt="..." style=' width:50px ; height:50px;' > </br>Kapta wallet
   </button>
 
-  <button id='asktheteam' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 70px); bottom:calc(50% - 275px);width:140px ; height:100px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
-    <img src="images/infohelp.png"  alt="..." style=' width:50px ; height:50px;' > </br>Ask the team
+  <button id='taskthemappers' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% + 20px); bottom:calc(50% - 100px);width:140px ; height:100px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
+    <img id='geocreditsimage' src="images/surveyForm.png"  alt="..." style=' width:40px ; height:40px;' > </br>Task the mappers
+  </button>
+  <!-- <button id='asktheteam' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 30px);top:calc(50% - 30px);width:60px ; height:60px; border: 2px solid white; border-color:black; border-radius:30px; font-size:18px;' >
+    <img src="images/infohelp.png"  alt="..." style=' width:30px ; height:30px;margin-top:5px;' >
+  </button> -->
+
+  <button id='asktheteam' class='buttonInitial'style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); bottom:80px;width:200px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
+    <img src="images/infohelp.png"  alt="..." style='vertical-align: middle;width:30px ; height:30px;padding:5px' >Ask us anything
+
+
   </button>
 
   <p id='kaptainitialscreen' style='z-index:0;display:none;text-align: center;position:fixed;width:100%;bottom:15px;color:#7E1701;font-size:18px; font-family:'Ubuntu' '> Kapta</p>
@@ -122,6 +140,7 @@
 </button>
 
 
+
 <div style='width: 80%; max-width: 400px; height: 80px; position: fixed; top: 80px; left: 50%; transform: translateX(-50%);'>
     <img id='iconcredits' src="images/icons/icon-96x96.png" alt="..." style='width: 60px; height: 60px; position: absolute; left: -10px; top: 30px; padding: 10px 0;'>
     <!-- <p id='numberofcredits' style='z-index: 0; display: none; color: black; font-size: 24px; position: absolute; top: 35px; color: white; font-family: "Ubuntu" '>30.24 KPT</p> -->
@@ -131,7 +150,11 @@
 </div>
 
 </div>
-
+<div id='infoGoBack' >
+  <button id='infoGoBackButton' class='buttonInitial' style='z-index:1001;display:none;position: absolute;left: calc(50% - 25px);top:15px;width:50px ; height:50px; border: 2px solid black; border-color:black; border-radius:25px;'>
+    <img src="images/backButton.png"  alt="..." style=' width:30px ; height:30px; margin-top:2px' >
+  </button>
+</div>
 <div id="map" style='height:100%; z-index:2; position:relative;'>
     <div id="rose" style='margin-bottom:80px; margin-left:-5px; width:40px; height:40px'>
       <p id='showAreaAcresScreenshot' style='z-index:3;position:fixed; text-align: center; width:100%; margin-top:-10px;display:none;color:yellow;font-size:25px; font-weight:bold' ></p>
