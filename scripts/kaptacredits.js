@@ -79,33 +79,38 @@ document.getElementById('infoGoBackButton').onclick = function(e){
 }
 document.getElementById('taskthemappers').onclick = function(e){
   document.getElementById('taskthemappers').style.backgroundColor = '#a6a4a4'
+  $.getScript({
+     cache:true,
+    url:'https://www.cognitoforms.com/s/EB26QD5cT0Cz2sSzqKJF5w'
+  })
 
+  setTimeout(function(){
+    document.body.style.overflow = 'scroll';
+
+    document.getElementById('TextRequest').style.display = 'initial'
+    document.getElementById('infoGoBackButton').style.display = 'initial'
+
+    document.getElementById('taskthemappers').style.backgroundColor = 'white'
+    document.getElementById('taskthemappers').style.display = 'none'
+    document.getElementById('geocredits').style.display = 'none'
+    document.getElementById('asktheteam').style.display = 'none'
+    document.getElementById('askthemap').style.display = 'none'
+    document.getElementById('startmapping').style.display = 'none'
+    document.getElementById('kaptainitialscreen').style.display = 'none'
+    document.getElementById('initialscreen2options').style.backgroundColor = 'black'
+},300)
 
     setTimeout(function(){
-      document.body.style.overflow = 'visible';
 
-      document.getElementById('TextRequest').style.display = 'initial'
-      document.getElementById('infoGoBackButton').style.display = 'initial'
-
-
-      document.body.style.overflow = 'visible';
-      document.getElementById('taskthemappers').style.backgroundColor = 'white'
-      document.getElementById('taskthemappers').style.display = 'none'
-      document.getElementById('geocredits').style.display = 'none'
-      document.getElementById('asktheteam').style.display = 'none'
-      document.getElementById('askthemap').style.display = 'none'
-      document.getElementById('startmapping').style.display = 'none'
-      document.getElementById('kaptainitialscreen').style.display = 'none'
-      document.getElementById('initialscreen2options').style.backgroundColor = 'black'
 
 
      if(cognitoFormLoaded == false){
        document.getElementById("loadingCognito").style.display = "initial";
      }
+     Cognito.load("forms", { id: "4" })
+     cognitoFormLoaded = true
+   },2000)
 
-   },300)
-         Cognito.load("forms", { id: "4" })
-         cognitoFormLoaded = true
 
 
   setTimeout(function(){
