@@ -645,7 +645,7 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
 
           console.log(photoAccepted)
 
-          var link = emojiprivateoropen + attributes + "\n" + '🗺️ 👇🏿'+ "\n" + 'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
+          var link = emojiprivateoropen + attributes + "\n" + '🗺️ 👇🏿'+ "\n" + 'https://md.kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
           // var url
           // console.log(url)
 
@@ -654,7 +654,7 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
               navigator.share({
                 text: emojiprivateoropen + attributes,
                 //files:filesArray, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                url:'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
+                url:'https://md.kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z'
               }).then(() => console.log('Successful share'))
                 .catch((error) => console.log('Error sharing', error));
 
@@ -664,7 +664,7 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
                 navigator.share({
                   files:filesArrayScreenshot, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                   text: emojiprivateoropen + attributes,
-                  url:'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z',
+                  url:'https://md.kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z',
                 }).then(() => console.log('Successful share'))
                   .catch((error) => console.log('Error sharing', error));
 
@@ -674,7 +674,7 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
               navigator.share({
                 files:filesArray, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 text: emojiprivateoropen + attributes,
-                url:'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z',
+                url:'https://md.kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z',
               }).then(() => console.log('Successful share'))
                 .catch((error) => console.log('Error sharing', error));
 
@@ -685,7 +685,7 @@ document.getElementById('ShareFinalButton').onclick = function(e) {
                 navigator.share({
                   // files:filesArray, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                   text: link,
-                  // url:'https://kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z',
+                  // url:'https://md.kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z',
                 }).then(() => console.log('Successful share'))
                   .catch((error) => console.log('Error sharing', error));
               }catch(e){

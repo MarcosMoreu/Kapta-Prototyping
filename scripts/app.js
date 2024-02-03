@@ -35,6 +35,23 @@ if ('serviceWorker' in navigator) {
         })
 }
 
+
+// navigator.serviceWorker.register('sw.js');
+
+var sharetarget = false
+navigator.serviceWorker.onmessage = (event) => {
+  const file = event.data.file;
+  // console.log(file)
+  setTimeout(function(){
+  displayFile(file);
+
+},1000)
+  var sharetarget = true
+  console.log('sharetarget',sharetarget)
+  return sharetarget
+
+};
+
 // var pageLoaded = false
 var subDOMAIN = 'testing'
 // var sapelliProjectIdentifier = 'DTM' //this variable is need to put the sap project identifier in the geojson
