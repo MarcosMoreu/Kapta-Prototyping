@@ -3,7 +3,7 @@
 
 // Set a name for the current cache. Note that when version is changed, the pwa only updates autmotically after reloading!
 //Note that for automatic update, at one change need to be made in the app.js file (or in other files...)
-var version = 'v29.7';
+var version = 'v29.3';
 //console.log(version)
 
 // Default files to always cache
@@ -68,7 +68,7 @@ self.addEventListener('fetch', (event) => {
   // console.log(params)
 
 
-  if (event.request.method === "POST" && url.pathname === '/') {
+  if (url.origin === location.origin && url.pathname === '/share-target' && event.request.method === "POST") {
       // if (event.request.method !== 'POST') return;
 
       handleFileShare(event);
@@ -210,15 +210,12 @@ function handleFileShare(event){
      const client = await self.clients.get(event.resultingClientId);
      const file = data.get('file');
      client.postMessage({ file });
-     // client.postMessage({
-     //    msg: "Hey I just got a fetch from you!",
-     //    url: event.request.url,
-     //  });
      console.log('sw message posted')
 
 
    }());
 }
+
 //
 // function serveShareTarget(event, wait = true) {
 //   const dataPromise = event.request.formData();
