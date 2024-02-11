@@ -39,16 +39,22 @@ if ('serviceWorker' in navigator) {
 // navigator.serviceWorker.register('sw.js');
 
 var sharetarget = false
+var manualupload = true
+
 navigator.serviceWorker.onmessage = (event) => {
+  console.log('MESSAGE FROM SW RECEIVED')
+
+  manualupload = false
   const file = event.data.file;
+  // displayFile(file);
+// loadingexport()
   // console.log(file)
   setTimeout(function(){
-  displayFile(file);
-
-},1000)
+    displayFile(file);
+  },2000)
   var sharetarget = true
   console.log('sharetarget',sharetarget)
-  return sharetarget
+  return sharetarget && manualupload
 
 };
 
@@ -162,6 +168,9 @@ var attribute20n = 0
 var sqlQuerySelect
 var sqlQuerySelectEncoded
 var deleteFromcartoimmediate = null
+
+var gobackUploadmap = false
+
 
 
 

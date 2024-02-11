@@ -1,13 +1,27 @@
+
 function displayFile(file) {
 
-  document.getElementById('MapLoading').style.display = 'initial'
+  // document.getElementById('MapLoading').style.display = 'initial'
+  document.getElementById('upload').style.display = 'none'
+  document.getElementById('viewmap').style.display = 'none'
+    document.getElementById('languages').style.display = 'none'
+    document.getElementById('KaptaLite').style.display = 'none'
+    document.getElementById('KaptaAdvanced').style.display = 'none'
+    document.getElementById('asktheteam').style.display = 'none'
 
+console.log('manualupload',manualupload)
+  // console.log(event.target.files[0])
+
+  if(manualupload == true){ //to differentiate between maual upload or share-target
+    var file = event.target.files[0]
+  }
 
     const reader = new FileReader();
 
     reader.readAsText(file);
 
     reader.onloadend = function (e) {
+
     var filecontent = e.target.result;
     console.log('filecontent', filecontent);
     const regex = /(-?\d+\.\d+)\s*,\s*(-?\d+\.\d+)/g;
@@ -36,8 +50,19 @@ function displayFile(file) {
     console.log(JSON.stringify(geoJson));
     // setTimeout(function(){
       // document.getElementById('initialscreen2options').style.display = 'none'
-      document.getElementById('startmapping').click()
       // setTimeout(function(){
+
+      document.getElementById('backFromFilter').style.display = 'none'
+
+
+      document.getElementById('initialscreen2options').style.display = 'none'
+      document.getElementById("map").style.opacity = 1;
+      document.getElementById('MapLoading').style.opacity = 1
+      document.getElementById('startmapping').style.backgroundColor = 'white'
+      myLayer_Button.removeFrom(map); //always on as there will always be features in the map, even when first load
+
+
+
         // L.geoJSON(geoJson).addTo(map);
         var whatsappgeojson = L.geoJSON(geoJson, {
             pointToLayer: function(feature, latlng) { //to change the icon of the marker (i.e. avoid default)
@@ -55,181 +80,211 @@ function displayFile(file) {
         }).addTo(map);
         map.fitBounds(whatsappgeojson.getBounds());
         document.getElementById('MapLoading').style.display = 'none'
+        document.getElementById("tutorial").style.display = "none";
+        document.getElementById("armchair").style.display = "none";
+        document.getElementById("field").style.display = "none";
+        document.getElementById("gobackUploadmap").style.display = "initial";
+        document.getElementById("confirmuploadedmap").style.display = "initial";
+        document.getElementById("Alert").style.fontSize = "30px";
+        document.getElementById("Alert").style.textAlign = "center"
+        document.getElementById('Alert').innerHTML = 'Stats here...'
+        document.getElementById("Alert").style.display = 'initial'
+        document.getElementById("screenshot").style.opacity = 0
+        document.getElementById("screenshot").style.display = 'initial'
+        document.getElementById('screenshot').disabled = false
+        setTimeout(function(){
 
-      // },2000)
+        screenshot.click()
+      },1000)
 
-      // },4000)
 
 
   };
-    // var src = reader.src
 
-    // const url = URL.createObjectURL(file);
-    //
-    // // reader.onload = () => {
-    // //   // let text = this.result;
-    // //   console.log('result',url)
-    // //
-    // //   // URL.revokeObjectURL(url);
-    // // };
-    // reader.src = url;
-    // // document.body.append(reader);
-    // console.log(reader.src)
-    // console.log(reader)
-    // console.log(file)
+
+document.getElementById('languages').addEventListener('change', function() {
+    const language = this.value;
+    console.log(`Language selected: ${language}`);
+    // Here, you can add code to change the website language
+  });
+}
+var stats = 'Stats here'
+
+document.getElementById('KaptaLite').onclick = function(){
+
+  document.getElementById('initialscreen2options').style.display = 'initial'
+  document.getElementById('languages').style.display = 'none'
+  document.getElementById('upload').style.display = 'initial'
+  document.getElementById('kaptalitetutorial').style.display = 'initial'
+document.getElementById('gobackToInitialKaptalite').style.display = 'initial'
+  document.getElementById('KaptaLite').style.display = 'none'
+  document.getElementById('KaptaAdvanced').style.display = 'none'
+  document.getElementById('asktheteam').style.display = 'none'
+  document.getElementById('kaptainitialscreen').style.display = 'none'
+
 
 
 }
+document.getElementById('KaptaAdvanced').onclick = function(){
+  document.getElementById('KaptaAdvanced').innerHTML = '!!!Under development'
+  setTimeout(function(){
+    document.getElementById('KaptaAdvanced').innerHTML = 'Kapta'
+  },2000)
 
-function displayMap(file){
+}
+
+document.getElementById('kaptalitetutorial').onclick = function(){
+
+  document.getElementById('kaptalitetutorial').innerHTML = '!!!Under development'
+  setTimeout(function(){
+    document.getElementById('kaptalitetutorial').innerHTML = 'Watch tutorials'
+  },2000)
+
+}
+
+document.getElementById('gobackToInitialKaptalite').onclick = function(){
+  document.getElementById('kaptalitetutorial').style.display = 'none'
+  document.getElementById('upload').style.display = 'none'
+  document.getElementById('gobackToInitialKaptalite').style.display = 'none'
+  document.getElementById('languages').style.display = 'initial'
+  document.getElementById('KaptaLite').style.display = 'initial'
+  document.getElementById('KaptaAdvanced').style.display = 'initial'
+  // document.getElementById('disclaimer').style.display = 'initial'
+  document.getElementById('asktheteam').style.display = 'initial'
+  document.getElementById('kaptainitialscreen').style.display = 'initial'
+
+}
 
 
-  // const selectedFile = fileInput.files[0];
-  //console.(selectedFile);
+document.getElementById('gobackUploadmap').onclick = function(){
+gobackUploadmap = true
+  document.getElementById("gobackUploadmap").style.display = "none";
+  document.getElementById("gobackToInitialKaptalite").style.display = "none";
 
-  // new FileReader object
-    let reader = new FileReader();
-    // event fired when file reading finished
-    reader.addEventListener('load', function(e) {
-       // contents of the file
-        let text = this.result; ///////////////////////////////////////////this is the imported file /////////////////
+  document.getElementById("confirmuploadedmap").style.display = "none";
+  document.getElementById("gobackToMap").style.display = "none";
+  document.getElementById('asktheteam').style.display = 'none'
+  document.getElementById('kaptalitetutorial').style.display = 'none'
 
-        // processAndAddToMap.onclick = function(){
-        //
-        // //First we detect if the input file is a geojson or needs processing (ie whatsapp exported txt file)
-        // var firstCharacterInput = text.charAt(0)
-        // var str = text
-        // if(firstCharacterInput != '{'){
-        //   var getFromBetween = {
-        //     results:[],
-        //     string:"",
-        //     getFromBetween:function (sub1,sub2) {
-        //         if(this.string.indexOf(sub1) < 0 || this.string.indexOf(sub2) < 0) return false;
-        //         var SP = this.string.indexOf(sub1)+sub1.length;
-        //         var string1 = this.string.substr(0,SP);
-        //         var string2 = this.string.substr(SP);
-        //         var TP = string1.length + string2.indexOf(sub2);
-        //         return this.string.substring(SP,TP);
-        //     },
-        //     removeFromBetween:function (sub1,sub2) {
-        //         if(this.string.indexOf(sub1) < 0 || this.string.indexOf(sub2) < 0) return false;
-        //         var removal = sub1+this.getFromBetween(sub1,sub2)+sub2;
-        //         this.string = this.string.replace(removal,"");
-        //     },
-        //     getAllResults:function (sub1,sub2) {
-        //         // first check to see if we do have both substrings
-        //         if(this.string.indexOf(sub1) < 0 || this.string.indexOf(sub2) < 0) return;
-        //
-        //         // find one result
-        //         var result = this.getFromBetween(sub1,sub2);
-        //         // push it to the results array
-        //         this.results.push(result);
-        //         // remove the most recently found one from the string
-        //         this.removeFromBetween(sub1,sub2);
-        //
-        //         // if there's more substrings
-        //         if(this.string.indexOf(sub1) > -1 && this.string.indexOf(sub2) > -1) {
-        //             this.getAllResults(sub1,sub2);
-        //         }
-        //         else return;
-        //     },
-        //     get:function (string,sub1,sub2) {
-        //         this.results = [];
-        //         this.string = string;
-        //         this.getAllResults(sub1,sub2);
-        //         return this.results;
-        //     }
-        //   };
-        //   var result = getFromBetween.get(str,"?","/#");
-        //   // console.log(result);
-        //   // console.log('result 0',result[0])
-        //   // console.log('result 1',result[1])
-        //   var arrayGeojson = []
-        //   // console.log(result.length)
-        //   for(i = 0; i < result.length-1; i++ ){
-        //     //console.('i',i)
-        //
-        //     try{
-        //       var decodedGeojson = decodeURIComponent(result[i])
-        //       var geojson = JSON.parse(decodedGeojson)
-        //     }catch(e){
-        //       console.log('error',e)
-        //       console.log('error file',decodedGeojson)
-        //       //the error identified are:
-        //       //1-url too long >> nothing can be done except from limiting share interval
-        //       //2-URI malformed>> only with the ones shared by Lopodo
-        //       //3-
-        //     }
-        //     // console.log(geojson)
-        //     // console.log(decodedGeojson)
-        //
-        //     //apply this condition to avoid non geojson being added to the array (in case the ? # are included somewhere in the properties)
-        //     if (decodedGeojson[0] == '{' && decodedGeojson[1] == '"' && decodedGeojson[2] == 't') {
-        //       // console.log('decoded',decodedGeojson)
-        //        arrayGeojson.push(geojson)
-        //       // console.log('arrayGeojson',arrayGeojson)
-        //       // console.log('is a textgeojson')
-        //     }
-        //
-        //
-        //   }
-        //   // console.log('arrayGeojsonFINAL',arrayGeojson)
-        //   var arrayGeojsonToString = JSON.stringify(arrayGeojson)
-        //   // console.log('arrayGeojsonToString',arrayGeojsonToString)
-        //   // var featureCollectionToExport = "{'type': 'FeatureCollection','features':"+ geojsonToString + '}'
-        //   var featureCollectionToUpload = '{"type": "FeatureCollection","features":'+ arrayGeojsonToString + '}'
-        //   // console.log('featureCollection1',featureCollection1)
-        //   // var featureCollection2 = featureCollection1.replace(/\\/g, '')
-        //   // var featureCollection3 = featureCollection2.replace('["{','[{')
-        //   // var featureCollection4 = featureCollection3.replace('}"]','}]')
-        //   // var featureCollectionToUpload = featureCollection4.replace(']}}","',']}},')
-        //
-        //   //console.('featureCollectionToUpload',featureCollectionToUpload)
-        //   text = featureCollectionToUpload
-        //
-        // }
-        //
-        // ///////////////////////   function to read the input file and process and add to map
-        // // console.log('text',text)
-        // var toGeojson = JSON.parse(text)
-        // // console.log(toGeojson)
-        //
-        // var lengthGeojson = toGeojson.features.length
-        // // console.log('lengthgeojson',lengthGeojson)
-        // for(i = 0; i < lengthGeojson; i++){
-        //   var feature = toGeojson.features[i]
-        //   var featureStringified = JSON.stringify(feature)
-        //   geoJSONLocalforageDB.setItem(feature.properties.randomID, featureStringified)
-        //   // console.log(feature)
-        //
-        //   if(i == lengthGeojson -1){
-        //     buttonForExportGeometries.style.display = 'none'
-        //     buttonForImportGeometries.style.display = 'none'
-        //     buttonForHideAll.style.display = 'none'
-        //     buttonForDownloadTiles.style.display = 'none'
-        //     buttonForDeleteAllGeom.style.display ='none'
-        //     // divForButtons.style.display = 'none'
-        //
-        //     processAndAddToMap.disabled = true
-        //     processAndAddToMap.style.borderColor = 'green'
-        //     processAndAddToMap.style.backgroundColor = 'green'
-        //     processAndAddToMap.style.color = 'black'
-        //     processAndAddToMap.innerHTML = 'Adding, wait...'
-        //     setTimeout(function(){
-        //       location.reload()
-        //     },5000)
-        //
-        //     geometriesUploaded = true
-        //   }
-        // }
-        //
-        // }
-    });
-    // event fired when file reading failed
-    reader.addEventListener('error', function() {
-        alert('Error : Failed to read file');
-    });
-    // read file as text file
-    reader.readAsText(selectedFile);
+  document.getElementById('languages').style.display = 'initial'
+  document.getElementById('KaptaLite').style.display = 'initial'
+  document.getElementById('KaptaAdvanced').style.display = 'initial'
+  document.getElementById('asktheteam').style.display = 'initial'
+  document.getElementById('kaptainitialscreen').style.display = "initial";
+  document.getElementById('initialscreen2options').style.display = 'initial'
+document.querySelector('input[type=file]').value = ''
 
+return gobackUploadmap
+}
+
+document.getElementById('confirmuploadedmap').onclick = function(){
+
+  document.getElementById('initialscreen2options').style.display = 'initial'
+  document.getElementById('languages').style.display = 'none'
+  document.getElementById('upload').style.display = 'none'
+  document.getElementById('kaptalitetutorial').style.display = 'none'
+  document.getElementById('gobackToInitialKaptalite').style.display = 'none'
+  document.getElementById('KaptaLite').style.display = 'none'
+  document.getElementById('KaptaAdvanced').style.display = 'none'
+  // document.getElementById('openexportedmap').style.display = 'none'
+
+  document.getElementById('disclaimer').style.display = 'none'
+  document.getElementById('asktheteam').style.display = 'none'
+  document.getElementById('switches').style.display = 'initial'
+  document.getElementById('gobackUploadmap').style.display = 'initial'
+  document.getElementById("gobackToMap").style.display = "initial";
+  document.getElementById("confirmDataSubmision").style.display = "initial";
+
+}
+
+let toggleStates = {
+  toggle1: false,
+  toggle2: false,
+  toggle3: false
+};
+var lastscreen = false
+
+document.getElementById('switch1').addEventListener('change', function() {
+  toggleStates.toggle1 = this.checked;
+  console.log('switch 1 position',  toggleStates.toggle1)
+});
+
+document.getElementById('switch2').addEventListener('change', function() {
+  toggleStates.toggle2 = this.checked;
+});
+
+document.getElementById('switch3').addEventListener('change', function() {
+  toggleStates.toggle3 = this.checked;
+});
+
+document.getElementById('gobackToMap').onclick = function(){  // this applies to both screens
+  if(lastscreen == false){
+    document.getElementById('initialscreen2options').style.display = 'none'
+    document.getElementById('switches').style.display = "none";
+    document.getElementById("confirmDataSubmision").style.display = "none";
+
+  }else{
+    document.getElementById("gobackToMap").style.display = "none";
+    document.getElementById('shareYourImageMap').style.display = 'none'
+    document.getElementById('finalmessage').style.display = "none";
+    document.getElementById('switches').style.display = 'initial'
+    document.getElementById('gobackUploadmap').style.display = 'initial'
+    document.getElementById("gobackToMap").style.display = "initial";
+    document.getElementById("confirmDataSubmision").style.display = "initial";
+    lastscreen = false
+  }
+  return lastscreen
+
+}
+document.getElementById('confirmDataSubmision').onclick = function(){
+  // document.getElementById("gobackToMap").style.display = "none";
+  document.getElementById("confirmDataSubmision").style.display = "none";
+  document.getElementById('switches').style.display = "none";
+  document.getElementById('kaptainitialscreen').style.display = "none";
+
+
+
+  // document.getElementById('initialscreen2options').style.display = 'none'
+
+  document.getElementById('shareYourImageMap').style.display = 'initial'
+  document.getElementById('finalmessage').style.display = "initial";
+lastscreen = true
+return lastscreen
+
+}
+
+document.getElementById('shareYourImageMap').onclick = function(){
+var statsDesktop = 'use a phone to share screenshot'
+if(navigator.canShare && navigator.canShare({ files: filesArrayScreenshot })){
+      console.log('with sreenshot')
+
+      navigator.share({
+        files:filesArrayScreenshot, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        text: stats
+        // url:'https://md.kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z',
+      }).then(() => console.log('Successful share'))
+        .catch((error) => console.log('Error sharing', error));
+
+  }else{
+    try{
+      navigator.share({
+        // files:filesArray, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        text: stats,
+        // url:'https://md.kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z',
+      }).then(() => console.log('Successful share'))
+        .catch((error) => console.log('Error sharing', error));
+    }catch(e){
+      // console.log(url)
+      navigator.clipboard.writeText(statsDesktop).then(function() {
+        // console.log(url)
+
+        alert("Copied to clipboard!");
+      }, function() {
+        alert("Unable to copy");
+      });
+    }
+
+  }
+
+console.log(filesArrayScreenshot)
 }

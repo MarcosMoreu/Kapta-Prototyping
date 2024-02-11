@@ -83,17 +83,17 @@ var arrayOfImages = [
     'images/customIconsMap.png','images/customIconsCancel.png','images/infohelp.png',
 
     //sapelli project images
-      'images/omoIcons/banana.png','images/omoIcons/boatCrossing.png','images/omoIcons/cattleGrazing.png','images/omoIcons/church.png','images/omoIcons/eldersHut.png','images/omoIcons/fishing.png',
+    'images/omoIcons/banana.png','images/omoIcons/boatCrossing.png','images/omoIcons/cattleGrazing.png','images/omoIcons/church.png','images/omoIcons/eldersHut.png','images/omoIcons/fishing.png',
     'images/omoIcons/floodRecessionFlat.png','images/omoIcons/floodRecessionSteep.png','images/omoIcons/goatSheepGrazing.png','images/omoIcons/healthStation.png','images/omoIcons/hotSpring.png','images/omoIcons/hunting.png',
     'images/omoIcons/hutVillage.png','images/omoIcons/irrigationPump.png','images/omoIcons/lakeRecession.png','images/omoIcons/maize.png',
     'images/omoIcons/manualPump.png','images/omoIcons/medicinalPlants.png','images/omoIcons/noFarming.png','images/omoIcons/pondFarming.png','images/omoIcons/Questionmark.png','images/omoIcons/recreationCenter.png',
     'images/omoIcons/reehive.png','images/omoIcons/saltlick.png','images/omoIcons/school.png','images/omoIcons/sorghum.png','images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
     'images/omoIcons/timber.png','images/omoIcons/treeForGathering.png','images/omoIcons/unknownOther.png','images/omoIcons/veterinary.png','images/omoIcons/waterPoint.png','images/omoIcons/waterPondAnimal.png',
     'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png','images/omoIcons/pathTrack.png','images/omoIcons/cropscombined.png',
-      'images/omoIcons/kidsmale.png','images/omoIcons/kidsfemale.png','images/omoIcons/adultsmale.png','images/omoIcons/adultsfemale.png',
-        'images/omoIcons/households.png','images/omoIcons/confirm.png',
-        'images/omoIcons/conflictgeneric.png','images/omoIcons/livestockdisease.png','images/omoIcons/conflict1.png','images/omoIcons/conflict2.png',
-        'images/omoIcons/ld1.png','images/omoIcons/ld2.png','images/omoIcons/ld3.png','images/omoIcons/ld4.png','images/omoIcons/ld5.png','images/omoIcons/legumes.png','images/omoIcons/fire.png','images/omoIcons/deforestation.png',
+    'images/omoIcons/kidsmale.png','images/omoIcons/kidsfemale.png','images/omoIcons/adultsmale.png','images/omoIcons/adultsfemale.png',
+    'images/omoIcons/households.png','images/omoIcons/confirm.png',
+    'images/omoIcons/conflictgeneric.png','images/omoIcons/livestockdisease.png','images/omoIcons/conflict1.png','images/omoIcons/conflict2.png',
+    'images/omoIcons/ld1.png','images/omoIcons/ld2.png','images/omoIcons/ld3.png','images/omoIcons/ld4.png','images/omoIcons/ld5.png','images/omoIcons/legumes.png','images/omoIcons/fire.png','images/omoIcons/deforestation.png',
         // 'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png'
         // ,  'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png'
     //sapelli project images
@@ -107,8 +107,12 @@ var arrayOfImages = [
 
 ]
 
+var sharetarget = false
+var manualupload = true
 
 var firstLoad = function() { //fucntion to determine if the site is visited for first time
+  console.log('FIRST LOAD CALLED')
+  console.log('sharetarget',sharetarget)
 
   // console.log('isfirstload??')
   //$.getScript("lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.Draw.Event.js")
@@ -119,18 +123,16 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
       //   document.getElementById('listen').style.opacity = 0
       // }
       // if (urlContainsHash != true && urlContainsGeoJSON != true){  // if url contains geojson (and coords)
+// if(sharetarget == false){
+  setTimeout(function(){
+    document.getElementById('languages').style.display = 'initial'
+    document.getElementById('KaptaLite').style.display = 'initial'
+    document.getElementById('KaptaAdvanced').style.display = 'initial'
+    document.getElementById('asktheteam').style.display = 'initial'
+    document.getElementById('kaptainitialscreen').style.display = 'initial'
+    },300)
+// }
 
-      setTimeout(function(){
-
-        document.getElementById('startmapping').style.display = 'initial'
-        document.getElementById('askthemap').style.display = 'initial'
-        document.getElementById('asktheteam').style.display = 'initial'
-        document.getElementById('geocredits').style.display = 'initial'
-        document.getElementById('taskthemappers').style.display = 'initial'
-        document.getElementById('kaptainitialscreen').style.display = 'initial'
-
-
-        },300)
       // }
 
       document.getElementById('MapLoading').style.display = 'initial'
@@ -549,17 +551,20 @@ document.getElementById('startmapping').onclick = function(){
         document.getElementById('myLayerButton').click()
       }
 
+
+
+
+
     myLayer_Button.removeFrom(map); //always on as there will always be features in the map, even when first load
 
 
-
+    setTimeout(function(){
+      document.getElementById("Alert").style.display = 'none'
+    },2000)
 
 
 
   // document.getElementById('talk').style.borderColor = '#404040'
-  setTimeout(function(){
-    document.getElementById("Alert").style.display = 'none'
-  },2000)
 
 
 // mapheight.clientHeight = '80%'
@@ -580,9 +585,9 @@ document.getElementById('startmapping').onclick = function(){
   // document.getElementById('map').style.cursor='grab';
 
   // setTimeout(function(){
-    document.getElementById("tutorial").style.display = "initial";
-    document.getElementById("armchair").style.display = "initial";
-    document.getElementById("field").style.display = "initial";
+    // document.getElementById("tutorial").style.display = "initial";
+    // document.getElementById("armchair").style.display = "initial";
+    // document.getElementById("field").style.display = "initial";
   // },100)
   document.getElementById('MapLoading').style.opacity = 1
   document.getElementById('startmapping').style.backgroundColor = 'white'
@@ -829,7 +834,7 @@ var requestPw = function(){
           // promise.catch(e => console.log(e.message));
           //   //console.log(promise)
         var openAppPwSuccesful = function(){
-              if(authentication == 'successful' && done == true){
+              if(authentication == 'failed' && done == true){
                 $.getScript({
                    cache:true,
                   url:'scripts/customIcons_v3.js'
