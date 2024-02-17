@@ -1,3 +1,18 @@
+var contributionid = 1230; // script to generate a random id
+var phone = 111; //script to pull it from the localstorage
+var totalcontrib = 1212121
+var radiusbuffer = 99
+var mainattribute = 'nameofthegroup'
+var attribute1s = 'test'
+var attribute1n = 33
+var mapdata
+var geojsonObfuscated
+var timeEnd = new Date();
+var date = timeEnd.getFullYear() + '-' + (timeEnd.getMonth() + 1) + '-' + timeEnd.getDate();
+var time = timeEnd.getHours() + ":" + timeEnd.getMinutes() + ":" + timeEnd.getSeconds();
+var timestamp = date + 'T' + time + 'Z';
+var pURL
+var datasov = 'obuscates'
 
 function displayFile(file) {
 
@@ -29,12 +44,24 @@ console.log('manualupload',manualupload)
     const features = [];
 
     while ((matches = regex.exec(filecontent)) !== null) {
+      totalcontrib = totalcontrib + 1
       const latitude = parseFloat(matches[1]);
       const longitude = parseFloat(matches[2]);
 
       features.push({
         type: "Feature",
-        properties: {},
+        properties: {
+          
+          contributionid: contributionid,
+          phone: phone,
+          timestamp: timestamp,
+          mainattribute: mainattribute,
+          attribute1s: attribute1s,
+          attribute1n: attribute1n,
+          datasov: 'oo',   // if open it will go as it is to the OO DB, if obfuscated the same. the obfuscated geojson is created later with canvas info.
+          totalcontrib: '1', // no need here but need to match the db structure for obfuscated data
+          radiusbuffer: '0', // no need here but need to match the db structure for obfuscated data
+        },
         geometry: {
           type: "Point",
           coordinates: [longitude, latitude]
@@ -46,7 +73,7 @@ console.log('manualupload',manualupload)
       type: "FeatureCollection",
       features: features
     };
-
+    mapdata = geoJson
     console.log(JSON.stringify(geoJson));
     // setTimeout(function(){
       // document.getElementById('initialscreen2options').style.display = 'none'
@@ -96,18 +123,17 @@ console.log('manualupload',manualupload)
 
         screenshot.click()
       },1000)
-
-
-
   };
-
+  console.log('totalContributions',totalcontrib)  
+  return totalcontrib && mapdata
+}
 
 document.getElementById('languages').addEventListener('change', function() {
-    const language = this.value;
-    console.log(`Language selected: ${language}`);
-    // Here, you can add code to change the website language
-  });
-}
+  const language = this.value;
+  console.log(`Language selected: ${language}`);
+  // Here, you can add code to change the website language
+});
+
 var stats = 'Stats here'
 
 document.getElementById('KaptaLite').onclick = function(){
@@ -121,8 +147,6 @@ document.getElementById('gobackToInitialKaptalite').style.display = 'initial'
   document.getElementById('KaptaAdvanced').style.display = 'none'
   document.getElementById('asktheteam').style.display = 'none'
   document.getElementById('kaptainitialscreen').style.display = 'none'
-
-
 
 }
 document.getElementById('KaptaAdvanced').onclick = function(){
@@ -196,27 +220,6 @@ document.getElementById('confirmuploadedmap').onclick = function(){
   document.getElementById("confirmDataSubmision").style.display = "initial";
 
 }
-
-let toggleStates = {
-  toggle1: false,
-  toggle2: false,
-  toggle3: false
-};
-var lastscreen = false
-
-document.getElementById('switch1').addEventListener('change', function() {
-  toggleStates.toggle1 = this.checked;
-  console.log('switch 1 position',  toggleStates.toggle1)
-});
-
-document.getElementById('switch2').addEventListener('change', function() {
-  toggleStates.toggle2 = this.checked;
-});
-
-document.getElementById('switch3').addEventListener('change', function() {
-  toggleStates.toggle3 = this.checked;
-});
-
 document.getElementById('gobackToMap').onclick = function(){  // this applies to both screens
   if(lastscreen == false){
     document.getElementById('initialscreen2options').style.display = 'none'
@@ -235,56 +238,4 @@ document.getElementById('gobackToMap').onclick = function(){  // this applies to
   }
   return lastscreen
 
-}
-document.getElementById('confirmDataSubmision').onclick = function(){
-  // document.getElementById("gobackToMap").style.display = "none";
-  document.getElementById("confirmDataSubmision").style.display = "none";
-  document.getElementById('switches').style.display = "none";
-  document.getElementById('kaptainitialscreen').style.display = "none";
-
-
-
-  // document.getElementById('initialscreen2options').style.display = 'none'
-
-  document.getElementById('shareYourImageMap').style.display = 'initial'
-  document.getElementById('finalmessage').style.display = "initial";
-lastscreen = true
-return lastscreen
-
-}
-
-document.getElementById('shareYourImageMap').onclick = function(){
-var statsDesktop = 'use a phone to share screenshot'
-if(navigator.canShare && navigator.canShare({ files: filesArrayScreenshot })){
-      console.log('with sreenshot')
-
-      navigator.share({
-        files:filesArrayScreenshot, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        text: stats
-        // url:'https://md.kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z',
-      }).then(() => console.log('Successful share'))
-        .catch((error) => console.log('Error sharing', error));
-
-  }else{
-    try{
-      navigator.share({
-        // files:filesArray, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        text: stats,
-        // url:'https://md.kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z',
-      }).then(() => console.log('Successful share'))
-        .catch((error) => console.log('Error sharing', error));
-    }catch(e){
-      // console.log(url)
-      navigator.clipboard.writeText(statsDesktop).then(function() {
-        // console.log(url)
-
-        alert("Copied to clipboard!");
-      }, function() {
-        alert("Unable to copy");
-      });
-    }
-
-  }
-
-console.log(filesArrayScreenshot)
 }
