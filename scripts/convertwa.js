@@ -1,8 +1,8 @@
-var contributionid = 1230; // script to generate a random id
-var phone = 111; //script to pull it from the localstorage
-var totalcontrib = 1212121
+var contributionid;
+var phone = '99999999'; //from modal
+var totalcontribmap = 0
 var radiusbuffer = 99
-var mainattribute = 'nameofthegroup'
+var mainattribute = 'quququ'
 var attribute1s = 'test'
 var attribute1n = 33
 var mapdata
@@ -12,7 +12,13 @@ var date = timeEnd.getFullYear() + '-' + (timeEnd.getMonth() + 1) + '-' + timeEn
 var time = timeEnd.getHours() + ":" + timeEnd.getMinutes() + ":" + timeEnd.getSeconds();
 var timestamp = date + 'T' + time + 'Z';
 var pURL
-var datasov = 'obuscates'
+var datasov
+var currentZoom
+var communitymapid
+var nameOfTheGroup
+var mapdataarray
+
+console.log('timestamp',timestamp)
 
 function displayFile(file) {
 
@@ -36,17 +42,34 @@ console.log('manualupload',manualupload)
     reader.readAsText(file);
 
     reader.onloadend = function (e) {
-
+    var randomNumber = Math.random();
+    randomNumber = randomNumber * 100000;
+    communitymapid = Math.round(randomNumber)
     var filecontent = e.target.result;
     console.log('filecontent', filecontent);
+    const regexNameofthegroup = /"([^"]*)"/;
+    var matchNameofthegroup = filecontent.match(regexNameofthegroup);
+    nameOfTheGroup = matchNameofthegroup ? matchNameofthegroup[1] : null;
+
+
     const regex = /(-?\d+\.\d+)\s*,\s*(-?\d+\.\d+)/g;
     let matches;
     const features = [];
-
+    datasov = 'potentiallyopen'
     while ((matches = regex.exec(filecontent)) !== null) {
-      totalcontrib = totalcontrib + 1
+      totalcontribmap = totalcontribmap + 1
       const latitude = parseFloat(matches[1]);
       const longitude = parseFloat(matches[2]);
+      // console.log('totalcontrib',totalcontrib)
+
+
+      var randomNumber = Math.random();
+      randomNumber = randomNumber * 10000000;
+      contributionid = Math.round(randomNumber)
+      console.log('latitude',latitude)
+      console.log('communitymapid',communitymapid)
+      console.log('contributionid',contributionid)
+      console.log('nameOfTheGroup',nameOfTheGroup);
 
       features.push({
         type: "Feature",
@@ -55,12 +78,12 @@ console.log('manualupload',manualupload)
           contributionid: contributionid,
           phone: phone,
           timestamp: timestamp,
-          mainattribute: mainattribute,
-          attribute1s: attribute1s,
-          attribute1n: attribute1n,
-          datasov: 'oo',   // if open it will go as it is to the OO DB, if obfuscated the same. the obfuscated geojson is created later with canvas info.
-          totalcontrib: '1', // no need here but need to match the db structure for obfuscated data
-          radiusbuffer: '0', // no need here but need to match the db structure for obfuscated data
+          mainattribute: nameOfTheGroup,
+          attribute1s: attribute1s,   // no needed
+          attribute1n: attribute1n,  // no needed
+          datasov: datasov,   // not needed
+          totalcontrib: communitymapid, // this is actually the id of the community map
+          radiusbuffer: '0', // no need 
         },
         geometry: {
           type: "Point",
@@ -82,8 +105,8 @@ console.log('manualupload',manualupload)
       document.getElementById('backFromFilter').style.display = 'none'
 
 
-      document.getElementById('initialscreen2options').style.display = 'none'
-      document.getElementById("map").style.opacity = 1;
+      // document.getElementById('initialscreen2options').style.display = 'none'
+      document.getElementById("map").style.opacity = 0;
       document.getElementById('MapLoading').style.opacity = 1
       document.getElementById('startmapping').style.backgroundColor = 'white'
       myLayer_Button.removeFrom(map); //always on as there will always be features in the map, even when first load
@@ -110,24 +133,44 @@ console.log('manualupload',manualupload)
         document.getElementById("tutorial").style.display = "none";
         document.getElementById("armchair").style.display = "none";
         document.getElementById("field").style.display = "none";
+        document.getElementById("kaptalitetutorial").style.display = "none";
         document.getElementById("gobackUploadmap").style.display = "initial";
         document.getElementById("confirmuploadedmap").style.display = "initial";
-        document.getElementById("Alert").style.fontSize = "30px";
-        document.getElementById("Alert").style.textAlign = "center"
-        document.getElementById('Alert').innerHTML = 'Stats here...'
-        document.getElementById("Alert").style.display = 'initial'
-        document.getElementById("screenshot").style.opacity = 0
-        document.getElementById("screenshot").style.display = 'initial'
-        document.getElementById('screenshot').disabled = false
-        setTimeout(function(){
+        document.getElementById("inputtextlabel").style.display = "initial";
+        document.getElementById("emojionearea").style.display = "initial";
+        document.getElementById("emojionearea").value = nameOfTheGroup
+        document.getElementById("confirminputtext").style.display = "initial";
 
-        screenshot.click()
-      },1000)
+
+        
+        // document.getElementById("Alert").style.fontSize = "30px";
+        // document.getElementById("Alert").style.textAlign = "center"
+        // document.getElementById('Alert').innerHTML = 'Stats here...'
+        // document.getElementById("Alert").style.display = 'initial'
+
   };
-  console.log('totalContributions',totalcontrib)  
-  return totalcontrib && mapdata
+  // console.log('totalContributions',totalcontrib)  
+  return mapdata && totalcontribmap && nameOfTheGroup
 }
+document.getElementById('confirminputtext').onclick = function(){
+  document.getElementById('initialscreen2options').style.display = 'none'
+  document.getElementById("emojionearea").style.display = "none";
+  document.getElementById("confirminputtext").style.display = "none";
+  document.getElementById("map").style.opacity = 1;
+  document.getElementById("gobackUploadmap").style.display = "initial";
+  document.getElementById("confirmuploadedmap").style.display = "initial";
 
+  document.getElementById("screenshot").style.opacity = 0
+  document.getElementById("screenshot").style.display = 'initial'
+  document.getElementById('screenshot').disabled = false
+  var topic = document.getElementById("emojionearea").value
+  setTimeout(function(){
+    document.getElementById("showAreaAcresScreenshot").innerHTML = '</br></br> ' + topic + '</br>' + totalcontribmap + 'contributions ' + '</br>' + date 
+    document.getElementById("showAreaAcresScreenshot").style.display = 'initial'
+  screenshot.click()
+},1000)
+
+}
 document.getElementById('languages').addEventListener('change', function() {
   const language = this.value;
   console.log(`Language selected: ${language}`);
@@ -170,12 +213,16 @@ document.getElementById('gobackToInitialKaptalite').onclick = function(){
   document.getElementById('kaptalitetutorial').style.display = 'none'
   document.getElementById('upload').style.display = 'none'
   document.getElementById('gobackToInitialKaptalite').style.display = 'none'
+  document.getElementById("inputtextlabel").style.display = "none";
+  document.getElementById("emojionearea").style.display = "none";
+  document.getElementById("confirminputtext").style.display = "none";
   document.getElementById('languages').style.display = 'initial'
   document.getElementById('KaptaLite').style.display = 'initial'
   document.getElementById('KaptaAdvanced').style.display = 'initial'
   // document.getElementById('disclaimer').style.display = 'initial'
   document.getElementById('asktheteam').style.display = 'initial'
   document.getElementById('kaptainitialscreen').style.display = 'initial'
+  document.querySelector('input[type=file]').value = ''
 
 }
 
@@ -184,17 +231,20 @@ document.getElementById('gobackUploadmap').onclick = function(){
 gobackUploadmap = true
   document.getElementById("gobackUploadmap").style.display = "none";
   document.getElementById("gobackToInitialKaptalite").style.display = "none";
+  document.getElementById("confirminputtext").style.display = "none";
+
 
   document.getElementById("confirmuploadedmap").style.display = "none";
   document.getElementById("gobackToMap").style.display = "none";
   document.getElementById('asktheteam').style.display = 'none'
   document.getElementById('kaptalitetutorial').style.display = 'none'
+  
+  document.getElementById("inputtextlabel").style.display = "initial";
+  document.getElementById("emojionearea").style.display = "initial";
+  document.getElementById("emojionearea").value = nameOfTheGroup
+  document.getElementById("confirminputtext").style.display = "initial";
+  document.getElementById("gobackToInitialKaptalite").style.display = "initial";
 
-  document.getElementById('languages').style.display = 'initial'
-  document.getElementById('KaptaLite').style.display = 'initial'
-  document.getElementById('KaptaAdvanced').style.display = 'initial'
-  document.getElementById('asktheteam').style.display = 'initial'
-  document.getElementById('kaptainitialscreen').style.display = "initial";
   document.getElementById('initialscreen2options').style.display = 'initial'
 document.querySelector('input[type=file]').value = ''
 
@@ -202,6 +252,7 @@ return gobackUploadmap
 }
 
 document.getElementById('confirmuploadedmap').onclick = function(){
+  currentZoom = map.getZoom()
 
   document.getElementById('initialscreen2options').style.display = 'initial'
   document.getElementById('languages').style.display = 'none'
@@ -210,6 +261,9 @@ document.getElementById('confirmuploadedmap').onclick = function(){
   document.getElementById('gobackToInitialKaptalite').style.display = 'none'
   document.getElementById('KaptaLite').style.display = 'none'
   document.getElementById('KaptaAdvanced').style.display = 'none'
+  document.getElementById("confirminputtext").style.display = "none";
+  document.getElementById("inputtextlabel").style.display = "none";
+  
   // document.getElementById('openexportedmap').style.display = 'none'
 
   document.getElementById('disclaimer').style.display = 'none'
@@ -218,24 +272,106 @@ document.getElementById('confirmuploadedmap').onclick = function(){
   document.getElementById('gobackUploadmap').style.display = 'initial'
   document.getElementById("gobackToMap").style.display = "initial";
   document.getElementById("confirmDataSubmision").style.display = "initial";
+  document.getElementById("datasovmessage").style.display = "initial";
+  document.getElementById("moredatasovinfo").style.display = "initial";
 
+
+  // console.log('totalContributions',totalcontrib)  
+
+//   async function convertGeoJSONToBlob(mapdata) {
+//     return new Promise((resolve, reject) => {
+//         try {
+//             // Convert GeoJSON object to a string
+//             const geoJSONString = JSON.stringify(mapdata);
+            
+            
+//             // Create a Blob from the GeoJSON string
+//             const blob = new Blob([geoJSONString], {type: 'application/json'});
+//             var testBlob1 = blob
+
+//             // Optional: Create a URL from the Blob
+//             const url = URL.createObjectURL(blob);
+            
+//             // Create a File from the Blob
+//             const fileName = 'geojson_data.json';
+//             const file = new File([blob], fileName, {type: testBlob1.type});
+//             // var file = new File([testBlob],nameFile, {type: testBlob1.type });
+
+//             mapdataarray = [file]
+
+            
+//             // Resolve the promise with the Blob, URL, and File
+//             resolve({blob, url, file});
+//         } catch (error) {
+//             // Reject the promise if any error occurs
+//             reject(error);
+//         }
+//     });
+//   return mapdataarray
+// }
+// convertGeoJSONToBlob(mapdata)
+  return currentZoom //&& mapdataarray
 }
 document.getElementById('gobackToMap').onclick = function(){  // this applies to both screens
   if(lastscreen == false){
     document.getElementById('initialscreen2options').style.display = 'none'
     document.getElementById('switches').style.display = "none";
     document.getElementById("confirmDataSubmision").style.display = "none";
+    document.getElementById("moredatasovinfo").style.display = "none";
+    document.getElementById("datasovmessage").style.display = "none";
+
+    
 
   }else{
     document.getElementById("gobackToMap").style.display = "none";
     document.getElementById('shareYourImageMap').style.display = 'none'
+    document.getElementById('shareYourMapdata').style.display = 'none'
+
     document.getElementById('finalmessage').style.display = "none";
     document.getElementById('switches').style.display = 'initial'
     document.getElementById('gobackUploadmap').style.display = 'initial'
     document.getElementById("gobackToMap").style.display = "initial";
     document.getElementById("confirmDataSubmision").style.display = "initial";
+    document.getElementById('moredatasovinfo').style.display = "initial";
+    document.getElementById("datasovmessage").style.display = "initial";
+
+
     lastscreen = false
   }
   return lastscreen
 
+}
+var moreinfostate = false
+document.getElementById('moredatasovinfo').onclick = function(){  // this applies to both screens
+  console.log('moreinfostate',moreinfostate)
+  if(moreinfostate == false){
+    document.getElementById('switches').style.display = "none";
+    document.getElementById("confirmDataSubmision").style.display = "none";
+    document.getElementById("gobackToMap").style.display = "none";
+    document.getElementById("datasovmessage").style.display = "none";
+    document.getElementById("datasovcontent").style.display = "initial";
+    document.getElementById("moredatasovinfo").style.display = "initial";
+    document.getElementById("moredatasovinfo").style.borderColor = "green";
+
+
+
+
+    console.log('moreinfostate false')
+    moreinfostate = true
+
+
+  }else{
+    document.getElementById("datasovcontent").style.display = "none";
+
+    document.getElementById('switches').style.display = "initial";
+    document.getElementById("confirmDataSubmision").style.display = "initial";
+    document.getElementById("gobackToMap").style.display = "initial";
+    document.getElementById("datasovmessage").style.display = "initial";
+    document.getElementById("moredatasovinfo").style.display = "initial";
+
+
+    document.getElementById("moredatasovinfo").style.borderColor = "black";
+    moreinfostate = false
+  }
+return moreinfostate
 }

@@ -43,6 +43,7 @@ var manualupload = true
 
 navigator.serviceWorker.onmessage = (event) => {
   console.log('MESSAGE FROM SW RECEIVED')
+  loadingchat()
 
   manualupload = false
   const file = event.data.file;
@@ -50,13 +51,33 @@ navigator.serviceWorker.onmessage = (event) => {
 // loadingexport()
   // console.log(file)
   setTimeout(function(){
+    
     displayFile(file);
-  },2000)
+
+  },3000)
   var sharetarget = true
   console.log('sharetarget',sharetarget)
   return sharetarget && manualupload
 
 };
+
+function loadingchat(){
+  console.log('loadingchat function called')
+  document.getElementById('languages').style.display = 'none'
+  document.getElementById('KaptaLite').style.display = 'none'
+  document.getElementById('KaptaAdvanced').style.display = 'none'
+  document.getElementById('asktheteam').style.display = 'none'
+  document.getElementById('chatmaploadinggif').style.display = 'initial' 
+
+  // document.getElementById('MapLoading').style.display = 'none'
+  homescreenorwhatsapplaunch = 'whatsapp'
+  setTimeout(function(){
+    document.getElementById('chatmaploadinggif').style.display = 'none' 
+  },3000)
+  return homescreenorwhatsapplaunch
+}
+
+
 
 // var pageLoaded = false
 var subDOMAIN = 'testing'
@@ -1115,8 +1136,8 @@ var markerIconLocalStorage = new L.icon({
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// var googleSat = L.tileLayer.offline('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb, {
-  var googleSat = L.tileLayer.offline('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFyY29zbW9yZXV1Y2wiLCJhIjoiY2xwZHNlbmFpMDVoZjJpcGJxOHplOGw0ZCJ9.MiHNkvMRkTcfndsLMH166w', tilesDb, {
+var googleSat = L.tileLayer.offline('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', tilesDb, {
+  // var googleSat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFyY29zbW9yZXV1Y2wiLCJhIjoiY2xwZHNlbmFpMDVoZjJpcGJxOHplOGw0ZCJ9.MiHNkvMRkTcfndsLMH166w', {
 
 
     minZoom: 2,
@@ -1124,10 +1145,10 @@ var markerIconLocalStorage = new L.icon({
     maxNativeZoom: 21,
     opacity: 1,
     savetileend:true,
-    // cache:true,
+    // cache:false,
     //border: 'solid black 5px',
     subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-    attribution: 'Leaflet | Mapbox',
+    attribution: 'Leaflet | **!Mapbox',
 })//.addTo(map);
 
 var osm = L.tileLayer.offline('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', tilesDb, {

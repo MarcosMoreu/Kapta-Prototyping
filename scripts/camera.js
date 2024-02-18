@@ -438,43 +438,19 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
 
 
     screenshotOn = true
-    //console.log(screenshotOn)
-    // myLayer_Button.button.style.display = 'none';
-    // filter_Button.button.style.display = 'none';
-    // filterLocalStorage_Button.button.style.display = 'none';
-    // gps_Button.button.style.display = 'none';
-    //
-    // planet_Button.button.style.display = 'none';
-    // // googleSat_Button.button.style.display = 'none';
-    // osm_Button.button.style.display = 'none';
 
-    document.getElementById("showAreaAcres").style.display = 'none'
-    // document.getElementById("goBackClassification").disabled = true
-    // document.getElementById("shareMessagingAppsDirect").disabled = true
-    // document.getElementById("shareWorldButton").disabled = true
-    // document.getElementById("ShareFinalButton").disabled = true
-    // document.getElementById("screenshot").disabled = true
-    // document.getElementById("camera").disabled = true
-
-    // setTimeout(function(){
-    //   document.getElementById("imageScreenshot").src = 'images/screenshot.png'
-    //   document.getElementById("goBackClassification").disabled = false
-    //   document.getElementById("shareMessagingAppsDirect").disabled = false
-    //   document.getElementById("shareWorldButton").disabled = false
-    //   document.getElementById("ShareFinalButton").disabled = false
-    //   document.getElementById("screenshot").disabled = false
-    //   document.getElementById("camera").disabled = false
-    // },5000)
+    // document.getElementById("showAreaAcres").style.display = 'none'
 
 //we adding this because in order to show in the canvas, this need to be a map element. We could do 'body' instead of 'map', but performance...
-    if(openOrPrivate == 'open' || openOrPrivate == 'offlineOpen'){
-      document.getElementById("showAreaAcresScreenshot").innerHTML = '</br></br> 🔓🌍 ' + document.getElementById("showAreaAcres").innerHTML
-    }else{
-      document.getElementById("showAreaAcresScreenshot").innerHTML = '</br></br> 🔒🔑 ' + document.getElementById("showAreaAcres").innerHTML
-    }
+    // if(openOrPrivate == 'open' || openOrPrivate == 'offlineOpen'){
+      // document.getElementById("showAreaAcresScreenshot").color = 'white'
+      // document.getElementById("showAreaAcresScreenshot").innerHTML = '</br></br> ' + nameOfTheGroup + '</br>' + totalcontribmap + 'contributions' + '</br>' + date 
+    // }else{
+      // document.getElementById("showAreaAcresScreenshot").innerHTML = '</br></br> 🔒🔑 ' + document.getElementById("showAreaAcres").innerHTML
+    // }
     // document.getElementById("openorprivate").style.display = 'initial'
     // document.getElementById("showAreaAcresScreenshot").innerHTML = document.getElementById("showAreaAcres").innerHTML
-    document.getElementById("showAreaAcresScreenshot").style.display = 'initial'
+    // document.getElementById("showAreaAcresScreenshot").style.display = 'initial'
     // console.log('testtttttttttttt')
     // setTimeout(function(){  // to make the button transition immediate, and also disapear easybuttons for ms
 
@@ -591,12 +567,12 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
           //console.log(file)
           //console.log(filesArrayScreenshot)
 
-        },'image/jpeg', 0.1)  // this is to define the quality of the image screenshot (keep in mind the size due to data bundles) - jpeg offers the best compression value as far as I've tried
+        },'image/jpeg', 0.9)  // this is to define the quality of the image screenshot (keep in mind the size due to data bundles) - jpeg offers the best compression value as far as I've tried
         // console.log(image)
 
           //here to ensure that buttons appear when html2canvas is ready
 
-          document.getElementById("showAreaAcresScreenshot").style.display = 'none'
+          // document.getElementById("showAreaAcresScreenshot").style.display = 'none'
           // myLayer_Button.button.style.display = 'initial';
           // filter_Button.button.style.display = 'initial';
           // filterLocalStorage_Button.button.style.display = 'initial';
@@ -617,7 +593,7 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
           // document.getElementById("ShareFinalButton").click()
           document.getElementById("Alert").style.display = 'none'
           document.getElementById("Alert").style.display = 'none'
-          document.getElementById('showAreaAcresScreenshot').style.display = 'none'
+          // document.getElementById('showAreaAcresScreenshot').style.display = 'none'
 
           document.getElementById('ShareFinalButton').disabled = false;
           // document.getElementById('ShareFinalButton').style.backgroundColor = '#39F70F';

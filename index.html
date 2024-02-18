@@ -63,30 +63,35 @@
     <img id='maploadinggif' data-html2canvas-ignore src="images/checkingPw.gif"  loading='lazy' alt="..." style='width:50px ; height:50px;' >
   </h4>
 <body id='body' style='height:100%;background-color:black'>
-  <div id='switches' style='z-index:1000;top:100px;display:none;position:fixed;font-size:10px'>
+  <div id='switches' style='z-index:1000;top:150px;display:none;position:fixed;font-size:14px;'>
 <div class="sliderWrapper" >
-  <div> I want to sell my community's map locations</div>
-    <label class="switch">
-      <input id='switch1' type="checkbox" checked>
-      <span class="sliderDataSovereignty"></span>
+  <div> WITH the support of WCL team</div>
+    <label class="switch" style="margin-top:15px; margin-left:10px">
+      <input id='switch1' type="checkbox" >
+      <span class="sliderDataSovereignty" ></span>
     </label>
 </div>
 <div class="sliderWrapper" >
-  <div> I want the world to see my community’s map locations</div>
-    <label class="switch">
+  <div> WITHOUT support</div>
+    <label class="switch" style="margin-top:15px; margin-left:85px">
       <input id='switch2' type="checkbox" >
-      <span class="sliderDataSovereignty"></span>
+      <span class="sliderDataSovereignty" ></span>
     </label>
 </div>
-<div class="sliderWrapper" >
-  <div> I want to download my community’s map locations</div>
+<!-- <div class="sliderWrapper" >
+  <div> We do not want the world to see this</div>
     <label class="switch">
       <input id='switch3' type="checkbox">
       <span class="sliderDataSovereignty"></span>
     </label>
-</div>
+</div> -->
 
 </div>
+<button id='moredatasovinfo' class='button' aria-label = 'armchair' style='vertical-align: middle;display:none;position:absolute;z-index:6600;outline:none;left:85%; margin-top:8px;width:30px ; height:30px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;'>
+  <img src="images/questionmark.png"  loading='lazy' alt="..." style='width:20px ; height:20px;margin-left:-2px'>
+</button>
+
+
   <div align='center' id = 'TextRequest' style='z-index:1000;position:relative;display:none;text-align:center;'>
     <p style='text-align:center;color:white; margin-top:80px; font-size:10;margin-left:15px; margin-right:15px'>
       This form allows you to task the mappers by adding/advertising text & pictorial field in the map semantics interface. For more information please get in touch.</p>
@@ -130,16 +135,31 @@
   Select language
 
   </button> -->
+  <!-- <img id='maploadinggif' data-html2canvas-ignore src="images/checkingPw.gif"  loading='lazy' alt="..." style='display:initial;width:50px ; height:50px;' > -->
+
+  <p id='datasovmessage' style='z-index:0;display:none;text-align: center;position:fixed;width:100%;top:25px;color:#0f0f0f;font-size:22px; font-family:'Ubuntu' '> We want the world </br> to see this map </br> and be remunerated</p>
   <p id='finalmessage' style='z-index:0;display:none;text-align: center;position:fixed;width:100%;top:15px;color:#7E1701;font-size:18px; font-family:'Ubuntu' '> Submitted......now share with......</p>
   <p id='loadmapmessage' style='z-index:0;display:none;text-align: center;position:fixed;width:100%;top:15px;color:#7E1701;font-size:18px; font-family:'Ubuntu' '> Loading map</p>
+  <p id='datasovcontent' style='z-index:0;display:none;text-align: center;position:fixed;width:100%;top:25px;color:#0f0f0f;font-size:15px; font-family:'Ubuntu' '> Data sovereingty explanation... </br> centralisation </br> decentralisation...</p>
+  <!-- <p id='maploadinggif' style='z-index:49000;display:none;text-align: center;position:fixed;width:100%;top:245px;color:#0f0f0f;font-size:15px; font-family:'Ubuntu' '> Converting chat to map... </br> Wait </p> -->
 
-  <button id='shareYourImageMap' class='button' aria-label = 'field' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 25px);  top:calc(90% - 150px);width:50px ; height:50px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;'>
-    <img src="images/shareMessagingApps.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
+  
+  <div id="progressContainer" style="display:none;width: 80%; z-index:10000;background-color: #140202;">
+    <div id="progressBar" style="width: 0%; height: 30px;margin-top:200px; background-color: #4CAF50; text-align: center; line-height: 30px; color: white;">0%</div>
+  </div>
+  <button id='shareYourImageMap' class='button' aria-label = 'field' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px);  top:calc(90% - 500px);width:200px ; height:80px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;'>
+    <!-- <img src="images/shareMessagingApps.png"  alt="..." loading='lazy' style='width:30px ; height:30px'> -->
+    Share your map IMAGE in your social network
   </button>
-  <button id='confirmDataSubmision' class='button' aria-label = 'armchair' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(90% - 150px);width:200px ; height:50px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;' '>
+  <button id='shareYourMapdata' class='button' aria-label = 'field' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px);  top:calc(90% - 350px);width:200px ; height:80px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;'>
+    <!-- <img src="images/shareMessagingApps.png"  alt="..." loading='lazy' style='width:30px ; height:30px'> -->
+    Download your map DATA
+  </button>
+  <button id='confirmDataSubmision' disabled class='button' aria-label = 'armchair' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(90% - 150px);width:200px ; height:50px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;' '>
     <!-- <img src="images/ThumbsUpGreen.png"  loading='lazy' alt="..." style='width:30px ; height:30px;margin-left:-2px'> -->
   Submit data!!!</button>
-  <button id='gobackToMap' class='button' aria-label = 'field' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 25px); top:calc(90% - 50px);width:50px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' '>
+
+  <button id='gobackToMap' class='button' aria-label = 'field' style='position:absolute;vertical-align: middle;display:none;z-index:100;outline:none;left:calc(50% - 25px); top:calc(90% - 50px);width:50px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' '>
     <img src="images/backButton.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
   </button>
   <select id="languages" class='buttonInitial' style='cursor:pointer;margin-left:calc(50% - 100px);display:none;z-index:100;outline:none;top:calc(50% - 300px);width:200px ; height:50px; border: 0px solid white;background-color: transparent;border-color:none; border-radius:15px; font-size:18px;' >
@@ -169,12 +189,26 @@
   <button id='KaptaLite' class='buttonInitial' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(50% - 150px);width:200px ; height:100px; border: 2px solid white; background-color: white;border-color:black; border-radius:15px; font-size:18px;' >
     Kapta Lite
   </button>
+  <button id='chatmaploadinggif' disabled class='buttonInitial' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(50% - 150px);width:200px ; height:100px; color:black; background-color: transparent;border-color:transparent; border-radius:15px; font-size:25px;' >
+    Converting chat to map...</br></br></br>
+    <img src="images/checkingPw.gif"  alt="..." loading='lazy' style='width:50px ; height:50px'>
+  </button>
   <button id='KaptaAdvanced' class='buttonInitial'style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(50% - 0px);width:200px ; height:100px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;' >
     Kapta
   </button>
-  <button id='gobackToInitialKaptalite' class='button' aria-label = 'field' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 25px); top:calc(90% - 50px);width:50px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px;'>
+  <button id='gobackToInitialKaptalite' class='button' aria-label = 'field' style='vertical-align: middle;display:none;position:absolute;z-index:100;outline:none;left:calc(50% - 25px); top:600px;width:50px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px;'>
     <img src="images/backButton.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
   </button>
+  <p id='inputtextlabel' align = 'center' style='z-index:0;display:none;position:absolute;left:calc(50% - 120px);margin-top:80px;color:rgb(7, 7, 7);font-size:18px; width:240px;font-family:'Ubuntu' '> What have you mapped in this WhatsApp group? </br> </b>
+
+  <input id="emojionearea" class="inputtext" placeholder='...' style='display:none;position:absolute;margin-top:50px;left:calc(50% - 130px); margin-right: 10px;width:250px;vertical-align:middle;  height:40px; border-radius: 20px; border-color:white; background-color: #DEDDDD; font-size:16px; padding:0px 15px;font-size:18px; font-family:'Ubuntu''>
+  <button id='confirminputtext' class='button' aria-label = 'field' style='vertical-align: middle;display:none;position:absolute;z-index:100;outline:none;left:calc(50% - 50px); margin-top:130px;width:100px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px;font-size:18px; font-family:'Ubuntu' '>
+    Confirm
+  </button>
+  <!-- <button id='gobackToinputtext' class='button' aria-label = 'field' style='vertical-align: middle;display:none;position:absolute;z-index:100;outline:none;left:calc(50% - 25px); top:400px;width:50px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px;'>
+    <img src="images/backButton.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
+  </button> -->
+
 
   <p id='disclaimer' align = 'center' style='z-index:0;display:none;position:absolute;left:calc(50% - 120px);top:calc(50% + 100px);color:yellow;font-size:14px; width:240px;font-family:'Ubuntu' '> </br> </b>
 </p>

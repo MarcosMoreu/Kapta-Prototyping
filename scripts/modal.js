@@ -109,7 +109,7 @@ var arrayOfImages = [
 
 var sharetarget = false
 var manualupload = true
-
+var homescreenorwhatsapplaunch
 var firstLoad = function() { //fucntion to determine if the site is visited for first time
   console.log('FIRST LOAD CALLED')
   console.log('sharetarget',sharetarget)
@@ -125,11 +125,19 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
       // if (urlContainsHash != true && urlContainsGeoJSON != true){  // if url contains geojson (and coords)
 // if(sharetarget == false){
   setTimeout(function(){
-    document.getElementById('languages').style.display = 'initial'
-    document.getElementById('KaptaLite').style.display = 'initial'
-    document.getElementById('KaptaAdvanced').style.display = 'initial'
-    document.getElementById('asktheteam').style.display = 'initial'
-    document.getElementById('kaptainitialscreen').style.display = 'initial'
+    if(homescreenorwhatsapplaunch == 'whatsapp'){
+      document.getElementById('chatmaploadinggif').style.display = 'initial'
+      // document.getElementById('KaptaLite').style.display = 'initial'
+
+
+    }else{
+      document.getElementById('languages').style.display = 'initial'
+      document.getElementById('KaptaLite').style.display = 'initial'
+      document.getElementById('KaptaAdvanced').style.display = 'initial'
+      document.getElementById('asktheteam').style.display = 'initial'
+      document.getElementById('kaptainitialscreen').style.display = 'initial'
+    }
+
     },300)
 // }
 
