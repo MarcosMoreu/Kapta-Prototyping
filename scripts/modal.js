@@ -842,7 +842,7 @@ var requestPw = function(){
           // promise.catch(e => console.log(e.message));
           //   //console.log(promise)
         var openAppPwSuccesful = function(){
-              if(authentication == 'failed' && done == true){
+              if(authentication == 'successful' && done == true){
                 $.getScript({
                    cache:true,
                   url:'scripts/customIcons_v3.js'

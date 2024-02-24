@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1,user-scalable=no" />
   <meta name="theme-color" content="#000000"/>
   <meta name="description" content="🗺️"/>
-  <meta property="og:title" content="Kapta" />
+  <meta property="og:title" content="Kapta Lite" />
   <meta property="og:description" content="🗺️" />
   <meta property="og:image" itemprop="image" content="https://md.kapta.app/images/icons/icon-256x256.png"/>
   <meta property="og:image:type" content="image/png" />
@@ -30,11 +30,11 @@
   <link rel="dns-prefetch" href= "https://mt3.google.com"> -->
   <link rel="dns-prefetch" href= "https://cdn.jsdelivr.net">
 
-  <link rel="canonical" href="https://md.kapta.app"/>
+  <link rel="canonical" href="https://wa.kapta.app"/>
   <link rel="manifest" href="manifest.json"/>
   <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
   <link rel="shortcut icon" href="favicon.ico"/>
-  <title>Kapta</title>
+  <title>Kapta Lite</title>
   <link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon.png"/>
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
   <link rel="apple-touch-icon" sizes="167x167" href="apple-touch-icon.png"/>
@@ -63,17 +63,17 @@
     <img id='maploadinggif' data-html2canvas-ignore src="images/checkingPw.gif"  loading='lazy' alt="..." style='width:50px ; height:50px;' >
   </h4>
 <body id='body' style='height:100%;background-color:black'>
-  <div id='switches' style='z-index:1000;top:150px;display:none;position:fixed;font-size:14px;'>
+  <div id='switches' style="z-index:1000;top:150px;display:none;position:fixed;font-size:17px;font-family:'Ubuntu'">
 <div class="sliderWrapper" >
-  <div> WITH the support of WCL team</div>
+  <div style="font-family:'Ubuntu'"> WITH the support of WCL team</div>
     <label class="switch" style="margin-top:15px; margin-left:10px">
       <input id='switch1' type="checkbox" >
       <span class="sliderDataSovereignty" ></span>
     </label>
 </div>
 <div class="sliderWrapper" >
-  <div> WITHOUT support</div>
-    <label class="switch" style="margin-top:15px; margin-left:85px">
+  <div style="font-family:'Ubuntu'"> WITHOUT support</div>
+    <label class="switch" style="margin-top:15px; margin-left:105px">
       <input id='switch2' type="checkbox" >
       <span class="sliderDataSovereignty" ></span>
     </label>
@@ -87,8 +87,8 @@
 </div> -->
 
 </div>
-<button id='moredatasovinfo' class='button' aria-label = 'armchair' style='vertical-align: middle;display:none;position:absolute;z-index:6600;outline:none;left:85%; margin-top:8px;width:30px ; height:30px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;'>
-  <img src="images/questionmark.png"  loading='lazy' alt="..." style='width:20px ; height:20px;margin-left:-2px'>
+<button id='moredatasovinfo' class='button' aria-label = 'armchair' style='vertical-align: middle;display:none;position:absolute;z-index:6600;outline:none;left:85%; margin-top:8px;width:30px ; height:30px; border: 3px solid white; border-color:black; border-radius:15px; font-size:18px;'>
+  <img src="images/questionmark.png"  loading='lazy' alt="..." style='width:20px ; height:20px;'>
 </button>
 
 
@@ -155,9 +155,9 @@
     <!-- <img src="images/shareMessagingApps.png"  alt="..." loading='lazy' style='width:30px ; height:30px'> -->
     Download your map DATA
   </button>
-  <button id='confirmDataSubmision' disabled class='button' aria-label = 'armchair' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(90% - 150px);width:200px ; height:50px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;' '>
+  <button id='confirmDataSubmision' disabled class='button' aria-label = 'armchair' style="vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(90% - 150px);width:200px ; height:50px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;font-family: 'Ubuntu'">
     <!-- <img src="images/ThumbsUpGreen.png"  loading='lazy' alt="..." style='width:30px ; height:30px;margin-left:-2px'> -->
-  Submit data!!!</button>
+  Confirm</button>
 
   <button id='gobackToMap' class='button' aria-label = 'field' style='position:absolute;vertical-align: middle;display:none;z-index:100;outline:none;left:calc(50% - 25px); top:calc(90% - 50px);width:50px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' '>
     <img src="images/backButton.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
@@ -179,7 +179,7 @@
     <!-- <img id='youtubeImage' src="../images/youtube.png"  alt="..." loading='lazy' style='width:30px ; height:30px'> -->
   Watch tutorial
   </button>
-  <label for="uploadfilebutton"  align = 'center' id="upload"class="buttonInitial" style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 75px); top:calc(50% - 0px);width:150px ; height:70px; border: 2px solid white; background-color: white;border-color:black; border-radius:15px; font-size:18px;'>
+  <label for="uploadfilebutton"  align = 'center' id="upload"class="buttonInitial" style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 75px); top:calc(50% - 0px);width:150px ; height:65px; border: 2px solid white; background-color: white;border-color:black; border-radius:15px; font-size:18px;'>
 </br>   Upload map
   </label>
   <input type="file" id="uploadfilebutton"class='fileInput' style='display:none'onchange="displayFile(event)"/>
@@ -244,7 +244,7 @@
 
   </button>
 
-  <p id='kaptainitialscreen' style='z-index:0;display:none;text-align: center;position:fixed;width:100%;bottom:15px;color:#7E1701;font-size:18px; font-family:'Ubuntu' '> Kapta</p>
+  <p id='kaptainitialscreen' class='buttonInitial' style='z-index:0;display:none;text-align: center;position:fixed;width:100%;bottom:15px;color:#7E1701;font-size:18px; font-family:'Ubuntu' '> Kapta</p>
 
 </div>
 <div id='kaptacredits' class='full-height' style='display:none;z-index:100;background-color:#3D3D3D'>
@@ -274,7 +274,7 @@
 </div>
 <div id="map" style='height:100%; z-index:2; position:relative;'>
     <div id="rose" style='margin-bottom:80px; margin-left:-5px; width:40px; height:40px'>
-      <p id='showAreaAcresScreenshot' style='z-index:3;position:fixed; text-align: center; width:100%; margin-top:-10px;display:none;color:yellow;font-size:25px; font-weight:bold' ></p>
+      <p id='showAreaAcresScreenshot' style='z-index:3;margin-left:-5px;position:fixed; text-align: center; width:100%; margin-top:-10px;display:none;color:rgb(134, 1, 1);font-size:20px;' ></p>
      </div>
 </div>
 

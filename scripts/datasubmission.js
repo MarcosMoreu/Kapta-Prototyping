@@ -72,6 +72,8 @@ let toggleStates = {
     });
 };
   document.getElementById('confirmDataSubmision').onclick = function(){
+    setTimeout(function(){
+
     // document.getElementById("gobackToMap").style.display = "none";
     document.getElementById("confirmDataSubmision").style.display = "none";
     document.getElementById('switches').style.display = "none";
@@ -245,7 +247,7 @@ let toggleStates = {
           const sql = baseSql + values;
       
           // Assuming submitToProxy is an async function or returns a Promise
-          // await submitToProxy(sql) // Handle errors or rejections        ////////////////////////!!!!!!!!!!!!
+          await submitToProxy(sql) // Handle errors or rejections        ////////////////////////!!!!!!!!!!!!
       
           // Update progress
           console.log('progress ', progress)
@@ -500,10 +502,12 @@ let toggleStates = {
   
   lastscreen = true
   return lastscreen && pURL
-  
+    },200)
   }
   
   document.getElementById('shareYourImageMap').onclick = function(){
+    setTimeout(function(){
+
   var statsDesktop = 'use a phone to share screenshot'
   if(navigator.canShare && navigator.canShare({ files: filesArrayScreenshot })){
         console.log(filesArrayScreenshot)
@@ -535,11 +539,13 @@ let toggleStates = {
       }
   
     }
-  
+    },200)
   console.log(filesArrayScreenshot)
   }
 
   document.getElementById('shareYourMapdata').onclick = function(){
+    setTimeout(function(){
+
         var geojsonToString = JSON.stringify(mapdata)
         var featureCollectionToExport = '{"type": "FeatureCollection","features":'+ geojsonToString + '}'
         var dataToExport = 'data:text/json;charset=utf-8,' + encodeURIComponent(featureCollectionToExport);
@@ -621,5 +627,6 @@ let toggleStates = {
     //   }
     
     console.log(filesArrayScreenshot)
+    },200)
     }
   

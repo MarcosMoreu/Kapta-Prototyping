@@ -153,6 +153,10 @@ console.log('manualupload',manualupload)
   return mapdata && totalcontribmap && nameOfTheGroup
 }
 document.getElementById('confirminputtext').onclick = function(){
+  document.getElementById("confirminputtext").style.backgroundColor = "#a2a1a1";
+
+  setTimeout(function(){
+    document.getElementById("confirminputtext").style.backgroundColor = "white";
   document.getElementById('initialscreen2options').style.display = 'none'
   document.getElementById("emojionearea").style.display = "none";
   document.getElementById("confirminputtext").style.display = "none";
@@ -165,10 +169,14 @@ document.getElementById('confirminputtext').onclick = function(){
   document.getElementById('screenshot').disabled = false
   var topic = document.getElementById("emojionearea").value
   setTimeout(function(){
-    document.getElementById("showAreaAcresScreenshot").innerHTML = '</br></br> ' + topic + '</br>' + totalcontribmap + 'contributions ' + '</br>' + date 
+    document.getElementById("showAreaAcresScreenshot").innerHTML = topic + '</br>' + totalcontribmap + ' contributions' + '</br>' + date 
     document.getElementById("showAreaAcresScreenshot").style.display = 'initial'
+    document.getElementById("showAreaAcresScreenshot").style.backgroundColor = '#191919'
+
   screenshot.click()
-},1000)
+  
+},500)
+  },200)
 
 }
 document.getElementById('languages').addEventListener('change', function() {
@@ -180,6 +188,10 @@ document.getElementById('languages').addEventListener('change', function() {
 var stats = 'Stats here'
 
 document.getElementById('KaptaLite').onclick = function(){
+  document.getElementById('KaptaLite').style.backgroundColor = '#c4c3c3'
+
+  setTimeout(function(){
+    document.getElementById('KaptaLite').style.backgroundColor = 'white'
 
   document.getElementById('initialscreen2options').style.display = 'initial'
   document.getElementById('languages').style.display = 'none'
@@ -190,26 +202,31 @@ document.getElementById('gobackToInitialKaptalite').style.display = 'initial'
   document.getElementById('KaptaAdvanced').style.display = 'none'
   document.getElementById('asktheteam').style.display = 'none'
   document.getElementById('kaptainitialscreen').style.display = 'none'
-
+  },200)
 }
 document.getElementById('KaptaAdvanced').onclick = function(){
-  document.getElementById('KaptaAdvanced').innerHTML = '!!!Under development'
+  setTimeout(function(){
+
+  document.getElementById('KaptaAdvanced').innerHTML = '🚧 Under dev. 🚧'
   setTimeout(function(){
     document.getElementById('KaptaAdvanced').innerHTML = 'Kapta'
   },2000)
-
+  },200)
 }
 
 document.getElementById('kaptalitetutorial').onclick = function(){
+  setTimeout(function(){
 
-  document.getElementById('kaptalitetutorial').innerHTML = '!!!Under development'
+  document.getElementById('kaptalitetutorial').innerHTML = '🚧 Under dev.'
   setTimeout(function(){
     document.getElementById('kaptalitetutorial').innerHTML = 'Watch tutorials'
   },2000)
-
+  },200)
 }
 
 document.getElementById('gobackToInitialKaptalite').onclick = function(){
+  setTimeout(function(){
+
   document.getElementById('kaptalitetutorial').style.display = 'none'
   document.getElementById('upload').style.display = 'none'
   document.getElementById('gobackToInitialKaptalite').style.display = 'none'
@@ -223,11 +240,13 @@ document.getElementById('gobackToInitialKaptalite').onclick = function(){
   document.getElementById('asktheteam').style.display = 'initial'
   document.getElementById('kaptainitialscreen').style.display = 'initial'
   document.querySelector('input[type=file]').value = ''
-
+  },200)
 }
 
 
 document.getElementById('gobackUploadmap').onclick = function(){
+  setTimeout(function(){
+
 gobackUploadmap = true
   document.getElementById("gobackUploadmap").style.display = "none";
   document.getElementById("gobackToInitialKaptalite").style.display = "none";
@@ -247,11 +266,13 @@ gobackUploadmap = true
 
   document.getElementById('initialscreen2options').style.display = 'initial'
 document.querySelector('input[type=file]').value = ''
-
+  },200)
 return gobackUploadmap
 }
 
 document.getElementById('confirmuploadedmap').onclick = function(){
+  setTimeout(function(){
+
   currentZoom = map.getZoom()
 
   document.getElementById('initialscreen2options').style.display = 'initial'
@@ -274,7 +295,7 @@ document.getElementById('confirmuploadedmap').onclick = function(){
   document.getElementById("confirmDataSubmision").style.display = "initial";
   document.getElementById("datasovmessage").style.display = "initial";
   document.getElementById("moredatasovinfo").style.display = "initial";
-
+  },200)
 
   // console.log('totalContributions',totalcontrib)  
 
@@ -313,6 +334,7 @@ document.getElementById('confirmuploadedmap').onclick = function(){
   return currentZoom //&& mapdataarray
 }
 document.getElementById('gobackToMap').onclick = function(){  // this applies to both screens
+  setTimeout(function(){
   if(lastscreen == false){
     document.getElementById('initialscreen2options').style.display = 'none'
     document.getElementById('switches').style.display = "none";
@@ -338,12 +360,14 @@ document.getElementById('gobackToMap').onclick = function(){  // this applies to
 
     lastscreen = false
   }
+},200)
   return lastscreen
 
 }
 var moreinfostate = false
 document.getElementById('moredatasovinfo').onclick = function(){  // this applies to both screens
   console.log('moreinfostate',moreinfostate)
+  setTimeout(function(){
   if(moreinfostate == false){
     document.getElementById('switches').style.display = "none";
     document.getElementById("confirmDataSubmision").style.display = "none";
@@ -351,7 +375,7 @@ document.getElementById('moredatasovinfo').onclick = function(){  // this applie
     document.getElementById("datasovmessage").style.display = "none";
     document.getElementById("datasovcontent").style.display = "initial";
     document.getElementById("moredatasovinfo").style.display = "initial";
-    document.getElementById("moredatasovinfo").style.borderColor = "green";
+    document.getElementById("moredatasovinfo").style.borderColor = "grey";
 
 
 
@@ -373,5 +397,6 @@ document.getElementById('moredatasovinfo').onclick = function(){  // this applie
     document.getElementById("moredatasovinfo").style.borderColor = "black";
     moreinfostate = false
   }
+},200)
 return moreinfostate
 }
