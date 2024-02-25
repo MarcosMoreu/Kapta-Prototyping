@@ -152,6 +152,8 @@ console.log('manualupload',manualupload)
   // console.log('totalContributions',totalcontrib)  
   return mapdata && totalcontribmap && nameOfTheGroup
 }
+
+var topic
 document.getElementById('confirminputtext').onclick = function(){
   document.getElementById("confirminputtext").style.backgroundColor = "#a2a1a1";
 
@@ -167,9 +169,9 @@ document.getElementById('confirminputtext').onclick = function(){
   document.getElementById("screenshot").style.opacity = 0
   document.getElementById("screenshot").style.display = 'initial'
   document.getElementById('screenshot').disabled = false
-  var topic = document.getElementById("emojionearea").value
+  topic = document.getElementById("emojionearea").value
   setTimeout(function(){
-    document.getElementById("showAreaAcresScreenshot").innerHTML = topic + '</br>' + totalcontribmap + ' contributions' + '</br>' + date 
+    document.getElementById("showAreaAcresScreenshot").innerHTML = topic + '</br>' + totalcontribmap + ' contributions ' + date 
     document.getElementById("showAreaAcresScreenshot").style.display = 'initial'
     document.getElementById("showAreaAcresScreenshot").style.backgroundColor = '#191919'
 
@@ -177,7 +179,7 @@ document.getElementById('confirminputtext').onclick = function(){
   
 },500)
   },200)
-
+return topic
 }
 document.getElementById('languages').addEventListener('change', function() {
   const language = this.value;

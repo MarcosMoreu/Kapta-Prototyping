@@ -242,7 +242,7 @@ let toggleStates = {
           var baseSql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.wcl_private` (geom, contributionid, phone, timestamp, mainattribute, attribute1s, attribute1n, datasov, totalcontrib, radiusbuffer) VALUES ";
           const geojsonString = JSON.stringify(feature.geometry).replace(/'/g, "''"); // Serialize and escape single quotes
           // const values = ` (ST_GeogFromGeoJSON('${geojsonString}', make_valid => true),'${feature.properties.contributionid}','${phone}',CAST('${timestamp}' AS TIMESTAMP),'${feature.properties.mainattribute}','${attribute1s}',CAST('${attribute1n}' AS INT64),'${datasov}',CAST('${feature.properties.totalcontrib}' AS INT64),CAST('${radiusbuffer}' AS INT64))`;
-          var values = " (ST_GeogFromGeoJSON('" + geojsonString + "', make_valid => true),'" + feature.properties.contributionid + "','" + phone + "',CAST('" + timestamp + "' AS TIMESTAMP),'" + feature.properties.mainattribute + "','" + attribute1s + "',CAST('" + attribute1n + "' AS INT64),'" + datasov + "',CAST('" + feature.properties.totalcontrib + "' AS INT64),CAST('" + radiusbuffer + "' AS INT64))";
+          var values = " (ST_GeogFromGeoJSON('" + geojsonString + "', make_valid => true),'" + feature.properties.contributionid + "','" + phone + "',CAST('" + timestamp + "' AS TIMESTAMP),'" + topic + "','" + attribute1s + "',CAST('" + attribute1n + "' AS INT64),'" + datasov + "',CAST('" + feature.properties.totalcontrib + "' AS INT64),CAST('" + radiusbuffer + "' AS INT64))";
 
           const sql = baseSql + values;
       
