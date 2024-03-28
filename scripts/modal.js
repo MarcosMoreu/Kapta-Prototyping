@@ -647,6 +647,7 @@ document.getElementById('askthemap').onclick = function(){
 },200)
 
 }
+
 document.getElementById('asktheteam').onclick = function(){
   document.getElementById('asktheteam').style.backgroundColor = '#a6a4a4'
   // document.getElementById('talk').style.borderColor = '#404040'
