@@ -1,60 +1,29 @@
-
 <!DOCTYPE html>
-
-<html lang='en' >
-
+<html>
 <head>
+<meta charset="utf-8">
+<title>WCL Platform v1</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<script async src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
+<link rel="stylesheet" href="styles/app.css" id='app-css' as='style' onload="this.media='all'">
 
-  <meta charset="UTF-8"/>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1,user-scalable=no" />
-  <meta name="theme-color" content="#000000"/>
-  <meta name="description" content="🗺️"/>
-  <meta property="og:title" content="Kapta Lite" />
-  <meta property="og:description" content="🗺️" />
-  <meta property="og:image" itemprop="image" content="https://md.kapta.app/images/icons/icon-256x256.png"/>
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="476">
-  <meta property="og:image:height" content="249">
-
-  <!-- <link rel="preconnect " href= "https://mt0.google.com">
-  <link rel="preconnect" href= "https://mt1.google.com">
-  <link rel="preconnect" href= "https://mt2.google.com">
-  <link rel="preconnect" href= "https://mt3.google.com">
-
-  <link rel="preconnect" href= "https://cdn.jsdelivr.net">
-  <link rel="dns-prefetch" href= "https://mt0.google.com">
-  <link rel="dns-prefetch" href= "https://mt1.google.com">
-  <link rel="dns-prefetch" href= "https://mt2.google.com">
-  <link rel="dns-prefetch" href= "https://mt3.google.com"> -->
-  <link rel="dns-prefetch" href= "https://cdn.jsdelivr.net">
-
-  <link rel="canonical" href="https://wa.kapta.app"/>
-  <link rel="manifest" href="manifest.json"/>
-  <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
-  <link rel="shortcut icon" href="favicon.ico"/>
-  <title>Kapta Lite</title>
-  <link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon.png"/>
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
-  <link rel="apple-touch-icon" sizes="167x167" href="apple-touch-icon.png"/>
-
-  <link rel="stylesheet"  href="styles/modal.css" >
-  <!-- <link rel="text/html" href="pages/tutorial"> -->
-
-  <link rel="stylesheet" href="styles/app.css" id='app-css' as='style' disabled onload="this.media='all'">
-  <link rel="stylesheet" href="styles/customIcons.css" id='customIcons-css' as='style' disabled onload="this.media='all'">
-  <link rel="stylesheet"  href="styles/slider.css" id='slider-css' as='style' disabled onload="this.media='all'">
-  <link rel="stylesheet" href="scripts/lib/leaflet/leaflet.css" id='leaflet-css' as='style' disabled onload="this.media='all'">
-  <link rel="stylesheet" href="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.css" id='easybutton-css' as='style' disabled onload="this.media='all'">
-  <link rel="stylesheet" href="scripts/lib/leaflet/plugins/L.Control.Rose-master/dist/L.Control.Rose.css" id='rose-css' as='style' disabled onload="this.media='all'">
-  <link  rel="stylesheet" type="text/css" href="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/leaflet.draw.css"  id='draw-css' as='style' disabled onload="this.media='all'">
-  <link  rel="stylesheet" href="scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/MarkerCluster.css" id='cluster-css' as='style' disabled onload="this.media='all'">
-  <link  rel="stylesheet" href="scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css" id='clusterDefault-css' as='style' disabled onload="this.media='all'">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
 
 </head>
-
-  <h1 id='showAreaAcres' style='z-index:3;position:absolute; text-align:center; width:100%;display:none;color:yellow;font-size:19px' ></h1>
+<h3 id='Alert' align = 'center' style='display:initial;z-index:3;position:absolute;text-align:center; width:60%;margin-left:20%;top:25px;display:none;color:yellow;font-size:15px;'>dddd
+</h3>
+<h4 id='MapLoading' data-html2canvas-ignore align = 'center' style='display:none;z-index:3;position:absolute;left:calc(50% - 25px);top:200px;display:none; z-index:3'>
+  <img id='maploadinggif' data-html2canvas-ignore src="images/checkingPw.gif"  loading='lazy' alt="..." style='width:50px ; height:50px;' >
+</h4>
+<h5 id='bot' class='bot' align = 'center' style=' font-weight:normal;padding-left: 10px;z-index:3;position:absolute;text-align:center; height: 40px; width:50%;line-height:40px;margin-left:25%;top:25px;display:none;background-color:#616060;border-radius:20px;font-size:15px;'>
+</h5>
+<body id='body' style='height:100%;background-color:#232222'>
+<!-- <iframe id='cartomap' width="100%" height="100%" src="https://pinea.app.carto.com/map/00a98901-6423-4cf2-8446-58c4d5890445"></iframe> -->
+<button id='seefullchat' class='button' style='display:none; cursor:pointer; background-color:#DEDDDD; border-color:#DEDDDD; margin-top:55px;margin-left:calc(100% - 100px) '>
+  <img src="images/arrowLeft.png" alt="..." style='width:30px; height:30px'>
+</button>
+<h1 id='showAreaAcres' style='z-index:3;position:absolute; text-align:center; width:100%;display:none;color:yellow;font-size:19px' ></h1>
     <h2 id='showAreaHa' style='z-index:3;position:absolute; text-align:center; width:100%;display:none;color:yellow;font-size:19px' ></h2>
 
   <h3 id='Alert' align = 'center' style='z-index:3;position:absolute;text-align:center; width:60%;margin-left:20%;top:25px;display:none;color:yellow;font-size:15px;'>
@@ -196,13 +165,17 @@
   <button id='KaptaAdvanced' class='buttonInitial'style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(50% - 0px);width:200px ; height:100px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;' >
     Kapta
   </button>
+
+  <button id='asktheteam' class='buttonInitial'style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); bottom:80px;width:200px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
+    <img src="images/infohelp.png"  alt="..." style='vertical-align: middle;width:30px ; height:30px;padding:5px' >Ask us anything
+  </button>
   <button id='gobackToInitialKaptalite' class='button' aria-label = 'field' style='vertical-align: middle;display:none;position:absolute;z-index:100;outline:none;left:calc(50% - 25px); top:600px;width:50px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px;'>
     <img src="images/backButton.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
   </button>
-  <p id='inputtextlabel' align = 'center' style='z-index:0;display:none;position:absolute;left:calc(50% - 120px);margin-top:80px;color:rgb(7, 7, 7);font-size:18px; width:240px;font-family:'Ubuntu' '> What have you mapped in this WhatsApp group? </br> </b>
+  <p id='inputtextlabel' align = 'center' style='z-index:0;display:none;position:absolute;left:calc(50% - 120px);margin-top:80px;color:rgb(7, 7, 7);font-size:18px; width:240px;font-family:'Ubuntu' '> What have you mapped in this WhatsApp group? </br> </p>
 
   <input id="emojionearea" class="inputtext" placeholder='...' style='display:none;position:absolute;margin-top:50px;left:calc(50% - 130px); margin-right: 10px;width:250px;vertical-align:middle;  height:40px; border-radius: 20px; border-color:white; background-color: #DEDDDD; font-size:16px; padding:0px 15px;font-size:18px; font-family:'Ubuntu''>
-  <button id='confirminputtext' class='button' aria-label = 'field' style='vertical-align: middle;display:none;position:absolute;z-index:100;outline:none;left:calc(50% - 50px); margin-top:130px;width:100px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px;font-size:18px; font-family:'Ubuntu' '>
+  <button id='confirminputtext' class='button' aria-label = 'field' style='vertical-align: middle;display:none;position:absolute;z-index:10000;outline:none;left:calc(50% - 50px); margin-top:130px;width:100px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px;font-size:18px; font-family:'Ubuntu' '>
     Confirm
   </button>
   <!-- <button id='gobackToinputtext' class='button' aria-label = 'field' style='vertical-align: middle;display:none;position:absolute;z-index:100;outline:none;left:calc(50% - 25px); top:400px;width:50px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px;'>
@@ -210,73 +183,58 @@
   </button> -->
 
 
-  <p id='disclaimer' align = 'center' style='z-index:0;display:none;position:absolute;left:calc(50% - 120px);top:calc(50% + 100px);color:yellow;font-size:14px; width:240px;font-family:'Ubuntu' '> </br> </b>
-</p>
-  <!-- <input type="file" id='upload' class='custom-file-input' style='display:none;z-index:100;outline:none;margin-left:calc(50% - 70px); top:200px;width:140px ; height:140px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;'>
-</br>Upload chat</br>to view map -->
-  <button id='viewmap' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 70px); top:calc(50% - 100px);width:140px ; height:140px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
-    <img src="images/talk.png"  alt="..." style=' width:50px ; height:50px;' >
-  </br>View chat</br>in a map
-
-  </button>
-
-  <button id='startmapping' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 160px); top:calc(50% - 200px);width:140px ; height:100px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
-    <img src="images/talk.png"  alt="..." style=' width:50px ; height:50px;' > </br>Start mapping
-
-  </button>
-  <button id='askthemap' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% + 20px); top:calc(50% - 200px);width:140px ; height:100px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
-    <img src="images/listen.png"  alt="..." style=' width:50px ; height:50px;' > </br>Ask the map
-  </button>
-  <button id='geocredits' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 160px); bottom:calc(50% - 100px);width:140px ; height:100px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
-    <img id='geocreditsimage' src="images/geocredits.png"  alt="..." style=' width:50px ; height:50px;' > </br>Kapta wallet
-  </button>
-
-  <button id='taskthemappers' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% + 20px); bottom:calc(50% - 100px);width:140px ; height:100px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
-    <img id='geocreditsimage' src="images/surveyForm.png"  alt="..." style=' width:40px ; height:40px;' > </br>Task the mappers
-  </button>
-  <!-- <button id='asktheteam' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 30px);top:calc(50% - 30px);width:60px ; height:60px; border: 2px solid white; border-color:black; border-radius:30px; font-size:18px;' >
-    <img src="images/infohelp.png"  alt="..." style=' width:30px ; height:30px;margin-top:5px;' >
-  </button> -->
-
-  <button id='asktheteam' class='buttonInitial'style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); bottom:80px;width:200px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
-    <img src="images/infohelp.png"  alt="..." style='vertical-align: middle;width:30px ; height:30px;padding:5px' >Ask us anything
+  <p id='disclaimer' align = 'center' style='z-index:0;display:none;position:absolute;left:calc(50% - 120px);top:calc(50% + 100px);color:yellow;font-size:14px; width:240px;font-family:'Ubuntu' '> </br> </p>
 
 
-  </button>
-
-  <p id='kaptainitialscreen' class='buttonInitial' style='z-index:0;display:none;text-align: center;position:fixed;width:100%;bottom:15px;color:#7E1701;font-size:18px; font-family:'Ubuntu' '> Kapta</p>
-
-</div>
-<div id='kaptacredits' class='full-height' style='display:none;z-index:100;background-color:#3D3D3D'>
-
-<button id='exchangeCredits' class='buttonInitial'style='position:fixed;display:none;z-index:100;outline:none;margin-left:calc(50% - 60px); top:calc(100% - 300px);width:120px ; height:120px; border: 2px solid black; border-color:black; background-color:yellow; border-radius:60px; font-size:18px;' >
-  <img src="images/cashout.png"  alt="..." style=' width:60px ; height:60px;' > </br>Cash out
+<button id='viewmap' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 70px); top:calc(50% - 100px);width:140px ; height:140px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
+  <img src="images/talk.png"  alt="..." style=' width:50px ; height:50px;' >
+</br>View chat</br>in a map
 </button>
-<button id='gobackFromCredits' class='buttonInitial'style='position:fixed;display:none;z-index:100;outline:none;margin-left:calc(50% - 25px); top:calc(100% - 105px);width:50px ; height:50px; border: 2px solid black; border-color:black; border-radius:25px; font-size:18px;' >
-  <img src="images/backButton.png"  alt="..." style=' width:30px ; height:30px; margin-top:2px' >
+<button id='startmapping' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 160px); top:calc(50% - 200px);width:140px ; height:100px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
+  <img src="images/talk.png"  alt="..." style=' width:50px ; height:50px;' > </br>Start mapping
+
 </button>
-
-
-
-<div style='width: 80%; max-width: 400px; height: 80px; position: fixed; top: 80px; left: 50%; transform: translateX(-50%);'>
-    <img id='iconcredits' src="images/icons/icon-96x96.png" alt="..." style='width: 60px; height: 60px; position: absolute; left: -10px; top: 30px; padding: 10px 0;'>
-    <!-- <p id='numberofcredits' style='z-index: 0; display: none; color: black; font-size: 24px; position: absolute; top: 35px; color: white; font-family: "Ubuntu" '>30.24 KPT</p> -->
-    <p id='numberofcredits' style='z-index: 0; display: none; width: 100%; position: absolute; text-align: center; top: 25px; color: black; font-size: 30px; color: white; font-family: "Ubuntu" '>30.24 KPT</p>
-
-    <p id='valueincurrency' style='z-index: 0; display: none; width: 100%; position: absolute; text-align: center; top: 120px; color: black; font-size: 25px; color: grey; font-family: "Ubuntu" '>£ 0.00</p>
+<div id='drop' style='z-index:1000;top:100px;display:initial;position:fixed;'>
+  <button id='dropDown' style='display:initial;cursor:pointer;z-index:3000;display:none;outline:none;left: 25px;top:25px;height:30px;border:none; background:transparent;border-radius: 5px;'>
+    <img id='imageDropDown' src="../images/burger.png" loading="lazy" style='width:22px ; height:17px;margin-top:2px'>
+  </buttong>
 </div>
 
+<p id='kaptainitialscreen' style='z-index:5000;display:initial;text-align: center;position:fixed;width:100%;bottom:-1px;font-size:15px;color:grey; font-family:'Ubuntu' '> by Wisdom of the Crowd Labs (WCL)</p>
 </div>
-<div id='infoGoBack' >
-  <button id='infoGoBackButton' class='buttonInitial' style='z-index:1001;display:none;position: absolute;left: calc(50% - 25px);top:15px;width:50px ; height:50px; border: 2px solid black; border-color:black; border-radius:25px;'>
-    <img src="images/backButton.png"  alt="..." style=' width:30px ; height:30px; margin-top:2px' >
+<div id="map" style='background-color: #616060;height:100%; z-index:2; position:relative;'>
+  <!-- <a href="http://mapbox.com/about/maps" class='mapbox-logo' target="_blank"></a>
+  <div class="mapboxgl-ctrl-attrib-inner">
+    <a href="https://www.mapbox.com/about/maps/">© Mapboxxxxxx | </a>
+    <a href="http://www.openstreetmap.org/copyright">© OpenStreetMap | </a>
+    <a href="https://www.mapbox.com/map-feedback/" target="_blank"><strong></strong></a>
+  </div> -->
+</div>
+
+<div id='classification' style='display: flex; justify-content: center; align-items: center; left:19%;width: 70%; position: fixed; bottom: 5px; transform: translateY(-50%); z-index: 3;'>
+    <button id='backtohomepage' class='button' aria-label='backEditDelete' style='display:none; cursor:pointer; background-color:#DEDDDD; border-color:#DEDDDD; margin-bottom:10px;margin-left:10px; margin-right: 10px;'>
+    <img src="images/arrowLeft.png" alt="..." style='width:30px; height:30px'>
+  </button>
+  <!-- Assuming emoji is another button or input for simplification -->
+
+  <input id="emojionearea" class="inputtext" placeholder='Search ground data...' style='display:none;margin-bottom:15px;margin-left:10px; margin-right: 10px;width:calc(100% - 300px);vertical-align:middle;  height:40px; border-radius: 20px; border-color:white; background-color: #DEDDDD; font-size:16px; padding:0px 15px;'>
+  <button id='searchWocMap' class='button' aria-label='searchWocMap' style='display:none;cursor:pointer; background-color: #DEDDDD; border-color: #DEDDDD; margin-bottom:10px;margin-left:10px; margin-right: 10px;'>
+    <img id='imagesearchWocMap' src="images/arrowUp.png" alt="..." style='width:30px; height:30px'>
+  </button>
+  <button id='gobackUploadmap' class='button' aria-label = 'field' style='display:none;z-index:3; position:relative'>
+    <img src="images/backButton.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
+  </button>
+  <button id='confirmuploadedmap' class='button' aria-label = 'armchair' style='display:none;z-index:3; position:relative;'>
+    <img src="images/ThumbsUpGreen.png"  loading='lazy' alt="..." style='width:30px ; height:30px;margin-left:-2px'>
   </button>
 </div>
-<div id="map" style='height:100%; z-index:2; position:relative;'>
-    <div id="rose" style='margin-bottom:80px; margin-left:-5px; width:40px; height:40px'>
-      <p id='showAreaAcresScreenshot' style='z-index:3;margin-left:-5px;position:fixed; text-align: center; width:100%; margin-top:-10px;display:none;color:rgb(134, 1, 1);font-size:18px;' ></p>
-     </div>
-</div>
+<button id="camera"  class = 'buttonsCameraScreenshot' aria-label = 'camera' style='position:fixed; display:none;width:50px;left:calc(50% + 10px);height:50px;bottom:150px;border-radius: 50px'>
+  <!-- <input type='file' accept='image/' capture='camera' id='cameraInput' /> -->
+  <img id='cameraIcon' src="images/cameraIcon.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
+</button>
+<button id="screenshot"  class = 'buttonsCameraScreenshot' aria-label = 'screenshot' style='position:fixed; display:none;width:50px;right:calc(50% + 10px);height:50px;bottom:150px;border-radius: 50px'>
+  <img id="imageScreenshot" src="images/screenshot.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
+</button>
 
 <div align='center' style='z-index:2; position:relative; margin-top:-90px' >
 
@@ -286,85 +244,7 @@
   <button id='confirmuploadedmap' class='button' aria-label = 'armchair' style='display:none;z-index:3; position:relative;'>
     <img src="images/ThumbsUpGreen.png"  loading='lazy' alt="..." style='width:30px ; height:30px;margin-left:-2px'>
   </button>
-
-  <button id='tutorial' class='button' aria-label = 'goBack1' style='display:none;z-index:3; position:relative;' >
-    <img  src="images/backButton.png"  alt="..." style='width:30px ; height:30px'>
-  </button>
-  <button id='gobackArmchairField' class='button' aria-label = 'field' style='display:none;z-index:3; position:relative'>
-    <img src="images/backButton.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
-  </button>
-  <button id='field' class='button' aria-label = 'field' style='display:none;z-index:3; position:relative'>
-    <img id='fieldImage' src="images/field.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
-  </button>
-  <button id='armchair' class='button' aria-label = 'armchair' style='display:none;z-index:3; position:relative;'>
-    <img src="images/armchair.png"  loading='lazy' alt="..." style='width:30px ; height:30px;margin-left:-2px'>
-  </button>
-  <button id='polygon' class='button' aria-label = 'polygon' style='display:none;z-index:3; position:relative;'>
-    <img src="images/drawPolygon.png"  loading='lazy' alt="..." style='width:30px ; height:30px;margin-left:-2px'>
-  </button>
-  <button id='polyline' class='button' aria-label = 'polyline' style='display:none;z-index:3; position:relative'>
-    <img src="images/line.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
-  </button>
-  <button id='point' class='button'  aria-label = 'point' style='display:none;z-index:3; position:relative'>
-    <img src="images/point.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
-  </button>
-  <button id='backDeleteFeature' class='buttonDelete'  aria-label = 'backDeleteFeature' style='display:none;z-index:3; position:relative; '>
-    <img src="images/backButton.png"  loading='lazy' alt="..." style='width:30px ; height:30px'>
-  </button>
-  <button id='deleteFeature' class='buttonDelete'  aria-label = 'deleteFeature' style='display:none;z-index:3;position:relative;border-color:white'>
-    <img id='imageDeleteFeature' src="images/binpre.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
-  </button>
-  <button id='deleteFeatureLocalStorage' class='buttonDelete'  aria-label = 'deleteFeature' style='display:none;z-index:3;position:relative;border-color:white'>
-    <img id='imageDeleteFeature' src="images/binpost.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
-  </button>
-  <button id='deleteFeatureOpenDB' class='buttonDelete'  aria-label = 'deleteFeature' style='display:none;z-index:3;position:relative;border-color:white'>
-    <img id='imageDeleteFeatureOpenDB' src="images/deleteFromCarto.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
-  </button>
-
-  <button id='shareMessagingApp' class='buttonDelete'  aria-label = 'shareMessagingApp' style='display:none;z-index:3; position:relative;border-color:white;'>
-    <img id='shareMessagingAppImage' src="images/shareMessagingApps.png"  loading='lazy' alt="..." style='width:30px ; height:30px'>
-  </button>
-
-  <button id='randomSuggestion' disabled class='buttonDelete'  aria-label = 'randomSuggestion' style='display:none;z-index:3; position:relative;border-color:#3B96DD;background-color:#3B96DD; opacity:0.4'>
-    <img src="images/random.png"  loading='lazy' alt="..." style='width:35px ; height:30px; margin-left:2px;'>
-  </button>
-
-  <button id="goBackClassification" class='button' aria-label = 'shareWorldButton' style='display:none'>
-    <img src="images/backButton.png" loading='lazy'  alt="..." style='width:30px ; height:30px; '>
-  </button>
-  <button id="shareMessagingAppsDirect" class='button' aria-label = 'shareWorldButton' style='display:none; border-radius: 10px;'>
-    <img src="images/padlockclosed.png" loading='lazy'  alt="..." style='width:30px ; height:30px; '>
-  </button>
-
-  <button id="shareWorldButton" class='button' aria-label = 'shareWorldButton' style='display:none; opacity:1;border-radius: 10px;'>
-    <img src="images/padlockopen.png" loading='lazy'  alt="..." style='margin-left:0px; width:30px ; height:30px; '>
-  </button>
-  <button id='ShareFinalButton' class='button' disabled aria-label = 'ShareFinalButton' style='display:none'>
-        <img id='imagesharefinalbutton' src="images/sendComment.png" loading='lazy'  alt="..." style=' margin-left:-2px;width:30px ; height:30px'></img>
-  </button>
 </div>
-
-<div align='center' style='z-index:2; position:relative; margin-top:-90px; '>
-  <button id='goBack2' class='button'aria-label = 'goBack2' style='display:none;border: 2px solid white; background-color:white'>
-    <img src="images/backButton.png" loading='lazy'  alt="..." style='width:30px ; height:30px '>
-  </button>
-  <button id='deleteLastVertex' class='button' aria-label = 'deleteLastVertex' style='display:none'>
-    <img src="images/deleteLastVertex.png" loading='lazy'  alt="..." style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
-  </button>
-  <button id='deleteAllVertexs' class='button' aria-label = 'deleteAllVertexs' style='display:none'>
-    <img src="images/deleteAllVertex.png"  loading='lazy' alt="..." style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
-  </button>
-  <button id='deleteLastVertexLine' class='button' aria-label = 'deleteLastVertexLine' style='display:none'>
-    <img src="images/lineDeleteVertex.png"  loading='lazy'  alt="..." style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
-  </button>
-  <button id='deleteAllVertexsLine' class='button' aria-label = 'deleteAllVertexsLine' style='display:none'>
-    <img src="images/lineDeleteAll.png" loading='lazy'  alt="..." style='width:30px ; height:30px; margin-top:4px; margin-right:2px'>
-  </button>
-  <button id='completeFeature' class='button' aria-label = 'deleteAllVertexsLine'style='display:none'>
-    <img src="images/ThumbsUpGreen.png" loading='lazy'  alt="..." style='width:30px ; height:30px;'>
-  </button>
-</div>
-
 <div id='classification' style='display:none; vertical-align:top;z-index:2; position:relative; margin-top:-90px;'>
   <button id='Cancel' class='button' aria-label = 'Cancel' style='border: 2px solid white; background-color:white'>
     <img src="images/backButton.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
@@ -376,182 +256,38 @@
     <img src="images/backButton.png" loading='lazy'  alt="..." style='margin-left:2px; width:30px ; height:30px'>
   </button>
 
+ </div> 
+  <!-- <div id='classification' align:centre style='display:none; width:100%;vertical-align:top;z-index:3; position:fixed; margin-top:-90px;'>
 
-
-  <div id='emoji' class="span6"  >
-    <div id='span6' class="span6" style='vertical-align:middle;display:inline-block; position:flex; height:50px;'>
-      <input id="emojionearea" class="inputtext" placeholder='...' style='vertical-align:middle;  width: calc(100% - 37px); height:40px;border-radius: 20px;border-color:white; font-size:15px;padding:0px 15px'></input>
+  <button id='backtohomepage' class='button' aria-label = 'backEditDelete' style='cursor:pointer;display:initial; left: calc(15% - 0px);background-color:#DEDDDD;; border-color:#DEDDDD'>
+    <img src="images/arrowLeft.png" loading='lazy'  alt="..." style='margin-left:2px; width:30px ; height:30px'>
+  </button>
+  <div id='emoji' class="span6" style='left: calc(15% + 20px);' >
+    <div id='span6' class="span6" style='left: calc(15% + 20px);cursor:pointer;vertical-align:middle;display:inline-block; position:flex; height:50px;width:100%'>
+      <input id="emojionearea" class="inputtext" placeholder='e.g. I need the location and condition of all water pumps in this area' style='left: calc(15% + 20px);vertical-align:middle;  margin-left: 30px; height:40px;border-radius: 20px;border-color:white; background-color: #DEDDDD;font-size:16px;padding:0px 15px;'></input>
     </div>
   </div>
-  <button id='filterWithIcons' class='button' aria-label = 'filterWithIcons' style='display:none;' >
-    <img src="images/excitesTree.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
+  <button id='searchWocMap' class='button' aria-label = 'searchWocMap' style='cursor:pointer;display:initial;margin-left: 30px;background-color: #DEDDDD;border-color: #DEDDDD' >
+    <img id='imagesearchWocMap' src="images/arrowUp.png" loading='lazy'  alt="..." style='width:30px ; height:30px '>
   </button>
 
-  <button id='sapelliProjects' class='button' aria-label = 'CustomIcons'style='display:none;margin-left:0px' >
-    <img src="images/excitesTree.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
-  </button>
-  <button id='share-download' class='button' aria-label = 'share-download' style='display:none;margin-left:0px'>
-    <img src="images/ThumbsUpGreen.png"  loading='lazy' alt="..." style='margin-left:2px; width:30px ; height:30px'>
-  </button>
-  <button id="shareWorldButtonComment" class='button' aria-label = 'shareWorldButtonComment' style='display:none; '>
-    <img id='shareWorldButtonCommentImage' src="images/sendComment.png" loading='lazy'  alt="..." style='margin-left:-1px; width:30px ; height:30px; '>
-  </button>
+  </div> -->
+  <script defer src="sw.js"></script>
+  <script defer src="scripts/modal.js"></script>
+  <!-- <script defer src="scripts/app.js"></script> -->
 
+  <script defer src="scripts/camera.js"></script>
 
-  <button id='clearFilter' class='button' aria-label = 'clearFilter' style='display:none;' >
-    <img src="images/clearFilter.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
-  </button>
-  <button id='applyFilter' class='button' aria-label = 'applyfilter' style='display:none;'>
-    <img src="images/applyFilter.png" loading='lazy'  alt="..." style='margin-left:2px; width:30px ; height:30px'>
-  </button>
-  <!-- <button id='filterByDate' class='button' aria-label = 'clearFilter' style='display:none;border-radius:15px;left:calc(100% - 65px); bottom:calc(100% - 175px)'>
-    <img id='imgFilterByDate'   src="images/dateAll.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
-  </button> -->
-  <button id='filterByDate' class='button' aria-label = 'clearFilter' style='display:none;border-radius:15px;left:calc(50% - 25px); bottom:calc(100% - 175px)'>
-    <img id='imgFilterByDate'   src="images/dateAll.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
-  </button>
-  <div id='Sent'  style='display:none; z-index:100;'>
-      <video id='sentVideo' autoplay='autoplay' playsinline muted   alt="..." style='text-align:center; height:100%;width:100%; display:block; margin:auto;'>
-  </div>
-  <div id='Downloaded'  style='display:none;z-index:100'>
-    <video id='downloadedVideo' autoplay='autoplay' playsinline muted   alt="..." style='text-align:center;height:100%; width:100%; display:block; margin:auto;'>
-  </div>
+  <script defer src="scripts/convertwa.js"></script>
+  <script defer src="scripts/datasubmission.js"></script>
 
-      <button id="camera"  class = 'buttonsCameraScreenshot' aria-label = 'camera' style='position:fixed; display:none;width:50px;left:calc(50% + 10px);height:50px;bottom:150px;border-radius: 50px'>
-        <!-- <input type='file' accept='image/' capture='camera' id='cameraInput' /> -->
-        <img id='cameraIcon' src="images/cameraIcon.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
-      </button>
-      <button id="screenshot"  class = 'buttonsCameraScreenshot' aria-label = 'screenshot' style='position:fixed; display:none;width:50px;right:calc(50% + 10px);height:50px;bottom:150px;border-radius: 50px'>
-        <img id="imageScreenshot" src="images/screenshot.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
-      </button>
+<!-- <script defer src="scripts/elements.js"></script> -->
+<script defer src="scripts/searchGD.js"></script>
+<!-- <script defer src="scripts/cartoLayer.js"></script> -->
 
-</div>
-
-<div id="popup" align:center style='max-width:150px'>
-  <button id='deleteInPopUp' disabled class='popupButton' style='display:none;position:relative;left:calc(50% - 30px);text-align:center;height:30px;width:50px; font-size:10px;outline:none;background-color:white;border: 2px solid white;border-radius:5px;opacity:0.3'>
-    <img id='imageDeleteInPopup'   src="images/bin.png" loading='lazy' alt="..." style='border-radius:5px;border: 1px solid black;background:white;width:25px ; height:25px'>
-  </button>
-  <button id='popupAreaLength' class='popupButton' disabled style='display:none;position:relative;margin-left:-5px;text-align:center;height:30px;width:150px; font-size:14px;outline:none;background-color:white; border: 2px solid white;border-radius:5px'>
-  </button>
-  <button id='commentPopup' class='popupButton' style='display:none;text-align:center;width:150px;padding:7px 5px;height:fit-content;margin-left:-5px; font-size:15px;outline:none;background-color:#ECECEC; border: 0px solid white;border-radius: 0 15px 15px 15px'>
-
-  </button>
-
-  <button id='toCommentPopup' class='popupButton' type='button' disabled style='display:none;text-align:center;width:150px;padding:5px 5px;height:fit-content;margin-left:-5px; margin-top:5px; font-size:15px;outline:none;background-color:#BADFFE; border: 0px solid white;border-radius: 15px 0 15px 15px'>
-     ...
-  </button>
-  <button id='editDeletePopup' class='popupButton' style='display:none;position:relative;text-align:center;margin-top:10px;height:45px;width:45px; font-size:40px;outline:none;background-color:white;border: 1px solid black;border-radius:30px'>
-    <img id='commentFeature'   src="images/commentFeature.png" loading='lazy' alt="..." style='margin-bottom:3px;width:25px ; height:25px'>
-  </button>
-     <audio controls controlslist="nodownload" controlslist="novolume" class='audioPlayer' id='audioControls' style = 'position:absolute;width:150%;left:-25%;margin-top:100px;display:none' >
-     </audio>
-</div>
-
-<div class="slidecontainer" >
-  <input type="range" min="1" max="100" value="50" class="slider" id="myRange" style='position:absolute;z-index:4;top:20px;display:none;margin-bottom:30px;width:calc(100% - 200px);margin-left:calc(100px)'>
-  <p><span id="demo"></span></p>
-</div>
-
-<div id='buttonSapelliNavigation' style='z-index:100; text-align:center;width:100%'>
-
-  <button id='customIconsGoBack' class='buttonCustomIcons' aria-label = 'customIconsGoBack' style='margin-left:15px;margin-right:15px;margin-bottom:10px;position:relative;display:none;margin-top:80px;width:50px ; height:50px; border-radius:50px'>
-    <img src="images/arrowLeft.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
-  </button>
-  <button id='customIconsCancel' class='buttonCustomIcons' aria-label = 'customIconsCancel' style='margin-left:15px;margin-right:15px;margin-bottom:10px;position:relative;display:none;margin-top:80px;width:50px ; height:50px; border-radius:50px' >
-    <img src="images/customIconsCancel.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
-  </button>
-  <button id='customIconsMap' class='buttonCustomIcons' aria-label = 'customIconsMap' style='margin-left:15px;margin-right:15px;margin-bottom:10px;position:relative;display:none;margin-top:80px;width:50px ; height:50px; border-radius:50px'>
-    <img src="images/customIconsMap.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
-  </button>
-</div>
-<div id='cameraDiv' style='position:absolute;top:0px; right:0px;left:0px;bottom:0px;z-index:1;display:none'>
-
-   <video autoplay id="video" style='position:relative; width:100%;height:100%; padding:0px;display:none; background-color:black'></video>
-
-   <canvas class="is-hidden" id="canvas" style='position:relative; bottom:60px;width:100%;height:100%; padding:0px;display:none'></canvas>
-
-   <div id="screenshots" style='display:none; position:absolute;left:50%;transform: translate(-50%,-10%); bottom:60px;width:75%;height:75%; padding:0px;'>
-   </div>
-   <div align='center'>
-     <button id="goBackCamera"  style='display:inline-block;position:relative;width:25%;height:60px;bottom:68px;padding:0px;display:none;border-radius:20px; border: 1px solid black'>
-       <img src="images/arrowLeft.png" loading='lazy'  alt="..." style='width:40px ; height:40px'>
-     </button>
-      <button id="btnScreenshot"  style='display:inline-block;position:relative;width:35%;height:60px;bottom:68px;padding:0px;display:none;border-radius:20px; border: 1px solid black'>
-        <img src="images/cameraIcon.png" loading='lazy'  alt="..." style='width:40px ; height:40px'>
-      </button>
-      <button id="btnChangeCamera"  style='display:inline-block;position:relative; width:35%;height:60px;;bottom:68px;padding:0px;display:none;border-radius:20px;border: 1px solid black'>
-        <img src="images/changeCamera.png" loading='lazy'  alt="..." style='width:40px ; height:40px'>
-      </button>
-      <button id="btnConfirmPhoto"  style='display:inline-block;position:absolute;left:0px; margin-left: 5px;width:47%;height:60px;;bottom:5px;padding:0px;display:none;border-radius:20px;border: 1px solid black'>
-        <img src="images/ThumbsUpGreen.png" loading='lazy'  alt="..." style='width:40px ; height:40px'>
-      </button>
-      <button id="btnCancelPhoto"  style='display:inline-block;position:absolute;right:0px; margin-right: 5px;width:47%;height:60px;;bottom:5px;padding:0px;display:none; border-radius:20px;border: 1px solid black'>
-        <img src="images/cancel.png" loading='lazy'  alt="..." style='width:40px ; height:40px'>
-      </button>
-    </div>
-
-</div>
-
-<script src="sw.js"></script>
-
-<script defer src="scripts/lib/leaflet/leaflet-src.js"></script>
-<script defer src="scripts/lib/jquery-3.6.0.min.js"></script>
-
-<script defer src="scripts/lib/leaflet/plugins/leaflet.Permalink-master/leaflet.permalink.js"></script>
-
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.draw.js" ></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.Draw.Event.js" ></script>
-
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/localForage-master/dist/localforage.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/leaflet-offline-master/dist/leaflet-offline.min.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.markercluster-1.4.1/dist/leaflet.markercluster-src.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.Deflate-master/dist/L.Deflate.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/L.Control.Rose-master/dist/L.Control.Rose.js"></script>
-
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.Poly.js" ></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.SimpleShape.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/Edit.Marker.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Feature.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Polyline.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Polygon.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/handler/Draw.Marker.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/TouchEvents.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/GeometryUtil.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/LineUtil.Intersect.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/Polyline.Intersect.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/ext/Polygon.Intersect.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Control.Draw.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Tooltip.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Toolbar.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/draw/DrawToolbar.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/EditToolbar.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Edit.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet.draw-1.0.4/src/edit/handler/EditToolbar.Delete.js"></script>
-<script defer src="scripts/lib/leaflet/plugins/Leaflet-rotateMarker/leaflet.rotatedMarker.js"></script>
-
-<script async src="scripts/modal.js"></script>
-<script async src="scripts/convertwa.js"></script>
-<script async src="scripts/datasubmission.js"></script>
-<!-- <script async src="scripts/tocarto.js"></script> -->
-
-
-
-<script defer src="scripts/app.js"></script>
-
-<script defer src=".env/publicApiKeys.js"></script>
-<script defer src="scripts/createGeometryButtons.js"></script>
-<script defer  src="scripts/featureSelectedButtons.js"></script>
-<script defer  src="scripts/commentFeature.js"></script>
-<script  defer src="scripts/filterButtons.js"></script>
-<script defer src="scripts/cartoLayer.js"></script>
-<script defer src="scripts/localStorage.js"></script>
-<script  defer src="scripts/camera.js"></script>
-<script defer src="scripts/share-download.js"></script>
-<script defer src="scripts/kaptacredits.js"></script>
-
-<noscript>Javascript is disabled. Please enable it</noscript>
+<!-- <script defer src="scripts/mapboxglcarto.js"></script> -->
 
 </body>
+
 
 </html>

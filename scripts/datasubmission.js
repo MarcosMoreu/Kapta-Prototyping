@@ -247,7 +247,7 @@ let toggleStates = {
           const sql = baseSql + values;
       
           // Assuming submitToProxy is an async function or returns a Promise
-          await submitToProxy(sql) // Handle errors or rejections        ////////////////////////!!!!!!!!!!!!
+          // await submitToProxy(sql) // Handle errors or rejections        ////////////////////////!!!!!!!!!!!!
       
           // Update progress
           console.log('progress ', progress)

@@ -9,12 +9,12 @@ var version = 'v29.3';
 // Default files to always cache
 var offlineFundamentals = [
   "/index.html",
-  "/styles/app.css",
-  "/scripts/modal.js",
-  // "/scripts/app.js",
-  "/pages/tutorial.html",
-  "/scripts/tutorialPage.js",
-  "/styles/tutorialPage.css",
+  // "/styles/app.css",
+  // "/scripts/modal.js",
+  // // "/scripts/app.js",
+  // "/pages/tutorial.html",
+  // "/scripts/tutorialPage.js",
+  // "/styles/tutorialPage.css",
   "/images/icons/icon-72x72.png",
   // 'styles/modal.css',
   // 'styles/customIcons.css',

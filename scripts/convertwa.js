@@ -17,7 +17,47 @@ var currentZoom
 var communitymapid
 var nameOfTheGroup
 var mapdataarray
+var bounds
+mapboxgl.accessToken = 'pk.eyJ1IjoibWFyY29zbW9yZXV1Y2wiLCJhIjoiY2xwZHNlbmFpMDVoZjJpcGJxOHplOGw0ZCJ9.MiHNkvMRkTcfndsLMH166w';
+const map = new mapboxgl.Map({
+container: 'map',
+// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+style: 'mapbox://styles/mapbox/satellite-streets-v12',
+zoom: 1.5,
+center: [30, 50],
+projection: 'globe',
+// customAttribution: 'Map design by me',
+// attributionControl: 'Leaflet | Mapbox and OpenStreetMap Contributors',
+// attributionControl: false
+});
 
+map.on('load', () => {
+// Set the default atmosphere style
+map.setFog({
+color: 'grey', // Lower atmosphere
+    'high-color': '#232222', // Upper atmosphere
+    'horizon-blend': 0.02, // Atmosphere thickness (default 0.2 at low zooms)
+    'space-color': '#232222', // Background color
+    'star-intensity': 0 // Background star brightness (default 0.35 at low zoooms )
+});
+});
+
+var intervalremoveattributes = setInterval(function(){
+  try{
+    var mapboxattrib1 = document.getElementsByClassName("mapboxgl-ctrl-bottom-right")
+    mapboxattrib1[0].style.display = 'none'
+    var mapboxattrib2 = document.getElementsByClassName("mapboxgl-ctrl-bottom-left")
+    mapboxattrib2[0].style.display = 'none'
+  }catch(e){
+    console.log('error', e)
+  }
+
+},50)
+var currentZoom = map.getZoom();
+
+setTimeout(function(){
+  clearInterval(intervalremoveattributes)
+},2000)
 console.log('timestamp',timestamp)
 
 function displayFile(file) {
@@ -109,33 +149,86 @@ console.log('manualupload',manualupload)
       document.getElementById("map").style.opacity = 0;
       document.getElementById('MapLoading').style.opacity = 1
       document.getElementById('startmapping').style.backgroundColor = 'white'
-      myLayer_Button.removeFrom(map); //always on as there will always be features in the map, even when first load
+      // myLayer_Button.removeFrom(map); //always on as there will always be features in the map, even when first load
 
 
 
         // L.geoJSON(geoJson).addTo(map);
-        var whatsappgeojson = L.geoJSON(geoJson, {
-            pointToLayer: function(feature, latlng) { //to change the icon of the marker (i.e. avoid default)
-                return L.marker(latlng, {
-                    icon: markerIconLocalStorage,
-                    draggable:false
-                });
-            },
-            style: function(feature) {
-                return feature.properties && feature.properties.style;
-            },
-            color: '#ffff00',
-            // onEachFeature: onEachFeatureConfirm,
+        testcarto = function(geoJson) {
+          console.log('test carto')
+          console.log(geoJson)
+              map.addSource('test', {
+                'type': 'geojson',
+                'data': geoJson
+              });
+              map.addLayer(
+              {
+              'id': 'test',
+              'type': 'circle',
+              'source': 'test',
+              // 'source-layer': 'sf2010',
+              'paint': {
+                // Make circles larger as the user zooms from z12 to z22.
+                // 'circle-radius': {
+                // 'base': 1.75,
+                // 'stops': [
+                // [12, 2],
+                // [22, 180]
+                // ]
+                // },
+                'circle-radius': 4,
+          
+                // Color circles by ethnicity, using a `match` expression.
+                'circle-color': 'red'
+              }
+              },
+              // Place polygons under labels, roads and buildings.
+          
+              );
+              // map.fitBounds('test');
+              // try{
+              //   // const coordinates = data.features[0].geometry.coordinates;
+              //   // // currentLocation = [52.54463, 13.36817];
+              //   // console.log(coordinates)
+              //   // var bounds = new mapboxgl.LngLatBounds();
+            
+              //   //   data.features.forEach(function(feature) {
+              //   //       bounds.extend(feature.geometry.coordinates);
+              //   //   });
+              //   //   console.log(bounds)
+              //   //   map.fitBounds(bounds);
+            
+              //   //   setTimeout(() => {
+              //   //     document.getElementById("bot").style.fontSize = "16px";
+              //   //     document.getElementById("bot").style.color = 'white';
+              //   //     document.getElementById('bot').innerHTML = '    Do you want to download or query this ground data?? (yes/no)'
+              //   //     document.getElementById("bot").style.display = 'initial'
+              //   //   }, 3000);
+              //   //   searchResult = 'data'
+              // }catch(err){
+              //   document.getElementById('bot').innerHTML = '    No data found. Do you want to launch a crowdsourcing campaign? (yes/no)'
+              //   document.getElementById("bot").style.display = 'initial'
+              //   console.log('error sql catched due to empty layer after filter applied')
+              // }
+          
+                // return searchResult
+          
+          }
+          testcarto(geoJson)
+          const coordinates = geoJson.features[0].geometry.coordinates;
 
-        }).addTo(map);
-        map.fitBounds(whatsappgeojson.getBounds());
+        bounds = new mapboxgl.LngLatBounds();
+        geoJson.features.forEach(function(feature) {
+          bounds.extend(feature.geometry.coordinates);
+      });
+      console.log(bounds)
         document.getElementById('MapLoading').style.display = 'none'
-        document.getElementById("tutorial").style.display = "none";
-        document.getElementById("armchair").style.display = "none";
-        document.getElementById("field").style.display = "none";
+        // document.getElementById("tutorial").style.display = "none";
+        // document.getElementById("armchair").style.display = "none";
+        // document.getElementById("field").style.display = "none";
         document.getElementById("kaptalitetutorial").style.display = "none";
-        document.getElementById("gobackUploadmap").style.display = "initial";
-        document.getElementById("confirmuploadedmap").style.display = "initial";
+        // document.getElementById("gobackUploadmap").style.display = "initial";
+        // document.getElementById("confirmuploadedmap").style.display = "initial";
         document.getElementById("inputtextlabel").style.display = "initial";
         document.getElementById("emojionearea").style.display = "initial";
         document.getElementById("emojionearea").value = nameOfTheGroup
@@ -150,7 +243,7 @@ console.log('manualupload',manualupload)
 
   };
   // console.log('totalContributions',totalcontrib)  
-  return mapdata && totalcontribmap && nameOfTheGroup
+  return mapdata && totalcontribmap && nameOfTheGroup && bounds
 }
 
 var topic
@@ -159,9 +252,13 @@ document.getElementById('confirminputtext').onclick = function(){
 
   setTimeout(function(){
     document.getElementById("confirminputtext").style.backgroundColor = "white";
+    document.getElementById('modal').style.display = 'none'
+
   document.getElementById('initialscreen2options').style.display = 'none'
   document.getElementById("emojionearea").style.display = "none";
   document.getElementById("confirminputtext").style.display = "none";
+  // document.getElementById("map").style.display = 'initial';
+
   document.getElementById("map").style.opacity = 1;
   document.getElementById("gobackUploadmap").style.display = "initial";
   document.getElementById("confirmuploadedmap").style.display = "initial";
@@ -170,12 +267,14 @@ document.getElementById('confirminputtext').onclick = function(){
   document.getElementById("screenshot").style.display = 'initial'
   document.getElementById('screenshot').disabled = false
   topic = document.getElementById("emojionearea").value
-  setTimeout(function(){
-    document.getElementById("showAreaAcresScreenshot").innerHTML = topic + '</br>' + totalcontribmap + ' contributions ' + date 
-    document.getElementById("showAreaAcresScreenshot").style.display = 'initial'
-    document.getElementById("showAreaAcresScreenshot").style.backgroundColor = '#191919'
+  map.fitBounds(bounds);
 
-  screenshot.click()
+  setTimeout(function(){
+    // document.getElementById("showAreaAcresScreenshot").innerHTML = topic + '</br>' + totalcontribmap + ' contributions ' + date 
+    // document.getElementById("showAreaAcresScreenshot").style.display = 'initial'
+    // document.getElementById("showAreaAcresScreenshot").style.backgroundColor = '#191919'
+
+  // screenshot.click()
   
 },500)
   },200)

@@ -1,3 +1,196 @@
+if ('serviceWorker' in navigator) {
+
+  navigator.serviceWorker
+      .register('./sw.js',{ scope: '/' })
+      .then(function(registration) {
+        if (registration.sync) {
+            console.log('Sync is supported')
+        } else {
+          console.log('Sync NOT is supported')
+        }
+          registration.update() //to update the sw and caches if version has changed
+          ////console.log('sw has been updated')
+          //to reload the page if sw version has changed. This is to provide the user the latest version without the need of reloading or clearing cache
+          registration.onupdatefound = () => {
+
+            //console.log('update found in SW')
+              const installingWorker = registration.installing;
+              installingWorker.onstatechange = () => {
+                  if (installingWorker.state === 'installed' &&
+                      navigator.serviceWorker.controller) {
+                        // $.get( "pages/tutorial.html")
+                      // reload the page
+                      caches.delete('CACHEALL')
+                      location.reload();
+                  }
+              };
+          };
+          return registration.sync.register('sync-background-'); //to enable sync
+
+      })
+      .catch(function(err) {
+          ////console.log('Service Worker Failed to register', err);
+      })
+}
+
+
+// navigator.serviceWorker.register('sw.js');
+
+var sharetarget = false
+var manualupload = true
+
+navigator.serviceWorker.onmessage = (event) => {
+console.log('MESSAGE FROM SW RECEIVED')
+loadingchat()
+
+manualupload = false
+const file = event.data.file;
+// displayFile(file);
+// loadingexport()
+// console.log(file)
+setTimeout(function(){
+  
+  displayFile(file);
+
+},3000)
+var sharetarget = true
+console.log('sharetarget',sharetarget)
+return sharetarget && manualupload
+
+};
+
+function loadingchat(){
+console.log('loadingchat function called')
+document.getElementById('languages').style.display = 'none'
+document.getElementById('KaptaLite').style.display = 'none'
+document.getElementById('KaptaAdvanced').style.display = 'none'
+document.getElementById('asktheteam').style.display = 'none'
+document.getElementById('chatmaploadinggif').style.display = 'initial' 
+
+// document.getElementById('MapLoading').style.display = 'none'
+homescreenorwhatsapplaunch = 'whatsapp'
+setTimeout(function(){
+  document.getElementById('chatmaploadinggif').style.display = 'none' 
+},3000)
+return homescreenorwhatsapplaunch
+}
+
+
+
+// var pageLoaded = false
+var subDOMAIN = 'testing'
+// var sapelliProjectIdentifier = 'DTM' //this variable is need to put the sap project identifier in the geojson
+var isIOS = /iPad|iPhone|iPod|Mac OS X/.test(navigator.userAgent) && !window.MSStream; // Mac OS X correct???
+var isOnline = navigator.onLine
+var isOnlineGlobal = isOnline
+var browserLanguage = navigator.language
+var planetKey;
+var sentinelHubKey;
+var firebaseKey;
+var firebaseConfig;
+var cartousername;
+var cartoapiSELECT;
+var opencamera
+
+var isFirstTime; //var to store if the site is visited for the first time
+//var oneMapCompleted; // to know if in this session this is the first map or not
+var files = [];
+var filesLength;
+var storage;
+var percentage
+var finalPercentage = []
+var finalUrlAudio;
+var initialScreen = true;
+var clickCountDeleteButton = 0;
+
+var shareURL;
+var convertedData;
+var convertedDataShareDirect;
+var shareGeomDirect = false;
+var propertiesGeoJSON
+var propertiesGeoJSONURL;
+var data;
+var dataGeometry;
+var dataGeometry;
+var blob;
+var dateTimeRandomID;
+var timeFinish;
+var diffTimes;
+var dateFilterValue; //to apply this value when applyFilter is clicked
+var audioButtonClicked = false
+var finished = false; // variable to openpopup only when file downloaded, not when loaded from local storage
+var lastPositionStoredLOCALLY;
+var created = false; // variable to detect wheter the feature (point,line,polygon) has been created
+var sameSession = false; //to know if user has already mapped in this session
+var finalLayer;
+var groupGeoJSON = []
+
+// Add Data from CARTO using the SQL API. Declare Variables. Create Global Variable to hold CARTO points
+var cartoGeometries = null;
+var cartoIdFeatureSelected;
+var selectedFeature = null;
+var featureType = null;
+var cartoLoaded;
+var clickCountDelete;
+
+var filterIsOn = false
+var selectedFeature
+var getTotalFeaturesInDB
+
+var mapCurrentBounds;
+var mapCurrentZoom;
+var mapCurrentCenter;
+var refreshPopup;
+var refreshPopupComment;
+var editButtonClicked = false;
+var audioComment = '.'
+var armchairOrGPS
+
+
+// // add location via browser geolocation
+var currentLocation = []; // variable created to allow the user recenter the map
+var accuracy = 0
+var markerAdded = false; // var to avoid multiple markers
+var locationFound = false;
+var audioRecorded = false;
+var circleGT250
+var circleLT250
+var circleLT250Added = false
+var circleGT250Added = false
+var cartoGeometriesInitial = null
+var elementJustAddedToLocalStorage = false
+var attachPhoto = false
+
+var areaPolygon = 0
+var lengthLine = 0
+var dist_m_Participant = 0
+// var attribute1s = null
+// var attribute2s = null
+// var attribute3s = null
+// var attribute4s = null
+// var attribute5s = null
+// var attribute6s = null
+// var attribute7s = null
+// var attribute8s = null
+// var attribute9s = null
+// var attribute10s = null
+// var attribute11n = 0
+// var attribute12n =  0
+// var attribute13n = 0
+// var attribute14n = 0
+// var attribute15n = 0
+// var attribute16n = 0
+// var attribute17n = 0
+// var attribute18n = 0
+// var attribute19n = 0
+// var attribute20n = 0
+var sqlQuerySelect
+var sqlQuerySelectEncoded
+var deleteFromcartoimmediate = null
+
+var gobackUploadmap = false
+
+
 // var imagesToPreload = new Array()
 // function preload() {
 // 				for (i = 0; i < preload.arguments.length; i++) {
@@ -65,45 +258,45 @@ var arrayOfImages = [
   // 'https://mt1.google.com/vt/lyrs=s,h&x=2&y=3&z=2',
 
 
-    'images/drawPolygon.png','images/line.png','images/point.png','images/onionlayericon.png',
-    'images/applyFilter.png','images/arrowLeft.png', 'images/arrowRight.png', 'images/backButton.png','images/bin.png','images/binOriginal.png','images/binpost.png',
-    'images/binpre.png','images/burger.png','images/burgerBlack.png','images/cancel.png','images/clearFilter.png','images/commentFeature.png',
-    'images/dateAll.png','images/dateDay.png','images/dateMonth.png','images/dateWeek.png','images/dateYear.png','images/deleteAllVertex.png',
-    'images/deleteLastVertex.png','images/devicedownload.png','images/download.png','images/filterIcon.png','images/dtm.png','images/gifcartofilter.gif',
-    'images/google.png','images/googleHistorical.png','images/gps.png','images/gpsOff.png','images/gpsSearching.gif','images/gpsSearchingIOS.gif',
-    'images/infoGoBack.png','images/key.png','images/lineDeleteAll.png','images/lineDeleteVertex.png','images/padlockclosed.png','images/padlockopen.png',
-    'images/locked.png','images/man.png','images/marker-icon.png','images/marker-icon-2x.png','images/marker-icon-cian.png','images/markerPolygonBlue.png','images/markerLine.png','images/markerPolygon.png',
-    'images/markerLocalStorage.png','images/myLayerOpen.png','images/myLayerPrivate.png','images/myLayerEmpty.png','images/nautical.svg','images/osm.png',
-    'images/other1.png','images/play.png','images/PlusSign.png','images/cameraIcon.png','images/changeCamera.png','images/screenshot.png',
-    'images/questionmark.png','images/random.png','images/shareMessagingApps.png','images/shareworld.png','images/shareworldConfirm.png',
-    'images/uk.png','images/ethiopiaTutorial.png','images/other1.png','images/underConstruction.png','images/youtube.png','images/youtubeOffline.png',
-    'images/shareMessagingAppsYellow.png','images/sendComment.png','images/deleteFromCarto.png',
-    'images/LocalStorageRecenter.png',
-    'images/excitesTree.png','images/qmm.png',
-    'images/customIconsMap.png','images/customIconsCancel.png','images/infohelp.png',
+    // 'images/drawPolygon.png','images/line.png','images/point.png','images/onionlayericon.png',
+    // 'images/applyFilter.png','images/arrowLeft.png', 'images/arrowRight.png', 'images/backButton.png','images/bin.png','images/binOriginal.png','images/binpost.png',
+    // 'images/binpre.png','images/burger.png','images/burgerBlack.png','images/cancel.png','images/clearFilter.png','images/commentFeature.png',
+    // 'images/dateAll.png','images/dateDay.png','images/dateMonth.png','images/dateWeek.png','images/dateYear.png','images/deleteAllVertex.png',
+    // 'images/deleteLastVertex.png','images/devicedownload.png','images/download.png','images/filterIcon.png','images/dtm.png','images/gifcartofilter.gif',
+    // 'images/google.png','images/googleHistorical.png','images/gps.png','images/gpsOff.png','images/gpsSearching.gif','images/gpsSearchingIOS.gif',
+    // 'images/infoGoBack.png','images/key.png','images/lineDeleteAll.png','images/lineDeleteVertex.png','images/padlockclosed.png','images/padlockopen.png',
+    // 'images/locked.png','images/man.png','images/marker-icon.png','images/marker-icon-2x.png','images/marker-icon-cian.png','images/markerPolygonBlue.png','images/markerLine.png','images/markerPolygon.png',
+    // 'images/markerLocalStorage.png','images/myLayerOpen.png','images/myLayerPrivate.png','images/myLayerEmpty.png','images/nautical.svg','images/osm.png',
+    // 'images/other1.png','images/play.png','images/PlusSign.png','images/cameraIcon.png','images/changeCamera.png','images/screenshot.png',
+    // 'images/questionmark.png','images/random.png','images/shareMessagingApps.png','images/shareworld.png','images/shareworldConfirm.png',
+    // 'images/uk.png','images/ethiopiaTutorial.png','images/other1.png','images/underConstruction.png','images/youtube.png','images/youtubeOffline.png',
+    // 'images/shareMessagingAppsYellow.png','images/sendComment.png','images/deleteFromCarto.png',
+    // 'images/LocalStorageRecenter.png',
+    // 'images/excitesTree.png','images/qmm.png',
+    // 'images/customIconsMap.png','images/customIconsCancel.png','images/infohelp.png',
 
-    //sapelli project images
-    'images/omoIcons/banana.png','images/omoIcons/boatCrossing.png','images/omoIcons/cattleGrazing.png','images/omoIcons/church.png','images/omoIcons/eldersHut.png','images/omoIcons/fishing.png',
-    'images/omoIcons/floodRecessionFlat.png','images/omoIcons/floodRecessionSteep.png','images/omoIcons/goatSheepGrazing.png','images/omoIcons/healthStation.png','images/omoIcons/hotSpring.png','images/omoIcons/hunting.png',
-    'images/omoIcons/hutVillage.png','images/omoIcons/irrigationPump.png','images/omoIcons/lakeRecession.png','images/omoIcons/maize.png',
-    'images/omoIcons/manualPump.png','images/omoIcons/medicinalPlants.png','images/omoIcons/noFarming.png','images/omoIcons/pondFarming.png','images/omoIcons/Questionmark.png','images/omoIcons/recreationCenter.png',
-    'images/omoIcons/reehive.png','images/omoIcons/saltlick.png','images/omoIcons/school.png','images/omoIcons/sorghum.png','images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
-    'images/omoIcons/timber.png','images/omoIcons/treeForGathering.png','images/omoIcons/unknownOther.png','images/omoIcons/veterinary.png','images/omoIcons/waterPoint.png','images/omoIcons/waterPondAnimal.png',
-    'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png','images/omoIcons/pathTrack.png','images/omoIcons/cropscombined.png',
-    'images/omoIcons/kidsmale.png','images/omoIcons/kidsfemale.png','images/omoIcons/adultsmale.png','images/omoIcons/adultsfemale.png',
-    'images/omoIcons/households.png','images/omoIcons/confirm.png',
-    'images/omoIcons/conflictgeneric.png','images/omoIcons/livestockdisease.png','images/omoIcons/conflict1.png','images/omoIcons/conflict2.png',
-    'images/omoIcons/ld1.png','images/omoIcons/ld2.png','images/omoIcons/ld3.png','images/omoIcons/ld4.png','images/omoIcons/ld5.png','images/omoIcons/legumes.png','images/omoIcons/fire.png','images/omoIcons/deforestation.png',
-        // 'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png'
-        // ,  'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png'
-    //sapelli project images
-    // 'images/omoIcons/Shelter.png','images/omoIcons/dtm.png','images/omoIcons/pluistorrentielles.png','images/omoIcons/camera.png','images/omoIcons/coutlocation.png',
-    // 'images/omoIcons/personnesaffectees.png','images/omoIcons/maisonsdetruites.png','images/omoIcons/femmesnevontpas1.png','images/omoIcons/hommesnevontpas1.png',
-    // 'images/omoIcons/regimefoncierchamps.png','images/omoIcons/ventsviolents.png',
-    // 'images/omoIcons/seul.png','images/omoIcons/protection.png','images/omoIcons/proprietaire.png','images/omoIcons/mangues.png','images/omoIcons/maize.png',
-    // 'images/omoIcons/location.png','images/omoIcons/inondations.png','images/omoIcons/ett.png','images/omoIcons/documentation.png','images/omoIcons/champs.png',
-    // 'images/omoIcons/numbers.png',
-     'images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
+    // //sapelli project images
+    // 'images/omoIcons/banana.png','images/omoIcons/boatCrossing.png','images/omoIcons/cattleGrazing.png','images/omoIcons/church.png','images/omoIcons/eldersHut.png','images/omoIcons/fishing.png',
+    // 'images/omoIcons/floodRecessionFlat.png','images/omoIcons/floodRecessionSteep.png','images/omoIcons/goatSheepGrazing.png','images/omoIcons/healthStation.png','images/omoIcons/hotSpring.png','images/omoIcons/hunting.png',
+    // 'images/omoIcons/hutVillage.png','images/omoIcons/irrigationPump.png','images/omoIcons/lakeRecession.png','images/omoIcons/maize.png',
+    // 'images/omoIcons/manualPump.png','images/omoIcons/medicinalPlants.png','images/omoIcons/noFarming.png','images/omoIcons/pondFarming.png','images/omoIcons/Questionmark.png','images/omoIcons/recreationCenter.png',
+    // 'images/omoIcons/reehive.png','images/omoIcons/saltlick.png','images/omoIcons/school.png','images/omoIcons/sorghum.png','images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
+    // 'images/omoIcons/timber.png','images/omoIcons/treeForGathering.png','images/omoIcons/unknownOther.png','images/omoIcons/veterinary.png','images/omoIcons/waterPoint.png','images/omoIcons/waterPondAnimal.png',
+    // 'images/omoIcons/waterRiverAnimal.png','images/omoIcons/wildFruits.png','images/omoIcons/pathTrack.png','images/omoIcons/cropscombined.png',
+    // 'images/omoIcons/kidsmale.png','images/omoIcons/kidsfemale.png','images/omoIcons/adultsmale.png','images/omoIcons/adultsfemale.png',
+    // 'images/omoIcons/households.png','images/omoIcons/confirm.png',
+    // 'images/omoIcons/conflictgeneric.png','images/omoIcons/livestockdisease.png','images/omoIcons/conflict1.png','images/omoIcons/conflict2.png',
+    // 'images/omoIcons/ld1.png','images/omoIcons/ld2.png','images/omoIcons/ld3.png','images/omoIcons/ld4.png','images/omoIcons/ld5.png','images/omoIcons/legumes.png','images/omoIcons/fire.png','images/omoIcons/deforestation.png',
+    //     // 'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png'
+    //     // ,  'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png',  'images/omoIcons/waterRiverAnimal.png'
+    // //sapelli project images
+    // // 'images/omoIcons/Shelter.png','images/omoIcons/dtm.png','images/omoIcons/pluistorrentielles.png','images/omoIcons/camera.png','images/omoIcons/coutlocation.png',
+    // // 'images/omoIcons/personnesaffectees.png','images/omoIcons/maisonsdetruites.png','images/omoIcons/femmesnevontpas1.png','images/omoIcons/hommesnevontpas1.png',
+    // // 'images/omoIcons/regimefoncierchamps.png','images/omoIcons/ventsviolents.png',
+    // // 'images/omoIcons/seul.png','images/omoIcons/protection.png','images/omoIcons/proprietaire.png','images/omoIcons/mangues.png','images/omoIcons/maize.png',
+    // // 'images/omoIcons/location.png','images/omoIcons/inondations.png','images/omoIcons/ett.png','images/omoIcons/documentation.png','images/omoIcons/champs.png',
+    // // 'images/omoIcons/numbers.png',
+    //  'images/omoIcons/ThumbsUp.png','images/omoIcons/ThumbsDown.png',
 
 ]
 
@@ -317,24 +510,24 @@ var initialiseMap = function(){
 
     document.getElementById('initialscreen2options').style.display = 'initial'
     //console.('initialise map')
-    if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains geojson (and coords)
-      document.getElementById('initialscreen2options').style.display = 'none'
-      document.getElementById('startmapping').style.display = 'none'
-      document.getElementById('askthemap').style.display = 'none'
-      document.getElementById('asktheteam').style.display = 'none'
-      document.getElementById('geocredits').style.display = 'none'
-      document.getElementById('taskthemappers').style.display = 'none'
+  //   if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains geojson (and coords)
+  //     document.getElementById('initialscreen2options').style.display = 'none'
+  //     document.getElementById('startmapping').style.display = 'none'
+  //     document.getElementById('askthemap').style.display = 'none'
+  //     document.getElementById('asktheteam').style.display = 'none'
+  //     document.getElementById('geocredits').style.display = 'none'
+  //     document.getElementById('taskthemappers').style.display = 'none'
 
 
-      document.getElementById('map').style.opacity = 1
-      document.getElementById('map').disabled = false
-      document.getElementById("tutorial").style.display = "initial";
-      document.getElementById("armchair").style.display = "initial";
-      document.getElementById("field").style.display = "initial";
+  //     document.getElementById('map').style.opacity = 1
+  //     document.getElementById('map').disabled = false
+  //     document.getElementById("tutorial").style.display = "initial";
+  //     document.getElementById("armchair").style.display = "initial";
+  //     document.getElementById("field").style.display = "initial";
 
 
-      // document.getElementById('talk').click()
-  }
+  //     // document.getElementById('talk').click()
+  // }
 }
 },100)
 
@@ -342,9 +535,9 @@ var initialiseMap = function(){
 
 document.getElementById("map").style.opacity = 0;
 
-  googleSat.addTo(map)
-var basemapClass = document.getElementsByClassName('leaflet-layer')
-basemapClass[0].style.opacity = 0
+  // googleSat.addTo(map)
+// var basemapClass = document.getElementsByClassName('leaflet-layer')
+// basemapClass[0].style.opacity = 0
    //  var mapListerner = document.getElementById("map")
    // mapListerner.addEventListener('touchstart', {passive: true});
 
@@ -372,14 +565,14 @@ basemapClass[0].style.opacity = 0
 
 
   document.getElementById("app-css").disabled = false
-  document.getElementById("customIcons-css").disabled = false
-  document.getElementById("slider-css").disabled = false
-  document.getElementById("leaflet-css").disabled = false
-  document.getElementById("easybutton-css").disabled = false
-  document.getElementById("rose-css").disabled = false
-  document.getElementById("draw-css").disabled = false
-  document.getElementById("cluster-css").disabled = false
-  document.getElementById("clusterDefault-css").disabled = false
+  // document.getElementById("customIcons-css").disabled = false
+  // document.getElementById("slider-css").disabled = false
+  // document.getElementById("leaflet-css").disabled = false
+  // document.getElementById("easybutton-css").disabled = false
+  // document.getElementById("rose-css").disabled = false
+  // document.getElementById("draw-css").disabled = false
+  // document.getElementById("cluster-css").disabled = false
+  // document.getElementById("clusterDefault-css").disabled = false
   // $.getScript( "scripts/app.js" , function(){console.log('script gotten')});
     //   $.when(
     //
@@ -403,7 +596,7 @@ basemapClass[0].style.opacity = 0
       //addLeafletAttribute()
 
 
-      document.getElementById('rose').style.marginBottom = '5px' // to avoid extra margin, visible when offline buttons appear
+      // document.getElementById('rose').style.marginBottom = '5px' // to avoid extra margin, visible when offline buttons appear
     // window.addEventListener('DOMContentLoaded', function(){
   // $('rose').ready(function(){
 
@@ -426,23 +619,23 @@ basemapClass[0].style.opacity = 0
   // mainmenu_Button.button.style.transitionDuration = '.3s';
   // mainmenu_Button.button.style.backgroundColor = '#c00000';
 
-  var rose = L.control.rose('rose', {
-      position: 'topleft',
-      icon: 'nautical',
-      iSize: 'medium',
-      opacity: 1
-  })//.addTo(map)
+  // var rose = L.control.rose('rose', {
+  //     position: 'topleft',
+  //     icon: 'nautical',
+  //     iSize: 'medium',
+  //     opacity: 1
+  // })//.addTo(map)
   // var fieldImageCheck = document.getElementById("fieldImage")
   // fieldImageCheck.src = 'images/field.png'
   // var roseid = document.getElementById("rose")
   // roseid.src = 'images/osm.png'
 // mainmenu_Button.addTo(map)
   // fieldImageCheck.onload = function(){
-    gps_Button.addTo(map);
-    osm_Button.addTo(map);
-    myLayer_Button.addTo(map); //always on as there will always be features in the map, even when first load
-    scale.addTo(map)
-    rose.addTo(map)
+    // gps_Button.addTo(map);
+    // osm_Button.addTo(map);
+    // // myLayer_Button.addTo(map); //always on as there will always be features in the map, even when first load
+    // scale.addTo(map)
+    // rose.addTo(map)
 
     // deflated.addTo(map)
 
@@ -513,187 +706,186 @@ basemapClass[0].style.opacity = 0
 
 
 // console.log('bodyheight',bodyheight)
-document.getElementById("tutorial").onclick = function(e) {
-  myLayer_Button.addTo(map); //always on as there will always be features in the map, even when first load
+// document.getElementById("tutorial").onclick = function(e) {
+//   myLayer_Button.addTo(map); //always on as there will always be features in the map, even when first load
 
-//   phoneNumber = localStorage.getItem('phoneNumber');
-//   sapelliProjectIdentifier = localStorage.getItem('sapelliProjectIdentifier');
-//   var sapprojIDtest = '123456789'
-//
-// //The pre-filled message will automatically appear in the text field of a chat. Use https://wa.me/whatsappphonenumber?text=urlencodedtext where whatsappphonenumber
-// // is a full phone number in international format and urlencodedtext is the URL-encoded pre-filled message.
-//
-//
-//   window.location.href="https://wa.me/+34678380944"
-//   var textwhatsapp
-//   var textwhatsappencoded = '123456789'
-document.getElementById('initialscreen2options').style.backgroundColor = '#c00000'
-// document.getElementById('numberofcontrib').style.display = 'none'
-// document.getElementById('valueincurrency').style.display = 'none'
-//
-// document.getElementById('gobackFromCredits').style.display = 'none'
-// document.getElementById('exchangeCredits').style.display = 'none'
+// //   phoneNumber = localStorage.getItem('phoneNumber');
+// //   sapelliProjectIdentifier = localStorage.getItem('sapelliProjectIdentifier');
+// //   var sapprojIDtest = '123456789'
+// //
+// // //The pre-filled message will automatically appear in the text field of a chat. Use https://wa.me/whatsappphonenumber?text=urlencodedtext where whatsappphonenumber
+// // // is a full phone number in international format and urlencodedtext is the URL-encoded pre-filled message.
+// //
+// //
+// //   window.location.href="https://wa.me/+34678380944"
+// //   var textwhatsapp
+// //   var textwhatsappencoded = '123456789'
+// document.getElementById('initialscreen2options').style.backgroundColor = '#c00000'
+// // document.getElementById('numberofcontrib').style.display = 'none'
+// // document.getElementById('valueincurrency').style.display = 'none'
+// //
+// // document.getElementById('gobackFromCredits').style.display = 'none'
+// // document.getElementById('exchangeCredits').style.display = 'none'
 
-          document.getElementById('initialscreen2options').style.display = 'initial'
+//           document.getElementById('initialscreen2options').style.display = 'initial'
 
-          // if(whichLayerIsOn == 'deflated'){
-          //   document.getElementById('myLayerButton').click()
-          //   document.getElementById('myLayerButton').click()
-          // }if(whichLayerIsOn == 'localStorage'){
-          //   document.getElementById('myLayerButton').click()
-          // }
-          // document.getElementById('myLayerButton').click()
-
-
-}
-document.getElementById('startmapping').onclick = function(){
-  document.getElementById('startmapping').style.backgroundColor = '#a6a4a4'
-  document.getElementById('backFromFilter').style.display = 'none'
-
-  filter_Button.removeFrom(map);
-  filterLocalStorage_Button.removeFrom(map);
-    document.getElementById('myLayerButton').click()
-    if(whichLayerIsOn == 'deflated'){
-      document.getElementById('myLayerButton').click()
-    }else if(whichLayerIsOn == 'localStorage'){
-        document.getElementById('myLayerButton').click()
-      }
+//           // if(whichLayerIsOn == 'deflated'){
+//           //   document.getElementById('myLayerButton').click()
+//           //   document.getElementById('myLayerButton').click()
+//           // }if(whichLayerIsOn == 'localStorage'){
+//           //   document.getElementById('myLayerButton').click()
+//           // }
+//           // document.getElementById('myLayerButton').click()
 
 
+// }
+// document.getElementById('startmapping').onclick = function(){
+//   document.getElementById('startmapping').style.backgroundColor = '#a6a4a4'
+//   document.getElementById('backFromFilter').style.display = 'none'
 
-
-
-    myLayer_Button.removeFrom(map); //always on as there will always be features in the map, even when first load
-
-
-    setTimeout(function(){
-      document.getElementById("Alert").style.display = 'none'
-    },2000)
-
-
-
-  // document.getElementById('talk').style.borderColor = '#404040'
-
-
-// mapheight.clientHeight = '80%'
-// console.log('innerheight',window.innerHeight)
-// document.body.style.height = innerHeight
-// document.getElementById("map").style.height = innerHeight
-
-  // console.log('bodyheight',bodyheight)
-  // console.log('screensheight',screen.height)
-
-  // document.getElementById('myLayerButton').click()
-
-  setTimeout(function(){
-
-  document.getElementById('initialscreen2options').style.display = 'none'
-  // document.getElementById("map").style.display = "block";
-  document.getElementById("map").style.opacity = 1;
-  // document.getElementById('map').style.cursor='grab';
-
-  // setTimeout(function(){
-    // document.getElementById("tutorial").style.display = "initial";
-    // document.getElementById("armchair").style.display = "initial";
-    // document.getElementById("field").style.display = "initial";
-  // },100)
-  document.getElementById('MapLoading').style.opacity = 1
-  document.getElementById('startmapping').style.backgroundColor = 'white'
-
-
-},200)
-
-}
-document.getElementById('askthemap').onclick = function(){
-  document.getElementById('askthemap').style.backgroundColor = '#a6a4a4'
-  // document.getElementById('listen').style.borderColor = '#BFBEBE'
-  document.getElementById('backFromFilter').style.display = 'initial'
-  document.getElementById("filterByDate").style.display = "none";
+//   filter_Button.removeFrom(map);
+//   filterLocalStorage_Button.removeFrom(map);
+//     document.getElementById('myLayerButton').click()
+//     if(whichLayerIsOn == 'deflated'){
+//       document.getElementById('myLayerButton').click()
+//     }else if(whichLayerIsOn == 'localStorage'){
+//         document.getElementById('myLayerButton').click()
+//       }
 
 
 
 
 
-  setTimeout(function(){
-    filter_Button.addTo(map);
-    myLayer_Button.addTo(map); //always on as there will always be features in the map, even when first load
+//     myLayer_Button.removeFrom(map); //always on as there will always be features in the map, even when first load
 
 
-    document.getElementById('myLayerButton').click()
-    if(whichLayerIsOn == 'none'){
-      document.getElementById('myLayerButton').click()
-    }else if(whichLayerIsOn == 'localStorage'){
-        document.getElementById('myLayerButton').click()
-      }
-    document.getElementById('filter').click()
-    filter_Button.removeFrom(map);
-    myLayer_Button.removeFrom(map); //always on as there will always be features in the map, even when first load
-
-
-  document.getElementById('initialscreen2options').style.display = 'none'
-  document.getElementById("map").style.opacity = 1;
-
-
-  // setTimeout(function(){
-  //   // document.getElementById("tutorial").style.display = "initial";
-  //   // document.getElementById("armchair").style.display = "initial";
-  //   // document.getElementById("field").style.display = "initial";
-  //
-  // },100)
-  document.getElementById('MapLoading').style.opacity = 1
-  document.getElementById('askthemap').style.backgroundColor = 'white'
-
-
-},200)
-
-}
-
-document.getElementById('asktheteam').onclick = function(){
-  document.getElementById('asktheteam').style.backgroundColor = '#a6a4a4'
-  // document.getElementById('talk').style.borderColor = '#404040'
-  setTimeout(function(){
-    document.getElementById("Alert").style.display = 'none'
-    window.location.href="https://wa.me/+34678380944?";
-    document.getElementById('asktheteam').style.backgroundColor = 'white'
-
-
-  },500)
-  // window.location.href="https://wa.me/+34678380944?' + textwhatsappencoded + '";
-}
-
-document.getElementById('geocredits').onclick = function(){
-  document.getElementById('geocredits').style.backgroundColor = '#a6a4a4'
-  setTimeout(function(){
-    document.getElementById('geocredits').style.backgroundColor = 'white'
-    document.getElementById('geocredits').style.display = 'none'
-    document.getElementById('taskthemappers').style.display = 'none'
-    document.getElementById('asktheteam').style.display = 'none'
-    document.getElementById('askthemap').style.display = 'none'
-    document.getElementById('startmapping').style.display = 'none'
-    document.getElementById('kaptainitialscreen').style.display = 'none'
-    document.getElementById('initialscreen2options').style.backgroundColor = 'black'
-    document.getElementById('kaptacredits').style.display = 'initial'
-    document.getElementById('iconcredits').style.display = 'initial'
-    // document.getElementById('iconvalue').style.display = 'initial'
-    document.getElementById('numberofcredits').style.display = 'initial'
-    document.getElementById('valueincurrency').style.display = 'initial'
-
-    document.getElementById('gobackFromCredits').style.display = 'initial'
-    document.getElementById('exchangeCredits').style.display = 'initial'
-
-  },500)
-
-    // document.getElementById('geocreditsimage').src = '../images/underConstruction.png'
-    // setTimeout(function(){
-    //   document.getElementById('geocreditsimage').src = '../images/geocredits.png'
-    //   document.getElementById('geocredits').style.backgroundColor = 'white'
-    //
-    // },2000)
+//     setTimeout(function(){
+//       document.getElementById("Alert").style.display = 'none'
+//     },2000)
 
 
 
-// window.location.href="https://wa.me/+34678380944?' + textwhatsappencoded + '";
-}
+//   // document.getElementById('talk').style.borderColor = '#404040'
+
+
+// // mapheight.clientHeight = '80%'
+// // console.log('innerheight',window.innerHeight)
+// // document.body.style.height = innerHeight
+// // document.getElementById("map").style.height = innerHeight
+
+//   // console.log('bodyheight',bodyheight)
+//   // console.log('screensheight',screen.height)
+
+//   // document.getElementById('myLayerButton').click()
+
+//   setTimeout(function(){
+
+//   document.getElementById('initialscreen2options').style.display = 'none'
+//   // document.getElementById("map").style.display = "block";
+//   document.getElementById("map").style.opacity = 1;
+//   // document.getElementById('map').style.cursor='grab';
+
+//   // setTimeout(function(){
+//     // document.getElementById("tutorial").style.display = "initial";
+//     // document.getElementById("armchair").style.display = "initial";
+//     // document.getElementById("field").style.display = "initial";
+//   // },100)
+//   document.getElementById('MapLoading').style.opacity = 1
+//   document.getElementById('startmapping').style.backgroundColor = 'white'
+
+
+// },200)
+
+// }
+// document.getElementById('askthemap').onclick = function(){
+//   document.getElementById('askthemap').style.backgroundColor = '#a6a4a4'
+//   // document.getElementById('listen').style.borderColor = '#BFBEBE'
+//   document.getElementById('backFromFilter').style.display = 'initial'
+//   document.getElementById("filterByDate").style.display = "none";
+
+
+
+
+
+//   setTimeout(function(){
+//     filter_Button.addTo(map);
+//     myLayer_Button.addTo(map); //always on as there will always be features in the map, even when first load
+
+
+//     document.getElementById('myLayerButton').click()
+//     if(whichLayerIsOn == 'none'){
+//       document.getElementById('myLayerButton').click()
+//     }else if(whichLayerIsOn == 'localStorage'){
+//         document.getElementById('myLayerButton').click()
+//       }
+//     document.getElementById('filter').click()
+//     filter_Button.removeFrom(map);
+//     myLayer_Button.removeFrom(map); //always on as there will always be features in the map, even when first load
+
+
+//   document.getElementById('initialscreen2options').style.display = 'none'
+//   document.getElementById("map").style.opacity = 1;
+
+
+//   // setTimeout(function(){
+//   //   // document.getElementById("tutorial").style.display = "initial";
+//   //   // document.getElementById("armchair").style.display = "initial";
+//   //   // document.getElementById("field").style.display = "initial";
+//   //
+//   // },100)
+//   document.getElementById('MapLoading').style.opacity = 1
+//   document.getElementById('askthemap').style.backgroundColor = 'white'
+
+
+// },200)
+
+// }
+// document.getElementById('asktheteam').onclick = function(){
+//   document.getElementById('asktheteam').style.backgroundColor = '#a6a4a4'
+//   // document.getElementById('talk').style.borderColor = '#404040'
+//   setTimeout(function(){
+//     document.getElementById("Alert").style.display = 'none'
+//     window.location.href="https://wa.me/+34678380944?";
+//     document.getElementById('asktheteam').style.backgroundColor = 'white'
+
+
+//   },500)
+//   // window.location.href="https://wa.me/+34678380944?' + textwhatsappencoded + '";
+// }
+
+// document.getElementById('geocredits').onclick = function(){
+//   document.getElementById('geocredits').style.backgroundColor = '#a6a4a4'
+//   setTimeout(function(){
+//     document.getElementById('geocredits').style.backgroundColor = 'white'
+//     document.getElementById('geocredits').style.display = 'none'
+//     document.getElementById('taskthemappers').style.display = 'none'
+//     document.getElementById('asktheteam').style.display = 'none'
+//     document.getElementById('askthemap').style.display = 'none'
+//     document.getElementById('startmapping').style.display = 'none'
+//     document.getElementById('kaptainitialscreen').style.display = 'none'
+//     document.getElementById('initialscreen2options').style.backgroundColor = 'black'
+//     document.getElementById('kaptacredits').style.display = 'initial'
+//     document.getElementById('iconcredits').style.display = 'initial'
+//     // document.getElementById('iconvalue').style.display = 'initial'
+//     document.getElementById('numberofcredits').style.display = 'initial'
+//     document.getElementById('valueincurrency').style.display = 'initial'
+
+//     document.getElementById('gobackFromCredits').style.display = 'initial'
+//     document.getElementById('exchangeCredits').style.display = 'initial'
+
+//   },500)
+
+//     // document.getElementById('geocreditsimage').src = '../images/underConstruction.png'
+//     // setTimeout(function(){
+//     //   document.getElementById('geocreditsimage').src = '../images/geocredits.png'
+//     //   document.getElementById('geocredits').style.backgroundColor = 'white'
+//     //
+//     // },2000)
+
+
+
+// // window.location.href="https://wa.me/+34678380944?' + textwhatsappencoded + '";
+// }
 
 
 
@@ -705,11 +897,11 @@ document.onreadystatechange = function () {
   var state = document.readyState
   //console.(state,'state')
   if (document.readyState === 'complete' && localStorage.getItem('pwCorrect')) {
-    $.getScript({
-       cache:true,
-      url:'scripts/customIcons_v3.js'
-    })
-    startSearchingLocation()
+    // $.getScript({
+    //    cache:true,
+    //   url:'scripts/customIcons_v3.js'
+    // })
+    // startSearchingLocation()
   // document.getElementById('rose').click()
     setTimeout(function(){
       // requestCartoData()
@@ -728,19 +920,19 @@ document.onreadystatechange = function () {
     // }, { once: true });
     //rose.addTo(map)
     // deflated.addTo(map) // to initialize //////////////////////!!!!!!!!
-    $.getScript({
-      cache:true,
-      url:'scripts/lib/d3.min.js',
-       // success: console.log('d3 fetched')
-    }),
-    $.getScript({
-      cache:true,
-      url:'scripts/lib/topojson.min.js'
-    }),
-    $.getScript({
-      cache:true,
-      url:'scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/Control.GlobeMiniMap.js'
-    }),
+    // $.getScript({
+    //   cache:true,
+    //   url:'scripts/lib/d3.min.js',
+    //    // success: console.log('d3 fetched')
+    // }),
+    // $.getScript({
+    //   cache:true,
+    //   url:'scripts/lib/topojson.min.js'
+    // }),
+    // $.getScript({
+    //   cache:true,
+    //   url:'scripts/lib/leaflet/plugins/leaflet-globeminimap-master/src/Control.GlobeMiniMap.js'
+    // }),
     $.getScript({
        cache:true,
       url:'scripts/lib/html2canvas.min.js'

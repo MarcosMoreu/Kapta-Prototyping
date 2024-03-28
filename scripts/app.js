@@ -166,26 +166,26 @@ var attachPhoto = false
 var areaPolygon = 0
 var lengthLine = 0
 var dist_m_Participant = 0
-var attribute1s = null
-var attribute2s = null
-var attribute3s = null
-var attribute4s = null
-var attribute5s = null
-var attribute6s = null
-var attribute7s = null
-var attribute8s = null
-var attribute9s = null
-var attribute10s = null
-var attribute11n = 0
-var attribute12n =  0
-var attribute13n = 0
-var attribute14n = 0
-var attribute15n = 0
-var attribute16n = 0
-var attribute17n = 0
-var attribute18n = 0
-var attribute19n = 0
-var attribute20n = 0
+// var attribute1s = null
+// var attribute2s = null
+// var attribute3s = null
+// var attribute4s = null
+// var attribute5s = null
+// var attribute6s = null
+// var attribute7s = null
+// var attribute8s = null
+// var attribute9s = null
+// var attribute10s = null
+// var attribute11n = 0
+// var attribute12n =  0
+// var attribute13n = 0
+// var attribute14n = 0
+// var attribute15n = 0
+// var attribute16n = 0
+// var attribute17n = 0
+// var attribute18n = 0
+// var attribute19n = 0
+// var attribute20n = 0
 var sqlQuerySelect
 var sqlQuerySelectEncoded
 var deleteFromcartoimmediate = null
@@ -283,13 +283,13 @@ var url = window.location.href
 // },5000)
 
 //script to request the HIDDEN FUNCTIONALITIES AND CUSTOM ICONS script 3 secs after load (to improve performance)
-setTimeout(function(){
-  $.getScript({
-     cache:true,
-    url:'scripts/hiddenFunctionalities.js'
-  })
+// setTimeout(function(){
+//   $.getScript({
+//      cache:true,
+//     url:'scripts/hiddenFunctionalities.js'
+//   })
 
-},3000)
+// },3000)
 // document.getElementById('downloadedVideo').src = "images/downloaded.mp4"
 // document.getElementById('sentVideo').src = "images/sent.mp4"
 
@@ -373,160 +373,160 @@ var get = function(url) {
     });
 };
 
-var tilesDb = {
-    // setItem:function(key, value) {
-    //   console.log('tilesdb calleeeeeeeeeeeed  SAVE')
-    //
-    //     return localforage.setItem(key, value)
-    // },
-    getItem: function(key, value) {
-      // key = key.replace("hmt0.ps", "https");
-      // console.log(key)
-      //
-      // caches.match(key).then(function(response) {
-      //   if(response != null){
-      //     var itemfromthecache = caches.getItem(key)
-      //     console.log(response)
-      //       console.log(itemfromthecache)
-      //        localforage.setItem(key, response);
-      //   }
-      //
-      //
-      //   })
+// var tilesDb = {
+//     // setItem:function(key, value) {
+//     //   console.log('tilesdb calleeeeeeeeeeeed  SAVE')
+//     //
+//     //     return localforage.setItem(key, value)
+//     // },
+//     getItem: function(key, value) {
+//       // key = key.replace("hmt0.ps", "https");
+//       // console.log(key)
+//       //
+//       // caches.match(key).then(function(response) {
+//       //   if(response != null){
+//       //     var itemfromthecache = caches.getItem(key)
+//       //     console.log(response)
+//       //       console.log(itemfromthecache)
+//       //        localforage.setItem(key, response);
+//       //   }
+//       //
+//       //
+//       //   })
 
-      // key.value
-      // console.log(value)
-      // console.log(value)
-      // var tileURL = localforage.getItem(key)
-      //   console.log(tileURL.blob())
-// localforage.setItem(key);
+//       // key.value
+//       // console.log(value)
+//       // console.log(value)
+//       // var tileURL = localforage.getItem(key)
+//       //   console.log(tileURL.blob())
+// // localforage.setItem(key);
 
-        return localforage.getItem(key)
-        // .then(function() {
-        //   if(value == null){
-        //
-        //     // var urltile = key.replace("hmt0.ps", "https");
-        //
-        //
-        //     console.log(key)
-        //     // console.log(urltile)
-        //     //setitem...............
-        //   }else{
-        //     console.log('elseseeeeeeeeeeeeeeee')
-        //
-        //   }
-        //
-        //
-        //     return localforage.setItem(key, value);
-        // });
+//         return localforage.getItem(key)
+//         // .then(function() {
+//         //   if(value == null){
+//         //
+//         //     // var urltile = key.replace("hmt0.ps", "https");
+//         //
+//         //
+//         //     console.log(key)
+//         //     // console.log(urltile)
+//         //     //setitem...............
+//         //   }else{
+//         //     console.log('elseseeeeeeeeeeeeeeee')
+//         //
+//         //   }
+//         //
+//         //
+//         //     return localforage.setItem(key, value);
+//         // });
 
-    //       console.log('tilesdb calleeeeeeeeeeeed  SAVE')
-    // localforage.setItem(key, value);
-            // var self = this;
-            // var promise
-            //
-            // // for (var i = 0; i < tileUrls.length; i++) {
-            //     // var tileUrl = tileUrls[i];
-            //
-            //     (function(key) {
-            //         promise = new Promise(function(resolve, reject) {
-            //             var request = new XMLHttpRequest();
-            //             request.open('GET', key.url, true);
-            //             request.responseType = 'blob';
-            //             request.onreadystatechange = function() {
-            //                 if (request.readyState === XMLHttpRequest.DONE) {
-            //                     if (request.status === 200) {
-            //                         resolve(self._saveTile(key, request.response));
-            //                     } else {
-            //                         reject({
-            //                             status: request.status,
-            //                             statusText: request.statusText
-            //                         });
-            //                     }
-            //                 }
-            //             };
-            //             request.send();
-            //         });
-            //     })
-            // // }
-            // return Promise
-          // )
-    },
+//     //       console.log('tilesdb calleeeeeeeeeeeed  SAVE')
+//     // localforage.setItem(key, value);
+//             // var self = this;
+//             // var promise
+//             //
+//             // // for (var i = 0; i < tileUrls.length; i++) {
+//             //     // var tileUrl = tileUrls[i];
+//             //
+//             //     (function(key) {
+//             //         promise = new Promise(function(resolve, reject) {
+//             //             var request = new XMLHttpRequest();
+//             //             request.open('GET', key.url, true);
+//             //             request.responseType = 'blob';
+//             //             request.onreadystatechange = function() {
+//             //                 if (request.readyState === XMLHttpRequest.DONE) {
+//             //                     if (request.status === 200) {
+//             //                         resolve(self._saveTile(key, request.response));
+//             //                     } else {
+//             //                         reject({
+//             //                             status: request.status,
+//             //                             statusText: request.statusText
+//             //                         });
+//             //                     }
+//             //                 }
+//             //             };
+//             //             request.send();
+//             //         });
+//             //     })
+//             // // }
+//             // return Promise
+//           // )
+//     },
 
-    saveTiles: function(tileUrls) {
-      //console.log('tilesdb calleeeeeeeeeeeed  SAVE')
-// localforage.setItem(key);
-        var self = this;
-        var promises = [];
+//     saveTiles: function(tileUrls) {
+//       //console.log('tilesdb calleeeeeeeeeeeed  SAVE')
+// // localforage.setItem(key);
+//         var self = this;
+//         var promises = [];
 
-        for (var i = 0; i < tileUrls.length; i++) {
-            var tileUrl = tileUrls[i];
+//         for (var i = 0; i < tileUrls.length; i++) {
+//             var tileUrl = tileUrls[i];
 
 
-            (function(i, tileUrl) {
-                promises[i] = new Promise(function(resolve, reject) {
-                    var request = new XMLHttpRequest();
-                    request.open('GET', tileUrl.url, true);
-                    request.responseType = 'blob';
-                    request.onreadystatechange = function() {
-                        if (request.readyState === XMLHttpRequest.DONE) {
-                            if (request.status === 200) {
-                                resolve(self._saveTile(tileUrl.key, request.response));
-                                if(i==tileUrls.length-1){
-                                  alert('በተሳካ ሁኔታ ማውረድ ችለዋል። አዎን ይጫኑ')
+//             (function(i, tileUrl) {
+//                 promises[i] = new Promise(function(resolve, reject) {
+//                     var request = new XMLHttpRequest();
+//                     request.open('GET', tileUrl.url, true);
+//                     request.responseType = 'blob';
+//                     request.onreadystatechange = function() {
+//                         if (request.readyState === XMLHttpRequest.DONE) {
+//                             if (request.status === 200) {
+//                                 resolve(self._saveTile(tileUrl.key, request.response));
+//                                 if(i==tileUrls.length-1){
+//                                   alert('በተሳካ ሁኔታ ማውረድ ችለዋል። አዎን ይጫኑ')
 
-                                    document.getElementById('MapLoading').style.display = 'none'
-                                    document.getElementById('Alert').style.display = 'none'
+//                                     document.getElementById('MapLoading').style.display = 'none'
+//                                     document.getElementById('Alert').style.display = 'none'
 
-                                    document.getElementById('maploadinggif').src = 'images/checkingPw.gif'
+//                                     document.getElementById('maploadinggif').src = 'images/checkingPw.gif'
 
-                                }
-                            } else {
-                              setTimeout(function(){
+//                                 }
+//                             } else {
+//                               setTimeout(function(){
 
-                              document.getElementById("Alert").style.fontSize = "30px";
-                              document.getElementById("Alert").style.textAlign = "center"
-                              document.getElementById('Alert').innerHTML = 'ማውረድ አልተሟላም. በተሻለ በይነመረብ እንደገና ይሞክሩ'
-                              document.getElementById("Alert").style.display = 'initial'
-                            },10000)
+//                               document.getElementById("Alert").style.fontSize = "30px";
+//                               document.getElementById("Alert").style.textAlign = "center"
+//                               document.getElementById('Alert').innerHTML = 'ማውረድ አልተሟላም. በተሻለ በይነመረብ እንደገና ይሞክሩ'
+//                               document.getElementById("Alert").style.display = 'initial'
+//                             },10000)
 
-                              setTimeout(function(){
+//                               setTimeout(function(){
 
-                                document.getElementById("Alert").style.display = 'none'
-                                  document.getElementById('maploadinggif').style.display = 'none'
-                              },20000)
-                              console.log('download tiles failed')
-                                reject({
-                                    status: request.status,
-                                    statusText: request.statusText
-                                });
-                            }
-                        }
-                    };
-                    request.send();
-                });
-            })(i, tileUrl);
-        }
-        return Promise.all(promises);
-    },
+//                                 document.getElementById("Alert").style.display = 'none'
+//                                   document.getElementById('maploadinggif').style.display = 'none'
+//                               },20000)
+//                               console.log('download tiles failed')
+//                                 reject({
+//                                     status: request.status,
+//                                     statusText: request.statusText
+//                                 });
+//                             }
+//                         }
+//                     };
+//                     request.send();
+//                 });
+//             })(i, tileUrl);
+//         }
+//         return Promise.all(promises);
+//     },
 
-    clear: function() {
-        return localforage.clear();
-    },
+//     clear: function() {
+//         return localforage.clear();
+//     },
 
-    _saveTile: function(key, value) {
-      //console.('tilesdb calleeeeeeeeeeeed  ____SAVE')
+//     _saveTile: function(key, value) {
+//       //console.('tilesdb calleeeeeeeeeeeed  ____SAVE')
 
-        return this._removeItem(key).then(function() {
+//         return this._removeItem(key).then(function() {
 
-            return localforage.setItem(key, value);
-        });
-    },
+//             return localforage.setItem(key, value);
+//         });
+//     },
 
-    _removeItem: function(key) {
-        return localforage.removeItem(key);
-    }
-};
+//     _removeItem: function(key) {
+//         return localforage.removeItem(key);
+//     }
+// };
 
 /////////////////////////////////////////////////////////adding map elements///////////////////////////////////////////////////
 
@@ -545,7 +545,7 @@ var tilesDb = {
 // }
 
 // function to get coordinates and zoom level from URL, and then use the zoom and center variables to center the map if url != original
-var mappos = L.Permalink.getMapLocation();
+// var mappos = L.Permalink.getMapLocation();
 //console.log(mappos.center.lat)
 
 //////////////////////////////////////////////  MAP  //////////////////////////////////////////////////////
@@ -554,45 +554,45 @@ var geoJSONLocalforageDB
 var geoJSONofflineCARTO
 
 // try{
-  geoJSONofflineCARTO = localforage.createInstance({ //to create a separate DB in IndexedDB, so geojsons are not mixed with TilesDB
-  name: "offlineCARTO"});
+  // geoJSONofflineCARTO = localforage.createInstance({ //to create a separate DB in IndexedDB, so geojsons are not mixed with TilesDB
+  // name: "offlineCARTO"});
 // }catch(err){
 //   console.log(err,'error new db')
 // }
 //this function will be called only if geojson is found in url
-var storeURLGeoJSON = function(data){
+// var storeURLGeoJSON = function(data){
 
-  try{
-    var randomID = data.properties.randomID
-    geoJSONLocalforageDB = localforage.createInstance({ //to create a separate DB in IndexedDB, so geojsons are not mixed with TilesDB
-    name: "geoJSONs"
-    });
-    var parsedJSONStringified = JSON.stringify(data)
+//   try{
+//     var randomID = data.properties.randomID
+//     geoJSONLocalforageDB = localforage.createInstance({ //to create a separate DB in IndexedDB, so geojsons are not mixed with TilesDB
+//     name: "geoJSONs"
+//     });
+//     var parsedJSONStringified = JSON.stringify(data)
 
-    geoJSONLocalforageDB.setItem(randomID, parsedJSONStringified).then(function(value){
-    }).catch(function(err) {
-      //console.('error set item geojson url')
-    });
-    randomIDtest = randomID
-  }catch(e){
-    data = data.features[0]
-    var randomID = data.properties.randomID
-    geoJSONLocalforageDB = localforage.createInstance({ //to create a separate DB in IndexedDB, so geojsons are not mixed with TilesDB
-    name: "geoJSONs"
-    });
-    var parsedJSONStringified = JSON.stringify(data)
+//     geoJSONLocalforageDB.setItem(randomID, parsedJSONStringified).then(function(value){
+//     }).catch(function(err) {
+//       //console.('error set item geojson url')
+//     });
+//     randomIDtest = randomID
+//   }catch(e){
+//     data = data.features[0]
+//     var randomID = data.properties.randomID
+//     geoJSONLocalforageDB = localforage.createInstance({ //to create a separate DB in IndexedDB, so geojsons are not mixed with TilesDB
+//     name: "geoJSONs"
+//     });
+//     var parsedJSONStringified = JSON.stringify(data)
 
-    geoJSONLocalforageDB.setItem(randomID, parsedJSONStringified).then(function(value){
-    }).catch(function(err) {
-      //console.('error set item geojson url')
-    });
-    randomIDtest = randomID
-  }
+//     geoJSONLocalforageDB.setItem(randomID, parsedJSONStringified).then(function(value){
+//     }).catch(function(err) {
+//       //console.('error set item geojson url')
+//     });
+//     randomIDtest = randomID
+//   }
 
 
 
-  return randomIDtest
-}
+//   return randomIDtest
+// }
 
 //////////////////  center the map: check first if url with coordinates, if not, check if first load, then check if lastpositionstored.
 //script to check if url contains coordinates when loaded
@@ -606,78 +606,78 @@ var urlContainsGeoJSON = url.includes('/?')
 //to avoid panning outside this bounds
 var southWest = L.latLng(-70, -180);
 var northEast = L.latLng(80, 180);
-if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains geojson (and coords)
-  //console.log('hash and geojson')
+// if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains geojson (and coords)
+//   //console.log('hash and geojson')
 
-  //to set mapview
-    var keepOnlyLatLngZoom = url.split('#').pop();
-    var splittedLatLngZoom = keepOnlyLatLngZoom.split(',');
-    var urlLat = splittedLatLngZoom[0]
-    var urlLng = splittedLatLngZoom[1]
-    var urlZoomWithZ = splittedLatLngZoom[2]
-    var urlZoom = urlZoomWithZ.replace('z','')
+//   //to set mapview
+//     var keepOnlyLatLngZoom = url.split('#').pop();
+//     var splittedLatLngZoom = keepOnlyLatLngZoom.split(',');
+//     var urlLat = splittedLatLngZoom[0]
+//     var urlLng = splittedLatLngZoom[1]
+//     var urlZoomWithZ = splittedLatLngZoom[2]
+//     var urlZoom = urlZoomWithZ.replace('z','')
 
-    var map = L.map('map', {
-        renderer: L.canvas({padding: 0.5, tolerance: 8}),
-        editable: true,
-        center: [urlLat, urlLng], //global center
-        zoom: urlZoom,
-        minZoom: 2,
-        maxZoom: 21,
-        zoomControl: false,
-        attributionControl: false,
-        maxBounds: L.latLngBounds(southWest, northEast)
-    });
-    /////////////to extract geoJSON from the url
+//     var map = L.map('map', {
+//         renderer: L.canvas({padding: 0.5, tolerance: 8}),
+//         editable: true,
+//         center: [urlLat, urlLng], //global center
+//         zoom: urlZoom,
+//         minZoom: 2,
+//         maxZoom: 21,
+//         zoomControl: false,
+//         attributionControl: false,
+//         maxBounds: L.latLngBounds(southWest, northEast)
+//     });
+//     /////////////to extract geoJSON from the url
 
-    var removeHttps = url.split('?').pop();
-    var removeCoords = removeHttps.split('/');
-    var keepGeoJSONOnly = removeCoords[0]
-    var parsedJSONdecoded = decodeURIComponent(keepGeoJSONOnly);
-    var parsedJSON = JSON.parse(parsedJSONdecoded)
-    // console.log(parsedJSON)
-    // console.log(parsedJSON.features[0])
+//     var removeHttps = url.split('?').pop();
+//     var removeCoords = removeHttps.split('/');
+//     var keepGeoJSONOnly = removeCoords[0]
+//     var parsedJSONdecoded = decodeURIComponent(keepGeoJSONOnly);
+//     var parsedJSON = JSON.parse(parsedJSONdecoded)
+//     // console.log(parsedJSON)
+//     // console.log(parsedJSON.features[0])
 
-    storeURLGeoJSON(parsedJSON)
-    setTimeout(function accessLocalStorage(){
-          fetchFromLocalStorage()
-          localStorageLayer
-          //console.log('after fetch and convert',localStorageLayer)
-    },1500) // really don't know why this timeout, but keep it for now
+//     storeURLGeoJSON(parsedJSON)
+//     setTimeout(function accessLocalStorage(){
+//           fetchFromLocalStorage()
+//           localStorageLayer
+//           //console.log('after fetch and convert',localStorageLayer)
+//     },1500) // really don't know why this timeout, but keep it for now
 
-    //to select this feature
-    // var addedFeature = localStorage.getItem(randomIDtest)
-    // console.log(addedFeature)
-    elementJustAddedToLocalStorage = true
-    if(localStorage.getItem('pwCorrect')){
-      var activateLocalStorageLayer = setInterval(function(){
-        //console.('checking encodedgeojsonurl')
-        if(localStorageLayer != null){
-          try{
-            document.getElementById('myLayerButton').click()
-            document.getElementById('myLayerButton').click()
-            document.getElementById('myLayerButton').click()
-            myLayer_Button.removeFrom(map); //always on as there will always be features in the map, even when first load
+//     //to select this feature
+//     // var addedFeature = localStorage.getItem(randomIDtest)
+//     // console.log(addedFeature)
+//     elementJustAddedToLocalStorage = true
+//     if(localStorage.getItem('pwCorrect')){
+//       var activateLocalStorageLayer = setInterval(function(){
+//         //console.('checking encodedgeojsonurl')
+//         if(localStorageLayer != null){
+//           try{
+//             document.getElementById('myLayerButton').click()
+//             document.getElementById('myLayerButton').click()
+//             document.getElementById('myLayerButton').click()
+//             myLayer_Button.removeFrom(map); //always on as there will always be features in the map, even when first load
 
 
-            //console.('zzzzzzzzzzzzzzzzzzzzzzzzzz')
+//             //console.('zzzzzzzzzzzzzzzzzzzzzzzzzz')
 
-            clearInterval(activateLocalStorageLayer)
-          }catch(e){}
+//             clearInterval(activateLocalStorageLayer)
+//           }catch(e){}
 
-        }
-      },500) // really don't know why this timeout, but keep it for now
-    }
-    // if(isFirstTime == true){
-    //   try{
-    //     document.getElementById('myLayerButton').click()
-    //     clearInterval(activateLocalStorageLayer)
-    //     console.log('zzzzzzzzzzzzzzzzzzzzzzzzzz')
-    //   }catch(e){}
-    // }
+//         }
+//       },500) // really don't know why this timeout, but keep it for now
+//     }
+//     // if(isFirstTime == true){
+//     //   try{
+//     //     document.getElementById('myLayerButton').click()
+//     //     clearInterval(activateLocalStorageLayer)
+//     //     console.log('zzzzzzzzzzzzzzzzzzzzzzzzzz')
+//     //   }catch(e){}
+//     // }
 
-}
-else if (urlContainsHash == true){  // if only coords are in the url
+// }
+if (urlContainsHash == true){  // if only coords are in the url
   //console.log('onlyhash')
     var keepOnlyLatLngZoom = url.split('#').pop();
     var splittedLatLngZoom = keepOnlyLatLngZoom.split(',');
@@ -777,24 +777,24 @@ else if (urlContainsHash == true){  // if only coords are in the url
 
 
 //to see the zoom when changing interval
-map.on('zoomend', function(e) {
-  tilesincanvasloaded = false
-  console.log('tilesincanvasloaded',tilesincanvasloaded)
+// map.on('zoomend', function(e) {
+//   tilesincanvasloaded = false
+//   console.log('tilesincanvasloaded',tilesincanvasloaded)
 
-  var currentZoom = map.getZoom()
-  console.log('zoom level',currentZoom)
-  //to activate carto based on zoom level
-  if(whichLayerIsOn == 'deflated' && currentZoom >= 12){
-    // deflated.addTo(map)
-    //console.('carto open layer added to the map')
-  }
-  if(whichLayerIsOn == 'deflated' && currentZoom < 12){
-    // deflated.removeFrom(map)
-    //console.('carto open layer hidden from the map')
-  }
-  return tilesincanvasloaded
+//   var currentZoom = map.getZoom()
+//   console.log('zoom level',currentZoom)
+//   //to activate carto based on zoom level
+//   if(whichLayerIsOn == 'deflated' && currentZoom >= 12){
+//     // deflated.addTo(map)
+//     //console.('carto open layer added to the map')
+//   }
+//   if(whichLayerIsOn == 'deflated' && currentZoom < 12){
+//     // deflated.removeFrom(map)
+//     //console.('carto open layer hidden from the map')
+//   }
+//   return tilesincanvasloaded
 
-})
+// })
 
 // if(document.getElementById("emojionearea-css").disabled == true){
 //   map.on('zoomend', function(e) {
