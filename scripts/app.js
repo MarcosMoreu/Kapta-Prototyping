@@ -326,7 +326,7 @@ var timeStart = new Date();
 /////////////////////// Initialize Firebase  ///////////////////////
 //firebaseConfig stored in publicAPIKeys file
 var findFirebaseCredentials = setInterval(function() {
-
+  console.log('firebase initialise')
     if (isOnline == true & firebaseKey != null) {
         try {
             firebase.initializeApp(firebaseConfig);

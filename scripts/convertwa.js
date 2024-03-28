@@ -274,7 +274,7 @@ document.getElementById('confirminputtext').onclick = function(){
     // document.getElementById("showAreaAcresScreenshot").style.display = 'initial'
     // document.getElementById("showAreaAcresScreenshot").style.backgroundColor = '#191919'
 
-  // screenshot.click()
+  screenshot.click()
   
 },500)
   },200)
@@ -302,7 +302,7 @@ document.getElementById('gobackToInitialKaptalite').style.display = 'initial'
   document.getElementById('KaptaLite').style.display = 'none'
   document.getElementById('KaptaAdvanced').style.display = 'none'
   document.getElementById('asktheteam').style.display = 'none'
-  document.getElementById('kaptainitialscreen').style.display = 'none'
+  // document.getElementById('kaptainitialscreen').style.display = 'none'
   },200)
 }
 document.getElementById('KaptaAdvanced').onclick = function(){

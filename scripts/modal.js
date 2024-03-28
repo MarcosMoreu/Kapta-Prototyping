@@ -328,7 +328,7 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
       document.getElementById('KaptaLite').style.display = 'initial'
       document.getElementById('KaptaAdvanced').style.display = 'initial'
       document.getElementById('asktheteam').style.display = 'initial'
-      document.getElementById('kaptainitialscreen').style.display = 'initial'
+      // document.getElementById('kaptainitialscreen').style.display = 'initial'
     }
 
     },300)
@@ -417,16 +417,30 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
            cache:false,
           url:'https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js'
         })
+        
       }catch(e){
         location.reload()
       }
         // console.log('!localStorage.getItem(pwCorrect')
         requestPw()
+        console.log('no pw correct')
     }
     return isFirstTime;
 }
 window.onload = firstLoad;  /// to launch the root function XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXS
 var done = false
+var findFirebaseCredentials = setInterval(function() {
+  // console.log('firebase initialise')
+    if (isOnline == true & firebaseKey != null) {
+        try {
+            firebase.initializeApp(firebaseConfig);
+          //console.log('Firebase initialized')
+            clearInterval(findFirebaseCredentials)
+        } catch (e) {
+          // console.log('firebase not initialized!!')
+        }
+    }
+}, 500)
 
 setTimeout(function(){
   document.getElementById('loginInfo').style.opacity = '1'
@@ -447,7 +461,7 @@ document.getElementById('loginInfo').onclick = function(){
 }
 
 document.getElementById('loginKey').onclick = function(e){
-  document.getElementById('AlertModalIOS').innerHTML = '</br></br> 📞 Enter your phone number 📞'
+  // document.getElementById('AlertModalIOS').innerHTML = '</br></br> 📞 Enter your phone number 📞'
   document.getElementById('AlertModalIOS').style.display = 'initial'
   document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
   e.preventDefault() //to avoid reload
@@ -465,6 +479,9 @@ document.getElementById('loginKey').onclick = function(e){
   //runJSselectFeature()
   document.getElementById('loginKey').style.backgroundColor = '#D5D6D5'
   document.getElementById('enteredPw').style.display = 'initial';
+  document.getElementById('enteredName').style.display = 'initial';
+  document.getElementById('enteredPhone').style.display = 'initial';
+
   document.getElementById('login').style.display = 'initial';
 
   initialiseMap() //map initialised but not shown
@@ -969,6 +986,9 @@ var authentication
 var num1
 var confirmphonebuttonclicked = 0
 var requestPw = function(){
+  // document.getElementById('initialscreen2options').style.display='none';
+  // document.getElementById('map').style.display='none';
+
 
       //setTimeout(function(){
         document.getElementById('modal').style.display='block';
