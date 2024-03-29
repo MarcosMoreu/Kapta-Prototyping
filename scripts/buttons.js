@@ -59,6 +59,9 @@ document.getElementById('confirminputtext').onclick = function(){
           screenshotTaken = true
         layerChatGeom.addTo(map)
         scale.addTo(map);
+        var leafletScalestyle = document.getElementsByClassName("leaflet-control-scale-line")
+        leafletScalestyle[0].style.backgroundColor = 'transparent'
+        leafletScalestyle[0].style.color = '#808080'
         screenshot.click()
         map.dragging.enable();
         map.touchZoom.enable();
@@ -74,7 +77,13 @@ document.getElementById('confirminputtext').onclick = function(){
         }
       })
       },200)
+      var leafletAttrib1style1 = document.getElementsByClassName("leaflet-bottom leaflet-right")
+      leafletAttrib1style1[0].style.backgroundColor = 'transparent'
+      var leafletAttrib1style2 = document.getElementsByClassName("leaflet-control-attribution leaflet-control")
+      leafletAttrib1style2[0].style.backgroundColor = 'transparent'
+      leafletAttrib1style2[0].style.color = '#808080'
 
+      
       },200)
 return topic
 }
@@ -108,11 +117,14 @@ document.getElementById('KaptaAdvanced').onclick = function(){
   },2000)
   },200)
 }
+var youtubeVideoLoaded = false
 
 document.getElementById('kaptalitetutorial').onclick = function(){
   document.getElementById('kaptalitetutorial').style.display = 'none'
   document.getElementById('upload').style.display = 'none'
   document.getElementById('gobackToInitialKaptalite').style.display = 'none'
+  document.getElementById('youtubeVideo').style.display = 'initial'
+
   document.getElementById('gobackfromtutorial').style.display = 'initial'
 
   
@@ -126,6 +138,14 @@ document.getElementById('kaptalitetutorial').onclick = function(){
   // },200)
 }
 document.getElementById('gobackfromtutorial').onclick = function(){
+    var storeIframeURL = document.getElementById("youtubeVideo").src
+    document.getElementById('kaptalitetutorial').style.display = 'initial'
+    document.getElementById('upload').style.display = 'initial'
+    document.getElementById('gobackToInitialKaptalite').style.display = 'initial'
+    document.getElementById('gobackfromtutorial').style.display = 'none'
+    document.getElementById('youtubeVideo').style.display = 'none'
+
+    
 }
 document.getElementById('gobackToInitialKaptalite').onclick = function(){
   setTimeout(function(){

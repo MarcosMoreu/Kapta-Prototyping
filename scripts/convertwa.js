@@ -113,10 +113,10 @@ console.log('manualupload',manualupload)
       var randomNumber = Math.random();
       randomNumber = randomNumber * 10000000;
       contributionid = Math.round(randomNumber)
-      console.log('latitude',latitude)
-      console.log('communitymapid',communitymapid)
-      console.log('contributionid',contributionid)
-      console.log('nameOfTheGroup',nameOfTheGroup);
+      // console.log('latitude',latitude)
+      // console.log('communitymapid',communitymapid)
+      // console.log('contributionid',contributionid)
+      // console.log('nameOfTheGroup',nameOfTheGroup);
 
       features.push({
         type: "Feature",

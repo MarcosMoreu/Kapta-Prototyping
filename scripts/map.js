@@ -195,6 +195,7 @@ var gpsButton = L.easyButton({
       icon: iconGPS,
       //stateName: 'check-mark',
       onClick: function(btn, map) {
+
         gpsButton.button.style.backgroundColor = '#696868';
         setTimeout(function(){
           gpsButton.button.style.backgroundColor = '#afafaf';
