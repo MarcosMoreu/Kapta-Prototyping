@@ -48,7 +48,10 @@ let toggleStates = {
   //   toggleStates.toggle3 = this.checked;
   // });
   
-  
+  var postSuccess = function() {
+    console.log('submitted succesfully')
+  }
+
 
   var datasubmissiontype
   var submitToProxy = function(q) {
@@ -193,7 +196,7 @@ let toggleStates = {
       //   var sql = baseSql + insertValues.join(',');
 
       //   console.log(sql);
-      //   submitToProxy(sql); 
+        // submitToProxy(sql); 
         
         //////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -247,7 +250,7 @@ let toggleStates = {
           const sql = baseSql + values;
       
           // Assuming submitToProxy is an async function or returns a Promise
-          // await submitToProxy(sql) // Handle errors or rejections        ////////////////////////!!!!!!!!!!!!
+          await submitToProxy(sql) // Handle errors or rejections        ////////////////////////!!!!!!!!!!!!
       
           // Update progress
           console.log('progress ', progress)

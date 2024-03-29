@@ -28,7 +28,7 @@
 <script async src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <!-- <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet"> -->
 <link rel="stylesheet" href="scripts/lib/leaflet/leaflet.css" id='leaflet-css' as='style' onload="this.media='all'">
-<link rel="stylesheet" href="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.css" id='easybutton-css' as='style' disabled onload="this.media='all'">
+<link rel="stylesheet" href="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.css" id='easybutton-css' as='style' onload="this.media='all'">
 <link rel="stylesheet"  href="styles/modal.css" >
 
 <link rel="stylesheet" href="styles/app.css" id='app-css' as='style' onload="this.media='all'">
@@ -36,27 +36,26 @@
 <!-- <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script> -->
 
 </head>
-<h3 id='Alert' align = 'center' style='display:initial;z-index:3;position:absolute;text-align:center; width:60%;margin-left:20%;top:25px;display:none;color:yellow;font-size:15px;'>dddd
-</h3>
+
 <h4 id='MapLoading' data-html2canvas-ignore align = 'center' style='display:none;z-index:3;position:absolute;left:calc(50% - 25px);top:200px;display:none; z-index:3'>
   <img id='maploadinggif' data-html2canvas-ignore src="images/checkingPw.gif"  loading='lazy' alt="..." style='width:50px ; height:50px;' >
 </h4>
-<h5 id='bot' class='bot' align = 'center' style=' font-weight:normal;padding-left: 10px;z-index:3;position:absolute;text-align:center; height: 40px; width:50%;line-height:40px;margin-left:25%;top:25px;display:none;background-color:#616060;border-radius:20px;font-size:15px;'>
-</h5>
+<!-- <h5 id='bot' class='bot' align = 'center' style=' font-weight:normal;padding-left: 10px;z-index:3;position:absolute;text-align:center; height: 40px; width:50%;line-height:40px;margin-left:25%;top:25px;display:none;background-color:#616060;border-radius:20px;font-size:15px;'>
+</h5> -->
 <body id='body' style='height:100%;background-color:#232222'>
 <!-- <iframe id='cartomap' width="100%" height="100%" src="https://pinea.app.carto.com/map/00a98901-6423-4cf2-8446-58c4d5890445"></iframe> -->
-<button id='seefullchat' class='button' style='display:none; cursor:pointer; background-color:#DEDDDD; border-color:#DEDDDD; margin-top:55px;margin-left:calc(100% - 100px) '>
+<!-- <button id='seefullchat' class='button' style='display:none; cursor:pointer; background-color:#DEDDDD; border-color:#DEDDDD; margin-top:55px;margin-left:calc(100% - 100px) '>
   <img src="images/arrowLeft.png" alt="..." style='width:30px; height:30px'>
-</button>
-<h1 id='showAreaAcres' style='z-index:3;position:absolute; text-align:center; width:100%;display:none;color:yellow;font-size:19px' ></h1>
-    <h2 id='showAreaHa' style='z-index:3;position:absolute; text-align:center; width:100%;display:none;color:yellow;font-size:19px' ></h2>
+</button> -->
+<!-- <h1 id='mapsummary' style='z-index:3;position:absolute; text-align:center; width:100%;display:none;color:yellow;font-size:19px' ></h1>
+    <h2 id='showAreaHa' style='z-index:3;position:absolute; text-align:center; width:100%;display:none;color:yellow;font-size:19px' ></h2> -->
 
-  <h3 id='Alert' align = 'center' style='z-index:3;position:absolute;text-align:center; width:60%;margin-left:20%;top:25px;display:none;color:yellow;font-size:15px;'>
+  <!-- <h3 id='Alert' align = 'center' style='z-index:3;position:absolute;text-align:center; width:60%;margin-left:20%;top:25px;display:none;color:yellow;font-size:15px;'>
   </h3>
   <h4 id='MapLoading' data-html2canvas-ignore align = 'center' style='display:none;z-index:3;position:absolute;left:calc(50% - 25px);top:200px;display:none; z-index:3'>
     <img id='maploadinggif' data-html2canvas-ignore src="images/checkingPw.gif"  loading='lazy' alt="..." style='width:50px ; height:50px;' >
-  </h4>
-<body id='body' style='height:100%;background-color:black'>
+  </h4> -->
+<!-- <body id='body' style='height:100%;background-color:black'> -->
   <div id='switches' style="z-index:1000;top:150px;display:none;position:fixed;font-size:17px;font-family:'Ubuntu'">
 <div class="sliderWrapper" >
   <div style="font-family:'Ubuntu'"> WITH the support of WCL team</div>
@@ -113,16 +112,16 @@
     <div class="container" >
       <!-- <p id='AlertModalIOS' align = 'center' style='z-index:0;display:none;position:absolute;left:calc(50% - 120px);top:15px;color:yellow;font-size:14px; width:240px;font-family:'Ubuntu' '> labelllll</p> -->
         <input id='enteredName'  type="text" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = '16'
-        style='display:none;margin-left:4px;width:260px;height:40px; border: 1px solid grey;background-color: white;color:grey; text-align:center;letter-spacing: 5px;font-size:17px;'placeholder = "Name" required>
+        style='display:none;margin-left:4px;width:260px;height:40px; border: 1px solid grey;background-color: white;color:grey; text-align:center;letter-spacing: 5px;font-size:17px;'placeholder = "🆔 Name" required>
         
         <input id='enteredPhone'  type="number" novalidate value='Validate'oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = '16'
-        style='display:none;margin-left:4px;border-color:grey;background-color: white;color:grey; text-align:center;letter-spacing: 5px;font-size:17px;'placeholder = "Phone number" required>
+        style='display:none;margin-left:4px;border-color:grey;background-color: white;color:grey; text-align:center;letter-spacing: 5px;font-size:17px;'placeholder = "📞 Phone Number" required>
  
         <input id='enteredPw'  type="number" novalidate value='Validate'oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = '16'
-        style='display:none;margin-left:4px;border-color:grey;background-color: white;color:grey; text-align:center;letter-spacing: 5px;font-size:17px;'placeholder = "Password" required>
+        style='display:none;margin-left:4px;border-color:grey;background-color: white;color:grey; text-align:center;letter-spacing: 5px;font-size:17px;'placeholder = "🔐 Password" required>
  
       <button id='login' class='button'style='display:none;outline:none;margin-left:calc(50% - 25px); margin-bottom:10px;width:50px ; height:50px; border: 1px solid white; border-color:white; border-radius:50px' >
-        <img id = 'loginIcon' src="images/ThumbsUpGreen.png"  loading='lazy' alt="..." style=' width:30px ; height:30px;' >
+        <img id = 'loginIcon' src="images/ThumbsUp.png"  loading='lazy' alt="..." style=' width:30px ; height:30px;' >
       </button>
 
     </div>
@@ -241,6 +240,8 @@
     <a href="http://www.openstreetmap.org/copyright">© OpenStreetMap | </a>
     <a href="https://www.mapbox.com/map-feedback/" target="_blank"><strong></strong></a>
   </div> -->
+  <p id='mapsummary' align = 'center' style='display:initial;z-index:30000;position:absolute;text-align:center; width:60%;margin-left:20%;top:5px;display:none;color:rgb(252, 250, 250);font-size:20px;'>
+  </p>
 </div>
 
 <div id='classification' style='display: flex; justify-content: center; align-items: center; left:19%;width: 70%; position: fixed; bottom: 5px; transform: translateY(-50%); z-index: 3;'>
@@ -250,14 +251,14 @@
   <!-- Assuming emoji is another button or input for simplification -->
 
   <!-- <input id="emojionearea" class="inputtext" placeholder='Search ground data...' style='display:none;margin-bottom:15px;margin-left:10px; margin-right: 10px;width:calc(100% - 300px);vertical-align:middle;  height:40px; border-radius: 20px; border-color:white; background-color: #DEDDDD; font-size:16px; padding:0px 15px;'> -->
-  <button id='searchWocMap' class='button' aria-label='searchWocMap' style='display:none;cursor:pointer; background-color: #DEDDDD; border-color: #DEDDDD; margin-bottom:10px;margin-left:10px; margin-right: 10px;'>
+  <!-- <button id='searchWocMap' class='button' aria-label='searchWocMap' style='display:none;cursor:pointer; background-color: #DEDDDD; border-color: #DEDDDD; margin-bottom:10px;margin-left:10px; margin-right: 10px;'>
     <img id='imagesearchWocMap' src="images/arrowUp.png" alt="..." style='width:30px; height:30px'>
-  </button>
-  <button id='gobackUploadmap' class='button' aria-label = 'field' style='display:none;z-index:3; position:relative'>
+  </button> -->
+  <button id='gobackUploadmap' class='button' aria-label = 'field' style='display:none;z-index:3; position:relative; border-color: #afafaf; background-color: #afafaf'>
     <img src="images/backButton.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
   </button>
-  <button id='confirmuploadedmap' class='button' aria-label = 'armchair' style='display:none;z-index:3; position:relative;'>
-    <img src="images/ThumbsUpGreen.png"  loading='lazy' alt="..." style='width:30px ; height:30px;margin-left:-2px'>
+  <button id='confirmuploadedmap' class='button' aria-label = 'armchair' style='display:none;z-index:3; position:relative;border-color:#afafaf; background-color:#afafaf'>
+    <img src="images/ThumbsUp.png"  loading='lazy' alt="..." style='width:30px ; height:30px;margin-left:-2px'>
   </button>
 </div>
 <button id="camera"  class = 'buttonsCameraScreenshot' aria-label = 'camera' style='position:fixed; display:none;width:50px;left:calc(50% + 10px);height:50px;bottom:150px;border-radius: 50px'>
@@ -268,7 +269,7 @@
   <img id="imageScreenshot" src="images/screenshot.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
 </button>
 
-<div align='center' style='z-index:2; position:relative; margin-top:-90px' >
+<!-- <div align='center' style='z-index:2; position:relative; margin-top:-90px' >
 
   <button id='gobackUploadmap' class='button' aria-label = 'field' style='display:none;z-index:3; position:relative'>
     <img src="images/backButton.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
@@ -276,8 +277,8 @@
   <button id='confirmuploadedmap' class='button' aria-label = 'armchair' style='display:none;z-index:3; position:relative;'>
     <img src="images/ThumbsUpGreen.png"  loading='lazy' alt="..." style='width:30px ; height:30px;margin-left:-2px'>
   </button>
-</div>
-<div id='classification' style='display:none; vertical-align:top;z-index:2; position:relative; margin-top:-90px;'>
+</div> -->
+<!-- <div id='classification' style='display:none; vertical-align:top;z-index:2; position:relative; margin-top:-90px;'>
   <button id='Cancel' class='button' aria-label = 'Cancel' style='border: 2px solid white; background-color:white'>
     <img src="images/backButton.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
   </button>
@@ -288,7 +289,7 @@
     <img src="images/backButton.png" loading='lazy'  alt="..." style='margin-left:2px; width:30px ; height:30px'>
   </button>
 
- </div> 
+ </div>  -->
   <!-- <div id='classification' align:centre style='display:none; width:100%;vertical-align:top;z-index:3; position:fixed; margin-top:-90px;'>
 
   <button id='backtohomepage' class='button' aria-label = 'backEditDelete' style='cursor:pointer;display:initial; left: calc(15% - 0px);background-color:#DEDDDD;; border-color:#DEDDDD'>
@@ -310,17 +311,19 @@
 
 
   <script defer src="sw.js"></script>
-  <script defer src="scripts/modal.js"></script>
-  <!-- <script defer src="scripts/app.js"></script> -->
   <script defer src=".env/publicApiKeys.js"></script>
 
+  <script defer src="scripts/modal.js"></script>
+  <!-- <script defer src="scripts/app.js"></script> -->
   <script defer src="scripts/camera.js"></script>
 
   <script defer src="scripts/convertwa.js"></script>
+  <script defer src="scripts/map.js"></script>
+
   <script defer src="scripts/datasubmission.js"></script>
 
 <!-- <script defer src="scripts/elements.js"></script> -->
-<script defer src="scripts/searchGD.js"></script>
+<!-- <script defer src="scripts/searchGD.js"></script> -->
 <!-- <script defer src="scripts/cartoLayer.js"></script> -->
 
 <!-- <script defer src="scripts/mapboxglcarto.js"></script> -->

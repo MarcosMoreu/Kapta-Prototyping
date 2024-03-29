@@ -57,249 +57,16 @@ var currentLocation = []; // variable created to allow the user recenter the map
 //   }
 
 // },50)
-var southWest = L.latLng(-70, -180);
-var northEast = L.latLng(80, 180);
-var map = L.map('map', {
-  renderer: L.canvas({padding: 0.5, tolerance: 8}),
-  editable: true,
-  center: [0, 0], //global center
-  zoom: 2,
-  minZoom: 2,
-  maxZoom: 21,
-  zoomControl: false,
-  attributionControl: false,
-
-  maxBounds: L.latLngBounds(southWest, northEast)
-});
-map.addControl(L.control.attribution({
-  position: 'bottomright',
-  prefix: ''
-}));
-var scale = L.control.scale({
-  maxWidth: 100,
-  metric: true,
-  imperial: false,
-}).addTo(map);
 
 
-// var basemapDarkButton = L.easyButton({
-//   id: 'dark',
-//   class: 'easyButton',
-//   position: 'topright',
-//   //background:'images/forest.png',
-//   states: [{
-//       // icon: '<img src="images/osm.png" width=40px ; height=40px; style="margin-left:-10px"> ',
-//       icon: iconOSM,
-//       //  background:"images/forest.png",
-//       stateName: 'check-mark',
-//       onClick: function(btn, map) {
-//         planet_Button.button.style.backgroundColor = 'white';
-//         setTimeout(function(){ // to avoid the 1-2 sec waiting while local storage layer is loading
-//           planet_Button.button.style.backgroundColor = 'black';
-//         },300)
-
-//         // startSearchingLocation()
-
-//         document.getElementById("MapLoading").style.display = 'initial'
-
-
-//         //   mapCurrentZoom = map.getZoom();
-//         //  // //console.log('zoom1', mapCurrentZoom)
-//         //   if(mapCurrentZoom >19){
-//         //     map.setZoom(19)//because OSM does not provide tiles beyond zoom 19
-//         //     mapCurrentZoom = map.getZoom();
-//         //   }
-
-//           googleSat.removeFrom(map);
-//           map.options.maxZoom = 19; //Set max zoom level as OSM does not serve tiles with 20+ zoom levels
-//           map.options.minZoom = 2;
-//           osm_Button.removeFrom(map);
-//           planet_Button.addTo(map);
-
-//           try{
-//             osm.addTo(map);
-
-//             osm.on("load",function() {
-
-//               //console.log("all visible osm tiles have been loaded")
-//               // document.getElementById("Alert").style.display = 'none'
-//               document.getElementById("MapLoading").style.display = 'none'
-
-//              });
-
-//           }catch{
-//             //console.log('error loading osm tiles')
-//           }
-
-
-//           basemapOn = 'osm'
-//           return basemapOn;
-//       }
-//   }]
-// });
-// basemapDarkButton.button.style.width = '50px';
-// basemapDarkButton.button.style.height = '50px';
-// basemapDarkButton.button.style.transitionDuration = '.3s';
-// basemapDarkButton.button.style.backgroundColor = 'black';
-
-
-
-// var basemapDark = L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
-  var basemapDark = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFyY29zbW9yZXV1Y2wiLCJhIjoiY2xwZHNlbmFpMDVoZjJpcGJxOHplOGw0ZCJ9.MiHNkvMRkTcfndsLMH166w', {
-    minZoom: 2,
-    maxZoom: 21,
-    maxNativeZoom: 21,
-    opacity: 1,
-    savetileend:false,
-    cache:false,
-    //border: 'solid black 5px',
-    subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-    attribution: 'Leaflet | Mapbox | OSM Contributors',
-}).addTo(map);
-
-var basemapSat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFyY29zbW9yZXV1Y2wiLCJhIjoiY2xwZHNlbmFpMDVoZjJpcGJxOHplOGw0ZCJ9.MiHNkvMRkTcfndsLMH166w', {
-  minZoom: 2,
-  maxZoom: 21,
-  maxNativeZoom: 21,
-  opacity: 1,
-  // savetileend:true,
-  // cache:false,
-  //border: 'solid black 5px',
-  subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-  attribution: 'Leaflet | Mapbox | OSM Contributors',
-})
-var iconGOOGLE = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-5px" > ';
-
-var basemapButton = L.easyButton({
-  id: 'sat',
-  class: 'easyButton',
-  position: 'topright',
-  states: [{
-      icon: iconGOOGLE,
-      //stateName: 'check-mark',
-      onClick: function(btn, map) {
-        basemapButton.button.style.backgroundColor = 'white';
-        setTimeout(function(){
-          basemapButton.button.style.backgroundColor = 'black';
-        },300)
-        // document.getElementById("MapLoading").style.display = 'initial'
-
-        if(activeBasemap == 'sat'){
-          activeBasemap = 'dark'
-          basemapSat.removeFrom(map);
-          basemapDark.addTo(map);
-        }else{
-          activeBasemap = 'sat'
-
-          basemapDark.removeFrom(map);
-          basemapSat.addTo(map);
-        
-        }
-        return activeBasemap
-      }
-  }]
-}).addTo(map);
-
-basemapButton.button.style.width = '50px';
-basemapButton.button.style.height = '50px';
-basemapButton.button.style.transitionDuration = '.3s';
-basemapButton.button.style.borderColor = 'transparent';
-// basemapButton.button.style.borderRadius = '25px';
-
-//for gps location
-const options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0,
-};
-
-function success(pos) {
-  const crd = pos.coords;
-  const lat = pos.coords.latitude;
-  const lng = pos.coords.longitude;
-  currentLocation = [lat, lng];
-
-  
-
-  console.log("Your current position is:");
-  console.log(`Latitude : ${crd.latitude}`);
-  console.log(`Longitude: ${crd.longitude}`);
-  console.log(`More or less ${crd.accuracy} meters.`);
-}
-
-function error(err) {
-  console.warn(`ERROR(${err.code}): ${err.message}`);
-}
-
-navigator.geolocation.getCurrentPosition(success, error, options);
-
-var gpsPositionIcon = L.icon({
-  className: "GPSIconShadow",
-  iconUrl: 'images/manNoOrientation.png',
-  iconSize: [50, 50], // size of the icon
-  iconAnchor: [25,25], // point of the icon which will correspond to marker's location, relative to its top left showCoverageOnHover
-
-  // shadowUrl:'images/cone.png',
-  // shadowSize:   [50,50], // size of the shadow
-  // shadowAnchor: [7, 7],  // the same for the shadow
-  //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-});
-var gpsButton = L.easyButton({
-  id: 'gps',
-  class: 'easyButton',
-  position: 'topleft',
-  states: [{
-      icon: iconGOOGLE,
-      //stateName: 'check-mark',
-      onClick: function(btn, map) {
-        gpsButton.button.style.backgroundColor = 'white';
-        setTimeout(function(){
-          gpsButton.button.style.backgroundColor = 'black';
-        },300)
-        // var currentLocation = navigator.geolocation.getCurrentPosition() 
-
-        // document.getElementById("MapLoading").style.display = 'initial'
-        if (currentLocation[0] != null) {
-          console.log(currentLocation)
-          position = L.marker(currentLocation, {
-            icon: gpsPositionIcon,
-            // rotationAngle: 90,
-            draggable:false,
-            zIndexOffset:100
-        }).addTo(map);
-        map.flyTo(currentLocation, 10);
- 
-        }
-        if (currentLocation[0] == null) {
-            //gps_Button.button.style.backgroundColor = 'red';
-            document.getElementById('gps').src = 'images/gpsSearching.gif'
-            // navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
-            // navigator.geolocation.getCurrentPosition()
-        }
-
-        return activeBasemap
-      }
-  }]
-}).addTo(map);
-
-gpsButton.button.style.width = '50px';
-gpsButton.button.style.height = '50px';
-gpsButton.button.style.transitionDuration = '.3s';
-gpsButton.button.style.borderColor = 'transparent';
-// basemapButton.button.style.borderRadius = '25px';
-
-var currentZoom = map.getZoom();
-
-// setTimeout(function(){
-//   clearInterval(intervalremoveattributes)
-// },2000)
-console.log('timestamp',timestamp)
-var screenshotTaken = false
 function displayFile(file) {
   document.getElementById('confirmuploadedmap').style.opacity = '0.4'
   document.getElementById('confirmuploadedmap').disabled = true
   document.getElementById('gobackUploadmap').style.opacity = '0.4'
   document.getElementById('gobackUploadmap').disabled = true
+  gpsButton.button.style.opacity = '0.4'
+  basemapButton.button.style.opacity = '0.4'
+
   gpsButton.button.disabled = true
   basemapButton.button.disabled = true
   // document.getElementById('MapLoading').style.display = 'initial'
@@ -384,7 +151,7 @@ console.log('manualupload',manualupload)
       // document.getElementById('initialscreen2options').style.display = 'none'
       // setTimeout(function(){
 
-      document.getElementById('backFromFilter').style.display = 'none'
+      // document.getElementById('backFromFilter').style.display = 'none'
 
 
       // document.getElementById('initialscreen2options').style.display = 'none'
@@ -423,7 +190,14 @@ console.log('manualupload',manualupload)
 
 var topic
 document.getElementById('confirminputtext').onclick = function(){
+
+
   document.getElementById("confirminputtext").style.backgroundColor = "#a2a1a1";
+  nameOfTheGroup = document.getElementById("emojionearea").value
+
+  document.getElementById("mapsummary").innerHTML = '</br>' + '<img src="images/icons/icon-72x72.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" >  ' + '<img src="images/WhatsAppicon.png" text-align="center" alt="..." width=30px; height=30px style="top:50%; margin-bottom:3px" > ' + '</br>' + nameOfTheGroup + '</br> ' + totalcontribmap + ' contributions ' + '</br>' + date
+  document.getElementById("mapsummary").style.display = "initial"
+
 
   setTimeout(function(){
     document.getElementById("confirminputtext").style.backgroundColor = "white";
@@ -473,6 +247,7 @@ document.getElementById('confirminputtext').onclick = function(){
         if(screenshotTaken == false){
           screenshotTaken = true
         layerChatGeom.addTo(map)
+        scale.addTo(map);
         screenshot.click()
         map.dragging.enable();
         map.touchZoom.enable();
@@ -480,6 +255,8 @@ document.getElementById('confirminputtext').onclick = function(){
         document.getElementById('confirmuploadedmap').disabled = false
         document.getElementById('gobackUploadmap').style.opacity = '1'
         document.getElementById('gobackUploadmap').disabled = false
+        gpsButton.button.style.opacity = '1'
+        basemapButton.button.style.opacity = '1'
         gpsButton.button.disabled = false
         basemapButton.button.disabled = false
 
@@ -556,9 +333,16 @@ document.getElementById('gobackToInitialKaptalite').onclick = function(){
 
 
 document.getElementById('gobackUploadmap').onclick = function(){
-  setTimeout(function(){
+  document.getElementById('gobackUploadmap').style.backgroundColor = '#696868';
+  document.getElementById('gobackUploadmap').style.borderColor = '#696868';
 
-gobackUploadmap = true
+
+  setTimeout(function(){
+    document.getElementById('gobackUploadmap').style.backgroundColor = '#afafaf';
+    document.getElementById('gobackUploadmap').style.borderColor = '#afafaf';
+
+
+  gobackUploadmap = true
   document.getElementById("gobackUploadmap").style.display = "none";
   document.getElementById("gobackToInitialKaptalite").style.display = "none";
   document.getElementById("confirminputtext").style.display = "none";
@@ -577,12 +361,19 @@ gobackUploadmap = true
 
   document.getElementById('initialscreen2options').style.display = 'initial'
 document.querySelector('input[type=file]').value = ''
-  },200)
+  },300)
 return gobackUploadmap
 }
 
 document.getElementById('confirmuploadedmap').onclick = function(){
+  document.getElementById('confirmuploadedmap').style.backgroundColor = '#696868';
+  document.getElementById('confirmuploadedmap').style.borderColor = '#696868';
+
+
   setTimeout(function(){
+    document.getElementById('confirmuploadedmap').style.backgroundColor = '#afafaf';
+    document.getElementById('confirmuploadedmap').style.borderColor = '#afafaf';
+
 
   currentZoom = map.getZoom()
 
@@ -606,7 +397,7 @@ document.getElementById('confirmuploadedmap').onclick = function(){
   document.getElementById("confirmDataSubmision").style.display = "initial";
   document.getElementById("datasovmessage").style.display = "initial";
   document.getElementById("moredatasovinfo").style.display = "initial";
-  },200)
+  },300)
 
   // console.log('totalContributions',totalcontrib)  
 

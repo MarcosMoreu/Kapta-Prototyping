@@ -7,7 +7,7 @@ document.getElementById('camera').addEventListener('click', async function init(
 document.getElementById('camera').style.display = 'none'
 document.getElementById('screenshot').style.display = 'none'
 document.getElementById("map").style.height = "0px";
-document.getElementById('showAreaAcres').style.display = 'none'
+// document.getElementById('showAreaAcres').style.display = 'none'
 
 
 
@@ -281,7 +281,7 @@ return photoAccepted && photocaptured
     document.getElementById("map").style.height = "100%";
     document.getElementById('camera').style.display = 'initial'
     document.getElementById('screenshot').style.display = 'initial'
-    document.getElementById('showAreaAcres').style.display = 'initial'
+    // document.getElementById('showAreaAcres').style.display = 'initial'
 
 
     photoAccepted = null
@@ -314,7 +314,7 @@ return photoAccepted && photocaptured
     document.getElementById("map").style.height = "100%";
     document.getElementById('camera').style.display = 'initial'
     document.getElementById('screenshot').style.display = 'initial'
-    document.getElementById('showAreaAcres').style.display = 'initial'
+    // document.getElementById('showAreaAcres').style.display = 'initial'
 
     // document.getElementById('screenshot').style.opactiy = '0.3'
     // document.getElementById('screenshot').disabled = true

@@ -303,9 +303,28 @@ var arrayOfImages = [
 var sharetarget = false
 var manualupload = true
 var homescreenorwhatsapplaunch
+var checkfields = setInterval(function(){
+  var valueEnteredName = document.getElementById('enteredName').value
+  var valueEnteredPhone = document.getElementById('enteredPhone').value
+  var valueEnteredPw = document.getElementById('enteredPw').value
+
+  if(valueEnteredName != '' && valueEnteredPhone != '' && valueEnteredPw != ''){
+    document.getElementById('login').style.opacity='1';
+    document.getElementById('login').disabled = false;
+    document.getElementById('login').style.borderColor= 'grey'
+    // clearInterval(checkfields)
+  }else{
+    document.getElementById('login').style.opacity='0.4';
+    document.getElementById('login').disabled = true;
+    document.getElementById('login').style.borderColor= 'white'
+  }
+  
+},300)
 var firstLoad = function() { //fucntion to determine if the site is visited for first time
   console.log('FIRST LOAD CALLED')
   console.log('sharetarget',sharetarget)
+  document.getElementById('login').style.opacity='0.4';
+  document.getElementById('login').disabled = true;
 
   // console.log('isfirstload??')
   //$.getScript("lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.Draw.Event.js")
@@ -450,8 +469,8 @@ setTimeout(function(){
   // if(isIOS == true){
   //   document.getElementById('AlertModalIOS').style.display = 'initial'
   // }
-  document.getElementById('AlertModalIOS').style.display = 'initial'
-  document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
+  // document.getElementById('AlertModalIOS').style.display = 'initial'
+  // document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
 
 
 },2900)
@@ -462,8 +481,8 @@ document.getElementById('loginInfo').onclick = function(){
 
 document.getElementById('loginKey').onclick = function(e){
   // document.getElementById('AlertModalIOS').innerHTML = '</br></br> 📞 Enter your phone number 📞'
-  document.getElementById('AlertModalIOS').style.display = 'initial'
-  document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
+  // document.getElementById('AlertModalIOS').style.display = 'initial'
+  // document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
   e.preventDefault() //to avoid reload
     document.getElementById('loginKey').disabled = true
   document.getElementById('loginKey').style.display = 'none'
@@ -1056,13 +1075,16 @@ var requestPw = function(){
           //   //console.log(promise)
         var openAppPwSuccesful = function(){
               if(authentication == 'successful' && done == true){
-                $.getScript({
-                   cache:true,
-                  url:'scripts/customIcons_v3.js'
-                })  //map loads after this
-                document.getElementById('AlertModalIOS').innerHTML = ''
-                document.getElementById('AlertModalIOS').style.display = 'initial'
-                document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
+                document.getElementById('login').style.borderColor= 'white'
+
+                clearInterval(checkfields)
+                // $.getScript({
+                //    cache:true,
+                //   url:'scripts/customIcons_v3.js'
+                // })  //map loads after this
+                // document.getElementById('AlertModalIOS').innerHTML = ''
+                // document.getElementById('AlertModalIOS').style.display = 'initial'
+                // document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
                 document.getElementById('login').disabled = true // to avoid that user clicks twice while waiting, in which case carto layer would load twice
                  //console.log('both')
                  localStorage.setItem('pwCorrect', true);
@@ -1095,26 +1117,26 @@ var requestPw = function(){
 
                 },3000)
                 //in case first load is with url geoJSON -- not the best approach ever, but it works.
-                if(urlContainsGeoJSON == true){
-                  var activateLocalStorageLayer = setInterval(function(){
-                    //console.('checking encodedgeojsonurl')
-                    if(localStorageLayer != null){
-                      try{
-                        document.getElementById('myLayerButton').click()
-                        clearInterval(activateLocalStorageLayer)
-                      }catch(e){}
+                // if(urlContainsGeoJSON == true){
+                //   var activateLocalStorageLayer = setInterval(function(){
+                //     //console.('checking encodedgeojsonurl')
+                //     if(localStorageLayer != null){
+                //       try{
+                //         document.getElementById('myLayerButton').click()
+                //         clearInterval(activateLocalStorageLayer)
+                //       }catch(e){}
 
-                    }
-                  },500) // really don't know why this timeout, but keep it for now
+                //     }
+                //   },500) // really don't know why this timeout, but keep it for now
 
-                }
+                // }
 
               }
               else if(authentication == 'failed'){
                 clearInterval(checkDoneAndFirebasePW)
-                document.getElementById('AlertModalIOS').innerHTML = '⚠️ </br></br>The app is temporarily </br> password protected'
-                document.getElementById('AlertModalIOS').style.display = 'initial'
-                document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
+                // document.getElementById('AlertModalIOS').innerHTML = '⚠️ </br></br>The app is temporarily </br> password protected'
+                // document.getElementById('AlertModalIOS').style.display = 'initial'
+                // document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
 
                 // console.log('none')
 
@@ -1124,7 +1146,7 @@ var requestPw = function(){
                 setTimeout(function(){
                   //requestPw()
                   document.getElementById('enteredPw').style.backgroundColor = 'white'
-                  document.getElementById('loginIcon').src = 'images/ThumbsUpGreen.png'
+                  document.getElementById('loginIcon').src = 'images/ThumbsUp.png'
                   document.getElementById('login').style.borderColor= 'grey'
                   // document.getElementById('login').style.borderColor = 'red'
 
