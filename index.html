@@ -58,14 +58,14 @@
 <!-- <body id='body' style='height:100%;background-color:black'> -->
   <div id='switches' style="z-index:1000;top:150px;display:none;position:fixed;font-size:17px;font-family:'Ubuntu'">
 <div class="sliderWrapper" >
-  <div style="font-family:'Ubuntu'"> WITH the support of WCL team</div>
+  <div id='textswitch1' style="font-family:'Ubuntu'"> WITH the support of WCL team</div>
     <label class="switch" style="margin-top:15px; margin-left:10px">
       <input id='switch1' type="checkbox" >
       <span class="sliderDataSovereignty" ></span>
     </label>
 </div>
 <div class="sliderWrapper" >
-  <div style="font-family:'Ubuntu'"> WITHOUT support</div>
+  <div id='textswitch2' style="font-family:'Ubuntu'"> WITHOUT support</div>
     <label class="switch" style="margin-top:15px; margin-left:105px">
       <input id='switch2' type="checkbox" >
       <span class="sliderDataSovereignty" ></span>
@@ -85,16 +85,15 @@
 </button>
 
 
-  <div align='center' id = 'TextRequest' style='z-index:1000;position:relative;display:none;text-align:center;'>
+  <!-- <div align='center' id = 'TextRequest' style='z-index:1000;position:relative;display:none;text-align:center;'>
     <p style='text-align:center;color:white; margin-top:80px; font-size:10;margin-left:15px; margin-right:15px'>
       This form allows you to task the mappers by adding/advertising text & pictorial field in the map semantics interface. For more information please get in touch.</p>
       <img id='loadingCognito' src="../images/checkingPw.gif" loading="lazy" style='margin-left:calc(50% - 30px);width:60px; height:60px;margin-top:10px'>
 
       <div class="cognito" id='cognitoForm' disabled style='display:none; margin-top:-120px; margin-left:30px;margin-right:30px'>
 
-        <!-- <script defer src="https://www.cognitoforms.com/s/EB26QD5cT0Cz2sSzqKJF5w"></script> -->
       </div>
-  </div>
+  </div> -->
 <div id="modal" class='modal' style='z-index:100000;background-color:black'>
   <form id='pwForm'  class="modal-content animate" style='z-index:100000;margin-top:80px; width:300px; border-radius:50px' >
 
@@ -159,13 +158,15 @@
     <!-- <img src="images/ThumbsUpGreen.png"  loading='lazy' alt="..." style='width:30px ; height:30px;margin-left:-2px'> -->
   Confirm</button>
 
-  <button id='gobackToMap' class='button' aria-label = 'field' style='position:absolute;vertical-align: middle;display:none;z-index:100;outline:none;left:calc(50% - 25px); top:calc(90% - 50px);width:50px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' '>
+  <button id='gobackToMap' class='button' aria-label = 'field' style='position:absolute;vertical-align: middle;display:none;z-index:100;outline:none;left:calc(50% - 25px); top:calc(90% - 50px);width:50px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
     <img src="images/backButton.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
   </button>
   <select id="languages" class='buttonInitial' style='cursor:pointer;margin-left:calc(50% - 100px);display:none;z-index:100;outline:none;top:calc(50% - 300px);width:200px ; height:50px; border: 0px solid white;background-color: transparent;border-color:none; border-radius:15px; font-size:18px;' >
     <option align = 'center' value="en">🇬🇧 English</option>
    <option align = 'center' value="es">🇪🇸 Español</option>
    <option align = 'center' value="fr">🇫🇷 Français</option>
+   <option align = 'center' value="am">🇪🇹 አማርኛ</option>
+
   </select>
 
   <!-- <button id='languages' class='buttonInitial'style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(50% - 300px);width:200px ; height:50px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;' >
@@ -203,6 +204,12 @@
   <button id='gobackToInitialKaptalite' class='button' aria-label = 'field' style='vertical-align: middle;display:none;position:absolute;z-index:100;outline:none;left:calc(50% - 25px); top:600px;width:50px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px;'>
     <img src="images/backButton.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
   </button>
+  <button id='gobackfromtutorial' class='button' aria-label = 'field' style='vertical-align: middle;display:none;position:absolute;z-index:100;outline:none;left:calc(50% - 25px); top:600px;width:50px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px;'>
+    <img src="images/backButton.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
+  </button>
+  <iframe id='youtubeVideo' preload="auto" style='width:100%; height:80%;left:0%;position:absolute;top:110px; display:none; border:grey'
+  src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
   <p id='inputtextlabel' align = 'center' style='z-index:0;display:none;position:absolute;left:calc(50% - 120px);margin-top:80px;color:rgb(7, 7, 7);font-size:18px; width:240px;font-family:'Ubuntu' '> What have you mapped in this WhatsApp group? </br> </p>
 
   <input id="emojionearea" class="inputtext" placeholder='...' style='display:none;position:absolute;margin-top:150px;left:calc(50% - 130px); margin-right: 10px;width:250px;vertical-align:middle;  height:40px; border-radius: 20px; border-color:white; background-color: #DEDDDD; font-size:16px; padding:0px 15px;font-size:18px; font-family:'Ubuntu''>
@@ -214,7 +221,7 @@
   </button> -->
 
 
-  <p id='disclaimer' align = 'center' style='z-index:0;display:none;position:absolute;left:calc(50% - 120px);top:calc(50% + 100px);color:yellow;font-size:14px; width:240px;font-family:'Ubuntu' '> </br> </p>
+  <!-- <p id='disclaimer' align = 'center' style='z-index:0;display:none;position:absolute;left:calc(50% - 120px);top:calc(50% + 100px);color:yellow;font-size:14px; width:240px;font-family:'Ubuntu' '> </br> </p>
 
 
 <button id='viewmap' class='buttonInitial'style='display:none;z-index:100;outline:none;margin-left:calc(50% - 70px); top:calc(50% - 100px);width:140px ; height:140px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
@@ -229,7 +236,7 @@
   <button id='dropDown' style='display:initial;cursor:pointer;z-index:3000;display:none;outline:none;left: 25px;top:25px;height:30px;border:none; background:transparent;border-radius: 5px;'>
     <img id='imageDropDown' src="../images/burger.png" loading="lazy" style='width:22px ; height:17px;margin-top:2px'>
   </buttong>
-</div>
+</div> -->
 
 <p id='kaptainitialscreen' style='z-index:5000;display:initial;text-align: center;position:fixed;width:100%;bottom:-1px;font-size:15px;color:rgb(100, 2, 2); font-family:'Ubuntu' '> by Wisdom of the Crowd Labs (WCL)</p>
 </div>
@@ -314,13 +321,17 @@
   <script defer src=".env/publicApiKeys.js"></script>
 
   <script defer src="scripts/modal.js"></script>
+  <script defer src="scripts/buttons.js"></script>
+
   <!-- <script defer src="scripts/app.js"></script> -->
-  <script defer src="scripts/camera.js"></script>
 
   <script defer src="scripts/convertwa.js"></script>
   <script defer src="scripts/map.js"></script>
+  <script defer src="scripts/camera.js"></script>
 
   <script defer src="scripts/datasubmission.js"></script>
+  <script defer src="scripts/languages.js"></script>
+
 
 <!-- <script defer src="scripts/elements.js"></script> -->
 <!-- <script defer src="scripts/searchGD.js"></script> -->

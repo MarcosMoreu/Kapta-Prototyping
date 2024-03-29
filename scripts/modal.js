@@ -321,6 +321,7 @@ var checkfields = setInterval(function(){
   
 },300)
 var firstLoad = function() { //fucntion to determine if the site is visited for first time
+  changeLanguage()
   console.log('FIRST LOAD CALLED')
   console.log('sharetarget',sharetarget)
   document.getElementById('login').style.opacity='0.4';
