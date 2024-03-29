@@ -525,12 +525,12 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
 
                return true;
            }
-           if( 'leaflet-tile' == element.classList ) {
-             // console.log('ignored button,submit or link or LEAFLET', element.id)
-             console.log(element)
+          //  if( 'leaflet-tile' == element.classList ) {
+          //    // console.log('ignored button,submit or link or LEAFLET', element.id)
+          //    console.log(element)
 
-               return true;
-           }
+          //      return true;
+          //  }
            // if( ignoretiles == element.classList){
            //   console.log('google tiles ignored in the screenshot')
            //   return true
@@ -581,27 +581,27 @@ setTimeout(function(){ //this is simply to improve button interaction with 300ms
           // planet_Button.button.style.display = 'initial';
           // googleSat_Button.button.style.display = 'initial';
           // osm_Button.button.style.display = 'initial';
-          document.getElementById("imageScreenshot").src = 'images/screenshot.png'
-          document.getElementById("goBackClassification").disabled = false
-          document.getElementById("shareMessagingAppsDirect").disabled = false
-          document.getElementById("shareWorldButton").disabled = false
-          document.getElementById("ShareFinalButton").disabled = false
-          document.getElementById("screenshot").disabled = false
-          document.getElementById("camera").disabled = false
-          document.getElementById("showAreaAcres").style.display = 'initial'
-          document.getElementById('screenshot').style.borderColor = '#39F70F'
-          // document.getElementById("ShareFinalButton").click()
-          document.getElementById("Alert").style.display = 'none'
-          document.getElementById("Alert").style.display = 'none'
-          // document.getElementById('showAreaAcresScreenshot').style.display = 'none'
+          // document.getElementById("imageScreenshot").src = 'images/screenshot.png'
+          // // document.getElementById("goBackClassification").disabled = false
+          // // document.getElementById("shareMessagingAppsDirect").disabled = false
+          // // document.getElementById("shareWorldButton").disabled = false
+          // // document.getElementById("ShareFinalButton").disabled = false
+          // // document.getElementById("screenshot").disabled = false
+          // // document.getElementById("camera").disabled = false
+          // document.getElementById("showAreaAcres").style.display = 'initial'
+          // document.getElementById('screenshot').style.borderColor = '#39F70F'
+          // // document.getElementById("ShareFinalButton").click()
+          // document.getElementById("Alert").style.display = 'none'
+          // document.getElementById("Alert").style.display = 'none'
+          // // document.getElementById('showAreaAcresScreenshot').style.display = 'none'
 
-          document.getElementById('ShareFinalButton').disabled = false;
-          // document.getElementById('ShareFinalButton').style.backgroundColor = '#39F70F';
-          document.getElementById('ShareFinalButton').style.borderColor = 'black';
-          document.getElementById("screenshot").disabled = false
+          // // document.getElementById('ShareFinalButton').disabled = false;
+          // // document.getElementById('ShareFinalButton').style.backgroundColor = '#39F70F';
+          // document.getElementById('ShareFinalButton').style.borderColor = 'black';
+          // // document.getElementById("screenshot").disabled = false
 
 
-          document.getElementById("imagesharefinalbutton").src = 'images/sendComment.png'
+          // document.getElementById("imagesharefinalbutton").src = 'images/sendComment.png'
 
 
 

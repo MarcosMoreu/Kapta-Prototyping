@@ -18,50 +18,290 @@ var communitymapid
 var nameOfTheGroup
 var mapdataarray
 var bounds
-mapboxgl.accessToken = 'pk.eyJ1IjoibWFyY29zbW9yZXV1Y2wiLCJhIjoiY2xwZHNlbmFpMDVoZjJpcGJxOHplOGw0ZCJ9.MiHNkvMRkTcfndsLMH166w';
-const map = new mapboxgl.Map({
-container: 'map',
-// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-style: 'mapbox://styles/mapbox/satellite-streets-v12',
-zoom: 1.5,
-center: [30, 50],
-projection: 'globe',
-// customAttribution: 'Map design by me',
-// attributionControl: 'Leaflet | Mapbox and OpenStreetMap Contributors',
-// attributionControl: false
-});
+var layerChatGeom
+var activeBasemap = 'dark'
+var currentLocation = []; // variable created to allow the user recenter the map
 
-map.on('load', () => {
-// Set the default atmosphere style
-map.setFog({
-color: 'grey', // Lower atmosphere
-    'high-color': '#232222', // Upper atmosphere
-    'horizon-blend': 0.02, // Atmosphere thickness (default 0.2 at low zooms)
-    'space-color': '#232222', // Background color
-    'star-intensity': 0 // Background star brightness (default 0.35 at low zoooms )
-});
-});
+// mapboxgl.accessToken = 'pk.eyJ1IjoibWFyY29zbW9yZXV1Y2wiLCJhIjoiY2xwZHNlbmFpMDVoZjJpcGJxOHplOGw0ZCJ9.MiHNkvMRkTcfndsLMH166w';
+// const map = new mapboxgl.Map({
+// container: 'map',
+// // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+// style: 'mapbox://styles/mapbox/satellite-streets-v12',
+// zoom: 1.5,
+// center: [30, 50],
+// projection: 'globe',
+// // customAttribution: 'Map design by me',
+// // attributionControl: 'Leaflet | Mapbox and OpenStreetMap Contributors',
+// // attributionControl: false
+// });
 
-var intervalremoveattributes = setInterval(function(){
-  try{
-    var mapboxattrib1 = document.getElementsByClassName("mapboxgl-ctrl-bottom-right")
-    mapboxattrib1[0].style.display = 'none'
-    var mapboxattrib2 = document.getElementsByClassName("mapboxgl-ctrl-bottom-left")
-    mapboxattrib2[0].style.display = 'none'
-  }catch(e){
-    console.log('error', e)
-  }
+// map.on('load', () => {
+// // Set the default atmosphere style
+// map.setFog({
+// color: 'grey', // Lower atmosphere
+//     'high-color': '#232222', // Upper atmosphere
+//     'horizon-blend': 0.02, // Atmosphere thickness (default 0.2 at low zooms)
+//     'space-color': '#232222', // Background color
+//     'star-intensity': 0 // Background star brightness (default 0.35 at low zoooms )
+// });
+// });
 
-},50)
+// var intervalremoveattributes = setInterval(function(){
+//   try{
+//     var mapboxattrib1 = document.getElementsByClassName("mapboxgl-ctrl-bottom-right")
+//     mapboxattrib1[0].style.display = 'none'
+//     var mapboxattrib2 = document.getElementsByClassName("mapboxgl-ctrl-bottom-left")
+//     mapboxattrib2[0].style.display = 'none'
+//   }catch(e){
+//     console.log('error', e)
+//   }
+
+// },50)
+var southWest = L.latLng(-70, -180);
+var northEast = L.latLng(80, 180);
+var map = L.map('map', {
+  renderer: L.canvas({padding: 0.5, tolerance: 8}),
+  editable: true,
+  center: [0, 0], //global center
+  zoom: 2,
+  minZoom: 2,
+  maxZoom: 21,
+  zoomControl: false,
+  attributionControl: false,
+
+  maxBounds: L.latLngBounds(southWest, northEast)
+});
+map.addControl(L.control.attribution({
+  position: 'bottomright',
+  prefix: ''
+}));
+var scale = L.control.scale({
+  maxWidth: 100,
+  metric: true,
+  imperial: false,
+}).addTo(map);
+
+
+// var basemapDarkButton = L.easyButton({
+//   id: 'dark',
+//   class: 'easyButton',
+//   position: 'topright',
+//   //background:'images/forest.png',
+//   states: [{
+//       // icon: '<img src="images/osm.png" width=40px ; height=40px; style="margin-left:-10px"> ',
+//       icon: iconOSM,
+//       //  background:"images/forest.png",
+//       stateName: 'check-mark',
+//       onClick: function(btn, map) {
+//         planet_Button.button.style.backgroundColor = 'white';
+//         setTimeout(function(){ // to avoid the 1-2 sec waiting while local storage layer is loading
+//           planet_Button.button.style.backgroundColor = 'black';
+//         },300)
+
+//         // startSearchingLocation()
+
+//         document.getElementById("MapLoading").style.display = 'initial'
+
+
+//         //   mapCurrentZoom = map.getZoom();
+//         //  // //console.log('zoom1', mapCurrentZoom)
+//         //   if(mapCurrentZoom >19){
+//         //     map.setZoom(19)//because OSM does not provide tiles beyond zoom 19
+//         //     mapCurrentZoom = map.getZoom();
+//         //   }
+
+//           googleSat.removeFrom(map);
+//           map.options.maxZoom = 19; //Set max zoom level as OSM does not serve tiles with 20+ zoom levels
+//           map.options.minZoom = 2;
+//           osm_Button.removeFrom(map);
+//           planet_Button.addTo(map);
+
+//           try{
+//             osm.addTo(map);
+
+//             osm.on("load",function() {
+
+//               //console.log("all visible osm tiles have been loaded")
+//               // document.getElementById("Alert").style.display = 'none'
+//               document.getElementById("MapLoading").style.display = 'none'
+
+//              });
+
+//           }catch{
+//             //console.log('error loading osm tiles')
+//           }
+
+
+//           basemapOn = 'osm'
+//           return basemapOn;
+//       }
+//   }]
+// });
+// basemapDarkButton.button.style.width = '50px';
+// basemapDarkButton.button.style.height = '50px';
+// basemapDarkButton.button.style.transitionDuration = '.3s';
+// basemapDarkButton.button.style.backgroundColor = 'black';
+
+
+
+// var basemapDark = L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+  var basemapDark = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFyY29zbW9yZXV1Y2wiLCJhIjoiY2xwZHNlbmFpMDVoZjJpcGJxOHplOGw0ZCJ9.MiHNkvMRkTcfndsLMH166w', {
+    minZoom: 2,
+    maxZoom: 21,
+    maxNativeZoom: 21,
+    opacity: 1,
+    savetileend:false,
+    cache:false,
+    //border: 'solid black 5px',
+    subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+    attribution: 'Leaflet | Mapbox | OSM Contributors',
+}).addTo(map);
+
+var basemapSat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFyY29zbW9yZXV1Y2wiLCJhIjoiY2xwZHNlbmFpMDVoZjJpcGJxOHplOGw0ZCJ9.MiHNkvMRkTcfndsLMH166w', {
+  minZoom: 2,
+  maxZoom: 21,
+  maxNativeZoom: 21,
+  opacity: 1,
+  // savetileend:true,
+  // cache:false,
+  //border: 'solid black 5px',
+  subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+  attribution: 'Leaflet | Mapbox | OSM Contributors',
+})
+var iconGOOGLE = '<img src="images/google.png" alt="..." width=40px; height=40px; loading="lazy" text-align="center" style="top:50%;margin-left:-5px" > ';
+
+var basemapButton = L.easyButton({
+  id: 'sat',
+  class: 'easyButton',
+  position: 'topright',
+  states: [{
+      icon: iconGOOGLE,
+      //stateName: 'check-mark',
+      onClick: function(btn, map) {
+        basemapButton.button.style.backgroundColor = 'white';
+        setTimeout(function(){
+          basemapButton.button.style.backgroundColor = 'black';
+        },300)
+        // document.getElementById("MapLoading").style.display = 'initial'
+
+        if(activeBasemap == 'sat'){
+          activeBasemap = 'dark'
+          basemapSat.removeFrom(map);
+          basemapDark.addTo(map);
+        }else{
+          activeBasemap = 'sat'
+
+          basemapDark.removeFrom(map);
+          basemapSat.addTo(map);
+        
+        }
+        return activeBasemap
+      }
+  }]
+}).addTo(map);
+
+basemapButton.button.style.width = '50px';
+basemapButton.button.style.height = '50px';
+basemapButton.button.style.transitionDuration = '.3s';
+basemapButton.button.style.borderColor = 'transparent';
+// basemapButton.button.style.borderRadius = '25px';
+
+//for gps location
+const options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0,
+};
+
+function success(pos) {
+  const crd = pos.coords;
+  const lat = pos.coords.latitude;
+  const lng = pos.coords.longitude;
+  currentLocation = [lat, lng];
+
+  
+
+  console.log("Your current position is:");
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+}
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+navigator.geolocation.getCurrentPosition(success, error, options);
+
+var gpsPositionIcon = L.icon({
+  className: "GPSIconShadow",
+  iconUrl: 'images/manNoOrientation.png',
+  iconSize: [50, 50], // size of the icon
+  iconAnchor: [25,25], // point of the icon which will correspond to marker's location, relative to its top left showCoverageOnHover
+
+  // shadowUrl:'images/cone.png',
+  // shadowSize:   [50,50], // size of the shadow
+  // shadowAnchor: [7, 7],  // the same for the shadow
+  //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+var gpsButton = L.easyButton({
+  id: 'gps',
+  class: 'easyButton',
+  position: 'topleft',
+  states: [{
+      icon: iconGOOGLE,
+      //stateName: 'check-mark',
+      onClick: function(btn, map) {
+        gpsButton.button.style.backgroundColor = 'white';
+        setTimeout(function(){
+          gpsButton.button.style.backgroundColor = 'black';
+        },300)
+        // var currentLocation = navigator.geolocation.getCurrentPosition() 
+
+        // document.getElementById("MapLoading").style.display = 'initial'
+        if (currentLocation[0] != null) {
+          console.log(currentLocation)
+          position = L.marker(currentLocation, {
+            icon: gpsPositionIcon,
+            // rotationAngle: 90,
+            draggable:false,
+            zIndexOffset:100
+        }).addTo(map);
+        map.flyTo(currentLocation, 10);
+ 
+        }
+        if (currentLocation[0] == null) {
+            //gps_Button.button.style.backgroundColor = 'red';
+            document.getElementById('gps').src = 'images/gpsSearching.gif'
+            // navigator.geolocation.watchPosition(findBuffer,error,watchPositionOptions);
+            // navigator.geolocation.getCurrentPosition()
+        }
+
+        return activeBasemap
+      }
+  }]
+}).addTo(map);
+
+gpsButton.button.style.width = '50px';
+gpsButton.button.style.height = '50px';
+gpsButton.button.style.transitionDuration = '.3s';
+gpsButton.button.style.borderColor = 'transparent';
+// basemapButton.button.style.borderRadius = '25px';
+
 var currentZoom = map.getZoom();
 
-setTimeout(function(){
-  clearInterval(intervalremoveattributes)
-},2000)
+// setTimeout(function(){
+//   clearInterval(intervalremoveattributes)
+// },2000)
 console.log('timestamp',timestamp)
-
+var screenshotTaken = false
 function displayFile(file) {
-
+  document.getElementById('confirmuploadedmap').style.opacity = '0.4'
+  document.getElementById('confirmuploadedmap').disabled = true
+  document.getElementById('gobackUploadmap').style.opacity = '0.4'
+  document.getElementById('gobackUploadmap').disabled = true
+  gpsButton.button.disabled = true
+  basemapButton.button.disabled = true
   // document.getElementById('MapLoading').style.display = 'initial'
   document.getElementById('upload').style.display = 'none'
   document.getElementById('viewmap').style.display = 'none'
@@ -137,7 +377,9 @@ console.log('manualupload',manualupload)
       features: features
     };
     mapdata = geoJson
-    console.log(JSON.stringify(geoJson));
+    console.log(geoJson);
+
+    // console.log(JSON.stringify(geoJson));
     // setTimeout(function(){
       // document.getElementById('initialscreen2options').style.display = 'none'
       // setTimeout(function(){
@@ -150,77 +392,10 @@ console.log('manualupload',manualupload)
       document.getElementById('MapLoading').style.opacity = 1
       document.getElementById('startmapping').style.backgroundColor = 'white'
       // myLayer_Button.removeFrom(map); //always on as there will always be features in the map, even when first load
+     
 
 
 
-        // L.geoJSON(geoJson).addTo(map);
-        testcarto = function(geoJson) {
-          console.log('test carto')
-          console.log(geoJson)
-              map.addSource('test', {
-                'type': 'geojson',
-                'data': geoJson
-              });
-              map.addLayer(
-              {
-              'id': 'test',
-              'type': 'circle',
-              'source': 'test',
-              // 'source-layer': 'sf2010',
-              'paint': {
-                // Make circles larger as the user zooms from z12 to z22.
-                // 'circle-radius': {
-                // 'base': 1.75,
-                // 'stops': [
-                // [12, 2],
-                // [22, 180]
-                // ]
-                // },
-                'circle-radius': 4,
-          
-                // Color circles by ethnicity, using a `match` expression.
-                'circle-color': 'red'
-              }
-              },
-              // Place polygons under labels, roads and buildings.
-          
-              );
-              // map.fitBounds('test');
-              // try{
-              //   // const coordinates = data.features[0].geometry.coordinates;
-              //   // // currentLocation = [52.54463, 13.36817];
-              //   // console.log(coordinates)
-              //   // var bounds = new mapboxgl.LngLatBounds();
-            
-              //   //   data.features.forEach(function(feature) {
-              //   //       bounds.extend(feature.geometry.coordinates);
-              //   //   });
-              //   //   console.log(bounds)
-              //   //   map.fitBounds(bounds);
-            
-              //   //   setTimeout(() => {
-              //   //     document.getElementById("bot").style.fontSize = "16px";
-              //   //     document.getElementById("bot").style.color = 'white';
-              //   //     document.getElementById('bot').innerHTML = '    Do you want to download or query this ground data?? (yes/no)'
-              //   //     document.getElementById("bot").style.display = 'initial'
-              //   //   }, 3000);
-              //   //   searchResult = 'data'
-              // }catch(err){
-              //   document.getElementById('bot').innerHTML = '    No data found. Do you want to launch a crowdsourcing campaign? (yes/no)'
-              //   document.getElementById("bot").style.display = 'initial'
-              //   console.log('error sql catched due to empty layer after filter applied')
-              // }
-          
-                // return searchResult
-          
-          }
-          testcarto(geoJson)
-          const coordinates = geoJson.features[0].geometry.coordinates;
-
-        bounds = new mapboxgl.LngLatBounds();
-        geoJson.features.forEach(function(feature) {
-          bounds.extend(feature.geometry.coordinates);
-      });
       console.log(bounds)
         document.getElementById('MapLoading').style.display = 'none'
         // document.getElementById("tutorial").style.display = "none";
@@ -243,7 +418,7 @@ console.log('manualupload',manualupload)
 
   };
   // console.log('totalContributions',totalcontrib)  
-  return mapdata && totalcontribmap && nameOfTheGroup && bounds
+  return mapdata && totalcontribmap && nameOfTheGroup && bounds && screenshotTaken && mapdata
 }
 
 var topic
@@ -267,17 +442,52 @@ document.getElementById('confirminputtext').onclick = function(){
   document.getElementById("screenshot").style.display = 'initial'
   document.getElementById('screenshot').disabled = false
   topic = document.getElementById("emojionearea").value
-  map.fitBounds(bounds);
+      var geojsonMarkerOptions = {
+        radius: 5,
+        fillColor: "red",
+        color: "red",
+        weight: 0,
+        opacity: 1,
+        fillOpacity: 0.8
+    };
+    layerChatGeom = L.geoJson(mapdata, {
+        pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, geojsonMarkerOptions);
+        }
+    })
 
-  setTimeout(function(){
-    // document.getElementById("showAreaAcresScreenshot").innerHTML = topic + '</br>' + totalcontribmap + ' contributions ' + date 
-    // document.getElementById("showAreaAcresScreenshot").style.display = 'initial'
-    // document.getElementById("showAreaAcresScreenshot").style.backgroundColor = '#191919'
+        bounds = map.getBounds()
+      var boundsLayer = layerChatGeom.getBounds()
+      //   geoJson.features.forEach(function(feature) {
+      //     bounds.extend(feature.geometry.coordinates);
+      // });
+            map.dragging.disable();
+      map.touchZoom.disable();
+      setTimeout(function(){
+        map.flyToBounds(boundsLayer,{
+          maxZoom:16,
+          paddingBottomRight: [0, 0]
+      });
+      map.on('zoomend', function(e) {
+        //disable map interaction
+        if(screenshotTaken == false){
+          screenshotTaken = true
+        layerChatGeom.addTo(map)
+        screenshot.click()
+        map.dragging.enable();
+        map.touchZoom.enable();
+        document.getElementById('confirmuploadedmap').style.opacity = '1'
+        document.getElementById('confirmuploadedmap').disabled = false
+        document.getElementById('gobackUploadmap').style.opacity = '1'
+        document.getElementById('gobackUploadmap').disabled = false
+        gpsButton.button.disabled = false
+        basemapButton.button.disabled = false
 
-  screenshot.click()
-  
-},500)
-  },200)
+        }
+      })
+      },200)
+
+      },200)
 return topic
 }
 document.getElementById('languages').addEventListener('change', function() {
