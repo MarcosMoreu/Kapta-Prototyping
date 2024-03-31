@@ -16,15 +16,17 @@ var datasov
 var currentZoom
 var communitymapid
 var nameOfTheGroup
+var nameOftheGoal
 var mapdataarray
 var bounds
 var layerChatGeom
 var activeBasemap = 'dark'
 var currentLocation = []; // variable created to allow the user recenter the map
-
+var filedisplayed = false
 
 
 function displayFile(file) {
+  filedisplayed = true
   document.getElementById('confirmuploadedmap').style.opacity = '0.4'
   document.getElementById('confirmuploadedmap').disabled = true
   document.getElementById('gobackUploadmap').style.opacity = '0.4'
@@ -111,21 +113,21 @@ console.log('manualupload',manualupload)
     mapdata = geoJson
     console.log(geoJson);
 
-      document.getElementById("map").style.opacity = 0;
+      document.getElementById("map").style.opacity = 1;
       document.getElementById('MapLoading').style.opacity = 1
   
       console.log(bounds)
         document.getElementById('MapLoading').style.display = 'none'
 
         document.getElementById("kaptalitetutorial").style.display = "none";
-
-        document.getElementById("inputtextlabel").style.display = "initial";
-        document.getElementById("emojionearea").style.display = "initial";
-        document.getElementById("emojionearea").value = nameOfTheGroup
-        document.getElementById("confirminputtext").style.display = "initial";
+        openmap()
+        // document.getElementById("inputtopiclabel").style.display = "initial";
+        // document.getElementById("inputtopic").style.display = "initial";
+        // document.getElementById("inputtopic").value = nameOfTheGroup
+        // document.getElementById("confirminputtext").style.display = "initial";
 
   };
   // console.log('totalContributions',totalcontrib)  
-  return mapdata && totalcontribmap && nameOfTheGroup && bounds && screenshotTaken && mapdata
+  return mapdata && totalcontribmap && nameOfTheGroup && bounds && screenshotTaken && mapdata && filedisplayed
 }
 

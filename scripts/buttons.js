@@ -1,31 +1,34 @@
 
-var topic
-document.getElementById('confirminputtext').onclick = function(){
 
-  document.getElementById("confirminputtext").style.backgroundColor = "#a2a1a1";
-  nameOfTheGroup = document.getElementById("emojionearea").value
+var boundsLayer
+var openmap = function(){
 
-  document.getElementById("mapsummary").innerHTML = '</br>' + '<img src="images/icons/icon-72x72.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" >  ' + '<img src="images/WhatsAppicon.png" text-align="center" alt="..." width=30px; height=30px style="top:50%; margin-bottom:3px" > ' + '</br>' + nameOfTheGroup + '</br> ' + totalcontribmap + ' 📍 ' + '</br>' + date
-  document.getElementById("mapsummary").style.display = "initial"
+  // document.getElementById("confirminputtext").style.backgroundColor = "#a2a1a1";
+
+
+  // document.getElementById("mapsummary").innerHTML = '</br>' + '<img src="images/icons/icon-72x72.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" >  ' + '<img src="images/WhatsAppicon.png" text-align="center" alt="..." width=30px; height=30px style="top:50%; margin-bottom:3px" > ' + '</br>' + nameOfTheGroup + '</br> ' + totalcontribmap + ' 📍 ' + '</br>' + date
+
+  // document.getElementById("mapsummary").innerHTML = '</br>' + '<img src="images/icons/icon-72x72.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" >  ' + '<img src="images/WhatsAppicon.png" text-align="center" alt="..." width=30px; height=30px style="top:50%; margin-bottom:3px" > ' + '</br>' + nameOfTheGroup + '</br> ' + totalcontribmap + ' 📍 ' + '</br>' + date
+  // document.getElementById("mapsummary").style.display = "initial"
 
 
   setTimeout(function(){
-    document.getElementById("confirminputtext").style.backgroundColor = "white";
+    // document.getElementById("confirminputtext").style.backgroundColor = "white";
     document.getElementById('modal').style.display = 'none'
 
   document.getElementById('initialscreen2options').style.display = 'none'
-  document.getElementById("emojionearea").style.display = "none";
-  document.getElementById("confirminputtext").style.display = "none";
+  document.getElementById("inputtopic").style.display = "none";
+  // document.getElementById("confirminputtext").style.display = "none";
   // document.getElementById("map").style.display = 'initial';
 
   document.getElementById("map").style.opacity = 1;
-  document.getElementById("gobackUploadmap").style.display = "initial";
+  // document.getElementById("gobackUploadmap").style.display = "initial";
   document.getElementById("confirmuploadedmap").style.display = "initial";
 
   document.getElementById("screenshot").style.opacity = 0
   document.getElementById("screenshot").style.display = 'initial'
   document.getElementById('screenshot').disabled = false
-  topic = document.getElementById("emojionearea").value
+  // topic = document.getElementById("inputtopic").value
       var geojsonMarkerOptions = {
         radius: 5,
         fillColor: "red",
@@ -41,7 +44,7 @@ document.getElementById('confirminputtext').onclick = function(){
     })
 
         bounds = map.getBounds()
-      var boundsLayer = layerChatGeom.getBounds()
+      boundsLayer = layerChatGeom.getBounds()
       //   geoJson.features.forEach(function(feature) {
       //     bounds.extend(feature.geometry.coordinates);
       // });
@@ -61,7 +64,7 @@ document.getElementById('confirminputtext').onclick = function(){
         var leafletScalestyle = document.getElementsByClassName("leaflet-control-scale-line")
         leafletScalestyle[0].style.backgroundColor = 'transparent'
         leafletScalestyle[0].style.color = '#808080'
-        screenshot.click()
+        // screenshot.click()
         map.dragging.enable();
         map.touchZoom.enable();
         document.getElementById('confirmuploadedmap').style.opacity = '1'
@@ -84,7 +87,7 @@ document.getElementById('confirminputtext').onclick = function(){
 
       
       },200)
-return topic
+return  boundsLayer
 }
 
 
@@ -158,9 +161,12 @@ document.getElementById('gobackToInitialKaptalite').onclick = function(){
   document.getElementById('kaptalitetutorial').style.display = 'none'
   document.getElementById('upload').style.display = 'none'
   document.getElementById('gobackToInitialKaptalite').style.display = 'none'
-  document.getElementById("inputtextlabel").style.display = "none";
-  document.getElementById("emojionearea").style.display = "none";
-  document.getElementById("confirminputtext").style.display = "none";
+  document.getElementById("inputtopiclabel").style.display = "none";
+  document.getElementById("inputgoallabel").style.display = "none";
+  document.getElementById("inputtopic").style.display = "none";
+  document.getElementById("inputgoal").style.display = "none";
+
+  // document.getElementById("confirminputtext").style.display = "none";
   document.getElementById('languages').style.display = 'initial'
   document.getElementById('KaptaLite').style.display = 'initial'
   document.getElementById('KaptaAdvanced').style.display = 'initial'
@@ -185,7 +191,7 @@ document.getElementById('gobackUploadmap').onclick = function(){
   gobackUploadmap = true
   document.getElementById("gobackUploadmap").style.display = "none";
   document.getElementById("gobackToInitialKaptalite").style.display = "none";
-  document.getElementById("confirminputtext").style.display = "none";
+  // document.getElementById("confirminputtext").style.display = "none";
 
 
   document.getElementById("confirmuploadedmap").style.display = "none";
@@ -193,14 +199,35 @@ document.getElementById('gobackUploadmap').onclick = function(){
   document.getElementById('asktheteam').style.display = 'none'
   document.getElementById('kaptalitetutorial').style.display = 'none'
   
-  document.getElementById("inputtextlabel").style.display = "initial";
-  document.getElementById("emojionearea").style.display = "initial";
-  document.getElementById("emojionearea").value = nameOfTheGroup
-  document.getElementById("confirminputtext").style.display = "initial";
-  document.getElementById("gobackToInitialKaptalite").style.display = "initial";
+  document.getElementById('kaptalitetutorial').style.display = 'none'
+  document.getElementById('upload').style.display = 'none'
+  document.getElementById('gobackToInitialKaptalite').style.display = 'none'
+  
+  document.getElementById("inputtopiclabel").style.display = "none";
+  document.getElementById("inputgoallabel").style.display = "none";
+  document.getElementById("inputtopic").style.display = "none";
+  document.getElementById("inputgoal").style.display = "none";
 
-  document.getElementById('initialscreen2options').style.display = 'initial'
-document.querySelector('input[type=file]').value = ''
+  document.getElementById("initialscreen2options").style.display = "initial";
+  document.getElementById('initialscreen2options').style.backgroundColor = '#c00000'
+  document.getElementById("map").style.opacity = 1;
+
+
+  document.getElementById('languages').style.display = 'initial'
+  document.getElementById('KaptaLite').style.display = 'initial'
+  document.getElementById('KaptaAdvanced').style.display = 'initial'
+  // document.getElementById('disclaimer').style.display = 'initial'
+  document.getElementById('asktheteam').style.display = 'initial'
+  document.getElementById('kaptainitialscreen').style.display = 'initial'
+  document.querySelector('input[type=file]').value = ''
+  document.getElementById('confirmuploadedmap').style.opacity = '1'
+  document.getElementById('confirmuploadedmap').disabled = false
+  document.getElementById('gobackUploadmap').style.opacity = '1'
+  document.getElementById('gobackUploadmap').disabled = false
+  gpsButton.button.style.opacity = '1'
+  basemapButton.button.style.opacity = '1'
+  gpsButton.button.disabled = false
+  basemapButton.button.disabled = false
   },300)
 return gobackUploadmap
 }
@@ -208,12 +235,9 @@ return gobackUploadmap
 document.getElementById('confirmuploadedmap').onclick = function(){
   document.getElementById('confirmuploadedmap').style.backgroundColor = '#696868';
   document.getElementById('confirmuploadedmap').style.borderColor = '#696868';
-
-
   setTimeout(function(){
     document.getElementById('confirmuploadedmap').style.backgroundColor = '#afafaf';
     document.getElementById('confirmuploadedmap').style.borderColor = '#afafaf';
-
 
   currentZoom = map.getZoom()
 
@@ -224,22 +248,38 @@ document.getElementById('confirmuploadedmap').onclick = function(){
   document.getElementById('gobackToInitialKaptalite').style.display = 'none'
   document.getElementById('KaptaLite').style.display = 'none'
   document.getElementById('KaptaAdvanced').style.display = 'none'
-  document.getElementById("confirminputtext").style.display = "none";
-  document.getElementById("inputtextlabel").style.display = "none";
+  // document.getElementById("confirminputtext").style.display = "none";
+  document.getElementById("inputtopiclabel").style.display = "none";
+  document.getElementById("inputgoallabel").style.display = "none";
+
   
   document.getElementById('asktheteam').style.display = 'none'
   document.getElementById('switches').style.display = 'initial'
-  document.getElementById('gobackUploadmap').style.display = 'initial'
+  document.getElementById("inputtopiclabel").style.display = "initial";
+  document.getElementById("inputgoallabel").style.display = "initial";
+  document.getElementById("inputtopic").style.display = "initial";
+  document.getElementById("inputgoal").style.display = "initial";
+  // document.getElementById('gobackUploadmap').style.display = 'initial'
   document.getElementById("gobackToMap").style.display = "initial";
   document.getElementById("confirmDataSubmision").style.display = "initial";
   document.getElementById("datasovmessage").style.display = "initial";
   document.getElementById("moredatasovinfo").style.display = "initial";
+  document.getElementById("inputtopiclabel").style.display = "initial";
+  document.getElementById("inputtopic").style.display = "initial";
+  document.getElementById("inputgoallabel").style.display = "initial";
+  document.getElementById("inputgoal").style.display = "initial";
+
+  
   },300)
 
 
   return currentZoom //&& mapdataarray
 }
 document.getElementById('gobackToMap').onclick = function(){  // this applies to both screens
+  map.dragging.enable()
+  map.touchZoom.enable();
+  map.doubleClickZoom.enable();
+
   setTimeout(function(){
   if(lastscreen == false){
     document.getElementById('initialscreen2options').style.display = 'none'
@@ -247,19 +287,35 @@ document.getElementById('gobackToMap').onclick = function(){  // this applies to
     document.getElementById("confirmDataSubmision").style.display = "none";
     document.getElementById("moredatasovinfo").style.display = "none";
     document.getElementById("datasovmessage").style.display = "none";
+    document.getElementById("inputtopiclabel").style.display = "none";
+    document.getElementById("inputtopic").style.display = "none";
+    document.getElementById("inputgoallabel").style.display = "none";
+    document.getElementById("inputgoal").style.display = "none";
 
   }else{
+
+
     document.getElementById("gobackToMap").style.display = "none";
     document.getElementById('shareYourImageMap').style.display = 'none'
     document.getElementById('shareYourMapdata').style.display = 'none'
 
     document.getElementById('finalmessage').style.display = "none";
     document.getElementById('switches').style.display = 'initial'
-    document.getElementById('gobackUploadmap').style.display = 'initial'
+    // document.getElementById('gobackUploadmap').style.display = 'initial'
     document.getElementById("gobackToMap").style.display = "initial";
     document.getElementById("confirmDataSubmision").style.display = "initial";
     document.getElementById('moredatasovinfo').style.display = "initial";
     document.getElementById("datasovmessage").style.display = "initial";
+    document.getElementById("inputtopiclabel").style.display = "initial";
+    document.getElementById("inputtopic").style.display = "initial";
+    document.getElementById("inputgoallabel").style.display = "initial";
+    document.getElementById("inputgoal").style.display = "initial";
+    gpsButton.button.style.display = 'initial'
+    basemapButton.button.style.display = 'initial'
+    document.getElementById("confirmuploadedmap").style.display = "initial"
+    document.getElementById('initialscreen2options').style.backgroundColor = '#c00000'
+    document.getElementById("map").style.opacity = 1;
+    //enable map interaction
 
     lastscreen = false
   }
@@ -275,6 +331,11 @@ document.getElementById('moredatasovinfo').onclick = function(){  // this applie
     document.getElementById('switches').style.display = "none";
     document.getElementById("confirmDataSubmision").style.display = "none";
     document.getElementById("gobackToMap").style.display = "none";
+    document.getElementById("moredatasovinfo").style.display = "initial";
+    document.getElementById("inputtopiclabel").style.display = "none";
+    document.getElementById("inputtopic").style.display = "none";
+    document.getElementById("inputgoallabel").style.display = "none";
+    document.getElementById("inputgoal").style.display = "none";
     document.getElementById("datasovmessage").style.display = "none";
     document.getElementById("datasovcontent").style.display = "initial";
     document.getElementById("moredatasovinfo").style.display = "initial";
@@ -292,6 +353,11 @@ document.getElementById('moredatasovinfo').onclick = function(){  // this applie
     document.getElementById("datasovmessage").style.display = "initial";
     document.getElementById("moredatasovinfo").style.display = "initial";
     document.getElementById("moredatasovinfo").style.borderColor = "black";
+    document.getElementById("moredatasovinfo").style.display = "initial";
+    document.getElementById("inputtopiclabel").style.display = "initial";
+    document.getElementById("inputtopic").style.display = "initial";
+    document.getElementById("inputgoallabel").style.display = "initial";
+    document.getElementById("inputgoal").style.display = "initial";
     moreinfostate = false
   }
 },200)

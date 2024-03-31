@@ -41,21 +41,29 @@
 
 <body id='body' style='height:100%;background-color:#232222'>
 
-  <div id='switches' style="z-index:1000;top:150px;display:none;position:fixed;font-size:17px;font-family:'Ubuntu'">
-<div class="sliderWrapper" >
-  <div id='textswitch1' style="font-family:'Ubuntu'"> WITH the support of WCL team</div>
-    <label class="switch" style="margin-top:15px; margin-left:10px">
-      <input id='switch1' type="checkbox" >
-      <span class="sliderDataSovereignty" ></span>
-    </label>
-</div>
-<div class="sliderWrapper" >
-  <div id='textswitch2' style="font-family:'Ubuntu'"> WITHOUT support</div>
-    <label class="switch" style="margin-top:15px; margin-left:105px">
-      <input id='switch2' type="checkbox" >
-      <span class="sliderDataSovereignty" ></span>
-    </label>
-</div>
+  <p id='inputtopiclabel' align = 'center' style='z-index:300;display:none;position:absolute;left:calc(50% - 120px);margin-top:40px;color:rgb(7, 7, 7);font-size:18px; width:240px;font-family:'Ubuntu' '> What have you mapped in this WhatsApp group? </br> </p>
+  <input id="inputtopic" class="inputtext" placeholder='...' style='display:none;z-index:300;position:absolute;margin-top:90px;left:calc(50% - 130px); margin-right: 10px;width:250px;vertical-align:middle;  height:40px; border-radius: 20px; border-color:white; background-color: #DEDDDD; font-size:16px; padding:0px 15px;font-size:18px; font-family:'Ubuntu''>
+ 
+  <p id='inputgoallabel' align = 'center' style='z-index:300;display:none;position:absolute;left:calc(50% - 120px);margin-top:170px;color:rgb(7, 7, 7);font-size:18px; width:240px;font-family:'Ubuntu' '> What do you want to achieve with this map? </br> </p>
+  <input id="inputgoal" class="inputtext" placeholder='...' style='display:none;z-index:300;position:absolute;margin-top:220px;left:calc(50% - 130px); margin-right: 10px;width:250px;vertical-align:middle;  height:40px; border-radius: 20px; border-color:white; background-color: #DEDDDD; font-size:16px; padding:0px 15px;font-size:18px; font-family:'Ubuntu''>
+  
+  <p id='datasovmessage' style='z-index:300;display:none;text-align: center;position:fixed;width:100%;top:300px;color:#0f0f0f;font-size:18px; font-family:'Ubuntu' '> Do you allow the Kapta team to use the map to help you?</p>
+
+<div id='switches' style="z-index:1000;top:350px;display:none;position:fixed;font-size:17px;font-family:'Ubuntu'">
+  <div class="sliderWrapper" >
+    <div id='textswitch1' style="font-family:'Ubuntu'"> Yes</div>
+      <label class="switch" style="margin-top:15px; margin-left:10px">
+        <input id='switch1' type="checkbox" >
+        <span class="sliderDataSovereignty" ></span>
+      </label>
+  </div>
+  <div class="sliderWrapper" >
+    <div id='textswitch2' style="font-family:'Ubuntu'"> No</div>
+      <label class="switch" style="margin-top:15px; margin-left:10px">
+        <input id='switch2' type="checkbox" >
+        <span class="sliderDataSovereignty" ></span>
+      </label>
+  </div>
 
 </div>
 <button id='moredatasovinfo' class='button' aria-label = 'armchair' style='vertical-align: middle;display:none;position:absolute;z-index:6600;outline:none;left:87%; margin-top:8px;width:30px ; height:30px; border: 3px solid white; border-color:black; border-radius:15px; font-size:18px;'>
@@ -99,7 +107,6 @@
 
 <div id='initialscreen2options' class='full-height' style='z-index:100;background-color:#c00000;'>
 
-  <p id='datasovmessage' style='z-index:0;display:none;text-align: center;position:fixed;width:100%;top:25px;color:#0f0f0f;font-size:22px; font-family:'Ubuntu' '> We want the world </br> to see this map </br> and be remunerated</p>
   <p id='finalmessage' style='z-index:0;display:none;text-align: center;position:fixed;width:100%;top:15px;color:#7E1701;font-size:18px; font-family:'Ubuntu' '> Submitted......now share with......</p>
   <p id='loadmapmessage' style='z-index:0;display:none;text-align: center;position:fixed;width:100%;top:15px;color:#7E1701;font-size:18px; font-family:'Ubuntu' '> Loading map</p>
   <p id='datasovcontent' style='z-index:0;display:none;text-align: center;position:fixed;width:100%;top:25px;color:#0f0f0f;font-size:15px; font-family:'Ubuntu' '> Data sovereingty explanation... </br> centralisation </br> decentralisation...</p>
@@ -109,19 +116,19 @@
   <div id="progressContainer" style="display:none;width: 80%; z-index:10000;background-color: #140202;">
     <div id="progressBar" style="width: 0%; height: 30px;margin-top:200px; background-color: #4CAF50; text-align: center; line-height: 30px; color: white;">0%</div>
   </div>
-  <button id='shareYourImageMap' class='button' aria-label = 'field' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px);  top:calc(90% - 500px);width:200px ; height:80px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;'>
+  <button id='shareYourImageMap' class='button' aria-label = 'field' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px);  top:calc(90% - 375px);width:200px ; height:80px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;'>
     <!-- <img src="images/shareMessagingApps.png"  alt="..." loading='lazy' style='width:30px ; height:30px'> -->
-    Share your map IMAGE in your social network
+    Share this map IMAGE in your social networks
   </button>
-  <button id='shareYourMapdata' class='button' aria-label = 'field' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px);  top:calc(90% - 350px);width:200px ; height:80px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;'>
+  <button id='shareYourMapdata' class='button' aria-label = 'field' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px);  top:calc(90% - 325px);width:200px ; height:80px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;'>
     <!-- <img src="images/shareMessagingApps.png"  alt="..." loading='lazy' style='width:30px ; height:30px'> -->
-    Download your map DATA
+    Download this map DATA
   </button>
-  <button id='confirmDataSubmision' disabled class='button' aria-label = 'armchair' style="vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(90% - 150px);width:200px ; height:50px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;font-family: 'Ubuntu'">
+  <button id='confirmDataSubmision' disabled class='button' aria-label = 'armchair' style="vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(90% - 120px);width:200px ; height:50px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;font-family: 'Ubuntu'">
     <!-- <img src="images/ThumbsUpGreen.png"  loading='lazy' alt="..." style='width:30px ; height:30px;margin-left:-2px'> -->
   Confirm</button>
 
-  <button id='gobackToMap' class='button' aria-label = 'field' style='position:absolute;vertical-align: middle;display:none;z-index:100;outline:none;left:calc(50% - 25px); top:calc(90% - 50px);width:50px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
+  <button id='gobackToMap' class='button' aria-label = 'field' style='position:absolute;vertical-align: middle;display:none;z-index:100;outline:none;left:calc(50% - 25px); top:calc(90% - 30px);width:50px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
     <img src="images/backButton.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
   </button>
   <select id="languages" class='buttonInitial' style='cursor:pointer;margin-left:calc(50% - 100px);display:none;z-index:100;outline:none;top:calc(50% - 300px);width:200px ; height:50px; border: 0px solid white;background-color: transparent;border-color:none; border-radius:15px; font-size:18px;' >
@@ -146,7 +153,7 @@
   <button id='KaptaLite' class='buttonInitial' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(50% - 150px);width:200px ; height:100px; border: 2px solid white; background-color: white;border-color:black; border-radius:15px; font-size:18px;' >
     Kapta Lite
   </button>
-  <button id='chatmaploadinggif' disabled class='buttonInitial' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(50% - 150px);width:200px ; height:100px; color:black; background-color: transparent;border-color:transparent; border-radius:15px; font-size:25px;' >
+  <button id='chatmaploadinggif' disabled class='buttonInitial' style='vertical-align: middle;display:none;z-index:10000;outline:none;margin-left:calc(50% - 100px); top:calc(50% - 150px);width:200px ; height:100px; color:black; background-color: transparent;border-color:transparent; border-radius:15px; font-size:25px;' >
     Converting chat to map...</br></br></br>
     <img src="images/checkingPw.gif"  alt="..." loading='lazy' style='width:50px ; height:50px'>
   </button>
@@ -166,12 +173,12 @@
   <iframe id='youtubeVideo' preload="auto" style='width:100%; height:90%;left:0%;position:absolute;top:0px; display:none; border:#808080'
   src="https://www.youtube.com/embed/6xc4S5gNe1I?si=ym6WnCVpM4Dj2APt" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-  <p id='inputtextlabel' align = 'center' style='z-index:0;display:none;position:absolute;left:calc(50% - 120px);margin-top:80px;color:rgb(7, 7, 7);font-size:18px; width:240px;font-family:'Ubuntu' '> What have you mapped in this WhatsApp group? </br> </p>
 
-  <input id="emojionearea" class="inputtext" placeholder='...' style='display:none;position:absolute;margin-top:150px;left:calc(50% - 130px); margin-right: 10px;width:250px;vertical-align:middle;  height:40px; border-radius: 20px; border-color:white; background-color: #DEDDDD; font-size:16px; padding:0px 15px;font-size:18px; font-family:'Ubuntu''>
-  <button id='confirminputtext' class='button' aria-label = 'field' style='vertical-align: middle;display:none;position:absolute;z-index:10000;outline:none;left:calc(50% - 50px); margin-top:230px;width:100px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px;font-size:18px; font-family:'Ubuntu' '>
+
+  <!-- <button id='confirminputtext' class='button' aria-label = 'field' style='vertical-align: middle;display:none;position:absolute;z-index:10000;outline:none;left:calc(50% - 50px); margin-top:230px;width:100px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px;font-size:18px; font-family:'Ubuntu' '>
     Confirm
-  </button>
+  </button> -->
+  
 
 <p id='kaptainitialscreen' style='z-index:5000;display:initial;text-align: center;position:fixed;width:100%;bottom:-1px;font-size:15px;color:rgb(100, 2, 2); font-family:'Ubuntu' '> Kapta</p>
 </div>
@@ -182,9 +189,9 @@
 </div>
 
 <div id='classification' style='display: flex; justify-content: center; align-items: center; left:19%;width: 70%; position: fixed; bottom: 5px; transform: translateY(-50%); z-index: 3;'>
-    <button id='backtohomepage' class='button' aria-label='backEditDelete' style='display:none; cursor:pointer; background-color:#DEDDDD; border-color:#DEDDDD; margin-bottom:10px;margin-left:10px; margin-right: 10px;'>
+    <!-- <button id='backtohomepage' class='button' aria-label='backEditDelete' style='display:none; cursor:pointer; background-color:#DEDDDD; border-color:#DEDDDD; margin-bottom:10px;margin-left:10px; margin-right: 10px;'>
     <img src="images/arrowLeft.png" alt="..." style='width:30px; height:30px'>
-  </button>
+  </button> -->
 
   <button id='gobackUploadmap' class='button' aria-label = 'field' style='display:none;z-index:3; position:relative; border-color: #afafaf; background-color: #afafaf'>
     <img src="images/backButton.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
@@ -192,6 +199,7 @@
   <button id='confirmuploadedmap' class='button' aria-label = 'armchair' style='display:none;z-index:3; position:relative;border-color:#afafaf; background-color:#afafaf'>
     <img src="images/ThumbsUp.png"  loading='lazy' alt="..." style='width:30px ; height:30px;margin-left:-2px'>
   </button>
+  
 </div>
 <button id="camera"  class = 'buttonsCameraScreenshot' aria-label = 'camera' style='position:fixed; display:none;width:50px;left:calc(50% + 10px);height:50px;bottom:150px;border-radius: 50px'>
   <!-- <input type='file' accept='image/' capture='camera' id='cameraInput' /> -->

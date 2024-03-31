@@ -16,14 +16,16 @@ document.getElementById('languages').addEventListener('change', function() {
         document.getElementById('asktheteam').innerHTML = 'Ask us anything'  
         document.getElementById('kaptalitetutorial').innerHTML = 'Watch tutorial'  
         document.getElementById('upload').innerHTML = '</br>Upload map'  
-        document.getElementById('inputtextlabel').innerHTML = ' What have you mapped in this WhatsApp group? '  
-        document.getElementById('confirminputtext').innerHTML = 'Confirm'  
-        document.getElementById('datasovmessage').innerHTML = ' We want the world </br> to see this map </br> and be remunerated '  
+        document.getElementById('inputtopiclabel').innerHTML = ' What have you mapped in this WhatsApp group? '  
+        document.getElementById('inputgoallabel').innerHTML = ' What do you want to achieve with this map? '  
 
-        document.getElementById('textswitch1').innerHTML = ' WITH the support of WCL team'  
-        document.getElementById('textswitch2').innerHTML = 'WITHOUT support'  
-        document.getElementById('shareYourImageMap').innerHTML = 'Share your map IMAGE in your social network'  
-        document.getElementById('shareYourMapdata').innerHTML = 'Download your map DATA'  
+        // document.getElementById('confirminputtext').innerHTML = 'Confirm'  
+        document.getElementById('datasovmessage').innerHTML = ' Do you allow the Kapta team to use your map to help your community? '  
+
+        document.getElementById('textswitch1').innerHTML = ' Yes'  
+        document.getElementById('textswitch2').innerHTML = 'No'  
+        document.getElementById('shareYourImageMap').innerHTML = 'Share this map IMAGE in your social network'  
+        document.getElementById('shareYourMapdata').innerHTML = 'Download this map DATA'  
         document.getElementById('confirmDataSubmision').innerHTML = 'Confirm'  
         document.getElementById('datasovcontent').innerHTML = 'Data sovereingty explanation... </br> centralisation </br> decentralisation...</p>'  
 
@@ -33,8 +35,10 @@ document.getElementById('languages').addEventListener('change', function() {
         document.getElementById('asktheteam').innerHTML = 'Pregúntanos cualquier cosa'  
         document.getElementById('kaptalitetutorial').innerHTML = 'Ver tutorial'  
         document.getElementById('upload').innerHTML = '</br>Subir mapa'   ///////////////////
-        document.getElementById('inputtextlabel').innerHTML = ' ¿Qué has mapeado en este grupo de WhatsApp? '  
-        document.getElementById('confirminputtext').innerHTML = 'Confirmar'  
+        document.getElementById('inputtopiclabel').innerHTML = ' ¿Qué has mapeado en este grupo de WhatsApp? '  
+        document.getElementById('inputgoallabel').innerHTML = ' xxxxxxxxxx '  
+
+        // document.getElementById('confirminputtext').innerHTML = 'Confirmar'  
         document.getElementById('datasovmessage').innerHTML = ' Queremos que el mundo </br> vea este mapa </br> y sea remunerado '  
     
         document.getElementById('textswitch1').innerHTML = ' CON el apoyo del equipo WCL'  
@@ -50,8 +54,10 @@ document.getElementById('languages').addEventListener('change', function() {
         document.getElementById('asktheteam').innerHTML = 'Demandez-nous n’importe quoi'  
         document.getElementById('kaptalitetutorial').innerHTML = 'Regarder le tutoriel'  
         document.getElementById('upload').innerHTML = '</br>Télécharger la carte'  
-        document.getElementById('inputtextlabel').innerHTML = ' Qu’avez-vous cartographié dans ce groupe WhatsApp? '  
-        document.getElementById('confirminputtext').innerHTML = 'Confirmer'  
+        document.getElementById('inputtopiclabel').innerHTML = ' Qu’avez-vous cartographié dans ce groupe WhatsApp? '  
+        document.getElementById('inputgoallabel').innerHTML = ' xxxxxxxxxxxxxxxx '  
+
+        // document.getElementById('confirminputtext').innerHTML = 'Confirmer'  
         document.getElementById('datasovmessage').innerHTML = ' Nous voulons que le monde </br> voie cette carte </br> et soit rémunéré '  
     
         document.getElementById('textswitch1').innerHTML = ' AVEC le soutien de l’équipe WCL'  
@@ -67,8 +73,10 @@ document.getElementById('languages').addEventListener('change', function() {
         document.getElementById('asktheteam').innerHTML = 'ማንኛውንም ጥያቄ ይጠይቁን'  
         document.getElementById('kaptalitetutorial').innerHTML = 'መማሪያውን ይመልከቱ'  
         document.getElementById('upload').innerHTML = '</br>ካርታ ስር አስገባ'  
-        document.getElementById('inputtextlabel').innerHTML = ' በዚህ ዋትስአፕ ቡድን ምን አድርጋችኋል? '  
-        document.getElementById('confirminputtext').innerHTML = 'አረጋግጥ'  
+        document.getElementById('inputtopiclabel').innerHTML = ' በዚህ ዋትስአፕ ቡድን ምን አድርጋችኋል? '  
+        document.getElementById('inputgoallabel').innerHTML = ' xxxxxxxxxxxx '  
+
+        // document.getElementById('confirminputtext').innerHTML = 'አረጋግጥ'  
         document.getElementById('datasovmessage').innerHTML = ' ይህንን ካርታ ዓለም ሁሉ እንዲያይ </br> እና የተከፈለበት እንዲሆን እንፈልጋለን '  
     
         document.getElementById('textswitch1').innerHTML = ' በWCL ቡድኑ ድጋፍ ጋር'  
