@@ -22,41 +22,6 @@ var layerChatGeom
 var activeBasemap = 'dark'
 var currentLocation = []; // variable created to allow the user recenter the map
 
-// mapboxgl.accessToken = 'pk.eyJ1IjoibWFyY29zbW9yZXV1Y2wiLCJhIjoiY2xwZHNlbmFpMDVoZjJpcGJxOHplOGw0ZCJ9.MiHNkvMRkTcfndsLMH166w';
-// const map = new mapboxgl.Map({
-// container: 'map',
-// // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-// style: 'mapbox://styles/mapbox/satellite-streets-v12',
-// zoom: 1.5,
-// center: [30, 50],
-// projection: 'globe',
-// // customAttribution: 'Map design by me',
-// // attributionControl: 'Leaflet | Mapbox and OpenStreetMap Contributors',
-// // attributionControl: false
-// });
-
-// map.on('load', () => {
-// // Set the default atmosphere style
-// map.setFog({
-// color: 'grey', // Lower atmosphere
-//     'high-color': '#232222', // Upper atmosphere
-//     'horizon-blend': 0.02, // Atmosphere thickness (default 0.2 at low zooms)
-//     'space-color': '#232222', // Background color
-//     'star-intensity': 0 // Background star brightness (default 0.35 at low zoooms )
-// });
-// });
-
-// var intervalremoveattributes = setInterval(function(){
-//   try{
-//     var mapboxattrib1 = document.getElementsByClassName("mapboxgl-ctrl-bottom-right")
-//     mapboxattrib1[0].style.display = 'none'
-//     var mapboxattrib2 = document.getElementsByClassName("mapboxgl-ctrl-bottom-left")
-//     mapboxattrib2[0].style.display = 'none'
-//   }catch(e){
-//     console.log('error', e)
-//   }
-
-// },50)
 
 
 function displayFile(file) {
@@ -146,42 +111,18 @@ console.log('manualupload',manualupload)
     mapdata = geoJson
     console.log(geoJson);
 
-    // console.log(JSON.stringify(geoJson));
-    // setTimeout(function(){
-      // document.getElementById('initialscreen2options').style.display = 'none'
-      // setTimeout(function(){
-
-      // document.getElementById('backFromFilter').style.display = 'none'
-
-
-      // document.getElementById('initialscreen2options').style.display = 'none'
       document.getElementById("map").style.opacity = 0;
       document.getElementById('MapLoading').style.opacity = 1
-      // document.getElementById('startmapping').style.backgroundColor = 'white'
-      // myLayer_Button.removeFrom(map); //always on as there will always be features in the map, even when first load
-     
-
-
-
+  
       console.log(bounds)
         document.getElementById('MapLoading').style.display = 'none'
-        // document.getElementById("tutorial").style.display = "none";
-        // document.getElementById("armchair").style.display = "none";
-        // document.getElementById("field").style.display = "none";
+
         document.getElementById("kaptalitetutorial").style.display = "none";
-        // document.getElementById("gobackUploadmap").style.display = "initial";
-        // document.getElementById("confirmuploadedmap").style.display = "initial";
+
         document.getElementById("inputtextlabel").style.display = "initial";
         document.getElementById("emojionearea").style.display = "initial";
         document.getElementById("emojionearea").value = nameOfTheGroup
         document.getElementById("confirminputtext").style.display = "initial";
-
-
-        
-        // document.getElementById("Alert").style.fontSize = "30px";
-        // document.getElementById("Alert").style.textAlign = "center"
-        // document.getElementById('Alert').innerHTML = 'Stats here...'
-        // document.getElementById("Alert").style.display = 'initial'
 
   };
   // console.log('totalContributions',totalcontrib)  

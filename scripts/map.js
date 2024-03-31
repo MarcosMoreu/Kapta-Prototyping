@@ -23,68 +23,6 @@ var scale = L.control.scale({
 })
 
 
-// var basemapDarkButton = L.easyButton({
-//   id: 'dark',
-//   class: 'easyButton',
-//   position: 'topright',
-//   //background:'images/forest.png',
-//   states: [{
-//       // icon: '<img src="images/osm.png" width=40px ; height=40px; style="margin-left:-10px"> ',
-//       icon: iconOSM,
-//       //  background:"images/forest.png",
-//       stateName: 'check-mark',
-//       onClick: function(btn, map) {
-//         planet_Button.button.style.backgroundColor = 'white';
-//         setTimeout(function(){ // to avoid the 1-2 sec waiting while local storage layer is loading
-//           planet_Button.button.style.backgroundColor = 'black';
-//         },300)
-
-//         // startSearchingLocation()
-
-//         document.getElementById("MapLoading").style.display = 'initial'
-
-
-//         //   mapCurrentZoom = map.getZoom();
-//         //  // //console.log('zoom1', mapCurrentZoom)
-//         //   if(mapCurrentZoom >19){
-//         //     map.setZoom(19)//because OSM does not provide tiles beyond zoom 19
-//         //     mapCurrentZoom = map.getZoom();
-//         //   }
-
-//           googleSat.removeFrom(map);
-//           map.options.maxZoom = 19; //Set max zoom level as OSM does not serve tiles with 20+ zoom levels
-//           map.options.minZoom = 2;
-//           osm_Button.removeFrom(map);
-//           planet_Button.addTo(map);
-
-//           try{
-//             osm.addTo(map);
-
-//             osm.on("load",function() {
-
-//               //console.log("all visible osm tiles have been loaded")
-//               // document.getElementById("Alert").style.display = 'none'
-//               document.getElementById("MapLoading").style.display = 'none'
-
-//              });
-
-//           }catch{
-//             //console.log('error loading osm tiles')
-//           }
-
-
-//           basemapOn = 'osm'
-//           return basemapOn;
-//       }
-//   }]
-// });
-// basemapDarkButton.button.style.width = '50px';
-// basemapDarkButton.button.style.height = '50px';
-// basemapDarkButton.button.style.transitionDuration = '.3s';
-// basemapDarkButton.button.style.backgroundColor = 'black';
-
-
-
 // var basemapDark = L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
   var basemapDark = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFyY29zbW9yZXV1Y2wiLCJhIjoiY2xwZHNlbmFpMDVoZjJpcGJxOHplOGw0ZCJ9.MiHNkvMRkTcfndsLMH166w', {
     minZoom: 2,
@@ -166,7 +104,7 @@ function success(pos) {
   console.log("Your current position is:");
   console.log(`Latitude : ${crd.latitude}`);
   console.log(`Longitude: ${crd.longitude}`);
-  console.log(`More or less ${crd.accuracy} meters.`);
+  console.log(`Accuracy ${crd.accuracy} meters.`);
 }
 
 function error(err) {
@@ -235,8 +173,5 @@ gpsButton.button.style.borderColor = 'transparent';
 
 var currentZoom = map.getZoom();
 
-// setTimeout(function(){
-//   clearInterval(intervalremoveattributes)
-// },2000)
 console.log('timestamp',timestamp)
 var screenshotTaken = false

@@ -56,27 +56,7 @@ position: absolute;
   outline:none;
 }
 
-.buttonDelete {
-  width:50px;
-  height:50px;
-  border-radius: 50px;
-  margin:5px;
-  background-color: white; /* Green */
-  padding: 0px 0px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  border: 2px solid white;
-  position:relative;
-  outline:none;
-  transition: 0.2s all;
 
-}
-.buttonDelete:active{
-  /* transform: scale(0.9); */
-  background-color: #D3D2D2;
-  border: 2px solid #D3D2D2;
-}
 .button {
   width:50px;
   height:50px;
@@ -94,65 +74,6 @@ position: absolute;
 
 }
 .button:active{
-  /* transform: scale(0.9); */
-  background-color: #D3D2D2;
-  border: 2px solid #D3D2D2;
-}
-
-.buttonActivatePlay{
-  border: 4px solid white;
-  outline:none;
-  transition: 0.2s all;
-}
-.buttonActivatePlay:active{
-  /* transform: scale(0.9); */
-  background-color: #D3D2D2;
-  border: 2px solid #D3D2D2;
-}
-
-.popupButton:disabled{
-  color:black
-}
-
-.attributeButtons{
-  border: 8px solid transparent;
-  outline:none;
-  transition: 0.2s all;
-
-}
-.attributeButtons:active{
-  /* transform: scale(0.9); */
-  background-color: #D3D2D2;
-  border: 2px solid #D3D2D2;
-}
-
-.audioButtons{
-  border: 2px solid transparent;
-  outline:none;
-  transition: 0.2s all;
-}
-.audioButtons:active{
-  /* transform: scale(0.9); */
-  background-color: #D3D2D2;
-  border: 2px solid #D3D2D2;
-}
-
-.buttonShare {
-  border-radius: 100px;
-  margin:0px;
-  width:200px;
-  height:200px;
-  left:50%;
-  margin-left:-100px;
-  background-color: white;
-  padding: 0px 0px; */
-  text-align: center;
-  text-decoration: none;
-  border: 2px solid white;
-  outline:none;
-  transition: 0.2s all;
-}
-.buttonShare:active{
   /* transform: scale(0.9); */
   background-color: #D3D2D2;
   border: 2px solid #D3D2D2;
@@ -192,50 +113,7 @@ height:20px;  /*  to set the size of  both the emoji in the text box and the pop
 
 a, a:visited, a:hover, a:active {color:grey;text-decoration:none}  /* Selected link   */
 
-.gridCellForImportExportButtons{
-  /* overflow-y:auto; */
 
-  z-index:1000;
-  position:absolute;
-  margin-top: 0px;
-  background-color: white;
-  height:100%;
-  width:100%;
-  overflow-y: scroll !important;
-
-display: inline-grid;
-/* text-align: center; */
-
-align-items: center;
-justify-items: center;
-row-gap:2px;
-column-gap:2px;
-
-grid-template-columns: repeat(2, 1fr);
-grid-template-rows: repeat(6, 1fr);
-
-
-}
-.hiddenButtons{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  /* left:50%; */
-  width:150px;
-  height:80px;
-  border-radius: 20px;
-  border: 2px solid black;
-  background-color: grey; /* Green */
-  text-decoration: none;
-  border: 2px solid white;
-  position:relative;
-  outline:none;
-  transition: 0.2s all;
-}
-.hiddenButtons:active{
-  transform: scale(0.8);
-
-}
 .custom-file-input::-webkit-file-upload-button {
   visibility: hidden;
 

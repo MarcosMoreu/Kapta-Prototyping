@@ -2,7 +2,6 @@
 var topic
 document.getElementById('confirminputtext').onclick = function(){
 
-
   document.getElementById("confirminputtext").style.backgroundColor = "#a2a1a1";
   nameOfTheGroup = document.getElementById("emojionearea").value
 
@@ -117,6 +116,21 @@ document.getElementById('KaptaAdvanced').onclick = function(){
   },2000)
   },200)
 }
+
+document.getElementById('asktheteam').onclick = function(){
+  document.getElementById('asktheteam').style.backgroundColor = '#a6a4a4'
+  // document.getElementById('talk').style.borderColor = '#404040'
+  setTimeout(function(){
+    // document.getElementById("Alert").style.display = 'none'
+    window.location.href="https://wa.me/+34678380944?";
+    document.getElementById('asktheteam').style.backgroundColor = 'white'
+
+
+  },500)
+  // window.location.href="https://wa.me/+34678380944?' + textwhatsappencoded + '";
+}
+
+
 var youtubeVideoLoaded = false
 
 document.getElementById('kaptalitetutorial').onclick = function(){
@@ -127,15 +141,6 @@ document.getElementById('kaptalitetutorial').onclick = function(){
 
   document.getElementById('gobackfromtutorial').style.display = 'initial'
 
-  
-  
-  // setTimeout(function(){
-
-  // document.getElementById('kaptalitetutorial').innerHTML = '🚧 🚧'
-  // setTimeout(function(){
-  //   document.getElementById('kaptalitetutorial').innerHTML = 'Watch tutorials'
-  // },2000)
-  // },200)
 }
 document.getElementById('gobackfromtutorial').onclick = function(){
     var storeIframeURL = document.getElementById("youtubeVideo").src
@@ -144,9 +149,9 @@ document.getElementById('gobackfromtutorial').onclick = function(){
     document.getElementById('gobackToInitialKaptalite').style.display = 'initial'
     document.getElementById('gobackfromtutorial').style.display = 'none'
     document.getElementById('youtubeVideo').style.display = 'none'
-
     
 }
+
 document.getElementById('gobackToInitialKaptalite').onclick = function(){
   setTimeout(function(){
 
@@ -222,9 +227,6 @@ document.getElementById('confirmuploadedmap').onclick = function(){
   document.getElementById("confirminputtext").style.display = "none";
   document.getElementById("inputtextlabel").style.display = "none";
   
-  // document.getElementById('openexportedmap').style.display = 'none'
-
-  // document.getElementById('disclaimer').style.display = 'none'
   document.getElementById('asktheteam').style.display = 'none'
   document.getElementById('switches').style.display = 'initial'
   document.getElementById('gobackUploadmap').style.display = 'initial'
@@ -246,8 +248,6 @@ document.getElementById('gobackToMap').onclick = function(){  // this applies to
     document.getElementById("moredatasovinfo").style.display = "none";
     document.getElementById("datasovmessage").style.display = "none";
 
-    
-
   }else{
     document.getElementById("gobackToMap").style.display = "none";
     document.getElementById('shareYourImageMap').style.display = 'none'
@@ -260,7 +260,6 @@ document.getElementById('gobackToMap').onclick = function(){  // this applies to
     document.getElementById("confirmDataSubmision").style.display = "initial";
     document.getElementById('moredatasovinfo').style.display = "initial";
     document.getElementById("datasovmessage").style.display = "initial";
-
 
     lastscreen = false
   }
@@ -280,10 +279,6 @@ document.getElementById('moredatasovinfo').onclick = function(){  // this applie
     document.getElementById("datasovcontent").style.display = "initial";
     document.getElementById("moredatasovinfo").style.display = "initial";
     document.getElementById("moredatasovinfo").style.borderColor = "grey";
-
-
-
-
     console.log('moreinfostate false')
     moreinfostate = true
 
@@ -296,8 +291,6 @@ document.getElementById('moredatasovinfo').onclick = function(){  // this applie
     document.getElementById("gobackToMap").style.display = "initial";
     document.getElementById("datasovmessage").style.display = "initial";
     document.getElementById("moredatasovinfo").style.display = "initial";
-
-
     document.getElementById("moredatasovinfo").style.borderColor = "black";
     moreinfostate = false
   }
