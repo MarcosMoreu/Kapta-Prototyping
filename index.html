@@ -47,7 +47,7 @@
   <p id='inputgoallabel' align = 'center' style='z-index:300;display:none;position:absolute;left:calc(50% - 120px);margin-top:170px;color:rgb(7, 7, 7);font-size:18px; width:240px;font-family:'Ubuntu' '> What do you want to achieve with this map? </br> </p>
   <input id="inputgoal" class="inputtext" placeholder='...' style='display:none;z-index:300;position:absolute;margin-top:220px;left:calc(50% - 130px); margin-right: 10px;width:250px;vertical-align:middle;  height:40px; border-radius: 20px; border-color:white; background-color: #DEDDDD; font-size:16px; padding:0px 15px;font-size:18px; font-family:'Ubuntu''>
   
-  <p id='datasovmessage' style='z-index:300;display:none;text-align: center;position:fixed;width:100%;top:300px;color:#0f0f0f;font-size:18px; font-family:'Ubuntu' '> Do you allow the Kapta team to use the map to help you?</p>
+  <p id='datasovmessage' style='z-index:300;display:none;text-align: center;position:fixed;width:100%;top:300px;color:#0f0f0f;font-size:18px; font-family:'Ubuntu' '> Do you allow the Kapta team to use the map to support your community?</p>
 
 <div id='switches' style="z-index:1000;top:350px;display:none;position:fixed;font-size:17px;font-family:'Ubuntu'">
   <div class="sliderWrapper" >
@@ -110,6 +110,8 @@
   <p id='finalmessage' style='z-index:0;display:none;text-align: center;position:fixed;width:100%;top:15px;color:#7E1701;font-size:18px; font-family:'Ubuntu' '> Submitted......now share with......</p>
   <p id='loadmapmessage' style='z-index:0;display:none;text-align: center;position:fixed;width:100%;top:15px;color:#7E1701;font-size:18px; font-family:'Ubuntu' '> Loading map</p>
   <p id='datasovcontent' style='z-index:0;display:none;text-align: center;position:fixed;width:100%;top:25px;color:#0f0f0f;font-size:15px; font-family:'Ubuntu' '> Data sovereingty explanation... </br> centralisation </br> decentralisation...</p>
+  <p id='maprequestscontent' style='z-index:0;display:none;text-align: center;position:fixed;width:100%;top:25px;color:#0f0f0f;font-size:20px; font-family:'Ubuntu' '> 1-Population </br> 2-... </p>
+
   <!-- <p id='maploadinggif' style='z-index:49000;display:none;text-align: center;position:fixed;width:100%;top:245px;color:#0f0f0f;font-size:15px; font-family:'Ubuntu' '> Converting chat to map... </br> Wait </p> -->
 
   
@@ -131,7 +133,7 @@
   <button id='gobackToMap' class='button' aria-label = 'field' style='position:absolute;vertical-align: middle;display:none;z-index:100;outline:none;left:calc(50% - 25px); top:calc(90% - 30px);width:50px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
     <img src="images/backButton.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
   </button>
-  <select id="languages" class='buttonInitial' style='cursor:pointer;margin-left:calc(50% - 100px);display:none;z-index:100;outline:none;top:calc(50% - 300px);width:200px ; height:50px; border: 0px solid white;background-color: transparent;border-color:none; border-radius:15px; font-size:18px;' >
+  <select id="languages" class='buttonInitial' style='cursor:pointer;margin-left:calc(50% - 100px);display:initial;z-index:100;outline:none;top:calc(50% - 300px);width:200px ; height:50px; border: 0px solid white;background-color: transparent;border-color:none; border-radius:15px; font-size:18px;' >
     <option align = 'center' value="en">🇬🇧 English</option>
    <option align = 'center' value="es">🇪🇸 Español</option>
    <option align = 'center' value="fr">🇫🇷 Français</option>
@@ -139,7 +141,11 @@
 
   </select>
 
-  <button id='kaptalitetutorial' class='buttonInitial' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 75px); top:calc(50% - 200px);width:150px ; height:70px; border: 2px solid white; background-color: white;border-color:black; border-radius:15px; font-size:18px;' >
+  <button id='maprequests' class='buttonInitial' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 75px); top:calc(50% - 200px);width:150px ; height:70px; border: 2px solid white; background-color: white;border-color:black; border-radius:15px; font-size:18px;' >
+    <!-- <img id='youtubeImage' src="../images/youtube.png"  alt="..." loading='lazy' style='width:30px ; height:30px'> -->
+  Map requests
+  </button>
+  <button id='kaptalitetutorial' class='buttonInitial' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 75px); top:calc(50% - 100px);width:150px ; height:70px; border: 2px solid white; background-color: white;border-color:black; border-radius:15px; font-size:18px;' >
     <!-- <img id='youtubeImage' src="../images/youtube.png"  alt="..." loading='lazy' style='width:30px ; height:30px'> -->
   Watch video
   </button>
@@ -150,19 +156,19 @@
   <button id='openexportedmap' class='buttonInitial' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(50% - 150px);width:200px ; height:100px; border: 2px solid white; background-color: white;border-color:black; border-radius:15px; font-size:18px;' >
   Open Exported Map
   </button>
-  <button id='KaptaLite' class='buttonInitial' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(50% - 150px);width:200px ; height:100px; border: 2px solid white; background-color: white;border-color:black; border-radius:15px; font-size:18px;' >
+  <button id='KaptaLite' class='buttonInitial' style='vertical-align: middle;display:initial;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(50% - 150px);width:200px ; height:100px; border: 2px solid white; background-color: white;border-color:black; border-radius:15px; font-size:18px;' >
     Kapta Lite
   </button>
   <button id='chatmaploadinggif' disabled class='buttonInitial' style='vertical-align: middle;display:none;z-index:10000;outline:none;margin-left:calc(50% - 100px); top:calc(50% - 150px);width:200px ; height:100px; color:black; background-color: transparent;border-color:transparent; border-radius:15px; font-size:25px;' >
     Converting chat to map...</br></br></br>
     <img src="images/checkingPw.gif"  alt="..." loading='lazy' style='width:50px ; height:50px'>
   </button>
-  <button id='KaptaAdvanced' class='buttonInitial'style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(50% - 0px);width:200px ; height:100px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;' >
+  <button id='KaptaAdvanced' class='buttonInitial'style='vertical-align: middle;display:initial;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(50% - 0px);width:200px ; height:100px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;' >
     Kapta
   </button>
 
-  <button id='asktheteam' class='buttonInitial'style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); bottom:80px;width:200px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
-    <img src="images/infohelp.png"  alt="..." style='vertical-align: middle;width:30px ; height:30px;padding:5px' >Ask us anything
+  <button id='asktheteam' class='buttonInitial'style='vertical-align: middle;display:initial;z-index:100;outline:none;margin-left:calc(50% - 100px); bottom:80px;width:200px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
+    Ask us anything
   </button>
   <button id='gobackToInitialKaptalite' class='button' aria-label = 'field' style='vertical-align: middle;display:none;position:absolute;z-index:100;outline:none;left:calc(50% - 25px); bottom:40px;width:50px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px;'>
     <img src="images/backButton.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>

@@ -103,6 +103,8 @@ document.getElementById('KaptaLite').onclick = function(){
   document.getElementById('languages').style.display = 'none'
   document.getElementById('upload').style.display = 'initial'
   document.getElementById('kaptalitetutorial').style.display = 'initial'
+  document.getElementById('maprequests').style.display = 'initial'
+
 document.getElementById('gobackToInitialKaptalite').style.display = 'initial'
   document.getElementById('KaptaLite').style.display = 'none'
   document.getElementById('KaptaAdvanced').style.display = 'none'
@@ -138,6 +140,8 @@ var youtubeVideoLoaded = false
 
 document.getElementById('kaptalitetutorial').onclick = function(){
   document.getElementById('kaptalitetutorial').style.display = 'none'
+  document.getElementById('maprequests').style.display = 'none'
+
   document.getElementById('upload').style.display = 'none'
   document.getElementById('gobackToInitialKaptalite').style.display = 'none'
   document.getElementById('youtubeVideo').style.display = 'initial'
@@ -145,13 +149,26 @@ document.getElementById('kaptalitetutorial').onclick = function(){
   document.getElementById('gobackfromtutorial').style.display = 'initial'
 
 }
+document.getElementById('maprequests').onclick = function(){
+  document.getElementById('kaptalitetutorial').style.display = 'none'
+  document.getElementById('maprequests').style.display = 'none'
+  document.getElementById('upload').style.display = 'none'
+  document.getElementById('gobackToInitialKaptalite').style.display = 'none'
+  document.getElementById('maprequestscontent').style.display = 'initial'
+
+  document.getElementById('gobackfromtutorial').style.display = 'initial'
+
+}
 document.getElementById('gobackfromtutorial').onclick = function(){
     var storeIframeURL = document.getElementById("youtubeVideo").src
     document.getElementById('kaptalitetutorial').style.display = 'initial'
+    document.getElementById('maprequests').style.display = 'initial'
     document.getElementById('upload').style.display = 'initial'
     document.getElementById('gobackToInitialKaptalite').style.display = 'initial'
     document.getElementById('gobackfromtutorial').style.display = 'none'
     document.getElementById('youtubeVideo').style.display = 'none'
+    document.getElementById('maprequestscontent').style.display = 'none'
+
     
 }
 
@@ -159,6 +176,8 @@ document.getElementById('gobackToInitialKaptalite').onclick = function(){
   setTimeout(function(){
 
   document.getElementById('kaptalitetutorial').style.display = 'none'
+  document.getElementById('maprequests').style.display = 'none'
+
   document.getElementById('upload').style.display = 'none'
   document.getElementById('gobackToInitialKaptalite').style.display = 'none'
   document.getElementById("inputtopiclabel").style.display = "none";
@@ -199,7 +218,7 @@ document.getElementById('gobackUploadmap').onclick = function(){
   document.getElementById('asktheteam').style.display = 'none'
   document.getElementById('kaptalitetutorial').style.display = 'none'
   
-  document.getElementById('kaptalitetutorial').style.display = 'none'
+  document.getElementById('maprequests').style.display = 'none'
   document.getElementById('upload').style.display = 'none'
   document.getElementById('gobackToInitialKaptalite').style.display = 'none'
   
@@ -245,6 +264,8 @@ document.getElementById('confirmuploadedmap').onclick = function(){
   document.getElementById('languages').style.display = 'none'
   document.getElementById('upload').style.display = 'none'
   document.getElementById('kaptalitetutorial').style.display = 'none'
+  document.getElementById('maprequests').style.display = 'none'
+
   document.getElementById('gobackToInitialKaptalite').style.display = 'none'
   document.getElementById('KaptaLite').style.display = 'none'
   document.getElementById('KaptaAdvanced').style.display = 'none'

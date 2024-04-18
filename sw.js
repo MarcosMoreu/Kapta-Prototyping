@@ -57,6 +57,50 @@ self.addEventListener('fetch', (event) => {
   if (event.request.headers.has('range')) {
     return;
   }
+
+  if (navigator.onLine == false){ 
+    event.respondWith(caches.open(cacheName).then((cache) => {
+      return cache.match(event.request,
+      {ignoreSearch:true,})
+      .then((cachedResponse) => {
+          if(cachedResponse){
+            // console.log(event.request.url)
+            return cachedResponse
+          }else{
+            //console.log('from networkkkkkkkkkkkkkkkkkk')
+            return fetch(event.request).then((fetchedResponse) => {
+        // Add the network response to the cache for later visits
+        cache.put(event.request, fetchedResponse.clone());
+
+        // Return the network response
+        return fetchedResponse;
+      })
+    }
+  })
+    }))
+  }else{//this is where most of the requests pass
+    event.respondWith(caches.open(cacheName).then((cache) => {
+            // console.log(event.request.url)
+
+      return cache.match(event.request).then((cachedResponse) => {
+          if(cachedResponse){
+            // console.log(event.request.url)
+            return cachedResponse
+          }else{
+            //console.log('from networkkkkkkkkkkkkkkkkkk')
+
+            return fetch(event.request).then((fetchedResponse) => {
+        // Add the network response to the cache for later visits
+        cache.put(event.request, fetchedResponse.clone());
+
+        // Return the network response
+        return fetchedResponse;
+      })
+    }
+  })
+    }))
+  }
+
  
 }
 

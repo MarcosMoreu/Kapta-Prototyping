@@ -39,6 +39,9 @@ if ('serviceWorker' in navigator) {
 var sharetarget = false
 var manualupload = true
 
+//to prevent clicking on first load before the modal loads
+
+
 navigator.serviceWorker.onmessage = (event) => {
 console.log('MESSAGE FROM SW RECEIVED')
 loadingchat()
@@ -183,7 +186,20 @@ if(isOnline == false){
 var phoneNumber
 var arrayOfImages = [
   'images/ThumbsUpGreen.png','images/checkingPw.gif',
-  'images/talk.png','images/listen.png',
+  'images/talk.png',
+  'images/backButton.png','images/PlusSign.png','images/infoGoBack.png',
+   'images/download.png','images/burger.png','images/burgerBlack.png',
+    'images/questionmark.png','images/key.png','images/other1.png',
+     'images/sendComment.png','images/arrowLeft.png','images/underConstruction.png',
+      'images/whatsapp.png','images/excitesTree.png images/tvSmall.png',
+       'images/filterIconold.png','images/manNoOrientation2.png',
+        'images/manNoOrientation.png','images/onionlayericon.png','images/moon.png',
+         'images/padlockopen.png','images/padlockclosed.png','images/filterIcon2.png',
+          'images/filterIcon.png','images/gifcartofilter.gif',
+           'images/infohelp.png','images/phoneicon.png','images/mainmenu.png',
+            'images/checkingPw.gif','images/oldThumbsUp.png','images/gpslite.png',
+             'images/sun.png','images/ThumbsUp.png','images/WhatsAppicon.png',
+              
 
 ]
 
@@ -218,6 +234,10 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
   //$.getScript("lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.Draw.Event.js")
     // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
     if(localStorage.getItem('pwCorrect')){
+      document.getElementById('languages').disabled = false
+      document.getElementById('KaptaLite').disabled = false
+      document.getElementById('KaptaAdvanced').disabled = false
+      document.getElementById('asktheteam').disabled = false
       // if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains geojson (and coords)
       //   document.getElementById('talk').style.opacity = 0
       //   document.getElementById('listen').style.opacity = 0
@@ -272,6 +292,8 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
       }
 
     }else if(typeof window.localStorage !== "undefined" && !localStorage.getItem('visited')) {
+      console.log('visited but no pw')
+
         // Set visited flag in local storage
         try{
           $.getScript({
@@ -300,6 +322,7 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
 
 
     }else if(!localStorage.getItem('pwCorrect')){  //condition to ensure that if in first load pw was incorrect, pw is requested until correct !!!!!!!!!!!!!!!!!!!!!!!
+
       try{
         $.getScript({
            cache:false,
