@@ -5,6 +5,8 @@ var radiusbuffer = 99
 var mainattribute = 'quququ'
 var attribute1s = 'test'
 var attribute1n = 33
+var totalcontrib = 99
+var radiusbuffer = 99
 var mapdata
 var geojsonObfuscated
 var timeEnd = new Date();
@@ -125,6 +127,8 @@ function processTextFile(fileContent) {
   document.getElementById('MapLoading').style.opacity = 1;
   document.getElementById('MapLoading').style.display = 'none';
   document.getElementById("kaptalitetutorial").style.display = "none";
+  document.getElementById('maprequests').style.display = 'none'
+
   openmap();
 }
 

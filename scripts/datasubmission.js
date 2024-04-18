@@ -190,11 +190,11 @@ let toggleStates = {
                 feature.properties.phone + "',CAST('" + 
                 feature.properties.timestamp + "' AS TIMESTAMP),'" + 
                 mainattribute + "','" + 
-                feature.properties.attribute1s + "',CAST('" + 
-                feature.properties.attribute1n + "' AS INT64),'" + 
-                feature.properties.datasov + "',CAST('" + 
-                feature.properties.totalcontrib + "' AS INT64),CAST('" + 
-                feature.properties.radiusbuffer + "' AS INT64))";
+                attribute1s + "',CAST('" + 
+                attribute1n + "' AS INT64),'" + 
+                datasov + "',CAST('" + 
+                totalcontrib + "' AS INT64),CAST('" + 
+                radiusbuffer + "' AS INT64))";
         });
         
         // Join all the values with commas and append to the base SQL
