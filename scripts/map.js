@@ -50,7 +50,7 @@ var basemapSat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-
 var iconBasemap = '<img src="images/sun.png" alt="..." width=30px; height=30px; loading="lazy" text-align="center" style="margin-left:-1px;margin-bottom:5px;" > ';
 
 var basemapButton = L.easyButton({
-  id: 'sat',
+  id: 'baseMap',
   class: 'easyButton',
   position: 'topright',
   states: [{
@@ -67,11 +67,14 @@ var basemapButton = L.easyButton({
           activeBasemap = 'dark'
           basemapSat.removeFrom(map);
           basemapDark.addTo(map);
+          document.getElementById('baseMap').innerHTML = '<img src="images/sun.png" alt="..." width=30px; height=30px; loading="lazy" text-align="center" style="margin-left:-1px;margin-bottom:5px;" > '
         }else{
           activeBasemap = 'sat'
 
           basemapDark.removeFrom(map);
           basemapSat.addTo(map);
+          document.getElementById('baseMap').innerHTML = '<img src="images/moon.png" alt="..." width=25px; height=25px; loading="lazy" text-align="center" style="margin-left:0px;margin-bottom:7px;" > '
+
         
         }
         return activeBasemap

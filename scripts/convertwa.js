@@ -26,108 +26,106 @@ var filedisplayed = false
 
 
 function displayFile(file) {
-  filedisplayed = true
-  document.getElementById('confirmuploadedmap').style.opacity = '0.4'
-  document.getElementById('confirmuploadedmap').disabled = true
-  document.getElementById('gobackUploadmap').style.opacity = '0.4'
-  document.getElementById('gobackUploadmap').disabled = true
-  gpsButton.button.style.opacity = '0.4'
-  basemapButton.button.style.opacity = '0.4'
+  const setUIElements = () => {
+    filedisplayed = true;
+    document.getElementById('confirmuploadedmap').style.opacity = '0.4';
+    document.getElementById('confirmuploadedmap').disabled = true;
+    document.getElementById('gobackUploadmap').style.opacity = '0.4';
+    document.getElementById('gobackUploadmap').disabled = true;
+    gpsButton.button.style.opacity = '0.4';
+    basemapButton.button.style.opacity = '0.4';
+    gpsButton.button.disabled = true;
+    basemapButton.button.disabled = true;
+    document.getElementById('upload').style.display = 'none';
+    document.getElementById('languages').style.display = 'none';
+    document.getElementById('KaptaLite').style.display = 'none';
+    document.getElementById('KaptaAdvanced').style.display = 'none';
+    document.getElementById('asktheteam').style.display = 'none';
+  };
 
-  gpsButton.button.disabled = true
-  basemapButton.button.disabled = true
-  // document.getElementById('MapLoading').style.display = 'initial'
-  document.getElementById('upload').style.display = 'none'
-  // document.getElementById('viewmap').style.display = 'none'
-    document.getElementById('languages').style.display = 'none'
-    document.getElementById('KaptaLite').style.display = 'none'
-    document.getElementById('KaptaAdvanced').style.display = 'none'
-    document.getElementById('asktheteam').style.display = 'none'
+  setUIElements();
 
-console.log('manualupload',manualupload)
-  // console.log(event.target.files[0])
-
-  if(manualupload == true){ //to differentiate between maual upload or share-target
-    var file = event.target.files[0]
+  if(manualupload == true){
+    file = event.target.files[0];
   }
 
+  if (file.name.endsWith('.zip')) {
     const reader = new FileReader();
+    reader.readAsArrayBuffer(file);
 
-    reader.readAsText(file);
-
-    reader.onloadend = function (e) {
-    var randomNumber = Math.random();
-    randomNumber = randomNumber * 100000;
-    communitymapid = Math.round(randomNumber)
-    var filecontent = e.target.result;
-    console.log('filecontent', filecontent);
-    const regexNameofthegroup = /"([^"]*)"/;
-    var matchNameofthegroup = filecontent.match(regexNameofthegroup);
-    nameOfTheGroup = matchNameofthegroup ? matchNameofthegroup[1] : null;
-
-
-    const regex = /(-?\d+\.\d+)\s*,\s*(-?\d+\.\d+)/g;
-    let matches;
-    const features = [];
-    datasov = 'potentiallyopen'
-    while ((matches = regex.exec(filecontent)) !== null) {
-      totalcontribmap = totalcontribmap + 1
-      const latitude = parseFloat(matches[1]);
-      const longitude = parseFloat(matches[2]);
-      // console.log('totalcontrib',totalcontrib)
-
-
-      var randomNumber = Math.random();
-      randomNumber = randomNumber * 10000000;
-      contributionid = Math.round(randomNumber)
-      // console.log('latitude',latitude)
-      // console.log('communitymapid',communitymapid)
-      // console.log('contributionid',contributionid)
-      // console.log('nameOfTheGroup',nameOfTheGroup);
-
-      features.push({
-        type: "Feature",
-        properties: {
-          
-          contributionid: contributionid,
-          phone: phone,
-          timestamp: timestamp,
-          mainattribute: nameOfTheGroup,
-          attribute1s: attribute1s,   // no needed
-          attribute1n: attribute1n,  // no needed
-          datasov: datasov,   // not needed
-          totalcontrib: communitymapid, // this is actually the id of the community map
-          radiusbuffer: '0', // no need 
-        },
-        geometry: {
-          type: "Point",
-          coordinates: [longitude, latitude]
-        }
+    reader.onload = function(e) {
+      const arrayBuffer = e.target.result;
+      const zip = new JSZip();
+      zip.loadAsync(arrayBuffer).then(function(contents) {
+        Object.keys(contents.files).forEach(function(filename) {
+          if (filename.endsWith('.txt')) {
+            zip.file(filename).async('string').then(function(fileContent) {
+              processTextFile(fileContent);
+            });
+          }
+        });
       });
-    }
-
-    const geoJson = {
-      type: "FeatureCollection",
-      features: features
     };
-    mapdata = geoJson
-    console.log(geoJson);
-
-      document.getElementById("map").style.opacity = 1;
-      document.getElementById('MapLoading').style.opacity = 1
-  
-      console.log(bounds)
-        document.getElementById('MapLoading').style.display = 'none'
-
-        document.getElementById("kaptalitetutorial").style.display = "none";
-        openmap()
-        // document.getElementById("inputtopiclabel").style.display = "initial";
-        // document.getElementById("inputtopic").style.display = "initial";
-        // document.getElementById("inputtopic").value = nameOfTheGroup
-        // document.getElementById("confirminputtext").style.display = "initial";
-
-  };
-  // console.log('totalContributions',totalcontrib)  
-  return mapdata && totalcontribmap && nameOfTheGroup && bounds && screenshotTaken && mapdata && filedisplayed
+  } else if (file.name.endsWith('.txt')) {
+    const reader = new FileReader();
+    reader.readAsText(file);
+    reader.onloadend = function(e) {
+      processTextFile(e.target.result);
+    };
+  } else {
+    console.log('Unsupported file format');
+  }
 }
+
+function processTextFile(fileContent) {
+  var randomNumber = Math.random();
+  randomNumber = randomNumber * 100000;
+  communitymapid = Math.round(randomNumber);
+  console.log('filecontent', fileContent);
+  const regexNameofthegroup = /"([^"]*)"/;
+  var matchNameofthegroup = fileContent.match(regexNameofthegroup);
+  nameOfTheGroup = matchNameofthegroup ? matchNameofthegroup[1] : null;
+
+  const regex = /(-?\d+\.\d+)\s*,\s*(-?\d+\.\d+)/g;
+  let matches;
+  const features = [];
+  datasov = 'potentiallyopen';
+  while ((matches = regex.exec(fileContent)) !== null) {
+    totalcontribmap = totalcontribmap + 1;
+    const latitude = parseFloat(matches[1]);
+    const longitude = parseFloat(matches[2]);
+
+    randomNumber = Math.random();
+    randomNumber = randomNumber * 10000000;
+    contributionid = Math.round(randomNumber);
+
+    features.push({
+      type: "Feature",
+      properties: {
+        contributionid: contributionid,
+        phone: phone,
+        timestamp: timestamp,
+        mainattribute: nameOfTheGroup,
+      },
+      geometry: {
+        type: "Point",
+        coordinates: [longitude, latitude]
+      }
+    });
+  }
+
+  const geoJson = {
+    type: "FeatureCollection",
+    features: features
+  };
+  mapdata = geoJson;
+  console.log(geoJson);
+
+  document.getElementById("map").style.opacity = 1;
+  document.getElementById('MapLoading').style.opacity = 1;
+  document.getElementById('MapLoading').style.display = 'none';
+  document.getElementById("kaptalitetutorial").style.display = "none";
+  openmap();
+}
+
 

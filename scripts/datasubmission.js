@@ -95,7 +95,7 @@ let toggleStates = {
     });
 };
   document.getElementById('confirmDataSubmision').onclick = function(){
-    clearInterval(checkinputtopic)
+    // clearInterval(checkinputtopic)
     document.getElementById('shareYourImageMap').disabled = true
     document.getElementById('shareYourMapdata').disabled = true
     document.getElementById("confirmDataSubmision").style.backgroundColor = "grey";
@@ -177,25 +177,53 @@ let toggleStates = {
           });
         };
         const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-        for (let i = 0; i < totalFeatures; i++) {
-          const feature = mapdata.features[i];
-          var baseSql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.wcl_private` (geom, contributionid, phone, timestamp, mainattribute, attribute1s, attribute1n, datasov, totalcontrib, radiusbuffer) VALUES ";
-          const geojsonString = JSON.stringify(feature.geometry).replace(/'/g, "''"); // Serialize and escape single quotes
-          // const values = ` (ST_GeogFromGeoJSON('${geojsonString}', make_valid => true),'${feature.properties.contributionid}','${phone}',CAST('${timestamp}' AS TIMESTAMP),'${feature.properties.mainattribute}','${attribute1s}',CAST('${attribute1n}' AS INT64),'${datasov}',CAST('${feature.properties.totalcontrib}' AS INT64),CAST('${radiusbuffer}' AS INT64))`;
-          var values = " (ST_GeogFromGeoJSON('" + geojsonString + "', make_valid => true),'" + feature.properties.contributionid + "','" + phone + "',CAST('" + timestamp + "' AS TIMESTAMP),'" + topic + "','" + goal + "',CAST('" + attribute1n + "' AS INT64),'" + datasov + "',CAST('" + feature.properties.totalcontrib + "' AS INT64),CAST('" + radiusbuffer + "' AS INT64))";
+        mainattribute = 'batchtest1'
 
-          const sql = baseSql + values;
+        var baseSql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.wcl_private` (geom, contributionid, phone, timestamp, mainattribute, attribute1s, attribute1n, datasov, totalcontrib, radiusbuffer) VALUES ";
+
+        // Assuming 'features' is an array of feature objects you want to insert
+        var features = mapdata.features;
+        var valuesArray = features.map(feature => {
+            const geojsonString = JSON.stringify(feature.geometry).replace(/'/g, "''"); // Serialize and escape single quotes
+            return "(ST_GeogFromGeoJSON('" + geojsonString + "'),'" + 
+                feature.properties.contributionid + "','" + 
+                feature.properties.phone + "',CAST('" + 
+                feature.properties.timestamp + "' AS TIMESTAMP),'" + 
+                mainattribute + "','" + 
+                feature.properties.attribute1s + "',CAST('" + 
+                feature.properties.attribute1n + "' AS INT64),'" + 
+                feature.properties.datasov + "',CAST('" + 
+                feature.properties.totalcontrib + "' AS INT64),CAST('" + 
+                feature.properties.radiusbuffer + "' AS INT64))";
+        });
+        
+        // Join all the values with commas and append to the base SQL
+        var values = valuesArray.join(",");
+        var sql = baseSql + values;
+        
+        // Now 'sql' contains the query to insert all features in one go
+        console.log(sql);
+        submitToProxy(sql)
+
+        // for (let i = 0; i < totalFeatures; i++) {
+        //   const feature = mapdata.features[i];
+        //   var baseSql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.wcl_private` (geom, contributionid, phone, timestamp, mainattribute, attribute1s, attribute1n, datasov, totalcontrib, radiusbuffer) VALUES ";
+        //   const geojsonString = JSON.stringify(feature.geometry).replace(/'/g, "''"); // Serialize and escape single quotes
+        //   // const values = ` (ST_GeogFromGeoJSON('${geojsonString}', make_valid => true),'${feature.properties.contributionid}','${phone}',CAST('${timestamp}' AS TIMESTAMP),'${feature.properties.mainattribute}','${attribute1s}',CAST('${attribute1n}' AS INT64),'${datasov}',CAST('${feature.properties.totalcontrib}' AS INT64),CAST('${radiusbuffer}' AS INT64))`;
+        //   var values = " (ST_GeogFromGeoJSON('" + geojsonString + "', make_valid => true),'" + feature.properties.contributionid + "','" + phone + "',CAST('" + timestamp + "' AS TIMESTAMP),'" + topic + "','" + goal + "',CAST('" + attribute1n + "' AS INT64),'" + datasov + "',CAST('" + feature.properties.totalcontrib + "' AS INT64),CAST('" + radiusbuffer + "' AS INT64))";
+
+        //   const sql = baseSql + values;
       
-          // Assuming submitToProxy is an async function or returns a Promise
-          // await submitToProxy(sql) // Handle errors or rejections        ////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //   // Assuming submitToProxy is an async function or returns a Promise
+        //   // await submitToProxy(sql) // Handle errors or rejections        ////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       
-          // Update progress
-          console.log('progress ', progress)
-          progress = ((i + 1) / totalFeatures) * 100;
-          updateProgressBar(progress);
-          await new Promise(resolve => setTimeout(resolve, 0)); // Give time for UI to update
-          await delay(100);
-        }
+        //   // Update progress
+        //   console.log('progress ', progress)
+        //   progress = ((i + 1) / totalFeatures) * 100;
+        //   updateProgressBar(progress);
+        //   await new Promise(resolve => setTimeout(resolve, 0)); // Give time for UI to update
+        //   await delay(100);
+        // }
       
         // Hide the progress bar once all features are submitted
         hideProgressContainer();
@@ -244,13 +272,16 @@ let toggleStates = {
     setTimeout(function(){
 
   var statsDesktop = 'use a phone to share screenshot'
+  var hashtag = '#kapta'
   if(navigator.canShare && navigator.canShare({ files: filesArrayScreenshot })){
         console.log(filesArrayScreenshot)
   
         navigator.share({
           files:filesArrayScreenshot, //////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-          text: stats
-          // url:'https://md.kapta.app/?'+convertedDataShareDirect+'/#'+ urlLatX + ',' + urlLngX + ',' + urlZoomX + 'z',
+          title:'#kapta',
+          text: hashtag,
+          // url:'#kapta'
+          url:'https://kapta.app'
         }).then(() => console.log('Successful share'))
           .catch((error) => console.log('Error sharing', error));
   
