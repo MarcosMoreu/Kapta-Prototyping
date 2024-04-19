@@ -70,7 +70,7 @@
   <img src="images/questionmark.png"  loading='lazy' alt="..." style='width:20px ; height:20px;'>
 </button>
 
-<div id="modal" class='modal' style='z-index:100000;background-color:black'>
+<div id="modal" class='modal' style='z-index:100000;background-color:#c00000'>
   <form id='pwForm'  class="modal-content animate" style='z-index:100000;margin-top:80px; width:300px; border-radius:50px' >
 
     <img id='lockorphone' src="images/icons/icon-256x256.webp"  loading='lazy' alt="..." style='margin-left: calc(50% - 45px);margin-top:20px;width: 90px; height:90px' >
@@ -133,7 +133,7 @@
   <button id='gobackToMap' class='button' aria-label = 'field' style='position:absolute;vertical-align: middle;display:none;z-index:100;outline:none;left:calc(50% - 25px); top:calc(90% - 30px);width:50px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
     <img src="images/backButton.png"  alt="..." loading='lazy' style='width:30px ; height:30px'>
   </button>
-  <select id="languages" class='buttonInitial' style='cursor:pointer;margin-left:calc(50% - 100px);display:initial;z-index:100;outline:none;top:calc(50% - 300px);width:200px ; height:50px; border: 0px solid white;background-color: transparent;border-color:none; border-radius:15px; font-size:18px;' >
+  <select id="languages" class='buttonInitial' style='cursor:pointer;margin-left:calc(50% - 100px);display:none;z-index:100;outline:none;top:calc(50% - 300px);width:200px ; height:50px; border: 0px solid white;background-color: transparent;border-color:none; border-radius:15px; font-size:18px;' >
     <option align = 'center' value="en">🇬🇧 English</option>
    <option align = 'center' value="es">🇪🇸 Español</option>
    <option align = 'center' value="fr">🇫🇷 Français</option>
@@ -156,18 +156,18 @@
   <button id='openexportedmap' class='buttonInitial' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(50% - 150px);width:200px ; height:100px; border: 2px solid white; background-color: white;border-color:black; border-radius:15px; font-size:18px;' >
   Open Exported Map
   </button>
-  <button id='KaptaLite' class='buttonInitial' style='vertical-align: middle;display:initial;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(50% - 150px);width:200px ; height:100px; border: 2px solid white; background-color: white;border-color:black; border-radius:15px; font-size:18px;' >
+  <button id='KaptaLite' class='buttonInitial' style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(50% - 150px);width:200px ; height:100px; border: 2px solid white; background-color: white;border-color:black; border-radius:15px; font-size:18px;' >
     Kapta Lite
   </button>
   <button id='chatmaploadinggif' disabled class='buttonInitial' style='vertical-align: middle;display:none;z-index:10000;outline:none;margin-left:calc(50% - 100px); top:calc(50% - 150px);width:200px ; height:100px; color:black; background-color: transparent;border-color:transparent; border-radius:15px; font-size:25px;' >
     Converting chat to map...</br></br></br>
     <img src="images/checkingPw.gif"  alt="..." loading='lazy' style='width:50px ; height:50px'>
   </button>
-  <button id='KaptaAdvanced' class='buttonInitial'style='vertical-align: middle;display:initial;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(50% - 0px);width:200px ; height:100px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;' >
+  <button id='KaptaAdvanced' class='buttonInitial'style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); top:calc(50% - 0px);width:200px ; height:100px; border: 2px solid white; border-color:black; border-radius:15px; font-size:18px;' >
     Kapta
   </button>
 
-  <button id='asktheteam' class='buttonInitial'style='vertical-align: middle;display:initial;z-index:100;outline:none;margin-left:calc(50% - 100px); bottom:80px;width:200px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
+  <button id='asktheteam' class='buttonInitial'style='vertical-align: middle;display:none;z-index:100;outline:none;margin-left:calc(50% - 100px); bottom:80px;width:200px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px; font-size:18px;' >
     Ask us anything
   </button>
   <button id='gobackToInitialKaptalite' class='button' aria-label = 'field' style='vertical-align: middle;display:none;position:absolute;z-index:100;outline:none;left:calc(50% - 25px); bottom:40px;width:50px ; height:50px; border: 2px solid white; border-color:black; border-radius:25px;'>
@@ -186,11 +186,11 @@
   </button> -->
   
 
-<p id='kaptainitialscreen' style='z-index:5000;display:initial;text-align: center;position:fixed;width:100%;bottom:-1px;font-size:15px;color:rgb(100, 2, 2); font-family:'Ubuntu' '> Kapta</p>
+<p id='kaptainitialscreen' style='z-index:5000;display:none;text-align: center;position:fixed;width:100%;bottom:-1px;font-size:15px;color:rgb(100, 2, 2); font-family:'Ubuntu' '> Kapta</p>
 </div>
 <div id="map" style='background-color: #616060;height:100%; z-index:2; position:relative;'>
 
-  <p id='mapsummary' align = 'center' style='display:initial;z-index:30000;position:absolute;text-align:center; width:60%;margin-left:20%;top:5px;display:none;color:rgb(252, 250, 250);font-size:20px;'>
+  <p id='mapsummary' align = 'center' style='display:none;z-index:30000;position:absolute;text-align:center; width:60%;margin-left:20%;top:5px;display:none;color:rgb(252, 250, 250);font-size:20px;'>
   </p>
 </div>
 
@@ -214,23 +214,23 @@
 <button id="screenshot"  class = 'buttonsCameraScreenshot' aria-label = 'screenshot' style='position:fixed; display:none;width:50px;right:calc(50% + 10px);height:50px;bottom:150px;border-radius: 50px'>
   <img id="imageScreenshot" src="images/screenshot.png" loading='lazy'  alt="..." style='width:30px ; height:30px'>
 </button>
+  
+  <script src="sw.js"></script>
 
   <script defer src="scripts/lib/leaflet/leaflet-src.js"></script>
   <script defer src="scripts/lib/leaflet/plugins/Leaflet.EasyButton-master/src/easy-button.js"></script>
   <script defer src="scripts/lib/leaflet/plugins/leaflet-offline-master/dist/leaflet-offline.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
 
-  <script defer src="sw.js"></script>
+  <script async src="scripts/modal.js"></script>
+  <script async src="scripts/languages.js"></script>
+
+
   <script defer src=".env/publicApiKeys.js"></script>
-
-  <script defer src="scripts/languages.js"></script>
-  <script defer src="scripts/modal.js"></script>
   <script defer src="scripts/buttons.js"></script>
-
   <script defer src="scripts/convertwa.js"></script>
   <script defer src="scripts/map.js"></script>
   <script defer src="scripts/screenshot.js"></script>
-
   <script defer src="scripts/datasubmission.js"></script>
 
 </body>

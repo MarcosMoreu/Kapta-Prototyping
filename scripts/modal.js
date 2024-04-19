@@ -1,3 +1,11 @@
+if(localStorage.getItem('pwCorrect')){
+  document.getElementById('languages').style.display='initial'
+  document.getElementById('KaptaLite').style.display='initial'
+  document.getElementById('KaptaAdvanced').style.display='initial'
+  document.getElementById('asktheteam').style.display='initial'
+}else{
+  document.getElementById('modal').style.display='initial'
+}
 if ('serviceWorker' in navigator) {
 
   navigator.serviceWorker
@@ -173,7 +181,6 @@ var deleteFromcartoimmediate = null
 
 var gobackUploadmap = false
 
-changeLanguage()
 
 var isOnline = navigator.onLine
 if(isOnline == false){
@@ -223,6 +230,7 @@ var checkfields = setInterval(function(){
   
 },300)
 var firstLoad = function() { //fucntion to determine if the site is visited for first time
+  // changeLanguage()
   console.log('FIRST LOAD CALLED')
   console.log('sharetarget',sharetarget)
   document.getElementById('login').style.opacity='0.4';

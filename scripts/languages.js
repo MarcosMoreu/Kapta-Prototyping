@@ -105,3 +105,4 @@ document.getElementById('languages').addEventListener('change', function() {
 
     }
   };
+  changeLanguage()
