@@ -58,7 +58,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  if (navigator.onLine == false){ 
+  if (navigator.onLine == false && !event.request.url.includes('/v1/mapbox/')){  //this condition is to prevent caching tiles that cause error in the screenshot funcitonality
     event.respondWith(caches.open(cacheName).then((cache) => {
       return cache.match(event.request,
       {ignoreSearch:true,})
@@ -78,7 +78,7 @@ self.addEventListener('fetch', (event) => {
     }
   })
     }))
-  }else{//this is where most of the requests pass
+  }else if(!event.request.url.includes('/v1/mapbox/')){//this is where most of the requests pass
     event.respondWith(caches.open(cacheName).then((cache) => {
             // console.log(event.request.url)
 
