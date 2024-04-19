@@ -16,7 +16,7 @@ var timestamp = date + 'T' + time + 'Z';
 var mapdata
 var geojsonObfuscated
 var pURL
-var datasov
+// var datasov
 var currentZoom
 var communitymapid
 var nameOfTheGroup
@@ -93,7 +93,7 @@ function processTextFile(fileContent) {
   const regex = /(-?\d+\.\d+)\s*,\s*(-?\d+\.\d+)/g;
   let matches;
   const features = [];
-  datasov = 'potentiallyopen';
+  // datasov = 'potentiallyopen';
   while ((matches = regex.exec(fileContent)) !== null) {
     totalcontribmap = totalcontribmap + 1;
     const latitude = parseFloat(matches[1]);

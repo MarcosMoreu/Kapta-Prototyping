@@ -31,7 +31,7 @@ document.getElementById('languages').addEventListener('change', function() {
         document.getElementById('shareYourMapdata').innerHTML = 'Download this map DATA'  
         document.getElementById('confirmDataSubmision').innerHTML = 'Confirm'  
         document.getElementById('datasovcontent').innerHTML = 'Data sovereingty explanation... </br> centralisation </br> decentralisation...</p>'  
-        document.getElementById('maprequestscontent').innerHTML = 'Population</p>'  
+        document.getElementById('maprequestscontent').innerHTML = '1-Population</p>'  
 
        
     }else if(language == 'es' || localStorage.getItem('language') == 'es' ){
@@ -55,7 +55,7 @@ document.getElementById('languages').addEventListener('change', function() {
         document.getElementById('shareYourMapdata').innerHTML = 'Descarga los DATOS de tu mapa'  
         document.getElementById('confirmDataSubmision').innerHTML = 'Confirmar'  
         document.getElementById('datasovcontent').innerHTML = 'Explicación de soberanía de datos... </br> centralización </br> descentralización...</p>'  
-        document.getElementById('maprequestscontent').innerHTML = 'Population</p>'  
+        document.getElementById('maprequestscontent').innerHTML = '1-Population</p>'  
 
     }else if(language == 'fr'|| localStorage.getItem('language') == 'fr' ){
         document.getElementById('languages').value = 'fr'
@@ -78,7 +78,7 @@ document.getElementById('languages').addEventListener('change', function() {
         document.getElementById('shareYourMapdata').innerHTML = 'Téléchargez les DONNÉES de votre carte'  
         document.getElementById('confirmDataSubmision').innerHTML = 'Confirmer'  
         document.getElementById('datasovcontent').innerHTML = 'Explication de la souveraineté des données... </br> centralisation </br> décentralisation...</p>'  
-        document.getElementById('maprequestscontent').innerHTML = 'Population</p>'  
+        document.getElementById('maprequestscontent').innerHTML = '1-Population</p>'  
 
     }else if(language == 'am' || localStorage.getItem('language') == 'am' ){
         document.getElementById('languages').value = 'am'
@@ -101,7 +101,7 @@ document.getElementById('languages').addEventListener('change', function() {
         document.getElementById('shareYourMapdata').innerHTML = 'ካርታዎትን ውሂብ ያውርዱ'  
         document.getElementById('confirmDataSubmision').innerHTML = 'አረጋግጥ'  
         document.getElementById('datasovcontent').innerHTML = 'የውሂብ ኩነኔ ማብራሪያ... </br> ማእከላዊ እንደሆነ </br> ተንቀሳቃሽ...</p>'  
-        document.getElementById('maprequestscontent').innerHTML = 'Population</p>'  
+        document.getElementById('maprequestscontent').innerHTML = '1-Population</p>'  
 
     }
   };

@@ -185,18 +185,17 @@ if(isOnline == false){
 
 var phoneNumber
 var arrayOfImages = [
-  'images/ThumbsUpGreen.png','images/checkingPw.gif',
-  'images/talk.png',
-  'images/backButton.png','images/PlusSign.png','images/infoGoBack.png',
+ 'images/checkingPw.gif',
+    'images/backButton.png','images/PlusSign.png','images/infoGoBack.png',
    'images/download.png','images/burger.png','images/burgerBlack.png',
     'images/questionmark.png','images/key.png','images/other1.png',
      'images/sendComment.png','images/arrowLeft.png','images/underConstruction.png',
-      'images/whatsapp.png','images/excitesTree.png images/tvSmall.png',
+      'images/whatsapp.png',
        'images/filterIconold.png','images/manNoOrientation2.png',
         'images/manNoOrientation.png','images/onionlayericon.png','images/moon.png',
          'images/padlockopen.png','images/padlockclosed.png','images/filterIcon2.png',
-          'images/filterIcon.png','images/gifcartofilter.gif',
-           'images/infohelp.png','images/listen.png','images/phoneicon.png','images/mainmenu.png',
+          'images/gifcartofilter.gif',
+          'images/phoneicon.png','images/mainmenu.png',
             'images/checkingPw.gif','images/oldThumbsUp.png','images/gpslite.png',
              'images/sun.png','images/ThumbsUp.png','images/WhatsAppicon.png',
               

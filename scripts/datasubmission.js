@@ -101,7 +101,7 @@ let toggleStates = {
     document.getElementById("confirmDataSubmision").style.backgroundColor = "grey";
     topic = document.getElementById("inputtopic").value
     goal = document.getElementById("inputgoal").value
-    map.fitBounds(boundsLayer)
+    // map.fitBounds(boundsLayer)       ////////depending on whether we want the user to select the canvas of the screenshot or not.
 
     setTimeout(function(){
       document.getElementById("confirmDataSubmision").style.backgroundColor = "white";
