@@ -1,18 +1,20 @@
+//DB columns
 var contributionid;
-var phone = '99999999'; //from modal
 var totalcontribmap = 0
-var radiusbuffer = 99
-var mainattribute = 'quququ'
-var attribute1s = 'test'
-var attribute1n = 33
-var totalcontrib = 99
-var radiusbuffer = 99
+var mainattribute
+var attribute1s
+var attribute2n
+var attribute3s
+var attribute4n
+var username = localStorage.getItem('username')
+var phone = localStorage.getItem('username')
+  var timeEnd = new Date();
+  var date = timeEnd.getFullYear() + '-' + (timeEnd.getMonth() + 1) + '-' + timeEnd.getDate();
+  var time = timeEnd.getHours() + ":" + timeEnd.getMinutes() + ":" + timeEnd.getSeconds();
+var timestamp = date + 'T' + time + 'Z';
+///////////////
 var mapdata
 var geojsonObfuscated
-var timeEnd = new Date();
-var date = timeEnd.getFullYear() + '-' + (timeEnd.getMonth() + 1) + '-' + timeEnd.getDate();
-var time = timeEnd.getHours() + ":" + timeEnd.getMinutes() + ":" + timeEnd.getSeconds();
-var timestamp = date + 'T' + time + 'Z';
 var pURL
 var datasov
 var currentZoom

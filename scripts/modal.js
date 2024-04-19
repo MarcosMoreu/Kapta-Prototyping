@@ -41,7 +41,6 @@ var manualupload = true
 
 //to prevent clicking on first load before the modal loads
 
-
 navigator.serviceWorker.onmessage = (event) => {
 console.log('MESSAGE FROM SW RECEIVED')
 loadingchat()
@@ -174,6 +173,7 @@ var deleteFromcartoimmediate = null
 
 var gobackUploadmap = false
 
+changeLanguage()
 
 var isOnline = navigator.onLine
 if(isOnline == false){
@@ -196,7 +196,7 @@ var arrayOfImages = [
         'images/manNoOrientation.png','images/onionlayericon.png','images/moon.png',
          'images/padlockopen.png','images/padlockclosed.png','images/filterIcon2.png',
           'images/filterIcon.png','images/gifcartofilter.gif',
-           'images/infohelp.png','images/phoneicon.png','images/mainmenu.png',
+           'images/infohelp.png','images/listen.png','images/phoneicon.png','images/mainmenu.png',
             'images/checkingPw.gif','images/oldThumbsUp.png','images/gpslite.png',
              'images/sun.png','images/ThumbsUp.png','images/WhatsAppicon.png',
               
@@ -224,7 +224,6 @@ var checkfields = setInterval(function(){
   
 },300)
 var firstLoad = function() { //fucntion to determine if the site is visited for first time
-  changeLanguage()
   console.log('FIRST LOAD CALLED')
   console.log('sharetarget',sharetarget)
   document.getElementById('login').style.opacity='0.4';
@@ -567,6 +566,12 @@ var requestPw = function(){
         var openAppPwSuccesful = function(){
               if(authentication == 'successful' && done == true){
                 document.getElementById('login').style.borderColor= 'white'
+                valueEnteredName = document.getElementById('enteredName').value
+                valueEnteredPhone = document.getElementById('enteredPhone').value
+                localStorage.setItem('username', valueEnteredName);
+                localStorage.setItem('phone', valueEnteredPhone);
+
+
 
                 clearInterval(checkfields)
                 document.getElementById('login').disabled = true // to avoid that user clicks twice while waiting, in which case carto layer would load twice

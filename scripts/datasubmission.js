@@ -86,7 +86,7 @@ let toggleStates = {
         success:postSuccess()
     })
     .done(function() {
-      console.log('submitted succesfully')
+      // console.log('submitted succesfully')
     })
     .fail(function() {
 
@@ -125,7 +125,7 @@ let toggleStates = {
   console.log("toggleStates.toggle1",toggleStates.toggle1)
   
     if(toggleStates.toggle1 == true && toggleStates.toggle2 == false){ 
-      document.getElementById('progressContainer').style.display = 'initial'
+      // document.getElementById('progressContainer').style.display = 'initial'
       document.getElementById('initialscreen2options').style.backgroundColor = 'transparent'
 
 
@@ -133,53 +133,76 @@ let toggleStates = {
       randomNumber = randomNumber * 10000000;
       var contributionid = Math.round(randomNumber)
    
-      document.getElementById('progressContainer').style.display = 'initial'
+      // document.getElementById('progressContainer').style.display = 'initial'
       async function submitFeaturesOneByOne(mapdata) {
         const totalFeatures = mapdata.features.length;
         let progress = 0;
 
-        const updateProgressBar = (newProgress) => {
-          requestAnimationFrame(() => {
-            const progressBar = document.getElementById('progressBar');
-            progressBar.style.width = `${newProgress}%`;
-            progressBar.textContent = `${newProgress.toFixed(0)}%`; // Update text content for better user feedback
+        // const updateProgressBar = (newProgress) => {
+        //   requestAnimationFrame(() => {
+        //     const progressBar = document.getElementById('progressBar');
+        //     progressBar.style.width = `${newProgress}%`;
+        //     progressBar.textContent = `${newProgress.toFixed(0)}%`; // Update text content for better user feedback
 
-          });
-        };
+        //   });
+        // };
       
-        // Hide progress container function
-        const hideProgressContainer = () => {
-          requestAnimationFrame(() => {
-            const progressContainer = document.getElementById('progressContainer');
-            progressContainer.style.display = 'none';
-            gpsButton.button.style.display = 'none'
-            basemapButton.button.style.display = 'none'
-            document.getElementById("gobackUploadmap").style.display = "none"
-            document.getElementById("confirmuploadedmap").style.display = "none"
-            document.getElementById("mapsummary").innerHTML = '</br>' + '<img src="images/icons/icon-72x72.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" >  ' + '<img src="images/WhatsAppicon.png" text-align="center" alt="..." width=30px; height=30px style="top:50%; margin-bottom:3px" > ' + '</br>' + topic + '</br> ' + goal + '</br> ' + totalcontribmap + ' 📍 ' + '</br>' + date
-            document.getElementById("mapsummary").style.display = "initial"
-            map.dragging.disable()
-            map.touchZoom.disable();
-            map.doubleClickZoom.disable();
-            screenshot.click()
-            // document.getElementById("chatmaploadinggif").innerHTML = 'cfdsafdsa'
-            // document.getElementById("chatmaploadinggif").style.display = "initial"
+        // // Hide progress container function
+        // const hideProgressContainer = () => {
+        //   requestAnimationFrame(() => {
+        //     const progressContainer = document.getElementById('progressContainer');
+        //     progressContainer.style.display = 'none';
+        //     gpsButton.button.style.display = 'none'
+        //     basemapButton.button.style.display = 'none'
+        //     document.getElementById("gobackUploadmap").style.display = "none"
+        //     document.getElementById("confirmuploadedmap").style.display = "none"
+        //     document.getElementById("mapsummary").innerHTML = '</br>' + '<img src="images/icons/icon-72x72.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" >  ' + '<img src="images/WhatsAppicon.png" text-align="center" alt="..." width=30px; height=30px style="top:50%; margin-bottom:3px" > ' + '</br>' + topic + '</br> ' + goal + '</br> ' + totalcontribmap + ' 📍 ' + '</br>' + date
+        //     document.getElementById("mapsummary").style.display = "initial"
+        //     map.dragging.disable()
+        //     map.touchZoom.disable();
+        //     map.doubleClickZoom.disable();
+        //     screenshot.click()
+        //     // document.getElementById("chatmaploadinggif").innerHTML = 'cfdsafdsa'
+        //     // document.getElementById("chatmaploadinggif").style.display = "initial"
       
-            setTimeout(function(){
-              document.getElementById("map").style.opacity = 1;
-              document.getElementById('initialscreen2options').style.display = 'initial'
-              document.getElementById('initialscreen2options').style.backgroundColor = 'transparent'
-              document.getElementById('shareYourImageMap').style.display = 'initial'
-              document.getElementById('shareYourMapdata').style.display = 'initial'
-              document.getElementById('gobackToMap').style.display = 'initial'
+        //     setTimeout(function(){
+        //       document.getElementById("map").style.opacity = 1;
+        //       document.getElementById('initialscreen2options').style.display = 'initial'
+        //       document.getElementById('initialscreen2options').style.backgroundColor = 'transparent'
+        //       document.getElementById('shareYourImageMap').style.display = 'initial'
+        //       document.getElementById('shareYourMapdata').style.display = 'initial'
+        //       document.getElementById('gobackToMap').style.display = 'initial'
       
-            },200)
-          });
-        };
+        //     },200)
+        //   });
+        // };
         const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-        mainattribute = 'batchtest1'
+        //DB columns
+        var contributionid;
+        var mainattribute = document.getElementById('inputtopic').value
+        var attribute1s = document.getElementById('inputgoal').value
+        var attribute2n = 33 //for later for adding additional info
+        var attribute3s = 'test' //for later for adding additional info
+        var attribute4n = 33 //for later for adding additional info
+        try{
+          var username = localStorage.getItem('username')
+          var phone = localStorage.getItem('phone')
+        }catch(e){}
+        //to ensure that the query doesn't fail due to 
+        if(mainattribute == null){
+          mainattribute = 'empty'
+        }
+        if(attribute1s == null){
+          attribute1s = 'empty'
+        }
+        if(username == null){
+          username = 'empty'
+        }
+        if(phone == null){
+          phone = 00000
+        }
 
-        var baseSql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.wcl_private` (geom, contributionid, phone, timestamp, mainattribute, attribute1s, attribute1n, datasov, totalcontrib, radiusbuffer) VALUES ";
+        var baseSql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.wcl_private` (geom, contributionid, username, timestamp, mainattribute, attribute1s, attribute2n, attribute3s, attribute4n, phone) VALUES ";
 
         // Assuming 'features' is an array of feature objects you want to insert
         var features = mapdata.features;
@@ -187,14 +210,14 @@ let toggleStates = {
             const geojsonString = JSON.stringify(feature.geometry).replace(/'/g, "''"); // Serialize and escape single quotes
             return "(ST_GeogFromGeoJSON('" + geojsonString + "'),'" + 
                 feature.properties.contributionid + "','" + 
-                feature.properties.phone + "',CAST('" + 
+                username + "',CAST('" + 
                 feature.properties.timestamp + "' AS TIMESTAMP),'" + 
                 mainattribute + "','" + 
                 attribute1s + "',CAST('" + 
-                attribute1n + "' AS INT64),'" + 
-                datasov + "',CAST('" + 
-                totalcontrib + "' AS INT64),CAST('" + 
-                radiusbuffer + "' AS INT64))";
+                attribute2n + "' AS INT64),'" + 
+                attribute3s + "',CAST('" + 
+                attribute4n + "' AS INT64),CAST('" + 
+                phone + "' AS INT64))";
         });
         
         // Join all the values with commas and append to the base SQL
@@ -226,7 +249,7 @@ let toggleStates = {
         // }
       
         // Hide the progress bar once all features are submitted
-        hideProgressContainer();
+        // hideProgressContainer();
       }
       
       // Call the function with your mapdata
