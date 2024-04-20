@@ -336,16 +336,21 @@ let toggleStates = {
     setTimeout(function(){
 
         var geojsonToString = JSON.stringify(mapdata)
-        var featureCollectionToExport = '{"type": "FeatureCollection","features":'+ geojsonToString + '}'
-        var dataToExport = 'data:text/json;charset=utf-8,' + encodeURIComponent(featureCollectionToExport);
+        // var featureCollectionToExport = '{"type": "FeatureCollection","features":'+ geojsonToString + '}'
+        var dataToExport = 'data:text/json;charset=utf-8,' + encodeURIComponent(geojsonToString);
         var toDownloadGeoJSON = document.createElement('a');
         toDownloadGeoJSON.setAttribute('href', dataToExport);
         toDownloadGeoJSON.setAttribute('download', nameOfTheGroup+' '+timestamp+'.geojson');
         document.body.appendChild(toDownloadGeoJSON); // required for firefox
         toDownloadGeoJSON.click();
         toDownloadGeoJSON.remove();
-         
-    console.log(filesArrayScreenshot)
+        
+    //     console.log(dataToExport)
+    //     console.log(mapdata)
+    //     console.log(toDownloadGeoJSON)
+
+
+    // console.log(filesArrayScreenshot)
     },200)
     }
   
