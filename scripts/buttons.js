@@ -300,6 +300,9 @@ document.getElementById('gobackToMap').onclick = function(){  // this applies to
   map.dragging.enable()
   map.touchZoom.enable();
   map.doubleClickZoom.enable();
+  $('#screenshots').empty() // this is to clear the cancelled screenshots
+  filesArrayScreenshot[0] = null
+  console.log(filesArrayScreenshot)
 
   setTimeout(function(){
   if(lastscreen == false){

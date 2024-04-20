@@ -75,6 +75,7 @@ document.getElementById('languages').style.display = 'none'
 document.getElementById('KaptaLite').style.display = 'none'
 document.getElementById('KaptaAdvanced').style.display = 'none'
 document.getElementById('asktheteam').style.display = 'none'
+changeLanguage()
 document.getElementById('chatmaploadinggif').style.display = 'initial' 
 
 // document.getElementById('MapLoading').style.display = 'none'
