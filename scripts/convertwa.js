@@ -7,7 +7,7 @@ var attribute2n
 var attribute3s
 var attribute4n
 var username = localStorage.getItem('username')
-var phone = localStorage.getItem('username')
+var phone = localStorage.getItem('phone')
   var timeEnd = new Date();
   var date = timeEnd.getFullYear() + '-' + (timeEnd.getMonth() + 1) + '-' + timeEnd.getDate();
   var time = timeEnd.getHours() + ":" + timeEnd.getMinutes() + ":" + timeEnd.getSeconds();
@@ -107,6 +107,7 @@ function processTextFile(fileContent) {
       var batchContent = batch.join("\n");
       var match;
       while ((match = locationRegex.exec(batchContent)) !== null) {
+        totalcontribmap = totalcontribmap + 1;
           const latitude = parseFloat(match[1]);
           const longitude = parseFloat(match[2]);
           const locationDescription = match[3].trim(); // Trimming to remove any leading/trailing whitespace
@@ -121,9 +122,9 @@ function processTextFile(fileContent) {
                   timestamp: timestamp, // assuming 'timestamp' is defined somewhere in your scope
                   mainattribute: nameOfTheGroup,
                   attribute1s: 'tofill', // Assuming placeholder values
-                  attribute2n: 'tofill',
+                  attribute2n: 'null',
                   attribute3s: locationDescription, // Using captured description
-                  attribute4n: 'tofill',
+                  attribute4n: 'null',
                   phone: phone // assuming 'phone' is defined somewhere in your scope
               },
               geometry: {
@@ -154,6 +155,7 @@ function processTextFile(fileContent) {
   document.getElementById('maprequests').style.display = 'none';
 
   openmap(); // Assuming this is a function that renders the map
+  return totalcontribmap
 }
 
 

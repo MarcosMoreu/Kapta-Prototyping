@@ -13,7 +13,7 @@ document.getElementById('languages').addEventListener('change', function() {
         // document.getElementById('KaptaAdvanced').innerHTML = '🚧 Under dev. 🚧'
         // document.getElementById('kaptalitetutorial').innerHTML = '🚧 Under dev.'
         document.getElementById('languages').value = 'en'
-        document.getElementById('chatmaploadinggif').innerHTML = 'Converting chat to map...</br>' + '<img src="images/checkingPw.gif"  alt="..." loading="lazy" style="width:50px ; height:50px">'  
+        document.getElementById('chatmaploadinggif').innerHTML = 'Converting chat to map...</br></br></br>' + '<img src="images/checkingPw.gif"  alt="..." loading="lazy" style="width:50px ; height:50px">'  
         document.getElementById('asktheteam').innerHTML = 'Ask us anything'  
         document.getElementById('kaptalitetutorial').innerHTML = 'Watch tutorial'  
         document.getElementById('maprequests').innerHTML = 'Map Requests'  
