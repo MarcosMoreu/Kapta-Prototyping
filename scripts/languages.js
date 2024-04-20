@@ -35,73 +35,73 @@ document.getElementById('languages').addEventListener('change', function() {
 
        
     }else if(language == 'es' || localStorage.getItem('language') == 'es' ){
-        document.getElementById('languages').value = 'es'
-        document.getElementById('chatmaploadinggif').innerHTML = 'Convirtiendo chat a mapa...</br>' + '<img src="images/checkingPw.gif"  alt="..." loading="lazy" style="width:50px ; height:50px">' 
-
-        document.getElementById('asktheteam').innerHTML = 'Pregúntanos cualquier cosa'  
-        document.getElementById('kaptalitetutorial').innerHTML = 'Ver tutorial'  
-        document.getElementById('maprequests').innerHTML = 'Map Requests'  
-
-        document.getElementById('upload').innerHTML = '</br>Subir mapa'   ///////////////////
-        document.getElementById('inputtopiclabel').innerHTML = ' ¿Qué has mapeado en este grupo de WhatsApp? '  
-        document.getElementById('inputgoallabel').innerHTML = ' xxxxxxxxxx '  
-
-        // document.getElementById('confirminputtext').innerHTML = 'Confirmar'  
-        document.getElementById('datasovmessage').innerHTML = ' Queremos que el mundo </br> vea este mapa </br> y sea remunerado '  
     
-        document.getElementById('textswitch1').innerHTML = ' CON el apoyo del equipo WCL'  
-        document.getElementById('textswitch2').innerHTML = 'SIN apoyo   '   ///////////////////
-        document.getElementById('shareYourImageMap').innerHTML = 'Comparte la IMAGEN de tu mapa en tu red social'  
-        document.getElementById('shareYourMapdata').innerHTML = 'Descarga los DATOS de tu mapa'  
-        document.getElementById('confirmDataSubmision').innerHTML = 'Confirmar'  
-        document.getElementById('datasovcontent').innerHTML = 'Explicación de soberanía de datos... </br> centralización </br> descentralización...</p>'  
-        document.getElementById('maprequestscontent').innerHTML = '1-Population</p>'  
+        document.getElementById('languages').value = 'es';
+        document.getElementById('chatmaploadinggif').innerHTML = 'Convirtiendo el chat en mapa...</br></br></br>' + '<img src="images/checkingPw.gif" alt="..." loading="lazy" style="width:50px; height:50px">';
+        document.getElementById('asktheteam').innerHTML = 'Pregúntanos cualquier cosa';
+        document.getElementById('kaptalitetutorial').innerHTML = 'Ver tutorial';
+        document.getElementById('maprequests').innerHTML = 'Solicitudes de mapa';
+
+        document.getElementById('upload').innerHTML = '</br>Subir mapa';
+        document.getElementById('inputtopiclabel').innerHTML = ' ¿Qué has mapeado en este grupo de WhatsApp? ';
+        document.getElementById('inputgoallabel').innerHTML = ' ¿Qué deseas lograr con este mapa? ';
+
+        document.getElementById('datasovmessage').innerHTML = ' ¿Permites que el equipo de Kapta use tu mapa para apoyar a tu comunidad? ';
+
+        document.getElementById('textswitch1').innerHTML = ' Sí';
+        document.getElementById('textswitch2').innerHTML = 'No';
+        document.getElementById('shareYourImageMap').innerHTML = 'Comparte la IMAGEN de este mapa en tus redes sociales';
+        document.getElementById('shareYourMapdata').innerHTML = 'Descarga los DATOS de este mapa';
+        document.getElementById('confirmDataSubmision').innerHTML = 'Confirmar';
+        document.getElementById('datasovcontent').innerHTML = 'Explicación de soberanía de datos... </br> centralización </br> descentralización...</p>';
+        document.getElementById('maprequestscontent').innerHTML = '1-Población</p>';
+
 
     }else if(language == 'fr'|| localStorage.getItem('language') == 'fr' ){
-        document.getElementById('languages').value = 'fr'
-        document.getElementById('chatmaploadinggif').innerHTML = 'Converting chat to map...</br>' + '<img src="images/checkingPw.gif"  alt="..." loading="lazy" style="width:50px ; height:50px">'  
-
-        document.getElementById('asktheteam').innerHTML = 'Demandez-nous n’importe quoi'  
-        document.getElementById('kaptalitetutorial').innerHTML = 'Regarder le tutoriel'  
-        document.getElementById('maprequests').innerHTML = 'Map Requests'  
-
-        document.getElementById('upload').innerHTML = '</br>Télécharger la carte'  
-        document.getElementById('inputtopiclabel').innerHTML = ' Qu’avez-vous cartographié dans ce groupe WhatsApp? '  
-        document.getElementById('inputgoallabel').innerHTML = ' xxxxxxxxxxxxxxxx '  
-
-        // document.getElementById('confirminputtext').innerHTML = 'Confirmer'  
-        document.getElementById('datasovmessage').innerHTML = ' Nous voulons que le monde </br> voie cette carte </br> et soit rémunéré '  
-    
-        document.getElementById('textswitch1').innerHTML = ' AVEC le soutien de l’équipe WCL'  
-        document.getElementById('textswitch2').innerHTML = 'SANS soutien'  
-        document.getElementById('shareYourImageMap').innerHTML = 'Partagez l’IMAGE de votre carte sur votre réseau social'  
-        document.getElementById('shareYourMapdata').innerHTML = 'Téléchargez les DONNÉES de votre carte'  
-        document.getElementById('confirmDataSubmision').innerHTML = 'Confirmer'  
-        document.getElementById('datasovcontent').innerHTML = 'Explication de la souveraineté des données... </br> centralisation </br> décentralisation...</p>'  
-        document.getElementById('maprequestscontent').innerHTML = '1-Population</p>'  
+        document.getElementById('languages').value = 'en';
+        document.getElementById('chatmaploadinggif').innerHTML = 'Conversion du chat en carte...</br></br></br>' + '<img src="images/checkingPw.gif" alt="..." loading="lazy" style="width:50px; height:50px">';
+        document.getElementById('asktheteam').innerHTML = 'Demandez-nous n`importe quoi';
+        document.getElementById('kaptalitetutorial').innerHTML = 'Regarder le tutoriel';
+        document.getElementById('maprequests').innerHTML = 'Demandes de cartes';
+        
+        document.getElementById('upload').innerHTML = '</br>Télécharger la carte';
+        document.getElementById('inputtopiclabel').innerHTML = ' Qu`avez-vous cartographié dans ce groupe WhatsApp? ';
+        document.getElementById('inputgoallabel').innerHTML = ' Que souhaitez-vous accomplir avec cette carte? ';
+        
+        // document.getElementById('confirminputtext').innerHTML = 'Confirmer';
+        document.getElementById('datasovmessage').innerHTML = ' Autorisez-vous l`équipe de Kapta à utiliser votre carte pour soutenir votre communauté? ';
+        
+        document.getElementById('textswitch1').innerHTML = ' Oui';
+        document.getElementById('textswitch2').innerHTML = 'Non';
+        document.getElementById('shareYourImageMap').innerHTML = 'Partagez cette IMAGE de carte sur vos réseaux sociaux';
+        document.getElementById('shareYourMapdata').innerHTML = 'Téléchargez les DONNÉES de cette carte';
+        document.getElementById('confirmDataSubmision').innerHTML = 'Confirmer';
+        document.getElementById('datasovcontent').innerHTML = 'Explication de la souveraineté des données... </br> centralisation </br> décentralisation...</p>';
+        document.getElementById('maprequestscontent').innerHTML = '1-Population</p>';
+        
 
     }else if(language == 'am' || localStorage.getItem('language') == 'am' ){
-        document.getElementById('languages').value = 'am'
-        document.getElementById('chatmaploadinggif').innerHTML = 'Converting chat to map...</br>' + '<img src="images/checkingPw.gif"  alt="..." loading="lazy" style="width:50px ; height:50px">' 
-
-        document.getElementById('asktheteam').innerHTML = 'ማንኛውንም ጥያቄ ይጠይቁን'  
-        document.getElementById('kaptalitetutorial').innerHTML = 'መማሪያውን ይመልከቱ'  
-        document.getElementById('maprequests').innerHTML = 'Map Requests'  
-
-        document.getElementById('upload').innerHTML = '</br>ካርታ ስር አስገባ'  
-        document.getElementById('inputtopiclabel').innerHTML = ' በዚህ ዋትስአፕ ቡድን ምን አድርጋችኋል? '  
-        document.getElementById('inputgoallabel').innerHTML = ' xxxxxxxxxxxx '  
-
-        // document.getElementById('confirminputtext').innerHTML = 'አረጋግጥ'  
-        document.getElementById('datasovmessage').innerHTML = ' ይህንን ካርታ ዓለም ሁሉ እንዲያይ </br> እና የተከፈለበት እንዲሆን እንፈልጋለን '  
-    
-        document.getElementById('textswitch1').innerHTML = ' በWCL ቡድኑ ድጋፍ ጋር'  
-        document.getElementById('textswitch2').innerHTML = 'ድጋፍ በሌለበት'  
-        document.getElementById('shareYourImageMap').innerHTML = 'ካርታዎትን ምስል በማኅበረሰብ የእርስዎን እይታ ያጋሩ'  
-        document.getElementById('shareYourMapdata').innerHTML = 'ካርታዎትን ውሂብ ያውርዱ'  
-        document.getElementById('confirmDataSubmision').innerHTML = 'አረጋግጥ'  
-        document.getElementById('datasovcontent').innerHTML = 'የውሂብ ኩነኔ ማብራሪያ... </br> ማእከላዊ እንደሆነ </br> ተንቀሳቃሽ...</p>'  
-        document.getElementById('maprequestscontent').innerHTML = '1-Population</p>'  
+        document.getElementById('languages').value = 'en';
+        document.getElementById('chatmaploadinggif').innerHTML = 'ቻትን ወደ ካርታ ለመቀየር...</br></br></br>' + '<img src="images/checkingPw.gif" alt="..." loading="lazy" style="width:50px; height:50px">';
+        document.getElementById('asktheteam').innerHTML = 'ምንም ጥያቄ ጠይቁን';
+        document.getElementById('kaptalitetutorial').innerHTML = 'መማሪያን እይ';
+        document.getElementById('maprequests').innerHTML = 'ካርታ ጥያቄዎች';
+        
+        document.getElementById('upload').innerHTML = '</br>ካርታ ስቀል';
+        document.getElementById('inputtopiclabel').innerHTML = ' በዚህ ዋትስአፕ ቡድን ምን አሳፍረክ? ';
+        document.getElementById('inputgoallabel').innerHTML = ' በዚህ ካርታ ምን ማንኛት ነገር ልታከናውን ትፈልጋለህ? ';
+        
+        // document.getElementById('confirminputtext').innerHTML = 'አረጋግጥ';
+        document.getElementById('datasovmessage').innerHTML = ' በኮምዩኒቲዎ ማገዶ እንዲረዳዎ ካፕታ ቡድን ካርታዎን ማጠቃለያን ትፈቅድለታለህ? ';
+        
+        document.getElementById('textswitch1').innerHTML = ' አዎን';
+        document.getElementById('textswitch2').innerHTML = 'አይደለም';
+        document.getElementById('shareYourImageMap').innerHTML = 'ይህን ካርታ ምስል በማንኛውም ማኅበረሰብ መረብ ላይ አጋራ';
+        document.getElementById('shareYourMapdata').innerHTML = 'ይህን ካርታ ውሂብ አውርድ';
+        document.getElementById('confirmDataSubmision').innerHTML = 'አረጋግጥ';
+        document.getElementById('datasovcontent').innerHTML = 'ውሂብ ስውርነት ማብራሪያ...</br> ማእከላዊነት </br> ተከናወን...</p>';
+        document.getElementById('maprequestscontent').innerHTML = '1-የህዝብ ቁጥር</p>';
+        
 
     }
   };

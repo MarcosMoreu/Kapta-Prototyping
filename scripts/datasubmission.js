@@ -202,8 +202,12 @@ let toggleStates = {
         var mainattribute = document.getElementById('inputtopic').value
         var attribute1s = document.getElementById('inputgoal').value
         var attribute2n = 33 //for later for adding additional info
-        var attribute3s = 'test' //for later for adding additional info
+        // var attribute3s = 'test' //////////////////need to change this to feature.properties.attribute3s, but getting sytanx error
+
         var attribute4n = 33 //for later for adding additional info
+        console.log(attribute3s)
+        console.log(attribute3sEncoded)
+
         try{
           var username = localStorage.getItem('username')
           var phone = localStorage.getItem('phone')
@@ -227,6 +231,8 @@ let toggleStates = {
         // Assuming 'features' is an array of feature objects you want to insert
         var features = mapdata.features;
         var valuesArray = features.map(feature => {
+             attribute3s = feature.properties.attribute3s
+             attribute3sEncoded = encodeURIComponent(attribute3s)
             const geojsonString = JSON.stringify(feature.geometry).replace(/'/g, "''"); // Serialize and escape single quotes
             return "(ST_GeogFromGeoJSON('" + geojsonString + "'),'" + 
                 feature.properties.contributionid + "','" + 
@@ -235,7 +241,7 @@ let toggleStates = {
                 mainattribute + "','" + 
                 attribute1s + "',CAST('" + 
                 attribute2n + "' AS INT64),'" + 
-                attribute3s + "',CAST('" + 
+                attribute3sEncoded + "',CAST('" + 
                 attribute4n + "' AS INT64),CAST('" + 
                 phone + "' AS INT64))";
         });

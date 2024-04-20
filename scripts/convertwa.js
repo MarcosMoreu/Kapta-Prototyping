@@ -5,6 +5,8 @@ var mainattribute
 var attribute1s
 var attribute2n
 var attribute3s
+var attribute3sEncoded
+
 var attribute4n
 var username = localStorage.getItem('username')
 var phone = localStorage.getItem('phone')
