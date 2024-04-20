@@ -26,7 +26,31 @@
           {
             "name": "lists",
             "accept": ["text/plain", ".txt"]
+          },
+          {
+            "name": "geographies",
+            "accept": ["application/json",".geojson"]
+          },
+
+          {
+            "name": "docs",
+            "accept": ["application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"]
+          },
+
+          {
+            "name": "zips",
+            "accept": ["application/zip"]
+          },
+          {
+            "name": "codes",
+            "accept": ["text/html", "text/css", "text/javascript", "application/json", "application/xml"]
+          },
+          
+          {
+            "name": "others",
+            "accept": ["*/*"]
           }
+          
         ]
       }
     },

@@ -85,57 +85,64 @@ function displayFile(file) {
 
 //this script has been mainly developed by ChatGPT. The prompt were something like given an input text file, extract the name of the group, the location and the description of the location
 //The aim here is to store the decription of the location in attribute3s. That is, all the messages in between 2 locations shared in the WhatsApp group will be stored in attribute3s of location 1
+//Once it was working, the script was rewriten by ChatGPT to process the input text file in batches to improve performance
 //This requires a lot of improvements
 
+
 function processTextFile(fileContent) {
-  var randomNumber = Math.random();
-  randomNumber = randomNumber * 100000;
-  communitymapid = Math.round(randomNumber);
+  var batchSize = 1000; // Size of each batch in lines
+  var lines = fileContent.split("\n");
+  var batchIndex = 0;
+
+  var communitymapid = Math.round(Math.random() * 100000);
   console.log('filecontent', fileContent);
   const regexNameofthegroup = /"([^"]*)"/;
   var matchNameofthegroup = fileContent.match(regexNameofthegroup);
-  nameOfTheGroup = matchNameofthegroup ? matchNameofthegroup[1] : null;
-  
-  // Regex to extract location and following text
-  const locationRegex = /location: https:\/\/maps\.google\.com\/\?q=(-?\d+\.\d+),(-?\d+\.\d+)([\s\S]*?)(?=location: https:\/\/maps\.google\.com\/\?q=|$)/g;
+  var nameOfTheGroup = matchNameofthegroup ? matchNameofthegroup[1] : null;
+  var locationRegex = /location: https:\/\/maps\.google\.com\/\?q=(-?\d+\.\d+),(-?\d+\.\d+)([\s\S]*?)(?=location: https:\/\/maps\.google\.com\/\?q=|$)/g;
 
-  let match;
   const features = [];
-  let previousEndIndex = 0;
+  
+  function processBatch(batch) {
+      var batchContent = batch.join("\n");
+      var match;
+      while ((match = locationRegex.exec(batchContent)) !== null) {
+          const latitude = parseFloat(match[1]);
+          const longitude = parseFloat(match[2]);
+          const locationDescription = match[3].trim(); // Trimming to remove any leading/trailing whitespace
 
-  while ((match = locationRegex.exec(fileContent)) !== null) {
-    const latitude = parseFloat(match[1]);
-    const longitude = parseFloat(match[2]);
-    const locationDescription = match[3].trim(); // Trimming to remove any leading/trailing whitespace
+          var contributionid = Math.round(Math.random() * 10000000);
 
-    randomNumber = Math.random();
-    randomNumber = randomNumber * 10000000;
-    contributionid = Math.round(randomNumber);
-
-    features.push({
-      type: "Feature",
-      properties: {
-        contributionid: contributionid,
-        username: username, // assuming 'username' is defined somewhere in your scope
-        timestamp: timestamp, // assuming 'timestamp' is defined somewhere in your scope
-        mainattribute: nameOfTheGroup,
-        attribute1s: 'tofill', // Assuming placeholder values
-        attribute2n: 'tofill',
-        attribute3s: locationDescription, // Using captured description
-        attribute4n: 'tofill',
-        phone: phone // assuming 'phone' is defined somewhere in your scope
-      },
-      geometry: {
-        type: "Point",
-        coordinates: [longitude, latitude]
+          features.push({
+              type: "Feature",
+              properties: {
+                  contributionid: contributionid,
+                  username: username, // assuming 'username' is defined somewhere in your scope
+                  timestamp: timestamp, // assuming 'timestamp' is defined somewhere in your scope
+                  mainattribute: nameOfTheGroup,
+                  attribute1s: 'tofill', // Assuming placeholder values
+                  attribute2n: 'tofill',
+                  attribute3s: locationDescription, // Using captured description
+                  attribute4n: 'tofill',
+                  phone: phone // assuming 'phone' is defined somewhere in your scope
+              },
+              geometry: {
+                  type: "Point",
+                  coordinates: [longitude, latitude]
+              }
+          });
       }
-    });
-    previousEndIndex = locationRegex.lastIndex;
   }
 
-  const geoJson = {
-    type: "FeatureCollection",
-    features: features
+  while (batchIndex * batchSize < lines.length) {
+      var batch = lines.slice(batchIndex * batchSize, (batchIndex + 1) * batchSize);
+      processBatch(batch);
+      batchIndex++;
+  }
+
+  var geoJson = {
+      type: "FeatureCollection",
+      features: features
   };
   mapdata = geoJson;
   console.log(geoJson);
@@ -148,6 +155,7 @@ function processTextFile(fileContent) {
 
   openmap(); // Assuming this is a function that renders the map
 }
+
 
 
 

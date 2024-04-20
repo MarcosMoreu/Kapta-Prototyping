@@ -205,7 +205,7 @@ if(isOnline == false){
 
 var phoneNumber
 var arrayOfImages = [
- 'images/checkingPw.gif',
+ 'images/checkingPw.gif','images/ThumbsUp.png',
     'images/backButton.png','images/PlusSign.png','images/infoGoBack.png',
    'images/download.png','images/burger.png','images/burgerBlack.png',
     'images/questionmark.png','images/key.png','images/other1.png',
@@ -216,8 +216,8 @@ var arrayOfImages = [
          'images/padlockopen.png','images/padlockclosed.png','images/filterIcon2.png',
           'images/gifcartofilter.gif',
           'images/phoneicon.png','images/mainmenu.png',
-            'images/checkingPw.gif','images/oldThumbsUp.png','images/gpslite.png',
-             'images/sun.png','images/ThumbsUp.png','images/WhatsAppicon.png',
+            'images/checkingPw.gif','images/gpslite.png',
+             'images/sun.png','images/WhatsAppicon.png',
               
 
 ]
@@ -238,7 +238,7 @@ var checkfields = setInterval(function(){
   }else{
     document.getElementById('login').style.opacity='0.4';
     document.getElementById('login').disabled = true;
-    document.getElementById('login').style.borderColor= 'white'
+    // document.getElementById('login').style.borderColor= 'white'
   }
   
 },300)
@@ -543,7 +543,7 @@ var requestPw = function(){
         authentication = 'checking' //to avoid failed being stored, if first time fails. Number of fails is limited by Firebase!!!
         clearInterval(checkPw)
         document.getElementById('loginIcon').src = 'images/checkingPw.gif'
-        document.getElementById('login').style.borderColor= 'white'
+        // document.getElementById('login').style.borderColor= 'white'
 
         e.preventDefault() // to avoid page reload on first load!
         var firstFour = document.getElementById('enteredPw').value.substr(0, 4)
@@ -575,7 +575,7 @@ var requestPw = function(){
 
         var openAppPwSuccesful = function(){
               if(authentication == 'successful' && done == true){
-                document.getElementById('login').style.borderColor= 'white'
+                // document.getElementById('login').style.borderColor= 'white'
                 valueEnteredName = document.getElementById('enteredName').value
                 valueEnteredPhone = document.getElementById('enteredPhone').value
                 localStorage.setItem('username', valueEnteredName);

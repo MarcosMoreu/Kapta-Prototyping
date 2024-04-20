@@ -171,48 +171,33 @@ let toggleStates = {
       // document.getElementById('progressContainer').style.display = 'initial'
       async function submitFeatures(mapdata) {
         const totalFeatures = mapdata.features.length;
-        let progress = 0;
-
-        // const updateProgressBar = (newProgress) => {
-        //   requestAnimationFrame(() => {
-        //     const progressBar = document.getElementById('progressBar');
-        //     progressBar.style.width = `${newProgress}%`;
-        //     progressBar.textContent = `${newProgress.toFixed(0)}%`; // Update text content for better user feedback
-
-        //   });
-        // };
-      
-        // // Hide progress container function
-        // const hideProgressContainer = () => {
-        //   requestAnimationFrame(() => {
-        //     const progressContainer = document.getElementById('progressContainer');
-        //     progressContainer.style.display = 'none';
-        //     gpsButton.button.style.display = 'none'
-        //     basemapButton.button.style.display = 'none'
-        //     document.getElementById("gobackUploadmap").style.display = "none"
-        //     document.getElementById("confirmuploadedmap").style.display = "none"
-        //     document.getElementById("mapsummary").innerHTML = '</br>' + '<img src="images/icons/icon-72x72.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" >  ' + '<img src="images/WhatsAppicon.png" text-align="center" alt="..." width=30px; height=30px style="top:50%; margin-bottom:3px" > ' + '</br>' + topic + '</br> ' + goal + '</br> ' + totalcontribmap + ' 📍 ' + '</br>' + date
-        //     document.getElementById("mapsummary").style.display = "initial"
-        //     map.dragging.disable()
-        //     map.touchZoom.disable();
-        //     map.doubleClickZoom.disable();
-        //     screenshot.click()
-        //     // document.getElementById("chatmaploadinggif").innerHTML = 'cfdsafdsa'
-        //     // document.getElementById("chatmaploadinggif").style.display = "initial"
-      
-        //     setTimeout(function(){
-        //       document.getElementById("map").style.opacity = 1;
-        //       document.getElementById('initialscreen2options').style.display = 'initial'
-        //       document.getElementById('initialscreen2options').style.backgroundColor = 'transparent'
-        //       document.getElementById('shareYourImageMap').style.display = 'initial'
-        //       document.getElementById('shareYourMapdata').style.display = 'initial'
-        //       document.getElementById('gobackToMap').style.display = 'initial'
-      
-        //     },200)
-        //   });
-        // };
-        // const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-        //DB columns
+        gpsButton.button.style.display = 'none'
+        basemapButton.button.style.display = 'none'
+        document.getElementById("gobackUploadmap").style.display = "none"
+        document.getElementById("confirmuploadedmap").style.display = "none"
+        document.getElementById("mapsummary").innerHTML = '</br>' + '<img src="images/icons/icon-72x72.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" >  ' + '<img src="images/WhatsAppicon.png" text-align="center" alt="..." width=30px; height=30px style="top:50%; margin-bottom:3px" > ' + '</br>' + topic + '</br> ' + goal + '</br> ' + totalcontribmap + ' 📍 ' + '</br>' + date
+        document.getElementById("mapsummary").style.display = "initial"
+        map.dragging.disable()
+        map.touchZoom.disable();
+        map.doubleClickZoom.disable();
+        screenshot.click()
+  
+        setTimeout(function(){
+          document.getElementById("map").style.opacity = 1;
+          document.getElementById('initialscreen2options').style.display = 'initial'
+          document.getElementById('initialscreen2options').style.backgroundColor = 'transparent'
+          setTimeout(function(){
+            document.getElementById('shareYourImageMap').style.display = 'initial'
+            document.getElementById('shareYourMapdata').style.display = 'initial'
+            document.getElementById('gobackToMap').style.display = 'initial'
+          },500)
+          //in case the screenshot fails and then the buttons would remain disabled
+          setTimeout(function(){
+          document.getElementById('shareYourImageMap').disabled = false
+          document.getElementById('shareYourMapdata').disabled = false
+          },2000)
+        },300)
+       
         var contributionid;
         var mainattribute = document.getElementById('inputtopic').value
         var attribute1s = document.getElementById('inputgoal').value
@@ -261,30 +246,8 @@ let toggleStates = {
         
         // Now 'sql' contains the query to insert all features in one go
         console.log(sql);
-        submitToProxy(sql)
+        // submitToProxy(sql)  ///////////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-        // for (let i = 0; i < totalFeatures; i++) {
-        //   const feature = mapdata.features[i];
-        //   var baseSql = "INSERT INTO `carto-dw-ac-745p52tn.private_marcos_moreu_a1ec85bf.wcl_private` (geom, contributionid, phone, timestamp, mainattribute, attribute1s, attribute1n, datasov, totalcontrib, radiusbuffer) VALUES ";
-        //   const geojsonString = JSON.stringify(feature.geometry).replace(/'/g, "''"); // Serialize and escape single quotes
-        //   // const values = ` (ST_GeogFromGeoJSON('${geojsonString}', make_valid => true),'${feature.properties.contributionid}','${phone}',CAST('${timestamp}' AS TIMESTAMP),'${feature.properties.mainattribute}','${attribute1s}',CAST('${attribute1n}' AS INT64),'${datasov}',CAST('${feature.properties.totalcontrib}' AS INT64),CAST('${radiusbuffer}' AS INT64))`;
-        //   var values = " (ST_GeogFromGeoJSON('" + geojsonString + "', make_valid => true),'" + feature.properties.contributionid + "','" + phone + "',CAST('" + timestamp + "' AS TIMESTAMP),'" + topic + "','" + goal + "',CAST('" + attribute1n + "' AS INT64),'" + datasov + "',CAST('" + feature.properties.totalcontrib + "' AS INT64),CAST('" + radiusbuffer + "' AS INT64))";
-
-        //   const sql = baseSql + values;
-      
-        //   // Assuming submitToProxy is an async function or returns a Promise
-        //   // await submitToProxy(sql) // Handle errors or rejections        ////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      
-        //   // Update progress
-        //   console.log('progress ', progress)
-        //   progress = ((i + 1) / totalFeatures) * 100;
-        //   updateProgressBar(progress);
-        //   await new Promise(resolve => setTimeout(resolve, 0)); // Give time for UI to update
-        //   await delay(100);
-        // }
-      
-        // Hide the progress bar once all features are submitted
-        // hideProgressContainer();
       }
       
       // Call the function with your mapdata
