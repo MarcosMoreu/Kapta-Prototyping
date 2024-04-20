@@ -1,11 +1,4 @@
-if(localStorage.getItem('pwCorrect')){
-  document.getElementById('languages').style.display='initial'
-  document.getElementById('KaptaLite').style.display='initial'
-  document.getElementById('KaptaAdvanced').style.display='initial'
-  document.getElementById('asktheteam').style.display='initial'
-}else{
-  document.getElementById('modal').style.display='initial'
-}
+
 if ('serviceWorker' in navigator) {
 
   navigator.serviceWorker
@@ -85,7 +78,26 @@ setTimeout(function(){
 },3000)
 return homescreenorwhatsapplaunch
 }
-
+if(localStorage.getItem('pwCorrect')){
+  document.getElementById('languages').style.display='initial'
+  document.getElementById('KaptaLite').style.display='initial'
+  document.getElementById('KaptaAdvanced').style.display='initial'
+  document.getElementById('asktheteam').style.display='initial'
+}else{
+  document.getElementById('modal').style.display='initial'
+  var findFirebaseCredentials = setInterval(function() {
+    console.log('firebase initialise')
+      if (isOnline == true & firebaseKey != null) {
+          try {
+              firebase.initializeApp(firebaseConfig);
+            //console.log('Firebase initialized')
+              clearInterval(findFirebaseCredentials)
+          } catch (e) {
+            // console.log('firebase not initialized!!')
+          }
+      }
+  }, 200)
+}
 
 
 // var pageLoaded = false
@@ -351,18 +363,8 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
 }
 window.onload = firstLoad;  /// to launch the root function XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXS
 var done = false
-var findFirebaseCredentials = setInterval(function() {
-  // console.log('firebase initialise')
-    if (isOnline == true & firebaseKey != null) {
-        try {
-            firebase.initializeApp(firebaseConfig);
-          //console.log('Firebase initialized')
-            clearInterval(findFirebaseCredentials)
-        } catch (e) {
-          // console.log('firebase not initialized!!')
-        }
-    }
-}, 500)
+
+
 
 setTimeout(function(){
   document.getElementById('loginInfo').style.opacity = '1'

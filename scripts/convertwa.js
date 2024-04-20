@@ -20,6 +20,8 @@ var pURL
 var currentZoom
 var communitymapid
 var nameOfTheGroup
+var locationDescription
+var attribute3s
 var nameOftheGoal
 var mapdataarray
 var bounds
@@ -89,7 +91,7 @@ function processTextFile(fileContent) {
   const regexNameofthegroup = /"([^"]*)"/;
   var matchNameofthegroup = fileContent.match(regexNameofthegroup);
   nameOfTheGroup = matchNameofthegroup ? matchNameofthegroup[1] : null;
-
+  locationDescription = 'todevelopppp';
   const regex = /(-?\d+\.\d+)\s*,\s*(-?\d+\.\d+)/g;
   let matches;
   const features = [];
@@ -107,9 +109,15 @@ function processTextFile(fileContent) {
       type: "Feature",
       properties: {
         contributionid: contributionid,
-        phone: phone,
+        username: username,
         timestamp: timestamp,
         mainattribute: nameOfTheGroup,
+        attribute1s:'tofill',
+        attribute2n: 'tofill',
+        attribute3s:locationDescription,
+        attribute4n: 'tofill',
+        phone: phone,
+
       },
       geometry: {
         type: "Point",

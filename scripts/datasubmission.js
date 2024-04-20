@@ -95,6 +95,41 @@ let toggleStates = {
     });
 };
   document.getElementById('confirmDataSubmision').onclick = function(){
+    
+    const mainattribute = document.getElementById("inputtopic").value
+    const attribute1s = document.getElementById("inputgoal").value
+    //first is to update the geojson with all the values added by the user
+    function updateGeoJsonProperties(mapdata, attributes) {
+      // Ensure the GeoJSON is a Feature Collection and contains features
+      if (mapdata.type !== 'FeatureCollection' || !mapdata.features) {
+          throw new Error('Invalid GeoJSON Feature Collection');
+      }
+  
+      // Iterate over each feature in the collection
+      mapdata.features.forEach(feature => {
+          // Update properties according to the attributes object
+          if (feature.properties) {
+              if ('mainattribute' in attributes) {
+                  feature.properties.mainattribute = attributes.mainattribute;
+              }
+              if ('attribute1s' in attributes) {
+                  feature.properties.attribute1s = attributes.attribute1s;
+              }
+          }
+      });
+  
+      return mapdata;
+  }
+  // Updating GeoJSON properties using the provided variables
+  const updatedGeoJson = updateGeoJsonProperties(mapdata, {
+      mainattribute,
+      attribute1s,
+  });
+  
+  console.log(JSON.stringify(updatedGeoJson, null, 2));
+  
+
+
     // clearInterval(checkinputtopic)
     document.getElementById('shareYourImageMap').disabled = true
     document.getElementById('shareYourMapdata').disabled = true
@@ -134,7 +169,7 @@ let toggleStates = {
       var contributionid = Math.round(randomNumber)
    
       // document.getElementById('progressContainer').style.display = 'initial'
-      async function submitFeaturesOneByOne(mapdata) {
+      async function submitFeatures(mapdata) {
         const totalFeatures = mapdata.features.length;
         let progress = 0;
 
@@ -176,7 +211,7 @@ let toggleStates = {
         //     },200)
         //   });
         // };
-        const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+        // const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
         //DB columns
         var contributionid;
         var mainattribute = document.getElementById('inputtopic').value
@@ -253,7 +288,7 @@ let toggleStates = {
       }
       
       // Call the function with your mapdata
-      submitFeaturesOneByOne(mapdata);
+      submitFeatures(mapdata);
     }else if(toggleStates.toggle1 == false && toggleStates.toggle2 == true){
 
       gpsButton.button.style.display = 'none'
