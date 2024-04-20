@@ -369,13 +369,17 @@ let toggleStates = {
 
   document.getElementById('shareYourMapdata').onclick = function(){
     setTimeout(function(){
+        var filenamesub1 = 'Kapta'
+        var filenamesub2 = localStorage.getItem('username')
+        var filenamesub3 = document.getElementById('inputtopic').value
+        var filename = filenamesub1 + ' ' + filenamesub2 + ' ' + filenamesub3 + ' ' + timestamp + '.geojson'  
 
         var geojsonToString = JSON.stringify(mapdata)
         // var featureCollectionToExport = '{"type": "FeatureCollection","features":'+ geojsonToString + '}'
         var dataToExport = 'data:text/json;charset=utf-8,' + encodeURIComponent(geojsonToString);
         var toDownloadGeoJSON = document.createElement('a');
         toDownloadGeoJSON.setAttribute('href', dataToExport);
-        toDownloadGeoJSON.setAttribute('download', nameOfTheGroup+' '+timestamp+'.geojson');
+        toDownloadGeoJSON.setAttribute('download', filename);
         document.body.appendChild(toDownloadGeoJSON); // required for firefox
         toDownloadGeoJSON.click();
         toDownloadGeoJSON.remove();

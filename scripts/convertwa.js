@@ -83,6 +83,10 @@ function displayFile(file) {
   }
 }
 
+//this script has been mainly developed by ChatGPT. The prompt were something like given an input text file, extract the name of the group, the location and the description of the location
+//The aim here is to store the decription of the location in attribute3s. That is, all the messages in between 2 locations shared in the WhatsApp group will be stored in attribute3s of location 1
+//This requires a lot of improvements
+
 function processTextFile(fileContent) {
   var randomNumber = Math.random();
   randomNumber = randomNumber * 100000;
@@ -91,15 +95,18 @@ function processTextFile(fileContent) {
   const regexNameofthegroup = /"([^"]*)"/;
   var matchNameofthegroup = fileContent.match(regexNameofthegroup);
   nameOfTheGroup = matchNameofthegroup ? matchNameofthegroup[1] : null;
-  locationDescription = 'todevelopppp';
-  const regex = /(-?\d+\.\d+)\s*,\s*(-?\d+\.\d+)/g;
-  let matches;
+  
+  // Regex to extract location and following text
+  const locationRegex = /location: https:\/\/maps\.google\.com\/\?q=(-?\d+\.\d+),(-?\d+\.\d+)([\s\S]*?)(?=location: https:\/\/maps\.google\.com\/\?q=|$)/g;
+
+  let match;
   const features = [];
-  // datasov = 'potentiallyopen';
-  while ((matches = regex.exec(fileContent)) !== null) {
-    totalcontribmap = totalcontribmap + 1;
-    const latitude = parseFloat(matches[1]);
-    const longitude = parseFloat(matches[2]);
+  let previousEndIndex = 0;
+
+  while ((match = locationRegex.exec(fileContent)) !== null) {
+    const latitude = parseFloat(match[1]);
+    const longitude = parseFloat(match[2]);
+    const locationDescription = match[3].trim(); // Trimming to remove any leading/trailing whitespace
 
     randomNumber = Math.random();
     randomNumber = randomNumber * 10000000;
@@ -109,21 +116,21 @@ function processTextFile(fileContent) {
       type: "Feature",
       properties: {
         contributionid: contributionid,
-        username: username,
-        timestamp: timestamp,
+        username: username, // assuming 'username' is defined somewhere in your scope
+        timestamp: timestamp, // assuming 'timestamp' is defined somewhere in your scope
         mainattribute: nameOfTheGroup,
-        attribute1s:'tofill',
+        attribute1s: 'tofill', // Assuming placeholder values
         attribute2n: 'tofill',
-        attribute3s:locationDescription,
+        attribute3s: locationDescription, // Using captured description
         attribute4n: 'tofill',
-        phone: phone,
-
+        phone: phone // assuming 'phone' is defined somewhere in your scope
       },
       geometry: {
         type: "Point",
         coordinates: [longitude, latitude]
       }
     });
+    previousEndIndex = locationRegex.lastIndex;
   }
 
   const geoJson = {
@@ -134,12 +141,13 @@ function processTextFile(fileContent) {
   console.log(geoJson);
 
   document.getElementById("map").style.opacity = 1;
-  document.getElementById('MapLoading').style.opacity = 1;
+  document.getElementById('MapLoading').style.opacity = 0;
   document.getElementById('MapLoading').style.display = 'none';
   document.getElementById("kaptalitetutorial").style.display = "none";
-  document.getElementById('maprequests').style.display = 'none'
+  document.getElementById('maprequests').style.display = 'none';
 
-  openmap();
+  openmap(); // Assuming this is a function that renders the map
 }
+
 
 
