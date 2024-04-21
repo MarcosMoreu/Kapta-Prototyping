@@ -1,10 +1,7 @@
 // export {version};
 "use strict";
 
-// Set a name for the current cache. Note that when version is changed, the pwa only updates autmotically after reloading!
-//Note that for automatic update, at one change need to be made in the app.js file (or in other files...)
 var version = 'v29.4';
-//console.log(version)
 
 // Default files to always cache
 var offlineFundamentals = [
@@ -29,13 +26,9 @@ self.addEventListener("install", function(event) {
   );
 });
 
-////////////////////////   STALE-WHILE-REVALIDATE STRATEGY    ////////////////////////////////////
-
 const cacheName = 'CACHEALL';
 const cacheNameTiles = 'CACHETILES';
 
-
-    // var ignore = false
 self.addEventListener('fetch', (event) => {
 
   const url = new URL(event.request.url);
@@ -67,7 +60,6 @@ self.addEventListener('fetch', (event) => {
             // console.log(event.request.url)
             return cachedResponse
           }else{
-            //console.log('from networkkkkkkkkkkkkkkkkkk')
             return fetch(event.request).then((fetchedResponse) => {
         // Add the network response to the cache for later visits
         cache.put(event.request, fetchedResponse.clone());
@@ -87,7 +79,6 @@ self.addEventListener('fetch', (event) => {
             // console.log(event.request.url)
             return cachedResponse
           }else{
-            //console.log('from networkkkkkkkkkkkkkkkkkk')
 
             return fetch(event.request).then((fetchedResponse) => {
         // Add the network response to the cache for later visits
@@ -100,7 +91,6 @@ self.addEventListener('fetch', (event) => {
   })
     }))
   }
-
  
 }
 
@@ -115,8 +105,6 @@ function handleFileShare(event){
      const file = data.get('file');
      client.postMessage({ file });
      console.log('sw message posted')
-
-
    }());
 }
 

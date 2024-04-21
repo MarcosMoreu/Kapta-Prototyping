@@ -1,7 +1,7 @@
 
 {
-  "name": "Kapta Testeo",
-  "short_name": "Kapta Testeo",
+  "name": "Kapta Lite",
+  "short_name": "Kapta Lite",
   "lang": "en-GB",
   "theme_color": "#000000",
   "background_color": "#000000",
@@ -54,6 +54,7 @@
         ]
       }
     },
+    
     "icons": [
     {
       "src": "images/icons/icon-72x72.png",
@@ -90,7 +91,9 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
-    }
+    },
+    {"src":"/android-chrome-192x192.png","sizes":"192x192","type":"image/png"},
+    {"src":"/android-chrome-512x512.png","sizes":"512x512","type":"image/png"}
   ]
 
 }

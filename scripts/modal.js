@@ -34,9 +34,6 @@ if ('serviceWorker' in navigator) {
       })
 }
 
-
-// navigator.serviceWorker.register('sw.js');
-
 var sharetarget = false
 var manualupload = true
 
@@ -48,9 +45,6 @@ loadingchat()
 
 manualupload = false
 const file = event.data.file;
-// displayFile(file);
-// loadingexport()
-// console.log(file)
 setTimeout(function(){
   
   displayFile(file);
@@ -71,7 +65,6 @@ document.getElementById('asktheteam').style.display = 'none'
 changeLanguage()
 document.getElementById('chatmaploadinggif').style.display = 'initial' 
 
-// document.getElementById('MapLoading').style.display = 'none'
 homescreenorwhatsapplaunch = 'whatsapp'
 setTimeout(function(){
   document.getElementById('chatmaploadinggif').style.display = 'none' 
@@ -99,6 +92,7 @@ if(localStorage.getItem('pwCorrect')){
   }, 200)
 }
 
+///SOME VARIABLES HERE COME FROM KAPTA ADVANCES, SO THEY MIGHT BE IRRELEVANT HERE. NEEDS CLEANING UP
 
 // var pageLoaded = false
 var subDOMAIN = 'testing'
@@ -116,7 +110,6 @@ var cartoapiSELECT;
 var opencamera
 
 var isFirstTime; //var to store if the site is visited for the first time
-//var oneMapCompleted; // to know if in this session this is the first map or not
 var files = [];
 var filesLength;
 var storage;
@@ -175,11 +168,6 @@ var currentLocation = []; // variable created to allow the user recenter the map
 var accuracy = 0
 var markerAdded = false; // var to avoid multiple markers
 var locationFound = false;
-var audioRecorded = false;
-var circleGT250
-var circleLT250
-var circleLT250Added = false
-var circleGT250Added = false
 var cartoGeometriesInitial = null
 var elementJustAddedToLocalStorage = false
 var attachPhoto = false
@@ -249,38 +237,25 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
   document.getElementById('login').style.opacity='0.4';
   document.getElementById('login').disabled = true;
 
-  // console.log('isfirstload??')
-  //$.getScript("lib/leaflet/plugins/Leaflet.draw-1.0.4/src/Leaflet.Draw.Event.js")
-    // Check if localStorage is available (IE8+) and make sure that the visited flag is not already set.
     if(localStorage.getItem('pwCorrect')){
       document.getElementById('languages').disabled = false
       document.getElementById('KaptaLite').disabled = false
       document.getElementById('KaptaAdvanced').disabled = false
       document.getElementById('asktheteam').disabled = false
-      // if (urlContainsHash == true && urlContainsGeoJSON == true){  // if url contains geojson (and coords)
-      //   document.getElementById('talk').style.opacity = 0
-      //   document.getElementById('listen').style.opacity = 0
-      // }
-      // if (urlContainsHash != true && urlContainsGeoJSON != true){  // if url contains geojson (and coords)
-// if(sharetarget == false){
+
   setTimeout(function(){
     if(homescreenorwhatsapplaunch == 'whatsapp'){
       document.getElementById('chatmaploadinggif').style.display = 'initial'
-      // document.getElementById('KaptaLite').style.display = 'initial'
-
 
     }else{
       document.getElementById('languages').style.display = 'initial'
       document.getElementById('KaptaLite').style.display = 'initial'
       document.getElementById('KaptaAdvanced').style.display = 'initial'
       document.getElementById('asktheteam').style.display = 'initial'
-      // document.getElementById('kaptainitialscreen').style.display = 'initial'
     }
 
     },300)
-// }
 
-      // }
 
       document.getElementById('MapLoading').style.display = 'initial'
       document.getElementById('MapLoading').style.opacity = 0
@@ -299,9 +274,7 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
                   }
                   preload(
                     'images/checkingPw.gif'
-                    // 'images/armchair.png','images/field.png','images/tvSmall.png',
-                    // 'images/osm.png','images/myLayerPrivate.png','images/filterIcon.png',
-                    // 'images/myLayerOpen.png',
+
                   )
               isFirstTime = false;
 
@@ -327,7 +300,6 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
               document.getElementById('login').style.opacity='1';
               document.getElementById('login').disabled = false;
               document.getElementById('login').style.borderColor= 'grey'
-
 
             }
           })
@@ -371,12 +343,6 @@ setTimeout(function(){
   document.getElementById('loginInfo').disabled = false
   document.getElementById('loginKey').style.opacity = '1'
   document.getElementById('loginKey').disabled = false
-  // if(isIOS == true){
-  //   document.getElementById('AlertModalIOS').style.display = 'initial'
-  // }
-  // document.getElementById('AlertModalIOS').style.display = 'initial'
-  // document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
-
 
 },2900)
 
@@ -385,22 +351,12 @@ document.getElementById('loginInfo').onclick = function(){
 }
 
 document.getElementById('loginKey').onclick = function(e){
-  // document.getElementById('AlertModalIOS').innerHTML = '</br></br> 📞 Enter your phone number 📞'
-  // document.getElementById('AlertModalIOS').style.display = 'initial'
-  // document.getElementById("AlertModalIOS").style.fontFamily = 'Ubuntu'
+
   e.preventDefault() //to avoid reload
     document.getElementById('loginKey').disabled = true
   document.getElementById('loginKey').style.display = 'none'
   document.getElementById('loginInfo').style.display = 'none'
 
-  // setTimeout(function(){
-  //   document.getElementById('loginKey').style.opacity = '1'
-  //   document.getElementById('loginInfo').style.opacity = '1'
-  // },100)
-
-  // document.getElementById('textPwScreen').style.display = 'initial';
-
-  //runJSselectFeature()
   document.getElementById('loginKey').style.backgroundColor = '#D5D6D5'
   document.getElementById('enteredPw').style.display = 'initial';
   document.getElementById('enteredName').style.display = 'initial';
@@ -417,11 +373,8 @@ document.getElementById('loginKey').onclick = function(e){
           //console.log('image failed to preload')
         }
 
-        // Alternatively you could use:
-        // (new Image()).src = this;
     });
   }
-    // Usage:
 
     preload(arrayOfImages);
   try{
@@ -434,12 +387,7 @@ document.getElementById('loginKey').onclick = function(e){
   }catch(e){
     console.log('error disable enter key catched')
   }
-//   setTimeout(function(){
-//
-//   document.getElementById('enteredPw').focus() //to open keyboard!!!
-// },100)
- //console.log(loaded)
-//return loaded
+
 }
 
 var initialiseMap = function(){
@@ -454,31 +402,20 @@ var initialiseMap = function(){
 },100)
 
 
-
 document.getElementById("map").style.opacity = 0;
-
-    document.getElementById("map").style.display = "initial";
-
-  document.getElementById("app-css").disabled = false
-
-      document.getElementById("map").style.display = "block";
-    
-
+document.getElementById("map").style.display = "initial";
+document.getElementById("app-css").disabled = false
+document.getElementById("map").style.display = "block";
+ 
       done = true
       return done && phoneNumber
-    // });
 }
 
 document.onreadystatechange = function () {
   var state = document.readyState
   //console.(state,'state')
   if (document.readyState === 'complete' && localStorage.getItem('pwCorrect')) {
-    // $.getScript({
-    //    cache:true,
-    //   url:'scripts/customIcons_v3.js'
-    // })
-    // startSearchingLocation()
-  // document.getElementById('rose').click()
+
     setTimeout(function(){
       // requestCartoData()
     },1000)
@@ -491,10 +428,7 @@ document.onreadystatechange = function () {
        cache:true,
       url:'scripts/lib/html2canvas.min.js'
     })
-    // $.getScript({
-    //   cache:true,
-    //   url:'scripts/lib/adapter-latest.min.js'
-    // })
+
     function preload(arrayOfImages) {
       $(arrayOfImages).each(function(){
           try{
@@ -503,20 +437,13 @@ document.onreadystatechange = function () {
             //console.log('image failed to preload')
           }
 
-          // Alternatively you could use:
-          // (new Image()).src = this;
       });
     }
       // Usage:
 
       preload(arrayOfImages);
-    // } //if the container is visible on the page
-
-
 
 }, {once : true});
-// var basemapClass = document.getElementsByClassName('leaflet-layer')
-// basemapClass[0].style.opacity = 1
 
 var loaded
 var authentication
@@ -524,7 +451,6 @@ var num1
 var confirmphonebuttonclicked = 0
 var requestPw = function(){
         document.getElementById('modal').style.display='block';
-
 
       var checkPw = setInterval(function(){
         var firstFour = document.getElementById('enteredPw').value.substr(0, 4)
@@ -538,13 +464,10 @@ var requestPw = function(){
         }
       },200)
 
-      // document.getElementById('login').onclick = function(e){
       document.getElementById('login').addEventListener('click',e =>{
         authentication = 'checking' //to avoid failed being stored, if first time fails. Number of fails is limited by Firebase!!!
         clearInterval(checkPw)
         document.getElementById('loginIcon').src = 'images/checkingPw.gif'
-        // document.getElementById('login').style.borderColor= 'white'
-
         e.preventDefault() // to avoid page reload on first load!
         var firstFour = document.getElementById('enteredPw').value.substr(0, 4)
         var pwPlaceholder = firstFour
@@ -580,9 +503,6 @@ var requestPw = function(){
                 valueEnteredPhone = document.getElementById('enteredPhone').value
                 localStorage.setItem('username', valueEnteredName);
                 localStorage.setItem('phone', valueEnteredPhone);
-
-
-
                 clearInterval(checkfields)
                 document.getElementById('login').disabled = true // to avoid that user clicks twice while waiting, in which case carto layer would load twice
                  //console.log('both')
@@ -608,8 +528,6 @@ var requestPw = function(){
               }
               else if(authentication == 'failed'){
                 clearInterval(checkDoneAndFirebasePW)
-
-
                 document.getElementById('enteredPw').style.backgroundColor = 'red'
                 document.getElementById('enteredPw').focus() //to maintain keyboard if pw wrong
 

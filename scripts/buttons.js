@@ -1,35 +1,17 @@
-
-
 var boundsLayer
 var openmap = function(){
 
-  // document.getElementById("confirminputtext").style.backgroundColor = "#a2a1a1";
-
-
-  // document.getElementById("mapsummary").innerHTML = '</br>' + '<img src="images/icons/icon-72x72.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" >  ' + '<img src="images/WhatsAppicon.png" text-align="center" alt="..." width=30px; height=30px style="top:50%; margin-bottom:3px" > ' + '</br>' + nameOfTheGroup + '</br> ' + totalcontribmap + ' 📍 ' + '</br>' + date
-
-  // document.getElementById("mapsummary").innerHTML = '</br>' + '<img src="images/icons/icon-72x72.png" text-align="center" alt="..." width=40px; height=40px style="top:50%; margin-left:-2px" >  ' + '<img src="images/WhatsAppicon.png" text-align="center" alt="..." width=30px; height=30px style="top:50%; margin-bottom:3px" > ' + '</br>' + nameOfTheGroup + '</br> ' + totalcontribmap + ' 📍 ' + '</br>' + date
-  // document.getElementById("mapsummary").style.display = "initial"
-
-
   setTimeout(function(){
-    // document.getElementById("confirminputtext").style.backgroundColor = "white";
-    document.getElementById('modal').style.display = 'none'
-
+  document.getElementById('modal').style.display = 'none'
   document.getElementById('initialscreen2options').style.display = 'none'
   document.getElementById("inputtopic").style.display = "none";
-  // document.getElementById("confirminputtext").style.display = "none";
-  // document.getElementById("map").style.display = 'initial';
-
   document.getElementById("map").style.opacity = 1;
-  // document.getElementById("gobackUploadmap").style.display = "initial";
   document.getElementById("confirmuploadedmap").style.display = "initial";
-
   document.getElementById("screenshot").style.opacity = 0
   document.getElementById("screenshot").style.display = 'initial'
   document.getElementById('screenshot').disabled = false
-  // topic = document.getElementById("inputtopic").value
-      var geojsonMarkerOptions = {
+
+  var geojsonMarkerOptions = {
         radius: 5,
         fillColor: "red",
         color: "red",
@@ -43,12 +25,10 @@ var openmap = function(){
         }
     })
 
-        bounds = map.getBounds()
+      bounds = map.getBounds()
       boundsLayer = layerChatGeom.getBounds()
-      //   geoJson.features.forEach(function(feature) {
-      //     bounds.extend(feature.geometry.coordinates);
-      // });
-            map.dragging.disable();
+
+      map.dragging.disable();
       map.touchZoom.disable();
       setTimeout(function(){
         map.flyToBounds(boundsLayer,{
@@ -56,7 +36,7 @@ var openmap = function(){
           paddingBottomRight: [0, 0]
       });
       map.on('zoomend', function(e) {
-        //disable map interaction
+
         if(screenshotTaken == false){
           screenshotTaken = true
         layerChatGeom.addTo(map)
@@ -124,15 +104,11 @@ document.getElementById('KaptaAdvanced').onclick = function(){
 
 document.getElementById('asktheteam').onclick = function(){
   document.getElementById('asktheteam').style.backgroundColor = '#a6a4a4'
-  // document.getElementById('talk').style.borderColor = '#404040'
   setTimeout(function(){
-    // document.getElementById("Alert").style.display = 'none'
     window.location.href="https://wa.me/+34678380944?";
     document.getElementById('asktheteam').style.backgroundColor = 'white'
 
-
   },500)
-  // window.location.href="https://wa.me/+34678380944?' + textwhatsappencoded + '";
 }
 
 
@@ -184,12 +160,9 @@ document.getElementById('gobackToInitialKaptalite').onclick = function(){
   document.getElementById("inputgoallabel").style.display = "none";
   document.getElementById("inputtopic").style.display = "none";
   document.getElementById("inputgoal").style.display = "none";
-
-  // document.getElementById("confirminputtext").style.display = "none";
   document.getElementById('languages').style.display = 'initial'
   document.getElementById('KaptaLite').style.display = 'initial'
   document.getElementById('KaptaAdvanced').style.display = 'initial'
-  // document.getElementById('disclaimer').style.display = 'initial'
   document.getElementById('asktheteam').style.display = 'initial'
   document.getElementById('kaptainitialscreen').style.display = 'initial'
   document.querySelector('input[type=file]').value = ''
@@ -201,7 +174,6 @@ document.getElementById('gobackUploadmap').onclick = function(){
   document.getElementById('gobackUploadmap').style.backgroundColor = '#696868';
   document.getElementById('gobackUploadmap').style.borderColor = '#696868';
 
-
   setTimeout(function(){
     document.getElementById('gobackUploadmap').style.backgroundColor = '#afafaf';
     document.getElementById('gobackUploadmap').style.borderColor = '#afafaf';
@@ -210,8 +182,6 @@ document.getElementById('gobackUploadmap').onclick = function(){
   gobackUploadmap = true
   document.getElementById("gobackUploadmap").style.display = "none";
   document.getElementById("gobackToInitialKaptalite").style.display = "none";
-  // document.getElementById("confirminputtext").style.display = "none";
-
 
   document.getElementById("confirmuploadedmap").style.display = "none";
   document.getElementById("gobackToMap").style.display = "none";
@@ -235,7 +205,6 @@ document.getElementById('gobackUploadmap').onclick = function(){
   document.getElementById('languages').style.display = 'initial'
   document.getElementById('KaptaLite').style.display = 'initial'
   document.getElementById('KaptaAdvanced').style.display = 'initial'
-  // document.getElementById('disclaimer').style.display = 'initial'
   document.getElementById('asktheteam').style.display = 'initial'
   document.getElementById('kaptainitialscreen').style.display = 'initial'
   document.querySelector('input[type=file]').value = ''
@@ -269,18 +238,15 @@ document.getElementById('confirmuploadedmap').onclick = function(){
   document.getElementById('gobackToInitialKaptalite').style.display = 'none'
   document.getElementById('KaptaLite').style.display = 'none'
   document.getElementById('KaptaAdvanced').style.display = 'none'
-  // document.getElementById("confirminputtext").style.display = "none";
   document.getElementById("inputtopiclabel").style.display = "none";
   document.getElementById("inputgoallabel").style.display = "none";
-
-  
+ 
   document.getElementById('asktheteam').style.display = 'none'
   document.getElementById('switches').style.display = 'initial'
   document.getElementById("inputtopiclabel").style.display = "initial";
   document.getElementById("inputgoallabel").style.display = "initial";
   document.getElementById("inputtopic").style.display = "initial";
   document.getElementById("inputgoal").style.display = "initial";
-  // document.getElementById('gobackUploadmap').style.display = 'initial'
   document.getElementById("gobackToMap").style.display = "initial";
   document.getElementById("confirmDataSubmision").style.display = "initial";
   document.getElementById("datasovmessage").style.display = "initial";
@@ -301,7 +267,9 @@ document.getElementById('gobackToMap').onclick = function(){  // this applies to
   map.touchZoom.enable();
   map.doubleClickZoom.enable();
   $('#screenshots').empty() // this is to clear the cancelled screenshots
-  filesArrayScreenshot[0] = null
+  try{
+    filesArrayScreenshot[0] = null
+  }catch(e){}
   console.log(filesArrayScreenshot)
 
   setTimeout(function(){
@@ -325,7 +293,6 @@ document.getElementById('gobackToMap').onclick = function(){  // this applies to
 
     document.getElementById('finalmessage').style.display = "none";
     document.getElementById('switches').style.display = 'initial'
-    // document.getElementById('gobackUploadmap').style.display = 'initial'
     document.getElementById("gobackToMap").style.display = "initial";
     document.getElementById("confirmDataSubmision").style.display = "initial";
     document.getElementById('moredatasovinfo').style.display = "initial";

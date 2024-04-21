@@ -120,14 +120,14 @@ function processTextFile(fileContent) {
               type: "Feature",
               properties: {
                   contributionid: contributionid,
-                  username: username, // assuming 'username' is defined somewhere in your scope
-                  timestamp: timestamp, // assuming 'timestamp' is defined somewhere in your scope
+                  username: username, 
+                  timestamp: timestamp, 
                   mainattribute: nameOfTheGroup,
-                  attribute1s: 'tofill', // Assuming placeholder values
+                  attribute1s: 'tofill', 
                   attribute2n: 'null',
-                  attribute3s: locationDescription, // Using captured description
+                  attribute3s: locationDescription, 
                   attribute4n: 'null',
-                  phone: phone // assuming 'phone' is defined somewhere in your scope
+                  phone: phone 
               },
               geometry: {
                   type: "Point",
@@ -156,7 +156,7 @@ function processTextFile(fileContent) {
   document.getElementById("kaptalitetutorial").style.display = "none";
   document.getElementById('maprequests').style.display = 'none';
 
-  openmap(); // Assuming this is a function that renders the map
+  openmap(); 
   return totalcontribmap
 }
 

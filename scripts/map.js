@@ -104,7 +104,7 @@ function success(pos) {
 
   
 
-  console.log("Your current position is:");
+  // console.log("Your current position is:");
   console.log(`Latitude : ${crd.latitude}`);
   console.log(`Longitude: ${crd.longitude}`);
   console.log(`Accuracy ${crd.accuracy} meters.`);

@@ -20,33 +20,6 @@ let toggleStates = {
       button.style.opacity = isAnySwitchChecked ? "1" : "0.4"; // Adjust opacity based on switch state
       
   }
-  // var checkinputtopic = setInterval(function(){
-  //   console.log('checking input topic')
-  //   var isAnySwitchChecked = toggleStates.toggle1 || toggleStates.toggle2;
-  //   var button = document.getElementById('confirmDataSubmision');
-  //   button.disabled = !isAnySwitchChecked;
-  //   button.style.opacity = isAnySwitchChecked ? "1" : "0.4"; // Adjust opacity based on switch state
-
-  //   if(document.getElementById('inputtopic').value == ''){
-  //     document.getElementById('switch1').disabled = true
-  //     document.getElementById('switch2').disabled = true
-  //     button.disabled = true
-  //     button.style.opacity = 0.4; 
-  //   }else if(document.getElementById('inputgoal').value != '' && (toggleStates.toggle1 == false || toggleStates.toggle2 == false)){
-  //     document.getElementById('switch1').disabled = false
-  //     document.getElementById('switch2').disabled = false
-  //     button.disabled = true
-  //     button.style.opacity = 0.4; 
-  //   }else if(document.getElementById('inputgoal').value != '' && (toggleStates.toggle1 == true || toggleStates.toggle2 == true)){
-  //     document.getElementById('switch1').disabled = false
-  //     document.getElementById('switch2').disabled = false
-  //     button.disabled = false
-  //     button.style.opacity = 1;
-      
-  //   }
-
-  // },200)
-  // var toggleStates = { toggle1: false, toggle2: false }; // Initialize toggle states
   
   document.getElementById('switch1').addEventListener('change', function() {
       toggleStates.toggle1 = this.checked;
@@ -74,7 +47,6 @@ let toggleStates = {
   var postSuccess = function() {
     console.log('submitted succesfully')
   }
-
 
   var datasubmissiontype
   var submitToProxy = function(q) {
@@ -127,10 +99,7 @@ let toggleStates = {
   });
   
   console.log(JSON.stringify(updatedGeoJson, null, 2));
-  
 
-
-    // clearInterval(checkinputtopic)
     document.getElementById('shareYourImageMap').disabled = true
     document.getElementById('shareYourMapdata').disabled = true
     document.getElementById("confirmDataSubmision").style.backgroundColor = "grey";
@@ -139,9 +108,7 @@ let toggleStates = {
     // map.fitBounds(boundsLayer)       ////////depending on whether we want the user to select the canvas of the screenshot or not.
 
     setTimeout(function(){
-      document.getElementById("confirmDataSubmision").style.backgroundColor = "white";
-
-    // document.getElementById("gobackToMap").style.display = "none";
+    document.getElementById("confirmDataSubmision").style.backgroundColor = "white";
     document.getElementById("confirmDataSubmision").style.display = "none";
     document.getElementById('switches').style.display = "none";
     document.getElementById('kaptainitialscreen').style.display = "none";
@@ -151,25 +118,17 @@ let toggleStates = {
     document.getElementById("inputtopic").style.display = "none";
     document.getElementById("inputgoal").style.display = "none";
     document.getElementById('gobackToMap').style.display = 'none'
-    // document.getElementById('initialscreen2options').style.display = 'none'
-
-
-
     document.getElementById('datasovmessage').style.display = 'none'
 
   console.log("toggleStates.toggle1",toggleStates.toggle1)
   
     if(toggleStates.toggle1 == true && toggleStates.toggle2 == false){ 
-      // document.getElementById('progressContainer').style.display = 'initial'
       document.getElementById('initialscreen2options').style.backgroundColor = 'transparent'
-
 
       var randomNumber = Math.random();
       randomNumber = randomNumber * 10000000;
       var contributionid = Math.round(randomNumber)
-   
-      // document.getElementById('progressContainer').style.display = 'initial'
-      async function submitFeatures(mapdata) {
+         async function submitFeatures(mapdata) {
         const totalFeatures = mapdata.features.length;
         gpsButton.button.style.display = 'none'
         basemapButton.button.style.display = 'none'
@@ -352,13 +311,7 @@ let toggleStates = {
         document.body.appendChild(toDownloadGeoJSON); // required for firefox
         toDownloadGeoJSON.click();
         toDownloadGeoJSON.remove();
-        
-    //     console.log(dataToExport)
-    //     console.log(mapdata)
-    //     console.log(toDownloadGeoJSON)
 
-
-    // console.log(filesArrayScreenshot)
     },200)
     }
   
