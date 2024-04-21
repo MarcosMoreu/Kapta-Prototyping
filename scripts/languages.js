@@ -30,7 +30,7 @@ document.getElementById('languages').addEventListener('change', function() {
         document.getElementById('shareYourImageMap').innerHTML = 'Share this map IMAGE in your social network'  
         document.getElementById('shareYourMapdata').innerHTML = 'Download this map DATA'  
         document.getElementById('confirmDataSubmision').innerHTML = 'Confirm'  
-        document.getElementById('datasovcontent').innerHTML = 'Data sovereingty explanation... </br> centralisation </br> decentralisation...</p>'  
+        document.getElementById('datasovcontent').innerHTML = 'Data privacy and data sovereingty. </br> Content under development... </p>'  
         document.getElementById('maprequestscontent').innerHTML = '1-Population</p>'  
 
        
@@ -53,7 +53,7 @@ document.getElementById('languages').addEventListener('change', function() {
         document.getElementById('shareYourImageMap').innerHTML = 'Comparte la IMAGEN de este mapa en tus redes sociales';
         document.getElementById('shareYourMapdata').innerHTML = 'Descarga los DATOS de este mapa';
         document.getElementById('confirmDataSubmision').innerHTML = 'Confirmar';
-        document.getElementById('datasovcontent').innerHTML = 'Explicación de soberanía de datos... </br> centralización </br> descentralización...</p>';
+        document.getElementById('datasovcontent').innerHTML = 'Privacidad de datos y soberanía de datos. </br> Contenido en desarrollo......</p>';
         document.getElementById('maprequestscontent').innerHTML = '1-Población</p>';
 
 
@@ -76,7 +76,7 @@ document.getElementById('languages').addEventListener('change', function() {
         document.getElementById('shareYourImageMap').innerHTML = 'Partagez cette IMAGE de carte sur vos réseaux sociaux';
         document.getElementById('shareYourMapdata').innerHTML = 'Téléchargez les DONNÉES de cette carte';
         document.getElementById('confirmDataSubmision').innerHTML = 'Confirmer';
-        document.getElementById('datasovcontent').innerHTML = 'Explication de la souveraineté des données... </br> centralisation </br> décentralisation...</p>';
+        document.getElementById('datasovcontent').innerHTML = 'Confidentialité des données et souveraineté des données. </br> Contenu en cours de développement...</p>';
         document.getElementById('maprequestscontent').innerHTML = '1-Population</p>';
         
 
@@ -99,7 +99,7 @@ document.getElementById('languages').addEventListener('change', function() {
         document.getElementById('shareYourImageMap').innerHTML = 'ይህን ካርታ ምስል በማንኛውም ማኅበረሰብ መረብ ላይ አጋራ';
         document.getElementById('shareYourMapdata').innerHTML = 'ይህን ካርታ ውሂብ አውርድ';
         document.getElementById('confirmDataSubmision').innerHTML = 'አረጋግጥ';
-        document.getElementById('datasovcontent').innerHTML = 'ውሂብ ስውርነት ማብራሪያ...</br> ማእከላዊነት </br> ተከናወን...</p>';
+        document.getElementById('datasovcontent').innerHTML = 'የመረጃ ግላዊነት እና የመረጃ ንግድ</br> ይህ ይዘት በመሠረት ላይ ነው...</p>';
         document.getElementById('maprequestscontent').innerHTML = '1-የህዝብ ቁጥር</p>';
         
 

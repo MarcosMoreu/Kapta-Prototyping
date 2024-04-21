@@ -509,7 +509,7 @@ var requestPw = function(){
                  localStorage.setItem('pwCorrect', true);
                  var phoneNumberNoprefix = document.getElementById('enteredPw').value.substr(4, 13)
                  if(phoneNumberNoprefix == ''){
-                   phoneNumberNoprefix = 0123456789
+                   phoneNumberNoprefix = '0123456789'
                  }else{
                    localStorage.setItem('phoneNumber', phoneNumberNoprefix);
                  }
