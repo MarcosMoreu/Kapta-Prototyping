@@ -58,7 +58,7 @@ document.getElementById('languages').addEventListener('change', function() {
 
 
     }else if(language == 'fr'|| localStorage.getItem('language') == 'fr' ){
-        document.getElementById('languages').value = 'en';
+        document.getElementById('languages').value = 'fr';
         document.getElementById('chatmaploadinggif').innerHTML = 'Conversion du chat en carte...</br></br></br>' + '<img src="images/checkingPw.gif" alt="..." loading="lazy" style="width:50px; height:50px">';
         document.getElementById('asktheteam').innerHTML = 'Demandez-nous n`importe quoi';
         document.getElementById('kaptalitetutorial').innerHTML = 'Regarder le tutoriel';
@@ -81,7 +81,7 @@ document.getElementById('languages').addEventListener('change', function() {
         
 
     }else if(language == 'am' || localStorage.getItem('language') == 'am' ){
-        document.getElementById('languages').value = 'en';
+        document.getElementById('languages').value = 'am';
         document.getElementById('chatmaploadinggif').innerHTML = 'ቻትን ወደ ካርታ ለመቀየር...</br></br></br>' + '<img src="images/checkingPw.gif" alt="..." loading="lazy" style="width:50px; height:50px">';
         document.getElementById('asktheteam').innerHTML = 'ምንም ጥያቄ ጠይቁን';
         document.getElementById('kaptalitetutorial').innerHTML = 'መማሪያን እይ';

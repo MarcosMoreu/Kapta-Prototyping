@@ -64,12 +64,34 @@ var basemapButton = L.easyButton({
         // document.getElementById("MapLoading").style.display = 'initial'
 
         if(activeBasemap == 'sat'){
+
           activeBasemap = 'dark'
+          var leafletAttrib1style2 = document.getElementsByClassName("leaflet-control-attribution leaflet-control")
+          leafletAttrib1style2[0].style.backgroundColor = 'transparent'
+          leafletAttrib1style2[0].style.color = '#808080'
+          var leafletScalestyle = document.getElementsByClassName("leaflet-control-scale-line")
+          leafletScalestyle[0].style.backgroundColor = 'transparent'
+          leafletScalestyle[0].style.color = '#808080'
           basemapSat.removeFrom(map);
           basemapDark.addTo(map);
           document.getElementById('baseMap').innerHTML = '<img src="images/sun.png" alt="..." width=30px; height=30px; loading="lazy" text-align="center" style="margin-left:-1px;margin-bottom:5px;" > '
         }else{
           activeBasemap = 'sat'
+          var leafletAttrib1style2 = document.getElementsByClassName("leaflet-control-attribution leaflet-control")
+          leafletAttrib1style2[0].style.backgroundColor = 'transparent'
+          leafletAttrib1style2[0].style.color = 'black'
+          var leafletScalestyle = document.getElementsByClassName("leaflet-control-scale-line")
+          leafletScalestyle[0].style.backgroundColor = 'transparent'
+          leafletScalestyle[0].style.color = 'black'
+          // var leafletScalestyle1 = document.getElementsByClassName("leaflet-control-scale leaflet-control")
+          // leafletScalestyle1[0].style.backgroundColor = 'transparent'
+          // leafletScalestyle1[0].style.color = 'black'
+          // leafletScalestyle1[0].style.border= '2px solid black'
+          // leafletScalestyle1[0].style.borderTop= '0'
+          // leafletScalestyle1[0].style.borderColor= 'black'
+
+
+          // border: 1px solid red; border-top: 0;border-color: #000;
 
           basemapDark.removeFrom(map);
           basemapSat.addTo(map);

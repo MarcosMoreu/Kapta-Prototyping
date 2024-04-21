@@ -1,7 +1,7 @@
 // export {version};
 "use strict";
 
-var version = 'v29.4';
+var version = 'v29.5';
 
 // Default files to always cache
 var offlineFundamentals = [
