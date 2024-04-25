@@ -247,12 +247,13 @@ var firstLoad = function() { //fucntion to determine if the site is visited for 
     if(homescreenorwhatsapplaunch == 'whatsapp'){
       document.getElementById('chatmaploadinggif').style.display = 'initial'
 
-    }else{
-      document.getElementById('languages').style.display = 'initial'
-      document.getElementById('KaptaLite').style.display = 'initial'
-      document.getElementById('KaptaAdvanced').style.display = 'initial'
-      document.getElementById('asktheteam').style.display = 'initial'
-    }
+    }//else{
+      //console.log('homescreen')
+      // document.getElementById('languages').style.display = 'initial'
+      // document.getElementById('KaptaLite').style.display = 'initial'
+      // document.getElementById('KaptaAdvanced').style.display = 'initial'
+      // document.getElementById('asktheteam').style.display = 'initial'
+   // }
 
     },300)
 
